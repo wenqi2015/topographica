@@ -515,13 +515,9 @@
                     <span class="n">t</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
                     <span class="k">for</span> <span class="n">map_name</span><span class="p">,</span><span class="n">map_view</span> <span class="ow">in</span> <span class="n">maps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                         <span class="n">name</span> <span class="o">=</span> <span class="n">base_name</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="n">map_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
-                        <span class="c"># JABALERT: Is this safe and general enough?</span>
-                        <span class="k">if</span> <span class="n">map_name</span> <span class="o">==</span> <span class="s">&#39;selectivity&#39;</span><span class="p">:</span>
-                            <span class="n">cyclic</span> <span class="o">=</span> <span class="bp">False</span>
-                            <span class="n">cyclic_range</span> <span class="o">=</span> <span class="bp">None</span>
                         <span class="n">view</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">((</span><span class="n">map_view</span><span class="p">,</span><span class="n">bounding_box</span><span class="p">),</span><span class="n">sn</span><span class="p">,</span><span class="n">sp</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
-                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic</span> <span class="o">=</span> <span class="n">cyclic</span>
-                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic_range</span> <span class="o">=</span> <span class="n">cyclic_range</span>
+                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic</span>                 <span class="o">=</span> <span class="bp">False</span> <span class="k">if</span> <span class="n">map_name</span> <span class="o">==</span> <span class="s">&#39;selectivity&#39;</span> <span class="k">else</span> <span class="n">fp</span><span class="o">.</span><span class="n">cyclic</span>
+                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic_range</span>           <span class="o">=</span> <span class="bp">None</span> <span class="k">if</span> <span class="n">map_name</span> <span class="o">==</span> <span class="s">&#39;selectivity&#39;</span> <span class="k">else</span> <span class="n">cyclic_range</span>
                         <span class="n">sheet</span><span class="o">.</span><span class="n">sheet_views</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
 
 
