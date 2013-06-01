@@ -120,7 +120,7 @@ to each pattern are collected into the DistributionMatrix.</p>
 <p>The resulting data can then be used to plot feature maps and
 tuning curves, or for similar types of feature-based analyses.</p>
 <dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x5aa8488&gt;, &lt;function clear_event_queue at 0x5aa7aa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x741e488&gt;, &lt;function clear_event_queue at 0x741daa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -138,6 +138,9 @@ tuning curves, or for similar types of feature-based analyses.</p>
         intrinsic noise), then this parameter can be increased
         so that results will be an average over the specified
         number of repetitions.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">enable_fullmatrix</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines whether or not store the full matrix of feature
+        responses as a class attribute.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.analysis.featureresponses.FeatureResponses.initialize_featureresponses">
@@ -171,7 +174,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 <dd><p>Bases: <a class="reference internal" href="#topo.analysis.featureresponses.FeatureResponses" title="topo.analysis.featureresponses.FeatureResponses"><tt class="xref py py-class docutils literal"><span class="pre">topo.analysis.featureresponses.FeatureResponses</span></tt></a></p>
 <p>Calculate the receptive fields for all neurons using reverse correlation.</p>
 <dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x5aa8488&gt;, &lt;function clear_event_queue at 0x5aa7aa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x741e488&gt;, &lt;function clear_event_queue at 0x741daa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -191,6 +194,11 @@ tuning curves, or for similar types of feature-based analyses.</p>
         number of repetitions.</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">input_sheet</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">enable_fullmatrix</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines whether or not store the full matrix of feature
+        responses as a class attribute.</dd>
+</dl>
 <dl class="method">
 <dt id="topo.analysis.featureresponses.ReverseCorrelation.measure_responses">
 <tt class="descname">measure_responses</tt><big>(</big><em>pattern_presenter</em>, <em>param_dict</em>, <em>features</em>, <em>display</em><big>)</big><a class="reference internal" href="../_modules/topo/analysis/featureresponses.html#ReverseCorrelation.measure_responses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.analysis.featureresponses.ReverseCorrelation.measure_responses" title="Permalink to this definition">¶</a></dt>
@@ -215,7 +223,7 @@ preference matrix and selectivity matrix in the sheet&#8217;s
 sheet_views; these can then be plotted as preference
 or selectivity maps.</p>
 <dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x5aa8488&gt;, &lt;function clear_event_queue at 0x5aa7aa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x741e488&gt;, &lt;function clear_event_queue at 0x741daa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -245,6 +253,9 @@ or selectivity maps.</p>
         feature dimensions.  The multiplier sets the output
         scaling.  The precise value is arbitrary, and set to match
         historical usage.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">enable_fullmatrix</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines whether or not store the full matrix of feature
+        responses as a class attribute.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.analysis.featureresponses.FeatureMaps.collect_feature_responses">
@@ -279,7 +290,7 @@ parameters (param_dict), and then varying the specified set of
 features.  The results can be accessed in the curve_dict,
 indexed by the curve_label and feature value.</p>
 <dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x5aa8488&gt;, &lt;function clear_event_queue at 0x5aa7aa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x741e488&gt;, &lt;function clear_event_queue at 0x741daa0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -300,6 +311,9 @@ indexed by the curve_label and feature value.</p>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_collect_responses_hook</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run at the end of collect_feature_responses function.
         The functions should accept three parameters: FullMatrix, curve label, sheet</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">enable_fullmatrix</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines whether or not store the full matrix of feature
+        responses as a class attribute.</dd>
 </dl>
 </dd></dl>
 
@@ -855,7 +869,7 @@ it may be modified to draw the pattern on one input sheet only.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 30, 2013.
+      Last updated on Jun 01, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

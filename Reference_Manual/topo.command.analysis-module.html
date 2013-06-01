@@ -74,61 +74,6 @@ set of parameters and some code, and only the bits that are specific
 to that particular plot or analysis appear below.  See the
 superclasses for the rest of the parameters and code.</p>
 <dl class="class">
-<dt id="topo.command.analysis.measure_response">
-<em class="property">class </em><tt class="descclassname">topo.command.analysis.</tt><tt class="descname">measure_response</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.command.analysis.measure_response" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">topo.analysis.featureresponses.PatternPresentingCommand</span></tt></p>
-<p>This command presents the specified test patterns for the
-specified duration and saves the resulting activity to the
-appropriate SheetViews. Originally, this was the implementation of
-the pattern_present command, which is still available in
-topo.command and operates by wrapping a call to this class.</p>
-<p>Given a set of input patterns, installs them into the specified
-GeneratorSheets, runs the simulation for the specified length of
-time, then restores the original patterns and the original
-simulation time.  Thus this input is not considered part of the
-regular simulation, and is usually for testing purposes.</p>
-<p>As a special case, if &#8216;inputs&#8217; is just a single pattern, and not
-a dictionary, it is presented to all GeneratorSheets.</p>
-<p>If a simulation is not provided, the active simulation, if one
-exists, is requested.</p>
-<p>If this process is interrupted by the user, the temporary patterns
-may still be installed on the retina.</p>
-<p>In order to to see the sequence of values presented, you may use
-the back arrow history mechanism in the GUI. Note that the GUI&#8217;s
-Activity window must be open and the display parameter set to true
-(display=True).</p>
-<dl class="docutils">
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">inputs</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>A dictionary of GeneratorSheetName:PatternGenerator pairs to be
-        installed into the specified GeneratorSheets</dd>
-</dl>
-<p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<dl class="docutils">
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">restore_events</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If True, restore simulation events after the response has been measured,
-        so that no simulation time will have elapsed.  Implied by
-        restore_state=True.</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If plastic is False, overwrites the existing values of
-        Sheet.plastic to disable plasticity, then reenables plasticity.</dd>
-<dt><em>param String</em> <tt class="docutils literal"><span class="pre">sheet_views_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Optional prefix to add to the name under which results are
-        stored in sheet_views. Can be used e.g. to distinguish maps as
-        originating from a particular GeneratorSheet.</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">overwrite_previous</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If overwrite_previous is true, the given inputs overwrite those
-        previously defined.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">duration</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If non-None, pattern_presenter.duration will be
-        set to this value.  Provides a simple way to set
-        this commonly changed option of PatternPresenter.</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">restore_state</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If True, restore the state of both sheet activities and simulation events
-        after the response has been measured.  Implies restore_events.</dd>
-</dl>
-</dd></dl>
-
-<dl class="class">
 <dt id="topo.command.analysis.save_plotgroup">
 <em class="property">class </em><tt class="descclassname">topo.command.analysis.</tt><tt class="descname">save_plotgroup</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/command/analysis.html#save_plotgroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.analysis.save_plotgroup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
@@ -352,7 +297,7 @@ this existing view is returned.</p>
 
 <dl class="function">
 <dt id="topo.command.analysis.decode_feature">
-<tt class="descclassname">topo.command.analysis.</tt><tt class="descname">decode_feature</tt><big>(</big><em>sheet</em>, <em>preference_map='OrientationPreference'</em>, <em>axis_bounds=(0.0</em>, <em>1.0)</em>, <em>cyclic=True</em>, <em>weighted_average=True</em>, <em>cropfn=&lt;function &lt;lambda&gt; at 0x708a578&gt;</em><big>)</big><a class="reference internal" href="../_modules/topo/command/analysis.html#decode_feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.analysis.decode_feature" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">topo.command.analysis.</tt><tt class="descname">decode_feature</tt><big>(</big><em>sheet</em>, <em>preference_map='OrientationPreference'</em>, <em>axis_bounds=(0.0</em>, <em>1.0)</em>, <em>cyclic=True</em>, <em>weighted_average=True</em>, <em>cropfn=&lt;function &lt;lambda&gt; at 0x8ac0578&gt;</em><big>)</big><a class="reference internal" href="../_modules/topo/command/analysis.html#decode_feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.analysis.decode_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Estimate the value of a feature from the current activity pattern on a sheet.</p>
 <p>The specified preference_map should be measured before this
 function is called.</p>
@@ -563,7 +508,7 @@ Activity window must be open and the display parameter set to true
 <p>Alternatively, the activity response of the sheets may be obtained
 from the sheet_views dictionary of the respective sheets.</p>
 <p>This function is a backward compatibility wrapper of the
-measure_response class.</p>
+pattern_response class.</p>
 </dd></dl>
 
 <dl class="function">
@@ -1266,6 +1211,61 @@ it may be modified to draw the pattern on one input sheet only.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="topo.command.analysis.pattern_response">
+<em class="property">class </em><tt class="descclassname">topo.command.analysis.</tt><tt class="descname">pattern_response</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.command.analysis.pattern_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">topo.analysis.featureresponses.PatternPresentingCommand</span></tt></p>
+<p>This command presents the specified test patterns for the
+specified duration and saves the resulting activity to the
+appropriate SheetViews. Originally, this was the implementation of
+the pattern_present command, which is still available in
+topo.command and operates by wrapping a call to this class.</p>
+<p>Given a set of input patterns, installs them into the specified
+GeneratorSheets, runs the simulation for the specified length of
+time, then restores the original patterns and the original
+simulation time.  Thus this input is not considered part of the
+regular simulation, and is usually for testing purposes.</p>
+<p>As a special case, if &#8216;inputs&#8217; is just a single pattern, and not
+a dictionary, it is presented to all GeneratorSheets.</p>
+<p>If a simulation is not provided, the active simulation, if one
+exists, is requested.</p>
+<p>If this process is interrupted by the user, the temporary patterns
+may still be installed on the retina.</p>
+<p>In order to to see the sequence of values presented, you may use
+the back arrow history mechanism in the GUI. Note that the GUI&#8217;s
+Activity window must be open and the display parameter set to true
+(display=True).</p>
+<dl class="docutils">
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">inputs</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of GeneratorSheetName:PatternGenerator pairs to be
+        installed into the specified GeneratorSheets</dd>
+</dl>
+<p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">restore_events</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>If True, restore simulation events after the response has been measured,
+        so that no simulation time will have elapsed.  Implied by
+        restore_state=True.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>If plastic is False, overwrites the existing values of
+        Sheet.plastic to disable plasticity, then reenables plasticity.</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">sheet_views_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional prefix to add to the name under which results are
+        stored in sheet_views. Can be used e.g. to distinguish maps as
+        originating from a particular GeneratorSheet.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">overwrite_previous</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>If overwrite_previous is true, the given inputs overwrite those
+        previously defined.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">duration</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>If non-None, pattern_presenter.duration will be
+        set to this value.  Provides a simple way to set
+        this commonly changed option of PatternPresenter.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">restore_state</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>If True, restore the state of both sheet activities and simulation events
+        after the response has been measured.  Implies restore_events.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
 <dt id="topo.command.analysis.measure_hue_pref">
 <em class="property">class </em><tt class="descclassname">topo.command.analysis.</tt><tt class="descname">measure_hue_pref</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/command/analysis.html#measure_hue_pref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.analysis.measure_hue_pref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.analysis.featureresponses-module.html#topo.analysis.featureresponses.SinusoidalMeasureResponseCommand" title="topo.analysis.featureresponses.SinusoidalMeasureResponseCommand"><tt class="xref py py-class docutils literal"><span class="pre">topo.analysis.featureresponses.SinusoidalMeasureResponseCommand</span></tt></a></p>
@@ -1766,7 +1766,7 @@ at that y position (of the specified size).</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 30, 2013.
+      Last updated on Jun 01, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
