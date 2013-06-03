@@ -236,6 +236,46 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_labels</span><span class="p">()</span>
 
 
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="PlotGroup.coords"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.PlotGroup.coords">[docs]</a>    <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the plot grid layout from the precedences and row</span>
+<span class="sd">        precedences of the plots in the plotgroup. Returns two lists,</span>
+<span class="sd">        the first containing the coordinate index pairs and the second</span>
+<span class="sd">        list containing the respective plotgroup.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># The plots are first ordered by their precedence.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sort_plots</span><span class="p">()</span>
+        <span class="c"># Row are indexed by row_precedence order.</span>
+        <span class="n">precedences</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">row_precedence</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plots</span><span class="p">))</span>
+
+        <span class="n">coords</span><span class="o">=</span><span class="p">[]</span>
+        <span class="c"># Can use collections.Counter in Python &gt;= 2.7</span>
+        <span class="n">column_counter</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">precedences</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">plot</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plots</span><span class="p">:</span>
+            <span class="c"># Find the row number based on the row_precedences</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">precedences</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">plot</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">)</span>
+            <span class="c"># Lookup the current column position of the row</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">column_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+            <span class="c"># The next plot on this row will have to be in the next column</span>
+            <span class="n">column_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+            <span class="n">coords</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">plot</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">coords</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="PlotGroup.grid"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.PlotGroup.grid">[docs]</a>    <span class="k">def</span> <span class="nf">grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the plots of the plotgroup in grid format where a grid</span>
+<span class="sd">        is a list of rows. Each row in turn is a list of plots. The</span>
+<span class="sd">        rows are left padded with None as necessary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">r</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">coords</span> <span class="o">!=</span> <span class="p">[]</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">coords</span> <span class="o">!=</span> <span class="p">[]</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">unpadded_grid</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">_</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="ow">in</span> <span class="n">coords</span> <span class="k">if</span> <span class="n">r</span><span class="o">==</span><span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="o">+</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">cols</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">unpadded_grid</span><span class="p">]</span>
+
+
 
 <span class="c">### In the rest of the file, whenever we do a loop through all the</span>
 <span class="c">### simulation&#39;s sheets, seems like we should have set the sheet</span>
@@ -243,7 +283,7 @@
 <span class="c">### i.e. maybe there should be a sheet parameter here, with its range</span>
 <span class="c">### set when the plotgroup is instantiated. Then if sheet=None, the</span>
 <span class="c">### sheet&#39;s range can be used as the list of sheets.</span>
-</div>
+</div></div>
 <span class="k">class</span> <span class="nc">SheetPlotGroup</span><span class="p">(</span><span class="n">PlotGroup</span><span class="p">):</span>
 
     <span class="c"># CEBALERT: shouldn&#39;t this be abstract? Currently it wouldn&#39;t do</span>
@@ -1435,7 +1475,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jun 01, 2013.
+      Last updated on Jun 03, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
