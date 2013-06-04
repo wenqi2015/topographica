@@ -70,6 +70,8 @@
 
 <span class="kn">from</span> <span class="nn">snapshots</span> <span class="kn">import</span> <span class="n">PicklableClassAttributes</span>
 
+<span class="kn">from</span> <span class="nn">topo</span> <span class="kn">import</span> <span class="n">version_int</span>
+
 <span class="c"># CEBALERT: remove the extraneous &quot;import param&quot;s</span>
 
 <span class="c"># CEB: Add note that snapshot can be re-saved, making updates</span>
@@ -111,14 +113,17 @@
             <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">snapshot_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">snapshot_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span> <span class="c"># the version is a tuple, thus it&#39;s from git</span>
-            <span class="n">snapshot_version</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%02d%02d%02d%05d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">snapshot_version</span>
+            <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">version_int</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="c"># Make snapshot_version a string that only contains digits</span>
+        <span class="k">if</span> <span class="n">snapshot_version</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">snapshot_version</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span>
                 <span class="n">found_version</span> <span class="o">=</span> <span class="bp">True</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                 <span class="k">pass</span>
+		<span class="n">snapshot_version</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span>
+
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">found_version</span><span class="p">:</span>
         <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">releases</span><span class="p">[</span><span class="n">snapshot_release</span><span class="p">]</span>
