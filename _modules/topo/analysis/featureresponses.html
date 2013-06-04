@@ -1185,11 +1185,8 @@
 
 <span class="k">class</span> <span class="nc">pattern_response</span><span class="p">(</span><span class="n">PatternPresentingCommand</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This command presents the specified test patterns for the</span>
-<span class="sd">    specified duration and saves the resulting activity to the</span>
-<span class="sd">    appropriate SheetViews. Originally, this was the implementation of</span>
-<span class="sd">    the pattern_present command, which is still available in</span>
-<span class="sd">    topo.command and operates by wrapping a call to this class.</span>
+<span class="sd">    Present the specified test patterns for the specified duration </span>
+<span class="sd">    and save the resulting activity to the appropriate SheetViews.</span>
 
 <span class="sd">    Given a set of input patterns, installs them into the specified</span>
 <span class="sd">    GeneratorSheets, runs the simulation for the specified length of</span>
@@ -1197,32 +1194,27 @@
 <span class="sd">    simulation time.  Thus this input is not considered part of the</span>
 <span class="sd">    regular simulation, and is usually for testing purposes.</span>
 
-<span class="sd">    As a special case, if &#39;inputs&#39; is just a single pattern, and not</span>
-<span class="sd">    a dictionary, it is presented to all GeneratorSheets.</span>
-
-<span class="sd">    If a simulation is not provided, the active simulation, if one</span>
-<span class="sd">    exists, is requested.</span>
-
 <span class="sd">    If this process is interrupted by the user, the temporary patterns</span>
 <span class="sd">    may still be installed on the retina.</span>
 
-<span class="sd">    In order to to see the sequence of values presented, you may use</span>
-<span class="sd">    the back arrow history mechanism in the GUI. Note that the GUI&#39;s</span>
-<span class="sd">    Activity window must be open and the display parameter set to true</span>
-<span class="sd">    (display=True).</span>
+<span class="sd">    If a GUI is accessible via topo.guimain, its</span>
+<span class="sd">    refresh_activity_windows method will be called after each pattern</span>
+<span class="sd">    presentation, to allow the results to be visualized.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">inputs</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{},</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        A dictionary of GeneratorSheetName:PatternGenerator pairs to be</span>
-<span class="s">        installed into the specified GeneratorSheets&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s">        installed into the specified GeneratorSheets.  As a special</span>
+<span class="s">        case, if a single pattern is supplied, rather than a dictionary,</span>
+<span class="s">        it is presented to all GeneratorSheets.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">plastic</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        If plastic is False, overwrites the existing values of</span>
 <span class="s">        Sheet.plastic to disable plasticity, then reenables plasticity.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">overwrite_previous</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        If overwrite_previous is true, the given inputs overwrite those</span>
-<span class="s">        previously defined.&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s">        If overwrite_previous is true, the given inputs permanently</span>
+<span class="s">        overwrite those previously defined in each GeneratorSheet.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">apply_output_fns</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
@@ -1641,7 +1633,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jun 03, 2013.
+      Last updated on Jun 04, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
