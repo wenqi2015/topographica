@@ -525,9 +525,10 @@
                     <span class="k">for</span> <span class="n">map_name</span><span class="p">,</span><span class="n">map_view</span> <span class="ow">in</span> <span class="n">maps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                         <span class="n">name</span> <span class="o">=</span> <span class="n">base_name</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="n">map_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
                         <span class="n">view</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">((</span><span class="n">map_view</span><span class="p">,</span><span class="n">bounding_box</span><span class="p">),</span><span class="n">sn</span><span class="p">,</span><span class="n">sp</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">sr</span><span class="p">)</span>
+                        <span class="c"># JABALERT: Temporarily disabled as of 20130614 to work around a plotting problem</span>
                         <span class="c"># Special case: selectivity is not cyclic even if the feature is</span>
-                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic</span>       <span class="o">=</span> <span class="bp">False</span> <span class="k">if</span> <span class="n">map_name</span> <span class="o">==</span> <span class="s">&#39;selectivity&#39;</span> <span class="k">else</span> <span class="n">fp</span><span class="o">.</span><span class="n">cyclic</span>
-                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic_range</span> <span class="o">=</span> <span class="bp">None</span>  <span class="k">if</span> <span class="n">map_name</span> <span class="o">==</span> <span class="s">&#39;selectivity&#39;</span> <span class="k">else</span> <span class="n">cyclic_range</span>
+                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic</span>       <span class="o">=</span> <span class="bp">False</span> <span class="c">#if map_name == &#39;selectivity&#39; else fp.cyclic</span>
+                        <span class="n">view</span><span class="o">.</span><span class="n">cyclic_range</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c">#if map_name == &#39;selectivity&#39; else cyclic_range</span>
                         <span class="n">sheet</span><span class="o">.</span><span class="n">sheet_views</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
 
 
@@ -1633,7 +1634,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jun 08, 2013.
+      Last updated on Jun 19, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
