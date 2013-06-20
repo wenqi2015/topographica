@@ -9,150 +9,150 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 290)">
 <title>inheritancef1ac05fc54</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-290 831,-290 831,5 -4,5"/>
-<!-- numbergen.BoundedNumber -->
-<g id="node1" class="node"><title>numbergen.BoundedNumber</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="597,-248.5 441,-248.5 441,-227.5 597,-227.5 597,-248.5"/>
-<text text-anchor="middle" x="519" y="-235.5" font-family="Vera" font-size="10.00">numbergen.BoundedNumber</text>
+<!-- numbergen.ExponentialDecay -->
+<g id="node1" class="node"><title>numbergen.ExponentialDecay</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="815,-286.5 655,-286.5 655,-265.5 815,-265.5 815,-286.5"/>
+<text text-anchor="middle" x="735" y="-273.5" font-family="Vera" font-size="10.00">numbergen.ExponentialDecay</text>
 </g>
-<!-- numbergen.NumberGenerator -->
-<g id="node2" class="node"><title>numbergen.NumberGenerator</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="393,-172.5 231,-172.5 231,-151.5 393,-151.5 393,-172.5"/>
-<text text-anchor="middle" x="312" y="-159.5" font-family="Vera" font-size="10.00">numbergen.NumberGenerator</text>
+<!-- numbergen.TimeDependentValue -->
+<g id="node2" class="node"><title>numbergen.TimeDependentValue</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="608,-248.5 430,-248.5 430,-227.5 608,-227.5 608,-248.5"/>
+<text text-anchor="middle" x="519" y="-235.5" font-family="Vera" font-size="10.00">numbergen.TimeDependentValue</text>
 </g>
-<!-- numbergen.NumberGenerator&#45;&gt;numbergen.BoundedNumber -->
-<g id="edge2" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.BoundedNumber</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M329.427,-172.066C351.968,-184.695 392.767,-206.24 430,-219 438.575,-221.939 447.777,-224.515 456.894,-226.743"/>
-<polygon fill="black" stroke="black" points="456.677,-228.49 461.946,-227.945 457.487,-225.085 456.677,-228.49"/>
+<!-- numbergen.TimeDependentValue&#45;&gt;numbergen.ExponentialDecay -->
+<g id="edge2" class="edge"><title>numbergen.TimeDependentValue&#45;&gt;numbergen.ExponentialDecay</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M576.034,-248.034C605.809,-253.272 642.289,-259.69 672.79,-265.056"/>
+<polygon fill="black" stroke="black" points="672.794,-266.833 678.021,-265.976 673.4,-263.386 672.794,-266.833"/>
+</g>
+<!-- numbergen.BoxCar -->
+<g id="node18" class="node"><title>numbergen.BoxCar</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="790,-248.5 680,-248.5 680,-227.5 790,-227.5 790,-248.5"/>
+<text text-anchor="middle" x="735" y="-235.5" font-family="Vera" font-size="10.00">numbergen.BoxCar</text>
+</g>
+<!-- numbergen.TimeDependentValue&#45;&gt;numbergen.BoxCar -->
+<g id="edge16" class="edge"><title>numbergen.TimeDependentValue&#45;&gt;numbergen.BoxCar</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M608.103,-238C630.493,-238 654.002,-238 674.617,-238"/>
+<polygon fill="black" stroke="black" points="674.793,-239.75 679.793,-238 674.793,-236.25 674.793,-239.75"/>
 </g>
 <!-- numbergen.UnaryOperator -->
 <g id="node4" class="node"><title>numbergen.UnaryOperator</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="592,-210.5 446,-210.5 446,-189.5 592,-189.5 592,-210.5"/>
-<text text-anchor="middle" x="519" y="-197.5" font-family="Vera" font-size="10.00">numbergen.UnaryOperator</text>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="592,-172.5 446,-172.5 446,-151.5 592,-151.5 592,-172.5"/>
+<text text-anchor="middle" x="519" y="-159.5" font-family="Vera" font-size="10.00">numbergen.UnaryOperator</text>
+</g>
+<!-- numbergen.NumberGenerator -->
+<g id="node5" class="node"><title>numbergen.NumberGenerator</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="393,-134.5 231,-134.5 231,-113.5 393,-113.5 393,-134.5"/>
+<text text-anchor="middle" x="312" y="-121.5" font-family="Vera" font-size="10.00">numbergen.NumberGenerator</text>
+</g>
+<!-- numbergen.NumberGenerator&#45;&gt;numbergen.TimeDependentValue -->
+<g id="edge12" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.TimeDependentValue</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M330.37,-134.117C368.194,-154.947 454.687,-202.581 496.091,-225.383"/>
+<polygon fill="black" stroke="black" points="495.447,-227.027 500.671,-227.906 497.136,-223.961 495.447,-227.027"/>
 </g>
 <!-- numbergen.NumberGenerator&#45;&gt;numbergen.UnaryOperator -->
 <g id="edge4" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.UnaryOperator</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M366.658,-172.034C395.192,-177.272 430.152,-183.69 459.382,-189.056"/>
-<polygon fill="black" stroke="black" points="459.162,-190.794 464.395,-189.976 459.794,-187.352 459.162,-190.794"/>
+<path fill="none" stroke="black" stroke-width="0.5" d="M366.658,-134.034C395.192,-139.272 430.152,-145.69 459.382,-151.056"/>
+<polygon fill="black" stroke="black" points="459.162,-152.794 464.395,-151.976 459.794,-149.352 459.162,-152.794"/>
 </g>
 <!-- numbergen.RandomDistribution -->
-<g id="node7" class="node"><title>numbergen.RandomDistribution</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="604,-172.5 434,-172.5 434,-151.5 604,-151.5 604,-172.5"/>
-<text text-anchor="middle" x="519" y="-159.5" font-family="Vera" font-size="10.00">numbergen.RandomDistribution</text>
+<g id="node8" class="node"><title>numbergen.RandomDistribution</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="604,-134.5 434,-134.5 434,-113.5 604,-113.5 604,-134.5"/>
+<text text-anchor="middle" x="519" y="-121.5" font-family="Vera" font-size="10.00">numbergen.RandomDistribution</text>
 </g>
 <!-- numbergen.NumberGenerator&#45;&gt;numbergen.RandomDistribution -->
-<g id="edge8" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.RandomDistribution</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M393.515,-162C405.097,-162 417.065,-162 428.8,-162"/>
-<polygon fill="black" stroke="black" points="428.814,-163.75 433.814,-162 428.814,-160.25 428.814,-163.75"/>
+<g id="edge22" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.RandomDistribution</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M393.515,-124C405.097,-124 417.065,-124 428.8,-124"/>
+<polygon fill="black" stroke="black" points="428.814,-125.75 433.814,-124 428.814,-122.25 428.814,-125.75"/>
 </g>
 <!-- numbergen.BinaryOperator -->
-<g id="node16" class="node"><title>numbergen.BinaryOperator</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="593,-134.5 445,-134.5 445,-113.5 593,-113.5 593,-134.5"/>
-<text text-anchor="middle" x="519" y="-121.5" font-family="Vera" font-size="10.00">numbergen.BinaryOperator</text>
+<g id="node10" class="node"><title>numbergen.BinaryOperator</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="593,-96.5 445,-96.5 445,-75.5 593,-75.5 593,-96.5"/>
+<text text-anchor="middle" x="519" y="-83.5" font-family="Vera" font-size="10.00">numbergen.BinaryOperator</text>
 </g>
 <!-- numbergen.NumberGenerator&#45;&gt;numbergen.BinaryOperator -->
-<g id="edge16" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.BinaryOperator</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M366.658,-151.966C395.192,-146.728 430.152,-140.31 459.382,-134.944"/>
-<polygon fill="black" stroke="black" points="459.794,-136.648 464.395,-134.024 459.162,-133.206 459.794,-136.648"/>
+<g id="edge8" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.BinaryOperator</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M366.658,-113.966C395.192,-108.728 430.152,-102.31 459.382,-96.9443"/>
+<polygon fill="black" stroke="black" points="459.794,-98.6482 464.395,-96.024 459.162,-95.2057 459.794,-98.6482"/>
 </g>
-<!-- numbergen.TimeDependentValue -->
-<g id="node18" class="node"><title>numbergen.TimeDependentValue</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="608,-58.5 430,-58.5 430,-37.5 608,-37.5 608,-58.5"/>
-<text text-anchor="middle" x="519" y="-45.5" font-family="Vera" font-size="10.00">numbergen.TimeDependentValue</text>
+<!-- numbergen.BoundedNumber -->
+<g id="node20" class="node"><title>numbergen.BoundedNumber</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="597,-58.5 441,-58.5 441,-37.5 597,-37.5 597,-58.5"/>
+<text text-anchor="middle" x="519" y="-45.5" font-family="Vera" font-size="10.00">numbergen.BoundedNumber</text>
 </g>
-<!-- numbergen.NumberGenerator&#45;&gt;numbergen.TimeDependentValue -->
-<g id="edge18" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.TimeDependentValue</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M330.37,-151.883C368.194,-131.053 454.687,-83.4187 496.091,-60.6168"/>
-<polygon fill="black" stroke="black" points="497.136,-62.0391 500.671,-58.0941 495.447,-58.9732 497.136,-62.0391"/>
-</g>
-<!-- numbergen.NormalRandom -->
-<g id="node6" class="node"><title>numbergen.NormalRandom</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="810,-286.5 660,-286.5 660,-265.5 810,-265.5 810,-286.5"/>
-<text text-anchor="middle" x="735" y="-273.5" font-family="Vera" font-size="10.00">numbergen.NormalRandom</text>
-</g>
-<!-- numbergen.RandomDistribution&#45;&gt;numbergen.NormalRandom -->
-<g id="edge6" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.NormalRandom</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M593.332,-172.159C598.574,-174.558 603.54,-177.471 608,-181 637.31,-204.191 614.638,-233.874 644,-257 647.463,-259.727 651.223,-262.089 655.177,-264.132"/>
-<polygon fill="black" stroke="black" points="654.635,-265.813 659.901,-266.387 656.143,-262.654 654.635,-265.813"/>
-</g>
-<!-- numbergen.Choice -->
-<g id="node10" class="node"><title>numbergen.Choice</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="788,-248.5 682,-248.5 682,-227.5 788,-227.5 788,-248.5"/>
-<text text-anchor="middle" x="735" y="-235.5" font-family="Vera" font-size="10.00">numbergen.Choice</text>
-</g>
-<!-- numbergen.RandomDistribution&#45;&gt;numbergen.Choice -->
-<g id="edge10" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.Choice</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M587.153,-172.047C594.426,-174.426 601.524,-177.366 608,-181 628.288,-192.385 623.686,-207.661 644,-219 653.777,-224.457 664.937,-228.352 676.014,-231.131"/>
-<polygon fill="black" stroke="black" points="675.824,-232.884 681.092,-232.33 676.628,-229.478 675.824,-232.884"/>
+<!-- numbergen.NumberGenerator&#45;&gt;numbergen.BoundedNumber -->
+<g id="edge18" class="edge"><title>numbergen.NumberGenerator&#45;&gt;numbergen.BoundedNumber</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M329.427,-113.934C351.968,-101.305 392.767,-79.7601 430,-67 438.575,-64.0612 447.777,-61.4853 456.894,-59.2572"/>
+<polygon fill="black" stroke="black" points="457.487,-60.9151 461.946,-58.0551 456.677,-57.5102 457.487,-60.9151"/>
 </g>
 <!-- numbergen.UniformRandom -->
-<g id="node14" class="node"><title>numbergen.UniformRandom</title>
+<g id="node7" class="node"><title>numbergen.UniformRandom</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="811,-210.5 659,-210.5 659,-189.5 811,-189.5 811,-210.5"/>
 <text text-anchor="middle" x="735" y="-197.5" font-family="Vera" font-size="10.00">numbergen.UniformRandom</text>
 </g>
 <!-- numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandom -->
-<g id="edge14" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandom</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M576.034,-172.034C605.809,-177.272 642.289,-183.69 672.79,-189.056"/>
-<polygon fill="black" stroke="black" points="672.794,-190.833 678.021,-189.976 673.4,-187.386 672.794,-190.833"/>
+<g id="edge6" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandom</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M587.153,-134.047C594.426,-136.426 601.524,-139.366 608,-143 628.288,-154.385 623.686,-169.661 644,-181 649.064,-183.827 654.5,-186.235 660.103,-188.285"/>
+<polygon fill="black" stroke="black" points="659.548,-189.945 664.845,-189.925 660.692,-186.637 659.548,-189.945"/>
 </g>
 <!-- numbergen.UniformRandomOffset -->
-<g id="node22" class="node"><title>numbergen.UniformRandomOffset</title>
+<g id="node12" class="node"><title>numbergen.UniformRandomOffset</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="826,-172.5 644,-172.5 644,-151.5 826,-151.5 826,-172.5"/>
 <text text-anchor="middle" x="735" y="-159.5" font-family="Vera" font-size="10.00">numbergen.UniformRandomOffset</text>
 </g>
 <!-- numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandomOffset -->
-<g id="edge22" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandomOffset</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M604.059,-162C615.423,-162 627.142,-162 638.681,-162"/>
-<polygon fill="black" stroke="black" points="638.968,-163.75 643.968,-162 638.968,-160.25 638.968,-163.75"/>
+<g id="edge10" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandomOffset</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M576.034,-134.034C605.809,-139.272 642.289,-145.69 672.79,-151.056"/>
+<polygon fill="black" stroke="black" points="672.794,-152.833 678.021,-151.976 673.4,-149.386 672.794,-152.833"/>
 </g>
 <!-- numbergen.VonMisesRandom -->
-<g id="node24" class="node"><title>numbergen.VonMisesRandom</title>
+<g id="node16" class="node"><title>numbergen.VonMisesRandom</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="815,-134.5 655,-134.5 655,-113.5 815,-113.5 815,-134.5"/>
 <text text-anchor="middle" x="735" y="-121.5" font-family="Vera" font-size="10.00">numbergen.VonMisesRandom</text>
 </g>
 <!-- numbergen.RandomDistribution&#45;&gt;numbergen.VonMisesRandom -->
-<g id="edge24" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.VonMisesRandom</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M576.034,-151.966C605.809,-146.728 642.289,-140.31 672.79,-134.944"/>
-<polygon fill="black" stroke="black" points="673.4,-136.614 678.021,-134.024 672.794,-133.167 673.4,-136.614"/>
+<g id="edge14" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.VonMisesRandom</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M604.059,-124C619.12,-124 634.806,-124 649.869,-124"/>
+<polygon fill="black" stroke="black" points="649.952,-125.75 654.952,-124 649.952,-122.25 649.952,-125.75"/>
+</g>
+<!-- numbergen.NormalRandom -->
+<g id="node22" class="node"><title>numbergen.NormalRandom</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="810,-96.5 660,-96.5 660,-75.5 810,-75.5 810,-96.5"/>
+<text text-anchor="middle" x="735" y="-83.5" font-family="Vera" font-size="10.00">numbergen.NormalRandom</text>
+</g>
+<!-- numbergen.RandomDistribution&#45;&gt;numbergen.NormalRandom -->
+<g id="edge20" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.NormalRandom</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M576.034,-113.966C605.809,-108.728 642.289,-102.31 672.79,-96.9443"/>
+<polygon fill="black" stroke="black" points="673.4,-98.614 678.021,-96.024 672.794,-95.1669 673.4,-98.614"/>
+</g>
+<!-- numbergen.Choice -->
+<g id="node25" class="node"><title>numbergen.Choice</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="788,-58.5 682,-58.5 682,-37.5 788,-37.5 788,-58.5"/>
+<text text-anchor="middle" x="735" y="-45.5" font-family="Vera" font-size="10.00">numbergen.Choice</text>
+</g>
+<!-- numbergen.RandomDistribution&#45;&gt;numbergen.Choice -->
+<g id="edge24" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.Choice</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M587.153,-113.953C594.426,-111.574 601.524,-108.634 608,-105 628.288,-93.615 623.686,-78.3394 644,-67 653.777,-61.5426 664.937,-57.6477 676.014,-54.8693"/>
+<polygon fill="black" stroke="black" points="676.628,-56.5224 681.092,-53.6697 675.824,-53.1162 676.628,-56.5224"/>
 </g>
 <!-- numbergen.UniformRandomInt -->
-<g id="node26" class="node"><title>numbergen.UniformRandomInt</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="817,-96.5 653,-96.5 653,-75.5 817,-75.5 817,-96.5"/>
-<text text-anchor="middle" x="735" y="-83.5" font-family="Vera" font-size="10.00">numbergen.UniformRandomInt</text>
+<g id="node28" class="node"><title>numbergen.UniformRandomInt</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="817,-20.5 653,-20.5 653,0.5 817,0.5 817,-20.5"/>
+<text text-anchor="middle" x="735" y="-7.5" font-family="Vera" font-size="10.00">numbergen.UniformRandomInt</text>
 </g>
 <!-- numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandomInt -->
-<g id="edge26" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandomInt</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M587.153,-151.953C594.426,-149.574 601.524,-146.634 608,-143 628.288,-131.615 623.686,-116.339 644,-105 649.064,-102.173 654.5,-99.7652 660.103,-97.7148"/>
-<polygon fill="black" stroke="black" points="660.692,-99.3632 664.845,-96.0751 659.548,-96.0554 660.692,-99.3632"/>
+<g id="edge28" class="edge"><title>numbergen.RandomDistribution&#45;&gt;numbergen.UniformRandomInt</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M593.332,-113.841C598.574,-111.442 603.54,-108.529 608,-105 637.31,-81.8086 614.638,-52.1255 644,-29 647.138,-26.5285 650.52,-24.3573 654.069,-22.4514"/>
+<polygon fill="black" stroke="black" points="655.297,-23.7967 659.005,-20.0136 653.747,-20.6585 655.297,-23.7967"/>
 </g>
 <!-- param.parameterized.Parameterized -->
-<g id="node12" class="node"><title>param.parameterized.Parameterized</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="194,-172.5 5.68434e-14,-172.5 0,-151.5 194,-151.5 194,-172.5"/>
-<text text-anchor="middle" x="97" y="-159.5" font-family="Vera" font-size="10.00">param.parameterized.Parameterized</text>
+<g id="node14" class="node"><title>param.parameterized.Parameterized</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="194,-134.5 5.68434e-14,-134.5 0,-113.5 194,-113.5 194,-134.5"/>
+<text text-anchor="middle" x="97" y="-121.5" font-family="Vera" font-size="10.00">param.parameterized.Parameterized</text>
 </g>
 <!-- param.parameterized.Parameterized&#45;&gt;numbergen.NumberGenerator -->
-<g id="edge12" class="edge"><title>param.parameterized.Parameterized&#45;&gt;numbergen.NumberGenerator</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M194.121,-162C204.545,-162 215.101,-162 225.391,-162"/>
-<polygon fill="black" stroke="black" points="225.419,-163.75 230.419,-162 225.419,-160.25 225.419,-163.75"/>
-</g>
-<!-- numbergen.ExponentialDecay -->
-<g id="node20" class="node"><title>numbergen.ExponentialDecay</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="815,-58.5 655,-58.5 655,-37.5 815,-37.5 815,-58.5"/>
-<text text-anchor="middle" x="735" y="-45.5" font-family="Vera" font-size="10.00">numbergen.ExponentialDecay</text>
-</g>
-<!-- numbergen.TimeDependentValue&#45;&gt;numbergen.ExponentialDecay -->
-<g id="edge20" class="edge"><title>numbergen.TimeDependentValue&#45;&gt;numbergen.ExponentialDecay</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M608.103,-48C621.645,-48 635.596,-48 649.069,-48"/>
-<polygon fill="black" stroke="black" points="649.406,-49.7501 654.406,-48 649.406,-46.2501 649.406,-49.7501"/>
-</g>
-<!-- numbergen.BoxCar -->
-<g id="node28" class="node"><title>numbergen.BoxCar</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="790,-20.5 680,-20.5 680,0.5 790,0.5 790,-20.5"/>
-<text text-anchor="middle" x="735" y="-7.5" font-family="Vera" font-size="10.00">numbergen.BoxCar</text>
-</g>
-<!-- numbergen.TimeDependentValue&#45;&gt;numbergen.BoxCar -->
-<g id="edge28" class="edge"><title>numbergen.TimeDependentValue&#45;&gt;numbergen.BoxCar</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M576.034,-37.9662C606.4,-32.6242 643.74,-26.0551 674.599,-20.6262"/>
-<polygon fill="black" stroke="black" points="675.265,-22.2858 679.887,-19.6959 674.659,-18.8388 675.265,-22.2858"/>
+<g id="edge26" class="edge"><title>param.parameterized.Parameterized&#45;&gt;numbergen.NumberGenerator</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M194.121,-124C204.545,-124 215.101,-124 225.391,-124"/>
+<polygon fill="black" stroke="black" points="225.419,-125.75 230.419,-124 225.419,-122.25 225.419,-125.75"/>
 </g>
 </g>
 </svg>
