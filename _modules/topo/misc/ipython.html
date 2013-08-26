@@ -1,0 +1,337 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>topo.misc.ipython &mdash; The Topographica Neural Map Simulator</title>
+    
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.98',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/topo.js"></script>
+    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+<li><a href="../../../index.html">Home</a></li>
+<li><a href="../../../Downloads/index.html">Downloads</a></li>
+<li><a href="../../../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../../../User_Manual/index.html">User Manual</a></li>
+
+
+<li><ul class="parents">
+
+
+
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li>
+
+</ul></li>
+
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for topo.misc.ipython</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Topographica IPython extension for notebook support. Load with:</span>
+
+<span class="sd">%load_ext topo.misc.ipython</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">base64</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">difflib</span>
+<span class="kn">import</span> <span class="nn">imagen.ipython</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">param</span>
+
+<span class="kn">import</span> <span class="nn">IPython.nbformat.current</span>
+
+<div class="viewcode-block" id="export_notebook"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.ipython-module.html#topo.misc.ipython.export_notebook">[docs]</a><span class="k">def</span> <span class="nf">export_notebook</span><span class="p">(</span><span class="n">notebook</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="s">&#39;.ty&#39;</span><span class="p">,</span> <span class="n">identifier</span><span class="o">=</span><span class="s">&#39;_export_&#39;</span><span class="p">,</span>
+                    <span class="n">diff</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">stale_time</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given a v3-format .ipynb notebook file (from IPython 0.13 or</span>
+<span class="sd">    later), allows the contents of labelled code cells to be exported</span>
+<span class="sd">    to a plaintext file.  The typical use case is for generating a</span>
+<span class="sd">    runnable plain Python source file from selected cells of an</span>
+<span class="sd">    IPython notebook.</span>
+
+<span class="sd">    Code is selected for export by placing the given identifier on the first</span>
+<span class="sd">    line of the chosen code cells. By default, only the labelled cells are</span>
+<span class="sd">    exported. This behavior may be inverted to exclude labelled cells by</span>
+<span class="sd">    setting the invert flag.</span>
+
+<span class="sd">    notebook    The filename of the notebook (.ipynb).</span>
+<span class="sd">    output_path Optional output file path. Otherwise, uses the notebook basename.</span>
+<span class="sd">    ext         The file extension of the output.</span>
+<span class="sd">    identifier  The identifier used to label cells.</span>
+<span class="sd">    diff        Whether to print a diff when overwriting content.</span>
+<span class="sd">    invert      When set, only the non-labelled cells are exported.</span>
+<span class="sd">    stale_time  Number of seconds that may elapse since the last notebook</span>
+<span class="sd">                save before a staleness warning is issued. Useful when</span>
+<span class="sd">                exporting from an active IPython notebook.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">output_path</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">notebook</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">ext</span>
+
+    <span class="c"># Assumes the v3 version of the ipynb format.</span>
+    <span class="n">nbnode</span> <span class="o">=</span> <span class="n">IPython</span><span class="o">.</span><span class="n">nbformat</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">notebook</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">),</span> <span class="s">&#39;ipynb&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">nbnode</span><span class="p">[</span><span class="s">&#39;worksheets&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">&#39;cells&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">cell</span><span class="p">[</span><span class="s">&#39;cell_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;code&#39;</span><span class="p">:</span>
+            <span class="n">celllines</span> <span class="o">=</span> <span class="n">cell</span><span class="p">[</span><span class="s">&#39;input&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="n">labelled</span> <span class="o">=</span> <span class="p">(</span><span class="n">celllines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="n">identifier</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">labelled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">invert</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">celllines</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+            <span class="k">if</span> <span class="n">invert</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">labelled</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">celllines</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+
+    <span class="k">if</span> <span class="n">stale_time</span><span class="p">:</span>
+        <span class="n">modified_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">notebook</span><span class="p">)</span>
+        <span class="k">if</span>  <span class="n">modified_time</span> <span class="o">&gt;</span> <span class="n">stale_time</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Notebook last saved </span><span class="si">%.1f</span><span class="s"> seconds ago.&quot;</span> <span class="o">%</span> <span class="n">modified_time</span>
+
+    <span class="n">new_contents</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+    <span class="n">overwrite</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">overwrite</span><span class="p">:</span>
+        <span class="n">old_contents</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">new_contents</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">diff</span> <span class="ow">and</span> <span class="n">overwrite</span><span class="p">:</span>
+        <span class="n">deltas</span> <span class="o">=</span><span class="n">difflib</span><span class="o">.</span><span class="n">unified_diff</span><span class="p">(</span><span class="n">old_contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">new_contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">lineterm</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">deltas</span><span class="p">))</span>
+
+</div>
+<span class="k">class</span> <span class="nc">Display</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+
+    <span class="n">default_width</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">                   The default width of the image displayed&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">named_widths</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{},</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">             An explicit set of display sizes by object name.</span>
+<span class="s">             Only works for objects with a &#39;name&#39; attribute.&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array_fn</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">array_fn</span> <span class="o">=</span> <span class="n">array_fn</span>
+
+    <span class="k">def</span> <span class="nf">_greyscale_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">zero_black</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a 2D numpy array of floats (eg. float64) to a</span>
+<span class="sd">        normalized PIL image (greyscale).</span>
+
+<span class="sd">        If zero_black is False, the image output is black to white,</span>
+<span class="sd">        regardless of the minimum value.  Otherwise, only the maximum</span>
+<span class="sd">        value is white so the lowest image value may not be</span>
+<span class="sd">        black. This means 100% black always represent zero.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">min_arr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">value_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">min_arr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">value_range</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">arr</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">min_arr</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">zero_black</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span> <span class="o">/</span> <span class="n">arr</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">-</span> <span class="n">min_arr</span><span class="p">)</span> <span class="o">/</span> <span class="n">value_range</span>
+
+        <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">arr</span><span class="o">*</span><span class="n">scale_factor</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_scale_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">horizontal</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="s">&quot; Generates a scale bar of a given length &quot;</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="n">aspect</span><span class="p">)</span>
+        <span class="n">background_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span><span class="o">+</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">border</span><span class="p">),</span> <span class="n">length</span><span class="o">+</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">border</span><span class="p">))</span>
+        <span class="n">key_im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">background_size</span><span class="p">)))</span>
+        <span class="c"># The greyscale gradient</span>
+        <span class="n">greyscale_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length</span><span class="p">),</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">horizontal</span><span class="p">:</span> <span class="n">greyscale_arr</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="n">greyscale_im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">greyscale_arr</span><span class="o">*</span><span class="mi">255</span><span class="p">))</span>
+        <span class="c"># Paste into background.</span>
+        <span class="n">key_im</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">greyscale_im</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="p">(</span><span class="n">border</span><span class="p">,</span><span class="n">border</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">key_im</span>
+
+
+    <span class="k">def</span> <span class="nf">_html_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span>  <span class="n">minval</span><span class="p">,</span> <span class="n">maxval</span><span class="p">,</span>
+                    <span class="n">horizontal</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">zero_black</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="s">&quot; Generates the HTML table to be displayed &quot;</span>
+
+        <span class="n">open_table</span> <span class="o">=</span> <span class="s">&#39;&lt;table style=&quot;border:0px;&quot;&gt;&lt;tr&gt;&#39;</span>
+        <span class="n">item_clear</span> <span class="o">=</span> <span class="s">&#39;&lt;td </span><span class="si">%s</span><span class="s"> style=&quot; border: 1px solid transparent; vertical-align : &quot;middle&quot;&quot;&gt;&lt;center&gt;</span><span class="si">%s</span><span class="s">&lt;/center&gt;&lt;/td&gt;&#39;</span>
+        <span class="n">item_border</span> <span class="o">=</span> <span class="s">&#39;&lt;td </span><span class="si">%s</span><span class="s"> style=&quot; vertical-align : &quot;middle&quot;&quot;&gt;&lt;center&gt;</span><span class="si">%s</span><span class="s">&lt;/center&gt;&lt;/td&gt;&#39;</span>
+        <span class="n">separator</span> <span class="o">=</span> <span class="s">&quot;&lt;/tr&gt;&lt;tr&gt;&quot;</span>
+        <span class="n">close_table</span> <span class="o">=</span> <span class="s">&quot;&lt;/tr&gt;&lt;/table&gt;&quot;</span>
+        <span class="n">mono</span> <span class="o">=</span> <span class="s">&#39;&lt;code&gt;</span><span class="si">%s</span><span class="s">&lt;/code&gt;&#39;</span>  <span class="c"># Monospace</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">item_border</span> <span class="k">if</span> <span class="n">border</span> <span class="k">else</span> <span class="n">item_clear</span>
+
+        <span class="c"># The main image</span>
+        <span class="n">raw_im</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_greyscale_image</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">zero_black</span><span class="o">=</span><span class="n">zero_black</span><span class="p">)</span>
+        <span class="n">resized_im</span> <span class="o">=</span> <span class="n">raw_im</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span><span class="p">)</span>
+        <span class="n">b64_img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base64_img</span><span class="p">(</span><span class="n">resized_im</span><span class="p">)</span>
+        <span class="n">image_item</span> <span class="o">=</span> <span class="n">item</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;colspan = &quot;3&quot;&#39;</span><span class="p">,</span> <span class="n">b64_img</span><span class="p">)</span>
+
+        <span class="c"># The greyscale key (if not constant)</span>
+        <span class="k">if</span> <span class="n">minval</span> <span class="o">==</span> <span class="n">maxval</span><span class="p">:</span>
+            <span class="n">key_data</span> <span class="o">=</span> <span class="s">&#39;Constant value of </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">minval</span>
+            <span class="n">key_items</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">key_data</span><span class="p">,</span> <span class="s">&#39;&#39;</span> <span class="p">]]</span>
+            <span class="n">key_cell</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key_items</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span> <span class="k">if</span> <span class="n">horizontal</span> <span class="k">else</span> <span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="n">length</span> <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="k">else</span> <span class="mi">50</span>
+            <span class="n">scale_bar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale_bar</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">horizontal</span><span class="o">=</span><span class="n">horizontal</span><span class="p">)</span>
+            <span class="n">b64_img_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base64_img</span><span class="p">(</span><span class="n">scale_bar</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">minstr</span><span class="p">,</span> <span class="n">maxstr</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39; </span><span class="si">%.3g</span><span class="s"> &#39;</span> <span class="o">%</span> <span class="n">minval</span><span class="p">,</span> <span class="s">&#39; </span><span class="si">%.3g</span><span class="s"> &#39;</span> <span class="o">%</span> <span class="n">maxval</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">zero_black</span><span class="p">:</span> <span class="n">minstr</span> <span class="o">=</span> <span class="s">&#39;0.0&#39;</span>
+            <span class="n">maxlen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">minstr</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">maxstr</span><span class="p">)])</span>
+            <span class="n">key_items</span> <span class="o">=</span>  <span class="p">[</span><span class="n">mono</span> <span class="o">%</span> <span class="n">minstr</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="n">maxlen</span><span class="p">),</span> <span class="n">b64_img_key</span><span class="p">,</span> <span class="n">mono</span> <span class="o">%</span> <span class="n">maxstr</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">maxlen</span><span class="p">)]</span>
+            <span class="n">key_cell</span> <span class="o">=</span>  <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">item</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">key_items</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">open_table</span> <span class="o">+</span> <span class="n">image_item</span> <span class="o">+</span> <span class="n">separator</span> <span class="o">+</span> <span class="n">key_cell</span> <span class="o">+</span> <span class="n">close_table</span>
+
+
+    <span class="k">def</span> <span class="nf">_base64_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">im</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+        <span class="n">im</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;png&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s">&#39;data:image/png;base64,&#39;</span>
+        <span class="n">b64</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">+</span><span class="n">base64</span><span class="o">.</span><span class="n">encodestring</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="k">return</span> <span class="s">&#39;&lt;img src=&quot;</span><span class="si">%s</span><span class="s">&quot; /&gt;&#39;</span> <span class="o">%</span> <span class="n">b64</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+
+        <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">array_fn</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">dim1</span><span class="p">,</span> <span class="n">dim2</span> <span class="p">)</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">named_widths</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_width</span><span class="p">)</span>
+        <span class="n">array_aspect</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">width</span><span class="p">)</span><span class="o">/</span><span class="n">dim1</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">array_aspect</span><span class="o">*</span><span class="n">dim2</span><span class="p">),</span> <span class="n">width</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_html_table</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span>  <span class="n">arr</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">arr</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">_get_activity</span><span class="p">(</span><span class="n">sheet_or_projection</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sheet_or_projection</span><span class="o">.</span><span class="n">activity</span>
+
+<span class="k">def</span> <span class="nf">_get_weights</span><span class="p">(</span><span class="n">cf</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cf</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+
+
+<span class="n">sheet_display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">_get_activity</span><span class="p">)</span>
+<span class="n">projection_display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">_get_activity</span><span class="p">)</span>
+<span class="n">cf_display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">_get_weights</span><span class="p">)</span>
+
+<span class="n">_loaded</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="k">def</span> <span class="nf">load_ipython_extension</span><span class="p">(</span><span class="n">ip</span><span class="p">):</span>
+    <span class="c"># Load Imagen&#39;s IPython extension</span>
+    <span class="n">imagen</span><span class="o">.</span><span class="n">ipython</span><span class="o">.</span><span class="n">load_ipython_extension</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+
+    <span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">runscript</span>
+    <span class="n">runscript</span><span class="o">.</span><span class="n">ns</span> <span class="o">=</span> <span class="n">ip</span><span class="o">.</span><span class="n">user_ns</span>
+    <span class="n">runscript</span><span class="o">.</span><span class="n">push</span> <span class="o">=</span> <span class="n">ip</span><span class="o">.</span><span class="n">push</span>
+
+    <span class="k">global</span> <span class="n">_loaded</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_loaded</span><span class="p">:</span>
+        <span class="n">_loaded</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">html_formatter</span> <span class="o">=</span> <span class="n">ip</span><span class="o">.</span><span class="n">display_formatter</span><span class="o">.</span><span class="n">formatters</span><span class="p">[</span><span class="s">&#39;text/html&#39;</span><span class="p">]</span>
+
+        <span class="n">html_formatter</span><span class="o">.</span><span class="n">for_type_by_name</span><span class="p">(</span><span class="s">&#39;topo.base.sheet&#39;</span><span class="p">,</span> <span class="s">&#39;Sheet&#39;</span><span class="p">,</span> <span class="n">sheet_display</span><span class="p">)</span>
+        <span class="n">html_formatter</span><span class="o">.</span><span class="n">for_type_by_name</span><span class="p">(</span><span class="s">&#39;topo.base.projection&#39;</span><span class="p">,</span> <span class="s">&#39;Projection&#39;</span><span class="p">,</span> <span class="n">projection_display</span><span class="p">)</span>
+        <span class="n">html_formatter</span><span class="o">.</span><span class="n">for_type_by_name</span><span class="p">(</span><span class="s">&#39;topo.base.cf&#39;</span><span class="p">,</span> <span class="s">&#39;ConnectionField&#39;</span><span class="p">,</span> <span class="n">cf_display</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/topo-banner7.png" alt="Logo"/>
+            </a></p>
+<ul class="global-toc">
+<li><a href="../../../index.html">Home</a></li>
+<li><a href="../../../News/index.html">News</a></li>
+<li><a href="../../../Downloads/index.html">Downloads</a></li>
+<li><a href="../../../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../../../User_Manual/index.html">User Manual</a></li>
+<li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
+<li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="../../../Forums/index.html">Forums</a></li>
+<li><a href="../../../Team_Members/index.html">Team Members</a></li>
+<li><a href="../../../Future_Work/index.html">Future Work</a></li>
+<li><a href="../../../FAQ/index.html">FAQ</a></li>
+<li><a href="../../../Links/index.html">Links</a></li>
+<li><a href="../../../Home/pubs.html">Publications</a></li>
+</ul>
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/ipython.rst" rel="nofollow">Edit on GitHub</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+<li><a href="../../../index.html">Home</a></li>
+<li><a href="../../../Downloads/index.html">Downloads</a></li>
+<li><a href="../../../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../../../User_Manual/index.html">User Manual</a></li>
+
+
+<li><ul class="parents">
+
+
+
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+
+</ul></li>
+
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, IOAM.
+      Last updated on Aug 26, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
