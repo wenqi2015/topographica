@@ -226,18 +226,6 @@ Windows: %USERPROFILE%      opographica.ini</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="topo.misc.commandline.get_omp_num_threads">
-<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">get_omp_num_threads</tt><big>(</big><em>openmp_threads</em>, <em>openmp_min_threads</em>, <em>openmp_max_threads</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#get_omp_num_threads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.get_omp_num_threads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Helper function to implement sensible OpenMP behaviour where
-possible.  Returns a integer tuple (OpenMP threads, CPUs detected).</p>
-<p>CPUs detected may be None if multiprocessing is not available (ie
-Python 2.5) and consequently OpenMP threads may be None if the user
-gave a relative thread specification (ie openmp_threads &lt;= 0). When
-OpenMP threads is None, the default OpenMP behaviour of using all
-available cores is used.</p>
-</dd></dl>
-
-<dl class="function">
 <dt id="topo.misc.commandline.gui">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">gui</tt><big>(</big><em>start=True</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#gui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.gui" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start the GUI as if -g were supplied in the command used to launch Topographica.</p>
@@ -355,7 +343,7 @@ set already.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Sep 07, 2013.
+      Last updated on Sep 11, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

@@ -439,19 +439,12 @@
 <span class="c"># Keeps track of whether something has been performed, when deciding whether to assume -i</span>
 <span class="n">something_executed</span><span class="o">=</span><span class="bp">False</span>
 
-<span class="c"># Dummy object used for user messages about OpenMP</span>
-<span class="n">openmp_main</span><span class="o">=</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;OpenMP&quot;</span><span class="p">)</span>
-
 <div class="viewcode-block" id="c_action"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.c_action">[docs]</a><span class="k">def</span> <span class="nf">c_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Callback function for the -c option.&quot;&quot;&quot;</span>
     <span class="c">#print &quot;Processing %s &#39;%s&#39;&quot; % (opt_str,value)</span>
     <span class="k">exec</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span>
     <span class="k">global</span> <span class="n">something_executed</span>
     <span class="n">something_executed</span><span class="o">=</span><span class="bp">True</span>
-    <span class="n">openmp_settings_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;openmp_threads&#39;</span><span class="p">,</span> <span class="s">&#39;openmp_min_threads&#39;</span><span class="p">,</span> <span class="s">&#39;openmp_max_threads&#39;</span><span class="p">]</span>
-    <span class="n">openmp_present</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">openmp_settings_names</span> <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)]</span>
-    <span class="k">if</span> <span class="n">openmp_present</span> <span class="ow">and</span> <span class="n">parser</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">gui</span><span class="p">:</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;For OpenMP settings to be used properly they need to be specified before the -g flag.&quot;</span><span class="p">)</span>
 </div>
 <span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-c&quot;</span><span class="p">,</span><span class="s">&quot;--command&quot;</span><span class="p">,</span><span class="n">action</span> <span class="o">=</span> <span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">c_action</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="s">&quot;string&quot;</span><span class="p">,</span>
 		       <span class="n">default</span><span class="o">=</span><span class="p">[],</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;commands&quot;</span><span class="p">,</span><span class="n">metavar</span><span class="o">=</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&lt;command&gt;</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
@@ -528,58 +521,7 @@
     <span class="k">for</span> <span class="n">startup_file</span> <span class="ow">in</span> <span class="p">(</span><span class="n">configpath</span><span class="p">,</span><span class="n">inipath</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">startup_file</span><span class="p">):</span>
             <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Ignoring </span><span class="si">%s</span><span class="s">; location for startup file is </span><span class="si">%s</span><span class="s"> (UNIX/Linux/Mac OS X) or </span><span class="si">%s</span><span class="s"> (Windows).&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">startup_file</span><span class="p">,</span><span class="n">rcpath</span><span class="p">,</span><span class="n">inipath</span><span class="p">))</span>
-    <span class="c">#####</span>
 
-</div>
-<div class="viewcode-block" id="get_omp_num_threads"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.get_omp_num_threads">[docs]</a><span class="k">def</span> <span class="nf">get_omp_num_threads</span><span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">openmp_min_threads</span><span class="p">,</span> <span class="n">openmp_max_threads</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Helper function to implement sensible OpenMP behaviour where</span>
-<span class="sd">        possible.  Returns a integer tuple (OpenMP threads, CPUs detected).</span>
-
-<span class="sd">        CPUs detected may be None if multiprocessing is not available (ie</span>
-<span class="sd">        Python 2.5) and consequently OpenMP threads may be None if the user</span>
-<span class="sd">        gave a relative thread specification (ie openmp_threads &lt;= 0). When</span>
-<span class="sd">        OpenMP threads is None, the default OpenMP behaviour of using all</span>
-<span class="sd">        available cores is used.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-    <span class="k">if</span> <span class="s">&#39;OMP_NUM_THREADS&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="s">&#39;NSLOTS&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="s">&#39;NSLOTS&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">multiprocessing</span>
-        <span class="n">total_cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">total_cores</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">total_cores</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Cannot import multiprocessing to determine number of cores.&quot;</span><span class="p">)</span>
-        <span class="n">total_cores</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="k">if</span> <span class="n">total_cores</span> <span class="ow">and</span> <span class="p">(</span><span class="o">-</span><span class="n">openmp_threads</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">total_cores</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Needs a positive number of threads to execute.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">total_cores</span><span class="p">:</span>      <span class="n">openmp_threads</span> <span class="o">=</span> <span class="n">total_cores</span> <span class="o">+</span> <span class="n">openmp_threads</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">total_cores</span><span class="p">:</span>  <span class="k">return</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">total_cores</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&gt;</span> <span class="n">total_cores</span><span class="p">):</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;More threads specified than cores detected.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">total_cores</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">openmp_threads</span> <span class="o">&lt;</span> <span class="n">openmp_min_threads</span><span class="p">:</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using minimum number of allowed threads.&quot;</span><span class="p">)</span>
-        <span class="n">openmp_threads</span> <span class="o">=</span> <span class="n">openmp_min_threads</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_max_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
-
-    <span class="k">elif</span> <span class="p">(</span><span class="n">openmp_max_threads</span> <span class="o">&lt;</span> <span class="n">openmp_min_threads</span><span class="p">):</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Maximum allowed threads lower than minimum allowed threads. Ignoring maximum limit.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&gt;</span> <span class="n">openmp_max_threads</span><span class="p">):</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using maximum number of allowed threads.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">openmp_max_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
 
 
 <span class="c">### Execute what is specified by the options.</span>
@@ -594,6 +536,16 @@
         <span class="k">exec</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span>
 
     <span class="n">exec_startup_files</span><span class="p">()</span>
+    
+    <span class="c"># Tell the user how many cores are in use, if available</span>
+    <span class="n">openmp_main</span><span class="o">=</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;OpenMP&quot;</span><span class="p">)</span> <span class="c"># Dummy object just for messages</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">multiprocessing</span>
+        <span class="n">total_cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+        <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">,</span><span class="n">total_cores</span><span class="p">))</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads on a machine with </span><span class="si">%d</span><span class="s"> detected CPUs&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">))</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
 
     <span class="c"># Repeatedly process options, if any, followed by filenames, if any, until nothing is left</span>
     <span class="n">topo_parser</span><span class="o">.</span><span class="n">disable_interspersed_args</span><span class="p">()</span>
@@ -619,34 +571,6 @@
             <span class="k">break</span>
 
     <span class="n">global_params</span><span class="o">.</span><span class="n">check_for_unused_names</span><span class="p">()</span>
-
-    <span class="c"># OpenMP settings and defaults</span>
-    <span class="n">openmp_threads</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;openmp_threads&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span> <span class="n">openmp_threads</span><span class="o">=-</span><span class="mi">1</span>
-
-    <span class="n">openmp_min_threads</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;openmp_min_threads&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_min_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span> <span class="n">openmp_min_threads</span><span class="o">=</span><span class="mi">2</span>
-
-    <span class="n">openmp_max_threads</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;openmp_max_threads&#39;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span> <span class="c"># OpenMP is disabled if openmp_threads == 1</span>
-
-        <span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_omp_num_threads</span><span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span>
-                                                         <span class="n">openmp_min_threads</span><span class="p">,</span>
-                                                         <span class="n">openmp_max_threads</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">num_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using OMP_NUM_THREADS environment variable if set. Otherwise, all cores in use.&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">num_threads</span> <span class="o">==</span> <span class="s">&#39;NSLOTS&#39;</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;NSLOTS&#39;</span><span class="p">]</span>
-            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;NSLOTS environment variable found; overriding any other thread settings and using N=</span><span class="si">%s</span><span class="s"> threads&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;NSLOTS&#39;</span><span class="p">])</span>
-
-        <span class="k">elif</span> <span class="n">total_cores</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads&quot;</span> <span class="o">%</span> <span class="n">num_threads</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">str</span><span class="p">(</span><span class="n">num_threads</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads on a machine with </span><span class="si">%d</span><span class="s"> detected CPUs&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">))</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">str</span><span class="p">(</span><span class="n">num_threads</span><span class="p">)</span>
 
     <span class="c"># If no scripts and no commands were given, pretend -i was given.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">something_executed</span><span class="p">:</span> <span class="n">interactive</span><span class="p">()</span>
@@ -776,7 +700,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Sep 07, 2013.
+      Last updated on Sep 11, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
