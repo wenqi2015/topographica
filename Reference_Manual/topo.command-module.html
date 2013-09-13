@@ -92,10 +92,10 @@ class for more information.</p>
 For example, runscript(&#8216;tiny.ty&#8217;, cortex_density=10) will execute
 the &#8216;tiny.ty&#8217; script in the currently active namespace.</p>
 <dl class="docutils">
-<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">push</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=False, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">push</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Hook to push the updated namespace for handling more
         complicated namespaces, such as IPython Notebook.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">ns</span></tt> (<em>constant=False, default={}, instantiate=False, pickle_default_value=False, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">ns</span></tt> (<em>constant=False, default={}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The namespace in which the script is to be executed.</dd>
 </dl>
 </dd></dl>
@@ -490,7 +490,7 @@ installation of a missing package.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Sep 12, 2013.
+      Last updated on Sep 13, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

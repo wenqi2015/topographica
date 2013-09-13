@@ -599,7 +599,8 @@ extended to allow increasing as well.</p>
 <dl class="function">
 <dt id="topo.base.cf.simple_vectorize">
 <tt class="descclassname">topo.base.cf.</tt><tt class="descname">simple_vectorize</tt><big>(</big><em>fn</em>, <em>num_outputs=1</em>, <em>output_type=&lt;type 'object'&gt;</em>, <em>doc=''</em><big>)</big><a class="reference internal" href="../_modules/topo/base/cf.html#simple_vectorize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.cf.simple_vectorize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wrapper for Numpy.vectorize to make it work properly with different Numpy versions.</p>
+<dd><p>Simplify creation of numpy.vectorize(fn) objects where all outputs
+have the same typecode.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -685,7 +686,7 @@ for optimized C functions.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Sep 12, 2013.
+      Last updated on Sep 13, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

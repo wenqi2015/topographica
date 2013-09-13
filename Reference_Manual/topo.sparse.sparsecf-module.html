@@ -105,7 +105,7 @@ inactive units if a certain percentage of neurons is inactive.</p>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>CFSPLearningFunction applying the specified single_cf_fn to each Sparse CF.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;Hebbian Hebbian00281&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;Hebbian Hebbian00282&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a LearningFn that will be applied to each CF individually.</dd>
 </dl>
 <dl class="method">
@@ -124,7 +124,7 @@ the connection field.</p>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>Applies the specified single_cf_fn to each SparseCF in the SparseCFProjection.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00282&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00283&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a TransferFn that will be applied to each CF individually.</dd>
 </dl>
 </dd></dl>
@@ -136,7 +136,7 @@ the connection field.</p>
 <p>Prunes specified percentage of connections from CFs in SparseCFProjection
 at specified interval.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00282&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00283&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a TransferFn that will be applied to each CF individually.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">percentile</span></tt> (<em>allow_None=False, bounds=(0, 100), constant=False, default=10.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Percentile boundary below which connections will be pruned.</dd>
@@ -169,7 +169,7 @@ growing connections at locations with the highest probabilities.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">turnover_rate</span></tt> (<em>allow_None=False, bounds=(0, 1.0), constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Percentage of weights to change per interval, assuming
         currently fully dense and target is fully sparse.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00282&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00283&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a TransferFn that will be applied to each CF individually.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">target_sparsity</span></tt> (<em>allow_None=False, bounds=(0, 1.0), constant=False, default=0.15, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Sparsity level at which sprouting and retraction cancel out.</dd>
@@ -233,7 +233,7 @@ it is easy to extend with any arbitrary single-CF response function.</p>
 shaped matrices X (the input) and W (the CF weights) and computes a scalar
 activation value based on those weights.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00283&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00284&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a ResponseFn that will be applied to each CF individually.</dd>
 </dl>
 </dd></dl>
@@ -247,7 +247,7 @@ activation value based on those weights.</p>
 the output sheet, and is normally used as part of a Projection
 including many other ConnectionFields.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00284&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00285&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generates initial weights values.</dd>
 </dl>
 <p><em>param Integer</em> <tt class="docutils literal"><span class="pre">min_matrix_radius</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -351,7 +351,7 @@ normalized jointly.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Sep 12, 2013.
+      Last updated on Sep 13, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
