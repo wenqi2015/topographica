@@ -62,12 +62,15 @@
 
 <span class="sd">%load_ext topo.misc.ipython</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">difflib</span>
+<span class="kn">import</span> <span class="nn">topo</span>
+<span class="kn">import</span> <span class="nn">param</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">difflib</span><span class="o">,</span> <span class="nn">uuid</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">IPython.core.pylabtools</span> <span class="kn">import</span> <span class="n">print_figure</span>
+    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">nose.plugins.skip</span> <span class="kn">import</span> <span class="n">SkipTest</span>
     <span class="k">raise</span> <span class="n">SkipTest</span><span class="p">(</span><span class="s">&quot;IPython extension requires IPython &gt;= 0.12&quot;</span><span class="p">)</span>
@@ -80,6 +83,53 @@
 <span class="c"># Pylabplots should simply return a matplotlib figure when working with IPython</span>
 <span class="n">pylabplot</span><span class="o">.</span><span class="n">PylabPlotCommand</span><span class="o">.</span><span class="n">display_window</span> <span class="o">=</span> <span class="bp">False</span>
 
+
+<div class="viewcode-block" id="ProgressBar"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.ipython-module.html#topo.misc.ipython.ProgressBar">[docs]</a><span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A simple progress bar for IPython notebook inspired by the example</span>
+<span class="sd">    notebook &quot;Progress Bars&quot; available in IPython GitHub repository.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;The name given to the progress bar.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProgressBar</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_divname</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;&quot;&quot;&lt;b&gt;</span><span class="si">%s</span><span class="s"> progress&lt;/b&gt;&lt;div style=&quot;border: 1px&quot;&quot;&quot;</span>
+                <span class="sd">&quot;&quot;&quot; solid black; width:500px&quot;&gt;&quot;&quot;&quot;</span>
+                <span class="sd">&quot;&quot;&quot;&lt;div id=&quot;%s&quot; style=&quot;background-color:grey;&quot;&quot;&quot;</span>
+                <span class="sd">&quot;&quot;&quot; width:0%%&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/div&gt;&quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_divname</span><span class="p">)))</span>
+
+<div class="viewcode-block" id="ProgressBar.update"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.ipython-module.html#topo.misc.ipython.ProgressBar.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percentage</span><span class="p">):</span>
+        <span class="s">&quot; Update the progress bar to the given percentage value &quot;</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span><span class="s">&quot;$(&#39;div#</span><span class="si">%s</span><span class="s">&#39;).width(&#39;</span><span class="si">%i%%</span><span class="s">&#39;)&quot;</span>
+                           <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_divname</span><span class="p">,</span> <span class="n">percentage</span><span class="p">)))</span>
+</div></div>
+<div class="viewcode-block" id="RunProgress"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.ipython-module.html#topo.misc.ipython.RunProgress">[docs]</a><span class="k">class</span> <span class="nc">RunProgress</span><span class="p">(</span><span class="n">ProgressBar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Progress bar for running Topographica models in IPython notebook.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">interval</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">doc</span><span class="o">=</span><span class="s">&quot;How often to update the progress bar in topo.sim.time units&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;Training&quot;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RunProgress</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RunProgress.run"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.ipython-module.html#topo.misc.ipython.RunProgress.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run topo.sim(duration), updating every interval duration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">completed</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">duration</span> <span class="o">-</span> <span class="n">completed</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">:</span>
+            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+            <span class="n">completed</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interval</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">completed</span> <span class="o">/</span> <span class="n">duration</span><span class="p">))</span>
+        <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">duration</span> <span class="o">-</span> <span class="n">completed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+</div></div>
 <div class="viewcode-block" id="export_notebook"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.ipython-module.html#topo.misc.ipython.export_notebook">[docs]</a><span class="k">def</span> <span class="nf">export_notebook</span><span class="p">(</span><span class="n">notebook</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="s">&#39;.ty&#39;</span><span class="p">,</span> <span class="n">identifier</span><span class="o">=</span><span class="s">&#39;_export_&#39;</span><span class="p">,</span>
                     <span class="n">diff</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">stale_time</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
