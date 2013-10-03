@@ -199,19 +199,19 @@ implemented. As necessary, specifications are generated in the
 &#8216;specifications&#8217; subdirectory of the root directory.</p>
 <dl class="docutils">
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">executable</span></tt> (<em>allow_None=False, constant=True, default=python, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The executable that is to be run by this CommandTemplate. Unless the
-        executable is a standard command expected on the system path, this
-        should be an absolute path. By default this invokes python or the python
-        environment used to invoke the CommandTemplate (eg. the topographica
-        script).</dd>
+<dd>The executable that is to be run by this
+        CommandTemplate. Unless the executable is a standard command
+        expected on the system path, this should be an absolute
+        path. By default this invokes python or the python environment
+        used to invoke the CommandTemplate (eg. topographica).</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Equivalent to the run_batch parameter of same name.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">name_time_format</span></tt> (<em>allow_None=False, constant=False, default=%Y%m%d%H%M, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The timestamp format for directories created by run_batch in python
          datetime format.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">do_format</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Set to True to receive input arguments as formatted strings, False for
-        the raw unformatted objects.</dd>
+<dd>Set to True to receive input arguments as formatted strings,
+        False for the raw unformatted objects.</dd>
 <dt><em>param ObjectSelector</em> <tt class="docutils literal"><span class="pre">analysis</span></tt> (<em>check_on_set=True, compute_default_fn=None, constant=True, default=default, instantiate=True, objects=[&#8216;default&#8217;, &#8216;RunBatchAnalysis&#8217;, &#8216;custom&#8217;], pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The type of analysis to use with run_batch. The options are &#8216;default&#8217;
               which runs the default run_batch analysis function,
@@ -241,8 +241,6 @@ implemented. As necessary, specifications are generated in the
 <dd>Equivalent to the run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">snapshot</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Equivalent to the run_batch parameter of same name.</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">analysis_arguments</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The specifier keys to be consumed as analysis function arguments</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">save_global_params</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Equivalent to the run_batch parameter of same name.</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">param_formatter</span></tt> (<em>constant=False, default=param_formatter(), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -251,13 +249,8 @@ implemented. As necessary, specifications are generated in the
 <dd>Specifies the Topographica qsub switches (flags without arguments) as a
           list of strings. By default the -a switch is always used to auto import
           commands.</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">allowed_list</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>An optional, explicit list of the argument names that the
-        CommandTemplate is expected to accept. If the empty list, no checking is
-        performed. This allows some degree of error checking before tasks are
-        launched. A command may exit if invalid parameters are supplied but it
-        is often better to explicitly check: this avoids waiting in a cluster
-        queue or invalid simulations due to unrecognised parameters.</dd>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">analysis_arguments</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The specifier keys to be consumed as analysis function arguments</dd>
 </dl>
 <dl class="method">
 <dt id="topo.misc.lancext.RunBatchCommand.queue">
