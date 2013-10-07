@@ -89,7 +89,7 @@
     <span class="k">try</span><span class="p">:</span>
          <span class="kn">from</span> <span class="nn">IPython.terminal.embed</span> <span class="kn">import</span> <span class="n">InteractiveShellEmbed</span> <span class="k">as</span> <span class="n">IPShell</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c"># Prior to IPython 1.0, InteractiveShellEmbed was found in the frontend package</span>
-        <span class="kn">from</span> <span class="nn">IPython.frontend.terminal.embed</span> <span class="kn">import</span> <span class="n">InteractiveShellEmbed</span> <span class="k">as</span> <span class="n">IPShell</span>
+        <span class="kn">from</span> <span class="nn">IPython.frontend.terminal.embed</span> <span class="kn">import</span> <span class="n">InteractiveShellEmbed</span> <span class="k">as</span> <span class="n">IPShell</span> <span class="c"># pyflakes:ignore (try/except import)</span>
     <span class="kn">from</span> <span class="nn">IPython.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
     <span class="n">ipython_shell_interface</span> <span class="o">=</span> <span class="s">&quot;InteractiveShellEmbed&quot;</span>
     <span class="k">try</span><span class="p">:</span>
