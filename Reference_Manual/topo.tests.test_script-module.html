@@ -52,8 +52,50 @@
             
   <div class="section" id="topo-tests-test-script">
 <h1>topo.tests.test_script<a class="headerlink" href="#topo-tests-test-script" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module">
-<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-topo.tests.test_script">
+<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.tests.test_script" title="Permalink to this headline">¶</a></h2>
+<p>Contains tests to check a particular script&#8217;s results or speed have
+not changed.</p>
+<p>Check README and buildbot to see how all these tests are run.</p>
+<dl class="function">
+<dt id="topo.tests.test_script.compare_speed_data">
+<tt class="descclassname">topo.tests.test_script.</tt><tt class="descname">compare_speed_data</tt><big>(</big><em>script</em><big>)</big><a class="reference internal" href="../_modules/topo/tests/test_script.html#compare_speed_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.tests.test_script.compare_speed_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run and time script with the parameters specified when its SPEEDDATA file was
+generated, and check for changes.</p>
+<p>Looks for the SPEEDDATA file at
+MACHINETESTSDATADIR/script_name.ty_DATA. If not found there, first
+generates a new SPEEDDATA file at
+MACHINETESTSDATADIR/script_name.ty_DATA (i.e. to generate new
+data, delete the existing data before running).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.tests.test_script.compare_startup_speed_data">
+<tt class="descclassname">topo.tests.test_script.</tt><tt class="descname">compare_startup_speed_data</tt><big>(</big><em>script</em><big>)</big><a class="reference internal" href="../_modules/topo/tests/test_script.html#compare_startup_speed_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.tests.test_script.compare_startup_speed_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run and time script with the parameters specified when its
+STARTUPSPEEDDATA file was generated, and check for changes.</p>
+<p>Looks for the STARTUPSPEEDDATA file at
+MACHINETESTSDATADIR/script_name.ty_STARTUPSPEEDDATA. If not found
+there, first generates a new STARTUPSPEEDDATA file at
+MACHINETESTSDATADIR/script_name.ty_STARTUPSPEEDDATA (i.e. to
+generate new data, delete the existing data before running).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.tests.test_script.test_script">
+<tt class="descclassname">topo.tests.test_script.</tt><tt class="descname">test_script</tt><big>(</big><em>script</em>, <em>decimal=None</em><big>)</big><a class="reference internal" href="../_modules/topo/tests/test_script.html#test_script"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.tests.test_script.test_script" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run script with the parameters specified when its DATA file was
+generated, and check for changes.</p>
+<p>Looks for the DATA file at FIXEDDATADIR/script_name.ty_DATA (for
+data checked into SVN). If not found there, looks at
+TESTSDATADIR/script_name.ty_DATA. If also not found there, first
+generates a new DATA file at TESTSDATADIR/script_name.ty_DATA
+(i.e. to generate new data, delete the existing data before running).</p>
+<p>The decimal parameter defines how many decimal points to use when
+testing for array equality. The default of None causes exact
+matching.</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -84,7 +126,7 @@
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.tests.test_script</a><ul>
-<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#module-topo.tests.test_script">Module</a></li>
 </ul>
 </li>
 </ul>
