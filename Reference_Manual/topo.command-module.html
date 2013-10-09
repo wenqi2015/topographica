@@ -183,6 +183,7 @@ will go into the same place.</p>
 
         E.g. Adding &#8216;%S&#8217; to the default would include seconds.</dd>
 </dl>
+<p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">vc_info</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <p><em>param String</em> <tt class="docutils literal"><span class="pre">output_directory</span></tt> (<em>allow_None=False, constant=False, default=Output, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">tag</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -201,8 +202,10 @@ will go into the same place.</p>
 <dd>Whether to save the script&#8217;s global_parameters to a pickle in
         the output_directory after the script has been loaded (for
         e.g. future inspection of the experiment).</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">metadata_dir</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Specifies the name of a
+        subdirectory used to output metadata from run_batch if set.</dd>
 </dl>
-<p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">vc_info</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">times</span></tt> (<em>constant=False, default=1.0, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="staticmethod">
 <dt id="topo.command.run_batch.analysis_fn">
