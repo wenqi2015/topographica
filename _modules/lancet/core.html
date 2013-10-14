@@ -289,6 +289,7 @@
 <span class="sd">        a summary does not have to be complete but must supply the</span>
 <span class="sd">        most relevant information about the object to the user.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Items: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
         <span class="n">varying_keys</span> <span class="o">=</span> <span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">varying_keys</span><span class="p">)</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&quot;Varying Keys: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">varying_keys</span><span class="p">)</span>
         <span class="n">items</span> <span class="o">=</span> <span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">=</span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
@@ -331,7 +332,8 @@
                            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">extra_kwargs</span><span class="p">])</span>
             <span class="n">rounded_specs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">round_floats</span><span class="p">([</span><span class="n">extra_kwargs</span><span class="p">],</span>
                                                    <span class="n">fp_precision</span><span class="p">))</span>
-            <span class="k">return</span> <span class="n">rounded_specs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="bp">False</span>
+            <span class="n">explicit</span> <span class="o">=</span> <span class="bp">True</span> <span class="k">if</span> <span class="p">(</span><span class="n">rounded_specs</span><span class="o">==</span><span class="p">[{}])</span> <span class="k">else</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="n">rounded_specs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">explicit</span>
 
     <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_exhausted</span> <span class="o">=</span> <span class="bp">False</span>
@@ -580,7 +582,7 @@
 <span class="s">              relative path is given, the absolute path is computed</span>
 <span class="s">              relative to os.getcwd().&#39;&#39;&#39;</span><span class="p">)</span>
 
-    <span class="n">tid_key</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;tid&#39;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+    <span class="n">tid_key</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;tid&#39;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
          <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;If not None, the key given to the tid values included</span>
 <span class="s">               in the loaded specifications. If None, the tid number</span>
 <span class="s">               is ignored.&#39;&#39;&#39;</span><span class="p">)</span>
@@ -633,7 +635,7 @@
         <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">log_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">append</span> <span class="k">else</span> <span class="mi">0</span>
         <span class="n">ascending_indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">start</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 
-        <span class="n">log_str</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;</span><span class="si">%d</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">el</span><span class="p">))</span> 
+        <span class="n">log_str</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;</span><span class="si">%d</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">el</span><span class="p">))</span>
                              <span class="k">for</span> <span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="n">el</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ascending_indices</span><span class="p">,</span><span class="n">specs</span><span class="p">)])</span>
         <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">+</span><span class="n">log_str</span> <span class="k">if</span> <span class="n">append</span> <span class="k">else</span> <span class="n">log_str</span><span class="p">)</span>
         <span class="n">log_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -645,11 +647,11 @@
         <span class="k">if</span> <span class="n">tid_key</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">log_specs</span> <span class="o">=</span> <span class="p">[</span><span class="n">spec</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span> <span class="ow">in</span> <span class="n">log_items</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">log_specs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="o">+</span><span class="p">[(</span><span class="n">tid_key</span><span class="p">,</span><span class="n">idx</span><span class="p">)])</span> 
+            <span class="n">log_specs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="o">+</span><span class="p">[(</span><span class="n">tid_key</span><span class="p">,</span><span class="n">idx</span><span class="p">)])</span>
                          <span class="k">for</span> <span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span> <span class="ow">in</span> <span class="n">log_items</span><span class="p">]</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">Log</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">log_specs</span><span class="p">,</span> 
-                                  <span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span> 
+        <span class="nb">super</span><span class="p">(</span><span class="n">Log</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">log_specs</span><span class="p">,</span>
+                                  <span class="n">log_path</span><span class="o">=</span><span class="n">log_path</span><span class="p">,</span>
                                   <span class="n">tid_key</span><span class="o">=</span><span class="n">tid_key</span><span class="p">,</span>
                                   <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;log_path&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;tid_key&#39;</span><span class="p">])</span>
@@ -689,13 +691,13 @@
 <span class="sd">    filenames anyway).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">key</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+    <span class="n">key</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;The key name given to the matched file path strings.&#39;&#39;&#39;</span><span class="p">)</span>
 
     <span class="n">pattern</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;The pattern files are to be searched against.&#39;&#39;&#39;</span><span class="p">)</span>
 
-    <span class="n">root</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+    <span class="n">root</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;The root directory from which patterns are to be loaded.</span>
 <span class="s">       The root is set relative to os.getcwd().&#39;&#39;&#39;</span><span class="p">)</span>
 
@@ -776,7 +778,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;~lancet~sep~&#39;</span>
         <span class="n">float_codes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;e&#39;</span><span class="p">,</span><span class="s">&#39;E&#39;</span><span class="p">,</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="s">&#39;F&#39;</span><span class="p">,</span><span class="s">&#39;g&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;n&#39;</span><span class="p">]</span>
-        <span class="n">typecodes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">float_codes</span><span class="p">]</span> 
+        <span class="n">typecodes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">float_codes</span><span class="p">]</span>
                          <span class="o">+</span> <span class="p">[(</span><span class="s">&#39;b&#39;</span><span class="p">,</span><span class="nb">bin</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;d&#39;</span><span class="p">,</span><span class="nb">int</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;o&#39;</span><span class="p">,</span><span class="nb">oct</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="nb">hex</span><span class="p">)])</span>
         <span class="n">parse</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">Formatter</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span>
         <span class="n">text</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">codes</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">parse</span><span class="p">)</span>
@@ -822,14 +824,17 @@
 
     <span class="n">load_contents</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;</span>
 <span class="s">       Whether the main contents of the files are to be loaded along</span>
-<span class="s">       with the associated metadata.&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="s">       with the associated metadata. Note that this can be slow when</span>
+<span class="s">       handling large numbers of files - it may be better to select</span>
+<span class="s">       only the required data with a pandas DataFrame and use the</span>
+<span class="s">       load_dframe method instead.&#39;&#39;&#39;</span><span class="p">)</span>
 
     <span class="n">ignore</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;</span>
 <span class="s">       Metadata keys that are to be explicitly ignored. &#39;&#39;&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">filetype</span><span class="p">,</span> 
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">filetype</span><span class="p">,</span>
                  <span class="n">load_contents</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="p">[],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">specs</span><span class="p">,</span> <span class="n">data_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">filetype</span><span class="p">,</span> 
+        <span class="n">specs</span><span class="p">,</span> <span class="n">data_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">filetype</span><span class="p">,</span>
                                       <span class="n">load_contents</span><span class="p">,</span> <span class="n">ignore</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FileInfo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">specs</span><span class="p">,</span>
                                        <span class="n">source</span> <span class="o">=</span> <span class="n">source</span><span class="p">,</span>
@@ -840,9 +845,24 @@
                                        <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="c"># Do not attempt to sort data fields.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unsortable_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data_keys</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;source&#39;</span><span class="p">,</span> <span class="s">&#39;key&#39;</span><span class="p">,</span> <span class="s">&#39;filetype&#39;</span><span class="p">],</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;source&#39;</span><span class="p">,</span> <span class="s">&#39;key&#39;</span><span class="p">,</span> <span class="s">&#39;filetype&#39;</span><span class="p">],</span>
                          <span class="p">[</span><span class="s">&#39;load_contents&#39;</span><span class="p">,</span> <span class="s">&#39;ignore&#39;</span><span class="p">])</span>
 
+<div class="viewcode-block" id="FileInfo.load"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.FileInfo.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dframe</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the file contents into the supplied dataframe using the</span>
+<span class="sd">        specified key and filetype. This allows a specific selection</span>
+<span class="sd">        to be made using pandas over the metadata before loading the</span>
+<span class="sd">        file contents (which may be slow).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">DataFrame</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Pandas not available&quot;</span>
+        <span class="n">filename_series</span> <span class="o">=</span> <span class="n">dframe</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">loaded_data</span> <span class="o">=</span> <span class="n">filename_series</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filetype</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">el</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">loaded_data</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">()</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="n">keys</span><span class="p">):</span>
+            <span class="n">dframe</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">loaded_data</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">dframe</span>
+</div>
     <span class="k">def</span> <span class="nf">_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">filetype</span><span class="p">,</span> <span class="n">load_contents</span><span class="p">,</span> <span class="n">ignore</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates the union of the source.specs and the metadata</span>
@@ -872,8 +892,8 @@
             <span class="k">print</span> <span class="s">&quot;WARNING: Loaded metadata keys overriding source keys.&quot;</span>
         <span class="k">if</span> <span class="n">datakey_clashes</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&quot;WARNING: Loaded data keys overriding source and/or metadata keys&quot;</span>
-        <span class="k">return</span> <span class="n">specs</span><span class="p">,</span> <span class="n">data_keys</span>
-</pre></div></div>
+        <span class="k">return</span> <span class="n">specs</span><span class="p">,</span> <span class="n">data_keys</span></div>
+</pre></div>
 
           </div>
         </div>

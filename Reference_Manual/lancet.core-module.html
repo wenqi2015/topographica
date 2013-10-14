@@ -123,7 +123,10 @@ Args, this object extends the values of an existing Args object.</p>
 <dd>A FileType object to be applied to each file path.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">load_contents</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=True, default=False, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether the main contents of the files are to be loaded along
-       with the associated metadata.</dd>
+       with the associated metadata. Note that this can be slow when
+       handling large numbers of files - it may be better to select
+       only the required data with a pandas DataFrame and use the
+       load_dframe method instead.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">source</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The argument specifier that supplies the file paths.</dd>
 <dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">fp_precision</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=4, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
@@ -139,6 +142,15 @@ Args, this object extends the values of an existing Args object.</p>
           returned by the specifier. Float values are rounded
           according to fp_precision.</dd>
 </dl>
+<dl class="method">
+<dt id="lancet.core.FileInfo.load">
+<tt class="descname">load</tt><big>(</big><em>dframe</em><big>)</big><a class="reference internal" href="../_modules/lancet/core.html#FileInfo.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.core.FileInfo.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the file contents into the supplied dataframe using the
+specified key and filetype. This allows a specific selection
+to be made using pandas over the metadata before loading the
+file contents (which may be slow).</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -299,7 +311,7 @@ for pretty printing.</p>
 
 <dl class="class">
 <dt id="lancet.core.Range">
-<em class="property">class </em><tt class="descclassname">lancet.core.</tt><tt class="descname">Range</tt><big>(</big><em>key</em>, <em>start_value</em>, <em>end_value</em>, <em>steps=2</em>, <em>mapfn=&lt;function identityfn at 0x5e62410&gt;</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/core.html#Range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.core.Range" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lancet.core.</tt><tt class="descname">Range</tt><big>(</big><em>key</em>, <em>start_value</em>, <em>end_value</em>, <em>steps=2</em>, <em>mapfn=&lt;function identityfn at 0x53cf488&gt;</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/core.html#Range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.core.Range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lancet.core.Args</span></tt></p>
 <p>Range generates an argument from a numerically interpolated range
 which is linear by default. An optional function can be specified
