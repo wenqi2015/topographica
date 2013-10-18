@@ -64,6 +64,7 @@
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">pipes</span><span class="o">,</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">types</span>
 <span class="kn">import</span> <span class="nn">fnmatch</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
 
@@ -144,20 +145,13 @@
         <span class="n">file_handle</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">full_string</span><span class="p">)</span>
         <span class="n">file_handle</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 
-<div class="viewcode-block" id="CommandTemplate.verify"><a class="viewcode-back" href="../../Reference_Manual/lancet.launch-module.html#lancet.launch.CommandTemplate.verify">[docs]</a>    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="CommandTemplate.validate_arguments"><a class="viewcode-back" href="../../Reference_Manual/lancet.launch-module.html#lancet.launch.CommandTemplate.validate_arguments">[docs]</a>    <span class="k">def</span> <span class="nf">validate_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Optional, final check that ensures valid arguments have been</span>
+<span class="sd">        Allows a final check that ensures valid arguments have been</span>
 <span class="sd">        passed before launch. Allows the constant and varying_keys to</span>
 <span class="sd">        be be checked and can inspect the specs attribute if an</span>
 <span class="sd">        instance of Args. If invalid, raise an Exception with the</span>
-<span class="sd">        appropriate error message, otherwise return None.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span>
-</div>
-<div class="viewcode-block" id="CommandTemplate.finalize"><a class="viewcode-back" href="../../Reference_Manual/lancet.launch-module.html#lancet.launch.CommandTemplate.finalize">[docs]</a>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Optional method that allows a CommandTemplate to save state</span>
-<span class="sd">        before launch. The info argument is supplied by the Launcher.</span>
+<span class="sd">        appropriate error message.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span>
 </div>
@@ -357,7 +351,6 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">,</span> <span class="n">arg_specifier</span><span class="p">,</span> <span class="n">command_template</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_pprint_args</span> <span class="o">=</span> <span class="p">([],[],</span><span class="bp">None</span><span class="p">,{})</span>
-        <span class="k">if</span> <span class="s">&#39;name&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Launcher</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">batch_name</span><span class="o">=</span><span class="n">batch_name</span><span class="p">,</span>
                                       <span class="n">arg_specifier</span><span class="o">=</span><span class="n">arg_specifier</span><span class="p">,</span>
                                       <span class="n">command_template</span> <span class="o">=</span> <span class="n">command_template</span><span class="p">,</span>
@@ -468,12 +461,12 @@
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
             <span class="c"># list creates copy of keys, as dict is modified in loop</span>
-            <span class="k">for</span> <span class="n">proc</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">processes</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">proc</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">processes</span><span class="p">):</span> 
                 <span class="k">if</span> <span class="n">wait</span><span class="p">:</span> <span class="n">proc</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                     <span class="c"># process is done, free up slot</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Process </span><span class="si">%d</span><span class="s"> exited with code </span><span class="si">%d</span><span class="s">.&quot;</span>
-                               <span class="o">%</span> <span class="p">(</span><span class="n">processes</span><span class="p">[</span><span class="n">proc</span><span class="p">][</span><span class="s">&#39;tid&#39;</span><span class="p">],</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()))</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Process </span><span class="si">%d</span><span class="s"> exited with code </span><span class="si">%d</span><span class="s">.&quot;</span> 
+                                  <span class="o">%</span> <span class="p">(</span><span class="n">processes</span><span class="p">[</span><span class="n">proc</span><span class="p">][</span><span class="s">&#39;tid&#39;</span><span class="p">],</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()))</span>
                     <span class="n">processes</span><span class="p">[</span><span class="n">proc</span><span class="p">][</span><span class="s">&#39;stdout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
                     <span class="n">processes</span><span class="p">[</span><span class="n">proc</span><span class="p">][</span><span class="s">&#39;stderr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
                     <span class="k">del</span> <span class="n">processes</span><span class="p">[</span><span class="n">proc</span><span class="p">]</span>
@@ -481,14 +474,14 @@
             <span class="k">return</span> <span class="n">result</span>
 
         <span class="k">for</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">tid</span> <span class="ow">in</span> <span class="n">process_commands</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Starting process </span><span class="si">%d</span><span class="s">...&quot;</span> <span class="o">%</span> <span class="n">tid</span><span class="p">)</span>
-            <span class="n">stdout_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">streams_path</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.o.</span><span class="si">%d</span><span class="s">&quot;</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Starting process </span><span class="si">%d</span><span class="s">...&quot;</span> <span class="o">%</span> <span class="n">tid</span><span class="p">)</span>
+            <span class="n">stdout_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">streams_path</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.o.</span><span class="si">%d</span><span class="s">&quot;</span> 
                                               <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_name</span><span class="p">,</span> <span class="n">tid</span><span class="p">)),</span> <span class="s">&quot;wb&quot;</span><span class="p">)</span>
-            <span class="n">stderr_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">streams_path</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.e.</span><span class="si">%d</span><span class="s">&quot;</span>
+            <span class="n">stderr_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">streams_path</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">.e.</span><span class="si">%d</span><span class="s">&quot;</span> 
                                               <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_name</span><span class="p">,</span> <span class="n">tid</span><span class="p">)),</span> <span class="s">&quot;wb&quot;</span><span class="p">)</span>
             <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">stdout_handle</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">stderr_handle</span><span class="p">)</span>
-            <span class="n">processes</span><span class="p">[</span><span class="n">proc</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;tid&#39;</span> <span class="p">:</span> <span class="n">tid</span><span class="p">,</span>
-                                <span class="s">&#39;stdout&#39;</span> <span class="p">:</span> <span class="n">stdout_handle</span><span class="p">,</span>
+            <span class="n">processes</span><span class="p">[</span><span class="n">proc</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;tid&#39;</span> <span class="p">:</span> <span class="n">tid</span><span class="p">,</span> 
+                                <span class="s">&#39;stdout&#39;</span> <span class="p">:</span> <span class="n">stdout_handle</span><span class="p">,</span> 
                                 <span class="s">&#39;stderr&#39;</span> <span class="p">:</span> <span class="n">stderr_handle</span> <span class="p">}</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_concurrency</span><span class="p">:</span>
@@ -509,7 +502,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">launchinfo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_launch</span><span class="p">()</span>
         <span class="n">streams_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_streams_path</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">command_template</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">launchinfo</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">record_info</span><span class="p">(</span><span class="n">launchinfo</span><span class="p">)</span>
 
@@ -524,7 +516,7 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">append_log</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">tids</span><span class="p">,</span><span class="n">groupspecs</span><span class="p">)))</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Group </span><span class="si">%d</span><span class="s">: executing </span><span class="si">%d</span><span class="s"> processes...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">allcommands</span><span class="p">)))</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Group </span><span class="si">%d</span><span class="s">: executing </span><span class="si">%d</span><span class="s"> processes...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">allcommands</span><span class="p">)))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">launch_process_group</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">allcommands</span><span class="p">,</span><span class="n">tids</span><span class="p">),</span> <span class="n">streams_path</span><span class="p">)</span>
 
             <span class="n">last_tids</span> <span class="o">=</span> <span class="n">tids</span><span class="p">[:]</span>
@@ -726,8 +718,8 @@
         <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">collate_count</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Invoked qsub for next batch.&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Invoked qsub for next batch.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">job_name</span>
 </div>
 <div class="viewcode-block" id="QLauncher.static_qsub"><a class="viewcode-back" href="../../Reference_Manual/lancet.launch-module.html#lancet.launch.QLauncher.static_qsub">[docs]</a>    <span class="k">def</span> <span class="nf">static_qsub</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">error_dir</span><span class="p">,</span> <span class="n">tid_specs</span><span class="p">):</span>
@@ -750,10 +742,10 @@
                                         <span class="n">cmd_args</span><span class="p">)</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">popen_args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
             <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
             <span class="n">processes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Invoked qsub for </span><span class="si">%d</span><span class="s"> commands&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">processes</span><span class="p">))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Invoked qsub for </span><span class="si">%d</span><span class="s"> commands&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">processes</span><span class="p">))</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduction_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">qsub_collate_and_launch</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">error_dir</span><span class="p">,</span> <span class="n">job_names</span><span class="p">)</span>
 </div>
@@ -809,7 +801,7 @@
 <span class="sd">        the &lt;batch_name&gt;* pattern . Necessary when StopIteration is</span>
 <span class="sd">        raised with scheduled jobs left on the queue.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">&#39;qdel&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">*&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_name</span><span class="p">,</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">&#39;qdel&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">_</span><span class="si">%s</span><span class="s">*&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_name</span><span class="p">,</span> 
                                                   <span class="bp">self</span><span class="o">.</span><span class="n">job_timestamp</span><span class="p">)],</span>
                              <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
         <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
@@ -831,7 +823,7 @@
     <span class="n">review</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;</span>
 <span class="s">         Whether or not to perform a detailed review of the launch.&#39;&#39;&#39;</span><span class="p">)</span>
 
-    <span class="n">launch_args</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">launch_args</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
         <span class="n">class_</span><span class="o">=</span><span class="n">core</span><span class="o">.</span><span class="n">Args</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span> <span class="s">&#39;&#39;&#39;An optional argument specifier to</span>
 <span class="s">        parameterise lancet, allowing multi-launch scripts.  For</span>
 <span class="s">        instance, this may be useful for collecting statistics over</span>
@@ -840,9 +832,10 @@
 
     <span class="n">launch_fn</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Callable</span><span class="p">(</span><span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;The function that is to be decorated.&#39;&#39;&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_directory</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pprint_args</span> <span class="o">=</span> <span class="p">([],[],</span><span class="bp">None</span><span class="p">,{})</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">review_and_launch</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">review_and_launch</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">output_directory</span><span class="o">=</span><span class="n">output_directory</span><span class="p">,</span>
+                                                <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;output_directory&#39;</span><span class="p">,</span> <span class="s">&#39;launch_fn&#39;</span><span class="p">],</span>
                          <span class="p">[</span><span class="s">&#39;review&#39;</span><span class="p">,</span> <span class="s">&#39;launch_args&#39;</span><span class="p">])</span>
 
@@ -861,10 +854,8 @@
         <span class="k">for</span> <span class="n">launcher</span> <span class="ow">in</span> <span class="n">launchers</span><span class="p">:</span>
             <span class="n">command_template</span> <span class="o">=</span> <span class="n">launcher</span><span class="o">.</span><span class="n">command_template</span>
             <span class="n">arg_specifier</span> <span class="o">=</span> <span class="n">launcher</span><span class="o">.</span><span class="n">arg_specifier</span>
-            <span class="n">command_template</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">arg_specifier</span><span class="p">)</span>
+            <span class="n">command_template</span><span class="o">.</span><span class="n">validate_arguments</span><span class="p">(</span><span class="n">arg_specifier</span><span class="p">)</span>
             <span class="n">root_directory</span> <span class="o">=</span> <span class="n">launcher</span><span class="o">.</span><span class="n">get_root_directory</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">root_directory</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Root directory already exists: </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">root_directory</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">root_directory</span> <span class="ow">in</span> <span class="n">root_directories</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Each launcher requires a unique root directory&quot;</span><span class="p">)</span>
             <span class="n">root_directories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root_directory</span><span class="p">)</span>
@@ -888,7 +879,7 @@
         <span class="c"># Across all the launchers...</span>
         <span class="k">for</span> <span class="n">launcher</span> <span class="ow">in</span> <span class="n">launchers</span><span class="p">:</span>
             <span class="c"># Ensure a shared timestamp throughout</span>
-            <span class="n">launcher</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">current_timestamp</span>
+            <span class="n">launcher</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">current_timestamp</span>
             <span class="c"># Set the output directory appropriately</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="n">launcher</span><span class="o">.</span><span class="n">output_directory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_directory</span>
@@ -1084,7 +1075,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 17, 2013.
+      Last updated on Oct 18, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

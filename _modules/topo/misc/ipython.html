@@ -64,7 +64,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">import</span> <span class="nn">param</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">difflib</span><span class="o">,</span> <span class="nn">uuid</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">difflib</span><span class="o">,</span> <span class="nn">uuid</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 
@@ -80,10 +80,9 @@
 <span class="kn">import</span> <span class="nn">imagen.ipython</span>
 <span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">pylabplot</span><span class="p">,</span> <span class="n">analysis</span>
 
-<span class="c"># Pylabplots should return a matplotlib figure when working in Notebook</span>
-<span class="c"># otherwise open display windows for the Topographica Tk GUI</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
-    <span class="n">pylabplot</span><span class="o">.</span><span class="n">PylabPlotCommand</span><span class="o">.</span><span class="n">display_window</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="c"># Pylabplots should simply return a matplotlib figure when working with IPython</span>
+<span class="n">pylabplot</span><span class="o">.</span><span class="n">PylabPlotCommand</span><span class="o">.</span><span class="n">display_window</span> <span class="o">=</span> <span class="bp">False</span>
+
 
 <div class="viewcode-block" id="ProgressBar"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.ipython-module.html#topo.misc.ipython.ProgressBar">[docs]</a><span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -298,7 +297,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 17, 2013.
+      Last updated on Oct 18, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
