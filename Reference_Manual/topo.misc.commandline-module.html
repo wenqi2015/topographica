@@ -212,6 +212,13 @@ tracking new names and warning of any replacements.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="topo.misc.commandline.default_output_path">
+<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">default_output_path</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#default_output_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.default_output_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine the appropriate default location in which to create
+files on this operating system.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="topo.misc.commandline.exec_startup_files">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">exec_startup_files</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#exec_startup_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.exec_startup_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute startup files.</p>
@@ -244,6 +251,12 @@ Windows: %USERPROFILE%      opographica.ini</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="topo.misc.commandline.o_action">
+<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">o_action</tt><big>(</big><em>option</em>, <em>opt_str</em>, <em>value</em>, <em>parser</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#o_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.o_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callback function for the -o option.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="topo.misc.commandline.p_action">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">p_action</tt><big>(</big><em>option</em>, <em>opt_str</em>, <em>value</em>, <em>parser</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#p_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.p_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback function for the -p option.</p>
@@ -253,6 +266,14 @@ Windows: %USERPROFILE%      opographica.ini</p>
 <dt id="topo.misc.commandline.process_argv">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">process_argv</tt><big>(</big><em>argv</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#process_argv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.process_argv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process command-line arguments (minus argv[0]!), rearrange and execute.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.misc.commandline.set_output_path">
+<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">set_output_path</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#set_output_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.set_output_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default output path to the specified path, creating it if
+it does not exist and adding it to the input searching path (to
+allow just-saved files to be reloaded).</p>
 </dd></dl>
 
 <dl class="function">

@@ -81,6 +81,13 @@ details about the launch information supplied.</p>
         False for the raw unformatted objects.</dd>
 </dl>
 <dl class="method">
+<dt id="lancet.launch.CommandTemplate.finalize">
+<tt class="descname">finalize</tt><big>(</big><em>info</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#CommandTemplate.finalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.CommandTemplate.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional method that allows a CommandTemplate to save state
+before launch. The info argument is supplied by the Launcher.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="lancet.launch.CommandTemplate.summary">
 <tt class="descname">summary</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#CommandTemplate.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.CommandTemplate.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>A succinct summary of the CommandTemplate configuration.
@@ -90,13 +97,13 @@ by stating the executable.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lancet.launch.CommandTemplate.validate_arguments">
-<tt class="descname">validate_arguments</tt><big>(</big><em>args</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#CommandTemplate.validate_arguments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.CommandTemplate.validate_arguments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Allows a final check that ensures valid arguments have been
+<dt id="lancet.launch.CommandTemplate.verify">
+<tt class="descname">verify</tt><big>(</big><em>args</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#CommandTemplate.verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.CommandTemplate.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional, final check that ensures valid arguments have been
 passed before launch. Allows the constant and varying_keys to
 be be checked and can inspect the specs attribute if an
 instance of Args. If invalid, raise an Exception with the
-appropriate error message.</p>
+appropriate error message, otherwise return None.</p>
 </dd></dl>
 
 </dd></dl>
@@ -390,7 +397,7 @@ items.</p>
 
 <dl class="class">
 <dt id="lancet.launch.review_and_launch">
-<em class="property">class </em><tt class="descclassname">lancet.launch.</tt><tt class="descname">review_and_launch</tt><big>(</big><em>output_directory='.'</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#review_and_launch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.review_and_launch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lancet.launch.</tt><tt class="descname">review_and_launch</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#review_and_launch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.review_and_launch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lancet.core-module.html#lancet.core.PrettyPrinted" title="lancet.core.PrettyPrinted"><tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt></a>, <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>A helper decorator that always checks for consistency and can
 prompt the user for a full review of the launch configuration.</p>
