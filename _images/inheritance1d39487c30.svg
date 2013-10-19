@@ -15,12 +15,12 @@
 <text text-anchor="middle" x="97" y="-26.5" font-family="Vera" font-size="10.00">param.parameterized.Parameterized</text>
 </g>
 <!-- topo.tkgui.editor.ModelEditor -->
-<g id="node15" class="node"><title>topo.tkgui.editor.ModelEditor</title>
+<g id="node21" class="node"><title>topo.tkgui.editor.ModelEditor</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="397,-39.5 243,-39.5 243,-18.5 397,-18.5 397,-39.5"/>
 <text text-anchor="middle" x="320" y="-26.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.ModelEditor</text>
 </g>
 <!-- param.parameterized.Parameterized&#45;&gt;topo.tkgui.editor.ModelEditor -->
-<g id="edge12" class="edge"><title>param.parameterized.Parameterized&#45;&gt;topo.tkgui.editor.ModelEditor</title>
+<g id="edge16" class="edge"><title>param.parameterized.Parameterized&#45;&gt;topo.tkgui.editor.ModelEditor</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M194.162,-29C208.692,-29 223.553,-29 237.735,-29"/>
 <polygon fill="black" stroke="black" points="237.927,-30.7501 242.927,-29 237.927,-27.2501 237.927,-30.7501"/>
 </g>
@@ -30,12 +30,12 @@
 <text text-anchor="middle" x="761" y="-154.5" font-family="Vera" font-size="10.00">Tkinter.Canvas</text>
 </g>
 <!-- topo.tkgui.editor.EditorCanvas -->
-<g id="node20" class="node"><title>topo.tkgui.editor.EditorCanvas</title>
+<g id="node23" class="node"><title>topo.tkgui.editor.EditorCanvas</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="1050,-172.5 890,-172.5 890,-151.5 1050,-151.5 1050,-172.5"/>
 <text text-anchor="middle" x="970" y="-159.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorCanvas</text>
 </g>
 <!-- Tkinter.Canvas&#45;&gt;topo.tkgui.editor.EditorCanvas -->
-<g id="edge16" class="edge"><title>Tkinter.Canvas&#45;&gt;topo.tkgui.editor.EditorCanvas</title>
+<g id="edge18" class="edge"><title>Tkinter.Canvas&#45;&gt;topo.tkgui.editor.EditorCanvas</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M804.052,-158.03C827.225,-158.584 856.652,-159.288 884.27,-159.949"/>
 <polygon fill="black" stroke="black" points="884.364,-161.702 889.404,-160.072 884.448,-158.203 884.364,-161.702"/>
 </g>
@@ -79,8 +79,43 @@
 <path fill="none" stroke="black" stroke-width="0.5" d="M581.153,-149.609C617.889,-151.119 672.945,-153.381 712.458,-155.005"/>
 <polygon fill="black" stroke="black" points="712.616,-156.763 717.684,-155.22 712.76,-153.266 712.616,-156.763"/>
 </g>
+<!-- topo.tkgui.editor.EditorConnection -->
+<g id="node9" class="node"><title>topo.tkgui.editor.EditorConnection</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="409,-272.5 231,-272.5 231,-251.5 409,-251.5 409,-272.5"/>
+<text text-anchor="middle" x="320" y="-259.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorConnection</text>
+</g>
+<!-- topo.tkgui.editor.EditorEPConnection -->
+<g id="node28" class="node"><title>topo.tkgui.editor.EditorEPConnection</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="637,-272.5 447,-272.5 447,-251.5 637,-251.5 637,-272.5"/>
+<text text-anchor="middle" x="542" y="-259.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorEPConnection</text>
+</g>
+<!-- topo.tkgui.editor.EditorConnection&#45;&gt;topo.tkgui.editor.EditorEPConnection -->
+<g id="edge34" class="edge"><title>topo.tkgui.editor.EditorConnection&#45;&gt;topo.tkgui.editor.EditorEPConnection</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M409.656,-262C419.998,-262 430.596,-262 441.074,-262"/>
+<polygon fill="black" stroke="black" points="441.206,-263.75 446.206,-262 441.206,-260.25 441.206,-263.75"/>
+</g>
+<!-- topo.tkgui.editor.EditorObject -->
+<g id="node10" class="node"><title>topo.tkgui.editor.EditorObject</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="175,-253.5 19,-253.5 19,-232.5 175,-232.5 175,-253.5"/>
+<text text-anchor="middle" x="97" y="-240.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorObject</text>
+</g>
+<!-- topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorConnection -->
+<g id="edge8" class="edge"><title>topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorConnection</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M175.308,-249.672C191.458,-251.048 208.63,-252.511 225.291,-253.931"/>
+<polygon fill="black" stroke="black" points="225.313,-255.689 230.443,-254.37 225.61,-252.201 225.313,-255.689"/>
+</g>
+<!-- topo.tkgui.editor.EditorNode -->
+<g id="node25" class="node"><title>topo.tkgui.editor.EditorNode</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="395,-234.5 245,-234.5 245,-213.5 395,-213.5 395,-234.5"/>
+<text text-anchor="middle" x="320" y="-221.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorNode</text>
+</g>
+<!-- topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorNode -->
+<g id="edge24" class="edge"><title>topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorNode</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M175.308,-236.328C195.901,-234.573 218.157,-232.677 238.894,-230.91"/>
+<polygon fill="black" stroke="black" points="239.298,-232.632 244.132,-230.464 239.001,-229.145 239.298,-232.632"/>
+</g>
 <!-- Tkinter.Grid -->
-<g id="node9" class="node"><title>Tkinter.Grid</title>
+<g id="node12" class="node"><title>Tkinter.Grid</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="355,-191.5 285,-191.5 285,-170.5 355,-170.5 355,-191.5"/>
 <text text-anchor="middle" x="320" y="-178.5" font-family="Vera" font-size="10.00">Tkinter.Grid</text>
 </g>
@@ -89,23 +124,8 @@
 <path fill="none" stroke="black" stroke-width="0.5" d="M355.654,-177.902C372.811,-175.328 393.242,-170.618 410,-162 429.302,-152.073 426.884,-139.281 446,-129 461.083,-120.888 478.976,-115.454 495.204,-111.843"/>
 <polygon fill="black" stroke="black" points="495.657,-113.536 500.182,-110.78 494.926,-110.113 495.657,-113.536"/>
 </g>
-<!-- topo.tkgui.editor.EditorProjection -->
-<g id="node10" class="node"><title>topo.tkgui.editor.EditorProjection</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="847,-272.5 675,-272.5 675,-251.5 847,-251.5 847,-272.5"/>
-<text text-anchor="middle" x="761" y="-259.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorProjection</text>
-</g>
-<!-- topo.tkgui.editor.EditorEPConnection -->
-<g id="node11" class="node"><title>topo.tkgui.editor.EditorEPConnection</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="637,-272.5 447,-272.5 447,-251.5 637,-251.5 637,-272.5"/>
-<text text-anchor="middle" x="542" y="-259.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorEPConnection</text>
-</g>
-<!-- topo.tkgui.editor.EditorEPConnection&#45;&gt;topo.tkgui.editor.EditorProjection -->
-<g id="edge8" class="edge"><title>topo.tkgui.editor.EditorEPConnection&#45;&gt;topo.tkgui.editor.EditorProjection</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M637.738,-262C648.223,-262 658.878,-262 669.312,-262"/>
-<polygon fill="black" stroke="black" points="669.415,-263.75 674.415,-262 669.415,-260.25 669.415,-263.75"/>
-</g>
 <!-- topo.tkgui.editor.ConnectionTool -->
-<g id="node18" class="node"><title>topo.tkgui.editor.ConnectionTool</title>
+<g id="node19" class="node"><title>topo.tkgui.editor.ConnectionTool</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="1055,-134.5 885,-134.5 885,-113.5 1055,-113.5 1055,-134.5"/>
 <text text-anchor="middle" x="970" y="-121.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.ConnectionTool</text>
 </g>
@@ -115,12 +135,12 @@
 <polygon fill="black" stroke="black" points="909.446,-114.769 914.679,-113.942 910.072,-111.325 909.446,-114.769"/>
 </g>
 <!-- topo.tkgui.editor.ParametersTool -->
-<g id="node28" class="node"><title>topo.tkgui.editor.ParametersTool</title>
+<g id="node31" class="node"><title>topo.tkgui.editor.ParametersTool</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="1055,-96.5 885,-96.5 885,-75.5 1055,-75.5 1055,-96.5"/>
 <text text-anchor="middle" x="970" y="-83.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.ParametersTool</text>
 </g>
 <!-- Tkinter.Frame&#45;&gt;topo.tkgui.editor.ParametersTool -->
-<g id="edge22" class="edge"><title>Tkinter.Frame&#45;&gt;topo.tkgui.editor.ParametersTool</title>
+<g id="edge26" class="edge"><title>Tkinter.Frame&#45;&gt;topo.tkgui.editor.ParametersTool</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M801.793,-86C823.937,-86 852.251,-86 879.308,-86"/>
 <polygon fill="black" stroke="black" points="879.344,-87.7501 884.344,-86 879.344,-84.2501 879.344,-87.7501"/>
 </g>
@@ -144,73 +164,53 @@
 <path fill="none" stroke="black" stroke-width="0.5" d="M779.65,-75.8002C803.307,-63.2309 845.647,-41.9527 884,-29 892.556,-26.1104 901.742,-23.5427 910.811,-21.3024"/>
 <polygon fill="black" stroke="black" points="911.383,-22.9648 915.833,-20.0914 910.562,-19.5623 911.383,-22.9648"/>
 </g>
+<!-- topo.tkgui.editor.EditorSheet -->
+<g id="node15" class="node"><title>topo.tkgui.editor.EditorSheet</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="838,-234.5 684,-234.5 684,-213.5 838,-213.5 838,-234.5"/>
+<text text-anchor="middle" x="761" y="-221.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorSheet</text>
+</g>
+<!-- topo.tkgui.editor.EditorEP -->
+<g id="node16" class="node"><title>topo.tkgui.editor.EditorEP</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="610,-234.5 474,-234.5 474,-213.5 610,-213.5 610,-234.5"/>
+<text text-anchor="middle" x="542" y="-221.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorEP</text>
+</g>
+<!-- topo.tkgui.editor.EditorEP&#45;&gt;topo.tkgui.editor.EditorSheet -->
+<g id="edge12" class="edge"><title>topo.tkgui.editor.EditorEP&#45;&gt;topo.tkgui.editor.EditorSheet</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M610.692,-224C632.267,-224 656.308,-224 678.724,-224"/>
+<polygon fill="black" stroke="black" points="678.78,-225.75 683.78,-224 678.78,-222.25 678.78,-225.75"/>
+</g>
 <!-- Tkinter.Misc -->
-<g id="node17" class="node"><title>Tkinter.Misc</title>
+<g id="node18" class="node"><title>Tkinter.Misc</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="133,-77.5 61,-77.5 61,-56.5 133,-56.5 133,-77.5"/>
 <text text-anchor="middle" x="97" y="-64.5" font-family="Vera" font-size="10.00">Tkinter.Misc</text>
 </g>
 <!-- Tkinter.BaseWidget -->
-<g id="node40" class="node"><title>Tkinter.BaseWidget</title>
+<g id="node39" class="node"><title>Tkinter.BaseWidget</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="373,-77.5 267,-77.5 267,-56.5 373,-56.5 373,-77.5"/>
 <text text-anchor="middle" x="320" y="-64.5" font-family="Vera" font-size="10.00">Tkinter.BaseWidget</text>
 </g>
 <!-- Tkinter.Misc&#45;&gt;Tkinter.BaseWidget -->
-<g id="edge34" class="edge"><title>Tkinter.Misc&#45;&gt;Tkinter.BaseWidget</title>
+<g id="edge32" class="edge"><title>Tkinter.Misc&#45;&gt;Tkinter.BaseWidget</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M133.325,-67C167.814,-67 220.266,-67 260.798,-67"/>
 <polygon fill="black" stroke="black" points="261.182,-68.7501 266.182,-67 261.182,-65.2501 261.182,-68.7501"/>
-</g>
-<!-- topo.tkgui.editor.EditorConnection -->
-<g id="node22" class="node"><title>topo.tkgui.editor.EditorConnection</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="409,-272.5 231,-272.5 231,-251.5 409,-251.5 409,-272.5"/>
-<text text-anchor="middle" x="320" y="-259.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorConnection</text>
-</g>
-<!-- topo.tkgui.editor.EditorConnection&#45;&gt;topo.tkgui.editor.EditorEPConnection -->
-<g id="edge32" class="edge"><title>topo.tkgui.editor.EditorConnection&#45;&gt;topo.tkgui.editor.EditorEPConnection</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M409.656,-262C419.998,-262 430.596,-262 441.074,-262"/>
-<polygon fill="black" stroke="black" points="441.206,-263.75 446.206,-262 441.206,-260.25 441.206,-263.75"/>
-</g>
-<!-- topo.tkgui.editor.EditorObject -->
-<g id="node23" class="node"><title>topo.tkgui.editor.EditorObject</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="175,-253.5 19,-253.5 19,-232.5 175,-232.5 175,-253.5"/>
-<text text-anchor="middle" x="97" y="-240.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorObject</text>
-</g>
-<!-- topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorConnection -->
-<g id="edge18" class="edge"><title>topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorConnection</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M175.308,-249.672C191.458,-251.048 208.63,-252.511 225.291,-253.931"/>
-<polygon fill="black" stroke="black" points="225.313,-255.689 230.443,-254.37 225.61,-252.201 225.313,-255.689"/>
-</g>
-<!-- topo.tkgui.editor.EditorNode -->
-<g id="node26" class="node"><title>topo.tkgui.editor.EditorNode</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="395,-234.5 245,-234.5 245,-213.5 395,-213.5 395,-234.5"/>
-<text text-anchor="middle" x="320" y="-221.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorNode</text>
-</g>
-<!-- topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorNode -->
-<g id="edge26" class="edge"><title>topo.tkgui.editor.EditorObject&#45;&gt;topo.tkgui.editor.EditorNode</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M175.308,-236.328C195.901,-234.573 218.157,-232.677 238.894,-230.91"/>
-<polygon fill="black" stroke="black" points="239.298,-232.632 244.132,-230.464 239.001,-229.145 239.298,-232.632"/>
-</g>
-<!-- topo.tkgui.editor.EditorEP -->
-<g id="node25" class="node"><title>topo.tkgui.editor.EditorEP</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="610,-234.5 474,-234.5 474,-213.5 610,-213.5 610,-234.5"/>
-<text text-anchor="middle" x="542" y="-221.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorEP</text>
-</g>
-<!-- topo.tkgui.editor.EditorSheet -->
-<g id="node31" class="node"><title>topo.tkgui.editor.EditorSheet</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="838,-234.5 684,-234.5 684,-213.5 838,-213.5 838,-234.5"/>
-<text text-anchor="middle" x="761" y="-221.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorSheet</text>
-</g>
-<!-- topo.tkgui.editor.EditorEP&#45;&gt;topo.tkgui.editor.EditorSheet -->
-<g id="edge24" class="edge"><title>topo.tkgui.editor.EditorEP&#45;&gt;topo.tkgui.editor.EditorSheet</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M610.692,-224C632.267,-224 656.308,-224 678.724,-224"/>
-<polygon fill="black" stroke="black" points="678.78,-225.75 683.78,-224 678.78,-222.25 678.78,-225.75"/>
 </g>
 <!-- topo.tkgui.editor.EditorNode&#45;&gt;topo.tkgui.editor.EditorEP -->
 <g id="edge20" class="edge"><title>topo.tkgui.editor.EditorNode&#45;&gt;topo.tkgui.editor.EditorEP</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M395.779,-224C419.134,-224 444.811,-224 468.042,-224"/>
 <polygon fill="black" stroke="black" points="468.269,-225.75 473.269,-224 468.269,-222.25 468.269,-225.75"/>
 </g>
+<!-- topo.tkgui.editor.EditorProjection -->
+<g id="node27" class="node"><title>topo.tkgui.editor.EditorProjection</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="847,-272.5 675,-272.5 675,-251.5 847,-251.5 847,-272.5"/>
+<text text-anchor="middle" x="761" y="-259.5" font-family="Vera" font-size="10.00">topo.tkgui.editor.EditorProjection</text>
+</g>
+<!-- topo.tkgui.editor.EditorEPConnection&#45;&gt;topo.tkgui.editor.EditorProjection -->
+<g id="edge22" class="edge"><title>topo.tkgui.editor.EditorEPConnection&#45;&gt;topo.tkgui.editor.EditorProjection</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M637.738,-262C648.223,-262 658.878,-262 669.312,-262"/>
+<polygon fill="black" stroke="black" points="669.415,-263.75 674.415,-262 669.415,-260.25 669.415,-263.75"/>
+</g>
 <!-- Tkinter.Pack -->
-<g id="node30" class="node"><title>Tkinter.Pack</title>
+<g id="node33" class="node"><title>Tkinter.Pack</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="356,-153.5 284,-153.5 284,-132.5 356,-132.5 356,-153.5"/>
 <text text-anchor="middle" x="320" y="-140.5" font-family="Vera" font-size="10.00">Tkinter.Pack</text>
 </g>
