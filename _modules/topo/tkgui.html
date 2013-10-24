@@ -186,7 +186,7 @@
 
 <span class="c"># gets set to the TopoConsole instance created by start.</span>
 <span class="n">console</span> <span class="o">=</span> <span class="bp">None</span>
-<div class="viewcode-block" id="start"><a class="viewcode-back" href="../../Reference_Manual/topo.tkgui-module.html#topo.tkgui.start">[docs]</a><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">mainloop</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">banner</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="start"><a class="viewcode-back" href="../../Reference_Manual/topo.tkgui-module.html#topo.tkgui.start">[docs]</a><span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="n">mainloop</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">banner</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">exit_on_quit</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Start Tk and read in an options_database file (if present), then</span>
 <span class="sd">    open a TopoConsole.</span>
@@ -232,7 +232,7 @@
     <span class="k">except</span> <span class="n">Tkinter</span><span class="o">.</span><span class="n">TclError</span><span class="p">:</span>
         <span class="k">pass</span>
 
-    <span class="n">console</span> <span class="o">=</span> <span class="n">TopoConsole</span><span class="p">(</span><span class="n">paramtk</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+    <span class="n">console</span> <span class="o">=</span> <span class="n">TopoConsole</span><span class="p">(</span><span class="n">paramtk</span><span class="o">.</span><span class="n">root</span><span class="p">,</span><span class="n">exit_on_quit</span><span class="p">)</span>
 
     <span class="c"># Provide a way for other code to access the GUI when necessary</span>
     <span class="n">topo</span><span class="o">.</span><span class="n">guimain</span><span class="o">=</span><span class="n">console</span>
