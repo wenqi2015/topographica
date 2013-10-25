@@ -71,8 +71,6 @@
 
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">import</span> <span class="nn">param</span>
-
-<span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">parameterized</span>
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">Parameterized</span>
 <span class="kn">from</span> <span class="nn">topo.base.simulation</span> <span class="kn">import</span> <span class="n">OptionalSingleton</span>
 
@@ -84,16 +82,11 @@
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="n">matplotlib_imported</span><span class="o">=</span><span class="bp">False</span>
 
-<span class="c"># Dummy object just for messages</span>
-<span class="n">cmdline_main</span><span class="o">=</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;CommandLine&quot;</span><span class="p">)</span>
 
 <span class="n">ipython_shell_interface</span> <span class="o">=</span> <span class="bp">None</span>
 <span class="n">ipython_prompt_interface</span> <span class="o">=</span> <span class="bp">None</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-         <span class="kn">from</span> <span class="nn">IPython.terminal.embed</span> <span class="kn">import</span> <span class="n">InteractiveShellEmbed</span> <span class="k">as</span> <span class="n">IPShell</span>
-    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c"># Prior to IPython 1.0, InteractiveShellEmbed was found in the frontend package</span>
-        <span class="kn">from</span> <span class="nn">IPython.frontend.terminal.embed</span> <span class="kn">import</span> <span class="n">InteractiveShellEmbed</span> <span class="k">as</span> <span class="n">IPShell</span> <span class="c"># pyflakes:ignore (try/except import)</span>
+    <span class="kn">from</span> <span class="nn">IPython.frontend.terminal.embed</span> <span class="kn">import</span> <span class="n">InteractiveShellEmbed</span> <span class="k">as</span> <span class="n">IPShell</span>
     <span class="kn">from</span> <span class="nn">IPython.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
     <span class="n">ipython_shell_interface</span> <span class="o">=</span> <span class="s">&quot;InteractiveShellEmbed&quot;</span>
     <span class="k">try</span><span class="p">:</span>
@@ -347,83 +340,6 @@
 <span class="n">topo_parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">(</span><span class="n">usage</span><span class="o">=</span><span class="n">usage</span><span class="p">)</span>
 
 
-<span class="kn">import</span> <span class="nn">errno</span>
-<span class="kn">import</span> <span class="nn">platform</span>
-
-<span class="k">def</span> <span class="nf">_win_documents_path</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return the Windows &quot;My Documents&quot; folder path, if available.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># Accesses the Windows API via ctypes</span>
-    <span class="kn">import</span> <span class="nn">ctypes</span>
-    <span class="kn">import</span> <span class="nn">ctypes.wintypes</span>
-
-    <span class="n">CSIDL_PERSONAL</span> <span class="o">=</span> <span class="mh">0x0005</span>
-    <span class="n">dll</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">windll</span><span class="o">.</span><span class="n">shell32</span>
-    <span class="n">buf</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">create_unicode_buffer</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">wintypes</span><span class="o">.</span><span class="n">MAX_PATH</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">dll</span><span class="o">.</span><span class="n">SHGetSpecialFolderPathW</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">CSIDL_PERSONAL</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span>
-
-
-<span class="k">def</span> <span class="nf">_xdg_documents_path</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Return the Linux/UNIX XDG &quot;Documents&quot; folder path, if available.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># Runs the xdg-user-dir command from xdg-utils</span>
-    <span class="c"># (which comes with most Linux systems)</span>
-
-    <span class="kn">import</span> <span class="nn">subprocess</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">&quot;xdg-user-dir&quot;</span><span class="p">,</span> <span class="s">&quot;DOCUMENTS&quot;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">path</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span>
-
-
-
-<div class="viewcode-block" id="default_output_path"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.default_output_path">[docs]</a><span class="k">def</span> <span class="nf">default_output_path</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Determine the appropriate default location in which to create</span>
-<span class="sd">    files on this operating system.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">documents</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~&#39;</span><span class="p">))</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">documents</span> <span class="o">=</span> <span class="n">_xdg_documents_path</span><span class="p">()</span>
-    <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
-    <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;Windows&#39;</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">documents</span> <span class="o">=</span> <span class="n">_win_documents_path</span><span class="p">()</span>
-        <span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
-    
-    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="s">&#39;Topographica&#39;</span><span class="p">)</span>
-    
-
-</div>
-<div class="viewcode-block" id="set_output_path"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.set_output_path">[docs]</a><span class="k">def</span> <span class="nf">set_output_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Set the default output path to the specified path, creating it if</span>
-<span class="sd">    it does not exist and adding it to the input searching path (to</span>
-<span class="sd">    allow just-saved files to be reloaded).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-        <span class="n">cmdline_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Creating </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">path</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">!=</span> <span class="n">errno</span><span class="o">.</span><span class="n">EEXIST</span><span class="p">:</span>
-                <span class="n">cmdline_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Unable to set output path </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">path</span><span class="p">)</span>
-
-    <span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="o">=</span><span class="n">path</span>
-    
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="o">.</span><span class="n">search_paths</span><span class="p">:</span>
-        <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="o">.</span><span class="n">search_paths</span><span class="o">+=</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
-
-</div>
 <div class="viewcode-block" id="sim_name_from_filename"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.sim_name_from_filename">[docs]</a><span class="k">def</span> <span class="nf">sim_name_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Set the simulation title from the given filename, if none has been</span>
@@ -456,26 +372,28 @@
 
 <div class="viewcode-block" id="v_action"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.v_action">[docs]</a><span class="k">def</span> <span class="nf">v_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Callback function for the -v option.&quot;&quot;&quot;</span>
-    <span class="n">cmdline_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Enabling verbose message output.&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">parameterized</span>
+    <span class="n">parameterized</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">()</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Enabling verbose message output.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">parameterized</span><span class="p">,</span><span class="s">&#39;get_logger&#39;</span><span class="p">):</span> 
         <span class="n">parameterized</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">parameterized</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span> <span class="c"># For versions of the param package before 9 May 2013</span>
         <span class="n">parameterized</span><span class="o">.</span><span class="n">min_print_level</span><span class="o">=</span><span class="n">parameterized</span><span class="o">.</span><span class="n">VERBOSE</span>
 </div>
 <span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-v&quot;</span><span class="p">,</span><span class="s">&quot;--verbose&quot;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">v_action</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;verbose&quot;</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">help</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="s">enable verbose messaging output&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s">enable verbose messaging output.&quot;&quot;&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="d_action"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.d_action">[docs]</a><span class="k">def</span> <span class="nf">d_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Callback function for the -d option.&quot;&quot;&quot;</span>
-    <span class="n">cmdline_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Enabling debugging message output.&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">parameterized</span>
+    <span class="n">parameterized</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">()</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Enabling debugging message output.&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">parameterized</span><span class="p">,</span><span class="s">&#39;get_logger&#39;</span><span class="p">):</span> 
         <span class="n">parameterized</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">parameterized</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span> <span class="c"># For versions of the param package before 9 May 2013</span>
         <span class="n">parameterized</span><span class="o">.</span><span class="n">min_print_level</span><span class="o">=</span><span class="n">parameterized</span><span class="o">.</span><span class="n">DEBUG</span>
 </div>
 <span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-d&quot;</span><span class="p">,</span><span class="s">&quot;--debug&quot;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">d_action</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;debug&quot;</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">help</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="s">enable debugging message output (implies --verbose)&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s">enable debugging message output (implies --verbose).&quot;&quot;&quot;</span><span class="p">)</span>
 
 
 
@@ -487,26 +405,17 @@
     <span class="n">install_legacy_support</span><span class="p">()</span>
 </div>
 <span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-l&quot;</span><span class="p">,</span><span class="s">&quot;--legacy&quot;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">l_action</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;legacy&quot;</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">help</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="s">launch Topographica with legacy support enabled&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s">launch Topographica with legacy support enabled.&quot;&quot;&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="o_action"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.o_action">[docs]</a><span class="k">def</span> <span class="nf">o_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Callback function for the -o option.&quot;&quot;&quot;</span>
-    <span class="n">set_output_path</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-</div>
-<span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-o&quot;</span><span class="p">,</span><span class="s">&quot;--outputpath&quot;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">o_action</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="s">&quot;string&quot;</span><span class="p">,</span>
-		       <span class="n">default</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;outputpath&quot;</span><span class="p">,</span><span class="n">metavar</span><span class="o">=</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&lt;output-path&gt;</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
-		       <span class="n">help</span><span class="o">=</span><span class="s">&quot;set the default output path&quot;</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="gui"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.gui">[docs]</a><span class="k">def</span> <span class="nf">gui</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">exit_on_quit</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="gui"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.gui">[docs]</a><span class="k">def</span> <span class="nf">gui</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Start the GUI as if -g were supplied in the command used to launch Topographica.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">matplotlib_imported</span><span class="p">:</span>
         <span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;backend&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;TkAgg&#39;</span>
     <span class="n">auto_import_commands</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">topo.tkgui</span>
-        <span class="n">topo</span><span class="o">.</span><span class="n">tkgui</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">exit_on_quit</span><span class="o">=</span><span class="n">exit_on_quit</span><span class="p">)</span>
+        <span class="n">topo</span><span class="o">.</span><span class="n">tkgui</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
 
 <span class="c"># Topographica stays open if an error occurs after -g</span>
@@ -530,16 +439,23 @@
 <span class="c"># Keeps track of whether something has been performed, when deciding whether to assume -i</span>
 <span class="n">something_executed</span><span class="o">=</span><span class="bp">False</span>
 
+<span class="c"># Dummy object used for user messages about OpenMP</span>
+<span class="n">openmp_main</span><span class="o">=</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;OpenMP&quot;</span><span class="p">)</span>
+
 <div class="viewcode-block" id="c_action"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.c_action">[docs]</a><span class="k">def</span> <span class="nf">c_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Callback function for the -c option.&quot;&quot;&quot;</span>
     <span class="c">#print &quot;Processing %s &#39;%s&#39;&quot; % (opt_str,value)</span>
     <span class="k">exec</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span>
     <span class="k">global</span> <span class="n">something_executed</span>
     <span class="n">something_executed</span><span class="o">=</span><span class="bp">True</span>
+    <span class="n">openmp_settings_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;openmp_threads&#39;</span><span class="p">,</span> <span class="s">&#39;openmp_min_threads&#39;</span><span class="p">,</span> <span class="s">&#39;openmp_max_threads&#39;</span><span class="p">]</span>
+    <span class="n">openmp_present</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">openmp_settings_names</span> <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">openmp_present</span> <span class="ow">and</span> <span class="n">parser</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">gui</span><span class="p">:</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;For OpenMP settings to be used properly they need to be specified before the -g flag.&quot;</span><span class="p">)</span>
 </div>
 <span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-c&quot;</span><span class="p">,</span><span class="s">&quot;--command&quot;</span><span class="p">,</span><span class="n">action</span> <span class="o">=</span> <span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">c_action</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="s">&quot;string&quot;</span><span class="p">,</span>
 		       <span class="n">default</span><span class="o">=</span><span class="p">[],</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;commands&quot;</span><span class="p">,</span><span class="n">metavar</span><span class="o">=</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&lt;command&gt;</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
-		       <span class="n">help</span><span class="o">=</span><span class="s">&quot;string of arbitrary Python code to be executed in the main namespace&quot;</span><span class="p">)</span>
+		       <span class="n">help</span><span class="o">=</span><span class="s">&quot;string of arbitrary Python code to be executed in the main namespace.&quot;</span><span class="p">)</span>
 
 
 
@@ -611,8 +527,59 @@
     <span class="n">configpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&quot;~&quot;</span><span class="p">),</span><span class="s">&quot;Library&quot;</span><span class="p">,</span><span class="s">&quot;Application Support&quot;</span><span class="p">,</span><span class="s">&#39;Topographica&#39;</span><span class="p">,</span><span class="s">&#39;topographica.config&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">startup_file</span> <span class="ow">in</span> <span class="p">(</span><span class="n">configpath</span><span class="p">,</span><span class="n">inipath</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">startup_file</span><span class="p">):</span>
-            <span class="n">cmdline_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Ignoring </span><span class="si">%s</span><span class="s">; location for startup file is </span><span class="si">%s</span><span class="s"> (UNIX/Linux/Mac OS X) or </span><span class="si">%s</span><span class="s"> (Windows).&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">startup_file</span><span class="p">,</span><span class="n">rcpath</span><span class="p">,</span><span class="n">inipath</span><span class="p">))</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Ignoring </span><span class="si">%s</span><span class="s">; location for startup file is </span><span class="si">%s</span><span class="s"> (UNIX/Linux/Mac OS X) or </span><span class="si">%s</span><span class="s"> (Windows).&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">startup_file</span><span class="p">,</span><span class="n">rcpath</span><span class="p">,</span><span class="n">inipath</span><span class="p">))</span>
+    <span class="c">#####</span>
 
+</div>
+<div class="viewcode-block" id="get_omp_num_threads"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.commandline-module.html#topo.misc.commandline.get_omp_num_threads">[docs]</a><span class="k">def</span> <span class="nf">get_omp_num_threads</span><span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">openmp_min_threads</span><span class="p">,</span> <span class="n">openmp_max_threads</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Helper function to implement sensible OpenMP behaviour where</span>
+<span class="sd">        possible.  Returns a integer tuple (OpenMP threads, CPUs detected).</span>
+
+<span class="sd">        CPUs detected may be None if multiprocessing is not available (ie</span>
+<span class="sd">        Python 2.5) and consequently OpenMP threads may be None if the user</span>
+<span class="sd">        gave a relative thread specification (ie openmp_threads &lt;= 0). When</span>
+<span class="sd">        OpenMP threads is None, the default OpenMP behaviour of using all</span>
+<span class="sd">        available cores is used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="s">&#39;OMP_NUM_THREADS&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s">&#39;NSLOTS&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="s">&#39;NSLOTS&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">multiprocessing</span>
+        <span class="n">total_cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">total_cores</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">total_cores</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Cannot import multiprocessing to determine number of cores.&quot;</span><span class="p">)</span>
+        <span class="n">total_cores</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">if</span> <span class="n">total_cores</span> <span class="ow">and</span> <span class="p">(</span><span class="o">-</span><span class="n">openmp_threads</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">total_cores</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Needs a positive number of threads to execute.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">total_cores</span><span class="p">:</span>      <span class="n">openmp_threads</span> <span class="o">=</span> <span class="n">total_cores</span> <span class="o">+</span> <span class="n">openmp_threads</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">total_cores</span><span class="p">:</span>  <span class="k">return</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">total_cores</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&gt;</span> <span class="n">total_cores</span><span class="p">):</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;More threads specified than cores detected.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">total_cores</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">openmp_threads</span> <span class="o">&lt;</span> <span class="n">openmp_min_threads</span><span class="p">:</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using minimum number of allowed threads.&quot;</span><span class="p">)</span>
+        <span class="n">openmp_threads</span> <span class="o">=</span> <span class="n">openmp_min_threads</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_max_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="n">openmp_max_threads</span> <span class="o">&lt;</span> <span class="n">openmp_min_threads</span><span class="p">):</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Maximum allowed threads lower than minimum allowed threads. Ignoring maximum limit.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">&gt;</span> <span class="n">openmp_max_threads</span><span class="p">):</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using maximum number of allowed threads.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">openmp_max_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
 
 
 <span class="c">### Execute what is specified by the options.</span>
@@ -626,22 +593,7 @@
     <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">global_constants</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">exec</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span>
 
-    <span class="c"># Allow param.normalize_path.prefix to be overridden in the</span>
-    <span class="c"># startup files, but otherwise force it to exist before doing</span>
-    <span class="c"># anything else</span>
-    <span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">default_output_path</span><span class="p">()</span>
     <span class="n">exec_startup_files</span><span class="p">()</span>
-    <span class="n">set_output_path</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span>
-
-    <span class="c"># Tell the user how many cores are in use, if available</span>
-    <span class="n">openmp_main</span><span class="o">=</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;OpenMP&quot;</span><span class="p">)</span> <span class="c"># Dummy object just for messages</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">multiprocessing</span>
-        <span class="n">total_cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
-        <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">,</span><span class="n">total_cores</span><span class="p">))</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads on a machine with </span><span class="si">%d</span><span class="s"> detected CPUs&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">))</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">pass</span>
 
     <span class="c"># Repeatedly process options, if any, followed by filenames, if any, until nothing is left</span>
     <span class="n">topo_parser</span><span class="o">.</span><span class="n">disable_interspersed_args</span><span class="p">()</span>
@@ -667,6 +619,34 @@
             <span class="k">break</span>
 
     <span class="n">global_params</span><span class="o">.</span><span class="n">check_for_unused_names</span><span class="p">()</span>
+
+    <span class="c"># OpenMP settings and defaults</span>
+    <span class="n">openmp_threads</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;openmp_threads&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span> <span class="n">openmp_threads</span><span class="o">=-</span><span class="mi">1</span>
+
+    <span class="n">openmp_min_threads</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;openmp_min_threads&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_min_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span> <span class="n">openmp_min_threads</span><span class="o">=</span><span class="mi">2</span>
+
+    <span class="n">openmp_max_threads</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;openmp_max_threads&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">openmp_threads</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span> <span class="c"># OpenMP is disabled if openmp_threads == 1</span>
+
+        <span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_omp_num_threads</span><span class="p">(</span><span class="n">openmp_threads</span><span class="p">,</span>
+                                                         <span class="n">openmp_min_threads</span><span class="p">,</span>
+                                                         <span class="n">openmp_max_threads</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_threads</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using OMP_NUM_THREADS environment variable if set. Otherwise, all cores in use.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">num_threads</span> <span class="o">==</span> <span class="s">&#39;NSLOTS&#39;</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;NSLOTS&#39;</span><span class="p">]</span>
+            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;NSLOTS environment variable found; overriding any other thread settings and using N=</span><span class="si">%s</span><span class="s"> threads&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;NSLOTS&#39;</span><span class="p">])</span>
+
+        <span class="k">elif</span> <span class="n">total_cores</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads&quot;</span> <span class="o">%</span> <span class="n">num_threads</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">str</span><span class="p">(</span><span class="n">num_threads</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">openmp_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads on a machine with </span><span class="si">%d</span><span class="s"> detected CPUs&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">))</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">str</span><span class="p">(</span><span class="n">num_threads</span><span class="p">)</span>
 
     <span class="c"># If no scripts and no commands were given, pretend -i was given.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">something_executed</span><span class="p">:</span> <span class="n">interactive</span><span class="p">()</span>
@@ -796,7 +776,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 24, 2013.
+      Last updated on Oct 25, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

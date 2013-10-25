@@ -517,6 +517,27 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">redraw_plots</span><span class="p">()</span>
 
 
+    <span class="c">### JABALERT: Can we make it simpler to make plots be put onto multiple lines?</span>
+    <span class="c"># (because this is just the smallest change I cpuld think of to</span>
+    <span class="c"># support row precedence, without altering the existing code!)</span>
+    <span class="k">def</span> <span class="nf">_determine_layout_of_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plots</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate self._rows and self._cols, together giving the grid position of each plot.&quot;&quot;&quot;</span>
+        <span class="n">distinct_precedences</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">row_precedence</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">]))</span>
+
+        <span class="c"># 2*i because labels will occupy odd rows</span>
+        <span class="n">precedence2row</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span> <span class="p">(</span><span class="n">precedence</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+                                <span class="k">for</span> <span class="n">precedence</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">distinct_precedences</span><span class="p">,</span>
+                                                        <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_precedences</span><span class="p">)))])</span>
+        <span class="c"># CB: a 2d array might have been clearer...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span> <span class="o">=</span> <span class="p">[</span><span class="n">precedence2row</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cols</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">row_counts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">row</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_counts</span><span class="p">[</span><span class="n">row</span><span class="p">])</span>
+            <span class="n">row_counts</span><span class="p">[</span><span class="n">row</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+
+
     <span class="c"># CEBALERT: this method needs cleaning, along with its versions in subclasses.</span>
     <span class="k">def</span> <span class="nf">display_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -524,9 +545,9 @@
 <span class="sd">        This function should be redefined in subclasses for interesting</span>
 <span class="sd">        things such as 2D grids.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">*</span><span class="mi">2</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">coords</span><span class="p">]</span> <span class="c"># Alternate rows for labelling</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">coords</span><span class="p">]</span>
-        <span class="n">plots</span> <span class="o">=</span>      <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">p</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">coords</span><span class="p">]</span>
+        <span class="n">plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_determine_layout_of_plots</span><span class="p">(</span><span class="n">plots</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">zoomed_images</span> <span class="o">=</span> <span class="p">[</span><span class="n">ImageTk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">bitmap</span><span class="o">.</span><span class="n">image</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">]</span>
 
         <span class="n">new_sizes</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">str</span><span class="p">(</span><span class="n">zi</span><span class="o">.</span><span class="n">width</span><span class="p">()),</span>
@@ -538,6 +559,7 @@
         <span class="c"># If the number of canvases or their sizes has changed, then</span>
         <span class="c"># create a new set of canvases.  If the new images will fit into the</span>
         <span class="c"># old canvases, reuse them (prevents flicker)</span>
+
 
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zoomed_images</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvases</span><span class="p">)</span> <span class="ow">or</span> \
@@ -1047,7 +1069,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 24, 2013.
+      Last updated on Oct 25, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

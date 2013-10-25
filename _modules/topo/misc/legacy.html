@@ -70,8 +70,6 @@
 
 <span class="kn">from</span> <span class="nn">snapshots</span> <span class="kn">import</span> <span class="n">PicklableClassAttributes</span>
 
-<span class="kn">from</span> <span class="nn">topo</span> <span class="kn">import</span> <span class="n">version_int</span>
-
 <span class="c"># CEBALERT: remove the extraneous &quot;import param&quot;s</span>
 
 <span class="c"># CEB: Add note that snapshot can be re-saved, making updates</span>
@@ -105,21 +103,6 @@
 
 
 <span class="k">def</span> <span class="nf">_get_version</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Try to determine a single numerical version for use in looking up</span>
-<span class="sd">    patches in the support dictionary, given a snapshot&#39;s declared</span>
-<span class="sd">    release and version.</span>
-
-<span class="sd">    Because of the variety of different version formats that have been</span>
-<span class="sd">    in use over the different version-control systems over the years,</span>
-<span class="sd">    it&#39;s not always possible to make such a mapping.  E.g. versions</span>
-<span class="sd">    controlled by SVN would normally return topo.version like 11499,</span>
-<span class="sd">    which is clear, but also sometimes 11499:11503 or 11499M.</span>
-<span class="sd">    Versions from git checkouts of svn source would just say</span>
-<span class="sd">    &quot;exported&quot;, while native git versions will have a four-tuple.  If</span>
-<span class="sd">    nothing else works, the numerical version associated with the</span>
-<span class="sd">    stated release is used.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">found_version</span> <span class="o">=</span> <span class="bp">False</span>
 
@@ -128,10 +111,9 @@
             <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">snapshot_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">snapshot_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span> <span class="c"># the version is a tuple, thus it&#39;s from git</span>
-            <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">version_int</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span>
+            <span class="n">snapshot_version</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%02d%02d%02d%05d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">snapshot_version</span>
 
-        <span class="c"># Convert to integer if snapshot_version contains only digits</span>
-        <span class="k">if</span> <span class="n">snapshot_version</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">snapshot_version</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span>
                 <span class="n">found_version</span> <span class="o">=</span> <span class="bp">True</span>
@@ -150,6 +132,15 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="c"># CEB: I think there&#39;s no simple way to tell what &quot;version&quot; of</span>
+        <span class="c"># Topographica a snapshot comes from. When you&#39;re running</span>
+        <span class="c"># Topographica from svn, you can try topo.version, but you&#39;ll</span>
+        <span class="c"># get things like 11499:11503 or 11499M. If you use git,</span>
+        <span class="c"># you&#39;ll see &quot;exported&quot;. Therefore, we can&#39;t always have</span>
+        <span class="c"># fine-grained control over what&#39;s loaded. We can at least use</span>
+        <span class="c"># the release number for coarse-grained control, though.</span>
+
         <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">_get_version</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="p">)</span>
 
         <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Snapshot is from release </span><span class="si">%s</span><span class="s"> (r</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="p">))</span>
@@ -605,7 +596,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 24, 2013.
+      Last updated on Oct 25, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

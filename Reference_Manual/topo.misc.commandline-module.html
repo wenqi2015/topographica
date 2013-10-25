@@ -212,13 +212,6 @@ tracking new names and warning of any replacements.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="topo.misc.commandline.default_output_path">
-<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">default_output_path</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#default_output_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.default_output_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine the appropriate default location in which to create
-files on this operating system.</p>
-</dd></dl>
-
-<dl class="function">
 <dt id="topo.misc.commandline.exec_startup_files">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">exec_startup_files</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#exec_startup_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.exec_startup_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute startup files.</p>
@@ -233,8 +226,20 @@ Windows: %USERPROFILE%      opographica.ini</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="topo.misc.commandline.get_omp_num_threads">
+<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">get_omp_num_threads</tt><big>(</big><em>openmp_threads</em>, <em>openmp_min_threads</em>, <em>openmp_max_threads</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#get_omp_num_threads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.get_omp_num_threads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to implement sensible OpenMP behaviour where
+possible.  Returns a integer tuple (OpenMP threads, CPUs detected).</p>
+<p>CPUs detected may be None if multiprocessing is not available (ie
+Python 2.5) and consequently OpenMP threads may be None if the user
+gave a relative thread specification (ie openmp_threads &lt;= 0). When
+OpenMP threads is None, the default OpenMP behaviour of using all
+available cores is used.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="topo.misc.commandline.gui">
-<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">gui</tt><big>(</big><em>start=True</em>, <em>exit_on_quit=True</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#gui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.gui" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">gui</tt><big>(</big><em>start=True</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#gui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.gui" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start the GUI as if -g were supplied in the command used to launch Topographica.</p>
 </dd></dl>
 
@@ -251,12 +256,6 @@ Windows: %USERPROFILE%      opographica.ini</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="topo.misc.commandline.o_action">
-<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">o_action</tt><big>(</big><em>option</em>, <em>opt_str</em>, <em>value</em>, <em>parser</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#o_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.o_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Callback function for the -o option.</p>
-</dd></dl>
-
-<dl class="function">
 <dt id="topo.misc.commandline.p_action">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">p_action</tt><big>(</big><em>option</em>, <em>opt_str</em>, <em>value</em>, <em>parser</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#p_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.p_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback function for the -p option.</p>
@@ -266,14 +265,6 @@ Windows: %USERPROFILE%      opographica.ini</p>
 <dt id="topo.misc.commandline.process_argv">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">process_argv</tt><big>(</big><em>argv</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#process_argv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.process_argv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process command-line arguments (minus argv[0]!), rearrange and execute.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="topo.misc.commandline.set_output_path">
-<tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">set_output_path</tt><big>(</big><em>path</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#set_output_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.set_output_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the default output path to the specified path, creating it if
-it does not exist and adding it to the input searching path (to
-allow just-saved files to be reloaded).</p>
 </dd></dl>
 
 <dl class="function">
@@ -364,7 +355,7 @@ set already.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 24, 2013.
+      Last updated on Oct 25, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
