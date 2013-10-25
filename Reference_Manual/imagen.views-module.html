@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>imagen.views &mdash; The Topographica Neural Map Simulator</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.98',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/topo.js"></script>
+    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../Downloads/index.html">Downloads</a></li>
+<li><a href="../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../User_Manual/index.html">User Manual</a></li>
+
+
+
+
+
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="imagen-views">
+<h1>imagen.views<a class="headerlink" href="#imagen-views" title="Permalink to this headline">¶</a></h1>
+<div class="inheritance_box"><img src="../_images/inheritanceea4ef9e090.svg" usemap="#inheritanceea4ef9e090" class="inheritance"/></div><map id="inheritanceea4ef9e090" name="inheritanceea4ef9e090">
+</map>
+<div class="section" id="module-imagen.views">
+<span id="module"></span><h2>Module<a class="headerlink" href="#module-imagen.views" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="imagen.views.ProjectionGrid">
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">ProjectionGrid</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#ProjectionGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.ProjectionGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetIndexing" title="imagen.views.SheetIndexing"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetIndexing</span></tt></a>, <a class="reference internal" href="imagen.ndmapping-module.html#imagen.ndmapping.NdMapping" title="imagen.ndmapping.NdMapping"><tt class="xref py py-class docutils literal"><span class="pre">imagen.ndmapping.NdMapping</span></tt></a></p>
+<p>ProjectionView indexes other RangeMap objects, containing projections
+onto coordinate systems. The X and Y dimensions are mapped onto the bounds
+object, allowing for bounds checking and grid-snapping.</p>
+<dl class="docutils">
+<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The ROI can be specified to select only a sub-region of the bounds to
+        be stored as data. NOT YET IMPLEMENTED.</dd>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The bounds of the coordinate system in which the data items reside.</dd>
+<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">shape</span></tt> (<em>constant=False, default=(0, 0), instantiate=False, length=2, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The shape of the grid is required to determine grid spacing and to
+        create a SheetCoordinateSystem.</dd>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=False, default=[&#8216;X&#8217;, &#8216;Y&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The dimension_labels parameter accepts a list of the features
+        along which the data will indexed.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>No need to keep ProjectionGrid sorted, since order of keys is
+        irrelevant.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Additional labels to be associated with the Dataview.</dd>
+</dl>
+<dl class="method">
+<dt id="imagen.views.ProjectionGrid.update">
+<tt class="descname">update</tt><big>(</big><em>other</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#ProjectionGrid.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.ProjectionGrid.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds bounds checking to the default update behavior.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="imagen.views.SheetIndexing">
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetIndexing</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetIndexing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetIndexing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>SheetIndexing provides methods to indexes and slices from one coordinate
+system to another. By default it maps from sheet coordinates to matrix
+coordinates using the _transform_indices method. However subclasses can
+change this behavior by subclassing the _transform_values method,
+which takes an index value along a certain dimension along with the
+dimension number as input returns the transformed value.</p>
+<dl class="docutils">
+<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The ROI can be specified to select only a sub-region of the bounds to
+        be stored as data. NOT YET IMPLEMENTED.</dd>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The bounds of the two dimensional coordinate system in which the data
+        resides.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="imagen.views.SheetView">
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetView</tt><big>(</big><em>data</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetIndexing" title="imagen.views.SheetIndexing"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetIndexing</span></tt></a></p>
+<p>SheetView is the atomic unit as which 2D data is stored, along with its
+bounds object. Allows slicing operations of the data in sheet coordinates or
+direct access to the data, via the .data attribute.</p>
+<dl class="docutils">
+<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The ROI can be specified to select only a sub-region of the bounds to
+        be stored as data. NOT YET IMPLEMENTED.</dd>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The bounds of the two dimensional coordinate system in which the data
+        resides.</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/topo-banner7.png" alt="Logo"/>
+            </a></p>
+<ul class="global-toc">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../News/index.html">News</a></li>
+<li><a href="../Downloads/index.html">Downloads</a></li>
+<li><a href="../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../User_Manual/index.html">User Manual</a></li>
+<li><a href="index.html">Reference Manual</a></li>
+<li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="../Forums/index.html">Forums</a></li>
+<li><a href="../Team_Members/index.html">Team Members</a></li>
+<li><a href="../Future_Work/index.html">Future Work</a></li>
+<li><a href="../FAQ/index.html">FAQ</a></li>
+<li><a href="../Links/index.html">Links</a></li>
+<li><a href="../Home/pubs.html">Publications</a></li>
+</ul>
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">imagen.views</a><ul>
+<li><a class="reference internal" href="#module-imagen.views">Module</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Reference_Manual/imagen.views-module.rst" rel="nofollow">Edit on GitHub</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../Downloads/index.html">Downloads</a></li>
+<li><a href="../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../User_Manual/index.html">User Manual</a></li>
+
+
+
+
+
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, IOAM.
+      Last updated on Oct 25, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

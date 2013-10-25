@@ -52,52 +52,8 @@
             
   <div class="section" id="topo-responsefn-optimized">
 <h1>topo.responsefn.optimized<a class="headerlink" href="#topo-responsefn-optimized" title="Permalink to this headline">¶</a></h1>
-<div class="inheritance_box"><img src="../_images/inheritance23d65fc6d3.svg" usemap="#inheritance23d65fc6d3" class="inheritance"/></div><map id="inheritance23d65fc6d3" name="inheritance23d65fc6d3">
-</map>
-<div class="section" id="module-topo.responsefn.optimized">
-<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.responsefn.optimized" title="Permalink to this headline">¶</a></h2>
-<p>Response functions and CFProjection response functions (see projfn.py) written
-in C to optimize performance.</p>
-<p>Requires the weave package; without it unoptimized versions are used.</p>
-<dl class="class">
-<dt id="topo.responsefn.optimized.CFPRF_DotProduct">
-<em class="property">class </em><tt class="descclassname">topo.responsefn.optimized.</tt><tt class="descname">CFPRF_DotProduct</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/optimized.html#CFPRF_DotProduct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPRF_Plugin" title="topo.base.cf.CFPRF_Plugin"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPRF_Plugin</span></tt></a></p>
-<p>Wrapper written to allow transparent non-optimized fallback;
-equivalent to CFPRF_Plugin(single_cf_fn=DotProduct()).</p>
-<dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00026&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Accepts a ResponseFn that will be applied to each CF individually.</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="topo.responsefn.optimized.CFPRF_DotProduct_cyopt">
-<tt class="descclassname">topo.responsefn.optimized.</tt><tt class="descname">CFPRF_DotProduct_cyopt</tt><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_cyopt" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="#topo.responsefn.optimized.CFPRF_DotProduct" title="topo.responsefn.optimized.CFPRF_DotProduct"><tt class="xref py py-class docutils literal"><span class="pre">CFPRF_DotProduct</span></tt></a></p>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt">
-<em class="property">class </em><tt class="descclassname">topo.responsefn.optimized.</tt><tt class="descname">CFPRF_DotProduct_opt</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/optimized.html#CFPRF_DotProduct_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPResponseFn" title="topo.base.cf.CFPResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPResponseFn</span></tt></a></p>
-<p>Dot-product response function.</p>
-<p>Written in C for a manyfold speedup; see CFPRF_DotProduct for an
-easier-to-read version in Python.  The unoptimized Python version
-is equivalent to this one, but it also works for 1D arrays.</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;DotProduct DotProduct00277&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt">
-<em class="property">class </em><tt class="descclassname">topo.responsefn.optimized.</tt><tt class="descname">CFPRF_EuclideanDistance_opt</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/optimized.html#CFPRF_EuclideanDistance_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPResponseFn" title="topo.base.cf.CFPResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPResponseFn</span></tt></a></p>
-<p>Euclidean-distance response function.</p>
-<p>Written in C for a several-hundred-times speedup; see
-CFPRF_EuclideanDistance for an easier-to-read (but otherwise
-equivalent) version in Python.</p>
-</dd></dl>
-
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -128,7 +84,7 @@ equivalent) version in Python.</p>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.responsefn.optimized</a><ul>
-<li><a class="reference internal" href="#module-topo.responsefn.optimized">Module</a></li>
+<li><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
 </ul>

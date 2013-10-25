@@ -13,9 +13,11 @@ Submodules
 * `imagen.ipython <imagen.ipython-module.html>`_
 * `imagen.image <imagen.image-module.html>`_
 * `imagen.transferfn <imagen.transferfn-module.html>`_
+* `imagen.views <imagen.views-module.html>`_
 * `imagen.sheetcoords <imagen.sheetcoords-module.html>`_
 * `imagen.patternfn <imagen.patternfn-module.html>`_
 * `imagen.patterngenerator <imagen.patterngenerator-module.html>`_
+* `imagen.ndmapping <imagen.ndmapping-module.html>`_
 
 
 Module
