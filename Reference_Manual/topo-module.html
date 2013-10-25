@@ -108,6 +108,7 @@
 <li><a class="reference external" href="topo.coordmapper-module.html">topo.coordmapper</a></li>
 <li><a class="reference external" href="topo.misc.distribution-module.html">topo.misc.distribution</a></li>
 <li><a class="reference external" href="topo.misc.gendocs-module.html">topo.misc.gendocs</a></li>
+<li><a class="reference external" href="topo.misc.attrdict-module.html">topo.misc.attrdict</a></li>
 <li><a class="reference external" href="topo.misc.commandline-module.html">topo.misc.commandline</a></li>
 <li><a class="reference external" href="topo.misc.playerrobot-module.html">topo.misc.playerrobot</a></li>
 <li><a class="reference external" href="topo.misc.ipython-module.html">topo.misc.ipython</a></li>
@@ -173,6 +174,32 @@
 </div>
 <div class="section" id="module">
 <h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-topo"></span><p>Topographica cortical map simulator package.</p>
+<p>Topographica is designed as a collection of packages from which
+elements can be selected to model specific systems.  For more
+information, see the individual subpackages:</p>
+<div class="highlight-python"><pre>base           - Core Topographica functions and classes
+plotting       - Visualization functions and classes
+analysis       - Analysis functions and classes (besides plotting)
+tkgui          - Tk-based graphical user interface (GUI)
+command        - High-level user commands
+misc           - Various useful independent modules</pre>
+</div>
+<p>The Topographica primitives library consists of a family of classes
+that can be used with the above functions and classes:</p>
+<div class="highlight-python"><pre>sheet          - Sheet classes: 2D arrays of processing units
+projection     - Projection classes: connections between Sheets
+pattern        - PatternGenerator classes: 2D input or weight patterns
+ep             - EventProcessor classes: other simulation objects
+transferfn     - Transfer functions, for e.g. normalization or squashing
+responsefn     - Calculate the response of a Projection
+learningfn     - Adjust weights for a Projection
+coordmapper    - CoordinateMapperFn classes: map coords between Sheets</pre>
+</div>
+<p>Each of the library directories can be extended with new classes of
+the appropriate type, just by adding a new .py file to that directory.
+E.g. new PatternGenerator classes can be added to pattern/, and will
+then show up in the GUI menus as potential input patterns.</p>
 </div>
 </div>
 

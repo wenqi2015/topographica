@@ -87,20 +87,12 @@
 <span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
 <span class="kn">from</span> <span class="nn">boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span>
 <span class="kn">from</span> <span class="nn">functionfamily</span> <span class="kn">import</span> <span class="n">TransferFn</span>
-
+<span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
 <span class="n">activity_type</span> <span class="o">=</span> <span class="n">float64</span>
 
-<div class="viewcode-block" id="AttrDict"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheet-module.html#topo.base.sheet.AttrDict">[docs]</a><span class="k">class</span> <span class="nc">AttrDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A dictionary type object that supports attribute access (e.g. for</span>
-<span class="sd">    IPython tab completion).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="bp">self</span>
 
-<span class="c"># (disable W0223 because input_event is deliberately still not implemented)</span></div>
+<span class="c"># (disable W0223 because input_event is deliberately still not implemented)</span>
 <div class="viewcode-block" id="Sheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheet-module.html#topo.base.sheet.Sheet">[docs]</a><span class="k">class</span> <span class="nc">Sheet</span><span class="p">(</span><span class="n">EventProcessor</span><span class="p">,</span><span class="n">SheetCoordinateSystem</span><span class="p">):</span>  <span class="c"># pylint: disable-msg=W0223</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The generic base class for neural sheets.</span>
@@ -173,7 +165,7 @@
 <span class="sd">        Initialize this object as an EventProcessor, then also as</span>
 <span class="sd">        a SheetCoordinateSystem with equal xdensity and ydensity.</span>
 
-<span class="sd">        sheet_views is a dictionary that stores SheetViews,</span>
+<span class="sd">        views is an AttrDict, which stores associated measurements,</span>
 <span class="sd">        i.e. representations of the sheet for use by analysis or plotting</span>
 <span class="sd">        code.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -195,8 +187,10 @@
         <span class="c"># For non-plastic inputs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__saved_activity</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_plasticity_setting_stack</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sheet_views</span> <span class="o">=</span>  <span class="n">AttrDict</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_views</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="s">&#39;maps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="s">&#39;curves&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
 
 
     <span class="c">### JABALERT: This should be deleted now that sheet_views is public</span>
@@ -209,8 +203,8 @@
 <span class="sd">        Delete the dictionary entry with key entry &#39;view_name&#39; to save</span>
 <span class="sd">        memory.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_views</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">view_name</span><span class="p">):</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_views</span><span class="p">[</span><span class="n">view_name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">view_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">view_name</span><span class="p">]</span>
 
 
     <span class="c"># CB: what to call this? sheetcoords()? sheetcoords_of_grid()? idxsheetcoords()?</span></div>

@@ -70,6 +70,9 @@
 
 <span class="kn">from</span> <span class="nn">snapshots</span> <span class="kn">import</span> <span class="n">PicklableClassAttributes</span>
 
+<span class="kn">from</span> <span class="nn">topo</span> <span class="kn">import</span> <span class="n">version_int</span>
+<span class="kn">from</span> <span class="nn">topo.misc.util</span> <span class="kn">import</span> <span class="n">unit_value</span>
+
 <span class="c"># CEBALERT: remove the extraneous &quot;import param&quot;s</span>
 
 <span class="c"># CEB: Add note that snapshot can be re-saved, making updates</span>
@@ -103,6 +106,21 @@
 
 
 <span class="k">def</span> <span class="nf">_get_version</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Try to determine a single numerical version for use in looking up</span>
+<span class="sd">    patches in the support dictionary, given a snapshot&#39;s declared</span>
+<span class="sd">    release and version.</span>
+
+<span class="sd">    Because of the variety of different version formats that have been</span>
+<span class="sd">    in use over the different version-control systems over the years,</span>
+<span class="sd">    it&#39;s not always possible to make such a mapping.  E.g. versions</span>
+<span class="sd">    controlled by SVN would normally return topo.version like 11499,</span>
+<span class="sd">    which is clear, but also sometimes 11499:11503 or 11499M.</span>
+<span class="sd">    Versions from git checkouts of svn source would just say</span>
+<span class="sd">    &quot;exported&quot;, while native git versions will have a four-tuple.  If</span>
+<span class="sd">    nothing else works, the numerical version associated with the</span>
+<span class="sd">    stated release is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">found_version</span> <span class="o">=</span> <span class="bp">False</span>
 
@@ -111,9 +129,10 @@
             <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">snapshot_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">snapshot_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;M&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span> <span class="c"># the version is a tuple, thus it&#39;s from git</span>
-            <span class="n">snapshot_version</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%02d%02d%02d%05d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">snapshot_version</span>
+            <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">version_int</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="c"># Convert to integer if snapshot_version contains only digits</span>
+        <span class="k">if</span> <span class="n">snapshot_version</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">snapshot_version</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">snapshot_version</span><span class="p">)</span>
                 <span class="n">found_version</span> <span class="o">=</span> <span class="bp">True</span>
@@ -132,15 +151,6 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">install</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-
-        <span class="c"># CEB: I think there&#39;s no simple way to tell what &quot;version&quot; of</span>
-        <span class="c"># Topographica a snapshot comes from. When you&#39;re running</span>
-        <span class="c"># Topographica from svn, you can try topo.version, but you&#39;ll</span>
-        <span class="c"># get things like 11499:11503 or 11499M. If you use git,</span>
-        <span class="c"># you&#39;ll see &quot;exported&quot;. Therefore, we can&#39;t always have</span>
-        <span class="c"># fine-grained control over what&#39;s loaded. We can at least use</span>
-        <span class="c"># the release number for coarse-grained control, though.</span>
-
         <span class="n">snapshot_version</span> <span class="o">=</span> <span class="n">_get_version</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="p">)</span>
 
         <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Snapshot is from release </span><span class="si">%s</span><span class="s"> (r</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">snapshot_release</span><span class="p">,</span><span class="n">snapshot_version</span><span class="p">))</span>
@@ -201,6 +211,22 @@
     <span class="k">def</span> <span class="nf">new_setstate</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
         <span class="n">state_mod_fn</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">)</span>
         <span class="n">old_setstate</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">class_</span><span class="o">.</span><span class="n">__setstate__</span> <span class="o">=</span> <span class="n">new_setstate</span>
+</div>
+<div class="viewcode-block" id="postprocess_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.legacy-module.html#topo.misc.legacy.postprocess_state">[docs]</a><span class="k">def</span> <span class="nf">postprocess_state</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="n">state_mod_fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Allow processing of instance and state after state has been applied.</span>
+
+<span class="sd">    state_mod_fn must accept two arguments: instance and state.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="s">&#39;__setstate__&#39;</span><span class="p">):</span>
+        <span class="c"># e.g. class_ used to be Parameterized, but now isn&#39;t</span>
+        <span class="n">class_</span><span class="o">.</span><span class="n">__setstate__</span> <span class="o">=</span> <span class="n">_setstate</span>
+
+    <span class="n">old_setstate</span> <span class="o">=</span> <span class="n">class_</span><span class="o">.</span><span class="n">__setstate__</span>
+    <span class="k">def</span> <span class="nf">new_setstate</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">old_setstate</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">)</span>
+        <span class="n">state_mod_fn</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">)</span>
     <span class="n">class_</span><span class="o">.</span><span class="n">__setstate__</span> <span class="o">=</span> <span class="n">new_setstate</span>
 
 <span class="c"># CEBNOTE: eventually, might have to support multiple redirections for</span>
@@ -470,6 +496,163 @@
     <span class="n">topo</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">lissom</span><span class="o">.</span><span class="n">JointScaling</span> <span class="o">=</span> <span class="n">JointScaling</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">90800129</span><span class="p">]</span> <span class="o">=</span> <span class="n">removed_JointScaling</span>
+
+
+<span class="k">def</span> <span class="nf">featuremapper_legacy</span><span class="p">():</span>
+    <span class="c"># For snapshots saved before 90800300</span>
+
+    <span class="c"># Replace PatternPresenter objects with stub</span>
+    <span class="kn">import</span> <span class="nn">topo.analysis.featureresponses</span>
+    <span class="kn">import</span> <span class="nn">param</span>
+    <span class="k">class</span> <span class="nc">PatternPresenter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">pass</span>
+    <span class="n">topo</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">featureresponses</span><span class="o">.</span><span class="n">PatternPresenter</span> <span class="o">=</span> <span class="n">PatternPresenter</span>
+
+    <span class="c"># Move parameters and change them if necessary</span>
+    <span class="n">duration_lambda</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">default</span><span class="p">],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        If non-None, pattern_response_fn.duration will be set to this value.&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">apply_output_fns_lambda</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;apply_output_fns&#39;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">default</span><span class="p">}</span>
+
+    <span class="n">name_changes</span> <span class="o">=</span> <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">param_name_changes</span>
+
+    <span class="n">mrc_name_changes</span> <span class="o">=</span> <span class="n">name_changes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">&#39;topo.analysis.featureresponses.MeasureResponseCommand&#39;</span><span class="p">,{})</span>
+    <span class="n">mrc_name_changes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">&#39;duration&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;durations&#39;</span><span class="p">,</span> <span class="n">duration_lambda</span><span class="p">)})</span>
+    <span class="n">name_changes</span><span class="p">[</span><span class="s">&#39;topo.analysis.featureresponses.MeasureResponseCommand&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">mrc_name_changes</span>
+
+    <span class="n">mrc_moves</span> <span class="o">=</span> <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">param_moves</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">&#39;topo.analysis.featureresponses.MeasureResponseCommand&#39;</span><span class="p">,{})</span>
+    <span class="n">mrc_moves</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&#39;apply_output_fns&#39;</span><span class="p">:</span>
+                          <span class="p">(</span><span class="s">&#39;topo.analysis.featureresponses.FeatureResponses&#39;</span><span class="p">,</span><span class="s">&#39;cmd_overrides&#39;</span><span class="p">,</span><span class="n">apply_output_fns_lambda</span><span class="p">)})</span>
+    <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">param_moves</span><span class="p">[</span><span class="s">&#39;topo.analysis.featureresponses.MeasureResponseCommand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mrc_moves</span>
+
+    <span class="n">fcc_name_changes</span> <span class="o">=</span> <span class="n">name_changes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">&#39;topo.analysis.featureresponses.FeatureCurveCommand&#39;</span><span class="p">,{})</span>
+    <span class="n">fcc_name_changes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">&#39;duration&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;durations&#39;</span><span class="p">,</span> <span class="n">duration_lambda</span><span class="p">)})</span>
+    <span class="n">name_changes</span><span class="p">[</span><span class="s">&#39;topo.analysis.featureresponses.FeatureCurveCommand&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">fcc_name_changes</span>
+
+    <span class="n">fcc_moves</span> <span class="o">=</span> <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">param_moves</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">&#39;topo.analysis.featureresponses.FeatureCurveCommand&#39;</span><span class="p">,{})</span>
+    <span class="n">fcc_moves</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&#39;apply_output_fns&#39;</span><span class="p">:</span>
+                          <span class="p">(</span><span class="s">&#39;topo.analysis.featureresponses.FeatureCurves&#39;</span><span class="p">,</span><span class="s">&#39;cmd_overrides&#39;</span><span class="p">,</span><span class="n">apply_output_fns_lambda</span><span class="p">)})</span>
+    <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">param_moves</span><span class="p">[</span><span class="s">&#39;topo.analysis.featureresponses.FeatureCurveCommand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fcc_moves</span>
+
+    <span class="n">ppc_name_changes</span> <span class="o">=</span> <span class="n">name_changes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">&#39;topo.analysis.featureresponses.PatternPresentingCommand&#39;</span><span class="p">,{})</span>
+    <span class="n">ppc_name_changes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">&#39;duration&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;durations&#39;</span><span class="p">,</span> <span class="n">duration_lambda</span><span class="p">),</span>
+         <span class="s">&#39;sheet_views_prefix&#39;</span><span class="p">:</span> <span class="s">&#39;measurement_prefix&#39;</span><span class="p">})</span>
+    <span class="n">name_changes</span><span class="p">[</span><span class="s">&#39;topo.analysis.featureresponses.PatternPresentingCommand&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">ppc_name_changes</span>
+
+    <span class="c"># Move enable_fullmatrix parameter</span>
+    <span class="n">fr_name_changes</span> <span class="o">=</span> <span class="n">name_changes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">&#39;topo.analysis.featureresponses.FeatureResponses&#39;</span><span class="p">,{})</span>
+    <span class="n">fr_name_changes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">&#39;enable_fullmatrix&#39;</span><span class="p">:</span><span class="s">&#39;store_fullmatrix&#39;</span><span class="p">})</span>
+    <span class="n">name_changes</span><span class="p">[</span><span class="s">&#39;topo.analysis.featureresponses.FeatureResponses&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">fr_name_changes</span>
+
+    <span class="c"># Measurement Prefix</span>
+    <span class="n">fr_name_changes</span> <span class="o">=</span> <span class="n">name_changes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">&#39;topo.analysis.featureresponses.FeatureResponses&#39;</span><span class="p">,{})</span>
+    <span class="n">fr_name_changes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">&#39;enable_fullmatrix&#39;</span><span class="p">:</span><span class="s">&#39;store_fullmatrix&#39;</span><span class="p">})</span>
+    <span class="n">name_changes</span><span class="p">[</span><span class="s">&#39;topo.analysis.featureresponses.FeatureResponses&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">fr_name_changes</span>
+
+
+    <span class="c"># Delete old parameters</span>
+    <span class="n">old_cmd_params</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;display&#39;</span><span class="p">,</span> <span class="s">&#39;pattern_presenter&#39;</span><span class="p">,</span> <span class="s">&#39;generator_sheets&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;input_sheet&#39;</span><span class="p">,</span> <span class="s">&#39;sheet&#39;</span><span class="p">)</span>
+    <span class="n">param_no_restore</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;MeasureResponseCommand&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;FeatureCurveCommand&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;ProjectionSheetMeasurementCommand&#39;</span> <span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;SingleInputResponseCommand&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;measure_rfs&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;sampling_interval&#39;</span><span class="p">,</span> <span class="s">&#39;sampling_area&#39;</span><span class="p">),</span>
+                        <span class="s">&#39;unit_tuning_curve&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;x_axis&#39;</span><span class="p">,</span> <span class="s">&#39;sheet&#39;</span><span class="p">),</span>
+                        <span class="s">&#39;ReverseCorrelation&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;FeatureCurves&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;post_collect_responses_hook&#39;</span><span class="p">),</span>
+                        <span class="s">&#39;FeatureMaps&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;sheet_views_prefix&#39;</span><span class="p">),</span>
+                        <span class="s">&#39;measure_latency_preference&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;PositionMeasurementCommand&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;measure_corner_or_pref&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;measure_orientation_contrast&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;PatternPresenter&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;contrast_parameter&#39;</span><span class="p">,</span> <span class="s">&#39;divisions&#39;</span><span class="p">,</span>
+                                             <span class="s">&#39;generator_sheets&#39;</span><span class="p">,</span> <span class="s">&#39;apply_output_fns&#39;</span><span class="p">,</span>
+                                             <span class="s">&#39;duration&#39;</span><span class="p">),</span>
+                        <span class="s">&#39;measure_or_tuning_fullfield&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;UnitCurveCommand&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;measure_frequency_preference&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;SinusoidalMeasureResponseCommand&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">,</span>
+                        <span class="s">&#39;measure_log_frequency_preference&#39;</span><span class="p">:</span> <span class="n">old_cmd_params</span><span class="p">}</span>
+    <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">deleted_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">param_no_restore</span><span class="p">)</span>
+
+    <span class="c"># Convert old sheet_views and curve_dict</span>
+    <span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
+    <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
+    <span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span>
+    <span class="k">def</span> <span class="nf">_set_sheet_views</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;simulation&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;_name_param_value&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s">&#39;simulation&#39;</span><span class="p">],</span> <span class="s">&#39;views&#39;</span><span class="p">):</span>
+            <span class="n">state</span><span class="p">[</span><span class="s">&#39;simulation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;simulation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="s">&#39;views&#39;</span><span class="p">):</span>
+                <span class="n">state</span><span class="p">[</span><span class="s">&#39;views&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">views</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">state</span><span class="p">[</span><span class="s">&#39;views&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+            <span class="n">state</span><span class="p">[</span><span class="s">&#39;simulation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;views&#39;</span><span class="p">]</span>
+        <span class="n">views</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;views&#39;</span><span class="p">]</span>
+        <span class="n">views</span><span class="p">[</span><span class="s">&#39;maps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+        <span class="n">views</span><span class="p">[</span><span class="s">&#39;cfs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+        <span class="n">views</span><span class="p">[</span><span class="s">&#39;curves&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s">&#39;sheet_views&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+            <span class="n">svs</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;sheet_views&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">sv</span> <span class="ow">in</span> <span class="n">svs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+                <span class="n">new_sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+                <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">])</span>
+                <span class="n">metadata_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;cyclic_range&#39;</span><span class="p">,</span> <span class="s">&#39;precedence&#39;</span><span class="p">,</span>
+                                  <span class="s">&#39;row_precedence&#39;</span><span class="p">,</span> <span class="s">&#39;src_name&#39;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">metadata_names</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+                        <span class="n">metadata</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+                <span class="n">state</span><span class="p">[</span><span class="s">&#39;views&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">((</span><span class="n">sv</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">new_sv</span><span class="p">),</span>
+                                                  <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s">&#39;curve_dict&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+            <span class="n">old_curves</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;curve_dict&#39;</span><span class="p">]</span>
+            <span class="n">curves</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="s">&#39;curves&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">old_curves</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">labels</span> <span class="o">=</span> <span class="n">unit_value</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+                    <span class="n">label_name</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">l_val</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">views</span><span class="p">[</span><span class="s">&#39;curves&#39;</span><span class="p">]:</span>
+                        <span class="n">curves</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">f_val</span><span class="p">,</span> <span class="n">old_sv</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">old_sv</span><span class="o">.</span><span class="n">timestamp</span>
+                        <span class="n">curves</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">timestamp</span><span class="p">]</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="n">label_name</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="n">l_val</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">curves</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">timestamp</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                            <span class="n">curves</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">timestamp</span><span class="p">]</span> <span class="p">[</span><span class="n">l_val</span><span class="p">]</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
+                                                                       <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+                                                                       <span class="n">timestamp</span><span class="o">=</span><span class="n">old_sv</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span>
+                        <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">old_sv</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+                        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+                        <span class="n">curves</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">timestamp</span><span class="p">][</span><span class="n">l_val</span><span class="p">][</span><span class="n">f_val</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;curve_dict&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;sheet_views&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">Sheet</span><span class="p">,</span> <span class="n">_set_sheet_views</span><span class="p">)</span>
+
+    <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Legacy code does not guarantee all &#39;</span>
+        <span class="s">&#39;measurement parameters have been restored. Make sure measurements are &#39;</span>
+        <span class="s">&#39;still set up correctly.&#39;</span><span class="p">)</span>
+
+
+<span class="n">support</span><span class="p">[</span><span class="mi">90800300</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremapper_legacy</span>
 
 
 <span class="c">######################################################################</span>

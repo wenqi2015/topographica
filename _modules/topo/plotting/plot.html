@@ -289,13 +289,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sheet_view_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
         <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">sv</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sv</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">sv</span><span class="o">.</span><span class="n">top</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">matrix</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">view</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
-            <span class="n">matrix</span> <span class="o">=</span> <span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">key</span><span class="o">==</span><span class="s">&#39;Hue&#39;</span> <span class="ow">and</span> <span class="n">sv</span><span class="o">.</span><span class="n">cyclic</span><span class="p">:</span>
-                <span class="n">matrix</span> <span class="o">/=</span> <span class="n">sv</span><span class="o">.</span><span class="n">cyclic_range</span>
+            <span class="n">matrix</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">==</span><span class="s">&#39;Hue&#39;</span> <span class="ow">and</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">cyclic_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">matrix</span> <span class="o">/=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">cyclic_range</span>
 
             <span class="c"># Calculate timestamp for this plot</span>
             <span class="n">timestamp</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">timestamp</span>
@@ -316,11 +315,11 @@
             <span class="n">sheet_view_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
             <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">sv</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
-                 <span class="bp">self</span><span class="o">.</span><span class="n">plot_src_name</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">src_name</span>
-                 <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">precedence</span>
-                 <span class="bp">self</span><span class="o">.</span><span class="n">row_precedence</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">row_precedence</span>
-                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span><span class="s">&#39;proj_src_name&#39;</span><span class="p">):</span>
-                      <span class="bp">self</span><span class="o">.</span><span class="n">proj_src_name</span><span class="o">=</span><span class="n">sv</span><span class="o">.</span><span class="n">proj_src_name</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">plot_src_name</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">src_name</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">precedence</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">row_precedence</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">row_precedence</span>
+                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span><span class="s">&#39;proj_src_name&#39;</span><span class="p">):</span>
+                      <span class="bp">self</span><span class="o">.</span><span class="n">proj_src_name</span><span class="o">=</span><span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">proj_src_name</span>
 
 
     <span class="c">### JCALERT: This could be inserted in the code of get_matrix</span>
@@ -330,12 +329,12 @@
 <span class="sd">        of the SheetViews that constitute the TemplatePlot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">sv</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
-                     <span class="n">shape</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">view</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
-                     <span class="n">box</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">view</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sv</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+                <span class="n">box</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">bounds</span>
 
-        <span class="k">return</span> <span class="n">shape</span><span class="p">,</span><span class="n">box</span>
+        <span class="k">return</span> <span class="n">shape</span><span class="p">,</span> <span class="n">box</span>
 
 
     <span class="c"># CEBALERT: needs simplification! (To begin work on joint</span>

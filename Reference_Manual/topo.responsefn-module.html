@@ -61,6 +61,34 @@
 </div>
 <div class="section" id="module">
 <h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-topo.responsefn"></span><p>A family of response functions for CFProjections.</p>
+<p>These function objects compute a response matrix when given an input
+pattern and a set of ConnectionField objects.  Response functions come
+in two varieties: ResponseFunction, and CFPResponseFunction.  A
+ResponseFunction (e.g. DotProduct) computes the response due to one
+CF.  To compute the response due to an entire CFProjection, a
+ResponseFunction can be plugged in to CFPRF_Plugin.  CFPRF_Plugin is
+one example of a CFPResponseFunction, which is a function that works
+with the entire Projection at once.  Some optimizations and algorithms
+can only be applied at the full CFPResponseFn level, so there are
+other CFPResponseFns beyond CFPRF_Plugin.</p>
+<p>Any new response functions added to this directory will automatically
+become available for any model.</p>
+<dl class="class">
+<dt id="topo.responsefn.DotProduct">
+<em class="property">class </em><tt class="descclassname">topo.responsefn.</tt><tt class="descname">DotProduct</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.ResponseFn" title="topo.base.functionfamily.ResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.ResponseFn</span></tt></a></p>
+<p>Return the sum of the element-by-element product of two 2D
+arrays.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.responsefn.ResponseFn">
+<em class="property">class </em><tt class="descclassname">topo.responsefn.</tt><tt class="descname">ResponseFn</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>Abstract base class for response functions that plug into CFPRF_Plugin.</p>
+</dd></dl>
+
 </div>
 </div>
 

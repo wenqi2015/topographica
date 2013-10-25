@@ -70,6 +70,7 @@
 
 <span class="kn">import</span> <span class="nn">param</span>
 
+
 <div class="viewcode-block" id="SheetView"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheetview-module.html#topo.base.sheetview.SheetView">[docs]</a><span class="k">class</span> <span class="nc">SheetView</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class provided for backward compatibility with earlier SheetView</span>
@@ -107,12 +108,13 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_view_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </div>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">),</span> <span class="n">src_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">precedence</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-                 <span class="n">timestamp</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">row_precedence</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+                 <span class="n">timestamp</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">row_precedence</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Initializing old SheetView class&#39;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SheetView</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
                                        <span class="n">src_name</span> <span class="o">=</span> <span class="n">src_name</span><span class="p">,</span>
                                        <span class="n">precedence</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">,</span>
                                        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span><span class="p">,</span>
-                                       <span class="n">row_precedence</span> <span class="o">=</span> <span class="n">row_precedence</span><span class="p">)</span>
+                                       <span class="n">row_precedence</span> <span class="o">=</span> <span class="n">row_precedence</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_view_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
 

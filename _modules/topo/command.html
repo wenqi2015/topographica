@@ -95,6 +95,7 @@
 <span class="kn">from</span> <span class="nn">topo.misc.genexamples</span> <span class="kn">import</span> <span class="n">generate</span> <span class="k">as</span> <span class="n">_generate</span>
 <span class="kn">from</span> <span class="nn">topo.base.functionfamily</span> <span class="kn">import</span> <span class="n">PatternDrivenAnalysis</span>
 
+
 <span class="c"># CEBALERT: Could say min Python 2.6 and use Python&#39;s own. Or is it</span>
 <span class="c"># 2.7?</span>
 <span class="kn">from</span> <span class="nn">topo.misc.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
@@ -252,10 +253,10 @@
 <span class="sd">    the &#39;tiny.ty&#39; script in the currently active namespace.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">ns</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{},</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{},</span> <span class="n">pickle_default_value</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        The namespace in which the script is to be executed.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">push</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Callable</span><span class="p">(</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">push</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Callable</span><span class="p">(</span><span class="n">pickle_default_value</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Hook to push the updated namespace for handling more</span>
 <span class="s">        complicated namespaces, such as IPython Notebook.&quot;&quot;&quot;</span><span class="p">)</span>
 
@@ -579,6 +580,7 @@
 
     <span class="c"># Test response to a standardized pattern</span>
     <span class="kn">from</span> <span class="nn">topo.pattern</span> <span class="kn">import</span> <span class="n">Gaussian</span>
+    <span class="kn">from</span> <span class="nn">analysis</span> <span class="kn">import</span> <span class="n">pattern_present</span>
     <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
     <span class="n">pattern_present</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="n">aspect_ratio</span><span class="o">=</span><span class="mf">4.7</span><span class="p">))</span>
     <span class="n">save_plotgroup</span><span class="p">(</span><span class="s">&quot;Activity&quot;</span><span class="p">,</span><span class="n">saver_params</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;filename_suffix&quot;</span><span class="p">:</span><span class="s">&quot;_45d&quot;</span><span class="p">})</span>
@@ -722,6 +724,9 @@
 <span class="s">        Function to control how the parameter names will appear in the</span>
 <span class="s">        output_directory&#39;s name.&quot;&quot;&quot;</span><span class="p">)</span>
 
+    <span class="n">metadata_dir</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Specifies the name of a</span>
+<span class="s">        subdirectory used to output metadata from run_batch if set.&quot;&quot;&quot;</span><span class="p">)</span>
+
 
     <span class="k">def</span> <span class="nf">_truncate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -759,12 +764,15 @@
         <span class="n">global_params</span><span class="o">.</span><span class="n">set_in_context</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="o">.</span><span class="n">extra_keywords</span><span class="p">())</span>
 
         <span class="c"># Create output directories</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s">&#39;output_directory&#39;</span><span class="p">])):</span>
-            <span class="k">try</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s">&#39;output_directory&#39;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">output_directory</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">output_directory</span><span class="p">))</span>
             <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span> <span class="k">pass</span>   <span class="c"># Catches potential race condition (simultaneous run_batch runs)</span>
 
         <span class="n">dirname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_truncate</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">dirname_prefix</span><span class="o">+</span><span class="n">prefix</span><span class="p">)</span>
-        <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">normalize_path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s">&#39;output_directory&#39;</span><span class="p">],</span><span class="n">dirname</span><span class="p">))</span>
+        <span class="n">dirpath</span> <span class="o">=</span> <span class="n">normalize_path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">output_directory</span><span class="p">,</span><span class="n">dirname</span><span class="p">))</span>
+        <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">dirpath</span>
+        <span class="n">metadata_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">metadata_dir</span><span class="p">)</span>
+        <span class="n">simpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">,</span> <span class="n">simname</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">):</span>
             <span class="k">print</span> <span class="s">&quot;Batch run: Warning -- directory already exists!&quot;</span>
@@ -773,12 +781,12 @@
 
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">)</span>
             <span class="k">print</span> <span class="s">&quot;Batch run output will be in &quot;</span> <span class="o">+</span> <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span>
 
 
-        <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s">&#39;vc_info&#39;</span><span class="p">]:</span>
-            <span class="n">_print_vc_info</span><span class="p">(</span><span class="n">simname</span><span class="o">+</span><span class="s">&quot;.diffs&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">vc_info</span><span class="p">:</span>
+            <span class="n">_print_vc_info</span><span class="p">(</span><span class="n">simpath</span> <span class="o">+</span> <span class="s">&quot;.diffs&quot;</span><span class="p">)</span>
 
         <span class="n">hostinfo</span> <span class="o">=</span> <span class="s">&quot;Host: &quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">platform</span><span class="o">.</span><span class="n">uname</span><span class="p">())</span>
         <span class="n">topographicalocation</span> <span class="o">=</span> <span class="s">&quot;Topographica: &quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -808,7 +816,7 @@
 
         <span class="c"># Shadow stdout to a .out file in the output directory, so that</span>
         <span class="c"># print statements will go to both the file and to stdout.</span>
-        <span class="n">batch_output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">simname</span><span class="o">+</span><span class="s">&quot;.out&quot;</span><span class="p">),</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">batch_output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">simpath</span><span class="o">+</span><span class="s">&quot;.out&quot;</span><span class="p">),</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
         <span class="n">batch_output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">command_used_to_start</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">MultiFile</span><span class="p">(</span><span class="n">batch_output</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
 
@@ -830,11 +838,11 @@
         <span class="c"># Save a copy of the script file for reference</span>
         <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">script_file</span><span class="p">,</span> <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span>
         <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">scriptbase</span><span class="o">+</span><span class="s">&quot;.ty&quot;</span><span class="p">),</span>
-                    <span class="n">normalize_path</span><span class="p">(</span><span class="n">simname</span><span class="o">+</span><span class="s">&quot;.ty&quot;</span><span class="p">))</span>
+                    <span class="n">normalize_path</span><span class="p">(</span><span class="n">simpath</span><span class="o">+</span><span class="s">&quot;.ty&quot;</span><span class="p">))</span>
 
 
         <span class="c"># Default case: times is just a number that scales a standard list of times</span>
-        <span class="n">times</span><span class="o">=</span><span class="n">p</span><span class="p">[</span><span class="s">&#39;times&#39;</span><span class="p">]</span>
+        <span class="n">times</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">times</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
             <span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="o">*</span><span class="n">times</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="mi">3000</span><span class="p">,</span><span class="mi">4000</span><span class="p">,</span><span class="mi">5000</span><span class="p">,</span><span class="mi">10000</span><span class="p">]]</span>
 
@@ -845,20 +853,22 @@
             <span class="nb">execfile</span><span class="p">(</span><span class="n">script_file</span><span class="p">,</span><span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span> <span class="c">#global_params.context</span>
             <span class="n">global_params</span><span class="o">.</span><span class="n">check_for_unused_names</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">save_global_params</span><span class="p">:</span>
-                <span class="n">_save_parameters</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">extra_keywords</span><span class="p">(),</span><span class="n">simname</span><span class="o">+</span><span class="s">&quot;.global_params.pickle&quot;</span><span class="p">)</span>
+                <span class="n">_save_parameters</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">extra_keywords</span><span class="p">(),</span> <span class="n">simpath</span><span class="o">+</span><span class="s">&quot;.global_params.pickle&quot;</span><span class="p">)</span>
             <span class="n">print_sizes</span><span class="p">()</span>
             <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">simname</span>
 
             <span class="c"># Run each segment, doing the analysis and saving the script state each time</span>
             <span class="k">for</span> <span class="n">run_to</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
                 <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_to</span> <span class="o">-</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
-                <span class="n">p</span><span class="p">[</span><span class="s">&#39;analysis_fn&#39;</span><span class="p">]()</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">analysis_fn</span><span class="p">()</span>
+                <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">metadata_dir</span>
                 <span class="n">save_script_repr</span><span class="p">()</span>
+                <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">dirpath</span>
                 <span class="n">elapsedtime</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">starttime</span>
                 <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;run_batch&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">message</span><span class="p">(</span>
                     <span class="s">&quot;Elapsed real time </span><span class="si">%02d</span><span class="s">:</span><span class="si">%02d</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">elapsedtime</span><span class="o">/</span><span class="mi">60</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">elapsedtime</span><span class="o">%</span><span class="mi">60</span><span class="p">)))</span>
 
-            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s">&#39;snapshot&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">snapshot</span><span class="p">:</span>
                <span class="n">save_snapshot</span><span class="p">()</span>
 
         <span class="k">except</span><span class="p">:</span>
@@ -925,48 +935,7 @@
 <span class="n">PatternDrivenAnalysis</span><span class="o">.</span><span class="n">pre_presentation_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clear_event_queue</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="pattern_present"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.pattern_present">[docs]</a><span class="k">def</span> <span class="nf">pattern_present</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">{},</span> <span class="n">duration</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">plastic</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-                    <span class="n">overwrite_previous</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">apply_output_fns</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a set of input patterns (dictionary of</span>
-<span class="sd">    GeneratorSheetName:PatternGenerator pairs), installs them into the</span>
-<span class="sd">    specified GeneratorSheets, runs the simulation for the specified</span>
-<span class="sd">    length of time, then restores the original patterns and the</span>
-<span class="sd">    original simulation time.  Thus this input is not considered part</span>
-<span class="sd">    of the regular simulation, and is usually for testing purposes.</span>
-
-<span class="sd">    As a special case, if &#39;inputs&#39; is just a single pattern, and not</span>
-<span class="sd">    a dictionary, it is presented to all GeneratorSheets.</span>
-
-<span class="sd">    If a simulation is not provided, the active simulation, if one</span>
-<span class="sd">    exists, is requested.</span>
-
-<span class="sd">    If this process is interrupted by the user, the temporary patterns</span>
-<span class="sd">    may still be installed on the retina.</span>
-
-<span class="sd">    If overwrite_previous is true, the given inputs overwrite those</span>
-<span class="sd">    previously defined.</span>
-
-<span class="sd">    If plastic is False, overwrites the existing values of Sheet.plastic</span>
-<span class="sd">    to disable plasticity, then reenables plasticity.</span>
-
-<span class="sd">    In order to to see the sequence of values presented, you may use</span>
-<span class="sd">    the back arrow history mechanism in the GUI. Note that the GUI&#39;s</span>
-<span class="sd">    Activity window must be open and the display parameter set to true</span>
-<span class="sd">    (display=True).</span>
-
-<span class="sd">    Alternatively, the activity response of the sheets may be obtained</span>
-<span class="sd">    from the sheet_views dictionary of the respective sheets.</span>
-
-<span class="sd">    This function is a backward compatibility wrapper of the</span>
-<span class="sd">    pattern_response class.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">analysis</span> <span class="kn">import</span> <span class="n">pattern_response</span>
-    <span class="n">pattern_response</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">,</span> <span class="n">plastic</span><span class="o">=</span><span class="n">plastic</span><span class="p">,</span>
-                     <span class="n">overwrite_previous</span><span class="o">=</span><span class="n">overwrite_previous</span><span class="p">,</span>
-                     <span class="n">apply_output_fns</span><span class="o">=</span><span class="n">apply_output_fns</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="c"># maybe an explicit list would be better?</span></div>
+<span class="c"># maybe an explicit list would be better?</span>
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="n">_public</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">_k</span> <span class="k">for</span> <span class="n">_k</span><span class="p">,</span><span class="n">_v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_v</span><span class="p">,</span><span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">)</span> <span class="ow">or</span>

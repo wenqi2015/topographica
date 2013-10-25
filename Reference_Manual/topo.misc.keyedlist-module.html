@@ -52,8 +52,97 @@
             
   <div class="section" id="topo-misc-keyedlist">
 <h1>topo.misc.keyedlist<a class="headerlink" href="#topo-misc-keyedlist" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module">
-<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<div class="inheritance_box"><img src="../_images/inheritance6b0fe3e417.svg" usemap="#inheritance6b0fe3e417" class="inheritance"/></div><map id="inheritance6b0fe3e417" name="inheritance6b0fe3e417">
+</map>
+<div class="section" id="module-topo.misc.keyedlist">
+<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.misc.keyedlist" title="Permalink to this headline">¶</a></h2>
+<p>KeyedList sorted dictionary class.</p>
+<dl class="class">
+<dt id="topo.misc.keyedlist.KeyedList">
+<em class="property">class </em><tt class="descclassname">topo.misc.keyedlist.</tt><tt class="descname">KeyedList</tt><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">list</span></tt></p>
+<p>Extends the built-in type &#8216;list&#8217; to support dictionary-like
+access using [].  The internal representation is as an ordinary
+list of (key,value) pairs, not a hash table like an ordinary
+dictionary, so that the elements will remain ordered.</p>
+<p>Note: Not all list operations will work as expected, because
+[] does not return the name tuple.</p>
+<p>Redefined functions:</p>
+<div class="highlight-python"><pre>__getitem__ ([,])
+__setitem__ ([,])
+append  --  Now takes a tuple (key,value) so that value
+            can be later accessed by [key].</pre>
+</div>
+<p>New functions modeled from dictionaries:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">get</span>
+<span class="nb">set</span>
+<span class="n">has_key</span>
+<span class="n">keys</span>
+<span class="n">items</span>
+<span class="n">update</span>
+</pre></div>
+</div>
+<p>Key values are not allowed to be None, because None is a
+default return value for get() when there is no object
+by that name.</p>
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.append">
+<tt class="descname">append</tt><big>(</big><em>(key</em>, <em>value)</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a new object to the end of the existing list.</p>
+<p>Accepts a 2-tuple (key, value).</p>
+<p>Strictly speaking, this operation did not need to be redefined
+in this subclass, but by forcing the tuple in the function
+parameters, we may be able to catch an erroneous assignment.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.get">
+<tt class="descname">get</tt><big>(</big><em>key</em>, <em>default=None</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value with the specified key.</p>
+<p>Returns None if no value with that key exists.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.has_key">
+<tt class="descname">has_key</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.has_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.has_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True iff key is found in the ordered list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.items">
+<tt class="descname">items</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide the item function supported by dictionaries.
+A keyed list already is stored in this format, so just returns
+the actual underlying list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.keys">
+<tt class="descname">keys</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>A copy of the list of keys.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.set">
+<tt class="descname">set</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the key already exists in the list, change the entry.
+Otherwise append the new (key,value) to the end of the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.update">
+<tt class="descname">update</tt><big>(</big><em>b</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates (and overwrites) key/value pairs from b.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.keyedlist.KeyedList.values">
+<tt class="descname">values</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/keyedlist.html#KeyedList.values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.keyedlist.KeyedList.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>A copy of the list of values.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -84,7 +173,7 @@
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.misc.keyedlist</a><ul>
-<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#module-topo.misc.keyedlist">Module</a></li>
 </ul>
 </li>
 </ul>

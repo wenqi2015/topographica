@@ -8,6 +8,7 @@ Submodules
 ==========
 * `topo.misc.distribution <topo.misc.distribution-module.html>`_
 * `topo.misc.gendocs <topo.misc.gendocs-module.html>`_
+* `topo.misc.attrdict <topo.misc.attrdict-module.html>`_
 * `topo.misc.commandline <topo.misc.commandline-module.html>`_
 * `topo.misc.playerrobot <topo.misc.playerrobot-module.html>`_
 * `topo.misc.ipython <topo.misc.ipython-module.html>`_

@@ -67,12 +67,14 @@
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">overridable_property</span>
 
+<span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span>
+<span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
+
 <span class="kn">from</span> <span class="nn">topo.misc.keyedlist</span> <span class="kn">import</span> <span class="n">KeyedList</span> <span class="c"># CEBALERT: not in base</span>
 
 <span class="kn">from</span> <span class="nn">sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
 <span class="kn">from</span> <span class="nn">simulation</span> <span class="kn">import</span> <span class="n">EPConnection</span>
 <span class="kn">from</span> <span class="nn">functionfamily</span> <span class="kn">import</span> <span class="n">TransferFn</span>
-<span class="kn">from</span> <span class="nn">sheetview</span> <span class="kn">import</span> <span class="n">ProjectionView</span>
 
 <div class="viewcode-block" id="SheetMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.SheetMask">[docs]</a><span class="k">class</span> <span class="nc">SheetMask</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -350,7 +352,11 @@
 </div>
 <div class="viewcode-block" id="Projection.get_projection_view"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.get_projection_view">[docs]</a>    <span class="k">def</span> <span class="nf">get_projection_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the activity in a single projection&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ProjectionView</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">),</span><span class="bp">self</span><span class="p">,</span><span class="n">timestamp</span><span class="p">)</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">NdMapping</span><span class="p">((</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">sv</span><span class="p">),</span> <span class="n">proj_src_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                         <span class="n">precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span> <span class="n">proj_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                         <span class="n">row_precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
+                         <span class="n">src_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="n">timestamp</span><span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="Projection.n_bytes"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.n_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">n_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -428,11 +434,13 @@
 <span class="s">        functions.&quot;&quot;&quot;</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ProjectionSheet</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="o">.</span><span class="n">sheet</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">*</span><span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="s">&#39;rfs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
+
 
     <span class="k">def</span> <span class="nf">_dest_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

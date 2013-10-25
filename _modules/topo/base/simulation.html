@@ -115,6 +115,8 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">bisect</span>
 
+<span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
+
 <span class="c"># CEBALERT: Is it dangerous to have &#39;Forever&#39; implemented</span>
 <span class="c"># like this? To start with, min(Forever,1) gives</span>
 <span class="c"># FixedPoint(&#39;-1.00,2&#39;) i.e. Forever.</span>
@@ -820,19 +822,18 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">recenttimes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
                 <span class="n">length</span><span class="o">-=</span><span class="mi">1</span>
 
-            <span class="n">percent</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">*</span><span class="n">current_presentation</span><span class="o">/</span><span class="n">total_presentations</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">percent</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">*</span><span class="n">current_presentation</span><span class="o">/</span><span class="n">total_presentations</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">percent</span> <span class="o">=</span> <span class="mi">100</span>
             <span class="n">estimate</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_presentations</span><span class="o">-</span><span class="n">current_presentation</span><span class="p">)</span><span class="o">*</span> \
                 <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">recenttimes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">recenttimes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">length</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">__pass_out_info</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">simulation_time_fn</span><span class="p">(),</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pass_out_info</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">current_presentation</span><span class="p">,</span>
                              <span class="n">percent</span><span class="o">=</span><span class="n">percent</span><span class="p">,</span>
                              <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-                             <span class="n">duration</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                             <span class="n">duration</span><span class="o">=</span><span class="n">total_presentations</span><span class="p">,</span>
                              <span class="n">remaining</span><span class="o">=</span><span class="n">estimate</span><span class="p">)</span>
-
-        <span class="kn">import</span> <span class="nn">topo</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">topo</span><span class="p">,</span> <span class="s">&#39;guimain&#39;</span><span class="p">):</span>
-            <span class="n">topo</span><span class="o">.</span><span class="n">guimain</span><span class="o">.</span><span class="n">refresh_activity_windows</span><span class="p">()</span>
 
 
 
@@ -1143,6 +1144,7 @@
 
         <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_event_processors</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -1220,6 +1222,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_event_processors</span><span class="p">[</span><span class="n">ep_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ep</span>
             <span class="n">ep</span><span class="o">.</span><span class="n">simulation</span> <span class="o">=</span> <span class="bp">self</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">eps_to_start</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ep</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span><span class="s">&#39;views&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="n">ep_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">views</span>
 
 
     <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ep_name</span><span class="p">):</span>

@@ -79,6 +79,8 @@
     <span class="c"># classes that aren&#39;t parameterized any more</span>
     <span class="n">do_not_restore</span> <span class="o">=</span> <span class="p">[]</span>
 
+    <span class="n">deleted_params</span> <span class="o">=</span> <span class="p">{}</span>
+
 
     <span class="c"># Support for changing parameter names</span>
     <span class="c"># CEBALERT: doesn&#39;t support things like changing output_fn to output_fns,</span>
@@ -143,7 +145,12 @@
                 <span class="k">if</span> <span class="n">p_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_moves</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">class_path</span><span class="p">,{}):</span>
                     <span class="k">assert</span> <span class="n">p_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_name_changes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">class_path</span><span class="p">,{})</span>
 
-                    <span class="n">new_class_path</span><span class="p">,</span><span class="n">new_p_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_moves</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_moves</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="n">new_class_path</span><span class="p">,</span><span class="n">new_p_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_moves</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_moves</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                        <span class="n">new_class_path</span><span class="p">,</span><span class="n">new_p_name</span><span class="p">,</span><span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_moves</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">]</span>
+                        <span class="n">p_obj</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p_obj</span><span class="p">)</span>
+
 
                     <span class="k">if</span> <span class="n">new_class_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_restore</span><span class="p">:</span>
                         <span class="n">to_restore</span><span class="p">[</span><span class="n">new_class_path</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -154,7 +161,11 @@
 
 
                 <span class="k">elif</span> <span class="n">p_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_name_changes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">class_path</span><span class="p">,{}):</span>
-                    <span class="n">new_p_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_name_changes</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_name_changes</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">],</span><span class="nb">tuple</span><span class="p">):</span>
+                        <span class="n">new_p_name</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_name_changes</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">]</span>
+                        <span class="n">p_obj</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">p_obj</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">new_p_name</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_name_changes</span><span class="p">[</span><span class="n">class_path</span><span class="p">][</span><span class="n">p_name</span><span class="p">]</span>
 
                     <span class="k">if</span> <span class="n">class_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">to_restore</span><span class="p">:</span>
                         <span class="n">to_restore</span><span class="p">[</span><span class="n">class_path</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -172,6 +183,7 @@
         <span class="k">for</span> <span class="n">class_path</span> <span class="ow">in</span> <span class="n">to_restore</span><span class="p">:</span>
             <span class="n">module_path</span> <span class="o">=</span> <span class="n">class_path</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">class_path</span><span class="o">.</span><span class="n">rindex</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)]</span>
             <span class="n">class_name</span> <span class="o">=</span> <span class="n">class_path</span><span class="p">[</span><span class="n">class_path</span><span class="o">.</span><span class="n">rindex</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">::]</span>
+            <span class="n">deleted_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deleted_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="p">{})</span>
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">module</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">module_path</span><span class="p">,</span><span class="n">fromlist</span><span class="o">=</span><span class="p">[</span><span class="n">module_path</span><span class="p">])</span>
@@ -186,18 +198,21 @@
                 <span class="k">break</span>
 
             <span class="k">for</span> <span class="n">p_name</span><span class="p">,</span><span class="n">p_obj</span> <span class="ow">in</span> <span class="n">to_restore</span><span class="p">[</span><span class="n">class_path</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-
-                <span class="k">if</span> <span class="n">p_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">class_</span><span class="o">.</span><span class="n">params</span><span class="p">():</span>
-                    <span class="c"># CEBALERT: GlobalParams&#39;s source code never has</span>
-                    <span class="c"># parameters. If we move Parameter saving and</span>
-                    <span class="c"># restoring to Parameterized, could allow</span>
-                    <span class="c"># individual classes to customize Parameter</span>
-                    <span class="c"># restoration.</span>
-                    <span class="k">if</span> <span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="o">!=</span><span class="s">&#39;GlobalParams&#39;</span><span class="p">:</span>
-                        <span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;load_snapshot&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> found in snapshot, but &#39;</span><span class="si">%s</span><span class="s">&#39; is no longer defined as a Parameter by the current version of </span><span class="si">%s</span><span class="s">. If you are using this class, please file a support request via topographica.org.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">p_name</span><span class="p">,</span><span class="n">p_name</span><span class="p">,</span><span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="nb">setattr</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="n">p_name</span><span class="p">,</span><span class="n">p_obj</span><span class="p">)</span>
-
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">p_name</span> <span class="ow">in</span> <span class="n">deleted_params</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                    <span class="k">elif</span> <span class="n">p_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">class_</span><span class="o">.</span><span class="n">params</span><span class="p">():</span>
+                        <span class="c"># CEBALERT: GlobalParams&#39;s source code never has</span>
+                        <span class="c"># parameters. If we move Parameter saving and</span>
+                        <span class="c"># restoring to Parameterized, could allow</span>
+                        <span class="c"># individual classes to customize Parameter</span>
+                        <span class="c"># restoration.</span>
+                        <span class="k">if</span> <span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="o">!=</span><span class="s">&#39;GlobalParams&#39;</span><span class="p">:</span>
+                            <span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;load_snapshot&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> found in snapshot, but &#39;</span><span class="si">%s</span><span class="s">&#39; is no longer defined as a Parameter by the current version of </span><span class="si">%s</span><span class="s">. If you are using this class, please file a support request via topographica.org.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">p_name</span><span class="p">,</span><span class="n">p_name</span><span class="p">,</span><span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="nb">setattr</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="n">p_name</span><span class="p">,</span><span class="n">p_obj</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;load_snapshot&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> found in snapshot, but &#39;</span><span class="si">%s</span><span class="s">&#39; but could not be restored to the current version of </span><span class="si">%s</span><span class="s">. If you are using this class, please file a support request via topographica.org.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">p_name</span><span class="p">,</span><span class="n">p_name</span><span class="p">,</span><span class="n">class_</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
 
     <span class="c"># CB: I guess this could be simplified</span>
     <span class="k">def</span> <span class="nf">get_PO_class_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">module</span><span class="p">,</span><span class="n">class_attributes</span><span class="p">,</span><span class="n">processed_modules</span><span class="p">,</span><span class="n">exclude</span><span class="o">=</span><span class="p">()):</span>

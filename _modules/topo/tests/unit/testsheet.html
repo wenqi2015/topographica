@@ -62,14 +62,16 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
 
-<span class="kn">from</span> <span class="nn">topo.base.sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span><span class="p">,</span><span class="n">Slice</span>
+<span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span>
+
+<span class="kn">from</span> <span class="nn">topo.base.sheetcoords</span> <span class="kn">import</span> <span class="n">Slice</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">topo.base.boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span>
-<span class="kn">from</span> <span class="nn">topo.base.sheetview</span> <span class="kn">import</span> <span class="n">SheetView</span>
 
 <span class="kn">from</span> <span class="nn">nose.tools</span> <span class="kn">import</span> <span class="n">istest</span><span class="p">,</span> <span class="n">nottest</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 
 <span class="c"># CEBALERT:</span>
@@ -782,15 +784,15 @@
 
     <span class="k">def</span> <span class="nf">test_sheetview_release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">Sheet</span><span class="p">()</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">activity</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">activity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
         <span class="c"># Call s.sheet_view(..) with a parameter</span>
-        <span class="n">sv2</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">((</span><span class="n">s</span><span class="o">.</span><span class="n">activity</span><span class="p">,</span><span class="n">s</span><span class="o">.</span><span class="n">bounds</span><span class="p">),</span>
-                          <span class="n">src_name</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">sheet_views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">sheet_views</span><span class="p">[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sv2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">sheet_views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sv2</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">activity</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
+                        <span class="n">metadata</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">src_name</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">sv2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">s</span><span class="o">.</span><span class="n">release_sheet_view</span><span class="p">(</span><span class="s">&#39;Activity&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">sheet_views</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span><span class="mi">0</span><span class="p">)</span>
 </div>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
 	<span class="kn">import</span> <span class="nn">nose</span>

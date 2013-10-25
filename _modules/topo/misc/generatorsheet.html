@@ -153,15 +153,20 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Generating a new pattern&quot;</span><span class="p">)</span>
 
-        <span class="c"># JABALERT: What does the [:] achieve here?  Copying the</span>
-        <span class="c"># values, instead of the pointer to the array?  Is that</span>
-        <span class="c"># guaranteed?</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_generator</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_generator</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="c"># Note that a generator may raise an exception StopIteration if it runs out of patterns.</span>
+            <span class="c"># Example is if the patterns are files that are loaded sequentially and are not re-used (e.g. the constructors</span>
+            <span class="c"># are  discarded to save memory).</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Pattern generator {0} returned None. Unable to generate Activity pattern.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_generator</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">ac</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_output_fns</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
-                <span class="n">of</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">send_output</span><span class="p">(</span><span class="n">src_port</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_output_fns</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
+                    <span class="n">of</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_output</span><span class="p">(</span><span class="n">src_port</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
 
 </div>
     <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
