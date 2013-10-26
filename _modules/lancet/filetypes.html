@@ -59,9 +59,16 @@
   <h1>Source code for lancet.filetypes</h1><div class="highlight"><pre>
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">StringIO</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">param</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="n">PrettyPrinted</span>
 
+<span class="k">try</span><span class="p">:</span>    <span class="kn">import</span> <span class="nn">numpy</span>
+<span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+
+<span class="k">try</span><span class="p">:</span>    <span class="kn">import</span> <span class="nn">Image</span>
+<span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
+
+<span class="k">try</span><span class="p">:</span>    <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="k">except</span><span class="p">:</span> <span class="k">pass</span>
 
 
 <div class="viewcode-block" id="FileType"><a class="viewcode-back" href="../../Reference_Manual/lancet.filetypes-module.html#lancet.filetypes.FileType">[docs]</a><span class="k">class</span> <span class="nc">FileType</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
@@ -311,18 +318,16 @@
     <span class="n">compress</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-        <span class="k">global</span> <span class="n">np</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">NumpyFile</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;hash_suffix&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;compress&#39;</span><span class="p">])</span> <span class="c"># CHECK!</span>
 
     <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">data</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">NumpyFile</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">savefn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">savez_compressed</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compress</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">savez</span>
+        <span class="n">savefn</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">savez_compressed</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compress</span> <span class="k">else</span> <span class="n">numpy</span><span class="o">.</span><span class="n">savez</span>
         <span class="n">savefn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_savepath</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-        <span class="n">npzfile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_loadpath</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="n">npzfile</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_loadpath</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="p">(</span><span class="n">npzfile</span><span class="p">[</span><span class="s">&#39;metadata&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
                     <span class="k">if</span> <span class="s">&#39;metadata&#39;</span> <span class="ow">in</span> <span class="n">npzfile</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="p">{})</span>
         <span class="c"># Numpy load may return a Python dictionary.</span>
@@ -330,7 +335,7 @@
         <span class="k">return</span> <span class="n">metadata</span>
 
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-        <span class="n">npzfile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_loadpath</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+        <span class="n">npzfile</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_loadpath</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">npzfile</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s">&#39;metadata&#39;</span><span class="p">]</span>
         <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">npzfile</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span>
 
@@ -365,8 +370,6 @@
 <span class="s">       The name (key) given to the loaded image data.&#39;&#39;&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">Image</span>
-        <span class="k">global</span> <span class="n">Image</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ImageFile</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;hash_suffix&#39;</span><span class="p">],</span>
                          <span class="p">[</span><span class="s">&#39;data_key&#39;</span><span class="p">,</span> <span class="s">&#39;data_mode&#39;</span><span class="p">,</span> <span class="s">&#39;image_info&#39;</span><span class="p">])</span>
@@ -380,8 +383,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Data may be either a PIL Image object or a Numpy array.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">imdata</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-            <span class="n">imdata</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">imdata</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">imdata</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">imdata</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">imdata</span><span class="p">))</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">imdata</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
             <span class="n">imdata</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_savepath</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
 </div>
@@ -419,8 +422,6 @@
     <span class="n">extensions</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;.mpkl&#39;</span><span class="p">],</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-        <span class="k">global</span> <span class="n">pyplot</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MatplotlibFile</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;hash_suffix&#39;</span><span class="p">],</span> <span class="p">[])</span>
 
