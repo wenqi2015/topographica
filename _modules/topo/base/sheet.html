@@ -87,12 +87,17 @@
 <span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
 <span class="kn">from</span> <span class="nn">boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span>
 <span class="kn">from</span> <span class="nn">functionfamily</span> <span class="kn">import</span> <span class="n">TransferFn</span>
-<span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
 <span class="n">activity_type</span> <span class="o">=</span> <span class="n">float64</span>
 
+<div class="viewcode-block" id="AttrDict"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheet-module.html#topo.base.sheet.AttrDict">[docs]</a><span class="k">class</span> <span class="nc">AttrDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Provides convenient attribute access.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span> <span class="o">=</span> <span class="bp">self</span>
 
-<span class="c"># (disable W0223 because input_event is deliberately still not implemented)</span>
+
+<span class="c"># (disable W0223 because input_event is deliberately still not implemented)</span></div>
 <div class="viewcode-block" id="Sheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheet-module.html#topo.base.sheet.Sheet">[docs]</a><span class="k">class</span> <span class="nc">Sheet</span><span class="p">(</span><span class="n">EventProcessor</span><span class="p">,</span><span class="n">SheetCoordinateSystem</span><span class="p">):</span>  <span class="c"># pylint: disable-msg=W0223</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The generic base class for neural sheets.</span>
@@ -137,14 +142,14 @@
 <span class="s">            incoming events.</span>
 <span class="s">            &quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">precedence</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">precedence</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">            Allows a sorting order for Sheets, e.g. in the GUI.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">row_precedence</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">row_precedence</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">            Allows grouping of Sheets before sorting precedence is</span>
 <span class="s">            applied, e.g. for two-dimensional plots in the GUI.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">layout_location</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">NumericTuple</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">layout_location</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">NumericTuple</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">            Location for this Sheet in an arbitrary pixel-based space</span>
 <span class="s">            in which Sheets can be laid out for visualization.&quot;&quot;&quot;</span><span class="p">)</span>
 
@@ -158,7 +163,8 @@
     <span class="k">def</span> <span class="nf">_get_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xdensity</span>
 
-    <span class="n">density</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_density</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;The sheet&#39;s true density (i.e. the xdensity, which is equal to the ydensity for a Sheet.)&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">density</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_density</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;The sheet&#39;s true density (i.e. the</span>
+<span class="s">        xdensity, which is equal to the ydensity for a Sheet.)&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

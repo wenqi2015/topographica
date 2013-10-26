@@ -102,6 +102,7 @@ Submodules
 * `topo.sheet.ptztracker <topo.sheet.ptztracker-module.html>`_
 * `topo.sparse.sparsecf <topo.sparse.sparsecf-module.html>`_
 * `topo.sparse <topo.sparse-module.html>`_
+* `topo.sparse.compile <topo.sparse.compile-module.html>`_
 * `topo.plotting.plotgroup <topo.plotting.plotgroup-module.html>`_
 * `topo.plotting <topo.plotting-module.html>`_
 * `topo.plotting.plot <topo.plotting.plot-module.html>`_

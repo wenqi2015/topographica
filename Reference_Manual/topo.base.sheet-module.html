@@ -71,6 +71,13 @@ be able to write and debug a simulation at a low density, and then
 scale it up to run at higher densities (or down for lower densities)
 simply by changing e.g. Sheet.nominal_density.</p>
 <dl class="class">
+<dt id="topo.base.sheet.AttrDict">
+<em class="property">class </em><tt class="descclassname">topo.base.sheet.</tt><tt class="descname">AttrDict</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/base/sheet.html#AttrDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.sheet.AttrDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></a></p>
+<p>Provides convenient attribute access.</p>
+</dd></dl>
+
+<dl class="class">
 <dt id="topo.base.sheet.Sheet">
 <em class="property">class </em><tt class="descclassname">topo.base.sheet.</tt><tt class="descname">Sheet</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/sheet.html#Sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.sheet.Sheet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.simulation-module.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a>, <a class="reference internal" href="imagen.sheetcoords-module.html#imagen.sheetcoords.SheetCoordinateSystem" title="imagen.sheetcoords.SheetCoordinateSystem"><tt class="xref py py-class docutils literal"><span class="pre">imagen.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
@@ -137,7 +144,8 @@ means to calculate activity in that subclass.</p>
 <dl class="attribute">
 <dt id="topo.base.sheet.Sheet.density">
 <tt class="descname">density</tt><a class="headerlink" href="#topo.base.sheet.Sheet.density" title="Permalink to this definition">¶</a></dt>
-<dd><p>The sheet&#8217;s true density (i.e. the xdensity, which is equal to the ydensity for a Sheet.)</p>
+<dd><p>The sheet&#8217;s true density (i.e. the
+xdensity, which is equal to the ydensity for a Sheet.)</p>
 </dd></dl>
 
 <dl class="method">
