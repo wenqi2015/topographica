@@ -120,6 +120,9 @@ direct access to the data, via the .data attribute.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The ROI can be specified to select only a sub-region of the bounds to
         be stored as data. NOT YET IMPLEMENTED.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=True, bounds=(0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dd>Range of the cyclic quantity (e.g. pi for the orientation of
+        a symmetric stimulus). Allows normalization of the data.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The bounds of the two dimensional coordinate system in which the data
         resides.</dd>

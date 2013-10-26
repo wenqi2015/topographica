@@ -158,29 +158,29 @@
             <span class="k">return</span> <span class="bp">None</span>
 
 
-    <span class="k">def</span> <span class="nf">_add_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_values</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Records data indexing it in the specified feature dimensions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">feature_values</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-            <span class="n">feature_values</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_values</span><span class="p">,)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_values</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_item</span><span class="p">(</span><span class="n">feature_values</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">dim_vals</span> <span class="o">=</span> <span class="p">(</span><span class="n">dim_vals</span><span class="p">,)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_update_item</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="ne">KeyError</span><span class="p">(</span><span class="s">&#39;Key has to match number of dimensions.&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">sort</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">sorted</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
 
 
-    <span class="k">def</span> <span class="nf">_update_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_update_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Subclasses default method to allow updating of nested data structures</span>
 <span class="sd">        rather than simply overriding them.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">coords</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">coords</span><span class="p">],</span> <span class="s">&#39;update&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dim_vals</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">dim_vals</span><span class="p">],</span> <span class="s">&#39;update&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">dim_vals</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">dim_vals</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
 
 
 <div class="viewcode-block" id="NdIndexableMapping.update"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -225,6 +225,13 @@
 <span class="sd">        Returns the item highest data item along the map dimensions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="bp">None</span>
+
+</div>
+<div class="viewcode-block" id="NdIndexableMapping.dim_index"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.dim_index">[docs]</a>    <span class="k">def</span> <span class="nf">dim_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimension_label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the tuple index of the requested dimension.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">dimension_label</span><span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="NdIndexableMapping.keys"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

@@ -125,6 +125,10 @@
 <span class="sd">    direct access to the data, via the .data attribute.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">cyclic_range</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Range of the cyclic quantity (e.g. pi for the orientation of</span>
+<span class="s">        a symmetric stimulus). Allows normalization of the data.&quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SheetView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">if</span> <span class="s">&#39;roi&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
