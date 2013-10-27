@@ -52,8 +52,101 @@
             
   <div class="section" id="topo-base-functionfamily">
 <h1>topo.base.functionfamily<a class="headerlink" href="#topo-base-functionfamily" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module">
-<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<div class="inheritance_box"><img src="../_images/inheritance8ed98380c7.svg" usemap="#inheritance8ed98380c7" class="inheritance"/></div><map id="inheritance8ed98380c7" name="inheritance8ed98380c7">
+</map>
+<div class="section" id="module-topo.base.functionfamily">
+<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.base.functionfamily" title="Permalink to this headline">¶</a></h2>
+<p>Basic function objects.</p>
+<p>TransferFns: accept and modify a 2d array
+ResponseFns: accept two 2d arrays and return a scalar
+LearningFns: accept two 2d arrays and a scalar, return one of the arrays modified</p>
+<dl class="class">
+<dt id="topo.base.functionfamily.CoordinateMapperFn">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">CoordinateMapperFn</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#CoordinateMapperFn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.CoordinateMapperFn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>Abstract base class for functions mapping from a 2D coordinate into another one.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.base.functionfamily.DotProduct">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">DotProduct</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#DotProduct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.DotProduct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#topo.base.functionfamily.ResponseFn" title="topo.base.functionfamily.ResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.ResponseFn</span></tt></a></p>
+<p>Return the sum of the element-by-element product of two 2D
+arrays.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.base.functionfamily.Hebbian">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">Hebbian</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#Hebbian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.Hebbian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
+<p>Basic Hebbian rule; Dayan and Abbott, 2001, equation 8.3.</p>
+<p>Increases each weight in proportion to the product of this
+neuron&#8217;s activity and the input activity.</p>
+<p>Requires some form of output_fn normalization for stability.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.base.functionfamily.IdentityLF">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">IdentityLF</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#IdentityLF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.IdentityLF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
+<p>Identity function; does not modify the weights.</p>
+<p>For speed, calling this function object is sometimes optimized
+away entirely.  To make this feasible, it is not allowable to
+derive other classes from this object, modify it to have different
+behavior, add side effects, or anything of that nature.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.base.functionfamily.IdentityMF">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">IdentityMF</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#IdentityMF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.IdentityMF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#topo.base.functionfamily.CoordinateMapperFn" title="topo.base.functionfamily.CoordinateMapperFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.CoordinateMapperFn</span></tt></a></p>
+<p>Return the x coordinate of the given coordinate.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.base.functionfamily.LearningFn">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">LearningFn</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#LearningFn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.LearningFn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>Abstract base class for learning functions that plug into
+CFPLF_Plugin.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.base.functionfamily.PatternDrivenAnalysis">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">PatternDrivenAnalysis</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#PatternDrivenAnalysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.PatternDrivenAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<p>Abstract base class for various stimulus-response types of analysis.</p>
+<p>This type of analysis consists of presenting a set of input
+patterns and collecting the responses to each one, which one will
+often want to do in a way that does not affect the current state
+of the network.</p>
+<p>To achieve this, the class defines several types of hooks where
+arbitrary function objects (i.e., callables) can be registered.
+These hooks are generally used to ensure that unrelated previous
+activity is eliminated, that subsequent patterns do not interact,
+and that the initial state is restored after analysis.</p>
+<p>Any subclasses must ensure that these hook lists are run at the
+appropriate stage in their processing, using e.g.
+&#8220;for f in some_hook_list: f()&#8221;.</p>
+<dl class="docutils">
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x8f3b9b0&gt;, &lt;function clear_event_queue at 0x8f3b050&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run before each pattern is presented.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run after each pattern is presented.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_analysis_session_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run after an analysis session ends.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_analysis_session_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run before an analysis session begins.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.base.functionfamily.ResponseFn">
+<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">ResponseFn</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#ResponseFn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.ResponseFn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>Abstract base class for response functions that plug into CFPRF_Plugin.</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -84,7 +177,7 @@
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.base.functionfamily</a><ul>
-<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#module-topo.base.functionfamily">Module</a></li>
 </ul>
 </li>
 </ul>

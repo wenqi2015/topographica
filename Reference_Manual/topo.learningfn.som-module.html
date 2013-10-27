@@ -52,8 +52,48 @@
             
   <div class="section" id="topo-learningfn-som">
 <h1>topo.learningfn.som<a class="headerlink" href="#topo-learningfn-som" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module">
-<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<div class="inheritance_box"><img src="../_images/inheritance109cbfe3c3.svg" usemap="#inheritance109cbfe3c3" class="inheritance"/></div><map id="inheritance109cbfe3c3" name="inheritance109cbfe3c3">
+</map>
+<div class="section" id="module-topo.learningfn.som">
+<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.learningfn.som" title="Permalink to this headline">¶</a></h2>
+<p>SOM-based learning functions for CFProjections.</p>
+<dl class="class">
+<dt id="topo.learningfn.som.CFPLF_HebbianSOM">
+<em class="property">class </em><tt class="descclassname">topo.learningfn.som.</tt><tt class="descname">CFPLF_HebbianSOM</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/learningfn/som.html#CFPLF_HebbianSOM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#topo.learningfn.som.CFPLF_SOM" title="topo.learningfn.som.CFPLF_SOM"><tt class="xref py py-class docutils literal"><span class="pre">topo.learningfn.som.CFPLF_SOM</span></tt></a></p>
+<p>Hebbian learning rule for CFProjections to Self-Organizing Maps.</p>
+<p>This implementation is obsolete and will be removed soon.
+Please see examples/cfsom_or.ty for current SOM support.</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">learning_radius</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The radius of the neighborhood function to be used for
+        learning.  Typically, this value will be set by the Sheet or
+        Projection owning this CFPLearningFn, but it can also be set
+        explicitly by the user.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">crop_radius_multiplier</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=3.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Factor by which the radius should be multiplied,
+        when deciding how far from the winner to keep updating the weights.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">neighborhood_kernel_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Gaussian Gaussian00264&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Neighborhood function</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.learningfn.som.CFPLF_SOM">
+<em class="property">class </em><tt class="descclassname">topo.learningfn.som.</tt><tt class="descname">CFPLF_SOM</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/learningfn/som.html#CFPLF_SOM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPLearningFn" title="topo.base.cf.CFPLearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPLearningFn</span></tt></a></p>
+<p>An abstract base class of learning functions for Self-Organizing Maps.</p>
+<p>This implementation is obsolete and will be removed soon.
+Please see examples/cfsom_or.ty for current SOM support.</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">learning_radius</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The radius of the neighborhood function to be used for
+        learning.  Typically, this value will be set by the Sheet or
+        Projection owning this CFPLearningFn, but it can also be set
+        explicitly by the user.</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 
@@ -84,7 +124,7 @@
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.learningfn.som</a><ul>
-<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#module-topo.learningfn.som">Module</a></li>
 </ul>
 </li>
 </ul>

@@ -52,8 +52,34 @@
             
   <div class="section" id="topo-misc-snapshots">
 <h1>topo.misc.snapshots<a class="headerlink" href="#topo-misc-snapshots" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module">
-<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<div class="inheritance_box"><img src="../_images/inheritance940704d5c8.svg" usemap="#inheritance940704d5c8" class="inheritance"/></div><map id="inheritance940704d5c8" name="inheritance940704d5c8">
+</map>
+<div class="section" id="module-topo.misc.snapshots">
+<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.misc.snapshots" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="topo.misc.snapshots.PicklableClassAttributes">
+<em class="property">class </em><tt class="descclassname">topo.misc.snapshots.</tt><tt class="descname">PicklableClassAttributes</tt><big>(</big><em>module</em>, <em>exclusions=()</em>, <em>startup_commands=()</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/snapshots.html#PicklableClassAttributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.snapshots.PicklableClassAttributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Supports pickling of Parameterized class attributes for a given module.</p>
+<p>When requested to be pickled, stores a module&#8217;s PO classes&#8217; attributes,
+and any given startup_commands. On unpickling, executes the startup
+commands and sets the class attributes.</p>
+<dl class="method">
+<dt id="topo.misc.snapshots.PicklableClassAttributes.get_PO_class_attributes">
+<tt class="descname">get_PO_class_attributes</tt><big>(</big><em>module</em>, <em>class_attributes</em>, <em>processed_modules</em>, <em>exclude=()</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/snapshots.html#PicklableClassAttributes.get_PO_class_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.snapshots.PicklableClassAttributes.get_PO_class_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively search module and get attributes of Parameterized classes within it.</p>
+<p>class_attributes is a dictionary {module.path.and.Classname: state}, where state
+is the dictionary {attribute: value}.</p>
+<p>Something is considered a module for our purposes if inspect says it&#8217;s a module,
+and it defines __all__. We only search through modules listed in __all__.</p>
+<p>Keeps a list of processed modules to avoid looking at the same one
+more than once (since e.g. __main__ contains __main__ contains
+__main__...)</p>
+<p>Modules can be specifically excluded if listed in exclude.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -84,7 +110,7 @@
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.misc.snapshots</a><ul>
-<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#module-topo.misc.snapshots">Module</a></li>
 </ul>
 </li>
 </ul>

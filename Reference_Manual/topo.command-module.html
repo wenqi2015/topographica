@@ -52,6 +52,8 @@
             
   <div class="section" id="topo-command">
 <h1>topo.command<a class="headerlink" href="#topo-command" title="Permalink to this headline">¶</a></h1>
+<div class="inheritance_box"><img src="../_images/inheritancef415e0380d.svg" usemap="#inheritancef415e0380d" class="inheritance"/></div><map id="inheritancef415e0380d" name="inheritancef415e0380d">
+</map>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -61,6 +63,359 @@
 </div>
 <div class="section" id="module">
 <h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-topo.command"></span><p>A family of high-level user commands acting on the entire simulation.</p>
+<p>Any new commands added to this directory will automatically become
+available for any program.</p>
+<p>Commands here should be &#8216;bullet-proof&#8217; and work &#8216;from scratch&#8217;.
+That is, they should print warnings if required but should not raise
+errors that would interrupt e.g. a long batch run of simulation work,
+no matter what the context from which they are called.</p>
+<dl class="function">
+<dt id="topo.command.save_snapshot">
+<tt class="descclassname">topo.command.</tt><tt class="descname">save_snapshot</tt><big>(</big><em>snapshot_name=None</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#save_snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.save_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a snapshot of the network&#8217;s current state.</p>
+<p>The snapshot is saved as a gzip-compressed Python binary pickle.</p>
+<p>As this function uses Python&#8217;s &#8216;pickle&#8217; module, it is subject to
+the same limitations (see the pickle module&#8217;s documentation) -
+with the notable exception of class attributes. Python does not
+pickle class attributes, but this function stores class attributes
+of any Parameterized class that is declared within the topo
+package. See the param.parameterized.PicklableClassAttributes
+class for more information.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.runscript">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">runscript</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#runscript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.runscript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<p>Runs a script that has been parameterized with script parameters.
+For example, runscript(&#8216;tiny.ty&#8217;, cortex_density=10) will execute
+the &#8216;tiny.ty&#8217; script in the currently active namespace.</p>
+<dl class="docutils">
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">push</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=False, precedence=None, readonly=False</em>)</dt>
+<dd>Hook to push the updated namespace for handling more
+        complicated namespaces, such as IPython Notebook.</dd>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">ns</span></tt> (<em>constant=False, default={}, instantiate=False, pickle_default_value=False, precedence=None, readonly=False</em>)</dt>
+<dd>The namespace in which the script is to be executed.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.default_analysis_function">
+<tt class="descclassname">topo.command.</tt><tt class="descname">default_analysis_function</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#default_analysis_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.default_analysis_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic example of an analysis command for run_batch; users are
+likely to need something similar but highly customized.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.run_batch">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">run_batch</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#run_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.run_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<p>Run a Topographica simulation in batch mode.</p>
+<p>Features:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Generates a unique, well-defined name for each &#8216;experiment&#8217;
+(i.e. simulation run) based on the date, script file, and
+parameter settings. Note that very long names may be truncated
+(see the max_name_length parameter).</li>
+<li>Allows parameters to be varied on the command-line,
+to allow comparing various settings</li>
+<li>Saves a script capturing the simulation state periodically,
+to preserve parameter values from old experiments and to allow
+them to be reproduced exactly later</li>
+<li>Can perform user-specified analysis routines periodically,
+to monitor the simulation as it progresses.</li>
+<li>Stores commandline output (stdout) in the output directory</li>
+</ul>
+</div></blockquote>
+<p>A typical use of this function is for remote execution of a large
+number of simulations with different parameters, often on remote
+machines (such as clusters).</p>
+<p>The script_file parameter defines the .ty script we want to run in
+batch mode. The output_directory defines the root directory in
+which a unique individual directory will be created for this
+particular run.  The optional analysis_fn can be any python
+function to be called at each of the simulation iterations defined
+in the analysis times list.  The analysis_fn should perform
+whatever analysis of the simulation you want to perform, such as
+plotting or calculating some statistics.  The analysis_fn should
+avoid using any GUI functions (i.e., should not import anything
+from topo.tkgui), and it should save all of its results into
+files.</p>
+<p>As a special case, a number can be passed for the times list, in
+which case it is used to scale a default list of times up to
+10000; e.g. times=2 will select a default list of times up to
+20000.  Alternatively, an explicit list of times can be supplied.</p>
+<p>Any other optional parameters supplied will be set in the main
+namespace before any scripts are run.  They will also be used to
+construct a unique topo.sim.name for the file, and they will be
+encoded into the simulation directory name, to make it clear how
+each simulation differs from the others.</p>
+<p>If requested by setting snapshot=True, saves a snapshot at the
+end of the simulation.</p>
+<p>If available and requested by setting vc_info=True, prints
+the revision number and any outstanding diffs from the version
+control system.</p>
+<p>Note that this function alters param.normalize_path.prefix so that
+all output goes into the same location. The original value of
+param.normalize_path.prefix is deliberately not restored at the
+end of the function so that the output of any subsequent commands
+will go into the same place.</p>
+<dl class="docutils">
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">dirname_params_filter</span></tt> (<em>constant=False, default=param_formatter(), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Function to control how the parameter names will appear in the
+        output_directory&#8217;s name.</dd>
+</dl>
+<p><em>param Callable</em> <tt class="docutils literal"><span class="pre">analysis_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The experiment&#8217;s directory name will be truncated at this
+        number of characters (since most filesystems have a
+        limit).</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">dirname_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional prefix for the directory name (allowing e.g. easy
+        grouping).</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">name_time_format</span></tt> (<em>allow_None=False, constant=False, default=%Y%m%d%H%M, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>String format for the time included in the output directory
+        and file names.  See the Python time module library
+        documentation for codes.
+
+        E.g. Adding &#8216;%S&#8217; to the default would include seconds.</dd>
+</dl>
+<p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">vc_info</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param String</em> <tt class="docutils literal"><span class="pre">output_directory</span></tt> (<em>allow_None=False, constant=False, default=Output, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">tag</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional tag to embed in directory prefix to allow unique
+        directory naming across multiple independent batches that
+        share a common timestamp.</dd>
+</dl>
+<p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">snapshot</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
+<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">timestamp</span></tt> (<em>constant=False, default=(0, 0), instantiate=False, length=2, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional override of timestamp in Python struct_time 8-tuple format.
+        Useful when running many run_batch commands as part of a group with
+        a shared timestamp. By default, the timestamp used is the time when
+        run_batch is started.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">save_global_params</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether to save the script&#8217;s global_parameters to a pickle in
+        the output_directory after the script has been loaded (for
+        e.g. future inspection of the experiment).</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">metadata_dir</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Specifies the name of a
+        subdirectory used to output metadata from run_batch if set.</dd>
+</dl>
+<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">times</span></tt> (<em>constant=False, default=1.0, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="staticmethod">
+<dt id="topo.command.run_batch.analysis_fn">
+<em class="property">static </em><tt class="descname">analysis_fn</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.command.run_batch.analysis_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basic example of an analysis command for run_batch; users are
+likely to need something similar but highly customized.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.load_kwargs">
+<tt class="descclassname">topo.command.</tt><tt class="descname">load_kwargs</tt><big>(</big><em>fname</em>, <em>glob</em>, <em>loc</em>, <em>fail_exception=False</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#load_kwargs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.load_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to allow keyword arguments (dictionary format)
+to be  loaded from a file &#8216;fname&#8217;. The intended use is to allow a callable
+(specifically run_batch) to obtain its settings and parameters from file.</p>
+<p>This is useful when dispatching jobs on a cluster as you can then queue
+run_batch jobs (eg. using qsub) before all the settings are known. This
+type of scenario is typical in parameter search (eg hillclimbing) where
+the settings file for future run_batch instances are conditional on data
+from previous simulations.</p>
+<p>Variable glob should be provided as globals() and loc should be provided
+as locals(). Either a dictionary is returned or an exception is raised
+(conditioned on fail_exception). If fail_exception=False and eval does
+not evaluateas expected, an empty dictionary is returned. Eval is used
+as it allows classes, objects and other complex datastructures to load.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.save_script_repr">
+<tt class="descclassname">topo.command.</tt><tt class="descname">save_script_repr</tt><big>(</big><em>script_name=None</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#save_script_repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.save_script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the current simulation as a Topographica script.</p>
+<p>Generates a script that, if run, would generate a simulation with
+the same architecture as the one currently in memory.  This can be
+useful when defining networks in place, so that the same general
+configuration can be recreated later.  It also helps when
+comparing two similar networks generated with different scripts,
+so that the corresponding items can be matched rigorously.</p>
+<p>Note that the result of this operation is usually just a starting
+point for further editing, because it will not usually be runnable
+as-is (for instance, some parameters may not have runnable
+representations).  Even so, this is usually a good start.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.generate_example">
+<tt class="descclassname">topo.command.</tt><tt class="descname">generate_example</tt><big>(</big><em>target</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#generate_example"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.generate_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the saved network target, as defined in
+topo.misc.genexamples.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.PatternDrivenAnalysis">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">PatternDrivenAnalysis</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.command.PatternDrivenAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<p>Abstract base class for various stimulus-response types of analysis.</p>
+<p>This type of analysis consists of presenting a set of input
+patterns and collecting the responses to each one, which one will
+often want to do in a way that does not affect the current state
+of the network.</p>
+<p>To achieve this, the class defines several types of hooks where
+arbitrary function objects (i.e., callables) can be registered.
+These hooks are generally used to ensure that unrelated previous
+activity is eliminated, that subsequent patterns do not interact,
+and that the initial state is restored after analysis.</p>
+<p>Any subclasses must ensure that these hook lists are run at the
+appropriate stage in their processing, using e.g.
+&#8220;for f in some_hook_list: f()&#8221;.</p>
+<dl class="docutils">
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x8f3b9b0&gt;, &lt;function clear_event_queue at 0x8f3b050&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run before each pattern is presented.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run after each pattern is presented.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_analysis_session_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run after an analysis session ends.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_analysis_session_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of callable objects to be run before an analysis session begins.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.Command">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">Command</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#Command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.Command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<p>Parameterized command: any error when the command is run (called)
+will not raise an exception, but will instead generate a warning.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.clear_event_queue">
+<tt class="descclassname">topo.command.</tt><tt class="descname">clear_event_queue</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#clear_event_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.clear_event_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove pending events from the simulator&#8217;s event queue.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.wipe_out_activity">
+<tt class="descclassname">topo.command.</tt><tt class="descname">wipe_out_activity</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#wipe_out_activity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.wipe_out_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets activity of all Sheets and their connections to zero.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.normalize_path">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">normalize_path</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.command.normalize_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<p>Convert a UNIX-style path to the current OS&#8217;s format,
+typically for creating a new file or directory.</p>
+<p>If the path is not already absolute, it will be made absolute
+(using the prefix parameter).</p>
+<p>Should do the same as Python&#8217;s os.path.abspath(), except using
+prefix rather than os.getcwd).</p>
+<dl class="docutils">
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">prefix</span></tt> (<em>allow_None=False, constant=False, default=/var/lib/buildbot/slaves/docs/build/doc, instantiate=False, pickle_default_value=False, precedence=None, readonly=False</em>)</dt>
+<dd>Prepended to the specified path, if that path is not
+        absolute.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.restore_input_generators">
+<tt class="descclassname">topo.command.</tt><tt class="descname">restore_input_generators</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#restore_input_generators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.restore_input_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore previously saved input_generators for all of topo.sim&#8217;s GeneratorSheets.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.ParameterizedFunction">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">ParameterizedFunction</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.command.ParameterizedFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>Acts like a Python function, but with arguments that are Parameters.</p>
+<p>Implemented as a subclass of Parameterized that, when instantiated,
+automatically invokes __call__ and returns the result, instead of
+returning an instance of the class.</p>
+<p>To obtain an instance of this class, call instance().</p>
+<dl class="attribute">
+<dt id="topo.command.ParameterizedFunction.instance">
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x96dd418&gt;</em><a class="headerlink" href="#topo.command.ParameterizedFunction.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.command.ParameterizedFunction.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em><span class="optional">[</span><span class="optional">]</span>, <em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.command.ParameterizedFunction.script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as Parameterized.script_repr, except that X.classname(Y
+is replaced with X.classname.instance(Y</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.n_conns">
+<tt class="descclassname">topo.command.</tt><tt class="descname">n_conns</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#n_conns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.n_conns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count the number of connections in all ProjectionSheets in the current Simulation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.load_snapshot">
+<tt class="descclassname">topo.command.</tt><tt class="descname">load_snapshot</tt><big>(</big><em>snapshot_name</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#load_snapshot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.load_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the simulation stored in snapshot_name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.print_sizes">
+<tt class="descclassname">topo.command.</tt><tt class="descname">print_sizes</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#print_sizes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.print_sizes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format the results from n_conns() and n_bytes() for use in batch output.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.n_bytes">
+<tt class="descclassname">topo.command.</tt><tt class="descname">n_bytes</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#n_bytes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.n_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the minimum memory needed for the Sheets in this Simulation, in bytes.</p>
+<p>This estimate is a lower bound only, based primarily on memory for
+the matrices used for activity and connections.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="topo.command.save_input_generators">
+<tt class="descclassname">topo.command.</tt><tt class="descname">save_input_generators</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/command.html#save_input_generators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.save_input_generators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a copy of the active_sim&#8217;s current input_generators for all GeneratorSheets.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.UnpickleEnvironmentCreator">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">UnpickleEnvironmentCreator</tt><big>(</big><em>release</em>, <em>version</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#UnpickleEnvironmentCreator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.UnpickleEnvironmentCreator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>When unpickled, installs any necessary legacy support.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.ImportErrorRaisingFakeModule">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">ImportErrorRaisingFakeModule</tt><big>(</big><em>module_name</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#ImportErrorRaisingFakeModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.ImportErrorRaisingFakeModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Returns an ImportErrorObject for any attribute request.</p>
+<p>Instances of this class can be used in place of a module to delay
+an import error until the point of use of an attribute of that
+module.</p>
+<p>See ImportErrorObject for more details.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.command.ImportErrorObject">
+<em class="property">class </em><tt class="descclassname">topo.command.</tt><tt class="descname">ImportErrorObject</tt><big>(</big><em>module_name</em><big>)</big><a class="reference internal" href="../_modules/topo/command.html#ImportErrorObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.ImportErrorObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Raises an ImportError on any attempt to access an attribute, call,
+or get an item.</p>
+<p>Useful to delay an ImportError until the point of use, thus
+allowing e.g. a class attribute to contain something from a
+non-core external module (e.g. pylab).</p>
+<p>Delaying an ImportError until the point of use allows users to be
+informed of the possibility of having various extra functions on
+installation of a missing package.</p>
+</dd></dl>
+
 </div>
 </div>
 

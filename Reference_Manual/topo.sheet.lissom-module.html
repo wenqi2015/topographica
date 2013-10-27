@@ -52,8 +52,37 @@
             
   <div class="section" id="topo-sheet-lissom">
 <h1>topo.sheet.lissom<a class="headerlink" href="#topo-sheet-lissom" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module">
-<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
+<div class="inheritance_box"><img src="../_images/inheritance52647f6470.svg" usemap="#inheritance52647f6470" class="inheritance"/></div><map id="inheritance52647f6470" name="inheritance52647f6470">
+</map>
+<div class="section" id="module-topo.sheet.lissom">
+<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.sheet.lissom" title="Permalink to this headline">¶</a></h2>
+<p>Specific support for the LISSOM algorithm.</p>
+<dl class="function">
+<dt id="topo.sheet.lissom.schedule_events">
+<tt class="descclassname">topo.sheet.lissom.</tt><tt class="descname">schedule_events</tt><big>(</big><em>sheet_str=&quot;topo.sim['V1']&quot;</em>, <em>st=0.5</em>, <em>aff_name='Afferent'</em>, <em>ids=1.0</em>, <em>ars=1.0</em>, <em>increase_inhibition=False</em><big>)</big><a class="reference internal" href="../_modules/topo/sheet/lissom.html#schedule_events"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.sheet.lissom.schedule_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function for scheduling a default set of events
+typically used with a LISSOM model sheet.  The parameters used
+are the defaults from Miikkulainen, Bednar, Choe, and Sirosh
+(2005), Computational Maps in the Visual Cortex, Springer.</p>
+<p>Note that Miikulainen 2005 specifies only one output_fn for the
+LISSOM model sheet; where these scheduled actions operate on an
+output_fn, they do so only on the first output_fn in the sheet&#8217;s
+list of output_fns.</p>
+<p>Installs afferent learning rate changes for any projection whose
+name contains the keyword specified by aff_name (typically
+&#8220;Afferent&#8221;).</p>
+<p>The st argument determines the timescale relative to a
+20000-iteration simulation, and results in the default
+10000-iteration simulation for the default st=0.5.</p>
+<p>The ids argument specifies the input density scale, i.e. how much
+input there is at each iteration, on average, relative to the
+default.  The ars argument specifies how much to scale the
+afferent learning rate, if necessary.</p>
+<p>If increase_inhibition is true, gradually increases the strength
+of the inhibitory connection, typically used for natural image
+simulations.</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -84,7 +113,7 @@
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.sheet.lissom</a><ul>
-<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#module-topo.sheet.lissom">Module</a></li>
 </ul>
 </li>
 </ul>
