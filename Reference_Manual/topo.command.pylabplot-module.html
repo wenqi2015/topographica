@@ -771,8 +771,6 @@ determined by the minmum y_value for the first curve plotted
 
         The actual name is constructed from the filename base plus the
         suffix plus the current simulator time plus the file_format.</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">recenter</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Centers the tuning curve around the maximally responding feature.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">relative_labels</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Relabel the x-axis with values relative to the preferred.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=3.14159265359, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -793,6 +791,8 @@ determined by the minmum y_value for the first curve plotted
 <dd>Whether or not to include a legend in the plot.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">unit</span></tt> (<em>allow_None=False, constant=False, default=degrees, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>String to use in labels to specify the units in which curves are plotted.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">center</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Centers the tuning curve around the maximally responding feature.</dd>
 </dl>
 </dd></dl>
 
@@ -1723,7 +1723,7 @@ returning an instance of the class.</p>
 <p>To obtain an instance of this class, call instance().</p>
 <dl class="attribute">
 <dt id="topo.command.pylabplot.ParameterizedFunction.instance">
-<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x90b24c8&gt;</em><a class="headerlink" href="#topo.command.pylabplot.ParameterizedFunction.instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0xa339520&gt;</em><a class="headerlink" href="#topo.command.pylabplot.ParameterizedFunction.instance" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1858,8 +1858,6 @@ determined by the minmum y_value for the first curve plotted
 
         The actual name is constructed from the filename base plus the
         suffix plus the current simulator time plus the file_format.</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">recenter</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Centers the tuning curve around the maximally responding feature.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">relative_labels</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Relabel the x-axis with values relative to the preferred.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=3.14159265359, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -1878,6 +1876,8 @@ determined by the minmum y_value for the first curve plotted
 <dd>Whether or not to include a legend in the plot.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">unit</span></tt> (<em>allow_None=False, constant=False, default=degrees, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>String to use in labels to specify the units in which curves are plotted.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">center</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Centers the tuning curve around the maximally responding feature.</dd>
 </dl>
 </dd></dl>
 
