@@ -56,11 +56,13 @@
 </map>
 <div class="section" id="module-imagen.views">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-imagen.views" title="Permalink to this headline">¶</a></h2>
+<p>Views objects used to hold data and provide indexing into different coordinate
+systems.</p>
 <dl class="class">
 <dt id="imagen.views.ProjectionGrid">
 <em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">ProjectionGrid</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#ProjectionGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.ProjectionGrid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetIndexing" title="imagen.views.SheetIndexing"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetIndexing</span></tt></a>, <a class="reference internal" href="imagen.ndmapping-module.html#imagen.ndmapping.NdMapping" title="imagen.ndmapping.NdMapping"><tt class="xref py py-class docutils literal"><span class="pre">imagen.ndmapping.NdMapping</span></tt></a></p>
-<p>ProjectionView indexes other RangeMap objects, containing projections
+<p>ProjectionView indexes other NdMapping objects, containing projections
 onto coordinate systems. The X and Y dimensions are mapped onto the bounds
 object, allowing for bounds checking and grid-snapping.</p>
 <dl class="docutils">
@@ -93,12 +95,12 @@ object, allowing for bounds checking and grid-snapping.</p>
 <dt id="imagen.views.SheetIndexing">
 <em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetIndexing</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetIndexing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetIndexing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>SheetIndexing provides methods to indexes and slices from one coordinate
-system to another. By default it maps from sheet coordinates to matrix
-coordinates using the _transform_indices method. However subclasses can
-change this behavior by subclassing the _transform_values method,
-which takes an index value along a certain dimension along with the
-dimension number as input returns the transformed value.</p>
+<p>SheetIndexing provides methods to transform indices and slices from one
+coordinate system to another. By default it maps from sheet coordinates
+to matrix coordinates using the _transform_indices method. However,
+subclasses can change this behavior by subclassing the _transform_values
+method, which takes an index value along a certain dimension along with the
+dimension number as input and returns the transformed value.</p>
 <dl class="docutils">
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The ROI can be specified to select only a sub-region of the bounds to
@@ -121,8 +123,13 @@ direct access to the data, via the .data attribute.</p>
 <dd>The ROI can be specified to select only a sub-region of the bounds to
         be stored as data. NOT YET IMPLEMENTED.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=True, bounds=(0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Range of the cyclic quantity (e.g. pi for the orientation of
-        a symmetric stimulus). Allows normalization of the data.</dd>
+<dd>For a cyclic quantity, the range over which the values repeat. For
+        instance, the orientation of a mirror-symmetric pattern in a plane is
+        pi-periodic, with orientation x the same as orientation x+pi (and
+        x+2pi, etc.) A cyclic_range of None declares that the data are not
+        cyclic. This parameter is metadata, declaring properties of the data
+        that can be useful for automatic plotting and/or normalization, and is
+        not used within this class itself.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The bounds of the two dimensional coordinate system in which the data
         resides.</dd>

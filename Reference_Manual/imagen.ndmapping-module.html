@@ -56,6 +56,7 @@
 </map>
 <div class="section" id="module-imagen.ndmapping">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-imagen.ndmapping" title="Permalink to this headline">¶</a></h2>
+<p>NdIndexableMapping and NdMapping objects.</p>
 <dl class="class">
 <dt id="imagen.ndmapping.AttrDict">
 <em class="property">class </em><tt class="descclassname">imagen.ndmapping.</tt><tt class="descname">AttrDict</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/ndmapping.html#AttrDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.AttrDict" title="Permalink to this definition">¶</a></dt>
@@ -68,17 +69,30 @@ tab completion).</p>
 <dt id="imagen.ndmapping.NdIndexableMapping">
 <em class="property">class </em><tt class="descclassname">imagen.ndmapping.</tt><tt class="descname">NdIndexableMapping</tt><big>(</big><em>initial_items=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>An NdIndexableMapping extends mapping indexing semantics by supporting named
-indices (labelled dimensions) and by allowing indexing directly into the
-contained items (data dimensions). Indexing is multi-dimensional,
-accepting as many key values as there are labelled and data dimensions.</p>
-<p>Direct indexing is achieved by passing any indices, in excess of the map
-dimensions down to the data elements.</p>
-<p>Add example</p>
+<p>An NdIndexableMapping is a type of mapping (like a dictionary or array)
+that uses fixed-length multidimensional keys. The effect is like an
+N-dimensional array, without requiring that the entire multidimensional
+space be populated.</p>
+<p>If the underlying type of data for each (key,value) pair also supports
+indexing (such as a dictionary, array, or list), fully qualified indexing
+can be used from the top level, with the first N dimensions of the index
+selecting a particular piece of data stored in the NdIndexableMapping
+object, and the remaining dimensions used to index into the underlying data.</p>
+<p>For instance, for an NdIndexableMapping x with dimensions &#8220;Year&#8221; and
+&#8220;Month&#8221; and an underlying data type that is a 2D floating-point array
+indexed by (r,c), a 2D array can be indexed with x[2000,3] and a single
+floating-point number may be indexed as x[2000,3,1,9].</p>
+<p>In practice, this class is typically only used as an abstract base class,
+because the NdMapping subclass extends it with a range of useful slicing
+methods for selecting subsets of the data. Even so, keeping the slicing
+support separate from the indexing and data storage methods helps make both
+classes easier to understand.</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Determines whether to keep internal data structure sorted. May be
-        important for data, where the order of keys matters.</dd>
+<dd>Determines whether to keep internal data structure sorted, using
+        all dimensions indices to sort on. Important if data is not added in
+        a consistently increasing order but the order matters for plotting
+        or other purposes.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension_labels parameter accepts a list of the features
         along which the data will indexed.</dd>
@@ -98,6 +112,14 @@ dimensions down to the data elements.</p>
 </dd></dl>
 
 <dl class="attribute">
+<dt id="imagen.ndmapping.NdIndexableMapping.timestamp">
+<tt class="descname">timestamp</tt><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping.timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Looks for the latest timestamp along the indexed dimensions, if &#8216;Time&#8217;
+is one of the dimension labels, otherwise looks in the metadata or
+returns None, if none is defined.</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="imagen.ndmapping.NdIndexableMapping.top">
 <tt class="descname">top</tt><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping.top"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping.top" title="Permalink to this definition">¶</a></dt>
 <dd><p>&#8221;
@@ -107,8 +129,8 @@ Returns the item highest data item along the map dimensions.</p>
 <dl class="method">
 <dt id="imagen.ndmapping.NdIndexableMapping.update">
 <tt class="descname">update</tt><big>(</big><em>other</em><big>)</big><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the IndexMap with another IndexMap, checking that they
-are indexed along the same map dimensions.</p>
+<dd><p>Updates the NdMapping with another NdMapping, checking that they
+are indexed along the same dimensions.</p>
 </dd></dl>
 
 <dl class="method">
@@ -128,8 +150,10 @@ into the metadata dictionary.</p>
 also supports filtering of items using slicing ranges.</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Determines whether to keep internal data structure sorted. May be
-        important for data, where the order of keys matters.</dd>
+<dd>Determines whether to keep internal data structure sorted, using
+        all dimensions indices to sort on. Important if data is not added in
+        a consistently increasing order but the order matters for plotting
+        or other purposes.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension_labels parameter accepts a list of the features
         along which the data will indexed.</dd>

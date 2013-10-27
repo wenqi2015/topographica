@@ -58,6 +58,12 @@
           <div class="body">
             
   <h1>Source code for imagen.ndmapping</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">NdIndexableMapping and NdMapping objects.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision$&#39;</span>
+
 <span class="kn">import</span> <span class="nn">param</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -86,15 +92,27 @@
 </div>
 <div class="viewcode-block" id="NdIndexableMapping"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping">[docs]</a><span class="k">class</span> <span class="nc">NdIndexableMapping</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An NdIndexableMapping extends mapping indexing semantics by supporting named</span>
-<span class="sd">    indices (labelled dimensions) and by allowing indexing directly into the</span>
-<span class="sd">    contained items (data dimensions). Indexing is multi-dimensional,</span>
-<span class="sd">    accepting as many key values as there are labelled and data dimensions.</span>
+<span class="sd">    An NdIndexableMapping is a type of mapping (like a dictionary or array)</span>
+<span class="sd">    that uses fixed-length multidimensional keys. The effect is like an</span>
+<span class="sd">    N-dimensional array, without requiring that the entire multidimensional</span>
+<span class="sd">    space be populated.</span>
 
-<span class="sd">    Direct indexing is achieved by passing any indices, in excess of the map</span>
-<span class="sd">    dimensions down to the data elements.</span>
+<span class="sd">    If the underlying type of data for each (key,value) pair also supports</span>
+<span class="sd">    indexing (such as a dictionary, array, or list), fully qualified indexing</span>
+<span class="sd">    can be used from the top level, with the first N dimensions of the index</span>
+<span class="sd">    selecting a particular piece of data stored in the NdIndexableMapping</span>
+<span class="sd">    object, and the remaining dimensions used to index into the underlying data.</span>
 
-<span class="sd">    Add example</span>
+<span class="sd">    For instance, for an NdIndexableMapping x with dimensions &quot;Year&quot; and</span>
+<span class="sd">    &quot;Month&quot; and an underlying data type that is a 2D floating-point array</span>
+<span class="sd">    indexed by (r,c), a 2D array can be indexed with x[2000,3] and a single</span>
+<span class="sd">    floating-point number may be indexed as x[2000,3,1,9].</span>
+
+<span class="sd">    In practice, this class is typically only used as an abstract base class,</span>
+<span class="sd">    because the NdMapping subclass extends it with a range of useful slicing</span>
+<span class="sd">    methods for selecting subsets of the data. Even so, keeping the slicing</span>
+<span class="sd">    support separate from the indexing and data storage methods helps make both</span>
+<span class="sd">    classes easier to understand.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dimension_labels</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">],</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
@@ -105,19 +123,10 @@
 <span class="s">        Additional labels to be associated with the Dataview.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="nb">sorted</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Determines whether to keep internal data structure sorted. May be</span>
-<span class="s">        important for data, where the order of keys matters.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
-
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Supports slicing with keyword arguments corresponding to the</span>
-<span class="sd">        dimension labels.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
-
+<span class="s">        Determines whether to keep internal data structure sorted, using</span>
+<span class="s">        all dimensions indices to sort on. Important if data is not added in</span>
+<span class="s">        a consistently increasing order but the order matters for plotting</span>
+<span class="s">        or other purposes.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_items</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">()</span>
@@ -148,7 +157,12 @@
 
 </div>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="NdIndexableMapping.timestamp"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.timestamp">[docs]</a>    <span class="k">def</span> <span class="nf">timestamp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Looks for the latest timestamp along the indexed dimensions, if &#39;Time&#39;</span>
+<span class="sd">        is one of the dimension labels, otherwise looks in the metadata or</span>
+<span class="sd">        returns None, if none is defined.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="s">&#39;Time&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension_labels</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="n">k</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dimension_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">)]</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">tuple</span>
                         <span class="k">else</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
@@ -157,7 +171,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">None</span>
 
-
+</div>
     <span class="k">def</span> <span class="nf">_add_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Records data indexing it in the specified feature dimensions.</span>
@@ -183,10 +197,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">dim_vals</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
 
 
+
 <div class="viewcode-block" id="NdIndexableMapping.update"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Updates the IndexMap with another IndexMap, checking that they</span>
-<span class="sd">        are indexed along the same map dimensions.</span>
+<span class="sd">        Updates the NdMapping with another NdMapping, checking that they</span>
+<span class="sd">        are indexed along the same dimensions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">other</span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_item</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -194,7 +209,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
 
 </div>
-    <span class="k">def</span> <span class="nf">_split_slice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_split_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Splits key into map and data indices. If only map indices are supplied</span>
 <span class="sd">        the data is passed an index of None.</span>
@@ -208,10 +223,10 @@
 
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Allows indexing in the map dimensions and slicing along the data</span>
-<span class="sd">        dimension.</span>
+<span class="sd">        Allows indexing in the indexed dimensions, passing any additional</span>
+<span class="sd">        indices to the data elements.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">map_slice</span><span class="p">,</span> <span class="n">data_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_slice</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">map_slice</span><span class="p">,</span> <span class="n">data_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">map_slice</span><span class="p">][</span><span class="n">data_slice</span><span class="p">]</span>
 
 
@@ -279,7 +294,7 @@
         <span class="k">elif</span> <span class="n">indexslice</span> <span class="ow">is</span> <span class="p">():</span>
             <span class="k">return</span> <span class="bp">self</span>
 
-        <span class="n">map_slice</span><span class="p">,</span> <span class="n">data_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_slice</span><span class="p">(</span><span class="n">indexslice</span><span class="p">)</span>
+        <span class="n">map_slice</span><span class="p">,</span> <span class="n">data_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_index</span><span class="p">(</span><span class="n">indexslice</span><span class="p">)</span>
         <span class="n">map_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_indices</span><span class="p">(</span><span class="n">map_slice</span><span class="p">)</span>
         <span class="n">conditions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_conditions</span><span class="p">(</span><span class="n">map_slice</span><span class="p">)</span>
 
@@ -292,9 +307,8 @@
 
     <span class="k">def</span> <span class="nf">_transform_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Hook to map indices from a continuous space to a discrete set of keys.</span>
-<span class="sd">        Identity function here but subclasses can implement mapping from one</span>
-<span class="sd">        coordinate system to another.</span>
+<span class="sd">        Identity function here but subclasses can implement transforms of the</span>
+<span class="sd">        dimension indices from one coordinate system to another.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">indices</span>
 
