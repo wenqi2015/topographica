@@ -57,16 +57,16 @@
 <div class="section" id="module-topo.misc.lancext">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.misc.lancext" title="Permalink to this headline">¶</a></h2>
 <p>The Topographica Lancet extension allows Topographica simulations to
-be easily integrated into a Lancet workflow. The TopoCommand
-CommandTemplate is appropriate for simple runs using the default
-analysis function whereas the Analysis and RunBatchCommand allow for
-more sophisticated measurements and analysis to be executed during a
-simulation run.</p>
+be easily integrated into a Lancet workflow (see
+github.com/ioam/lancet). The TopoCommand CommandTemplate is
+appropriate for simple runs using the default analysis function,
+whereas the Analysis and RunBatchCommand allow for more sophisticated
+measurements and analysis to be executed during a simulation run.</p>
 <dl class="class">
 <dt id="topo.misc.lancext.Analysis">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">Analysis</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lancet.core-module.html#lancet.core.PrettyPrinted" title="lancet.core.PrettyPrinted"><tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt></a>, <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>Analysis is a callable that behaves like a generall analysis_fn for
+<p>Analysis is a callable that behaves like a general analysis_fn for
 run_batch. You can add multiple analysis functions, the return
 values of which will be collated and saved as a numpy file
 containing topo.sim.time metadata as well as any extra metadata
@@ -132,7 +132,7 @@ keywords are not allowed to be left unspecified.</p>
 <dt id="topo.misc.lancext.AnalysisFn">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">AnalysisFn</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#AnalysisFn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.AnalysisFn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lancet.core-module.html#lancet.core.PrettyPrinted" title="lancet.core.PrettyPrinted"><tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>An AnalysiFn records information about a function so that run_batch
+<p>An AnalysisFn records information about a function so that run_batch
 can invoke it via an Analysis object. It also allows checks on the
 function&#8217;s signature using Python&#8217;s introspection mechanisms.</p>
 <p>The supplied function may return any data type and may be a Python

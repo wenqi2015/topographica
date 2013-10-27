@@ -94,7 +94,6 @@
 <div class="viewcode-block" id="ensure_path_exists"><a class="viewcode-back" href="../../../Reference_Manual/topo.tests.test_script-module.html#topo.tests.test_script.ensure_path_exists">[docs]</a><span class="k">def</span> <span class="nf">ensure_path_exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Force the specified path to exist if it doesn&#39;t yet.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;CRREEEating </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">path</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </div>
 <span class="k">def</span> <span class="nf">_support_old_args</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
