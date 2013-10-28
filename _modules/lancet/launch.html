@@ -650,6 +650,7 @@
 <span class="sd">        collate_and_launch().</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_launchinfo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_launch</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_template</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_launchinfo</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">job_timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%H%M%S&#39;</span><span class="p">)</span>
 
         <span class="n">streams_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_streams_path</span><span class="p">()</span>
