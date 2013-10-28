@@ -311,7 +311,7 @@ the existing view is returned.</p>
 
 <dl class="function">
 <dt id="topo.command.analysis.decode_feature">
-<tt class="descclassname">topo.command.analysis.</tt><tt class="descname">decode_feature</tt><big>(</big><em>sheet</em>, <em>preference_map='OrientationPreference'</em>, <em>axis_bounds=(0.0</em>, <em>1.0)</em>, <em>cyclic=True</em>, <em>weighted_average=True</em>, <em>cropfn=&lt;function &lt;lambda&gt; at 0x7f3c5f0&gt;</em><big>)</big><a class="reference internal" href="../_modules/topo/command/analysis.html#decode_feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.analysis.decode_feature" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">topo.command.analysis.</tt><tt class="descname">decode_feature</tt><big>(</big><em>sheet</em>, <em>preference_map='OrientationPreference'</em>, <em>axis_bounds=(0.0</em>, <em>1.0)</em>, <em>cyclic=True</em>, <em>weighted_average=True</em>, <em>cropfn=&lt;function &lt;lambda&gt; at 0x84be5f0&gt;</em><big>)</big><a class="reference internal" href="../_modules/topo/command/analysis.html#decode_feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.command.analysis.decode_feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Estimate the value of a feature from the current activity pattern on a sheet.</p>
 <p>The specified preference_map should be measured before this
 function is called.</p>
@@ -352,7 +352,7 @@ righthalf = lambda(x): x[:,c/2:]</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x5b79e60&gt;, &lt;function clear_event_queue at 0x5b79500&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x6d0cf50&gt;, &lt;function clear_event_queue at 0x6d0c5f0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -397,7 +397,7 @@ righthalf = lambda(x): x[:,c/2:]</p>
 </dl>
 <p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">continue_measurement</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x7103320&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x766e410&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -937,7 +937,7 @@ returning an instance of the class.</p>
 <p>To obtain an instance of this class, call instance().</p>
 <dl class="attribute">
 <dt id="topo.command.analysis.ParameterizedFunction.instance">
-<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x8b639f0&gt;</em><a class="headerlink" href="#topo.command.analysis.ParameterizedFunction.instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x91348e8&gt;</em><a class="headerlink" href="#topo.command.analysis.ParameterizedFunction.instance" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

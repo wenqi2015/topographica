@@ -973,47 +973,27 @@
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
         <span class="k">if</span> <span class="s">&#39;hue&#39;</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
 
-            <span class="c"># could be three retinas (R, G, and B) or a single RGB</span>
-            <span class="c"># retina for the color dimension; if every retina has</span>
-            <span class="c"># &#39;Red&#39; or &#39;Green&#39; or &#39;Blue&#39; in its name, then three</span>
-            <span class="c"># retinas for color are assumed</span>
-
-            <span class="n">rgb_retina</span> <span class="o">=</span> <span class="bp">False</span>
-            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="s">&#39;Red&#39;</span> <span class="ow">in</span> <span class="n">name</span> <span class="ow">or</span> <span class="s">&#39;Green&#39;</span> <span class="ow">in</span> <span class="n">name</span> <span class="ow">or</span> <span class="s">&#39;Blue&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">):</span>
-                    <span class="n">rgb_retina</span> <span class="o">=</span> <span class="bp">True</span>
-
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">rgb_retina</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                    <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">hsv_to_rgb</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s">&#39;hue&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;Red&#39;</span><span class="p">)):</span>
-                        <span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">r</span>
-                    <span class="k">elif</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;Green&#39;</span><span class="p">)):</span>
-                        <span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">g</span>
-                    <span class="k">elif</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;Blue&#39;</span><span class="p">)):</span>
-                        <span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">b</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;hue_warned&#39;</span><span class="p">):</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Unable to measure hue preference,&#39;</span>
-                                         <span class="s">&#39; because hue is defined only when&#39;</span>
-                                         <span class="s">&#39; there are different input sheets&#39;</span>
-                                         <span class="s">&#39; with names with Red, Green or Blue&#39;</span>
-                                         <span class="s">&#39; substrings.&#39;</span><span class="p">)</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">hue_warned</span> <span class="o">=</span> <span class="bp">True</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="kn">from</span> <span class="nn">contrib.rgbimages</span> <span class="kn">import</span> <span class="n">ExtendToRGB</span>
-                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                    <span class="ne">ImportError</span><span class="p">(</span><span class="s">&#39;This hue conversion is currently not available.&#39;</span>
-                                <span class="s">&#39;Obtain the contrib folder from &#39;</span>
-                                <span class="s">&#39;https://github.com/ioam/svn-history and place&#39;</span>
-                                <span class="s">&#39;it in the topographica directory.&#39;</span><span class="p">)</span>
-
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">hsv_to_rgb</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="s">&#39;hue&#39;</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                    <span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ExtendToRGB</span><span class="p">(</span><span class="n">generator</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">],</span>
-                                               <span class="n">relative_channel_strengths</span><span class="o">=</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
-                    <span class="c"># CEBALERT: should warn as above if not a color network</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;Red&#39;</span><span class="p">)):</span>
+                    <span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">r</span>
+                <span class="k">elif</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;Green&#39;</span><span class="p">)):</span>
+                    <span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">g</span>
+                <span class="k">elif</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;Blue&#39;</span><span class="p">)):</span>
+                    <span class="n">inputs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">b</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c"># Note: this warning will be skipped if any retina</span>
+                    <span class="c"># has &#39;Red&#39;, &#39;Green&#39;, or &#39;Blue&#39; in its</span>
+                    <span class="c"># name. E.g. if there is only a &#39;RedRetina&#39;, the</span>
+                    <span class="c"># warning will be skipped and a hue map will be</span>
+                    <span class="c"># measured without error.</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;hue_warned&#39;</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Unable to measure hue preference,&#39;</span>
+                                     <span class="s">&#39; because hue is defined only when&#39;</span>
+                                     <span class="s">&#39; there are different input sheets&#39;</span>
+                                     <span class="s">&#39; with names with Red, Green or Blue&#39;</span>
+                                     <span class="s">&#39; substrings.&#39;</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">hue_warned</span> <span class="o">=</span> <span class="bp">True</span>
 
 
 
