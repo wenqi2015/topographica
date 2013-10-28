@@ -351,8 +351,8 @@
 
 <span class="k">def</span> <span class="nf">param_external_removed</span><span class="p">():</span>
     <span class="c"># CB: From param/external.py, only odict should be relevant to snapshots.</span>
-    <span class="kn">import</span> <span class="nn">imagen.odict.OrderedDict</span>
-    <span class="n">allow_import</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">odict</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">,</span><span class="s">&#39;param.external&#39;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">imagen.odict</span>
+    <span class="n">allow_import</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span><span class="s">&#39;param.external&#39;</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">12024</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_external_removed</span>
 
@@ -651,9 +651,14 @@
         <span class="s">&#39;measurement parameters have been restored. Make sure measurements are &#39;</span>
         <span class="s">&#39;still set up correctly.&#39;</span><span class="p">)</span>
 
-
 <span class="n">support</span><span class="p">[</span><span class="mi">90800300</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremapper_legacy</span>
 
+
+<span class="k">def</span> <span class="nf">topo_misc_odict_removed</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">imagen.odict</span>
+    <span class="n">allow_import</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span> <span class="s">&#39;topo.misc.odict&#39;</span><span class="p">)</span>
+
+<span class="n">support</span><span class="p">[</span><span class="mi">90800361</span><span class="p">]</span> <span class="o">=</span> <span class="n">topo_misc_odict_removed</span><span class="p">()</span>
 
 <span class="c">######################################################################</span>
 <span class="c">######################################################################</span>
