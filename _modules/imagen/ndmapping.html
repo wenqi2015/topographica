@@ -69,13 +69,7 @@
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">ordereddict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s">&quot;OrderedDict could not be imported. For Python &quot;</span>
-                          <span class="s">&quot;versions &lt;2.7, run the command &#39;pip install &quot;</span>
-                          <span class="s">&quot;ordereddict&#39; or install the package through your&quot;</span>
-                          <span class="s">&quot;repository manager.&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="n">map_type</span> <span class="o">=</span> <span class="n">OrderedDict</span>
 

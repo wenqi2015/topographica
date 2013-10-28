@@ -68,7 +68,6 @@ Submodules
 * `topo.misc.unitsupport <topo.misc.unitsupport-module.html>`_
 * `topo.misc.genexamples <topo.misc.genexamples-module.html>`_
 * `topo.misc <topo.misc-module.html>`_
-* `topo.misc.odict <topo.misc.odict-module.html>`_
 * `topo.misc.legacy <topo.misc.legacy-module.html>`_
 * `topo.misc.asizeof <topo.misc.asizeof-module.html>`_
 * `topo.misc.inlinec <topo.misc.inlinec-module.html>`_

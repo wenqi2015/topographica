@@ -85,6 +85,11 @@
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParameterizedFunction</span><span class="p">,</span> <span class="n">ParamOverrides</span>
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">normalize_path</span>
 
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">imagen.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
 <span class="kn">from</span> <span class="nn">topo.base.projection</span> <span class="kn">import</span> <span class="n">ProjectionSheet</span>
@@ -95,10 +100,6 @@
 <span class="kn">from</span> <span class="nn">topo.misc.genexamples</span> <span class="kn">import</span> <span class="n">generate</span> <span class="k">as</span> <span class="n">_generate</span>
 <span class="kn">from</span> <span class="nn">topo.base.functionfamily</span> <span class="kn">import</span> <span class="n">PatternDrivenAnalysis</span>
 
-
-<span class="c"># CEBALERT: Could say min Python 2.6 and use Python&#39;s own. Or is it</span>
-<span class="c"># 2.7?</span>
-<span class="kn">from</span> <span class="nn">topo.misc.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 
 <div class="viewcode-block" id="generate_example"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.generate_example">[docs]</a><span class="k">def</span> <span class="nf">generate_example</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
