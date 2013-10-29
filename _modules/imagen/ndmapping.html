@@ -130,6 +130,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">NdIndexableMapping</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dimension_labels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_ind</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">initial_items</span><span class="p">,</span> <span class="n">map_type</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">initial_items</span><span class="p">)</span>
@@ -262,6 +263,24 @@
             <span class="k">return</span> <span class="n">default</span>
 
 
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+<div class="viewcode-block" id="NdIndexableMapping.next"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implements the iterable interface, returning the keys in the</span>
+<span class="sd">        same way as a normal Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_ind</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">_next_ind</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_next_ind</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">key</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_next_ind</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+
+</div>
     <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
