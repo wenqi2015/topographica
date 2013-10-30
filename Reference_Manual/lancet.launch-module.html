@@ -110,7 +110,7 @@ appropriate error message, otherwise return None.</p>
 
 <dl class="class">
 <dt id="lancet.launch.Launcher">
-<em class="property">class </em><tt class="descclassname">lancet.launch.</tt><tt class="descname">Launcher</tt><big>(</big><em>batch_name</em>, <em>arg_specifier</em>, <em>command_template</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#Launcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.Launcher" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lancet.launch.</tt><tt class="descname">Launcher</tt><big>(</big><em>batch_name</em>, <em>args</em>, <em>command</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#Launcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.Launcher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="lancet.core-module.html#lancet.core.PrettyPrinted" title="lancet.core.PrettyPrinted"><tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt></a>, <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>A Launcher is constructed using a name, an argument specifier and
 a command template. It can then launch the corresponding tasks
@@ -133,6 +133,8 @@ information.</p>
       documentation) before launch. For example, you should store
       state related to analysis (eg. pickles) in the same location as
       everything else.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">args</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The specifier used to generate the varying parameters for the tasks.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">output_directory</span></tt> (<em>allow_None=False, constant=False, default=., instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The output directory - the directory that will contain all
          the root directories for the individual launches.</dd>
@@ -140,8 +142,8 @@ information.</p>
 <dd>A very short, identifiable human-readable string that
        meaningfully describes the batch to be executed. Should not
        include spaces as it may be used in filenames.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">arg_specifier</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The specifier used to generate the varying parameters for the tasks.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The command template used to generate the commands for the current tasks.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">subdir</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A list of subdirectory names that allows custom organization
       within the output directory before the root directory.</dd>
@@ -153,8 +155,6 @@ information.</p>
        once. Set to None for no limit (eg. for clusters)</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Metadata information to add to the info file.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command_template</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The command template used to generate the commands for the current tasks.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">timestamp_format</span></tt> (<em>allow_None=True, constant=False, default=%Y-%m-%d_%H%M, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The timestamp format for the root directories in python datetime
       format. If None, the timestamp is omitted from root directory
@@ -208,7 +208,7 @@ key information relevant to the user.</p>
 
 <dl class="class">
 <dt id="lancet.launch.QLauncher">
-<em class="property">class </em><tt class="descclassname">lancet.launch.</tt><tt class="descname">QLauncher</tt><big>(</big><em>batch_name</em>, <em>arg_specifier</em>, <em>command_template</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#QLauncher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.QLauncher" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lancet.launch.</tt><tt class="descname">QLauncher</tt><big>(</big><em>batch_name</em>, <em>args</em>, <em>command</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/lancet/launch.html#QLauncher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.launch.QLauncher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lancet.launch.Launcher" title="lancet.launch.Launcher"><tt class="xref py py-class docutils literal"><span class="pre">lancet.launch.Launcher</span></tt></a></p>
 <p>Launcher that operates with Grid Engine using default arguments
 chosen to be suitable for a typical cluster (tested on
@@ -233,6 +233,8 @@ will be ignored.</p>
       documentation) before launch. For example, you should store
       state related to analysis (eg. pickles) in the same location as
       everything else.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">args</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The specifier used to generate the varying parameters for the tasks.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">qsub_switches</span></tt> (<em>bounds=(0, None), constant=False, default=[&#8216;-V&#8217;, &#8216;-cwd&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies the qsub switches (flags without arguments) as a list
        of strings. By default the -V switch is used to exports all
@@ -257,8 +259,8 @@ will be ignored.</p>
 <dd>A very short, identifiable human-readable string that
        meaningfully describes the batch to be executed. Should not
        include spaces as it may be used in filenames.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">arg_specifier</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The specifier used to generate the varying parameters for the tasks.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The command template used to generate the commands for the current tasks.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">subdir</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A list of subdirectory names that allows custom organization
       within the output directory before the root directory.</dd>
@@ -270,8 +272,6 @@ will be ignored.</p>
        once. Set to None for no limit (eg. for clusters)</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Metadata information to add to the info file.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command_template</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The command template used to generate the commands for the current tasks.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">timestamp_format</span></tt> (<em>allow_None=True, constant=False, default=%Y-%m-%d_%H%M, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The timestamp format for the root directories in python datetime
       format. If None, the timestamp is omitted from root directory
