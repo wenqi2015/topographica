@@ -9,143 +9,178 @@
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 936)">
 <title>inheritance273a80740e</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-936 873,-936 873,5 -4,5"/>
-<!-- imagen.SigmoidedDoLG -->
-<g id="node1" class="node"><title>imagen.SigmoidedDoLG</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="648,-894.5 516,-894.5 516,-873.5 648,-873.5 648,-894.5"/>
-<text text-anchor="middle" x="582" y="-881.5" font-family="Vera" font-size="10.00">imagen.SigmoidedDoLG</text>
+<!-- imagen.SeparatedComposite -->
+<g id="node1" class="node"><title>imagen.SeparatedComposite</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="868,-894.5 710,-894.5 710,-873.5 868,-873.5 868,-894.5"/>
+<text text-anchor="middle" x="789" y="-881.5" font-family="Vera" font-size="10.00">imagen.SeparatedComposite</text>
+</g>
+<!-- imagen.Composite -->
+<g id="node2" class="node"><title>imagen.Composite</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="635,-894.5 529,-894.5 529,-873.5 635,-873.5 635,-894.5"/>
+<text text-anchor="middle" x="582" y="-881.5" font-family="Vera" font-size="10.00">imagen.Composite</text>
+</g>
+<!-- imagen.Composite&#45;&gt;imagen.SeparatedComposite -->
+<g id="edge2" class="edge"><title>imagen.Composite&#45;&gt;imagen.SeparatedComposite</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M635.577,-884C656.626,-884 681.297,-884 704.625,-884"/>
+<polygon fill="black" stroke="black" points="704.893,-885.75 709.893,-884 704.892,-882.25 704.893,-885.75"/>
+</g>
+<!-- param.parameterized.Parameter -->
+<g id="node4" class="node"><title>param.parameterized.Parameter</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="184,-932.5 10,-932.5 10,-911.5 184,-911.5 184,-932.5"/>
+<text text-anchor="middle" x="97" y="-919.5" font-family="Vera" font-size="10.00">param.parameterized.Parameter</text>
+</g>
+<!-- param.Selector -->
+<g id="node42" class="node"><title>param.Selector</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="387,-932.5 297,-932.5 297,-911.5 387,-911.5 387,-932.5"/>
+<text text-anchor="middle" x="342" y="-919.5" font-family="Vera" font-size="10.00">param.Selector</text>
+</g>
+<!-- param.parameterized.Parameter&#45;&gt;param.Selector -->
+<g id="edge38" class="edge"><title>param.parameterized.Parameter&#45;&gt;param.Selector</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M184.759,-922C220.453,-922 260.436,-922 291.152,-922"/>
+<polygon fill="black" stroke="black" points="291.387,-923.75 296.387,-922 291.387,-920.25 291.387,-923.75"/>
+</g>
+<!-- imagen.Rectangle -->
+<g id="node5" class="node"><title>imagen.Rectangle</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="633,-856.5 531,-856.5 531,-835.5 633,-835.5 633,-856.5"/>
+<text text-anchor="middle" x="582" y="-843.5" font-family="Vera" font-size="10.00">imagen.Rectangle</text>
+</g>
+<!-- imagen.TwoRectangles -->
+<g id="node71" class="node"><title>imagen.TwoRectangles</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="851,-856.5 727,-856.5 727,-835.5 851,-835.5 851,-856.5"/>
+<text text-anchor="middle" x="789" y="-843.5" font-family="Vera" font-size="10.00">imagen.TwoRectangles</text>
+</g>
+<!-- imagen.Rectangle&#45;&gt;imagen.TwoRectangles -->
+<g id="edge70" class="edge"><title>imagen.Rectangle&#45;&gt;imagen.TwoRectangles</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M633.169,-846C659.881,-846 692.903,-846 721.665,-846"/>
+<polygon fill="black" stroke="black" points="721.983,-847.75 726.983,-846 721.983,-844.25 721.983,-847.75"/>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator -->
-<g id="node2" class="node"><title>imagen.patterngenerator.PatternGenerator</title>
+<g id="node6" class="node"><title>imagen.patterngenerator.PatternGenerator</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="454,-457.5 230,-457.5 230,-436.5 454,-436.5 454,-457.5"/>
 <text text-anchor="middle" x="342" y="-444.5" font-family="Vera" font-size="10.00">imagen.patterngenerator.PatternGenerator</text>
 </g>
-<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SigmoidedDoLG -->
-<g id="edge2" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SigmoidedDoLG</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M344.205,-457.259C356.982,-515.776 423.271,-806.818 490,-865 496.006,-870.237 503.071,-874.167 510.571,-877.098"/>
-<polygon fill="black" stroke="black" points="509.995,-878.75 515.292,-878.797 511.18,-875.457 509.995,-878.75"/>
-</g>
-<!-- imagen.GaussiansCorner -->
-<g id="node4" class="node"><title>imagen.GaussiansCorner</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="650,-856.5 514,-856.5 514,-835.5 650,-835.5 650,-856.5"/>
-<text text-anchor="middle" x="582" y="-843.5" font-family="Vera" font-size="10.00">imagen.GaussiansCorner</text>
-</g>
-<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.GaussiansCorner -->
-<g id="edge4" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.GaussiansCorner</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M342.586,-457.178C346.009,-506.641 367.778,-723.734 490,-827 495.466,-831.618 501.761,-835.211 508.439,-837.996"/>
-<polygon fill="black" stroke="black" points="507.824,-839.634 513.119,-839.796 509.081,-836.367 507.824,-839.634"/>
-</g>
-<!-- imagen.Rectangle -->
-<g id="node7" class="node"><title>imagen.Rectangle</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="633,-818.5 531,-818.5 531,-797.5 633,-797.5 633,-818.5"/>
-<text text-anchor="middle" x="582" y="-805.5" font-family="Vera" font-size="10.00">imagen.Rectangle</text>
+<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Composite -->
+<g id="edge18" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Composite</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M344.205,-457.259C356.982,-515.776 423.271,-806.818 490,-865 499.25,-873.065 511.012,-878.031 523.008,-881.022"/>
+<polygon fill="black" stroke="black" points="522.895,-882.791 528.158,-882.186 523.667,-879.377 522.895,-882.791"/>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Rectangle -->
-<g id="edge10" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Rectangle</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M343.054,-457.096C348.456,-503.427 377.339,-697.332 490,-789 500.163,-797.269 513.007,-802.22 525.85,-805.12"/>
-<polygon fill="black" stroke="black" points="525.707,-806.877 530.957,-806.169 526.412,-803.449 525.707,-806.877"/>
-</g>
-<!-- imagen.Composite -->
-<g id="node11" class="node"><title>imagen.Composite</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="635,-780.5 529,-780.5 529,-759.5 635,-759.5 635,-780.5"/>
-<text text-anchor="middle" x="582" y="-767.5" font-family="Vera" font-size="10.00">imagen.Composite</text>
-</g>
-<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Composite -->
-<g id="edge24" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Composite</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M343.642,-457.137C351.211,-500.38 386.877,-670.851 490,-751 499.577,-758.444 511.355,-763.166 523.246,-766.12"/>
-<polygon fill="black" stroke="black" points="523.08,-767.877 528.344,-767.28 523.857,-764.464 523.08,-767.877"/>
+<g id="edge4" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Rectangle</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M342.586,-457.178C346.009,-506.641 367.778,-723.734 490,-827 500.008,-835.456 512.795,-840.476 525.631,-843.384"/>
+<polygon fill="black" stroke="black" points="525.489,-845.141 530.739,-844.433 526.193,-841.712 525.489,-845.141"/>
 </g>
 <!-- imagen.Line -->
-<g id="node14" class="node"><title>imagen.Line</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="619,-742.5 545,-742.5 545,-721.5 619,-721.5 619,-742.5"/>
-<text text-anchor="middle" x="582" y="-729.5" font-family="Vera" font-size="10.00">imagen.Line</text>
+<g id="node8" class="node"><title>imagen.Line</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="619,-818.5 545,-818.5 545,-797.5 619,-797.5 619,-818.5"/>
+<text text-anchor="middle" x="582" y="-805.5" font-family="Vera" font-size="10.00">imagen.Line</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Line -->
-<g id="edge12" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Line</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M344.397,-457.219C354.341,-497.199 396.286,-644.188 490,-713 504.058,-723.322 522.425,-728.336 539.047,-730.676"/>
-<polygon fill="black" stroke="black" points="538.964,-732.429 544.143,-731.319 539.402,-728.956 538.964,-732.429"/>
+<g id="edge6" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Line</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M343.054,-457.096C348.456,-503.427 377.339,-697.332 490,-789 503.643,-800.101 522.118,-805.221 538.933,-807.429"/>
+<polygon fill="black" stroke="black" points="538.923,-809.189 544.091,-808.024 539.324,-805.712 538.923,-809.189"/>
 </g>
 <!-- imagen.SineGrating -->
-<g id="node17" class="node"><title>imagen.SineGrating</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="638,-704.5 526,-704.5 526,-683.5 638,-683.5 638,-704.5"/>
-<text text-anchor="middle" x="582" y="-691.5" font-family="Vera" font-size="10.00">imagen.SineGrating</text>
+<g id="node10" class="node"><title>imagen.SineGrating</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="638,-780.5 526,-780.5 526,-759.5 638,-759.5 638,-780.5"/>
+<text text-anchor="middle" x="582" y="-767.5" font-family="Vera" font-size="10.00">imagen.SineGrating</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SineGrating -->
-<g id="edge16" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SineGrating</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M345.371,-457.24C357.895,-493.576 405.443,-617.232 490,-675 499.109,-681.223 509.827,-685.484 520.668,-688.385"/>
-<polygon fill="black" stroke="black" points="520.378,-690.116 525.653,-689.625 521.223,-686.72 520.378,-690.116"/>
+<g id="edge8" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SineGrating</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M343.642,-457.137C351.211,-500.38 386.877,-670.851 490,-751 498.934,-757.943 509.782,-762.519 520.85,-765.5"/>
+<polygon fill="black" stroke="black" points="520.672,-767.258 525.946,-766.76 521.512,-763.861 520.672,-767.258"/>
 </g>
 <!-- imagen.Ring -->
-<g id="node24" class="node"><title>imagen.Ring</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="620,-666.5 544,-666.5 544,-645.5 620,-645.5 620,-666.5"/>
-<text text-anchor="middle" x="582" y="-653.5" font-family="Vera" font-size="10.00">imagen.Ring</text>
+<g id="node15" class="node"><title>imagen.Ring</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="620,-742.5 544,-742.5 544,-721.5 620,-721.5 620,-742.5"/>
+<text text-anchor="middle" x="582" y="-729.5" font-family="Vera" font-size="10.00">imagen.Ring</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Ring -->
-<g id="edge22" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Ring</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M346.723,-457.3C362.136,-489.668 414.37,-589.969 490,-637 504.56,-646.054 522.675,-650.876 538.972,-653.415"/>
-<polygon fill="black" stroke="black" points="538.767,-655.153 543.965,-654.132 539.264,-651.689 538.767,-655.153"/>
+<g id="edge12" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Ring</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M344.397,-457.219C354.341,-497.199 396.286,-644.188 490,-713 503.939,-723.235 522.114,-728.251 538.624,-730.616"/>
+<polygon fill="black" stroke="black" points="538.506,-732.365 543.688,-731.267 538.953,-728.893 538.506,-732.365"/>
+</g>
+<!-- imagen.Arc -->
+<g id="node18" class="node"><title>imagen.Arc</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="617,-704.5 547,-704.5 547,-683.5 617,-683.5 617,-704.5"/>
+<text text-anchor="middle" x="582" y="-691.5" font-family="Vera" font-size="10.00">imagen.Arc</text>
+</g>
+<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Arc -->
+<g id="edge24" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Arc</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M345.371,-457.24C357.895,-493.576 405.443,-617.232 490,-675 504.889,-685.172 524.078,-690.102 541.075,-692.42"/>
+<polygon fill="black" stroke="black" points="541.096,-694.186 546.272,-693.058 541.523,-690.712 541.096,-694.186"/>
+</g>
+<!-- imagen.Sigmoid -->
+<g id="node20" class="node"><title>imagen.Sigmoid</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="629,-666.5 535,-666.5 535,-645.5 629,-645.5 629,-666.5"/>
+<text text-anchor="middle" x="582" y="-653.5" font-family="Vera" font-size="10.00">imagen.Sigmoid</text>
+</g>
+<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Sigmoid -->
+<g id="edge16" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Sigmoid</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M346.723,-457.3C362.136,-489.668 414.37,-589.969 490,-637 501.718,-644.287 515.74,-648.833 529.263,-651.653"/>
+<polygon fill="black" stroke="black" points="528.975,-653.38 534.217,-652.616 529.643,-649.944 528.975,-653.38"/>
 </g>
 <!-- imagen.PowerSpectrum -->
-<g id="node29" class="node"><title>imagen.PowerSpectrum</title>
+<g id="node24" class="node"><title>imagen.PowerSpectrum</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="647,-628.5 517,-628.5 517,-607.5 647,-607.5 647,-628.5"/>
 <text text-anchor="middle" x="582" y="-615.5" font-family="Vera" font-size="10.00">imagen.PowerSpectrum</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.PowerSpectrum -->
-<g id="edge62" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.PowerSpectrum</title>
+<g id="edge52" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.PowerSpectrum</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M348.572,-457.145C367.101,-484.853 422.812,-562.191 490,-599 496.624,-602.629 503.863,-605.567 511.276,-607.945"/>
 <polygon fill="black" stroke="black" points="511.139,-609.732 516.431,-609.503 512.152,-606.381 511.139,-609.732"/>
 </g>
-<!-- imagen.Arc -->
-<g id="node35" class="node"><title>imagen.Arc</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="617,-590.5 547,-590.5 547,-569.5 617,-569.5 617,-590.5"/>
-<text text-anchor="middle" x="582" y="-577.5" font-family="Vera" font-size="10.00">imagen.Arc</text>
-</g>
-<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Arc -->
-<g id="edge32" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Arc</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M351.684,-457.097C373.872,-479.589 431.039,-533.959 490,-561 505.987,-568.332 524.832,-572.859 541.288,-575.642"/>
-<polygon fill="black" stroke="black" points="541.099,-577.384 546.313,-576.451 541.655,-573.928 541.099,-577.384"/>
-</g>
 <!-- imagen.ExponentialDecay -->
-<g id="node37" class="node"><title>imagen.ExponentialDecay</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="652,-552.5 512,-552.5 512,-531.5 652,-531.5 652,-552.5"/>
-<text text-anchor="middle" x="582" y="-539.5" font-family="Vera" font-size="10.00">imagen.ExponentialDecay</text>
+<g id="node29" class="node"><title>imagen.ExponentialDecay</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="652,-590.5 512,-590.5 512,-569.5 652,-569.5 652,-590.5"/>
+<text text-anchor="middle" x="582" y="-577.5" font-family="Vera" font-size="10.00">imagen.ExponentialDecay</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.ExponentialDecay -->
-<g id="edge34" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.ExponentialDecay</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M358.209,-457.194C384.757,-473.453 439.606,-505.229 490,-523 498.435,-525.975 507.479,-528.547 516.483,-530.752"/>
-<polygon fill="black" stroke="black" points="516.208,-532.486 521.477,-531.94 517.018,-529.081 516.208,-532.486"/>
+<g id="edge26" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.ExponentialDecay</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M351.684,-457.097C373.872,-479.589 431.039,-533.959 490,-561 496.384,-563.928 503.223,-566.408 510.184,-568.509"/>
+<polygon fill="black" stroke="black" points="509.729,-570.199 515.019,-569.903 510.699,-566.836 509.729,-570.199"/>
 </g>
 <!-- imagen.Selector -->
-<g id="node39" class="node"><title>imagen.Selector</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="629,-514.5 535,-514.5 535,-493.5 629,-493.5 629,-514.5"/>
-<text text-anchor="middle" x="582" y="-501.5" font-family="Vera" font-size="10.00">imagen.Selector</text>
+<g id="node34" class="node"><title>imagen.Selector</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="629,-552.5 535,-552.5 535,-531.5 629,-531.5 629,-552.5"/>
+<text text-anchor="middle" x="582" y="-539.5" font-family="Vera" font-size="10.00">imagen.Selector</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Selector -->
-<g id="edge36" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Selector</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M378.982,-457.017C408.848,-464.981 452.009,-476.205 490,-485 502.624,-487.923 516.274,-490.861 529.097,-493.524"/>
-<polygon fill="black" stroke="black" points="528.905,-495.272 534.156,-494.57 529.613,-491.844 528.905,-495.272"/>
+<g id="edge30" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Selector</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M358.209,-457.194C384.757,-473.453 439.606,-505.229 490,-523 502.356,-527.357 516.018,-530.851 528.948,-533.594"/>
+<polygon fill="black" stroke="black" points="528.803,-535.351 534.054,-534.647 529.51,-531.923 528.803,-535.351"/>
 </g>
 <!-- imagen.HalfPlane -->
-<g id="node41" class="node"><title>imagen.HalfPlane</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="632,-476.5 532,-476.5 532,-455.5 632,-455.5 632,-476.5"/>
-<text text-anchor="middle" x="582" y="-463.5" font-family="Vera" font-size="10.00">imagen.HalfPlane</text>
+<g id="node36" class="node"><title>imagen.HalfPlane</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="632,-514.5 532,-514.5 532,-493.5 632,-493.5 632,-514.5"/>
+<text text-anchor="middle" x="582" y="-501.5" font-family="Vera" font-size="10.00">imagen.HalfPlane</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.HalfPlane -->
-<g id="edge38" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.HalfPlane</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M454.27,-455.888C479.231,-457.864 504.639,-459.876 526.151,-461.579"/>
-<polygon fill="black" stroke="black" points="526.125,-463.332 531.248,-461.982 526.401,-459.843 526.125,-463.332"/>
+<g id="edge32" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.HalfPlane</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M378.982,-457.017C408.848,-464.981 452.009,-476.205 490,-485 501.678,-487.704 514.235,-490.421 526.202,-492.921"/>
+<polygon fill="black" stroke="black" points="526.039,-494.675 531.29,-493.979 526.751,-491.248 526.039,-494.675"/>
 </g>
 <!-- imagen.patterngenerator.Constant -->
-<g id="node43" class="node"><title>imagen.patterngenerator.Constant</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="674,-438.5 490,-438.5 490,-417.5 674,-417.5 674,-438.5"/>
-<text text-anchor="middle" x="582" y="-425.5" font-family="Vera" font-size="10.00">imagen.patterngenerator.Constant</text>
+<g id="node38" class="node"><title>imagen.patterngenerator.Constant</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="674,-476.5 490,-476.5 490,-455.5 674,-455.5 674,-476.5"/>
+<text text-anchor="middle" x="582" y="-463.5" font-family="Vera" font-size="10.00">imagen.patterngenerator.Constant</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.patterngenerator.Constant -->
-<g id="edge40" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.patterngenerator.Constant</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M454.27,-438.112C464.451,-437.306 474.707,-436.494 484.742,-435.7"/>
-<polygon fill="black" stroke="black" points="485.122,-437.425 489.968,-435.286 484.846,-433.936 485.122,-437.425"/>
+<g id="edge34" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.patterngenerator.Constant</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M454.27,-455.888C464.451,-456.694 474.707,-457.506 484.742,-458.3"/>
+<polygon fill="black" stroke="black" points="484.846,-460.064 489.968,-458.714 485.122,-456.575 484.846,-460.064"/>
+</g>
+<!-- imagen.DifferenceOfGaussians -->
+<g id="node44" class="node"><title>imagen.DifferenceOfGaussians</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="664,-438.5 500,-438.5 500,-417.5 664,-417.5 664,-438.5"/>
+<text text-anchor="middle" x="582" y="-425.5" font-family="Vera" font-size="10.00">imagen.DifferenceOfGaussians</text>
+</g>
+<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.DifferenceOfGaussians -->
+<g id="edge40" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.DifferenceOfGaussians</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M454.27,-438.112C467.841,-437.038 481.543,-435.953 494.68,-434.913"/>
+<polygon fill="black" stroke="black" points="495.034,-436.64 499.88,-434.501 494.758,-433.151 495.034,-436.64"/>
 </g>
 <!-- imagen.Gaussian -->
-<g id="node45" class="node"><title>imagen.Gaussian</title>
+<g id="node46" class="node"><title>imagen.Gaussian</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="632,-400.5 532,-400.5 532,-379.5 632,-379.5 632,-400.5"/>
 <text text-anchor="middle" x="582" y="-387.5" font-family="Vera" font-size="10.00">imagen.Gaussian</text>
 </g>
@@ -154,220 +189,185 @@
 <path fill="none" stroke="black" stroke-width="0.5" d="M420.515,-436.949C431.895,-434.553 443.353,-431.609 454,-428 471.134,-422.192 472.972,-415.112 490,-409 501.551,-404.854 514.261,-401.503 526.449,-398.839"/>
 <polygon fill="black" stroke="black" points="527.108,-400.488 531.636,-397.739 526.382,-397.064 527.108,-400.488"/>
 </g>
-<!-- imagen.Sigmoid -->
-<g id="node47" class="node"><title>imagen.Sigmoid</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="629,-362.5 535,-362.5 535,-341.5 629,-341.5 629,-362.5"/>
-<text text-anchor="middle" x="582" y="-349.5" font-family="Vera" font-size="10.00">imagen.Sigmoid</text>
-</g>
-<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Sigmoid -->
-<g id="edge44" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Sigmoid</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M436.846,-436.968C442.881,-434.512 448.666,-431.554 454,-428 478.935,-411.386 465.365,-388.056 490,-371 501.465,-363.062 515.534,-358.308 529.188,-355.495"/>
-<polygon fill="black" stroke="black" points="529.609,-357.196 534.195,-354.544 528.956,-353.758 529.609,-357.196"/>
-</g>
-<!-- imagen.DifferenceOfGaussians -->
-<g id="node49" class="node"><title>imagen.DifferenceOfGaussians</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="664,-324.5 500,-324.5 500,-303.5 664,-303.5 664,-324.5"/>
-<text text-anchor="middle" x="582" y="-311.5" font-family="Vera" font-size="10.00">imagen.DifferenceOfGaussians</text>
-</g>
-<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.DifferenceOfGaussians -->
-<g id="edge46" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.DifferenceOfGaussians</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M440.125,-436.98C445.063,-434.476 449.735,-431.508 454,-428 488.872,-399.318 455.644,-362.298 490,-333 492.815,-330.599 495.854,-328.474 499.055,-326.596"/>
-<polygon fill="black" stroke="black" points="499.949,-328.102 503.514,-324.184 498.284,-325.024 499.949,-328.102"/>
-</g>
 <!-- imagen.RawRectangle -->
-<g id="node51" class="node"><title>imagen.RawRectangle</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="642,-286.5 522,-286.5 522,-265.5 642,-265.5 642,-286.5"/>
-<text text-anchor="middle" x="582" y="-273.5" font-family="Vera" font-size="10.00">imagen.RawRectangle</text>
+<g id="node48" class="node"><title>imagen.RawRectangle</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="642,-362.5 522,-362.5 522,-341.5 642,-341.5 642,-362.5"/>
+<text text-anchor="middle" x="582" y="-349.5" font-family="Vera" font-size="10.00">imagen.RawRectangle</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.RawRectangle -->
-<g id="edge48" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.RawRectangle</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M441.576,-436.896C446.023,-434.39 450.204,-431.447 454,-428 499.336,-386.832 445.404,-336.968 490,-295 497.451,-287.988 506.775,-283.272 516.606,-280.147"/>
-<polygon fill="black" stroke="black" points="517.153,-281.811 521.468,-278.738 516.178,-278.449 517.153,-281.811"/>
+<g id="edge44" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.RawRectangle</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M436.846,-436.968C442.881,-434.512 448.666,-431.554 454,-428 478.935,-411.386 465.365,-388.056 490,-371 497.879,-365.545 506.988,-361.593 516.347,-358.742"/>
+<polygon fill="black" stroke="black" points="516.926,-360.397 521.258,-357.349 515.971,-357.03 516.926,-360.397"/>
 </g>
 <!-- imagen.Gabor -->
-<g id="node55" class="node"><title>imagen.Gabor</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="624,-248.5 540,-248.5 540,-227.5 624,-227.5 624,-248.5"/>
-<text text-anchor="middle" x="582" y="-235.5" font-family="Vera" font-size="10.00">imagen.Gabor</text>
+<g id="node50" class="node"><title>imagen.Gabor</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="624,-324.5 540,-324.5 540,-303.5 624,-303.5 624,-324.5"/>
+<text text-anchor="middle" x="582" y="-311.5" font-family="Vera" font-size="10.00">imagen.Gabor</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Gabor -->
-<g id="edge52" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Gabor</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M442.322,-436.855C446.517,-434.348 450.445,-431.417 454,-428 509.991,-374.176 434.977,-311.813 490,-257 501.523,-245.521 518.03,-240.102 533.888,-237.764"/>
-<polygon fill="black" stroke="black" points="534.494,-239.451 539.234,-237.085 534.053,-235.979 534.494,-239.451"/>
+<g id="edge46" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Gabor</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M440.125,-436.98C445.063,-434.476 449.735,-431.508 454,-428 488.872,-399.318 455.644,-362.298 490,-333 502.153,-322.636 518.47,-317.421 533.988,-314.932"/>
+<polygon fill="black" stroke="black" points="534.509,-316.626 539.213,-314.189 534.016,-313.161 534.509,-316.626"/>
 </g>
 <!-- imagen.SquareGrating -->
-<g id="node57" class="node"><title>imagen.SquareGrating</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="644,-210.5 520,-210.5 520,-189.5 644,-189.5 644,-210.5"/>
-<text text-anchor="middle" x="582" y="-197.5" font-family="Vera" font-size="10.00">imagen.SquareGrating</text>
+<g id="node52" class="node"><title>imagen.SquareGrating</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="644,-286.5 520,-286.5 520,-265.5 644,-265.5 644,-286.5"/>
+<text text-anchor="middle" x="582" y="-273.5" font-family="Vera" font-size="10.00">imagen.SquareGrating</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SquareGrating -->
-<g id="edge54" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SquareGrating</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M442.975,-436.706C446.942,-434.226 450.649,-431.343 454,-428 520.734,-361.435 424.462,-286.743 490,-219 496.76,-212.013 505.36,-207.249 514.576,-204.053"/>
-<polygon fill="black" stroke="black" points="515.201,-205.691 519.446,-202.521 514.151,-202.352 515.201,-205.691"/>
+<g id="edge48" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SquareGrating</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M441.576,-436.896C446.023,-434.39 450.204,-431.447 454,-428 499.336,-386.832 445.404,-336.968 490,-295 496.814,-288.587 505.195,-284.094 514.099,-280.983"/>
+<polygon fill="black" stroke="black" points="514.859,-282.578 519.092,-279.393 513.797,-279.243 514.859,-282.578"/>
 </g>
 <!-- imagen.Sweeper -->
-<g id="node62" class="node"><title>imagen.Sweeper</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="630,-172.5 534,-172.5 534,-151.5 630,-151.5 630,-172.5"/>
-<text text-anchor="middle" x="582" y="-159.5" font-family="Vera" font-size="10.00">imagen.Sweeper</text>
+<g id="node54" class="node"><title>imagen.Sweeper</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="630,-248.5 534,-248.5 534,-227.5 630,-227.5 630,-248.5"/>
+<text text-anchor="middle" x="582" y="-235.5" font-family="Vera" font-size="10.00">imagen.Sweeper</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Sweeper -->
-<g id="edge60" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Sweeper</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M443.082,-436.812C447.02,-434.304 450.692,-431.386 454,-428 531.525,-348.646 413.9,-261.722 490,-181 499.864,-170.537 513.847,-165.027 527.942,-162.3"/>
-<polygon fill="black" stroke="black" points="528.496,-163.981 533.132,-161.417 527.909,-160.53 528.496,-163.981"/>
+<g id="edge50" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Sweeper</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M442.322,-436.855C446.517,-434.348 450.445,-431.417 454,-428 509.991,-374.176 434.977,-311.813 490,-257 500.085,-246.954 513.987,-241.549 527.932,-238.789"/>
+<polygon fill="black" stroke="black" points="528.442,-240.476 533.064,-237.888 527.837,-237.029 528.442,-240.476"/>
 </g>
 <!-- imagen.Disk -->
-<g id="node65" class="node"><title>imagen.Disk</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="620,-134.5 544,-134.5 544,-113.5 620,-113.5 620,-134.5"/>
-<text text-anchor="middle" x="582" y="-121.5" font-family="Vera" font-size="10.00">imagen.Disk</text>
+<g id="node57" class="node"><title>imagen.Disk</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="620,-210.5 544,-210.5 544,-189.5 620,-189.5 620,-210.5"/>
+<text text-anchor="middle" x="582" y="-197.5" font-family="Vera" font-size="10.00">imagen.Disk</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Disk -->
-<g id="edge64" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Disk</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M443.162,-436.889C447.079,-434.361 450.725,-431.417 454,-428 542.345,-335.828 403.31,-236.73 490,-143 502.244,-129.762 521.072,-124.415 538.513,-122.611"/>
-<polygon fill="black" stroke="black" points="539.037,-124.324 543.873,-122.161 538.744,-120.836 539.037,-124.324"/>
+<g id="edge54" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Disk</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M442.975,-436.706C446.942,-434.226 450.649,-431.343 454,-428 520.734,-361.435 424.462,-286.743 490,-219 502.435,-206.147 521.097,-200.818 538.37,-198.927"/>
+<polygon fill="black" stroke="black" points="538.856,-200.64 543.678,-198.446 538.54,-197.155 538.856,-200.64"/>
 </g>
 <!-- imagen.Translator -->
-<g id="node67" class="node"><title>imagen.Translator</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="633,-96.5 531,-96.5 531,-75.5 633,-75.5 633,-96.5"/>
-<text text-anchor="middle" x="582" y="-83.5" font-family="Vera" font-size="10.00">imagen.Translator</text>
+<g id="node59" class="node"><title>imagen.Translator</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="633,-172.5 531,-172.5 531,-151.5 633,-151.5 633,-172.5"/>
+<text text-anchor="middle" x="582" y="-159.5" font-family="Vera" font-size="10.00">imagen.Translator</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Translator -->
-<g id="edge66" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Translator</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M443.223,-436.948C447.125,-434.404 450.75,-431.441 454,-428 553.183,-322.991 392.702,-211.758 490,-105 499.295,-94.8011 512.496,-89.2683 526.005,-86.4314"/>
-<polygon fill="black" stroke="black" points="526.393,-88.1392 530.989,-85.5045 525.753,-84.6982 526.393,-88.1392"/>
+<g id="edge56" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.Translator</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M443.082,-436.812C447.02,-434.304 450.692,-431.386 454,-428 531.525,-348.646 413.9,-261.722 490,-181 499.366,-171.065 512.445,-165.596 525.808,-162.735"/>
+<polygon fill="black" stroke="black" points="526.153,-164.45 530.737,-161.795 525.498,-161.012 526.153,-164.45"/>
 </g>
 <!-- imagen.LogGaussian -->
-<g id="node69" class="node"><title>imagen.LogGaussian</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="640,-58.5 524,-58.5 524,-37.5 640,-37.5 640,-58.5"/>
-<text text-anchor="middle" x="582" y="-45.5" font-family="Vera" font-size="10.00">imagen.LogGaussian</text>
+<g id="node63" class="node"><title>imagen.LogGaussian</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="640,-134.5 524,-134.5 524,-113.5 640,-113.5 640,-134.5"/>
+<text text-anchor="middle" x="582" y="-121.5" font-family="Vera" font-size="10.00">imagen.LogGaussian</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.LogGaussian -->
-<g id="edge68" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.LogGaussian</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M443.273,-436.994C447.161,-434.438 450.77,-431.46 454,-428 509.017,-369.07 436.041,-126.9 490,-67 497.478,-58.6984 507.542,-53.4794 518.273,-50.2874"/>
-<polygon fill="black" stroke="black" points="518.864,-51.9409 523.243,-48.9598 517.961,-48.5595 518.864,-51.9409"/>
+<g id="edge62" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.LogGaussian</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M443.162,-436.889C447.079,-434.361 450.725,-431.417 454,-428 542.345,-335.828 403.31,-236.73 490,-143 497.587,-134.797 507.701,-129.624 518.447,-126.447"/>
+<polygon fill="black" stroke="black" points="519.04,-128.1 523.423,-125.123 518.141,-124.717 519.04,-128.1"/>
 </g>
 <!-- imagen.SigmoidedDoG -->
-<g id="node71" class="node"><title>imagen.SigmoidedDoG</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="646,-20.5 518,-20.5 518,0.5 646,0.5 646,-20.5"/>
-<text text-anchor="middle" x="582" y="-7.5" font-family="Vera" font-size="10.00">imagen.SigmoidedDoG</text>
+<g id="node65" class="node"><title>imagen.SigmoidedDoG</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="646,-96.5 518,-96.5 518,-75.5 646,-75.5 646,-96.5"/>
+<text text-anchor="middle" x="582" y="-83.5" font-family="Vera" font-size="10.00">imagen.SigmoidedDoG</text>
 </g>
 <!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SigmoidedDoG -->
-<g id="edge70" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SigmoidedDoG</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M443.796,-436.709C447.49,-434.215 450.92,-431.33 454,-428 514.447,-362.64 430.726,-95.426 490,-29 496.23,-22.0181 504.289,-17.2114 513.044,-13.9556"/>
-<polygon fill="black" stroke="black" points="513.788,-15.5518 517.972,-12.3024 512.675,-12.2335 513.788,-15.5518"/>
+<g id="edge64" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SigmoidedDoG</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M443.223,-436.948C447.125,-434.404 450.75,-431.441 454,-428 553.183,-322.991 392.702,-211.758 490,-105 496.21,-98.1856 504.164,-93.4543 512.789,-90.2184"/>
+<polygon fill="black" stroke="black" points="513.47,-91.8352 517.642,-88.5708 512.345,-88.521 513.47,-91.8352"/>
 </g>
-<!-- imagen.TwoRectangles -->
-<g id="node6" class="node"><title>imagen.TwoRectangles</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="851,-818.5 727,-818.5 727,-797.5 851,-797.5 851,-818.5"/>
-<text text-anchor="middle" x="789" y="-805.5" font-family="Vera" font-size="10.00">imagen.TwoRectangles</text>
+<!-- imagen.SigmoidedDoLG -->
+<g id="node67" class="node"><title>imagen.SigmoidedDoLG</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="648,-58.5 516,-58.5 516,-37.5 648,-37.5 648,-58.5"/>
+<text text-anchor="middle" x="582" y="-45.5" font-family="Vera" font-size="10.00">imagen.SigmoidedDoLG</text>
 </g>
-<!-- imagen.Rectangle&#45;&gt;imagen.TwoRectangles -->
-<g id="edge6" class="edge"><title>imagen.Rectangle&#45;&gt;imagen.TwoRectangles</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M633.169,-808C659.881,-808 692.903,-808 721.665,-808"/>
-<polygon fill="black" stroke="black" points="721.983,-809.75 726.983,-808 721.983,-806.25 721.983,-809.75"/>
+<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SigmoidedDoLG -->
+<g id="edge66" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.SigmoidedDoLG</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M443.273,-436.994C447.161,-434.438 450.77,-431.46 454,-428 509.017,-369.07 436.041,-126.9 490,-67 495.605,-60.7783 502.662,-56.288 510.363,-53.0849"/>
+<polygon fill="black" stroke="black" points="511.171,-54.651 515.235,-51.2529 509.939,-51.375 511.171,-54.651"/>
+</g>
+<!-- imagen.GaussiansCorner -->
+<g id="node69" class="node"><title>imagen.GaussiansCorner</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="650,-20.5 514,-20.5 514,0.5 650,0.5 650,-20.5"/>
+<text text-anchor="middle" x="582" y="-7.5" font-family="Vera" font-size="10.00">imagen.GaussiansCorner</text>
+</g>
+<!-- imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.GaussiansCorner -->
+<g id="edge68" class="edge"><title>imagen.patterngenerator.PatternGenerator&#45;&gt;imagen.GaussiansCorner</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M443.796,-436.709C447.49,-434.215 450.92,-431.33 454,-428 514.447,-362.64 430.726,-95.426 490,-29 495.117,-23.2654 501.468,-18.9982 508.425,-15.8526"/>
+<polygon fill="black" stroke="black" points="509.362,-17.36 513.33,-13.8497 508.039,-14.1197 509.362,-17.36"/>
+</g>
+<!-- imagen.OrientationContrast -->
+<g id="node13" class="node"><title>imagen.OrientationContrast</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="864,-780.5 714,-780.5 714,-759.5 864,-759.5 864,-780.5"/>
+<text text-anchor="middle" x="789" y="-767.5" font-family="Vera" font-size="10.00">imagen.OrientationContrast</text>
+</g>
+<!-- imagen.SineGrating&#45;&gt;imagen.OrientationContrast -->
+<g id="edge10" class="edge"><title>imagen.SineGrating&#45;&gt;imagen.OrientationContrast</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M638.017,-770C659.815,-770 685.2,-770 708.866,-770"/>
+<polygon fill="black" stroke="black" points="708.888,-771.75 713.888,-770 708.887,-768.25 708.888,-771.75"/>
 </g>
 <!-- param.parameterized.Parameterized -->
-<g id="node9" class="node"><title>param.parameterized.Parameterized</title>
+<g id="node12" class="node"><title>param.parameterized.Parameterized</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="194,-438.5 5.68434e-14,-438.5 0,-417.5 194,-417.5 194,-438.5"/>
 <text text-anchor="middle" x="97" y="-425.5" font-family="Vera" font-size="10.00">param.parameterized.Parameterized</text>
 </g>
 <!-- param.parameterized.Parameterized&#45;&gt;imagen.patterngenerator.PatternGenerator -->
-<g id="edge14" class="edge"><title>param.parameterized.Parameterized&#45;&gt;imagen.patterngenerator.PatternGenerator</title>
+<g id="edge60" class="edge"><title>param.parameterized.Parameterized&#45;&gt;imagen.patterngenerator.PatternGenerator</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M194.182,-435.537C204.286,-436.32 214.629,-437.122 224.922,-437.92"/>
 <polygon fill="black" stroke="black" points="224.849,-439.67 229.969,-438.312 225.12,-436.18 224.849,-439.67"/>
 </g>
 <!-- imagen.TimeSeries -->
-<g id="node33" class="node"><title>imagen.TimeSeries</title>
+<g id="node26" class="node"><title>imagen.TimeSeries</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="396,-419.5 288,-419.5 288,-398.5 396,-398.5 396,-419.5"/>
 <text text-anchor="middle" x="342" y="-406.5" font-family="Vera" font-size="10.00">imagen.TimeSeries</text>
 </g>
 <!-- param.parameterized.Parameterized&#45;&gt;imagen.TimeSeries -->
-<g id="edge30" class="edge"><title>param.parameterized.Parameterized&#45;&gt;imagen.TimeSeries</title>
+<g id="edge22" class="edge"><title>param.parameterized.Parameterized&#45;&gt;imagen.TimeSeries</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M194.182,-420.463C223.866,-418.161 255.624,-415.699 282.066,-413.648"/>
 <polygon fill="black" stroke="black" points="282.431,-415.375 287.281,-413.244 282.161,-411.885 282.431,-415.375"/>
 </g>
-<!-- imagen.SeparatedComposite -->
-<g id="node10" class="node"><title>imagen.SeparatedComposite</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="868,-780.5 710,-780.5 710,-759.5 868,-759.5 868,-780.5"/>
-<text text-anchor="middle" x="789" y="-767.5" font-family="Vera" font-size="10.00">imagen.SeparatedComposite</text>
+<!-- imagen.Curve -->
+<g id="node17" class="node"><title>imagen.Curve</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="830,-704.5 748,-704.5 748,-683.5 830,-683.5 830,-704.5"/>
+<text text-anchor="middle" x="789" y="-691.5" font-family="Vera" font-size="10.00">imagen.Curve</text>
 </g>
-<!-- imagen.Composite&#45;&gt;imagen.SeparatedComposite -->
-<g id="edge8" class="edge"><title>imagen.Composite&#45;&gt;imagen.SeparatedComposite</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M635.577,-770C656.626,-770 681.297,-770 704.625,-770"/>
-<polygon fill="black" stroke="black" points="704.893,-771.75 709.893,-770 704.892,-768.25 704.893,-771.75"/>
-</g>
-<!-- imagen.OrientationContrast -->
-<g id="node22" class="node"><title>imagen.OrientationContrast</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="864,-704.5 714,-704.5 714,-683.5 864,-683.5 864,-704.5"/>
-<text text-anchor="middle" x="789" y="-691.5" font-family="Vera" font-size="10.00">imagen.OrientationContrast</text>
-</g>
-<!-- imagen.SineGrating&#45;&gt;imagen.OrientationContrast -->
-<g id="edge20" class="edge"><title>imagen.SineGrating&#45;&gt;imagen.OrientationContrast</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M638.017,-694C659.815,-694 685.2,-694 708.866,-694"/>
-<polygon fill="black" stroke="black" points="708.888,-695.75 713.888,-694 708.887,-692.25 708.888,-695.75"/>
-</g>
-<!-- imagen.TimeSeriesParam -->
-<g id="node19" class="node"><title>imagen.TimeSeriesParam</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="859,-932.5 719,-932.5 719,-911.5 859,-911.5 859,-932.5"/>
-<text text-anchor="middle" x="789" y="-919.5" font-family="Vera" font-size="10.00">imagen.TimeSeriesParam</text>
-</g>
-<!-- param.ClassSelector -->
-<g id="node20" class="node"><title>param.ClassSelector</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="640,-932.5 524,-932.5 524,-911.5 640,-911.5 640,-932.5"/>
-<text text-anchor="middle" x="582" y="-919.5" font-family="Vera" font-size="10.00">param.ClassSelector</text>
-</g>
-<!-- param.ClassSelector&#45;&gt;imagen.TimeSeriesParam -->
-<g id="edge18" class="edge"><title>param.ClassSelector&#45;&gt;imagen.TimeSeriesParam</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M640.212,-922C662.986,-922 689.405,-922 713.606,-922"/>
-<polygon fill="black" stroke="black" points="713.734,-923.75 718.734,-922 713.734,-920.25 713.734,-923.75"/>
-</g>
-<!-- param.parameterized.Parameter -->
-<g id="node26" class="node"><title>param.parameterized.Parameter</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="184,-932.5 10,-932.5 10,-911.5 184,-911.5 184,-932.5"/>
-<text text-anchor="middle" x="97" y="-919.5" font-family="Vera" font-size="10.00">param.parameterized.Parameter</text>
-</g>
-<!-- param.Selector -->
-<g id="node31" class="node"><title>param.Selector</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="387,-932.5 297,-932.5 297,-911.5 387,-911.5 387,-932.5"/>
-<text text-anchor="middle" x="342" y="-919.5" font-family="Vera" font-size="10.00">param.Selector</text>
-</g>
-<!-- param.parameterized.Parameter&#45;&gt;param.Selector -->
-<g id="edge28" class="edge"><title>param.parameterized.Parameter&#45;&gt;param.Selector</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M184.759,-922C220.453,-922 260.436,-922 291.152,-922"/>
-<polygon fill="black" stroke="black" points="291.387,-923.75 296.387,-922 291.387,-920.25 291.387,-923.75"/>
+<!-- imagen.Arc&#45;&gt;imagen.Curve -->
+<g id="edge14" class="edge"><title>imagen.Arc&#45;&gt;imagen.Curve</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M617.585,-694C652.1,-694 704.658,-694 742.474,-694"/>
+<polygon fill="black" stroke="black" points="742.476,-695.75 747.476,-694 742.476,-692.25 742.476,-695.75"/>
 </g>
 <!-- imagen.Spectrogram -->
-<g id="node28" class="node"><title>imagen.Spectrogram</title>
+<g id="node23" class="node"><title>imagen.Spectrogram</title>
 <polygon fill="none" stroke="black" stroke-width="0.5" points="848,-628.5 730,-628.5 730,-607.5 848,-607.5 848,-628.5"/>
 <text text-anchor="middle" x="789" y="-615.5" font-family="Vera" font-size="10.00">imagen.Spectrogram</text>
 </g>
 <!-- imagen.PowerSpectrum&#45;&gt;imagen.Spectrogram -->
-<g id="edge26" class="edge"><title>imagen.PowerSpectrum&#45;&gt;imagen.Spectrogram</title>
+<g id="edge20" class="edge"><title>imagen.PowerSpectrum&#45;&gt;imagen.Spectrogram</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M647.781,-618C672.206,-618 699.878,-618 724.214,-618"/>
 <polygon fill="black" stroke="black" points="724.354,-619.75 729.354,-618 724.354,-616.25 724.354,-619.75"/>
+</g>
+<!-- imagen.TimeSeriesParam -->
+<g id="node31" class="node"><title>imagen.TimeSeriesParam</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="859,-932.5 719,-932.5 719,-911.5 859,-911.5 859,-932.5"/>
+<text text-anchor="middle" x="789" y="-919.5" font-family="Vera" font-size="10.00">imagen.TimeSeriesParam</text>
+</g>
+<!-- param.ClassSelector -->
+<g id="node32" class="node"><title>param.ClassSelector</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="640,-932.5 524,-932.5 524,-911.5 640,-911.5 640,-932.5"/>
+<text text-anchor="middle" x="582" y="-919.5" font-family="Vera" font-size="10.00">param.ClassSelector</text>
+</g>
+<!-- param.ClassSelector&#45;&gt;imagen.TimeSeriesParam -->
+<g id="edge28" class="edge"><title>param.ClassSelector&#45;&gt;imagen.TimeSeriesParam</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M640.212,-922C662.986,-922 689.405,-922 713.606,-922"/>
+<polygon fill="black" stroke="black" points="713.734,-923.75 718.734,-922 713.734,-920.25 713.734,-923.75"/>
+</g>
+<!-- imagen.Null -->
+<g id="node40" class="node"><title>imagen.Null</title>
+<polygon fill="none" stroke="black" stroke-width="0.5" points="826,-476.5 752,-476.5 752,-455.5 826,-455.5 826,-476.5"/>
+<text text-anchor="middle" x="789" y="-463.5" font-family="Vera" font-size="10.00">imagen.Null</text>
+</g>
+<!-- imagen.patterngenerator.Constant&#45;&gt;imagen.Null -->
+<g id="edge36" class="edge"><title>imagen.patterngenerator.Constant&#45;&gt;imagen.Null</title>
+<path fill="none" stroke="black" stroke-width="0.5" d="M674.3,-466C699.545,-466 725.69,-466 746.63,-466"/>
+<polygon fill="black" stroke="black" points="746.839,-467.75 751.839,-466 746.838,-464.25 746.839,-467.75"/>
 </g>
 <!-- param.Selector&#45;&gt;param.ClassSelector -->
 <g id="edge58" class="edge"><title>param.Selector&#45;&gt;param.ClassSelector</title>
 <path fill="none" stroke="black" stroke-width="0.5" d="M387.707,-922C424.748,-922 477.358,-922 518.494,-922"/>
 <polygon fill="black" stroke="black" points="518.706,-923.75 523.706,-922 518.706,-920.25 518.706,-923.75"/>
-</g>
-<!-- imagen.Curve -->
-<g id="node59" class="node"><title>imagen.Curve</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="830,-590.5 748,-590.5 748,-569.5 830,-569.5 830,-590.5"/>
-<text text-anchor="middle" x="789" y="-577.5" font-family="Vera" font-size="10.00">imagen.Curve</text>
-</g>
-<!-- imagen.Arc&#45;&gt;imagen.Curve -->
-<g id="edge56" class="edge"><title>imagen.Arc&#45;&gt;imagen.Curve</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M617.585,-580C652.1,-580 704.658,-580 742.474,-580"/>
-<polygon fill="black" stroke="black" points="742.476,-581.75 747.476,-580 742.476,-578.25 742.476,-581.75"/>
-</g>
-<!-- imagen.Null -->
-<g id="node53" class="node"><title>imagen.Null</title>
-<polygon fill="none" stroke="black" stroke-width="0.5" points="826,-438.5 752,-438.5 752,-417.5 826,-417.5 826,-438.5"/>
-<text text-anchor="middle" x="789" y="-425.5" font-family="Vera" font-size="10.00">imagen.Null</text>
-</g>
-<!-- imagen.patterngenerator.Constant&#45;&gt;imagen.Null -->
-<g id="edge50" class="edge"><title>imagen.patterngenerator.Constant&#45;&gt;imagen.Null</title>
-<path fill="none" stroke="black" stroke-width="0.5" d="M674.3,-428C699.545,-428 725.69,-428 746.63,-428"/>
-<polygon fill="black" stroke="black" points="746.839,-429.75 751.839,-428 746.838,-426.25 746.839,-429.75"/>
 </g>
 </g>
 </svg>
