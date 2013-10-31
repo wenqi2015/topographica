@@ -66,7 +66,8 @@
 <span class="sd">measurements and analysis to be executed during a simulation run.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">types</span><span class="o">,</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">types</span><span class="o">,</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">platform</span>
+<span class="kn">from</span> <span class="nn">numpy.version</span> <span class="kn">import</span> <span class="n">full_version</span> <span class="k">as</span> <span class="n">numpy_full_version</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
 <span class="kn">import</span> <span class="nn">topo</span>
@@ -83,6 +84,39 @@
 <span class="n">Launcher</span><span class="o">.</span><span class="n">output_directory</span> <span class="o">=</span> <span class="n">default_output_path</span><span class="p">()</span>
 
 
+<span class="c">#===============================================#</span>
+<span class="c"># Metadata information for full reproducibility #</span>
+<span class="c">#===============================================#</span>
+
+<div class="viewcode-block" id="metadata_git"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.metadata_git">[docs]</a><span class="k">def</span> <span class="nf">metadata_git</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes as argument a path or list of paths for which to obtain GIT</span>
+<span class="sd">    commit information which is returned as a dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># str(foo.decode()) ensures code is Python 3 compatible.</span>
+    <span class="n">commit</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;git&quot;</span><span class="p">,</span> <span class="s">&quot;log&quot;</span><span class="p">,</span> <span class="s">&quot;--oneline&quot;</span><span class="p">,</span> <span class="s">&quot;-n&quot;</span><span class="p">,</span> <span class="s">&quot;1&quot;</span><span class="p">]</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;git&quot;</span><span class="p">,</span> <span class="s">&quot;diff&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span> <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">paths</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">_desc</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">cmd</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&quot;.git&quot;</span><span class="p">)):</span>
+            <span class="n">git_log</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span>
+                       <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">git_log</span><span class="o">.</span><span class="n">communicate</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="s">&#39;git_commit&#39;</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">((</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">_desc</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">commit</span><span class="p">))</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">),</span>
+             <span class="s">&#39;git_diff&#39;</span><span class="p">:</span>    <span class="nb">dict</span><span class="p">((</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">_desc</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">diff</span><span class="p">))</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">)}</span>
+</div>
+<div class="viewcode-block" id="metadata_platform"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.metadata_platform">[docs]</a><span class="k">def</span> <span class="nf">metadata_platform</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Capture basic information about the environment on the current</span>
+<span class="sd">    platform and return as a dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">platform_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">platform_dict</span><span class="p">[</span><span class="s">&#39;hostname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">node</span><span class="p">()</span>
+    <span class="n">platform_dict</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span>
+    <span class="n">platform_dict</span><span class="p">[</span><span class="s">&#39;numpy&#39;</span><span class="p">]</span>    <span class="o">=</span> <span class="n">numpy_full_version</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="s">&#39;platform&#39;</span> <span class="p">:</span> <span class="n">platform_dict</span> <span class="p">}</span>
+
+</div>
 <div class="viewcode-block" id="param_formatter"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.param_formatter">[docs]</a><span class="k">class</span> <span class="nc">param_formatter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   This class is closely related to the param_formatter class in</span>
@@ -764,7 +798,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 30, 2013.
+      Last updated on Oct 31, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
