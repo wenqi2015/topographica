@@ -127,7 +127,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x7f258c0&gt;, &lt;function clear_event_queue at 0x7f1fed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x8c708c0&gt;, &lt;function clear_event_queue at 0x8c8bed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -169,7 +169,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
         itself.</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">measurement_storage_hook</span></tt> (<em>constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface to store measurements after they have been completed.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x6f7acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x843acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -178,7 +178,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 </dl>
 <dl class="attribute">
 <dt id="topo.analysis.featureresponses.FeatureResponses.set_cmd_overrides">
-<tt class="descname">set_cmd_overrides</tt><em class="property"> = &lt;functools.partial object at 0x733eba8&gt;</em><a class="reference internal" href="../_modules/topo/analysis/featureresponses.html#FeatureResponses.set_cmd_overrides"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.analysis.featureresponses.FeatureResponses.set_cmd_overrides" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_cmd_overrides</tt><em class="property"> = &lt;functools.partial object at 0x7cf8ba8&gt;</em><a class="reference internal" href="../_modules/topo/analysis/featureresponses.html#FeatureResponses.set_cmd_overrides"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.analysis.featureresponses.FeatureResponses.set_cmd_overrides" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -192,7 +192,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x7f258c0&gt;, &lt;function clear_event_queue at 0x7f1fed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x8c708c0&gt;, &lt;function clear_event_queue at 0x8c8bed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -237,7 +237,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 </dl>
 <p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">continue_measurement</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x6f7acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x843acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -266,7 +266,7 @@ selectivity maps.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x7f258c0&gt;, &lt;function clear_event_queue at 0x7f1fed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x8c708c0&gt;, &lt;function clear_event_queue at 0x8c8bed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -318,7 +318,7 @@ selectivity maps.</p>
         etc. from the distribution of responses. Note that this default
         is overridden by specific functions for individual features, if
         specified in the Feature objects.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x6f7acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x843acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -357,7 +357,7 @@ the storage_fn and are finally returned.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x7f258c0&gt;, &lt;function clear_event_queue at 0x7f1fed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x8c708c0&gt;, &lt;function clear_event_queue at 0x8c8bed8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">curve_params</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Curve label, specifying the value along some feature dimension.</dd>
@@ -405,7 +405,7 @@ the storage_fn and are finally returned.</p>
         itself.</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">measurement_storage_hook</span></tt> (<em>constant=False, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface to store measurements after they have been completed.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x6f7acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x843acf8&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
