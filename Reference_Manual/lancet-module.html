@@ -52,6 +52,8 @@
             
   <div class="section" id="lancet">
 <h1>lancet<a class="headerlink" href="#lancet" title="Permalink to this headline">¶</a></h1>
+<div class="inheritance_box"><img src="../_images/inheritance73beadcb5f.svg" usemap="#inheritance73beadcb5f" class="inheritance"/></div><map id="inheritance73beadcb5f" name="inheritance73beadcb5f">
+</map>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -106,6 +108,24 @@ class is designed to launch commands on Sun Grid Engine clusters.</p>
 consistency and offers an in-depth review of all settings before
 launch. The goal is to help users identify mistakes early before
 consuming computational time and resources.</p>
+<dl class="class">
+<dt id="lancet.vcs_metadata">
+<em class="property">class </em><tt class="descclassname">lancet.</tt><tt class="descname">vcs_metadata</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/lancet.html#vcs_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lancet.vcs_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<p>Simple utility to capture basic version control information for
+Git, SVN and Mercurial. Returns a dictionary with the version,
+latest commit message and the diffs relative to the current
+working directories. Can be customized by setting the commands
+dictionary at the class level.</p>
+<dl class="docutils">
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">commands</span></tt> (<em>allow_None=False, constant=False, default={&#8216;.hg&#8217;: ([&#8216;hg&#8217;, &#8216;log&#8217;, &#8216;-r&#8217;, &#8216;tip&#8217;], [&#8216;hg&#8217;, &#8216;log&#8217;, &#8216;-l&#8217;, &#8216;1&#8217;], [&#8216;hg&#8217;, &#8216;diff&#8217;]), &#8216;.git&#8217;: ([&#8216;git&#8217;, &#8216;rev-parse&#8217;, &#8216;HEAD&#8217;], [&#8216;git&#8217;, &#8216;log&#8217;, &#8216;&#8211;oneline&#8217;, &#8216;-n&#8217;, &#8216;1&#8217;], [&#8216;git&#8217;, &#8216;diff&#8217;]), &#8216;.svn&#8217;: ([&#8216;svnversion&#8217;], [&#8216;svn&#8217;, &#8216;log&#8217;, &#8216;-l&#8217;, &#8216;1&#8217;, &#8216;-q&#8217;], [&#8216;svn&#8217;, &#8216;diff&#8217;])}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The subprocess command lists to get the version, commit
+       message and diffs for different version control systems. The
+       commands are executed if a subdirectory matching the dictionary
+       key exists</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 </div>
