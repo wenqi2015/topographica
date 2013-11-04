@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/topo.js"></script>
     <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" />
-    <link rel="next" title="GCAL Orientation Map" href="gcal.html" />
+    <link rel="next" title="User Manual" href="../User_Manual/index.html" />
     <link rel="prev" title="Translating UNIX commands to Windows" href="../Downloads/win32notes.html" /> 
   </head>
   <body>
@@ -35,7 +35,7 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="gcal.html" title="GCAL Orientation Map"
+          <a href="../User_Manual/index.html" title="User Manual"
              accesskey="N">next</a></li>
         <li class="right" >
           <a href="../Downloads/win32notes.html" title="Translating UNIX commands to Windows"
@@ -63,46 +63,36 @@
 <p>Topographica comes with the following step-by-step guides to running
 simulations:</p>
 <p><a class="reference internal" href="gcal.html"><em>GCAL Orientation Map</em></a></p>
-<p>How to run and test a simple orientation map simulation using the
-GCAL cortical model from
-<a class="reference external" href="http://dx.doi.org/10.1523/JNEUROSCI.1037-13.2013">Stevens et al. (J. Neuroscience 2013)</a>.
-The tutorial allows you to present various objects to a saved
-orientation map network, and to visualize and analyze the
-responses. It also shows how to develop a new simulation using
-different input patterns.</p>
-<p><a class="reference internal" href="lissom_oo_or.html"><em>LISSOM Orientation Map</em></a></p>
-<p>Same tutorial as for GCAL, but using the older, more complex, and less
-robust LISSOM model from
-<a class="reference external" href="http://computationalmaps.org">Miikkulainen et al. (2005)</a>.</p>
+<p>How to run and test a simple orientation map simulation in the
+Topographica Tk GUI using the GCAL cortical model from <a class="reference external" href="http://dx.doi.org/10.1523/JNEUROSCI.1037-13.2013">Stevens et
+al. (J. Neuroscience 2013)</a>.  The tutorial
+allows you to present various objects to a saved orientation map
+network, and to visualize and analyze the responses. It also shows how
+to develop a new simulation using different input patterns.</p>
+<p>This tutorial supersedes an <a class="reference external" href="./lissom_oo_or.html">older tutorial</a> using the LISSOM model
+from  <a class="reference external" href="http://computationalmaps.org">Miikkulainen et al. (2005)</a>.</p>
 <p><a class="reference internal" href="som_retinotopy.html"><em>SOM Retinotopic Map</em></a></p>
-<p>How to run a model that develops selectivity for position, mapping
-the input space to the cortical space. The model uses the abstract
-SOM algorithm, focusing on the basic principles of self-organization
-rather than modeling any particular biological system.</p>
+<p>How to run a model in the Topographica Tk GUI that develops
+selectivity for position, mapping the input space to the cortical
+space. The model uses the abstract SOM algorithm, focusing on the
+basic principles of self-organization rather than modeling any
+particular biological system.</p>
+<p><a class="reference external" href="../_static/gcal_notebook.html"><em>GCAL Model definition</em></a></p>
+<p>This is an <a class="reference external" href="http://ipython.org/notebook.html">IPython Notebook</a> that
+steps through the definition of the GCAL model used in the tutorial
+above. This demonstrates how a Topographica model can be interactively
+explored in the Notebook environment. Installation instructions, the
+notebooks themselves and all the supporting code <a class="reference external" href="https://github.com/ioam/topographica/tree/master/models/stevens.jn13">may be found here</a>.</p>
+<p><a class="reference external" href="../_static/stevens_jn13_notebook.html"><em>Reproducing the GCAL paper</em></a></p>
+<p>This second <a class="reference external" href="http://ipython.org/notebook.html">IPython Notebook</a>
+uses the GCAL model definition notebook described above to reproduce
+the figures shown in <a class="reference external" href="http://dx.doi.org/10.1523/JNEUROSCI.1037-13.2013">Stevens et al. (J. Neuroscience 2013)</a>. This notebook
+demonstrates an agile, reproducible workflow using IPython Notebook
+and Lancet as described in <a class="reference external" href="http://homepages.inf.ed.ac.uk/jbednar/papers/stevens.fin13_submitted.pdf">this newly submitted paper</a>
+with installation instructions and supporting material <a class="reference external" href="https://github.com/ioam/topographica/tree/master/models/stevens.jn13">available here</a>.</p>
 <p>These should be good starting points for seeing how Topographica
 works and how to use a Topographica model. If you develop any other
 tutorials for your own models, we would love to add them here!</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="gcal.html">GCAL Orientation Map</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gcal.html#response-of-an-orientation-map">Response of an orientation map</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gcal.html#learning-optional">Learning (optional)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gcal.html#exploring-further">Exploring further</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="lissom_oo_or.html">LISSOM Orientation Map</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lissom_oo_or.html#response-of-an-orientation-map">Response of an orientation map</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lissom_oo_or.html#learning-optional">Learning (optional)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lissom_oo_or.html#exploring-further">Exploring further</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="som_retinotopy.html">SOM Retinotopic Map</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="som_retinotopy.html#self-organization">Self-organization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="som_retinotopy.html#exploring-further">Exploring further</a></li>
-</ul>
-</li>
-</ul>
-</div>
 </div>
 
 
@@ -131,9 +121,7 @@ tutorials for your own models, we would love to add them here!</p>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
-<li><a class="reference internal" href="#">Tutorials</a><ul>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Tutorials</a></li>
 </ul>
 
 
@@ -141,8 +129,8 @@ tutorials for your own models, we would love to add them here!</p>
   <p class="topless"><a href="../Downloads/win32notes.html"
                         title="previous chapter">Translating UNIX commands to Windows</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="gcal.html"
-                        title="next chapter">GCAL Orientation Map</a></p>
+  <p class="topless"><a href="../User_Manual/index.html"
+                        title="next chapter">User Manual</a></p>
 <h3>This Page</h3>
 <ul class="this-page-menu">
 	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Tutorials/index.rst" rel="nofollow">Edit on GitHub</a></li>
@@ -169,7 +157,7 @@ tutorials for your own models, we would love to add them here!</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="gcal.html" title="GCAL Orientation Map"
+          <a href="../User_Manual/index.html" title="User Manual"
              >next</a></li>
         <li class="right" >
           <a href="../Downloads/win32notes.html" title="Translating UNIX commands to Windows"
