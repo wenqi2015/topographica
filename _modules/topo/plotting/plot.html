@@ -288,7 +288,7 @@
 <span class="sd">        will be used as Hue, the matrix is normalized in range 0..1</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sheet_view_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
-        <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">sv</span> <span class="o">==</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">sv</span><span class="o">.</span><span class="n">top</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">matrix</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">else</span><span class="p">:</span>
@@ -313,7 +313,7 @@
         <span class="sd">&quot;&quot;&quot; Set the Plot plot_src_name. Called when Plot is created&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span>
             <span class="n">sheet_view_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
-            <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">sv</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
                  <span class="bp">self</span><span class="o">.</span><span class="n">plot_src_name</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">src_name</span>
                  <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">precedence</span>
@@ -328,8 +328,8 @@
 <span class="sd">        Sub-function used by plot: get the matrix shape and the bounding box</span>
 <span class="sd">        of the SheetViews that constitute the TemplatePlot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">channel</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">channel</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">sv</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="n">shape</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
                 <span class="n">box</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">bounds</span>
@@ -735,6 +735,7 @@
 <li><a href="../../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../../Links/index.html">Links</a></li>
 <li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../../index.html">Table Of Contents</a></h3>
 
@@ -783,7 +784,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

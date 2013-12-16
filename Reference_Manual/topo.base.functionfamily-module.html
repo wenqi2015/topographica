@@ -54,6 +54,12 @@
 <h1>topo.base.functionfamily<a class="headerlink" href="#topo-base-functionfamily" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritance8ed98380c7.svg" usemap="#inheritance8ed98380c7" class="inheritance"/></div><map id="inheritance8ed98380c7" name="inheritance8ed98380c7">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.base.functionfamily.pyc-module.html">topo.base.functionfamily.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.base.functionfamily">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.base.functionfamily" title="Permalink to this headline">¶</a></h2>
 <p>Basic function objects.</p>
@@ -112,35 +118,6 @@ CFPLF_Plugin.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="topo.base.functionfamily.PatternDrivenAnalysis">
-<em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">PatternDrivenAnalysis</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#PatternDrivenAnalysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.PatternDrivenAnalysis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
-<p>Abstract base class for various stimulus-response types of analysis.</p>
-<p>This type of analysis consists of presenting a set of input
-patterns and collecting the responses to each one, which one will
-often want to do in a way that does not affect the current state
-of the network.</p>
-<p>To achieve this, the class defines several types of hooks where
-arbitrary function objects (i.e., callables) can be registered.
-These hooks are generally used to ensure that unrelated previous
-activity is eliminated, that subsequent patterns do not interact,
-and that the initial state is restored after analysis.</p>
-<p>Any subclasses must ensure that these hook lists are run at the
-appropriate stage in their processing, using e.g.
-&#8220;for f in some_hook_list: f()&#8221;.</p>
-<dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x88009b0&gt;, &lt;function clear_event_queue at 0x8800050&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>List of callable objects to be run before each pattern is presented.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>List of callable objects to be run after each pattern is presented.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_analysis_session_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>List of callable objects to be run after an analysis session ends.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_analysis_session_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>List of callable objects to be run before an analysis session begins.</dd>
-</dl>
-</dd></dl>
-
-<dl class="class">
 <dt id="topo.base.functionfamily.ResponseFn">
 <em class="property">class </em><tt class="descclassname">topo.base.functionfamily.</tt><tt class="descname">ResponseFn</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/functionfamily.html#ResponseFn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.functionfamily.ResponseFn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
@@ -173,10 +150,12 @@ appropriate stage in their processing, using e.g.
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.base.functionfamily</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.base.functionfamily">Module</a></li>
 </ul>
 </li>
@@ -222,7 +201,7 @@ appropriate stage in their processing, using e.g.
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

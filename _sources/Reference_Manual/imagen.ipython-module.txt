@@ -10,5 +10,5 @@ Module
 ======
 
 .. automodule:: imagen.ipython
-	:members:
-	:show-inheritance:
+   :members:
+   :show-inheritance:

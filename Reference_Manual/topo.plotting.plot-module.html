@@ -54,6 +54,12 @@
 <h1>topo.plotting.plot<a class="headerlink" href="#topo-plotting-plot" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritance49aa83dbeb.svg" usemap="#inheritance49aa83dbeb" class="inheritance"/></div><map id="inheritance49aa83dbeb" name="inheritance49aa83dbeb">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.plotting.plot.pyc-module.html">topo.plotting.plot.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.plotting.plot">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.plotting.plot" title="Permalink to this headline">¶</a></h2>
 <p>Plot class.</p>
@@ -68,15 +74,15 @@ in each unit, colored according to the order or preference, and selectivity
 This plot expects channels named &#8220;OrX&#8221; &#8220;SelX&#8221;, with &#8220;X&#8221; the number
 ranking the preferred orientations.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_brightness</span></tt> (<em>allow_None=False, bounds=(50, 100), constant=False, default=90, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_brightness</span></tt> (<em>allow_None=False, bounds=(50, 100), constant=False, default=90, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>max brightness of lines</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time last warned about stale plots</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">unit_size</span></tt> (<em>allow_None=False, bounds=(9, None), constant=False, default=25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">unit_size</span></tt> (<em>allow_None=False, bounds=(9, None), constant=False, default=25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>box size of a single unit</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">min_brightness</span></tt> (<em>allow_None=False, bounds=(0, 50), constant=False, default=30, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">min_brightness</span></tt> (<em>allow_None=False, bounds=(0, 50), constant=False, default=30, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>min brightness of lines</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time length allowed between bitmaps making up a single plot before warning.
 
        If the difference between the SheetView with the earliest
@@ -94,9 +100,9 @@ ranking the preferred orientations.</p>
 <p>When implemented, construct an RGB plot from a Strength channel,
 optionally colorized using a specified Palette.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time last warned about stale plots</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time length allowed between bitmaps making up a single plot before warning.
 
        If the difference between the SheetView with the earliest
@@ -111,7 +117,7 @@ optionally colorized using a specified Palette.</p>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>Simple Plot object constructed from a specified PIL image.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time length allowed between bitmaps making up a single plot before warning.
 
        If the difference between the SheetView with the earliest
@@ -156,9 +162,9 @@ yield a final scale of 2.0, not 3.0.</p>
 <p>Construct an RGB (red, green, and blue) plot from the Red, Green,
 and Blue channels.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time last warned about stale plots</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time length allowed between bitmaps making up a single plot before warning.
 
        If the difference between the SheetView with the earliest
@@ -175,9 +181,9 @@ and Blue channels.</p>
 <p>Constructs an HSV (hue, saturation, and value) plot by choosing
 the appropriate matrix for each channel.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time last warned about stale plots</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time length allowed between bitmaps making up a single plot before warning.
 
        If the difference between the SheetView with the earliest
@@ -192,9 +198,9 @@ the appropriate matrix for each channel.</p>
 <dd><p>Bases: <a class="reference internal" href="#topo.plotting.plot.Plot" title="topo.plotting.plot.Plot"><tt class="xref py py-class docutils literal"><span class="pre">topo.plotting.plot.Plot</span></tt></a></p>
 <p>A bitmap-based plot as specified by a plot template (or plot channels).</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">warn_time</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time last warned about stale plots</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">staleness_warning</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time length allowed between bitmaps making up a single plot before warning.
 
        If the difference between the SheetView with the earliest
@@ -239,10 +245,12 @@ a description of the arguments.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.plotting.plot</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.plotting.plot">Module</a></li>
 </ul>
 </li>
@@ -288,7 +296,7 @@ a description of the arguments.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

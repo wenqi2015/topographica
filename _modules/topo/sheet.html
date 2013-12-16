@@ -70,7 +70,7 @@
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
 <span class="kn">from</span> <span class="nn">topo.base.projection</span> <span class="kn">import</span> <span class="n">ProjectionSheet</span>  <span class="c"># pyflakes:ignore (API import)</span>
 <span class="kn">from</span> <span class="nn">topo.base.cf</span> <span class="kn">import</span> <span class="n">CFSheet</span>
-<span class="kn">from</span> <span class="nn">topo.misc.generatorsheet</span> <span class="kn">import</span> <span class="n">GeneratorSheet</span>
+<span class="kn">from</span> <span class="nn">topo.base.generatorsheet</span> <span class="kn">import</span> <span class="n">GeneratorSheet</span>
 
 <span class="c"># Imported here for ease of access by users</span>
 <span class="kn">from</span> <span class="nn">topo.base.boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span>  <span class="c"># pyflakes:ignore (API import)</span>
@@ -209,7 +209,7 @@
 <span class="sd">        If active_units_mask is True, only active units will have</span>
 <span class="sd">        their weights normalized.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">projlist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grouped_in_projections</span><span class="p">(</span><span class="s">&#39;JointNormalize&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">projlist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grouped_in_projections</span><span class="p">(</span><span class="s">&#39;JointNormalize&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="n">normtype</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span>
             <span class="k">else</span><span class="p">:</span>
@@ -453,6 +453,7 @@
 <li><a href="../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../Links/index.html">Links</a></li>
 <li><a href="../../Home/pubs.html">Publications</a></li>
+<li><a href="../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../index.html">Table Of Contents</a></h3>
 
@@ -501,7 +502,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

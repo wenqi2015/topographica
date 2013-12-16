@@ -54,14 +54,20 @@
 <h1>topo.misc.lancext<a class="headerlink" href="#topo-misc-lancext" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritance7784a43624.svg" usemap="#inheritance7784a43624" class="inheritance"/></div><map id="inheritance7784a43624" name="inheritance7784a43624">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.misc.lancext.pyc-module.html">topo.misc.lancext.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.misc.lancext">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.misc.lancext" title="Permalink to this headline">¶</a></h2>
 <p>The Topographica Lancet extension allows Topographica simulations to
 be easily integrated into a Lancet workflow (see
-github.com/ioam/lancet). The TopoCommand CommandTemplate is
-appropriate for simple runs using the default analysis function,
-whereas the Analysis and RunBatchCommand allow for more sophisticated
-measurements and analysis to be executed during a simulation run.</p>
+github.com/ioam/lancet). The TopoCommand is appropriate for simple
+runs using the default analysis function, whereas the Analysis and
+RunBatchCommand allow for more sophisticated measurements and analysis
+to be executed during a simulation run.</p>
 <dl class="class">
 <dt id="topo.misc.lancext.Analysis">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">Analysis</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis" title="Permalink to this definition">¶</a></dt>
@@ -97,7 +103,7 @@ metadata dictionary.</p>
 
 <dl class="classmethod">
 <dt id="topo.misc.lancext.Analysis.load">
-<em class="property">classmethod </em><tt class="descname">load</tt><big>(</big><em>tid</em>, <em>batch_info</em>, <em>specs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.load" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><tt class="descname">load</tt><big>(</big><em>tid</em>, <em>specs</em>, <em>root_directory</em>, <em>batch_name</em>, <em>batch_tag</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Classmethod used to load the RunBatchCommand callable into a
 Topographica run_batch context. Loads the pickle file based on
 the batch_name and root directory in batch_info.</p>
@@ -105,7 +111,7 @@ the batch_name and root directory in batch_info.</p>
 
 <dl class="classmethod">
 <dt id="topo.misc.lancext.Analysis.pickle_path">
-<em class="property">classmethod </em><tt class="descname">pickle_path</tt><big>(</big><em>batch_info</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.pickle_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.pickle_path" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><tt class="descname">pickle_path</tt><big>(</big><em>root_directory</em>, <em>batch_name</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.pickle_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.pickle_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Locates the pickle file based on the given launch info
 dictionary. Used by load as a classmethod and by save as an
 instance method.</p>
@@ -155,18 +161,18 @@ TopoCommand as it allows you to build a run_batch analysis
 incrementally.</p>
 <dl class="docutils">
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">executable</span></tt> (<em>allow_None=False, constant=True, default=python, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The executable that is to be run by this
-        CommandTemplate. Unless the executable is a standard command
-        expected on the system path, this should be an absolute
-        path. By default this invokes python or the python environment
-        used to invoke the CommandTemplate (eg. topographica).</dd>
+<dd>The executable that is to be run by this Command. Unless the
+        executable is a standard command expected on the system path,
+        this should be an absolute path. By default this invokes
+        python or the python environment used to invoke the Command
+        (Topographica for instance).</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">param_formatter</span></tt> (<em>constant=False, default=param_formatter(), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Used to specify run_batch formatting.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">analysis_fn</span></tt> (<em>allow_None=False, constant=False, default=default_analysis_function, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The name of the analysis_fn to run. If modified from the
        default, the named callable will need to be imported into the
        namespace using a &#8216;-c&#8217; command in topo_flag_options.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">tag</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to label the run_batch generated directory with the
@@ -234,7 +240,7 @@ analysis.</p>
 <dl class="class">
 <dt id="topo.misc.lancext.TopoCommand">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">TopoCommand</tt><big>(</big><em>tyfile</em>, <em>executable=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#TopoCommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.TopoCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="lancet.launch-module.html#lancet.launch.CommandTemplate" title="lancet.launch.CommandTemplate"><tt class="xref py py-class docutils literal"><span class="pre">lancet.launch.CommandTemplate</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="lancet.launch-module.html#lancet.launch.Command" title="lancet.launch.Command"><tt class="xref py py-class docutils literal"><span class="pre">lancet.launch.Command</span></tt></a></p>
 <p>TopoCommand is designed to to format Lancet Args objects into
 run_batch commands in a general way. Note that Topographica is
 always invoked with the -a flag so all of topo.command is imported.</p>
@@ -245,18 +251,18 @@ run_batch except the &#8216;times&#8217; parameter which may vary specified
 arbitrarily by the Lancet Args object.</p>
 <dl class="docutils">
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">executable</span></tt> (<em>allow_None=False, constant=True, default=python, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The executable that is to be run by this
-        CommandTemplate. Unless the executable is a standard command
-        expected on the system path, this should be an absolute
-        path. By default this invokes python or the python environment
-        used to invoke the CommandTemplate (eg. topographica).</dd>
+<dd>The executable that is to be run by this Command. Unless the
+        executable is a standard command expected on the system path,
+        this should be an absolute path. By default this invokes
+        python or the python environment used to invoke the Command
+        (Topographica for instance).</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">param_formatter</span></tt> (<em>constant=False, default=param_formatter(), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Used to specify run_batch formatting.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">analysis_fn</span></tt> (<em>allow_None=False, constant=False, default=default_analysis_function, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The name of the analysis_fn to run. If modified from the
        default, the named callable will need to be imported into the
        namespace using a &#8216;-c&#8217; command in topo_flag_options.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">tag</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to label the run_batch generated directory with the
@@ -329,7 +335,7 @@ point error.</p>
 </ul>
 <p>varying (may be toggled).</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">truncation_limit</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">truncation_limit</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If None, no truncation is performed, otherwise specifies the
         maximum length of any given specification value.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">abbreviations</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -376,10 +382,12 @@ point error.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.misc.lancext</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.misc.lancext">Module</a></li>
 </ul>
 </li>
@@ -425,7 +433,7 @@ point error.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

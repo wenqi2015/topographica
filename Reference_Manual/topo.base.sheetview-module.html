@@ -54,6 +54,12 @@
 <h1>topo.base.sheetview<a class="headerlink" href="#topo-base-sheetview" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritance5c943e4cbf.svg" usemap="#inheritance5c943e4cbf" class="inheritance"/></div><map id="inheritance5c943e4cbf" name="inheritance5c943e4cbf">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.base.sheetview.pyc-module.html">topo.base.sheetview.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.base.sheetview">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.base.sheetview" title="Permalink to this headline">¶</a></h2>
 <p>Topographica SheetView objects and its subclasses.</p>
@@ -78,15 +84,15 @@ compoennt. Original docstring for ProjectionView:</p>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>Class provided for backward compatibility with earlier SheetView
 component.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cyclic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If cyclic is True, this value is the cyclic range.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">timestamp</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">timestamp</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The initial timestamp. If None, the DataView will not all slicing of
             a time interval and record method will be disabled.</dd>
 </dl>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The bounds of the two dimensional coordinate system in which the data resides.</dd>
@@ -142,10 +148,12 @@ accessed by any valid key.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.base.sheetview</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.base.sheetview">Module</a></li>
 </ul>
 </li>
@@ -191,7 +199,7 @@ accessed by any valid key.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

@@ -54,6 +54,12 @@
 <h1>imagen.transferfn<a class="headerlink" href="#imagen-transferfn" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritancea9586fb404.svg" usemap="#inheritancea9586fb404" class="inheritance"/></div><map id="inheritancea9586fb404" name="inheritancea9586fb404">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="imagen.transferfn.pyc-module.html">imagen.transferfn.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-imagen.transferfn">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-imagen.transferfn" title="Permalink to this headline">¶</a></h2>
 <p>TransferFns: accept and modify a 2d array</p>
@@ -63,7 +69,7 @@
 <dd><p>Bases: <a class="reference internal" href="#imagen.transferfn.TransferFn" title="imagen.transferfn.TransferFn"><tt class="xref py py-class docutils literal"><span class="pre">imagen.transferfn.TransferFn</span></tt></a></p>
 <p>Forces all values below a threshold to zero, and above it to 1.0.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Decision point for determining binary value.</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -80,7 +86,7 @@ to make this true.  The array is unchanged if the sum of absolute
 values is zero.  For arrays of non-negative values where at least
 one is non-zero, this operation is equivalent to a divisive sum
 normalization.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -90,7 +96,7 @@ normalization.</p>
 <p>TransferFn to divide an array by its Euclidean length (aka its L2 norm).</p>
 <p>For a given array interpreted as a flattened vector, keeps the
 Euclidean length of the vector at a specified norm_value.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -104,7 +110,7 @@ elements divisively so that the maximum absolute value is the
 specified norm_value.</p>
 <p>The L-infinity norm is also known as the divisive infinity norm
 and Chebyshev norm.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -117,8 +123,8 @@ vector, keeps the Lp-norm of the vector at a specified norm_value.
 Faster versions are provided separately for the typical L1-norm
 and L2-norm cases.  Defaults to be the same as an L2-norm, i.e.,
 DivisiveNormalizeL2.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">p</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">p</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -139,7 +145,7 @@ behavior, add side effects, or anything of that nature.</p>
 <dd><p>Bases: <a class="reference internal" href="#imagen.transferfn.TransferFn" title="imagen.transferfn.TransferFn"><tt class="xref py py-class docutils literal"><span class="pre">imagen.transferfn.TransferFn</span></tt></a></p>
 <p>Forces all values below a threshold to zero, and leaves others unchanged.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Decision point for determining values to clip.</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -189,10 +195,12 @@ one matrix argument, and are expected to change that matrix in place.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">imagen.transferfn</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-imagen.transferfn">Module</a></li>
 </ul>
 </li>
@@ -238,7 +246,7 @@ one matrix argument, and are expected to change that matrix in place.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

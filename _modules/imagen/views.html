@@ -69,7 +69,6 @@
 <span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
 <span class="kn">from</span> <span class="nn">ndmapping</span> <span class="kn">import</span> <span class="n">NdMapping</span>
 
-
 <div class="viewcode-block" id="SheetIndexing"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetIndexing">[docs]</a><span class="k">class</span> <span class="nc">SheetIndexing</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    SheetIndexing provides methods to transform indices and slices from one</span>
@@ -89,6 +88,8 @@
 <span class="s">        be stored as data. NOT YET IMPLEMENTED.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="n">_deep_indexable</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">_create_scs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
@@ -160,6 +161,25 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">coord1</span><span class="p">,</span> <span class="n">coord2</span><span class="p">]</span>
 
+
+</div>
+<div class="viewcode-block" id="SheetStack"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetStack">[docs]</a><span class="k">class</span> <span class="nc">SheetStack</span><span class="p">(</span><span class="n">NdMapping</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A SheetStack is a stack of SheetViews over some dimensions. The</span>
+<span class="sd">    dimension may be a spatial dimension (i.e., a ZStack), time</span>
+<span class="sd">    (specifying a frame sequence) or any other dimensions along</span>
+<span class="sd">    which SheetViews may vary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">enforced_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SheetView</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_element_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_element_check</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;bounds&#39;</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;All SheetView elements must have matching bounds.&quot;</span><span class="p">)</span>
+
+
 </div>
 <div class="viewcode-block" id="ProjectionGrid"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.ProjectionGrid">[docs]</a><span class="k">class</span> <span class="nc">ProjectionGrid</span><span class="p">(</span><span class="n">SheetIndexing</span><span class="p">,</span> <span class="n">NdMapping</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -193,6 +213,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="o">*</span><span class="n">coords</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Specified coordinate is outside grid bounds,&#39;</span>
                          <span class="s">&#39; data could not be added&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_element_check</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">coords</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_indices</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ProjectionGrid</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_add_item</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
 
@@ -219,25 +240,122 @@
                                               <span class="k">else</span> <span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))[</span><span class="n">dim</span><span class="p">]</span>
 
 
-    <span class="k">def</span> <span class="nf">_update_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Subclasses default method to allow updating of nested data structures</span>
-<span class="sd">        rather than simply overriding them.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">coords</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">coords</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
-
-
 <div class="viewcode-block" id="ProjectionGrid.update"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.ProjectionGrid.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds bounds checking to the default update behavior.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;Cannot combine </span><span class="si">%s</span><span class="s">s with different&#39;</span>
-                            <span class="s">&#39; bounds.&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_class__</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ProjectionGrid</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div></div>
+                            <span class="s">&#39; bounds.&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProjectionGrid</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+
+</div></div>
+<div class="viewcode-block" id="Timeline"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.Timeline">[docs]</a><span class="k">class</span> <span class="nc">Timeline</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Timeline object takes a time function of type param.Time and</span>
+<span class="sd">    uses this object&#39;s context-manager facilities to sample</span>
+<span class="sd">    time-varying objects over a given portion of the timeline. The</span>
+<span class="sd">    return values are ImaGen data structures which may then be</span>
+<span class="sd">    manipulated, stored or visualized.</span>
+
+<span class="sd">    For instance, an ImaGen pattern with time-varying Dynamic</span>
+<span class="sd">    parameters may be sampled using the &#39;stack&#39; method. Each snapshot</span>
+<span class="sd">    of the pattern becomes a SheetView held in the returned</span>
+<span class="sd">    SheetStack. Each of the spatial discretizations in each SheetView</span>
+<span class="sd">    (a numpy array) is generated at a particular time according to the</span>
+<span class="sd">    time_fn used by the pattern and its parameter. For this to work</span>
+<span class="sd">    correctly, the time_fn of the objects sampled must match the</span>
+<span class="sd">    &#39;time&#39; parameter, which is set to param.Dynamic.time_fn by</span>
+<span class="sd">    default. The returned SheetStack is then a spatiotemporal sampling</span>
+<span class="sd">    of the pattern, i.e., as a stack of images over time.</span>
+
+<span class="sd">    A Timeline is also a context manager that extends the behaviour of</span>
+<span class="sd">    Time by surrounding the block with state_push and state_pop for a</span>
+<span class="sd">    given parameterized object or list of parameterized objects. The</span>
+<span class="sd">    objects to state_push and pop are supplied to the __call__ method</span>
+<span class="sd">    which returns the context manager. For an example for how Timeline</span>
+<span class="sd">    and Time may be used as a context manager, consult the example</span>
+<span class="sd">    given in the docstring of the Time class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">time</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Dynamic</span><span class="o">.</span><span class="n">time_fn</span><span class="p">,</span>
+                               <span class="n">class_</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Time</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        The time object shared across the time-varying objects</span>
+<span class="s">        that are to be sampled.&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dynamic</span><span class="o">.</span><span class="n">time_fn</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Timeline</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objs</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Call needs to be supplied with the object(s) that require state push and pop.&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objs</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">__enter__</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_objs</span><span class="p">:</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_objs</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">__exit__</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a context manager which acts like the Time context</span>
+<span class="sd">        manager but also pushes and pops the state of the specified</span>
+<span class="sd">        object or collection of objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_objs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">objs</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_objs</span> <span class="o">=</span> <span class="p">[</span><span class="n">objs</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+<div class="viewcode-block" id="Timeline.ndmap"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.Timeline.ndmap">[docs]</a>    <span class="k">def</span> <span class="nf">ndmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">until</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+              <span class="n">value_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">obj</span><span class="p">()):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds an NDMapping across time, taking snapshots of some</span>
+<span class="sd">        time-varying object. The value stored in the NDMapping is</span>
+<span class="sd">        generated by evaluating value_fn from the time &#39;offset&#39; till</span>
+<span class="sd">        the time &#39;until&#39; in steps of &#39;timestep&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">ndmap</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">])</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">.</span><span class="n">until</span> <span class="o">=</span> <span class="n">until</span>
+            <span class="k">if</span> <span class="n">timestep</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">t</span><span class="o">.</span><span class="n">timestep</span> <span class="o">=</span> <span class="n">timestep</span>
+            <span class="n">t</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">value_fn</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                <span class="n">ndmap</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">return</span> <span class="n">ndmap</span>
+
+</div>
+<div class="viewcode-block" id="Timeline.stack"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.Timeline.stack">[docs]</a>    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+              <span class="n">array_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">obj</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds a SheetStack from some time-varying object with bounds</span>
+<span class="sd">        and representation as a numpy array. The bounds are used</span>
+<span class="sd">        together with the numpy arrays returned by array_fn to build a</span>
+<span class="sd">        series of SheetViews into a SheetStack.</span>
+
+<span class="sd">        This method accepts time-varying Imagen patterns directly,</span>
+<span class="sd">        without needing to specify array_fn.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">bounds</span> <span class="k">if</span> <span class="p">(</span><span class="n">bounds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">bounds</span>
+        <span class="n">ndmap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndmap</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="n">timestep</span><span class="p">,</span>
+                           <span class="n">value_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">array_fn</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span>
+                                                          <span class="n">bounds</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">SheetStack</span><span class="p">(</span><span class="n">ndmap</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>
@@ -262,6 +380,7 @@
 <li><a href="../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../Links/index.html">Links</a></li>
 <li><a href="../../Home/pubs.html">Publications</a></li>
+<li><a href="../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../index.html">Table Of Contents</a></h3>
 
@@ -311,7 +430,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

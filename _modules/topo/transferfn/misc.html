@@ -282,7 +282,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">=</span><span class="bp">None</span>     <span class="c"># To allow state_push at init</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y_avg</span><span class="o">=</span><span class="bp">None</span> <span class="c"># To allow state_push at init</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_next_update_timestamp</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">)</span>
+        <span class="n">next_timestamp</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_update_timestamp</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">convert_to_time_type</span><span class="p">(</span><span class="n">next_timestamp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_y_avg_prev</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_x_prev</span> <span class="o">=</span> <span class="bp">None</span>
 
@@ -490,6 +491,7 @@
 <li><a href="../../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../../Links/index.html">Links</a></li>
 <li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../../index.html">Table Of Contents</a></h3>
 
@@ -539,7 +541,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

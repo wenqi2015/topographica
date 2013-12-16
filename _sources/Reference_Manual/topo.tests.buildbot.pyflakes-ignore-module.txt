@@ -10,5 +10,5 @@ Module
 ======
 
 .. automodule:: topo.tests.buildbot.pyflakes-ignore
-	:members:
-	:show-inheritance:
+   :members:
+   :show-inheritance:

@@ -57,9 +57,13 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><a class="reference external" href="topo.transferfn.optimized.pyc-module.html">topo.transferfn.optimized.pyc</a></li>
+<li><a class="reference external" href="topo.transferfn.__init__.pyc-module.html">topo.transferfn.__init__.pyc</a></li>
 <li><a class="reference external" href="topo.transferfn.optimized-module.html">topo.transferfn.optimized</a></li>
+<li><a class="reference external" href="topo.transferfn.projfn.pyc-module.html">topo.transferfn.projfn.pyc</a></li>
 <li><a class="reference external" href="topo.transferfn.misc-module.html">topo.transferfn.misc</a></li>
 <li><a class="reference external" href="topo.transferfn.projfn-module.html">topo.transferfn.projfn</a></li>
+<li><a class="reference external" href="topo.transferfn.misc.pyc-module.html">topo.transferfn.misc.pyc</a></li>
 </ul>
 </div>
 <div class="section" id="module-topo.transferfn">
@@ -143,7 +147,7 @@ previous state_push.</p>
 <p>Abstract base class for TransferFns that use a random number generator.</p>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">random_generator</span></tt> (<em>constant=False, default=&lt;mtrand.RandomState object at 0xce76150&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">random_generator</span></tt> (<em>constant=False, default=&lt;mtrand.RandomState object at 0xac79f18&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>numpy&#8217;s RandomState provides methods for generating random
         numbers (see RandomState&#8217;s help for more information).
 
@@ -180,9 +184,9 @@ clips at zero), and then raises the result to the e-th power
 (where the exponent e can be selected arbitrarily).</p>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">e</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">e</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The exponent to which the thresholded value is raised.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The threshold level subtracted from x.</dd>
 </dl>
 </dd></dl>
@@ -206,10 +210,10 @@ performs this transformation:</p>
 <p>where x is a matrix value and P(r) samples from a Poisson
 distribution with rate r.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">baseline_rate</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">baseline_rate</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Constant to add to the input after scaling, resulting in a baseline
        Poisson process rate.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">random_generator</span></tt> (<em>constant=False, default=&lt;mtrand.RandomState object at 0xce76150&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">random_generator</span></tt> (<em>constant=False, default=&lt;mtrand.RandomState object at 0xac79f18&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>numpy&#8217;s RandomState provides methods for generating random
         numbers (see RandomState&#8217;s help for more information).
 
@@ -218,12 +222,12 @@ distribution with rate r.</p>
         and hence its state. To create an instance of an
         TransferFnWithRandomState subclass that has its own state, set
         this parameter on the instance to a new RandomState instance.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Amount by which to scale the input.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
         Allows plasticity to be turned off during analysis, and then re-enabled.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Amount by which to scale the output (e.g. 1.0/in_scale).</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -242,12 +246,12 @@ activity by this scaling factor.</p>
 <p>The plastic parameter allows the updating of the average values
 to be disabled temporarily, e.g. while presenting test patterns.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">target</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.01, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">target</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.01, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Target average activity for each unit.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">smoothing</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.9997, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">smoothing</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.9997, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Determines the degree of weighting of previous activity vs.
         current activity when calculating the average.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">step</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">step</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>How often to calculate the average activity and scaling factor.</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -266,9 +270,9 @@ to be disabled temporarily, e.g. while presenting test patterns.</p>
 <p>Values below the lower_threshold are set to zero, those above
 the upper threshold are set to 1.0, and those in between are
 scaled linearly.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">lower_bound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">lower_bound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">upper_bound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">upper_bound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -303,7 +307,7 @@ behavior, add side effects, or anything of that nature.</p>
 exponential falloff.</p>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">time_constant</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">time_constant</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Controls the time scale of the interpolation.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -322,7 +326,7 @@ to make this true.  The array is unchanged if the sum of absolute
 values is zero.  For arrays of non-negative values where at least
 one is non-zero, this operation is equivalent to a divisive sum
 normalization.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -332,7 +336,7 @@ normalization.</p>
 <p>TransferFn to divide an array by its Euclidean length (aka its L2 norm).</p>
 <p>For a given array interpreted as a flattened vector, keeps the
 Euclidean length of the vector at a specified norm_value.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -356,7 +360,7 @@ NIST/SEMATECH e-Handbook of Statistical Methods, Single Exponential Smoothing
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">b_init</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Additive parameter controlling the exponential.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">random_generator</span></tt> (<em>constant=False, default=&lt;mtrand.RandomState object at 0xce76150&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">random_generator</span></tt> (<em>constant=False, default=&lt;mtrand.RandomState object at 0xac79f18&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>numpy&#8217;s RandomState provides methods for generating random
         numbers (see RandomState&#8217;s help for more information).
 
@@ -365,16 +369,16 @@ NIST/SEMATECH e-Handbook of Statistical Methods, Single Exponential Smoothing
         and hence its state. To create an instance of an
         TransferFnWithRandomState subclass that has its own state, set
         this parameter on the instance to a new RandomState instance.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">smoothing</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.9997, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">smoothing</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.9997, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Weighting of previous activity vs. current activity when
         calculating the average.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.01, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.01, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Target average firing rate.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">step</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">step</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>How often to update the a and b parameters.
         For instance, step=1 means to update it every time this TF is
         called; step=2 means to update it every other time.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">eta</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0002, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">eta</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0002, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Learning rate for homeostatic plasticity.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">a_init</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Multiplicative parameter controlling the exponential.</dd>
@@ -393,7 +397,7 @@ NIST/SEMATECH e-Handbook of Statistical Methods, Single Exponential Smoothing
 <dd><p>Bases: <a class="reference internal" href="imagen.transferfn-module.html#imagen.transferfn.TransferFn" title="imagen.transferfn.TransferFn"><tt class="xref py py-class docutils literal"><span class="pre">imagen.transferfn.TransferFn</span></tt></a></p>
 <p>Forces all values below a threshold to zero, and above it to 1.0.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Decision point for determining binary value.</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -411,12 +415,12 @@ constant smoothing factor.</p>
 <p>The plastic parameter allows the updating of the average values
 to be disabled temporarily, e.g. while presenting test patterns.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">initial_average</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">initial_average</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Starting value for the average activity.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">smoothing</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.9997, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">smoothing</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.9997, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The degree of weighting for the previous average, when
         calculating the new average.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">step</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">step</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>How often to update the average.
         For instance, step=1 means to update it every time this TF is
         called; step=2 means to update it every other time.</dd>
@@ -435,13 +439,13 @@ to be disabled temporarily, e.g. while presenting test patterns.</p>
 <dd><p>Bases: <a class="reference internal" href="imagen.transferfn-module.html#imagen.transferfn.TransferFn" title="imagen.transferfn.TransferFn"><tt class="xref py py-class docutils literal"><span class="pre">imagen.transferfn.TransferFn</span></tt></a></p>
 <p>Transfer function that is exponential until t from which point it is linear.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">a</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">a</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The overall scaling of the function</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">e</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">e</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The exponent of the exponetial part of the curve</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t2</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t2</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The threshold level at which curve becomes linear</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t1</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t1</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The threshold level where function becomes non-zero</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -458,7 +462,7 @@ elements divisively so that the maximum absolute value is the
 specified norm_value.</p>
 <p>The L-infinity norm is also known as the divisive infinity norm
 and Chebyshev norm.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -479,15 +483,15 @@ nonlinear growth curve using five parameters:</p>
 use. J. Experimental Botany 10: 290&#8211;300.
 <a class="reference external" href="http://en.wikipedia.org/wiki/Generalised_logistic_curve">http://en.wikipedia.org/wiki/Generalised_logistic_curve</a></p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">b</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">b</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Parameter which affects near which asymptote maximum growth occurs.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">m</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">m</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Parameter controlling the time of maximum growth.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">l</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">l</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Parameter controlling the lower asymptote.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">r</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">r</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Parameter controlling the growth rate.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">u</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">u</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Parameter controlling the upper asymptote (upper asymptote minus lower asymptote.</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -515,12 +519,12 @@ Richards, F.J. (1959), A flexible growth function for empirical
 use. J. Experimental Botany 10: 290&#8211;300, 1959.
 <a class="reference external" href="http://en.wikipedia.org/wiki/Generalised_logistic_curve">http://en.wikipedia.org/wiki/Generalised_logistic_curve</a></p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">k</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">k</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Parameter controlling the x-postion</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">r</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">r</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Parameter controlling the growth rate</dd>
 </dl>
 </dd></dl>
@@ -533,7 +537,7 @@ use. J. Experimental Botany 10: 290&#8211;300, 1959.
 and then squares the values.</p>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">t</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The threshold at which output becomes non-zero.</dd>
 </dl>
 </dd></dl>
@@ -555,9 +559,9 @@ the maximal output is reached.  For a Sheet TransferFn this translates
 to the input for which a neuron will respond with activity 0.5.</p>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">e</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">e</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The exponent of the input x.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">c50</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">c50</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The input of the neuron at which it responds at half of its
         maximal firing rate (1.0).</dd>
 </dl>
@@ -569,7 +573,7 @@ to the input for which a neuron will respond with activity 0.5.</p>
 <dd><p>Bases: <a class="reference internal" href="imagen.transferfn-module.html#imagen.transferfn.TransferFn" title="imagen.transferfn.TransferFn"><tt class="xref py py-class docutils literal"><span class="pre">imagen.transferfn.TransferFn</span></tt></a></p>
 <p>Forces all values below a threshold to zero, and leaves others unchanged.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Decision point for determining values to clip.</dd>
 </dl>
 <p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
@@ -585,8 +589,8 @@ vector, keeps the Lp-norm of the vector at a specified norm_value.
 Faster versions are provided separately for the typical L1-norm
 and L2-norm cases.  Defaults to be the same as an L2-norm, i.e.,
 DivisiveNormalizeL2.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">p</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">p</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 </div>
@@ -615,6 +619,7 @@ DivisiveNormalizeL2.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
@@ -665,7 +670,7 @@ DivisiveNormalizeL2.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

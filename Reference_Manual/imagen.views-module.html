@@ -54,6 +54,12 @@
 <h1>imagen.views<a class="headerlink" href="#imagen-views" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritanceea4ef9e090.svg" usemap="#inheritanceea4ef9e090" class="inheritance"/></div><map id="inheritanceea4ef9e090" name="inheritanceea4ef9e090">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="imagen.views.pyc-module.html">imagen.views.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-imagen.views">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-imagen.views" title="Permalink to this headline">¶</a></h2>
 <p>Views objects used to hold data and provide indexing into different coordinate
@@ -69,6 +75,9 @@ object, allowing for bounds checking and grid-snapping.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The ROI can be specified to select only a sub-region of the bounds to
         be stored as data. NOT YET IMPLEMENTED.</dd>
+</dl>
+<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">enforced_type</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The bounds of the coordinate system in which the data items reside.</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">shape</span></tt> (<em>constant=False, default=(0, 0), instantiate=False, length=2, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -112,6 +121,37 @@ dimension number as input and returns the transformed value.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="imagen.views.SheetStack">
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetStack</tt><big>(</big><em>initial_items=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetStack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetStack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="imagen.ndmapping-module.html#imagen.ndmapping.NdMapping" title="imagen.ndmapping.NdMapping"><tt class="xref py py-class docutils literal"><span class="pre">imagen.ndmapping.NdMapping</span></tt></a></p>
+<p>A SheetStack is a stack of SheetViews over some dimensions. The
+dimension may be a spatial dimension (i.e., a ZStack), time
+(specifying a frame sequence) or any other dimensions along
+which SheetViews may vary.</p>
+<dl class="docutils">
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines whether to keep internal data structure sorted, using
+        all dimensions indices to sort on. Important if data is not added in
+        a consistently increasing order but the order matters for plotting
+        or other purposes.</dd>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The dimension_labels parameter accepts a list of the features
+        along which the data will indexed.</dd>
+</dl>
+<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">enforced_type</span></tt> (<em>constant=True, default=&lt;class &#8216;imagen.views.SheetView&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Additional labels to be associated with the Dataview.</dd>
+</dl>
+<dl class="attribute">
+<dt id="imagen.views.SheetStack.enforced_type">
+<tt class="descname">enforced_type</tt><a class="headerlink" href="#imagen.views.SheetStack.enforced_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#imagen.views.SheetView" title="imagen.views.SheetView"><tt class="xref py py-class docutils literal"><span class="pre">SheetView</span></tt></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="imagen.views.SheetView">
 <em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetView</tt><big>(</big><em>data</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetIndexing" title="imagen.views.SheetIndexing"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetIndexing</span></tt></a></p>
@@ -122,7 +162,7 @@ direct access to the data, via the .data attribute.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The ROI can be specified to select only a sub-region of the bounds to
         be stored as data. NOT YET IMPLEMENTED.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=True, bounds=(0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=True, bounds=(0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>For a cyclic quantity, the range over which the values repeat. For
         instance, the orientation of a mirror-symmetric pattern in a plane is
         pi-periodic, with orientation x the same as orientation x+pi (and
@@ -134,6 +174,59 @@ direct access to the data, via the .data attribute.</p>
 <dd>The bounds of the two dimensional coordinate system in which the data
         resides.</dd>
 </dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="imagen.views.Timeline">
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">Timeline</tt><big>(</big><em>time=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>A Timeline object takes a time function of type param.Time and
+uses this object&#8217;s context-manager facilities to sample
+time-varying objects over a given portion of the timeline. The
+return values are ImaGen data structures which may then be
+manipulated, stored or visualized.</p>
+<p>For instance, an ImaGen pattern with time-varying Dynamic
+parameters may be sampled using the &#8216;stack&#8217; method. Each snapshot
+of the pattern becomes a SheetView held in the returned
+SheetStack. Each of the spatial discretizations in each SheetView
+(a numpy array) is generated at a particular time according to the
+time_fn used by the pattern and its parameter. For this to work
+correctly, the time_fn of the objects sampled must match the
+&#8216;time&#8217; parameter, which is set to param.Dynamic.time_fn by
+default. The returned SheetStack is then a spatiotemporal sampling
+of the pattern, i.e., as a stack of images over time.</p>
+<p>A Timeline is also a context manager that extends the behaviour of
+Time by surrounding the block with state_push and state_pop for a
+given parameterized object or list of parameterized objects. The
+objects to state_push and pop are supplied to the __call__ method
+which returns the context manager. For an example for how Timeline
+and Time may be used as a context manager, consult the example
+given in the docstring of the Time class.</p>
+<dl class="docutils">
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">time</span></tt> (<em>allow_None=False, constant=False, default=&lt;Time Time00001&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The time object shared across the time-varying objects
+        that are to be sampled.</dd>
+</dl>
+<dl class="method">
+<dt id="imagen.views.Timeline.ndmap">
+<tt class="descname">ndmap</tt><big>(</big><em>obj</em>, <em>until</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>value_fn=&lt;function &lt;lambda&gt; at 0x4906f50&gt;</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.ndmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.ndmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds an NDMapping across time, taking snapshots of some
+time-varying object. The value stored in the NDMapping is
+generated by evaluating value_fn from the time &#8216;offset&#8217; till
+the time &#8216;until&#8217; in steps of &#8216;timestep&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="imagen.views.Timeline.stack">
+<tt class="descname">stack</tt><big>(</big><em>obj</em>, <em>steps</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>bounds=None</em>, <em>array_fn=&lt;function &lt;lambda&gt; at 0x49068c0&gt;</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a SheetStack from some time-varying object with bounds
+and representation as a numpy array. The bounds are used
+together with the numpy arrays returned by array_fn to build a
+series of SheetViews into a SheetStack.</p>
+<p>This method accepts time-varying Imagen patterns directly,
+without needing to specify array_fn.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -162,10 +255,12 @@ direct access to the data, via the .data attribute.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">imagen.views</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-imagen.views">Module</a></li>
 </ul>
 </li>
@@ -211,7 +306,7 @@ direct access to the data, via the .data attribute.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

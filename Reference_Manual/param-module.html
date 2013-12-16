@@ -57,6 +57,8 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><a class="reference external" href="param.__init__.pyc-module.html">param.__init__.pyc</a></li>
+<li><a class="reference external" href="param.parameterized.pyc-module.html">param.parameterized.pyc</a></li>
 <li><a class="reference external" href="param.parameterized-module.html">param.parameterized</a></li>
 </ul>
 </div>
@@ -130,13 +132,16 @@ to be set on itself.</p>
 <p>[Python 2.4 limitation: the callable object must be an instance of a
 callable class, rather than a named function or a lambda function,
 otherwise the object will not be picklable or deepcopyable.]</p>
-<p>Setting Dynamic.time_fn allows the production of dynamic values to
-be controlled: a new value will be produced only if the current
-value of time_fn is greater than what it was last time the
-parameter value was requested.</p>
-<p>If time_fn is set to None, a new value is always produced.</p>
-<p>If Dynamic.time_fn is set to something other than None, it must,
-when called, produce a number.</p>
+<p>If set as time_dependent, setting the Dynamic.time_fn allows the
+production of dynamic values to be controlled: a new value will be
+produced only if the current value of time_fn is different from
+what it was the last time the parameter value was requested.</p>
+<p>By default, the Dynamic parameters are not time_dependent so that
+new values are generated on every call regardless of the time. The
+default time_fn used when time_dependent is a single Time instance
+that allows general manipulations of time. It may be set to some
+other callable as required so long as a number is returned on each
+call.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -182,6 +187,18 @@ is None).</li>
 <p>This type of List Parameter is typically used to provide a place
 for users to register a set of commands to be called at a
 specified place in some sequence of processing steps.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="param.Infinity">
+<em class="property">class </em><tt class="descclassname">param.</tt><tt class="descname">Infinity</tt><a class="reference internal" href="../_modules/param.html#Infinity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#param.Infinity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>An instance of this class represents an infinite value. Unlike
+Python&#8217;s float(&#8216;inf&#8217;) value, this object can be safely compared
+with gmpy numeric types across different gmpy versions.</p>
+<p>All operators on Infinity() return Infinity(), apart from the
+comparison and equality operators. Equality works by checking
+whether the two objects are both instances of this class.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -292,6 +309,114 @@ is None).</li>
 <p>Subclasses must implement get_range().</p>
 </dd></dl>
 
+<dl class="class">
+<dt id="param.Time">
+<em class="property">class </em><tt class="descclassname">param.</tt><tt class="descname">Time</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/param.html#Time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#param.Time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>A callable object returning a number for the current time.</p>
+<p>Here &#8216;time&#8217; is an abstract concept that can be interpreted in any
+useful way.  For instance, in a simulation, it would be the
+current simulation time, while in a turn-taking game it could be
+the number of moves so far.  The key intended usage is to allow
+independent Parameterized objects with Dynamic parameters to
+remain consistent with a global reference.</p>
+<p>The time datatype (time_type) is configurable, but should
+typically be an exact numeric type like an integer or a rational,
+so that small floating-point errors do not accumulate as time is
+incremented repeatedly.</p>
+<p>When used as a context manager using the &#8216;with&#8217; statement
+(implemented by the __enter__ and __exit__ special methods), entry
+into a context pushes the state of the Time object, allowing the
+effect of changes to the time value to be explored by setting,
+incrementing or decrementing time as desired. This allows the
+state of time-dependent objects to be modified temporarily as a
+function of time, within the context&#8217;s block. For instance, you
+could use the context manager to &#8220;see into the future&#8221; to collect
+data over multiple times, without affecting the global time state
+once exiting the context. Of course, you need to be careful not to
+do anything while in context that would affect the lasting state
+of your other objects, if you want things to return to their
+starting state when exiting the context.</p>
+<p>The starting time value of a new Time object is 0, converted to
+the chosen time type. Here is an illustration of how time can be
+manipulated using a Time object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">until</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;The initial time is </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">time</span><span class="p">()</span>
+<span class="go">&#39;The initial time is 0&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;Setting the time to </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">time</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">&#39;Setting the time to 5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">+=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;After incrementing by 5, the time is </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">time</span><span class="p">()</span>
+<span class="go">&#39;After incrementing by 5, the time is 10&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">time</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>  <span class="c"># Entering a context</span>
+<span class="gp">... </span>    <span class="s">&#39;Time before iteration: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">t</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="s">&#39;Iteration: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="s">&#39;Time after iteration: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">t</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">t</span> <span class="o">+=</span> <span class="mi">2</span>
+<span class="gp">... </span>    <span class="s">&#39;The until parameter may be exceeded outside iteration: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">t</span><span class="p">()</span>
+<span class="go">&#39;Time before iteration: 10&#39;</span>
+<span class="go">&#39;Iteration: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]&#39;</span>
+<span class="go">&#39;Time after iteration: 20&#39;</span>
+<span class="go">&#39;The until parameter may be exceeded outside iteration: 22&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;After exiting the context the time is back to </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">time</span><span class="p">()</span>
+<span class="go">&#39;After exiting the context the time is back to 10&#39;</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">timestep</span></tt> (<em>constant=False, default=1.0, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Stepsize to be used with the iterator interface.
+        Time can be advanced or decremented by any value, not just
+        those corresponding to the stepsize, and so this value is only
+        a default.</dd>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">until</span></tt> (<em>constant=False, default=Infinity(), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Declaration of an expected end to time values, if any.  When
+         using the iterator interface, iteration will end before this
+         value is exceeded.</dd>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">time_type</span></tt> (<em>constant=True, default=&lt;type &#8216;int&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable that Time will use to convert user-specified time
+        values into the current time; all times will be of the resulting
+        numeric type.
+
+        By default, time is of integer type, but you can supply any
+        arbitrary-precision type like a fixed-point decimal or a
+        rational, to allow fractional times.  Floating-point times are
+        also allowed, but are not recommended because they will suffer
+        from accumulated rounding errors.  For instance, incrementing
+        a floating-point value 0.0 by 0.05, 20 times, will not reach
+        1.0 exactly.  Instead, it will be slightly higher than 1.0,
+        because 0.05 cannot be represented exactly in a standard
+        floating point numeric type. Fixed-point or rational types
+        should be able to handle such computations exactly, avoiding
+        accumulation issues over long time intervals.
+
+        Some potentially useful exact number classes::
+
+         - int: Suitable if all times can be expressed as integers.
+           appropriate.
+
+         - Python&#8217;s decimal.Decimal and fractions.Fraction classes:
+           widely available but slow and also awkward to specify times
+           (e.g. cannot simply type 0.05, but have to use a special
+           constructor or a string).
+
+         - fixedpoint.FixedPoint: Allows a natural representation of
+           times in decimal notation, but very slow and needs to be
+           installed separately.
+
+         - gmpy.mpq: Allows a natural representation of times in
+           decimal notation, and very fast because it uses the GNU
+           Multi-Precision library, but needs to be installed
+           separately and depends on a non-Python library.  gmpy.mpq
+           is gmpy&#8217;s rational type.</dd>
+</dl>
+<dl class="attribute">
+<dt id="param.Time.time_type">
+<tt class="descname">time_type</tt><a class="headerlink" href="#param.Time.time_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="attribute">
 <dt id="param.XYCoordinates">
 <tt class="descclassname">param.</tt><tt class="descname">XYCoordinates</tt><a class="reference internal" href="../_modules/param.html#XYCoordinates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#param.XYCoordinates" title="Permalink to this definition">¶</a></dt>
@@ -390,6 +515,7 @@ than just os.getcwd() can be used, and the file must exist.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
@@ -440,7 +566,7 @@ than just os.getcwd() can be used, and the file must exist.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

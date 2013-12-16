@@ -117,13 +117,6 @@
 
 <span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
-<span class="c"># CEBALERT: Is it dangerous to have &#39;Forever&#39; implemented</span>
-<span class="c"># like this? To start with, min(Forever,1) gives</span>
-<span class="c"># FixedPoint(&#39;-1.00,2&#39;) i.e. Forever.</span>
-<span class="c"># Forever = FixedPoint(-1)</span>
-<span class="n">Forever</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="c"># (Python 2.6 includes support for float(&#39;inf&#39;) on all platforms?)</span>
-
 <span class="c">#: Default path to the current simulation, from main</span>
 <span class="c">#: Only to be used by script_repr(), to allow it to generate</span>
 <span class="c">#: a runnable script</span>
@@ -918,74 +911,6 @@
 <span class="sd">    Simulation, no matter how many times it is instantiated.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c"># CEBALERT: Must use convert_to_time_type() everywhere a time is</span>
-    <span class="c"># specified to ensure all times are the appropriate type. Relying</span>
-    <span class="c"># on everyone to convert times to the time type seems dangerous!</span>
-
-    <span class="n">time_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Callable for converting user-specified times into the numeric</span>
-<span class="s">        type to be used for Simulation&#39;s time values.</span>
-
-<span class="s">        Simulation&#39;s time can be set to any numeric type that supports</span>
-<span class="s">        the usual Python numeric operations, including at least</span>
-<span class="s">        multiplication, addition, and subtraction.  Most of the code</span>
-<span class="s">        assumes that fractional values are supported, as they are for</span>
-<span class="s">        floats, but it may be possible to use an integer type instead</span>
-<span class="s">        if various default fractional values are overridden.</span>
-
-<span class="s">        For instance, one might wish to use arbitrary precision</span>
-<span class="s">        floating-point time to avoid accumulating rounding errors.  If</span>
-<span class="s">        stepping through a simulation every 0.05 time units, after 20</span>
-<span class="s">        such steps using floats the simulation will not reach 1.0</span>
-<span class="s">        exactly, but will instead be slightly higher or lower.  With</span>
-<span class="s">        an arbitrary precision float type such a series of steps can</span>
-<span class="s">        be guaranteed to reach 1.0 exactly.  Alternatively, one might</span>
-<span class="s">        wish to use a rational type so that events can be guaranteed</span>
-<span class="s">        to happen a certain number of times in a given interval, even</span>
-<span class="s">        if the ratio cannot be expressed as an even decimal or binary</span>
-<span class="s">        fraction.</span>
-
-<span class="s">        time_type determines how the user can specify times. For</span>
-<span class="s">        instance, if the user specifies a time as 0.05 (a float), this</span>
-<span class="s">        will be represented in floating point as something like</span>
-<span class="s">        0.050000000000000003. gmpy.mpq will correctly convert that to</span>
-<span class="s">        mpq(1,20). Other types might require times to be specified as</span>
-<span class="s">        strings (e.g. decimal.Decimal(&#39;0.05&#39;) in Python 2.6); in this</span>
-<span class="s">        case the user would need to use a string whenever specifying a</span>
-<span class="s">        time (e.g. a connection delay or a call to run() ). Some other</span>
-<span class="s">        types will only produce the expected result if they are first</span>
-<span class="s">        configured appropriately (e.g. decimal.Decimal(0.05) in Python</span>
-<span class="s">        2.7 will give something like</span>
-<span class="s">        Decimal(&#39;0.05000000000000000277555756156289135105907917022705078125&#39;)</span>
-<span class="s">        by default, but this can be controlled by using an appropriate</span>
-<span class="s">        decimal.Context).</span>
-
-<span class="s">        Extra arguments can be passed to time_type when it is being used</span>
-<span class="s">        to create the Simulation&#39;s time: see time_type_args.</span>
-
-
-<span class="s">        Some potentially useful number classes::</span>
-
-<span class="s">        - gmpy.mpq: gmpy provides Python with access to the fast GNU</span>
-<span class="s">          Multi-Precision library (which requires GMP to be built);</span>
-<span class="s">          gmpy.mpq is gmpy&#39;s rational type.</span>
-
-<span class="s">        - fixedpoint.FixedPoint: pure Python fixed-point number, but</span>
-<span class="s">          quite slow.</span>
-
-<span class="s">        - Python&#39;s decimal.Decimal and fractions.Fraction classes.</span>
-<span class="s">        &quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="c"># CEBALERT: probably should remove this and allow people to deal</span>
-    <span class="c"># with functions requiring arguments</span>
-    <span class="c"># (e.g. fixedpoint.FixedPoint(time,precision=4)) by currying or</span>
-    <span class="c"># creating their own wrapper function. We wouldn&#39;t then need</span>
-    <span class="c"># convert_to_time_type(), it would instead just be a call to</span>
-    <span class="c"># time_type() (which should also be renamed).</span>
-    <span class="n">time_type_args</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(),</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Tuple of arguments passed to time_type after the first</span>
-<span class="s">        argument (which is the time).&quot;&quot;&quot;</span><span class="p">)</span>
-
     <span class="n">register</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Whether or not to register this Simulation. If True, this</span>
 <span class="s">        Simulation (when created explicitly or when unpickled)</span>
@@ -1006,6 +931,11 @@
 <span class="s">        scheduled_commands are run.</span>
 <span class="s">        &quot;&quot;&quot;</span><span class="p">)</span>
 
+    <span class="n">time</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Callable</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Dynamic</span><span class="o">.</span><span class="n">time_fn</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        The time object is a callable that can be set, incremented and</span>
+<span class="s">        decremented with a chosen numeric type as necessary.</span>
+<span class="s">        &quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="n">time_printing_format</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%(_time)09.2f</span><span class="s">&quot;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Format string to be used when the simulation time must be</span>
 <span class="s">        formatted as a string, e.g. for display or for basename().</span>
@@ -1024,6 +954,7 @@
 
     <span class="n">name</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">constant</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
+    <span class="n">forever</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Infinity</span><span class="p">()</span>
 
     <span class="c">### Simulation(register=True) is a singleton</span>
     <span class="c">#</span>
@@ -1118,13 +1049,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert the supplied time to the Simulation&#39;s time_type.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c"># pylint: disable-msg=W0201</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type_args</span><span class="p">:</span>
-            <span class="n">newtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">time_type_args</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">newtime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">newtime</span>
-
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forever</span> <span class="k">if</span> <span class="n">time</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">forever</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 
     <span class="c"># Note that __init__ can still be called after the</span>
     <span class="c"># Simulation(register=True) instance has been created. E.g. with</span>
@@ -1135,17 +1060,16 @@
     <span class="c"># name==&#39;B&#39;. This is because, as is usual in Python, __new__</span>
     <span class="c"># creates an instance of a class, while __init__ is subsequently</span>
     <span class="c"># given that instance (to initialize).</span>
+
 </div>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a Simulation instance.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_to_time_type</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
-        <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_event_processors</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">:</span>
@@ -1154,9 +1078,6 @@
             <span class="c"># Set up debugging messages to include the simulator time</span>
             <span class="n">param</span><span class="o">.</span><span class="n">parameterized</span><span class="o">.</span><span class="n">dbprint_prefix</span><span class="o">=</span> \
                <span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s">&quot;Time: &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">timestr</span><span class="p">()</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="p">)</span>
-
-            <span class="n">param</span><span class="o">.</span><span class="n">Dynamic</span><span class="o">.</span><span class="n">time_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span>
-
 
         <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="p">[]</span> <span class="c"># CB: consider collections.deque? (PEP 290)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_events_stack</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1290,21 +1211,10 @@
             <span class="k">raise</span> <span class="ne">AttributeError</span>
 
 
-<div class="viewcode-block" id="Simulation.time"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.time">[docs]</a>    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the current simulation time.</span>
-
-<span class="sd">        If the time returned will be used in the computation of a</span>
-<span class="sd">        floating point variable, it should be cast into a floating</span>
-<span class="sd">        point number by float().</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span>
-
-</div>
 <div class="viewcode-block" id="Simulation.timestr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.timestr">[docs]</a>    <span class="k">def</span> <span class="nf">timestr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">specified_time</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the specified time (or the current time, if none</span>
-<span class="sd">        specified) formatted using time_printing_format, which allows</span>
+<span class="sd">        specified) formatted using time.time_printing_format, which allows</span>
 <span class="sd">        users to control how much precision, etc. is used for time</span>
 <span class="sd">        displays.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1314,6 +1224,11 @@
         <span class="n">all_vars</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">specified_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">all_vars</span><span class="p">[</span><span class="s">&#39;_time&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">specified_time</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">all_vars</span><span class="p">[</span><span class="s">&#39;_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39;No time object available.&#39;</span><span class="p">)</span>
+
         <span class="n">timestr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_printing_format</span> <span class="o">%</span> <span class="n">all_vars</span>
         <span class="k">return</span> <span class="n">timestr</span>
 
@@ -1346,20 +1261,21 @@
 
     <span class="c"># CEBALERT: need to simplify duration/until code. Hiding &#39;until&#39; option</span>
     <span class="c"># until it&#39;s fixed (presumably nobody&#39;s using it).</span></div>
-    <span class="k">def</span> <span class="nf">run_and_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">duration</span><span class="o">=</span><span class="n">Forever</span><span class="p">):</span> <span class="c"># ,until=Forever):</span>
+    <span class="k">def</span> <span class="nf">run_and_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">forever</span><span class="p">):</span>
 
-        <span class="k">if</span> <span class="n">duration</span><span class="o">==</span><span class="n">Forever</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">duration</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">forever</span><span class="p">:</span>
             <span class="c"># CEBALERT: timing code not setup to handle indefinite durations</span>
-            <span class="c"># (e.g. &#39;Forever&#39;)</span>
+            <span class="c"># (e.g. &#39;self.forever&#39;)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">call_and_time</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Simulation.run"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">duration</span><span class="o">=</span><span class="n">Forever</span><span class="p">,</span><span class="n">until</span><span class="o">=</span><span class="n">Forever</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.run"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">forever</span><span class="p">,</span> <span class="n">until</span><span class="o">=</span><span class="n">forever</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Process simulation events for the specified duration or until the specified time.</span>
+<span class="sd">        Process simulation events for the specified duration or until the</span>
+<span class="sd">        specified time.</span>
 
 <span class="sd">        Arguments:</span>
 
@@ -1377,22 +1293,14 @@
 <span class="sd">        Note that duration and until should be specified in a format suitable for</span>
 <span class="sd">        conversion (coercion?) into the Simulation&#39;s _time_type.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c"># CEBALERT: need to do something about the global &#39;Forever&#39;;</span>
-        <span class="c"># what it should be probably varies with _time_type.</span>
-
         <span class="c"># CEBALERT: calls to topo.sim.run() within topo should use a</span>
         <span class="c"># string to specify the time rather than a float (since float</span>
         <span class="c"># is not compatible with all number types).</span>
 
         <span class="n">duration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_to_time_type</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+
+        <span class="c"># Use the until value of self.time if not explicitly specified</span>
         <span class="n">until</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_to_time_type</span><span class="p">(</span><span class="n">until</span><span class="p">)</span>
-
-
-        <span class="c"># CEBHACKALERT: If I do topo.sim.run(10), then topo.sim.run(until=3),</span>
-        <span class="c"># topo.sim._time returns to 3 (i.e. the simulation time can jump backwards).</span>
-        <span class="c"># JP: This because of the weird sim._time = stop_time line at the end of this method.</span>
-        <span class="c"># see my HACKALERT below.</span>
-
         <span class="c"># Initialize any EPs that haven&#39;t been started yet</span>
         <span class="c">#</span>
         <span class="c"># Anything that manipulates the event stack in some way</span>
@@ -1407,26 +1315,25 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">eps_to_start</span><span class="o">=</span><span class="p">[]</span>
 
-
-        <span class="c"># Complicated expression for min(time+duration,until)</span>
-        <span class="k">if</span> <span class="n">duration</span> <span class="o">==</span> <span class="n">Forever</span><span class="p">:</span>
-            <span class="n">stop_time</span> <span class="o">=</span> <span class="n">until</span>
-        <span class="k">elif</span> <span class="n">until</span> <span class="o">==</span> <span class="n">Forever</span><span class="p">:</span>
-            <span class="n">stop_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">+</span> <span class="n">duration</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">stop_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="o">+</span><span class="n">duration</span><span class="p">,</span><span class="n">until</span><span class="p">)</span>
+        <span class="n">stop_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">duration</span><span class="p">,</span> <span class="n">until</span><span class="p">)</span>
+        <span class="c"># Use time.until if it is between the current time and stop_time.</span>
+        <span class="c"># This ensures self.time.until act only as a &#39;soft&#39; limit</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">until</span> <span class="o">&lt;=</span> <span class="n">stop_time</span><span class="p">):</span>
+            <span class="n">stop_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">until</span>
+        <span class="c"># Stops time going backward if until less than current time.</span>
+        <span class="n">stop_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="k">if</span> <span class="n">stop_time</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="k">else</span> <span class="n">stop_time</span>
 
         <span class="n">did_event</span> <span class="o">=</span> <span class="bp">False</span>
 
-        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="ow">and</span> <span class="p">(</span><span class="n">stop_time</span> <span class="o">==</span> <span class="n">Forever</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">&lt;=</span> <span class="n">stop_time</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="ow">and</span> <span class="p">(</span><span class="n">stop_time</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">forever</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">stop_time</span><span class="p">):</span>
             <span class="c"># Loop while there are events and it&#39;s not time to stop.</span>
 
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">():</span>
                 <span class="c"># Warn and then discard events scheduled *before* the current time</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Discarding stale (unprocessed) event&#39;</span><span class="p">,</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">():</span>
                 <span class="c"># Before moving on to the next time, do any processing</span>
                 <span class="c"># necessary for the current time.  This is necessary only</span>
                 <span class="c"># if some event has been delivered at the current time.</span>
@@ -1440,8 +1347,8 @@
                 <span class="c"># Set the time to the frontmost event.  Bear in mind</span>
                 <span class="c"># that the front event may have been changed by the</span>
                 <span class="c"># .process_current_time() calls.</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="c"># Pop and call the event at the head of the queue.</span>
@@ -1450,16 +1357,11 @@
                 <span class="n">event</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
                 <span class="n">did_event</span><span class="o">=</span><span class="bp">True</span>
 
-
         <span class="c"># The time needs updating if the events have not done it.</span>
         <span class="c">#if self.events and self.events[0].time &gt;= stop_time:</span>
 
-        <span class="c"># JPHACKALERT: This is weird.  It can cause time to go backwards,</span>
-        <span class="c"># (see CEBHACKALERT above).  Also, if the simulation runs out of</span>
-        <span class="c"># events before stop_time is reached, shouldn&#39;t that be reflected in</span>
-        <span class="c"># Simulation.time()?</span>
-        <span class="k">if</span> <span class="n">stop_time</span> <span class="o">!=</span> <span class="n">Forever</span> <span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="n">stop_time</span>
+        <span class="k">if</span> <span class="n">stop_time</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forever</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">stop_time</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Simulation.sleep"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.sleep">[docs]</a>    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">delay</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1468,7 +1370,8 @@
 <span class="sd">        override this method as they wish, e.g. to wait for an</span>
 <span class="sd">        external real time clock to advance first.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_to_time_type</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span>
+        <span class="n">time</span> <span class="o">+=</span> <span class="n">delay</span>
 </div>
 <div class="viewcode-block" id="Simulation.enqueue_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.enqueue_event">[docs]</a>    <span class="k">def</span> <span class="nf">enqueue_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1542,7 +1445,7 @@
         <span class="c"># CBALERT: does it make more sense to put the original events onto the</span>
         <span class="c"># stack, and replace self.events with the copies? Not sure this makes</span>
         <span class="c"># any practical difference currently.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_events_stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">,[</span><span class="n">copy</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_events_stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(),[</span><span class="n">copy</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">]))</span>
 
 </div>
 <div class="viewcode-block" id="Simulation.event_pop"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.event_pop">[docs]</a>    <span class="k">def</span> <span class="nf">event_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1551,7 +1454,8 @@
 
 <span class="sd">        Same as state_pop(), but does not restore EventProcessors&#39; state.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_events_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="Simulation.event_clear"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.event_clear">[docs]</a>    <span class="k">def</span> <span class="nf">event_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event_type</span><span class="o">=</span><span class="n">EPConnectionEvent</span><span class="p">):</span>
@@ -1652,7 +1556,7 @@
         <span class="c"># CEBALERT: hack to support importing the time type since the</span>
         <span class="c"># scheduled actions will have times printed using the</span>
         <span class="c"># time_type.</span>
-        <span class="n">imports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;from </span><span class="si">%s</span><span class="s"> import </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+        <span class="n">imports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;from </span><span class="si">%s</span><span class="s"> import </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">time_type</span><span class="o">.</span><span class="n">__module__</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">time_type</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
 
         <span class="n">imps</span>  <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">imports</span><span class="p">))</span>
 
@@ -1767,7 +1671,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;sleeping. delay =&quot;</span><span class="p">,</span><span class="n">delay</span><span class="p">,</span><span class="s">&quot;real delay =&quot;</span><span class="p">,</span><span class="n">sleep_ms</span><span class="p">,</span><span class="s">&quot;ms.&quot;</span><span class="p">)</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_ms</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_real_timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_time</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">+=</span> <span class="n">delay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="n">delay</span>
 </pre></div></div></div>
 
           </div>
@@ -1792,6 +1696,7 @@
 <li><a href="../../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../../Links/index.html">Links</a></li>
 <li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../../index.html">Table Of Contents</a></h3>
 
@@ -1840,7 +1745,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

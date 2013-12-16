@@ -54,6 +54,12 @@
 <h1>topo.misc.trace<a class="headerlink" href="#topo-misc-trace" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritance814dd881d7.svg" usemap="#inheritance814dd881d7" class="inheritance"/></div><map id="inheritance814dd881d7" name="inheritance814dd881d7">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.misc.trace.pyc-module.html">topo.misc.trace.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.misc.trace">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.misc.trace" title="Permalink to this headline">¶</a></h2>
 <p>Object classes for recording and plotting time-series data.</p>
@@ -82,7 +88,7 @@ adding timecodes to the frames, and the names of the frame files.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">filename_time_fmt</span></tt> (<em>allow_None=False, constant=False, default=%05.0f, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The format of the frame time, using Python string substitution for
         a floating-point number.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">timecode_offset</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">timecode_offset</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>A value to be added to each timecode before formatting for display.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">variables</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A list of variable names in a DataRecorder object containing
@@ -223,7 +229,7 @@ named timeseries.</p>
 <dd><p>Bases: <a class="reference internal" href="#topo.misc.trace.Trace" title="topo.misc.trace.Trace"><tt class="xref py py-class docutils literal"><span class="pre">topo.misc.trace.Trace</span></tt></a></p>
 <p>A Trace that returns the data, unmodified.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The fraction of the difference ymax-ymin to add to the
         top of the plot as padding.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -252,12 +258,12 @@ named timeseries.</p>
 <p>A Trace that assumes that each data item is a sequence that can be
 indexed with a single integer, and traces the value of one indexed element.</p>
 <dl class="docutils">
-<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">index</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">index</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The index into the data to be traced.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">data_name</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Name of the timeseries from which the trace is generated.
         E.g. the connection name into a DataRecorder object.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The fraction of the difference ymax-ymin to add to the
         top of the plot as padding.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -279,14 +285,14 @@ and traces the value of a given (x,y) position on the sheet.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">data_name</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Name of the timeseries from which the trace is generated.
         E.g. the connection name into a DataRecorder object.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The y sheet-coordinate of the position to be traced.</dd>
 <dt><em>param Composite</em> <tt class="docutils literal"><span class="pre">position</span></tt> (<em>attribs=[&#8216;x&#8217;, &#8216;y&#8217;], constant=False, default=None, instantiate=False, objtype=&lt;class &#8216;topo.misc.trace.SheetPositionTrace&#8217;&gt;, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The sheet coordinates of the position to be traced.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The fraction of the difference ymax-ymin to add to the
         top of the plot as padding.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The x sheet-coordinate of the position to be traced.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">coordframe</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The SheetCoordinateSystem to use to convert the position
@@ -314,7 +320,7 @@ how to plot that data, including Y-axis boundaries and plotting arguments.</p>
 the __call__ method to define how to extract a 1D trace from a
 sequence of data.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The fraction of the difference ymax-ymin to add to the
         top of the plot as padding.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -344,7 +350,7 @@ which can be modified at any time.</p>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_axis_relative</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to plot the time-axis tic values relative to the start
        of the plotted time range, or in absolute values.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">hspace</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.6, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">hspace</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.6, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Height spacing adjustment between plots.  Larger values
        produce more space.</dd>
 </dl>
@@ -399,10 +405,12 @@ channels of the bitmaps respectively.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.misc.trace</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.misc.trace">Module</a></li>
 </ul>
 </li>
@@ -448,7 +456,7 @@ channels of the bitmaps respectively.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

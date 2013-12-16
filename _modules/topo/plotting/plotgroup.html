@@ -69,15 +69,20 @@
 <span class="kn">import</span> <span class="nn">Image</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
-<span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
+<span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span><span class="p">,</span> <span class="n">ParameterizedFunction</span>
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">resolve_path</span>
 
-<span class="kn">import</span> <span class="nn">topo</span>
+<span class="kn">from</span> <span class="nn">imagen.random</span> <span class="kn">import</span> <span class="n">UniformRandom</span>
+<span class="kn">from</span> <span class="nn">imagen.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
+<span class="kn">from</span> <span class="nn">fmapper</span> <span class="kn">import</span> <span class="n">distribution</span>
+
+<span class="kn">import</span> <span class="nn">topo</span>
+<span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">pylabplot</span>
+<span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">analysis</span>
 <span class="kn">from</span> <span class="nn">topo.base.cf</span> <span class="kn">import</span> <span class="n">CFSheet</span><span class="p">,</span><span class="n">CFProjection</span>
 <span class="kn">from</span> <span class="nn">topo.base.projection</span> <span class="kn">import</span> <span class="n">ProjectionSheet</span>
 <span class="kn">from</span> <span class="nn">topo.sheet</span> <span class="kn">import</span> <span class="n">GeneratorSheet</span><span class="p">,</span><span class="n">Sheet</span>
-<span class="kn">from</span> <span class="nn">topo.misc.keyedlist</span> <span class="kn">import</span> <span class="n">KeyedList</span>
 
 <span class="kn">from</span> <span class="nn">plot</span> <span class="kn">import</span> <span class="n">make_template_plot</span><span class="p">,</span> <span class="n">Plot</span>
 <span class="kn">from</span> <span class="nn">plotfilesaver</span> <span class="kn">import</span> <span class="n">PlotGroupSaver</span><span class="p">,</span><span class="n">CFProjectionPlotGroupSaver</span>
@@ -606,6 +611,10 @@
 <span class="s">        plots are guaranteed to be on a known scale, but only values</span>
 <span class="s">        between 0.0 and 1.0 will be visibly distinguishable.&quot;&quot;&quot;</span><span class="p">)</span>
 
+    <span class="n">color_channel</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ObjectSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;None&#39;</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;None&#39;</span><span class="p">],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Defines the color channel to be displayed in the GUI, can usually be set</span>
+<span class="s">        to a measured OrientationMap&quot;&quot;&quot;</span><span class="p">)</span>
+
 
 
     <span class="c"># Overrides:</span>
@@ -634,7 +643,7 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_templates</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">static_images</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TemplatePlotGroup</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plot_templates</span> <span class="o">=</span> <span class="n">KeyedList</span><span class="p">(</span><span class="n">plot_templates</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_templates</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">plot_templates</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="c"># Add plots for the static images, if any</span>
         <span class="k">for</span> <span class="n">image_name</span><span class="p">,</span><span class="n">file_path</span> <span class="ow">in</span> <span class="n">static_images</span> <span class="ow">or</span> <span class="p">[]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="n">image_name</span><span class="p">,</span><span class="n">file_path</span><span class="p">)</span>
@@ -656,7 +665,7 @@
         <span class="n">dict_</span><span class="o">=</span><span class="p">{}</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">specification_tuple_list</span><span class="p">:</span>
             <span class="n">dict_</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">=</span><span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plot_templates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span><span class="n">dict_</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_templates</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dict_</span>
 
     <span class="n">add_plot</span> <span class="o">=</span> <span class="n">add_template</span> <span class="c"># CEBALERT: should be removed when callers updated</span>
 
@@ -678,7 +687,7 @@
         <span class="c"># calls make_template_plot for all plot_templates for all kw returned</span>
         <span class="c"># by _kw_for_make_template_plot!!</span>
         <span class="n">template_plots</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_templates</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_templates</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kw_for_make_template_plot</span><span class="p">(</span><span class="n">range_</span><span class="p">):</span>
                 <span class="n">template_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_make_template_plot</span><span class="p">(</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">template_plots</span>
@@ -697,8 +706,11 @@
 
 
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span>
-                                  <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -843,8 +855,11 @@
 
 
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span><span class="c">#sheet,proj</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">),</span>
-                                  <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
                                   <span class="bp">None</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -901,7 +916,7 @@
     <span class="c"># _kw_for_make_template_plot(), to allow calculation of range for</span>
     <span class="c"># joint normalization. A mess.</span>
     <span class="k">def</span> <span class="nf">_hack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">range_</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">projlist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">_grouped_in_projections</span><span class="p">(</span><span class="s">&#39;JointNormalize&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">projlist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">_grouped_in_projections</span><span class="p">(</span><span class="s">&#39;JointNormalize&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">key</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">_group_key</span><span class="p">:</span>
                 <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">projlist</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">projections</span><span class="p">():</span>
@@ -915,20 +930,10 @@
     <span class="k">def</span> <span class="nf">__keyed_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c"># helper method to return a list of (key,proj) pairs from self.sheet</span>
         <span class="n">keys_and_projns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">projlist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">_grouped_in_projections</span><span class="p">(</span><span class="s">&#39;JointNormalize&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">projlist</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">_grouped_in_projections</span><span class="p">(</span><span class="s">&#39;JointNormalize&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">projlist</span><span class="p">:</span>
                 <span class="n">keys_and_projns</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span><span class="n">proj</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">keys_and_projns</span>
-
-
-</div>
-<div class="viewcode-block" id="ProjectionSheetMeasurementCommand"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.ProjectionSheetMeasurementCommand">[docs]</a><span class="k">class</span> <span class="nc">ProjectionSheetMeasurementCommand</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A callable Parameterized command for measuring or plotting a specified Sheet.&quot;&quot;&quot;</span>
-
-    <span class="n">outputs</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        List of sheets to use in measurements.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
 
 
 </div>
@@ -941,8 +946,11 @@
     <span class="c">########## overridden</span>
 
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">),</span>
-                                  <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -1000,8 +1008,11 @@
 
 
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">),</span>
-                                  <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">input_sheet</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">input_sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -1081,9 +1092,10 @@
 
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="nb">input</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">input_sheet</span><span class="o">.</span><span class="n">name</span>
-
+        <span class="n">rf_view</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">rfs</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="n">rf_view</span><span class="p">,</span> <span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="n">rf_view</span><span class="p">,</span> <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="n">rf_view</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">),</span>
-                                  <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">rfs</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="p">{}),</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">input_sheet</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">input_sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -1106,8 +1118,11 @@
     <span class="c"># _make_template_plot	- use density argument slot to parse unit_size</span>
 
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span>
-                                  <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">unit_size</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;sheet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -1187,27 +1202,6 @@
 
 
 
-<div class="viewcode-block" id="UnitMeasurementCommand"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.UnitMeasurementCommand">[docs]</a><span class="k">class</span> <span class="nc">UnitMeasurementCommand</span><span class="p">(</span><span class="n">ProjectionSheetMeasurementCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A callable Parameterized command for measuring or plotting specified units from a Sheet.&quot;&quot;&quot;</span>
-
-    <span class="n">coords</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)],</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        List of coordinates of unit(s) to measure.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">projection</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ObjectSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Name of the projection to measure; None means all projections.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">,</span><span class="n">output</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-                    <span class="n">s</span><span class="o">.</span><span class="n">update_unit_view</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;&#39;</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">projection</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">p</span><span class="o">.</span><span class="n">projection</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-
-</div>
 <div class="viewcode-block" id="CFProjectionPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.CFProjectionPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">CFProjectionPlotGroup</span><span class="p">(</span><span class="n">ProjectionPlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Visualize one CFProjection.&quot;&quot;&quot;</span>
 
@@ -1231,8 +1225,11 @@
     <span class="c">########## overridden</span>
 
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">cfs</span><span class="p">[</span><span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                     <span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">),</span>
-                                  <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">cfs</span><span class="p">[</span><span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;bounds&#39;</span><span class="p">],</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -1333,8 +1330,11 @@
     <span class="k">def</span> <span class="nf">_make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">plot_template_name</span><span class="p">,</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">cfs</span><span class="p">:</span>
             <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_make_cf_grid</span><span class="p">()</span>
+        <span class="n">view_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Strength&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">cfs</span><span class="p">[</span><span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                     <span class="s">&#39;Hue&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">,</span>
+                     <span class="s">&#39;Confidence&#39;</span><span class="p">:</span> <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">make_template_plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">(</span><span class="n">plot_template</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">),</span>
-                                  <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">cfs</span><span class="p">[</span><span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                                  <span class="n">view_dict</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;proj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
                                   <span class="n">kw</span><span class="p">[</span><span class="s">&#39;bounds&#39;</span><span class="p">],</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">,</span>
@@ -1349,9 +1349,6 @@
             <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">sheet2matrixidx</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
             <span class="n">bounds</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">cf_bounds</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="n">proj</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)]</span>
-
-
-
 
 
 </div>
@@ -1381,7 +1378,7 @@
 
 
 
-<span class="n">plotgroups</span> <span class="o">=</span> <span class="n">KeyedList</span><span class="p">()</span>
+<span class="n">plotgroups</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Global repository of PlotGroups, to which users can add their own as</span>
 <span class="sd">needed.</span>
@@ -1415,7 +1412,522 @@
 
     <span class="n">pg</span> <span class="o">=</span> <span class="n">pg_type</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
     <span class="n">plotgroups</span><span class="p">[</span><span class="n">pg</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">=</span><span class="n">pg</span>
-    <span class="k">return</span> <span class="n">pg</span></div>
+    <span class="k">return</span> <span class="n">pg</span>
+
+
+<span class="c"># Helper function for save_plotgroup</span></div>
+<span class="k">def</span> <span class="nf">_equivalent_for_plotgroup_update</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function for save_plotgroup.</span>
+
+<span class="sd">    Comparison operator for deciding whether make_plots(update==False) is</span>
+<span class="sd">    safe for one plotgroup if the other has already been updated.</span>
+
+<span class="sd">    Treats plotgroups as the same if the specified list of attributes</span>
+<span class="sd">    (if present) match in both plotgroups.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attrs_to_check</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;pre_plot_hooks&#39;</span><span class="p">,</span><span class="s">&#39;keyname&#39;</span><span class="p">,</span><span class="s">&#39;sheet&#39;</span><span class="p">,</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="s">&#39;projection&#39;</span><span class="p">,</span><span class="s">&#39;input_sheet&#39;</span><span class="p">,</span><span class="s">&#39;density&#39;</span><span class="p">,</span><span class="s">&#39;coords&#39;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attrs_to_check</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">a</span><span class="p">)</span><span class="o">==</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">a</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">return</span> <span class="bp">True</span>
+
+
+
+<div class="viewcode-block" id="save_plotgroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.save_plotgroup">[docs]</a><span class="k">class</span> <span class="nc">save_plotgroup</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience command for saving a set of plots to disk.  Examples:</span>
+
+<span class="sd">      save_plotgroup(&quot;Activity&quot;)</span>
+<span class="sd">      save_plotgroup(&quot;Orientation Preference&quot;)</span>
+<span class="sd">      save_plotgroup(&quot;Projection&quot;,projection=topo.sim[&#39;V1&#39;].projections(&#39;Afferent&#39;))</span>
+
+<span class="sd">    Some plotgroups accept optional parameters, which can be passed</span>
+<span class="sd">    like projection above.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">equivalence_fn</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Callable</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">_equivalent_for_plotgroup_update</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Function to call on plotgroups p1,p2 to determine if calling pre_plot_hooks</span>
+<span class="s">        on one of them is sufficient to update both plots.  Should return False</span>
+<span class="s">        unless the commands are exact equivalents, including all relevant parameters.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">use_cached_results</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        If True, will use the equivalence_fn to determine cases where</span>
+<span class="s">        the pre_plot_hooks for a plotgroup can safely be skipped, to</span>
+<span class="s">        avoid lengthy redundant computation.  Should usually be</span>
+<span class="s">        False for safety, but can be enabled for e.g. batch mode</span>
+<span class="s">        runs using a related batch of plots.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">saver_params</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{},</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Optional parameters to pass to the underlying PlotFileSaver object.&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+    <span class="c"># Class variables to cache values from previous invocations</span>
+    <span class="n">previous_time</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">previous_plotgroups</span><span class="o">=</span><span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+        <span class="n">plotgroup</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">plotgroups</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+        <span class="c"># JABALERT: Why does a Projection plot need a Sheet parameter?</span>
+        <span class="c"># CB: It shouldn&#39;t, of course, since we know the sheet when we have</span>
+        <span class="c"># the projection object - it&#39;s just leftover from when we passed the</span>
+        <span class="c"># names instead. There should be an ALERT already about this somewhere</span>
+        <span class="c"># in projectionpanel.py or plotgroup.py (both need to be changed).</span>
+        <span class="k">if</span> <span class="s">&#39;projection&#39;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">plotgroup</span><span class="p">,</span><span class="s">&#39;sheet&#39;</span><span class="p">,</span><span class="n">params</span><span class="p">[</span><span class="s">&#39;projection&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dest</span><span class="p">)</span>
+
+        <span class="n">plotgroup</span><span class="o">.</span><span class="n">_set_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="c"># Specified parameters that aren&#39;t parameters of</span>
+        <span class="c"># save_plotgroup() are set on the plotgroup</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">extra_keywords</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">plotgroup</span><span class="o">.</span><span class="n">set_param</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="c"># Reset plot cache when time changes</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_time</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_time</span><span class="p">[:]</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_plotgroups</span><span class="p">[:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+
+        <span class="c"># Skip update step if equivalent to prior command at this sim time</span>
+        <span class="n">update</span><span class="o">=</span><span class="bp">True</span>
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">use_cached_results</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_plotgroups</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">equivalence_fn</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">plotgroup</span><span class="p">):</span>
+                    <span class="n">update</span><span class="o">=</span><span class="bp">False</span>
+                    <span class="k">break</span>
+
+        <span class="n">keywords</span><span class="o">=</span><span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">)</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">extra_keywords</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+        <span class="n">plot_description</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%s%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s">&quot; &quot;</span> <span class="k">if</span> <span class="n">keywords</span> <span class="k">else</span> <span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">keywords</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">update</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_plotgroups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plotgroup</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: Running pre_plot_hooks&quot;</span> <span class="o">%</span> <span class="n">plot_description</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: Using cached results from pre_plot_hooks&quot;</span> <span class="o">%</span> <span class="n">plot_description</span><span class="p">)</span>
+
+        <span class="n">plotgroup</span><span class="o">.</span><span class="n">make_plots</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="n">update</span><span class="p">)</span>
+        <span class="n">plotgroup</span><span class="o">.</span><span class="n">filesaver</span><span class="o">.</span><span class="n">save_to_disk</span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">saver_params</span><span class="p">))</span>
+
+
+</div>
+<div class="viewcode-block" id="Subplotting"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.Subplotting">[docs]</a><span class="k">class</span> <span class="nc">Subplotting</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience functions for handling subplots (such as colorized</span>
+<span class="sd">    Activity plots).  Only needed for avoiding typing, as plots can be</span>
+<span class="sd">    declared with their own specific subplots without using these</span>
+<span class="sd">    functions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">plotgroups_to_subplot</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span>
+                                       <span class="p">[</span><span class="s">&quot;Activity&quot;</span><span class="p">,</span> <span class="s">&quot;Connection Fields&quot;</span><span class="p">,</span>
+                                        <span class="s">&quot;Projection&quot;</span><span class="p">,</span> <span class="s">&quot;Projection Activity&quot;</span><span class="p">],</span>
+                                       <span class="n">doc</span><span class="o">=</span><span class="s">&quot;List of plotgroups for which to &quot;</span>
+                                           <span class="s">&quot;set subplots.&quot;</span><span class="p">)</span>
+
+    <span class="n">subplotting_declared</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                         <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Whether set_subplots has &quot;</span>
+                                             <span class="s">&quot;previously been called&quot;</span><span class="p">)</span>
+
+    <span class="n">_last_args</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">())</span>
+
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Subplotting.set_subplots"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.Subplotting.set_subplots">[docs]</a>    <span class="k">def</span> <span class="nf">set_subplots</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Define Hue and Confidence subplots for each of the</span>
+<span class="sd">        plotgroups_to_subplot.</span>
+<span class="sd">        Typically used to make activity or weight plots show a</span>
+<span class="sd">        preference value as the hue, and a selectivity as the</span>
+<span class="sd">        confidence.</span>
+
+<span class="sd">        The specified hue, if any, should be the name of a SheetView,</span>
+<span class="sd">        such as OrientationPreference.  The specified confidence, if</span>
+<span class="sd">        any, should be the name of a (usually) different SheetView,</span>
+<span class="sd">        such as OrientationSelectivity.</span>
+
+<span class="sd">        The prefix option is a shortcut making the usual case easier</span>
+<span class="sd">        to type; it sets hue to prefix+&quot;Preference&quot; and confidence to</span>
+<span class="sd">        prefix+&quot;Selectivity&quot;.</span>
+
+<span class="sd">        If force=False, subplots are changed only if no subplot is</span>
+<span class="sd">        currently defined.  Force=False is useful for setting up</span>
+<span class="sd">        subplots automatically when maps are measured, without</span>
+<span class="sd">        overwriting any subplots set up specifically by the user.</span>
+
+<span class="sd">        Currently works only for plotgroups that have a plot</span>
+<span class="sd">        with the same name as the plotgroup, though this could</span>
+<span class="sd">        be changed easily.</span>
+
+<span class="sd">        Examples::</span>
+
+<span class="sd">           Subplotting.set_subplots(&quot;Orientation&quot;)</span>
+<span class="sd">             - Set the default subplots to OrientationPreference and</span>
+<span class="sd">             OrientationSelectivity</span>
+
+<span class="sd">           Subplotting.set_subplots(hue=&quot;OrientationPreference&quot;)</span>
+<span class="sd">             - Set the default hue subplot to OrientationPreference with no</span>
+<span class="sd">             selectivity</span>
+
+<span class="sd">           Subplotting.set_subplots()</span>
+<span class="sd">             - Remove subplots from all the plotgroups_to_subplot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">Subplotting</span><span class="o">.</span><span class="n">_last_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">hue</span><span class="p">,</span> <span class="n">confidence</span><span class="p">,</span> <span class="n">force</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">Subplotting</span><span class="o">.</span><span class="n">subplotting_declared</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">prefix</span><span class="p">:</span>
+            <span class="n">hue</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s">&quot;Preference&quot;</span>
+            <span class="n">confidence</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s">&quot;Selectivity&quot;</span>
+
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Subplotting</span><span class="o">.</span><span class="n">plotgroups_to_subplot</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">plotgroups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">pg</span> <span class="o">=</span> <span class="n">plotgroups</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">pg</span><span class="o">.</span><span class="n">plot_templates</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">pt</span> <span class="o">=</span> <span class="n">pg</span><span class="o">.</span><span class="n">plot_templates</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                    <span class="n">pt</span><span class="p">[</span><span class="s">&quot;Hue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hue</span>
+                    <span class="n">pt</span><span class="p">[</span><span class="s">&quot;Confidence&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">confidence</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Subplotting</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;No template </span><span class="si">%s</span><span class="s"> defined for plotgroup&quot;</span>
+                                          <span class="s">&quot; </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Subplotting</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;No plotgroup </span><span class="si">%s</span><span class="s"> defined&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="n">Subplotting</span><span class="o">.</span><span class="n">subplotting_declared</span> <span class="o">=</span> <span class="bp">True</span>
+
+</div>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">restore_subplots</span><span class="p">():</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">Subplotting</span><span class="o">.</span><span class="n">_last_args</span>
+        <span class="k">if</span> <span class="n">args</span> <span class="o">!=</span> <span class="p">():</span>
+            <span class="n">Subplotting</span><span class="o">.</span><span class="n">set_subplots</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">Subplotting</span><span class="o">.</span><span class="n">_last_args</span><span class="p">))</span>
+
+</div>
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&#39;Basic&#39;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Plot the activity for all Sheets.&#39;</span><span class="p">,</span>
+                      <span class="n">auto_refresh</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">update_activity</span><span class="p">],</span>
+                      <span class="n">plot_immediately</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;_activity_buffer&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Connection Fields&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Basic&quot;</span><span class="p">,</span>
+                     <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Plot the weight strength in each ConnectionField of a specific unit of a Sheet.&#39;</span><span class="p">,</span>
+                     <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">update_connectionfields</span><span class="p">],</span>
+                     <span class="n">plot_immediately</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">,</span> <span class="n">situate</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Connection Fields&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;Weights&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Projection&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Basic&quot;</span><span class="p">,</span>
+           <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Plot the weights of an array of ConnectionFields in a Projection.&#39;</span><span class="p">,</span>
+           <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">update_projection</span><span class="p">],</span>
+           <span class="n">plot_immediately</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">,</span> <span class="n">sheet_coords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Projection&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;Weights&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;RGB&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&#39;Other&#39;</span><span class="p">,</span>
+             <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Combine and plot the red, green, and blue activity for all appropriate Sheets.&#39;</span><span class="p">,</span>
+             <span class="n">auto_refresh</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">update_rgb_activities</span><span class="p">],</span>
+             <span class="n">plot_immediately</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Red&#39;</span><span class="p">,</span> <span class="s">&#39;RedActivity&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Green&#39;</span><span class="p">,</span> <span class="s">&#39;GreenActivity&#39;</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s">&#39;Blue&#39;</span><span class="p">,</span> <span class="s">&#39;BlueActivity&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Projection Activity&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Basic&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Plot the activity in each Projection that connects &#39;</span>
+                          <span class="s">&#39;to a Sheet.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">update_projectionactivity</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+                      <span class="n">plot_immediately</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">,</span>
+                      <span class="n">auto_refresh</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Projection Activity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;ProjectionActivity&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span><span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Center of Gravity&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+             <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the center of gravity of each ConnectionField in a Projection.&#39;</span><span class="p">,</span>
+             <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_cog</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+             <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">topographic_grid</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">xsheet_view_name</span><span class="o">=</span><span class="s">&quot;XCoG&quot;</span><span class="p">,</span><span class="n">ysheet_view_name</span><span class="o">=</span><span class="s">&quot;YCoG&quot;</span><span class="p">)],</span>
+             <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;X CoG&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;XCoG&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Y CoG&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;YCoG&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;CoG&#39;</span><span class="p">,[(</span><span class="s">&#39;Red&#39;</span><span class="p">,</span><span class="s">&#39;XCoG&#39;</span><span class="p">),(</span><span class="s">&#39;Green&#39;</span><span class="p">,</span><span class="s">&#39;YCoG&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;RF Projection&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&#39;Other&#39;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure white noise receptive fields.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_rfs</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+                          <span class="n">pattern_generator</span><span class="o">=</span><span class="n">UniformRandom</span><span class="p">())],</span>
+                      <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
+
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;RFs&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;RFs&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Preference&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for sine grating orientation.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+                          <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_WeightedAverage</span><span class="p">())])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Phase Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;PhasePreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Phase Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;PhaseSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/or_key_white_vert_small.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;vonMises Orientation Preference&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for sine grating orientation &#39;</span>
+                          <span class="s">&#39;using von Mises fit.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+                          <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_VonMisesFit</span><span class="p">(),</span>
+                          <span class="n">num_orientation</span><span class="o">=</span><span class="mi">16</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Phase Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;PhasePreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Phase Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;PhaseSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/or_key_white_vert_small.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Bimodal Orientation Preference&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for sine grating orientation &#39;</span>
+                          <span class="s">&#39;using bimodal von Mises fit.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+                          <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_BimodalVonMisesFit</span><span class="p">(),</span>
+                          <span class="n">num_orientation</span><span class="o">=</span><span class="mi">16</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Orientation Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Orientation Preference&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Orientation Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/or_key_white_vert_small.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Two Orientation Preferences&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&#39;Preference Maps&#39;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Display the two most preferred orientations for &#39;</span>
+                          <span class="s">&#39;each units, using bimodal von Mises fit.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+                          <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_BimodalVonMisesFit</span><span class="p">(),</span>
+                          <span class="n">num_orientation</span><span class="o">=</span><span class="mi">16</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Two Orientation Preferences&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Or1&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">),</span>
+                                            <span class="p">(</span><span class="s">&#39;Sel1&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">),</span>
+                                            <span class="p">(</span><span class="s">&#39;Or2&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">),</span>
+                                            <span class="p">(</span><span class="s">&#39;Sel2&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/two_or_key_vert.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Spatial Frequency Preference&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for sine grating orientation &#39;</span>
+                          <span class="s">&#39;and frequency.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+                          <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_WeightedAverage</span><span class="p">())])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Spatial Frequency Preference&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;FrequencyPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Spatial Frequency Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;FrequencySelectivity&#39;</span><span class="p">)])</span>
+<span class="c"># Just calls measure_sine_pref to plot different maps.</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Ocular Preference&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for sine gratings between two &#39;</span>
+                          <span class="s">&#39;eyes.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">()])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Ocular Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OcularPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Ocular Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OcularSelectivity&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span><span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;PhaseDisparity Preference&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">    Measure preference for sine gratings at a specific orentation differing in phase</span>
+<span class="s">    between two input sheets.&quot;&quot;&quot;</span><span class="p">,</span>
+             <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_phasedisparity</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span><span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;PhaseDisparity Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;PhasedisparityPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;PhaseDisparity Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;PhasedisparityPreference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;PhasedisparitySelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;PhaseDisparity Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;PhasedisparitySelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/disp_key_white_vert_small.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Direction Preference&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for sine grating movement &#39;</span>
+                          <span class="s">&#39;direction.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_dr_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">()])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Direction Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;DirectionPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Direction Preference&amp;Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;DirectionPreference&#39;</span><span class="p">),</span>
+                                                 <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span>
+                                                  <span class="s">&#39;DirectionSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Direction Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;DirectionSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Speed Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;SpeedPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Speed Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;SpeedSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/dr_key_white_vert_small.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Hue Preference&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for colors.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_hue_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+                      <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Hue Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;HuePreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Hue Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;HuePreference&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;HueSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Hue Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;HueSelectivity&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Second Orientation Preference&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the second preference for sine grating &#39;</span>
+                          <span class="s">&#39;orientation.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span>
+                          <span class="n">analysis</span><span class="o">.</span><span class="n">measure_second_or_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">true_peak</span><span class="o">=</span><span class="bp">False</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Orientation Preference&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Orientation Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/or_key_white_vert_small.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Second Peak Orientation Preference&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the second peak preference for sine &#39;</span>
+                          <span class="s">&#39;grating orientation.&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span>
+                          <span class="n">analysis</span><span class="o">.</span><span class="n">measure_second_or_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">true_peak</span><span class="o">=</span><span class="bp">True</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Peak Orientation Preference&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Peak Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Second Peak Orientation Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/or_key_white_vert_small.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Two Peaks Orientation Preferences&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&#39;Preference Maps&#39;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Display the two most preferred orientations for</span>
+<span class="s">                      all units with a multimodal orientation preference</span>
+<span class="s">                      distribution.&quot;&quot;&quot;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span>
+                          <span class="n">analysis</span><span class="o">.</span><span class="n">measure_second_or_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">num_orientation</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+                                                          <span class="n">true_peak</span><span class="o">=</span><span class="bp">True</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Two Peaks Orientation Preferences&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Or1&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Sel1&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Or2&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Preference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Sel2&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationMode2Selectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Color Key&#39;</span><span class="p">,</span> <span class="s">&#39;static/two_or_key_vert.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Corner OR Preference&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure orientation preference for corner shape (&#39;</span>
+                          <span class="s">&#39;or other complex stimuli that cannot be &#39;</span>
+                          <span class="s">&#39;represented as fullfield patterns).&#39;</span><span class="p">,</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_corner_or_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+                          <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_WeightedAverage</span><span class="p">())],</span>
+                      <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Orientation Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Orientation Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+
+
+<span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Corner Angle Preference&#39;</span><span class="p">,</span>
+                      <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+                      <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for angles in corner shapes&#39;</span><span class="p">,</span>
+                      <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">pre_plot_hooks</span> <span class="o">=</span> <span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_corner_angle_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">()]</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Angle Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;AnglePreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Angle Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;AnglePreference&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;AngleSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Angle Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;AngleSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Orientation Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Orientation Preference&amp;Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Hue&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationPreference&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Corner Orientation Selectivity&#39;</span><span class="p">,</span>
+            <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OrientationSelectivity&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_static_image</span><span class="p">(</span><span class="s">&#39;Hue Code&#39;</span><span class="p">,</span> <span class="s">&#39;static/key_angles.png&#39;</span><span class="p">)</span>
+
+
+<span class="n">pg</span><span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Position Preference&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
+           <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for the X and Y position of a Gaussian.&#39;</span><span class="p">,</span>
+           <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_position_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
+            <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_WeightedAverage</span><span class="p">(</span> <span class="n">selectivity_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">17.</span><span class="p">)</span> <span class="p">))],</span>
+           <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">topographic_grid</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+           <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
+
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;X Preference&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Y Preference&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;YPreference&#39;</span><span class="p">)])</span>
+<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Position Preference&#39;</span><span class="p">,[(</span><span class="s">&#39;Red&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="s">&#39;Green&#39;</span><span class="p">,</span><span class="s">&#39;YPreference&#39;</span><span class="p">)])</span>
+
+
+<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Tuning Fullfield&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">            Plot orientation tuning curves for a specific unit, measured using full-field sine gratings.</span>
+<span class="s">            Although the data takes a long time to collect, once it is ready the plots</span>
+<span class="s">            are available immediately for any unit.&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_or_tuning_fullfield</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;orientation&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&#39;degrees&#39;</span><span class="p">)])</span>
+
+
+<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">            Measure orientation tuning for a specific unit at different contrasts,</span>
+<span class="s">            using a pattern chosen to match the preferences of that unit.&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_or_tuning</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;orientation&quot;</span><span class="p">)],</span>
+        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
+
+
+<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Size Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
+        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the size preference for a specific unit.&#39;</span><span class="p">,</span>
+        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_size_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;size&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;Diameter of stimulus&quot;</span><span class="p">)],</span>
+        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
+
+
+<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Contrast Response&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
+        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the contrast response function for a specific unit.&#39;</span><span class="p">,</span>
+        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_contrast_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;contrast&quot;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;%&quot;</span><span class="p">)],</span>
+        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
+
+
+<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Frequency Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
+        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the spatial frequency preference for a specific unit.&#39;</span><span class="p">,</span>
+        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_frequency_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;cycles per unit distance&quot;</span><span class="p">)],</span>
+        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
+
+
+<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Contrast&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
+                 <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the response of one unit to a center and surround sine grating disk.&#39;</span><span class="p">,</span>
+                 <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_orientation_contrast</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
+                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;orientationsurround&quot;</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">relative_labels</span><span class="o">=</span><span class="bp">True</span><span class="p">)],</span>
+                 <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
 </pre></div>
 
           </div>
@@ -1440,6 +1952,7 @@
 <li><a href="../../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../../Links/index.html">Links</a></li>
 <li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../../index.html">Table Of Contents</a></h3>
 
@@ -1488,7 +2001,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

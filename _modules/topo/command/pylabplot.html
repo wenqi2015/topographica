@@ -73,7 +73,6 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">matplotlib.ticker</span>
     <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pylab</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">param</span>
@@ -82,26 +81,18 @@
     <span class="n">plt</span> <span class="o">=</span> <span class="n">ImportErrorRaisingFakeModule</span><span class="p">(</span><span class="s">&quot;matplotlib&quot;</span><span class="p">)</span>  <span class="c"># pyflakes:ignore (try/except import)</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
-<span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy.fft.fftpack</span> <span class="kn">import</span> <span class="n">fft2</span>
 <span class="kn">from</span> <span class="nn">numpy.fft.helper</span> <span class="kn">import</span> <span class="n">fftshift</span>
 
 <span class="kn">import</span> <span class="nn">topo</span>
-<span class="kn">from</span> <span class="nn">topo.base.arrayutil</span> <span class="kn">import</span> <span class="n">centroid</span><span class="p">,</span> <span class="n">wrap</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
-<span class="kn">from</span> <span class="nn">topo.misc.util</span> <span class="kn">import</span> <span class="n">frange</span>
-<span class="kn">import</span> <span class="nn">topo.analysis.vision</span>
-<span class="kn">from</span> <span class="nn">topo.plotting.plot</span> <span class="kn">import</span> <span class="n">make_template_plot</span>
-<span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">ParameterizedFunction</span><span class="p">,</span><span class="n">normalize_path</span>
-<span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
-<span class="kn">from</span> <span class="nn">topo.pattern</span> <span class="kn">import</span> <span class="n">SineGrating</span><span class="p">,</span> <span class="n">OrientationContrast</span>
-<span class="kn">from</span> <span class="nn">topo.plotting.plotgroup</span> <span class="kn">import</span> <span class="n">create_plotgroup</span>
-<span class="kn">from</span> <span class="nn">topo.base.cf</span> <span class="kn">import</span> <span class="n">CFSheet</span>
+<span class="kn">from</span> <span class="nn">topo.base.arrayutil</span> <span class="kn">import</span> <span class="n">wrap</span>
 
-<span class="kn">from</span> <span class="nn">topo.analysis.featureresponses</span> <span class="kn">import</span> <span class="n">Feature</span>
-<span class="kn">from</span> <span class="nn">topo.analysis.featureresponses</span> <span class="kn">import</span> <span class="n">PositionMeasurementCommand</span><span class="p">,</span> <span class="n">FeatureCurveCommand</span><span class="p">,</span> <span class="n">UnitCurveCommand</span>
-<span class="kn">from</span> <span class="nn">topo.analysis.featureresponses</span> <span class="kn">import</span> <span class="n">contrast2centersurroundscale</span>
+<span class="kn">from</span> <span class="nn">topo.plotting.plot</span> <span class="kn">import</span> <span class="n">make_template_plot</span>
+<span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">ParameterizedFunction</span><span class="p">,</span> <span class="n">normalize_path</span>
+<span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
 <span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">Command</span>
 
@@ -876,6 +867,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ticks</span>
 
+
 </div>
 <div class="viewcode-block" id="cyclic_tuning_curve"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.cyclic_tuning_curve">[docs]</a><span class="k">class</span> <span class="nc">cyclic_tuning_curve</span><span class="p">(</span><span class="n">cyclic_unit_tuning_curve</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -911,6 +903,7 @@
                                                       <span class="n">unit</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span>
                                                       <span class="n">legend</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">legend</span><span class="p">,</span>
                                                       <span class="n">cyclic_range</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">cyclic_range</span><span class="p">)</span>
+
 
 </div>
 <div class="viewcode-block" id="plot_cfproj_mapping"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.plot_cfproj_mapping">[docs]</a><span class="k">def</span> <span class="nf">plot_cfproj_mapping</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span><span class="n">proj</span><span class="o">=</span><span class="s">&#39;Afferent&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;b-&#39;</span><span class="p">):</span>
@@ -958,518 +951,7 @@
              <span class="n">style</span><span class="p">)</span>
 
     <span class="n">hold</span><span class="p">(</span><span class="n">hold_on</span><span class="p">)</span>
-
-
-
-<span class="c"># JABALERT: Should be updated to plot for a specified list of sheets,</span>
-<span class="c"># and then the combination of all of them, so that it will work for</span>
-<span class="c"># any network.  Will need to remove the simple_sheet_name and</span>
-<span class="c"># complex_sheet_name parameters once that works.</span></div>
-<div class="viewcode-block" id="plot_modulation_ratio"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.plot_modulation_ratio">[docs]</a><span class="k">class</span> <span class="nc">plot_modulation_ratio</span><span class="p">(</span><span class="n">PylabPlotCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This function computes the modulation ratios of neurons in the</span>
-<span class="sd">    specified sheets and plots their histograms. See</span>
-<span class="sd">    analysis.vision.complexity for more info.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c"># JABALERT: All but the first argument should probably be Parameters</span>
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fullmatrix</span><span class="p">,</span><span class="n">simple_sheet_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">complex_sheet_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="n">frange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="n">inclusive</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
-
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-        <span class="kn">from</span> <span class="nn">topo.analysis.vision</span> <span class="kn">import</span> <span class="n">complexity</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">()</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">simple_sheet_name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">()</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">complex_sheet_name</span><span class="p">)):</span>
-            <span class="n">v1s</span> <span class="o">=</span> <span class="n">complexity</span><span class="p">(</span><span class="n">fullmatrix</span><span class="p">[</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">simple_sheet_name</span><span class="p">]])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-            <span class="n">v1c</span> <span class="o">=</span> <span class="n">complexity</span><span class="p">(</span><span class="n">fullmatrix</span><span class="p">[</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">complex_sheet_name</span><span class="p">]])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-            <span class="c">#double the number of complex cells to reflect large width of layer 2/3</span>
-            <span class="n">v1c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v1c</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v1c</span><span class="p">)),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">n</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">v1s</span><span class="p">,</span><span class="n">bins</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4100</span><span class="p">])</span>
-	    <span class="n">n</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-
-	    <span class="n">n</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">v1c</span><span class="p">,</span><span class="n">bins</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4100</span><span class="p">])</span>
-	    <span class="n">n</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-
-	    <span class="n">n</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v1s</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v1c</span><span class="p">)),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">bins</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4100</span><span class="p">])</span>
-	    <span class="n">n</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_figure</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fig</span>
-
-
 </div>
-<div class="viewcode-block" id="measure_position_pref"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_position_pref">[docs]</a><span class="k">class</span> <span class="nc">measure_position_pref</span><span class="p">(</span><span class="n">PositionMeasurementCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Measure a position preference map by collating the response to patterns.&quot;&quot;&quot;</span>
-
-    <span class="n">scale</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_feature_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
-        <span class="n">width</span> <span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">height</span><span class="o">=</span><span class="mf">1.0</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">y_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p</span><span class="o">.</span><span class="n">y_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">x_range</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="n">width</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">divisions</span><span class="p">,</span><span class="n">preference_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">preference_fn</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">y_range</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="n">height</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">divisions</span><span class="p">,</span><span class="n">preference_fn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">preference_fn</span><span class="p">)]</span>
-
-</div>
-<span class="kn">from</span> <span class="nn">topo.misc.distribution</span> <span class="kn">import</span> <span class="n">DSF_WeightedAverage</span>
-<span class="n">pg</span><span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Position Preference&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
-           <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for the X and Y position of a Gaussian.&#39;</span><span class="p">,</span>
-           <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_position_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
-            <span class="n">preference_fn</span><span class="o">=</span><span class="n">DSF_WeightedAverage</span><span class="p">(</span> <span class="n">selectivity_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">17.</span><span class="p">)</span> <span class="p">))],</span>
-           <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">topographic_grid</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-           <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
-
-<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;X Preference&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">)])</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Y Preference&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;YPreference&#39;</span><span class="p">)])</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Position Preference&#39;</span><span class="p">,[(</span><span class="s">&#39;Red&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">),</span>
-                                   <span class="p">(</span><span class="s">&#39;Green&#39;</span><span class="p">,</span><span class="s">&#39;YPreference&#39;</span><span class="p">)])</span>
-
-
-
-<div class="viewcode-block" id="measure_cog"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_cog">[docs]</a><span class="k">class</span> <span class="nc">measure_cog</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculate center of gravity (CoG) for each CF of each unit in each CFSheet.</span>
-
-<span class="sd">    Unlike measure_position_pref and other measure commands, this one</span>
-<span class="sd">    does not work by collating the responses to a set of input patterns.</span>
-<span class="sd">    Instead, the CoG is calculated directly from each set of incoming</span>
-<span class="sd">    weights.  The CoG value thus is an indirect estimate of what</span>
-<span class="sd">    patterns the neuron will prefer, but is not limited by the finite</span>
-<span class="sd">    number of test patterns as the other measure commands are.</span>
-
-<span class="sd">    Measures only one projection for each sheet, as specified by the</span>
-<span class="sd">    proj_name parameter.  The default proj_name of &#39;&#39; selects the</span>
-<span class="sd">    first non-self connection, which is usually useful to examine for</span>
-<span class="sd">    simple feedforward networks, but will not necessarily be useful in</span>
-<span class="sd">    other cases.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">proj_name</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Name of the projection to measure; the empty string means &#39;the first</span>
-<span class="s">        non-self connection available&#39;.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
-
-        <span class="n">measured_sheets</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">CFSheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-                           <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="s">&#39;measure_maps&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">measure_maps</span><span class="p">]</span>
-
-        <span class="c"># Could easily be extended to measure CoG of all projections</span>
-        <span class="c"># and e.g. register them using different names (e.g. &quot;Afferent</span>
-        <span class="c"># XCoG&quot;), but then it&#39;s not clear how the PlotGroup would be</span>
-        <span class="c"># able to find them automatically (as it currently supports</span>
-        <span class="c"># only a fixed-named plot).</span>
-        <span class="n">requested_proj</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">proj_name</span>
-        <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">measured_sheets</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">in_connections</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">requested_proj</span><span class="p">)</span> <span class="ow">or</span> \
-                   <span class="p">(</span><span class="n">requested_proj</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">src</span> <span class="o">!=</span> <span class="n">sheet</span><span class="p">)):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_update_proj_cog</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">requested_proj</span><span class="o">==</span><span class="s">&#39;&#39;</span><span class="p">:</span>
-                        <span class="k">print</span> <span class="s">&quot;measure_cog: Measured </span><span class="si">%s</span><span class="s"> projection </span><span class="si">%s</span><span class="s"> from </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> \
-                              <span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">proj</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                        <span class="k">break</span>
-
-
-    <span class="k">def</span> <span class="nf">_update_proj_cog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">proj</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Measure the CoG of the specified projection and register corresponding SheetViews.&quot;&quot;&quot;</span>
-
-        <span class="n">sheet</span><span class="o">=</span><span class="n">proj</span><span class="o">.</span><span class="n">dest</span>
-        <span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">shape</span>
-        <span class="n">xpref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-        <span class="n">ypref</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
-                <span class="n">cf</span><span class="o">=</span><span class="n">proj</span><span class="o">.</span><span class="n">cfs</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
-                <span class="n">r1</span><span class="p">,</span><span class="n">r2</span><span class="p">,</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">input_sheet_slice</span>
-                <span class="n">row_centroid</span><span class="p">,</span><span class="n">col_centroid</span> <span class="o">=</span> <span class="n">centroid</span><span class="p">(</span><span class="n">cf</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
-                <span class="n">xcentroid</span><span class="p">,</span> <span class="n">ycentroid</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">matrix2sheet</span><span class="p">(</span>
-                        <span class="n">r1</span><span class="o">+</span><span class="n">row_centroid</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span>
-                        <span class="n">c1</span><span class="o">+</span><span class="n">col_centroid</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
-
-                <span class="n">xpref</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span> <span class="n">xcentroid</span>
-                <span class="n">ypref</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span> <span class="n">ycentroid</span>
-
-        <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span> <span class="n">row_precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
-                        <span class="n">src_name</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-        <span class="n">timestamp</span><span class="o">=</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-
-        <span class="n">xpref_sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">xpref</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
-        <span class="n">ypref_sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">ypref</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
-
-        <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;XCoG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">((</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">xpref_sv</span><span class="p">),</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
-
-        <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;YCoG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">((</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">ypref_sv</span><span class="p">),</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
-
-</div>
-<span class="n">pg</span><span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Center of Gravity&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
-             <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the center of gravity of each ConnectionField in a Projection.&#39;</span><span class="p">,</span>
-             <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_cog</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-             <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">topographic_grid</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">xsheet_view_name</span><span class="o">=</span><span class="s">&quot;XCoG&quot;</span><span class="p">,</span><span class="n">ysheet_view_name</span><span class="o">=</span><span class="s">&quot;YCoG&quot;</span><span class="p">)],</span>
-             <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;X CoG&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;XCoG&#39;</span><span class="p">)])</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Y CoG&#39;</span><span class="p">,[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span><span class="s">&#39;YCoG&#39;</span><span class="p">)])</span>
-<span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;CoG&#39;</span><span class="p">,[(</span><span class="s">&#39;Red&#39;</span><span class="p">,</span><span class="s">&#39;XCoG&#39;</span><span class="p">),(</span><span class="s">&#39;Green&#39;</span><span class="p">,</span><span class="s">&#39;YCoG&#39;</span><span class="p">)])</span>
-
-
-<div class="viewcode-block" id="measure_or_tuning_fullfield"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_or_tuning_fullfield">[docs]</a><span class="k">class</span> <span class="nc">measure_or_tuning_fullfield</span><span class="p">(</span><span class="n">FeatureCurveCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Measures orientation tuning curve(s) of a particular unit using a</span>
-<span class="sd">    full-field sine grating stimulus.</span>
-
-<span class="sd">    The curve can be plotted at various different values of the</span>
-<span class="sd">    contrast (or actually any other parameter) of the stimulus.  If</span>
-<span class="sd">    using contrast and the network contains an LGN layer, then one</span>
-<span class="sd">    would usually specify michelson_contrast as the</span>
-<span class="sd">    contrast_parameter. If there is no explicit LGN, then scale</span>
-<span class="sd">    (offset=0.0) can be used to define the contrast.  Other relevant</span>
-<span class="sd">    contrast definitions (or other parameters) can also be used,</span>
-<span class="sd">    provided they are defined in CoordinatedPatternGenerator and the units</span>
-<span class="sd">    parameter is changed as appropriate.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">coords</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Ignored; here just to suppress warning.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">pattern_generator</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Callable</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SineGrating</span><span class="p">())</span>
-
-</div>
-<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Tuning Fullfield&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">            Plot orientation tuning curves for a specific unit, measured using full-field sine gratings.</span>
-<span class="s">            Although the data takes a long time to collect, once it is ready the plots</span>
-<span class="s">            are available immediately for any unit.&quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_or_tuning_fullfield</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;orientation&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&#39;degrees&#39;</span><span class="p">)])</span>
-
-
-
-<div class="viewcode-block" id="measure_or_tuning"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_or_tuning">[docs]</a><span class="k">class</span> <span class="nc">measure_or_tuning</span><span class="p">(</span><span class="n">UnitCurveCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Measures orientation tuning curve(s) of a particular unit.</span>
-
-<span class="sd">    Uses a circular sine grating patch as the stimulus on the</span>
-<span class="sd">    retina.</span>
-
-<span class="sd">    The curve can be plotted at various different values of the</span>
-<span class="sd">    contrast (or actually any other parameter) of the stimulus.  If</span>
-<span class="sd">    using contrast and the network contains an LGN layer, then one</span>
-<span class="sd">    would usually specify weber_contrast as the contrast_parameter. If</span>
-<span class="sd">    there is no explicit LGN, then scale (offset=0.0) can be used to</span>
-<span class="sd">    define the contrast.  Other relevant contrast definitions (or</span>
-<span class="sd">    other parameters) can also be used, provided they are defined in</span>
-<span class="sd">    CoordinatedPatternGenerator and the units parameter is changed as</span>
-<span class="sd">    appropriate.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">num_orientation</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-
-    <span class="n">static_parameters</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;size&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_presenter_overrides</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">results</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_curves</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_restore_presenter_defaults</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">results</span>
-
-</div>
-<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">            Measure orientation tuning for a specific unit at different contrasts,</span>
-<span class="s">            using a pattern chosen to match the preferences of that unit.&quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_or_tuning</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;orientation&quot;</span><span class="p">)],</span>
-        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
-
-
-
-<span class="c"># JABALERT: Is there some reason not to call it measure_size_tuning?</span>
-<div class="viewcode-block" id="measure_size_response"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_size_response">[docs]</a><span class="k">class</span> <span class="nc">measure_size_response</span><span class="p">(</span><span class="n">UnitCurveCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Measure receptive field size of one unit of a sheet.</span>
-
-<span class="sd">    Uses an expanding circular sine grating stimulus at the preferred</span>
-<span class="sd">    orientation and retinal position of the specified unit.</span>
-<span class="sd">    Orientation and position preference must be calulated before</span>
-<span class="sd">    measuring size response.</span>
-
-<span class="sd">    The curve can be plotted at various different values of the</span>
-<span class="sd">    contrast (or actually any other parameter) of the stimulus.  If</span>
-<span class="sd">    using contrast and the network contains an LGN layer, then one</span>
-<span class="sd">    would usually specify weber_contrast as the contrast_parameter. If</span>
-<span class="sd">    there is no explicit LGN, then scale (offset=0.0) can be used to</span>
-<span class="sd">    define the contrast.  Other relevant contrast definitions (or</span>
-<span class="sd">    other parameters) can also be used, provided they are defined in</span>
-<span class="sd">    CoordinatedPatternGenerator and the units parameter is changed as</span>
-<span class="sd">    appropriate.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">size</span><span class="o">=</span><span class="bp">None</span> <span class="c"># Disabled unused parameter</span>
-
-    <span class="n">static_parameters</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;orientation&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">])</span>
-
-    <span class="n">num_sizes</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
-                              <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Number of different sizes to test.&quot;</span><span class="p">)</span>
-
-    <span class="n">max_size</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
-                              <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Maximum extent of the grating&quot;</span><span class="p">)</span>
-
-    <span class="n">x_axis</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&quot;size&quot;</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_presenter_overrides</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-            <span class="c"># Orientations are stored as a normalized value beween 0</span>
-            <span class="c"># and 1, so we scale them by pi to get the true orientations.</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">orientation</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;orientation&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">)</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">results</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_curves</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_restore_presenter_defaults</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">results</span>
-
-
-    <span class="c"># Why not vary frequency too?  Usually it&#39;s just one number, but it could be otherwise.</span>
-    <span class="k">def</span> <span class="nf">_feature_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;phase&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">num_phase</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">frequencies</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;size&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">max_size</span><span class="p">),</span><span class="n">step</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">max_size</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">num_sizes</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">False</span><span class="p">)]</span>
-
-</div>
-<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Size Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
-        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the size preference for a specific unit.&#39;</span><span class="p">,</span>
-        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_size_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;size&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;Diameter of stimulus&quot;</span><span class="p">)],</span>
-        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
-
-
-
-<div class="viewcode-block" id="measure_contrast_response"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_contrast_response">[docs]</a><span class="k">class</span> <span class="nc">measure_contrast_response</span><span class="p">(</span><span class="n">UnitCurveCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Measures contrast response curves for a particular unit.</span>
-
-<span class="sd">    Uses a circular sine grating stimulus at the preferred</span>
-<span class="sd">    orientation and retinal position of the specified unit.</span>
-<span class="sd">    Orientation and position preference must be calulated before</span>
-<span class="sd">    measuring contrast response.</span>
-
-<span class="sd">    The curve can be plotted at various different values of the</span>
-<span class="sd">    contrast (or actually any other parameter) of the stimulus.  If</span>
-<span class="sd">    using contrast and the network contains an LGN layer, then one</span>
-<span class="sd">    would usually specify weber_contrast as the contrast_parameter. If</span>
-<span class="sd">    there is no explicit LGN, then scale (offset=0.0) can be used to</span>
-<span class="sd">    define the contrast.  Other relevant contrast definitions (or</span>
-<span class="sd">    other parameters) can also be used, provided they are defined in</span>
-<span class="sd">    CoordinatedPatternGenerator and the units parameter is changed as</span>
-<span class="sd">    appropriate.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">static_parameters</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;size&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">])</span>
-
-    <span class="n">contrasts</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
-
-    <span class="n">relative_orientations</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
-
-    <span class="n">x_axis</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;contrast&#39;</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-    <span class="n">units</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&quot; rad&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_presenter_overrides</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-            <span class="n">orientation</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;orientation&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">curve_parameters</span><span class="o">=</span><span class="p">[{</span><span class="s">&quot;orientation&quot;</span><span class="p">:</span><span class="n">orientation</span><span class="o">+</span><span class="n">ro</span><span class="p">}</span> <span class="k">for</span> <span class="n">ro</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">relative_orientations</span><span class="p">]</span>
-
-            <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-            <span class="n">results</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_curves</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">val_format</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%.4f</span><span class="s">&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_restore_presenter_defaults</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">results</span>
-
-    <span class="k">def</span> <span class="nf">_feature_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;phase&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">num_phase</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">frequencies</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;contrast&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">contrasts</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">False</span><span class="p">)]</span>
-
-</div>
-<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Contrast Response&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
-        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the contrast response function for a specific unit.&#39;</span><span class="p">,</span>
-        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_contrast_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;contrast&quot;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;%&quot;</span><span class="p">)],</span>
-        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
-
-
-<div class="viewcode-block" id="measure_frequency_response"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_frequency_response">[docs]</a><span class="k">class</span> <span class="nc">measure_frequency_response</span><span class="p">(</span><span class="n">UnitCurveCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Measure spatial frequency preference of one unit of a sheet.</span>
-
-<span class="sd">    Uses an constant circular sine grating stimulus at the preferred</span>
-<span class="sd">    with varying spatial frequency orientation and retinal position</span>
-<span class="sd">    of the specified unit. Orientation and position preference must</span>
-<span class="sd">    be calulated before measuring size response.</span>
-
-<span class="sd">    The curve can be plotted at various different values of the</span>
-<span class="sd">    contrast (or actually any other parameter) of the stimulus.  If</span>
-<span class="sd">    using contrast and the network contains an LGN layer, then one</span>
-<span class="sd">    would usually specify weber_contrast as the contrast_parameter. If</span>
-<span class="sd">    there is no explicit LGN, then scale (offset=0.0) can be used to</span>
-<span class="sd">    define the contrast.  Other relevant contrast definitions (or</span>
-<span class="sd">    other parameters) can also be used, provided they are defined in one of the</span>
-<span class="sd">    appropriate metaparameter_fns.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">x_axis</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-    <span class="n">static_parameters</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;orientation&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">])</span>
-
-    <span class="n">num_freq</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
-                              <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Number of different sizes to test.&quot;</span><span class="p">)</span>
-
-    <span class="n">max_freq</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span>
-                              <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Maximum extent of the grating&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_presenter_overrides</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-            <span class="c"># Orientations are stored as a normalized value beween 0</span>
-            <span class="c"># and 1, so we scale them by pi to get the true orientations.</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">orientation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;orientation&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">)</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-            <span class="n">results</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_curves</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_restore_presenter_defaults</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">results</span>
-
-
-    <span class="k">def</span> <span class="nf">_feature_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;orientation&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">orientation</span><span class="p">],</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;phase&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">num_phase</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">max_freq</span><span class="p">),</span><span class="n">step</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">max_freq</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">num_freq</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;size&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">size</span><span class="p">])]</span>
-
-</div>
-<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Frequency Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
-        <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the spatial frequency preference for a specific unit.&#39;</span><span class="p">,</span>
-        <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_frequency_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;cycles per unit distance&quot;</span><span class="p">)],</span>
-        <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
-
-
-
-<div class="viewcode-block" id="measure_orientation_contrast"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.pylabplot-module.html#topo.command.pylabplot.measure_orientation_contrast">[docs]</a><span class="k">class</span> <span class="nc">measure_orientation_contrast</span><span class="p">(</span><span class="n">UnitCurveCommand</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Measures the response to a center sine grating disk and a surround</span>
-<span class="sd">    sine grating ring at different contrasts of the central disk.</span>
-
-<span class="sd">    The central disk is set to the preferred orientation of the unit</span>
-<span class="sd">    to be measured. The surround disk orientation (relative to the</span>
-<span class="sd">    central grating) and contrast can be varied, as can the size of</span>
-<span class="sd">    both disks.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">metafeature_fns</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">HookList</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="n">contrast2centersurroundscale</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="s">&#39;weber_contrast&#39;</span><span class="p">)])</span>
-
-    <span class="n">pattern_generator</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Callable</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">OrientationContrast</span><span class="p">(</span><span class="n">surround_orientation_relative</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
-
-    <span class="n">size</span><span class="o">=</span><span class="bp">None</span> <span class="c"># Disabled unused parameter</span>
-    <span class="c"># Maybe instead of the below, use size and some relative parameter, to allow easy scaling?</span>
-
-    <span class="n">sizecenter</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        The size of the central pattern to present.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">sizesurround</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        The size of the surround pattern to present.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">thickness</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Ring thickness.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">contrastsurround</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Contrast of the surround.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">contrastcenter</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Contrast of the center.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">x_axis</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;orientationsurround&#39;</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-    <span class="n">orientation_center</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="n">softbounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Orientation of the center grating patch&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">num_orientation</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-
-    <span class="n">units</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&quot;%&quot;</span><span class="p">)</span>
-
-    <span class="n">static_parameters</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;sizecenter&quot;</span><span class="p">,</span><span class="s">&quot;sizesurround&quot;</span><span class="p">,</span><span class="s">&quot;orientationcenter&quot;</span><span class="p">,</span><span class="s">&quot;thickness&quot;</span><span class="p">,</span><span class="s">&quot;contrastcenter&quot;</span><span class="p">])</span>
-
-    <span class="n">curve_parameters</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">([{</span><span class="s">&quot;contrastsurround&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">},{</span><span class="s">&quot;contrastsurround&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">},{</span><span class="s">&quot;contrastsurround&quot;</span><span class="p">:</span><span class="mi">80</span><span class="p">},{</span><span class="s">&quot;contrastsurround&quot;</span><span class="p">:</span><span class="mi">90</span><span class="p">}],</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        List of parameter values for which to measure a curve.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">or_surrounds</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_presenter_overrides</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">or_surrounds</span><span class="o">=</span><span class="p">[]</span>
-            <span class="n">orientation</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;orientation&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">orientation_center</span><span class="p">)</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">orientationcenter</span><span class="o">=</span><span class="n">orientation</span>
-
-            <span class="n">orientation_step</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">num_orientation</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">num_orientation</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">or_surrounds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">orientation</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">orientation_step</span><span class="p">)</span>
-
-            <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">preference_lookup_fn</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coord</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-            <span class="n">results</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_curves</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_restore_presenter_defaults</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">results</span>
-
-    <span class="k">def</span> <span class="nf">_feature_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;phase&quot;</span><span class="p">,</span><span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span><span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">num_phase</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">frequencies</span><span class="p">),</span>
-                <span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;orientationsurround&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">or_surrounds</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">True</span><span class="p">)]</span>
-</div>
-<span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Contrast&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
-                 <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the response of one unit to a center and surround sine grating disk.&#39;</span><span class="p">,</span>
-                 <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">measure_orientation_contrast</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;orientationsurround&quot;</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">relative_labels</span><span class="o">=</span><span class="bp">True</span><span class="p">)],</span>
-                 <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
-
-
-
-<span class="k">class</span> <span class="nc">test_measure</span><span class="p">(</span><span class="n">UnitCurveCommand</span><span class="p">):</span>
-
-    <span class="n">static_parameters</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;size&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">])</span>
-
-    <span class="n">x_axis</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;contrast&#39;</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-    <span class="n">units</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&quot; rad&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_compute_curves</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">val_format</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%.4f</span><span class="s">&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_feature_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;orientation&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span><span class="o">*</span><span class="mi">22</span><span class="p">,</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-    		<span class="n">Feature</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;contrast&quot;</span><span class="p">,</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span><span class="n">cyclic</span><span class="o">=</span><span class="bp">False</span><span class="p">)]</span>
-
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="n">__all__</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">)</span> <span class="ow">or</span>
@@ -1499,6 +981,7 @@
 <li><a href="../../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../../Links/index.html">Links</a></li>
 <li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../../index.html">Table Of Contents</a></h3>
 
@@ -1548,7 +1031,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

@@ -54,6 +54,12 @@
 <h1>topo.sheet.ptztracker<a class="headerlink" href="#topo-sheet-ptztracker" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritancee1aac473e9.svg" usemap="#inheritancee1aac473e9" class="inheritance"/></div><map id="inheritancee1aac473e9" name="inheritancee1aac473e9">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.sheet.ptztracker.pyc-module.html">topo.sheet.ptztracker.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.sheet.ptztracker">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.sheet.ptztracker" title="Permalink to this headline">¶</a></h2>
 <p>This class finds the brightest pixel of the image, returns it in white and
@@ -70,17 +76,17 @@ the brightest pixel will be in the center of the sheet.</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ratio</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.33, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ratio</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.33, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio depends of the resolution of the camera, here 640x480.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=57, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=57, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Field of view along y in degrees. It is calculate with the resolution
         of the camera, and its field of view. It also depends of the bounds used,
         here the size_normalization used is &#8220;fit_shortest&#8221;. So Sheet coordinates
         along y for camera&#8217;s image are between -0.5 and 0.5.
         The original calculation is fov_y=fov_x*0.5*2/ratio.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=76, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=76, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Field of view along x in degrees, depends of the camera.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds</span></tt> (<em>constant=True, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>User-specified BoundingBox of the Sheet coordinate area
@@ -94,14 +100,14 @@ the brightest pixel will be in the center of the sheet.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows grouping of Sheets before sorting precedence is
             applied, e.g. for two-dimensional plots in the GUI.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Setting this to False tells the Sheet not to change its
             permanent state (e.g. any connection weights) based on
             incoming events.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>User-specified number of processing units per 1.0 distance
             horizontally or vertically in Sheet coordinates. The actual
             number may be different because of discretization; the matrix
@@ -117,9 +123,9 @@ the brightest pixel will be in the center of the sheet.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along x.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along y.</dd>
 </dl>
 <dl class="method">
@@ -155,17 +161,17 @@ in the image.</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ratio</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.33, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ratio</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.33, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio depends of the resolution of the camera, here 640x480.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=57, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=57, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Field of view along y in degrees. It is calculate with the resolution
         of the camera, and its field of view. It also depends of the bounds used,
         here the size_normalization used is &#8220;fit_shortest&#8221;. So Sheet coordinates
         along y for camera&#8217;s image are between -0.5 and 0.5.
         The original calculation is fov_y=fov_x*0.5*2/ratio.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=76, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=76, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Field of view along x in degrees, depends of the camera.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds</span></tt> (<em>constant=True, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>User-specified BoundingBox of the Sheet coordinate area
@@ -179,14 +185,14 @@ in the image.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows grouping of Sheets before sorting precedence is
             applied, e.g. for two-dimensional plots in the GUI.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Setting this to False tells the Sheet not to change its
             permanent state (e.g. any connection weights) based on
             incoming events.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>User-specified number of processing units per 1.0 distance
             horizontally or vertically in Sheet coordinates. The actual
             number may be different because of discretization; the matrix
@@ -202,9 +208,9 @@ in the image.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along x.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along y.</dd>
 </dl>
 </dd></dl>
@@ -218,17 +224,17 @@ rectangle around each detected face.</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ratio</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.33, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ratio</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.33, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio depends of the resolution of the camera, here 640x480.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=57, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=57, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Field of view along y in degrees. It is calculate with the resolution
         of the camera, and its field of view. It also depends of the bounds used,
         here the size_normalization used is &#8220;fit_shortest&#8221;. So Sheet coordinates
         along y for camera&#8217;s image are between -0.5 and 0.5.
         The original calculation is fov_y=fov_x*0.5*2/ratio.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=76, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fov_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=76, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Field of view along x in degrees, depends of the camera.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds</span></tt> (<em>constant=True, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>User-specified BoundingBox of the Sheet coordinate area
@@ -242,14 +248,14 @@ rectangle around each detected face.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows grouping of Sheets before sorting precedence is
             applied, e.g. for two-dimensional plots in the GUI.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Setting this to False tells the Sheet not to change its
             permanent state (e.g. any connection weights) based on
             incoming events.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>User-specified number of processing units per 1.0 distance
             horizontally or vertically in Sheet coordinates. The actual
             number may be different because of discretization; the matrix
@@ -265,9 +271,9 @@ rectangle around each detected face.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along x.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along y.</dd>
 </dl>
 </dd></dl>
@@ -298,10 +304,12 @@ rectangle around each detected face.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.sheet.ptztracker</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.sheet.ptztracker">Module</a></li>
 </ul>
 </li>
@@ -347,7 +355,7 @@ rectangle around each detected face.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

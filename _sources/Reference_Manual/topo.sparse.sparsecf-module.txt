@@ -10,5 +10,5 @@ Module
 ======
 
 .. automodule:: topo.sparse.sparsecf
-	:members:
-	:show-inheritance:
+   :members:
+   :show-inheritance:

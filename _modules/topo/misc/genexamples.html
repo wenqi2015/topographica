@@ -104,20 +104,19 @@
 </div>
 <div class="viewcode-block" id="or_analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.genexamples-module.html#topo.misc.genexamples.or_analysis">[docs]</a><span class="k">def</span> <span class="nf">or_analysis</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Return a command for orientation analysis.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s">&quot;&quot;&quot;</span>
-<span class="s">from topo.command.analysis import measure_or_pref; </span><span class="se">\</span>
-<span class="s">from topo.command.pylabplot import measure_position_pref,measure_cog,measure_or_tuning_fullfield; </span><span class="se">\</span>
+    <span class="k">return</span> <span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s">from fmapper.command import measure_or_pref ; </span><span class="se">\</span>
+<span class="s">from topo.command.analysis import measure_cog ; </span><span class="se">\</span>
 <span class="s">measure_or_pref(); </span><span class="se">\</span>
-<span class="s">#measure_position_pref(); </span><span class="se">\</span>
-<span class="s">measure_cog(); </span><span class="se">\</span>
-<span class="s">#measure_or_tuning_fullfield()</span>
-<span class="s">&quot;&quot;&quot;</span>
+<span class="s">measure_cog()&quot;&quot;&quot;</span>
 </div>
 <div class="viewcode-block" id="retinotopy_analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.genexamples-module.html#topo.misc.genexamples.retinotopy_analysis">[docs]</a><span class="k">def</span> <span class="nf">retinotopy_analysis</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Return a command for retinotopy analysis.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s">&quot;from topo.command.pylabplot import measure_position_pref,measure_cog ;</span><span class="se">\</span>
+    <span class="k">return</span> <span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s">from fmapper.command import measure_position_pref ; </span><span class="se">\</span>
+<span class="s">from topo.command.analysis import measure_cog ; </span><span class="se">\</span>
 <span class="s">measure_position_pref(); </span><span class="se">\</span>
-<span class="s">measure_cog()&quot;</span>
+<span class="s">measure_cog()&quot;&quot;&quot;</span>
 <span class="c">###</span>
 
 
@@ -345,6 +344,7 @@
 <li><a href="../../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../../Links/index.html">Links</a></li>
 <li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../../index.html">Table Of Contents</a></h3>
 
@@ -393,7 +393,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

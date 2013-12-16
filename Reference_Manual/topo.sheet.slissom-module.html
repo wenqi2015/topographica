@@ -54,6 +54,12 @@
 <h1>topo.sheet.slissom<a class="headerlink" href="#topo-sheet-slissom" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritancefc7b96e2bc.svg" usemap="#inheritancefc7b96e2bc" class="inheritance"/></div><map id="inheritancefc7b96e2bc" name="inheritancefc7b96e2bc">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.sheet.slissom.pyc-module.html">topo.sheet.slissom.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.sheet.slissom">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.sheet.slissom" title="Permalink to this headline">¶</a></h2>
 <p>The SLISSOM class.</p>
@@ -66,31 +72,31 @@
 <p>A SLISSOM sheet is a SettlingCFSheet sheet extended to include spiking
 neurons using dynamic synapses.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.6, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.6, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">joint_norm_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to use to compute the norm_total for each CF in each
         projection from a group to be normalized jointly.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">beginning_of_iteration</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callables to be executed at the beginning of each iteration.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Baseline threshold</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">dynamic_threshold_init</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=2.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">dynamic_threshold_init</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=2.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Initial value for dynamic threshold when spike occurs</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">spike_amplitude</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">spike_amplitude</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Amplitude of spike at the moment of spiking</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">trace_coords</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of coord(s) of membrane potential(s) to track over time</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold_decay_rate</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.01, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold_decay_rate</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.01, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Dynamic threshold decay rate</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Setting this to False tells the Sheet not to change its
             permanent state (e.g. any connection weights) based on
             incoming events.</dd>
-<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">tsettle</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">tsettle</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of times to activate the SettlingCFSheet sheet for each external input event.
 
         A counter is incremented each time an input is received from any
@@ -105,10 +111,10 @@ neurons using dynamic synapses.</p>
 <dd>If non-None, delay sending output until activation_count reaches this value.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows grouping of Sheets before sorting precedence is
             applied, e.g. for two-dimensional plots in the GUI.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>User-specified number of processing units per 1.0 distance
             horizontally or vertically in Sheet coordinates. The actual
             number may be different because of discretization; the matrix
@@ -121,13 +127,13 @@ neurons using dynamic synapses.</p>
 <dd>List of callables to be executed at the end of each iteration.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">reset_on_new_iteration</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Reset activity and projection activity when new iteration starts</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">absolute_refractory</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">absolute_refractory</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Absolute refractory period</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">noise_rate</span></tt> (<em>allow_None=False, bounds=(0, 1.0), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">noise_rate</span></tt> (<em>allow_None=False, bounds=(0, 1.0), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Noise added to the on-going activity</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">measure_maps</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to include this Sheet when measuring various maps to create SheetViews.</dd>
-<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">mask_init_time</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">mask_init_time</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Determines when a new mask is initialized in each new iteration.
 
         The mask is reset whenever new input comes in.  Once the
@@ -145,9 +151,9 @@ neurons using dynamic synapses.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">trace_n</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=400, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">trace_n</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=400, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of steps to track neuron&#8217;s membrane potential</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00023&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00041&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -155,7 +161,7 @@ neurons using dynamic synapses.</p>
         disables all masking, but subclasses can use this mask to
         implement optimizations, non-rectangular Sheet shapes,
         lesions, etc.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[PiecewiseLinear(lower_bound=0.1, name=&#8217;PiecewiseLinear00283&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[PiecewiseLinear(lower_bound=0.1, name=&#8217;PiecewiseLinear00302&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">allow_skip_non_responding_units</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If true, then units that are inactive after the response
@@ -235,10 +241,12 @@ This method simply calls plot_trace().</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.sheet.slissom</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.sheet.slissom">Module</a></li>
 </ul>
 </li>
@@ -284,7 +292,7 @@ This method simply calls plot_trace().</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

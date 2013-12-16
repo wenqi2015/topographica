@@ -26,20 +26,12 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" />
-    <link rel="next" title="Papers using or about Topographica" href="../Home/pubs.html" />
-    <link rel="prev" title="FAQ" href="../FAQ/index.html" /> 
+    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../Home/pubs.html" title="Papers using or about Topographica"
-             accesskey="N">next</a></li>
-        <li class="right" >
-          <a href="../FAQ/index.html" title="FAQ"
-             accesskey="P">previous</a> |</li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -106,19 +98,18 @@ the various levels of modeling, and a detailed presentation of the
 scaling equations that underlie Sheet coordinates (which are also
 described in <a class="reference external" href="http://nn.cs.utexas.edu/keyword?bednar:neuroinformatics04">Bednar et al. Neuroinformatics, 2:275-302, 2004</a>).</p>
 <p>Other useful simulators:</p>
-<p><a class="reference external" href="http://kacy.neuro.duke.edu/">Neuron</a> and <a class="reference external" href="http://www.genesis-sim.org/GENESIS/">GENESIS</a></p>
+<p><a class="reference external" href="http://kacy.neuro.duke.edu/">Neuron</a>, <a class="reference external" href="http://www.genesis-sim.org/GENESIS/">GENESIS</a>, and <a class="reference external" href="http://moose.ncbs.res.in">MOOSE</a></p>
 <p>Detailed low-level modeling of neurons and small networks. It is
 possible to use these simulators for topographic maps, but the
 computational requirements are usually extremely high, and typical
 users simulate much smaller networks. Note that there are now
 (3/2007) Python bindings for Neuron, so it should be practical to
 wrap a Neuron simulation into a Topographica Sheet for analysis.</p>
-<p><a class="reference external" href="http://askja.bu.edu/catacomb">Catacomb</a></p>
-<p>Highly graphical Java-based simulator covering numerous levels, from
-ion channels to behavioral experiments. Can be used for some of the
-same types of models supported by Topographica, but does not have an
-explicit focus on topographically organized areas. May not currently
-be maintained.</p>
+<p><a class="reference external" href="http://briansimulator.org">Brian</a></p>
+<p>Brian is a pure Python simulator (like Topographica) that supports
+spiking models using a very clear differential-equation-based
+specification style.  It&#8217;s targeted more at networks of neurons than
+at organized maps, but can also be useful for maps.</p>
 <p><a class="reference external" href="http://www.nest-initiative.org">NEST</a></p>
 <p>NEST (formerly called BLISS) is a general-purpose simulator for
 large networks of neurons, but without an explicit focus on
@@ -161,6 +152,12 @@ perform specific tasks.</p>
 <p>Simple, basic artificial neural-network simulator (primarily
 abstract backpropagation networks, but also has support for Kohonen
 SOM models of topographic maps).</p>
+<p><a class="reference external" href="http://askja.bu.edu/catacomb">Catacomb</a></p>
+<p>Highly graphical Java-based simulator covering numerous levels, from
+ion channels to behavioral experiments. Can be used for some of the
+same types of models supported by Topographica, but does not have an
+explicit focus on topographically organized areas. May not currently
+be maintained.</p>
 <p>Other potentially useful simulators are listed at the <a class="reference external" href="http://grey.colorado.edu/emergent/index.php/Main_Page">Emergent</a>
 site.</p>
 </div>
@@ -188,6 +185,7 @@ site.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="#">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
@@ -195,12 +193,6 @@ site.</p>
 </ul>
 
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="../FAQ/index.html"
-                        title="previous chapter">FAQ</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="../Home/pubs.html"
-                        title="next chapter">Papers using or about Topographica</a></p>
 <h3>This Page</h3>
 <ul class="this-page-menu">
 	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Links/index.rst" rel="nofollow">Edit on GitHub</a></li>
@@ -226,12 +218,6 @@ site.</p>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../Home/pubs.html" title="Papers using or about Topographica"
-             >next</a></li>
-        <li class="right" >
-          <a href="../FAQ/index.html" title="FAQ"
-             >previous</a> |</li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -246,7 +232,7 @@ site.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

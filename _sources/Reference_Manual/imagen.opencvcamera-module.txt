@@ -10,5 +10,5 @@ Module
 ======
 
 .. automodule:: imagen.opencvcamera
-	:members:
-	:show-inheritance:
+   :members:
+   :show-inheritance:

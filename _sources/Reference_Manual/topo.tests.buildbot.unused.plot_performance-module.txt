@@ -10,5 +10,5 @@ Module
 ======
 
 .. automodule:: topo.tests.buildbot.unused.plot_performance
-	:members:
-	:show-inheritance:
+   :members:
+   :show-inheritance:

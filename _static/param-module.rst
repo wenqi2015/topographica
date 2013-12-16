@@ -6,6 +6,8 @@ param
 
 Submodules
 ==========
+* `param.__init__.pyc <param.__init__.pyc-module.html>`_
+* `param.parameterized.pyc <param.parameterized.pyc-module.html>`_
 * `param.parameterized <param.parameterized-module.html>`_
 
 
@@ -13,5 +15,5 @@ Module
 ======
 
 .. automodule:: param
-	:members:
-	:show-inheritance:
+   :members:
+   :show-inheritance:

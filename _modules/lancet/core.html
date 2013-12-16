@@ -62,8 +62,8 @@
 <span class="c"># Lancet core</span>
 <span class="c">#</span>
 
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">itertools</span><span class="o">,</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">string</span><span class="o">,</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">itertools</span><span class="o">,</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
@@ -75,7 +75,7 @@
     <span class="n">np</span><span class="p">,</span> <span class="n">np_ftypes</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="p">[]</span>
 
 <span class="k">try</span><span class="p">:</span>    <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="k">except</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">except</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="bp">None</span> <span class="c"># pyflakes:ignore (try/except import)</span>
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
@@ -87,7 +87,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to set the floating precision across lancet.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">BaseArgs</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="s">&#39;fp_precision&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">Arguments</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="s">&#39;fp_precision&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
 <span class="c">#=====================#</span>
 <span class="c"># Argument Specifiers #</span>
@@ -161,7 +161,21 @@
 
 
 </div>
-<span class="k">class</span> <span class="nc">BaseArgs</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="Arguments"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments">[docs]</a><span class="k">class</span> <span class="nc">Arguments</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The abstract, base class that defines the core interface and</span>
+<span class="sd">    methods for all members of the Arguments family of classes,</span>
+<span class="sd">    including either the simple, static members of Args below, or the</span>
+<span class="sd">    sophisticated parameter exploration algorithms subclassing from</span>
+<span class="sd">    DynamicArgs defined in dynamic.py.</span>
+
+<span class="sd">    The Args subclass may be used directly and forms the root of one</span>
+<span class="sd">    family of classes that have statically defined or precomputed</span>
+<span class="sd">    argument sets (defined below). The second subfamily are the</span>
+<span class="sd">    DynamicArgs, designed to allow more sophisticated, online</span>
+<span class="sd">    parameter space exploration techniques such as hill climbing,</span>
+<span class="sd">    bisection search, genetic algorithms and so on.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">fp_precision</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;</span>
 <span class="s">         The floating point precision to use for floating point</span>
@@ -173,7 +187,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pprint_args</span> <span class="o">=</span> <span class="p">([],[],</span><span class="bp">None</span><span class="p">,{})</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([],[</span><span class="s">&#39;fp_precision&#39;</span><span class="p">,</span> <span class="s">&#39;dynamic&#39;</span><span class="p">])</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BaseArgs</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Arguments</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="c"># Some types cannot be sorted easily (e.g. numpy arrays)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unsortable_keys</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -183,12 +197,12 @@
         <span class="k">return</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constant_keys</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">varying_keys</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">spec_formatter</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
+<div class="viewcode-block" id="Arguments.spec_formatter"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments.spec_formatter">[docs]</a>    <span class="k">def</span> <span class="nf">spec_formatter</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
         <span class="s">&quot; Formats the elements of an argument set appropriately&quot;</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">spec</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
-
+</div>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">constant_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Arguments.constant_keys"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments.constant_keys">[docs]</a>    <span class="k">def</span> <span class="nf">constant_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the list of parameter names whose values are constant</span>
 <span class="sd">        as the argument specifier is iterated.  Note that the union of</span>
@@ -196,9 +210,9 @@
 <span class="sd">        keys in the case where there are no unsortable keys.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
+</div>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">constant_items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Arguments.constant_items"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments.constant_items">[docs]</a>    <span class="k">def</span> <span class="nf">constant_items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the set of constant items as a list of tuples. This</span>
 <span class="sd">        allows easy conversion to dictionary format. Note, the items</span>
@@ -206,9 +220,9 @@
 <span class="sd">        constant_keys for consistency.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
+</div>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">varying_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Arguments.varying_keys"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments.varying_keys">[docs]</a>    <span class="k">def</span> <span class="nf">varying_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the list of parameters whose values vary as the</span>
 <span class="sd">        argument specifier is iterated.  Whenever it is possible, keys</span>
@@ -217,27 +231,27 @@
 <span class="sd">        rate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
+</div>
     <span class="k">def</span> <span class="nf">round_floats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">fp_precision</span><span class="p">):</span>
         <span class="n">_round_float</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">np_ftypes</span><span class="p">)</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
         <span class="n">_round</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">if</span> <span class="n">fp_precision</span><span class="o">==</span><span class="mi">0</span>  <span class="k">else</span> <span class="n">_round_float</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">_round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">fp_precision</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">float_types</span><span class="p">)</span> <span class="k">else</span> <span class="n">v</span><span class="p">)</span>
                      <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">spec</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">specs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Arguments.next"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called to get a list of specifications: dictionaries with</span>
 <span class="sd">        parameter name keys and string values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">StopIteration</span>
-
-    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Arguments.copy"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convenience method to avoid using the specifier without</span>
 <span class="sd">        exhausting it.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
+</div>
     <span class="k">def</span> <span class="nf">_collect_by_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">specs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a dictionary like object with the lists of values</span>
@@ -284,7 +298,7 @@
                       <span class="p">))</span>
                  <span class="k">for</span> <span class="n">s1</span> <span class="ow">in</span> <span class="n">first_specs</span> <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">second_specs</span> <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Arguments.summary"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Arguments.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A succinct summary of the argument specifier. Unlike the repr,</span>
 <span class="sd">        a summary does not have to be complete but must supply the</span>
@@ -298,8 +312,35 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">constant_items</span><span class="p">:</span>
             <span class="k">print</span><span class="p">(</span><span class="s">&quot;Constant Items: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">items</span><span class="p">)</span>
 
+</div></div>
+<div class="viewcode-block" id="Args"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Args">[docs]</a><span class="k">class</span> <span class="nc">Args</span><span class="p">(</span><span class="n">Arguments</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An Arguments class that supports statically specified or</span>
+<span class="sd">    precomputed argument sets. It may be used directly to specify</span>
+<span class="sd">    argument values but also forms the base class for a family of more</span>
+<span class="sd">    specific static Argument classes. Each subclass is less flexible</span>
+<span class="sd">    and general but allows arguments to be easily and succinctly</span>
+<span class="sd">    specified. For instance, the Range subclass allows parameter</span>
+<span class="sd">    ranges to be easily declared.</span>
 
-<span class="k">class</span> <span class="nc">Args</span><span class="p">(</span><span class="n">BaseArgs</span><span class="p">):</span>
+<span class="sd">    The constructor of Args accepts argument definitions in two</span>
+<span class="sd">    different formats. The keyword format allows constant arguments to</span>
+<span class="sd">    be specified directly and easily. For instance:</span>
+
+<span class="sd">    &gt;&gt;&gt; Args(a=2, b=3)</span>
+
+<span class="sd">    The alternative input format takes an explicit list of the</span>
+<span class="sd">    argument specifications:</span>
+
+<span class="sd">    &gt;&gt;&gt; Args([{&#39;a&#39;:3, &#39;b&#39;:5}]) # Equivalent behaviour to above</span>
+
+<span class="sd">    This latter format is completely flexible and general, allowing</span>
+<span class="sd">    any arbitrary list of arguments to be specified as desired. This</span>
+<span class="sd">    is not generally recommended however as the structure of a</span>
+<span class="sd">    parameter space is often expressed more clearly by composing</span>
+<span class="sd">    together simpler, more succinct Args objects with the</span>
+<span class="sd">    CartesianProduct (*) or Concatenation (+) operators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">specs</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&#39;&#39;&#39;</span>
 <span class="s">          The static list of specifications (ie. dictionaries) to be</span>
@@ -307,7 +348,7 @@
 <span class="s">          according to fp_precision.&#39;&#39;&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specs</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fp_precision</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">fp_precision</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="n">fp_precision</span> <span class="o">=</span> <span class="n">BaseArgs</span><span class="o">.</span><span class="n">fp_precision</span>
+        <span class="k">if</span> <span class="n">fp_precision</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="n">fp_precision</span> <span class="o">=</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">fp_precision</span>
         <span class="n">raw_specs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">explicit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_specs</span><span class="p">(</span><span class="n">specs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">fp_precision</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Args</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">fp_precision</span><span class="o">=</span><span class="n">fp_precision</span><span class="p">,</span> <span class="n">specs</span><span class="o">=</span><span class="n">raw_specs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -358,7 +399,7 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">seen</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">idfun</span><span class="p">(</span><span class="n">e</span><span class="p">),</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">sequence</span>
                 <span class="k">if</span> <span class="n">idfun</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Args.show"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Args.show">[docs]</a>    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convenience method to inspect the available argument values in</span>
 <span class="sd">        human-readable format. The ordering of keys is determined by</span>
@@ -369,8 +410,8 @@
                                  <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">s</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">]</span>
         <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;</span><span class="si">%d</span><span class="s">: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">spec_lines</span><span class="p">)]))</span>
 
-
-    <span class="k">def</span> <span class="nf">lexsort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">order</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="Args.lexsort"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Args.lexsort">[docs]</a>    <span class="k">def</span> <span class="nf">lexsort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">order</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The lexical sort order is specified by a list of string</span>
 <span class="sd">        arguments. Each string is a key name prefixed by &#39;+&#39; or &#39;-&#39;</span>
@@ -392,7 +433,7 @@
         <span class="n">specs_param</span><span class="o">.</span><span class="n">constant</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="n">sorted_args</span><span class="o">.</span><span class="n">_lexorder</span> <span class="o">=</span> <span class="n">order</span>
         <span class="k">return</span> <span class="n">sorted_args</span>
-
+</div>
     <span class="k">def</span> <span class="nf">_lexsorted_specs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A lexsort is specified using normal key string prefixed by &#39;+&#39;</span>
@@ -451,7 +492,7 @@
 
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">specs</span><span class="p">)</span>
 
-
+</div>
 <div class="viewcode-block" id="Concatenate"><a class="viewcode-back" href="../../Reference_Manual/lancet.core-module.html#lancet.core.Concatenate">[docs]</a><span class="k">class</span> <span class="nc">Concatenate</span><span class="p">(</span><span class="n">Args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Concatenate is the sequential composition of two specifiers. The</span>
@@ -741,7 +782,6 @@
 
         <span class="n">specs</span><span class="o">=</span><span class="p">[]</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span> <span class="ow">in</span> <span class="n">expanded_paths</span><span class="p">:</span>
-            <span class="n">rootdir</span> <span class="o">=</span> <span class="n">path</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">filelist</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)]</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">path</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">filelist</span><span class="p">:</span>
                 <span class="n">specs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span><span class="o">**</span><span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)}))</span>
@@ -920,6 +960,7 @@
 <li><a href="../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../Links/index.html">Links</a></li>
 <li><a href="../../Home/pubs.html">Publications</a></li>
+<li><a href="../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../index.html">Table Of Contents</a></h3>
 
@@ -969,7 +1010,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

@@ -283,6 +283,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">xdensity</span> <span class="o">=</span> <span class="n">xdensity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ydensity</span> <span class="o">=</span> <span class="n">ydensity</span>
 
+</div>
+<div class="viewcode-block" id="PatternGenerator.state_push"><a class="viewcode-back" href="../../Reference_Manual/imagen.patterngenerator-module.html#imagen.patterngenerator.PatternGenerator.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">&quot;Save the state of the output functions, to be restored with state_pop.&quot;</span>
+        <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">of</span><span class="p">,</span><span class="s">&#39;state_push&#39;</span><span class="p">):</span>
+                <span class="n">of</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PatternGenerator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
+
+</div>
+<div class="viewcode-block" id="PatternGenerator.state_pop"><a class="viewcode-back" href="../../Reference_Manual/imagen.patterngenerator-module.html#imagen.patterngenerator.PatternGenerator.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">&quot;Restore the state of the output functions saved by state_push.&quot;</span>
+        <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">of</span><span class="p">,</span><span class="s">&#39;state_pop&#39;</span><span class="p">):</span>
+                <span class="n">of</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PatternGenerator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
+
+
 
 
 <span class="c"># Override class type; must be set here rather than when mask_shape is declared,</span>
@@ -340,6 +357,7 @@
 <li><a href="../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../Links/index.html">Links</a></li>
 <li><a href="../../Home/pubs.html">Publications</a></li>
+<li><a href="../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../index.html">Table Of Contents</a></h3>
 
@@ -389,7 +407,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

@@ -54,6 +54,12 @@
 <h1>numbergen<a class="headerlink" href="#numbergen" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritancef1ac05fc54.svg" usemap="#inheritancef1ac05fc54" class="inheritance"/></div><map id="inheritancef1ac05fc54" name="inheritancef1ac05fc54">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="numbergen.__init__.pyc-module.html">numbergen.__init__.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-numbergen">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-numbergen" title="Permalink to this headline">¶</a></h2>
 <p>Callable objects that generate numbers according to different distributions.</p>
@@ -65,10 +71,16 @@
 <p>Specified with mean mu and standard deviation sigma.
 See the random module for further details.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Mean value.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">sigma</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether the given time_fn should be used to constrain the
+       results generated.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">sigma</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Standard deviation.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
@@ -87,17 +99,23 @@ See the random module for further details.</p>
 number in the range [lbound, ubound).</p>
 <p>See the random module for further details.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ubound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ubound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>exclusive upper bound</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">lbound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">lbound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>inclusive lower bound</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether the given time_fn should be used to constrain the
+       results generated.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="numbergen.BoxCar">
 <em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">BoxCar</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#BoxCar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.BoxCar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#numbergen.TimeDependentValue" title="numbergen.TimeDependentValue"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeDependentValue</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeDependent</span></tt></p>
 <p>The boxcar function over the specified time interval. The bounds
 are exclusive: zero is returned at the onset time and at the
 offset (onset+duration).</p>
@@ -105,12 +123,63 @@ offset (onset+duration).</p>
 onset value with no offset.</p>
 <p>See <a class="reference external" href="http://en.wikipedia.org/wiki/Boxcar_function">http://en.wikipedia.org/wiki/Boxcar_function</a></p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">onset</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">onset</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time of onset.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">duration</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">duration</span></tt> (<em>allow_None=True, bounds=(0.0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Duration of step value.</dd>
-<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Function to generate the time used for calculating values.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=True, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dd>Read-only parameter that is always True.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="numbergen.SquareWave">
+<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">SquareWave</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#SquareWave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.SquareWave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeDependent</span></tt></p>
+<p>Generate a square wave with &#8216;on&#8217; periods returning 1.0 and
+&#8216;off&#8217;periods returning 0.0 of specified duration(s). By default
+the portion of time spent in the high state matches the time spent
+in the low state (a duty cycle of 50%), but the duty cycle can be
+controlled if desired.</p>
+<p>The &#8216;on&#8217; state begins after a time specified by the &#8216;onset&#8217;
+parameter.  The onset duration supplied must be less than the off
+duration.</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">onset</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Time of onset of the first &#8216;on&#8217;
+        state relative to time 0. Must be set to a value less than the
+        &#8216;off_duration&#8217; parameter.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=True, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dd>Read-only parameter that is always True.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">duration</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Duration of the &#8216;on&#8217; state during which a value of 1.0 is
+         returned.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">off_duration</span></tt> (<em>allow_None=True, bounds=(0.0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Duration of the &#8216;off&#8217; value state during which a value of 0.0
+        is returned. By default, this duration matches the value of
+        the &#8216;duration&#8217; parameter.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="numbergen.ScaledTime">
+<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">ScaledTime</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#ScaledTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.ScaledTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeDependent</span></tt></p>
+<p>The current time multiplied by some conversion factor.</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">factor</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>The factor to be multiplied by the current time value.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=True, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dd>Read-only parameter that is always True.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
@@ -126,10 +195,16 @@ mu.  For large kappa (narrow peaks), this distribution approaches
 the Gaussian (normal) distribution with variance 1/kappa.  See the
 random module for further details.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Mean value, in the range 0 to 2*pi.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">kappa</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Mean value, typically in the range 0 to 2*pi.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether the given time_fn should be used to constrain the
+       results generated.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">kappa</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Concentration (inverse variance).</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
@@ -143,6 +218,12 @@ See the choice() function in the random module for further details.</p>
 <dl class="docutils">
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">choices</span></tt> (<em>bounds=(0, None), constant=False, default=[0, 1], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of items from which to select.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether the given time_fn should be used to constrain the
+       results generated.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
@@ -154,10 +235,16 @@ See the choice() function in the random module for further details.</p>
 number in the inclusive range [lbound, ubound].</p>
 <p>See the randint function in the random module for further details.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ubound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1000, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ubound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1000, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>inclusive upper bound</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">lbound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">lbound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>inclusive lower bound</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether the given time_fn should be used to constrain the
+       results generated.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
@@ -172,7 +259,7 @@ returned by a callable object.</p>
 <dd>Object to call to generate values.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=(None, None), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Legal range for the value returned, as a pair.
-        
+
         The default bounds are (None,None), meaning there are actually
         no bounds.  One or both bounds can be set by specifying a
         value.  For instance, bounds=(None,10) means there is no lower
@@ -181,21 +268,30 @@ returned by a callable object.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="numbergen.TimeDependentValue">
-<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">TimeDependentValue</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#TimeDependentValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.TimeDependentValue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a></p>
-<p>Classes of function objects computing a value given a time function.</p>
+<dt id="numbergen.ExponentialDecay">
+<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">ExponentialDecay</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#ExponentialDecay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.ExponentialDecay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeDependent</span></tt></p>
+<p>Function object that provides a value that decays according to an
+exponential function, based on a given time function.</p>
+<p>Returns starting_value*base^(-time/time_constant).</p>
+<p>See <a class="reference external" href="http://en.wikipedia.org/wiki/Exponential_decay">http://en.wikipedia.org/wiki/Exponential_decay</a>.</p>
 <dl class="docutils">
-<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Function to generate the time used for calculating values.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ending_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Value used for time infinity.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">base</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2.71828182846, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Base of the exponent; the default yields starting_value*exp(-t/time_constant).
+        Another popular choice of base is 2, which allows the
+        time_constant to be interpreted as a half-life.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=True, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dd>Read-only parameter that is always True.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">time_constant</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=10000, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Time scale for the exponential; large values give slow decay.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">starting_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Value used for time zero.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
-<dl class="staticmethod">
-<dt id="numbergen.TimeDependentValue.time_fn">
-<em class="property">static </em><tt class="descname">time_fn</tt><big>(</big><big>)</big><a class="headerlink" href="#numbergen.TimeDependentValue.time_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dummy time function for use as a default; always returns zero.
-For actual use, will need to supply a more useful time function.</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -208,32 +304,71 @@ For actual use, will need to supply a more useful time function.</p>
 <dl class="class">
 <dt id="numbergen.RandomDistribution">
 <em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">RandomDistribution</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#RandomDistribution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.RandomDistribution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeAware</span></tt></p>
 <p>Python&#8217;s random module provides the Random class, which can be
 instantiated to give an object that can be asked to generate
 numbers from any of several different random distributions
 (e.g. uniform, Gaussian).</p>
 <p>To make it easier to use these, Numbergen provides here a
 hierarchy of classes, each tied to a particular random
-distribution. This allows setting parameters on creation rather
-than passing them each call, and allows pickling to work properly.</p>
+distribution. RandomDistributions support setting parameters on
+creation rather than passing them each call, and allow pickling to
+work properly.  Code that uses these classes will be independent
+of how many parameters are used by the underlying distribution,
+and can simply treat them as a generic source of random numbers.</p>
 <p>The underlying random.Random() instance and all its methods can be
 accessed from the &#8216;random_generator&#8217; attribute.</p>
+<p>RandomDistributions are TimeAware, and thus can be locked to
+a global time if desired.  By default, time_dependent=False, and
+so a new random value will be generated each time these objects
+are called.  If you have a global time function, you can set
+time_dependent=True, so that the random values will instead be
+constant at any given time, changing only when the time changes.
+Using time_dependent values can help you obtain fully reproducible
+streams of random numbers, even if you e.g. move time forwards and
+backwards for testing.</p>
+<p>If declared time_dependent, a hash is generated for seeding the
+random state on each call, using a triple consisting of the object
+name, the time returned by time_fn and the global value of
+param.random_seed. As a consequence, for a given name and fixed
+value of param.random_seed, the random values generated will be a
+fixed function of time.</p>
+<p>If the object name has not been set and time_dependent is True, a
+message is generated warning that the default object name is
+dependent on the order of instantiation.  To ensure that the
+random number stream will remain constant even if other objects
+are added or reordered in your file, supply a unique name
+explicitly when you construct the RandomDistribution object.</p>
+<dl class="docutils">
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether the given time_fn should be used to constrain the
+       results generated.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
+</dl>
 </dd></dl>
 
 <dl class="class">
-<dt id="numbergen.UniformRandomOffset">
-<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">UniformRandomOffset</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#UniformRandomOffset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.UniformRandomOffset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#numbergen.RandomDistribution" title="numbergen.RandomDistribution"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.RandomDistribution</span></tt></a></p>
-<p>Identical to UniformRandom, but specified by mean and range.
-When called, return a random number in the range
-[mean - range/2, mean + range/2).</p>
-<p>See the random module for further details.</p>
+<dt id="numbergen.TimeSampledFn">
+<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">TimeSampledFn</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#TimeSampledFn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.TimeSampledFn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#numbergen.NumberGenerator" title="numbergen.NumberGenerator"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.NumberGenerator</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeDependent</span></tt></p>
+<p>Samples the values supplied by a time_dependent callable at
+regular intervals of duration &#8216;period&#8217;, with the sampled value
+held constant within each interval.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">range</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Difference of maximum and minimum value</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mean</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Mean value</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">period</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(False, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>The periodicity with which the values of fn are sampled.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=True, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dd>Read-only parameter that is always True.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">offset</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>The offset from time 0.0 at which the first sample will be drawn.
+        Must be less than the value of period.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">fn</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The time-dependent function used to generate the sampled values.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
@@ -248,26 +383,24 @@ NumberGenerators or numbers.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="numbergen.ExponentialDecay">
-<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">ExponentialDecay</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#ExponentialDecay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.ExponentialDecay" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#numbergen.TimeDependentValue" title="numbergen.TimeDependentValue"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.TimeDependentValue</span></tt></a></p>
-<p>Function object that provides a value that decays according to an
-exponential function, based on a given time function.</p>
-<p>Returns starting_value*base^(-time/time_constant).</p>
-<p>See <a class="reference external" href="http://en.wikipedia.org/wiki/Exponential_decay">http://en.wikipedia.org/wiki/Exponential_decay</a>.</p>
+<dt id="numbergen.UniformRandomOffset">
+<em class="property">class </em><tt class="descclassname">numbergen.</tt><tt class="descname">UniformRandomOffset</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/numbergen.html#UniformRandomOffset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#numbergen.UniformRandomOffset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#numbergen.RandomDistribution" title="numbergen.RandomDistribution"><tt class="xref py py-class docutils literal"><span class="pre">numbergen.RandomDistribution</span></tt></a></p>
+<p>Identical to UniformRandom, but specified by mean and range.
+When called, return a random number in the range
+[mean - range/2, mean + range/2).</p>
+<p>See the random module for further details.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ending_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Value used for time infinity.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">base</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2.71828182846, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Base of the exponent; the default yields starting_value*exp(-t/time_constant).
-        Another popular choice of base is 2, which allows the
-        time_constant to be interpreted as a half-life.</dd>
-<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Function to generate the time used for calculating values.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">time_constant</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=10000, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Time scale for the exponential; large values give slow decay.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">starting_value</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_fn=None</em>)</dt>
-<dd>Value used for time zero.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mean</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Mean value</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">range</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Difference of maximum and minimum value</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">time_dependent</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether the given time_fn should be used to constrain the
+       results generated.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Callable used to specify the time that determines the state
+        and return value of the object, if time_dependent=True.</dd>
 </dl>
 </dd></dl>
 
@@ -297,10 +430,12 @@ exponential function, based on a given time function.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">numbergen</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-numbergen">Module</a></li>
 </ul>
 </li>
@@ -346,7 +481,7 @@ exponential function, based on a given time function.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

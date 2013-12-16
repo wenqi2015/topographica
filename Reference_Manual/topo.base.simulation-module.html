@@ -54,6 +54,12 @@
 <h1>topo.base.simulation<a class="headerlink" href="#topo-base-simulation" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritancedfab4961fd.svg" usemap="#inheritancedfab4961fd" class="inheritance"/></div><map id="inheritancedfab4961fd" name="inheritancedfab4961fd">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.base.simulation.pyc-module.html">topo.base.simulation.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.base.simulation">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.base.simulation" title="Permalink to this headline">¶</a></h2>
 <p>A general-purpose Simulation class for discrete events.</p>
@@ -131,7 +137,7 @@ two EventProcessors.</p>
 <dd>The EventProcessor to which messages are delivered.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">private</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Set to true if this connection is for internal use only, not to be manipulated by a user.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">delay</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.05, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">delay</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.05, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Simulation time between generation of an Event by the src and delivery to the dest.
        Should normally be nonzero, to represent a causal with a well-defined ordering
        of events.</dd>
@@ -313,7 +319,7 @@ not running.</p>
         formatted as a string, e.g. for display or for basename().
         When the string is evaluated, the time will be available as
         the attribute &#8216;_time&#8217;.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">timescale</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">timescale</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The desired real length of one simulation time unit, in milliseconds.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">register</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=True, default=True, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to register this Simulation. If True, this
@@ -323,14 +329,14 @@ not running.</p>
         any one time, which makes it simpler to handle defining
         and reloading a series of simulations without polluting the
         memory space with unused simulations.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">time_type_args</span></tt> (<em>constant=True, default=(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Tuple of arguments passed to time_type after the first
-        argument (which is the time).</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">basename_format</span></tt> (<em>allow_None=False, constant=False, default=%(name)s_%(timestr)s, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to be used by the basename() function.
         When the string is evaluated, the formatted time from
         time_printing_format will be available as the attribute
         &#8216;timestr&#8217;.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The time object is a callable that can be set, incremented and
+        decremented with a chosen numeric type as necessary.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">startup_commands</span></tt> (<em>constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of string commands that will be exec&#8217;d in
         __main__.__dict__ (i.e. as if they were entered at the
@@ -343,58 +349,6 @@ not running.</p>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">run_stop_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A list of callable objects to be called on exit from .run()
        after all events are processed.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">time_type</span></tt> (<em>constant=True, default=&lt;built-in function mpq&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Callable for converting user-specified times into the numeric
-        type to be used for Simulation&#8217;s time values.
-
-        Simulation&#8217;s time can be set to any numeric type that supports
-        the usual Python numeric operations, including at least
-        multiplication, addition, and subtraction.  Most of the code
-        assumes that fractional values are supported, as they are for
-        floats, but it may be possible to use an integer type instead
-        if various default fractional values are overridden.
-
-        For instance, one might wish to use arbitrary precision
-        floating-point time to avoid accumulating rounding errors.  If
-        stepping through a simulation every 0.05 time units, after 20
-        such steps using floats the simulation will not reach 1.0
-        exactly, but will instead be slightly higher or lower.  With
-        an arbitrary precision float type such a series of steps can
-        be guaranteed to reach 1.0 exactly.  Alternatively, one might
-        wish to use a rational type so that events can be guaranteed
-        to happen a certain number of times in a given interval, even
-        if the ratio cannot be expressed as an even decimal or binary
-        fraction.
-
-        time_type determines how the user can specify times. For
-        instance, if the user specifies a time as 0.05 (a float), this
-        will be represented in floating point as something like
-        0.050000000000000003. gmpy.mpq will correctly convert that to
-        mpq(1,20). Other types might require times to be specified as
-        strings (e.g. decimal.Decimal(&#8216;0.05&#8217;) in Python 2.6); in this
-        case the user would need to use a string whenever specifying a
-        time (e.g. a connection delay or a call to run() ). Some other
-        types will only produce the expected result if they are first
-        configured appropriately (e.g. decimal.Decimal(0.05) in Python
-        2.7 will give something like
-        Decimal(&#8216;0.05000000000000000277555756156289135105907917022705078125&#8217;)
-        by default, but this can be controlled by using an appropriate
-        decimal.Context).
-
-        Extra arguments can be passed to time_type when it is being used
-        to create the Simulation&#8217;s time: see time_type_args.
-
-
-        Some potentially useful number classes::
-
-        - gmpy.mpq: gmpy provides Python with access to the fast GNU
-          Multi-Precision library (which requires GMP to be built);
-          gmpy.mpq is gmpy&#8217;s rational type.
-
-        - fixedpoint.FixedPoint: pure Python fixed-point number, but
-          quite slow.
-
-        - Python&#8217;s decimal.Decimal and fractions.Fraction classes.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.base.simulation.RealTimeSimulation.sleep">
@@ -428,14 +382,14 @@ Simulation, no matter how many times it is instantiated.</p>
         any one time, which makes it simpler to handle defining
         and reloading a series of simulations without polluting the
         memory space with unused simulations.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">time_type_args</span></tt> (<em>constant=True, default=(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Tuple of arguments passed to time_type after the first
-        argument (which is the time).</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">basename_format</span></tt> (<em>allow_None=False, constant=False, default=%(name)s_%(timestr)s, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to be used by the basename() function.
         When the string is evaluated, the formatted time from
         time_printing_format will be available as the attribute
         &#8216;timestr&#8217;.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The time object is a callable that can be set, incremented and
+        decremented with a chosen numeric type as necessary.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">startup_commands</span></tt> (<em>constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of string commands that will be exec&#8217;d in
         __main__.__dict__ (i.e. as if they were entered at the
@@ -445,58 +399,6 @@ Simulation, no matter how many times it is instantiated.</p>
 
         For example, allows items to be imported before
         scheduled_commands are run.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">time_type</span></tt> (<em>constant=True, default=&lt;built-in function mpq&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Callable for converting user-specified times into the numeric
-        type to be used for Simulation&#8217;s time values.
-
-        Simulation&#8217;s time can be set to any numeric type that supports
-        the usual Python numeric operations, including at least
-        multiplication, addition, and subtraction.  Most of the code
-        assumes that fractional values are supported, as they are for
-        floats, but it may be possible to use an integer type instead
-        if various default fractional values are overridden.
-
-        For instance, one might wish to use arbitrary precision
-        floating-point time to avoid accumulating rounding errors.  If
-        stepping through a simulation every 0.05 time units, after 20
-        such steps using floats the simulation will not reach 1.0
-        exactly, but will instead be slightly higher or lower.  With
-        an arbitrary precision float type such a series of steps can
-        be guaranteed to reach 1.0 exactly.  Alternatively, one might
-        wish to use a rational type so that events can be guaranteed
-        to happen a certain number of times in a given interval, even
-        if the ratio cannot be expressed as an even decimal or binary
-        fraction.
-
-        time_type determines how the user can specify times. For
-        instance, if the user specifies a time as 0.05 (a float), this
-        will be represented in floating point as something like
-        0.050000000000000003. gmpy.mpq will correctly convert that to
-        mpq(1,20). Other types might require times to be specified as
-        strings (e.g. decimal.Decimal(&#8216;0.05&#8217;) in Python 2.6); in this
-        case the user would need to use a string whenever specifying a
-        time (e.g. a connection delay or a call to run() ). Some other
-        types will only produce the expected result if they are first
-        configured appropriately (e.g. decimal.Decimal(0.05) in Python
-        2.7 will give something like
-        Decimal(&#8216;0.05000000000000000277555756156289135105907917022705078125&#8217;)
-        by default, but this can be controlled by using an appropriate
-        decimal.Context).
-
-        Extra arguments can be passed to time_type when it is being used
-        to create the Simulation&#8217;s time: see time_type_args.
-
-
-        Some potentially useful number classes::
-
-        - gmpy.mpq: gmpy provides Python with access to the fast GNU
-          Multi-Precision library (which requires GMP to be built);
-          gmpy.mpq is gmpy&#8217;s rational type.
-
-        - fixedpoint.FixedPoint: pure Python fixed-point number, but
-          quite slow.
-
-        - Python&#8217;s decimal.Decimal and fractions.Fraction classes.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.base.simulation.Simulation.basename">
@@ -584,8 +486,9 @@ s.objects().keys() to see a list of the names of all objects.</p>
 
 <dl class="method">
 <dt id="topo.base.simulation.Simulation.run">
-<tt class="descname">run</tt><big>(</big><em>duration=-1</em>, <em>until=-1</em><big>)</big><a class="reference internal" href="../_modules/topo/base/simulation.html#Simulation.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.simulation.Simulation.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Process simulation events for the specified duration or until the specified time.</p>
+<tt class="descname">run</tt><big>(</big><em>duration=Infinity()</em>, <em>until=Infinity()</em><big>)</big><a class="reference internal" href="../_modules/topo/base/simulation.html#Simulation.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.simulation.Simulation.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process simulation events for the specified duration or until the
+specified time.</p>
 <p>Arguments:</p>
 <blockquote>
 <div><p>duration = length of simulation time to run. Default: run
@@ -644,33 +547,10 @@ something while being able to roll back to the original state.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.base.simulation.Simulation.time">
-<tt class="descname">time</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/base/simulation.html#Simulation.time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.simulation.Simulation.time" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the current simulation time.</p>
-<p>If the time returned will be used in the computation of a
-floating point variable, it should be cast into a floating
-point number by float().</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="topo.base.simulation.Simulation.time_type">
-<tt class="descname">time_type</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.base.simulation.Simulation.time_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>mpq(n): builds an mpq object with a numeric value n
-mpq(n,m): builds an mpq object with a numeric value n/m
-mpq(s,base=10): builds an mpq object from a string s made up of</p>
-<blockquote>
-<div>digits in the given base.  s may be made up of two
-numbers in the same base separated by a &#8216;/&#8217; character.
-If base=256, s must be a gmpy.mpq portable binary
-representation as built by the gmpy.qbinary (and the
-.binary method of mpq objects).</div></blockquote>
-</dd></dl>
-
-<dl class="method">
 <dt id="topo.base.simulation.Simulation.timestr">
 <tt class="descname">timestr</tt><big>(</big><em>specified_time=None</em><big>)</big><a class="reference internal" href="../_modules/topo/base/simulation.html#Simulation.timestr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.simulation.Simulation.timestr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the specified time (or the current time, if none
-specified) formatted using time_printing_format, which allows
+specified) formatted using time.time_printing_format, which allows
 users to control how much precision, etc. is used for time
 displays.</p>
 </dd></dl>
@@ -705,7 +585,7 @@ permutation for each call).</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">real_time_fn</span></tt> (<em>constant=False, default=&lt;built-in function time&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function that returns the wallclock time.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">estimate_interval</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=50, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">estimate_interval</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=50, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Interval in simulation time between estimates.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">stop</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If set to True, execution of func (and timing) will cease at the end of
@@ -776,10 +656,12 @@ Fractions of a second may be present if the system clock provides them.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.base.simulation</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.base.simulation">Module</a></li>
 </ul>
 </li>
@@ -825,7 +707,7 @@ Fractions of a second may be present if the system clock provides them.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

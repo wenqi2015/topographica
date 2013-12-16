@@ -54,6 +54,12 @@
 <h1>topo.coordmapper<a class="headerlink" href="#topo-coordmapper" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritancebe3ab90ace.svg" usemap="#inheritancebe3ab90ace" class="inheritance"/></div><map id="inheritancebe3ab90ace" name="inheritancebe3ab90ace">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.coordmapper.__init__.pyc-module.html">topo.coordmapper.__init__.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.coordmapper">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.coordmapper" title="Permalink to this headline">¶</a></h2>
 <p>A family of function objects for transforming one set of coordinates into
@@ -72,12 +78,12 @@ CoordinateMapperFn.</p>
 <p>Provides a mapping that reduces the center of the activity.</p>
 <p>Roughly the inverse of MagnifyingMapper.  k indicates amount of reduction.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The maximum range of the mapping input.</dd>
 </dl>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">k</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">k</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The maximum range of the output.</dd>
 <dt><em>param ObjectSelector</em> <tt class="docutils literal"><span class="pre">remap_dimension</span></tt> (<em>check_on_set=True, compute_default_fn=None, constant=False, default=radius, instantiate=False, objects=[&#8216;radius&#8217;, &#8216;x&#8217;, &#8216;y&#8217;, &#8216;xy&#8217;], pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension to remap. (&#8216;xy&#8217; remaps x and y independently.)</dd>
@@ -89,8 +95,8 @@ CoordinateMapperFn.</p>
 <em class="property">class </em><tt class="descclassname">topo.coordmapper.</tt><tt class="descname">Scale2d</tt><big>(</big><em>**kw</em><big>)</big><a class="reference internal" href="../_modules/topo/coordmapper.html#Scale2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.coordmapper.Scale2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#topo.coordmapper.AffineTransform" title="topo.coordmapper.AffineTransform"><tt class="xref py py-class docutils literal"><span class="pre">topo.coordmapper.AffineTransform</span></tt></a></p>
 <p>Scale the input along the x and y axes by sx and sy, respectively.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">sy</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">sx</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">sy</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">sx</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">matrix</span></tt> (<em>constant=False, default=[[ 1.  1.  1.]
  [ 1.  1.  1.]
@@ -115,7 +121,7 @@ CoordinateMapperFn.</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>constant=False, default=0.0, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Amount of jitter.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">gen</span></tt> (<em>constant=False, default=&lt;UniformRandom UniformRandom00252&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">gen</span></tt> (<em>constant=False, default=&lt;UniformRandom UniformRandom00089&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Number generator to use, typically a random distribution.</dd>
 </dl>
 </dd></dl>
@@ -146,20 +152,20 @@ CoordinateMapperFn.</p>
 both colliculi, one in the x-positive hemisheet and the other in
 the x-negative hemisheet.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">A</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=5.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">A</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=5.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Shape parameter A, in degrees</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mm_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=8.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mm_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=8.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor to convert constants Bu and Bv from mm to sheet
        units.  Expressed in mm/unit.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">direction_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">direction_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor for saccade command direction, expressed in
         degrees per unit of sheet.  Indicates what direction of saccade
         is represented by the y-component of the command input.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Rostral-caudal scale parameter, in mm</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bv</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bv</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Orthogonal (medial-lateral?) scale paraemter in mm/deg</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor for saccade command amplitude, expressed in
         degrees per unit of sheet.  Indicates how large a
         saccade is represented by the x-component of the command
@@ -173,7 +179,7 @@ the x-negative hemisheet.</p>
 <dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.CoordinateMapperFn" title="topo.base.functionfamily.CoordinateMapperFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.CoordinateMapperFn</span></tt></a></p>
 <p>Additively modifies calculated x,y coordinates with Gaussian random noise.</p>
 <dl class="docutils">
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">gen</span></tt> (<em>constant=False, default=&lt;NormalRandom NormalRandom00253&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">gen</span></tt> (<em>constant=False, default=&lt;NormalRandom NormalRandom00090&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Number generator to use, typically a Gaussian distribution.</dd>
 </dl>
 </dd></dl>
@@ -195,9 +201,9 @@ the x-negative hemisheet.</p>
 <dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.CoordinateMapperFn" title="topo.base.functionfamily.CoordinateMapperFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.CoordinateMapperFn</span></tt></a></p>
 <p>Map all values to the same constant, pre-specified coordinates.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">x_cons</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">x_cons</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Constant x value returned by the mapping.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">y_cons</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">y_cons</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Constant y value returned by the mapping.</dd>
 </dl>
 </dd></dl>
@@ -211,12 +217,12 @@ the x-negative hemisheet.</p>
 Parameter k indicates amount of magnification, where 0 means no
 magnification.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The maximum range of the mapping input.</dd>
 </dl>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">k</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">k</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The maximum range of the output.</dd>
 <dt><em>param ObjectSelector</em> <tt class="docutils literal"><span class="pre">remap_dimension</span></tt> (<em>check_on_set=True, compute_default_fn=None, constant=False, default=radius, instantiate=False, objects=[&#8216;radius&#8217;, &#8216;x&#8217;, &#8216;y&#8217;, &#8216;xy&#8217;], pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension to remap. (&#8216;xy&#8217; remaps x and y independently.)</dd>
@@ -257,9 +263,9 @@ with the subclasses Translate2d, Rotate2d, and Scale2d.</p>
 based on the radius, x, or y individually. Subclasses should override
 _map_fn(self,z).</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">in_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The maximum range of the mapping input.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">out_range</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.707106781187, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The maximum range of the output.</dd>
 <dt><em>param ObjectSelector</em> <tt class="docutils literal"><span class="pre">remap_dimension</span></tt> (<em>check_on_set=True, compute_default_fn=None, constant=False, default=radius, instantiate=False, objects=[&#8216;radius&#8217;, &#8216;x&#8217;, &#8216;y&#8217;, &#8216;xy&#8217;], pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension to remap. (&#8216;xy&#8217; remaps x and y independently.)</dd>
@@ -284,9 +290,9 @@ _map_fn(self,z).</p>
 <p>Divides the 2D area into a grid, where all points within each grid
 element map to the same location.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of columns per 1.0 input sheet distance horizontally.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of rows per 1.0 input sheet distance vertically.</dd>
 </dl>
 </dd></dl>
@@ -296,8 +302,8 @@ element map to the same location.</p>
 <em class="property">class </em><tt class="descclassname">topo.coordmapper.</tt><tt class="descname">Translate2d</tt><big>(</big><em>**kw</em><big>)</big><a class="reference internal" href="../_modules/topo/coordmapper.html#Translate2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.coordmapper.Translate2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#topo.coordmapper.AffineTransform" title="topo.coordmapper.AffineTransform"><tt class="xref py py-class docutils literal"><span class="pre">topo.coordmapper.AffineTransform</span></tt></a></p>
 <p>Translate the input by xoff,yoff.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">xoff</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">yoff</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">xoff</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">yoff</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">matrix</span></tt> (<em>constant=False, default=[[ 1.  1.  1.]
  [ 1.  1.  1.]
@@ -323,20 +329,20 @@ element map to the same location.</p>
 from Ottes et al. (1986) Vision Research 26:857-873.</p>
 <p>Default constant values are from Table 1, ibid.</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">A</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=5.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">A</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=5.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Shape parameter A, in degrees</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mm_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=8.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mm_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=8.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor to convert constants Bu and Bv from mm to sheet
        units.  Expressed in mm/unit.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">direction_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">direction_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor for saccade command direction, expressed in
         degrees per unit of sheet.  Indicates what direction of saccade
         is represented by the y-component of the command input.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Rostral-caudal scale parameter, in mm</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bv</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bv</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Orthogonal (medial-lateral?) scale paraemter in mm/deg</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor for saccade command amplitude, expressed in
         degrees per unit of sheet.  Indicates how large a
         saccade is represented by the x-component of the command
@@ -349,7 +355,7 @@ from Ottes et al. (1986) Vision Research 26:857-873.</p>
 <em class="property">class </em><tt class="descclassname">topo.coordmapper.</tt><tt class="descname">Rotate2d</tt><big>(</big><em>**kw</em><big>)</big><a class="reference internal" href="../_modules/topo/coordmapper.html#Rotate2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.coordmapper.Rotate2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#topo.coordmapper.AffineTransform" title="topo.coordmapper.AffineTransform"><tt class="xref py py-class docutils literal"><span class="pre">topo.coordmapper.AffineTransform</span></tt></a></p>
 <p>Rotate the input around the origin by an angle in radians.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">angle</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param Number</em> <tt class="docutils literal"><span class="pre">angle</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">matrix</span></tt> (<em>constant=False, default=[[ 1.  1.  1.]
  [ 1.  1.  1.]
@@ -378,20 +384,20 @@ both colliculi, one in the x-positive hemisheet and the other in
 the x-negative hemisheet.</p>
 <p>[NOTE: see warning in docs for ottes_inverse_mapping().]</p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">A</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=5.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">A</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=5.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Shape parameter A, in degrees</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mm_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=8.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mm_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=8.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor to convert constants Bu and Bv from mm to sheet
        units.  Expressed in mm/unit.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">direction_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">direction_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor for saccade command direction, expressed in
         degrees per unit of sheet.  Indicates what direction of saccade
         is represented by the y-component of the command input.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bu</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Rostral-caudal scale parameter, in mm</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bv</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">Bv</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Orthogonal (medial-lateral?) scale paraemter in mm/deg</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Scale factor for saccade command amplitude, expressed in
         degrees per unit of sheet.  Indicates how large a
         saccade is represented by the x-component of the command
@@ -432,10 +438,12 @@ the x-negative hemisheet.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.coordmapper</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.coordmapper">Module</a></li>
 </ul>
 </li>
@@ -481,7 +489,7 @@ the x-negative hemisheet.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

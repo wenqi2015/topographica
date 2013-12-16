@@ -86,7 +86,9 @@
 <span class="c">#: Parameterized object, as in &#39;param.main.warning(&quot;Invalid option&quot;)&#39;.</span>
 <span class="n">main</span><span class="o">=</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;main&quot;</span><span class="p">)</span>
 
-
+<span class="c"># A global random seed available for controlling the behaviour of</span>
+<span class="c"># parameterized objects with random state.</span>
+<span class="n">random_seed</span> <span class="o">=</span> <span class="mi">42</span>
 
 <div class="viewcode-block" id="produce_value"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.produce_value">[docs]</a><span class="k">def</span> <span class="nf">produce_value</span><span class="p">(</span><span class="n">value_obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -99,48 +101,279 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">value_obj</span>
 
+</div>
+<div class="viewcode-block" id="Infinity"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Infinity">[docs]</a><span class="k">class</span> <span class="nc">Infinity</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An instance of this class represents an infinite value. Unlike</span>
+<span class="sd">    Python&#39;s float(&#39;inf&#39;) value, this object can be safely compared</span>
+<span class="sd">    with gmpy numeric types across different gmpy versions.</span>
+
+<span class="sd">    All operators on Infinity() return Infinity(), apart from the</span>
+<span class="sd">    comparison and equality operators. Equality works by checking</span>
+<span class="sd">    whether the two objects are both instances of this class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span>  <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__ne__</span>  <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">==</span><span class="n">other</span>
+    <span class="k">def</span> <span class="nf">__lt__</span>  <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">def</span> <span class="nf">__le__</span>  <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">def</span> <span class="nf">__gt__</span>  <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">def</span> <span class="nf">__ge__</span>  <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">def</span> <span class="nf">__add__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">__ladd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">__sub__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">__iadd_</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>       <span class="k">return</span> <span class="s">&quot;Infinity()&quot;</span>
+    <span class="k">def</span> <span class="nf">__str__</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>       <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+</div>
+<div class="viewcode-block" id="Time"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Time">[docs]</a><span class="k">class</span> <span class="nc">Time</span><span class="p">(</span><span class="n">Parameterized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A callable object returning a number for the current time.</span>
+
+<span class="sd">    Here &#39;time&#39; is an abstract concept that can be interpreted in any</span>
+<span class="sd">    useful way.  For instance, in a simulation, it would be the</span>
+<span class="sd">    current simulation time, while in a turn-taking game it could be</span>
+<span class="sd">    the number of moves so far.  The key intended usage is to allow</span>
+<span class="sd">    independent Parameterized objects with Dynamic parameters to</span>
+<span class="sd">    remain consistent with a global reference.</span>
+
+<span class="sd">    The time datatype (time_type) is configurable, but should</span>
+<span class="sd">    typically be an exact numeric type like an integer or a rational,</span>
+<span class="sd">    so that small floating-point errors do not accumulate as time is</span>
+<span class="sd">    incremented repeatedly.</span>
+
+<span class="sd">    When used as a context manager using the &#39;with&#39; statement</span>
+<span class="sd">    (implemented by the __enter__ and __exit__ special methods), entry</span>
+<span class="sd">    into a context pushes the state of the Time object, allowing the</span>
+<span class="sd">    effect of changes to the time value to be explored by setting,</span>
+<span class="sd">    incrementing or decrementing time as desired. This allows the</span>
+<span class="sd">    state of time-dependent objects to be modified temporarily as a</span>
+<span class="sd">    function of time, within the context&#39;s block. For instance, you</span>
+<span class="sd">    could use the context manager to &quot;see into the future&quot; to collect</span>
+<span class="sd">    data over multiple times, without affecting the global time state</span>
+<span class="sd">    once exiting the context. Of course, you need to be careful not to</span>
+<span class="sd">    do anything while in context that would affect the lasting state</span>
+<span class="sd">    of your other objects, if you want things to return to their</span>
+<span class="sd">    starting state when exiting the context.</span>
+
+<span class="sd">    The starting time value of a new Time object is 0, converted to</span>
+<span class="sd">    the chosen time type. Here is an illustration of how time can be</span>
+<span class="sd">    manipulated using a Time object:</span>
+
+<span class="sd">    &gt;&gt;&gt; time = Time(until=20, timestep=1)</span>
+<span class="sd">    &gt;&gt;&gt; &#39;The initial time is %s&#39; % time()</span>
+<span class="sd">    &#39;The initial time is 0&#39;</span>
+<span class="sd">    &gt;&gt;&gt; &#39;Setting the time to %s&#39; % time(5)</span>
+<span class="sd">    &#39;Setting the time to 5&#39;</span>
+<span class="sd">    &gt;&gt;&gt; time += 5</span>
+<span class="sd">    &gt;&gt;&gt; &#39;After incrementing by 5, the time is %s&#39; % time()</span>
+<span class="sd">    &#39;After incrementing by 5, the time is 10&#39;</span>
+<span class="sd">    &gt;&gt;&gt; with time as t:  # Entering a context</span>
+<span class="sd">    ...     &#39;Time before iteration: %s&#39; % t()</span>
+<span class="sd">    ...     &#39;Iteration: %s&#39; % [val for val in t]</span>
+<span class="sd">    ...     &#39;Time after iteration: %s&#39; % t()</span>
+<span class="sd">    ...     t += 2</span>
+<span class="sd">    ...     &#39;The until parameter may be exceeded outside iteration: %s&#39; % t()</span>
+<span class="sd">    &#39;Time before iteration: 10&#39;</span>
+<span class="sd">    &#39;Iteration: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]&#39;</span>
+<span class="sd">    &#39;Time after iteration: 20&#39;</span>
+<span class="sd">    &#39;The until parameter may be exceeded outside iteration: 22&#39;</span>
+<span class="sd">    &gt;&gt;&gt; &#39;After exiting the context the time is back to %s&#39; % time()</span>
+<span class="sd">    &#39;After exiting the context the time is back to 10&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_infinitely_iterable</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="n">forever</span> <span class="o">=</span> <span class="n">Infinity</span><span class="p">()</span>
+
+    <span class="n">time_type</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Callable that Time will use to convert user-specified time</span>
+<span class="s">        values into the current time; all times will be of the resulting</span>
+<span class="s">        numeric type.</span>
+
+<span class="s">        By default, time is of integer type, but you can supply any</span>
+<span class="s">        arbitrary-precision type like a fixed-point decimal or a</span>
+<span class="s">        rational, to allow fractional times.  Floating-point times are</span>
+<span class="s">        also allowed, but are not recommended because they will suffer</span>
+<span class="s">        from accumulated rounding errors.  For instance, incrementing</span>
+<span class="s">        a floating-point value 0.0 by 0.05, 20 times, will not reach</span>
+<span class="s">        1.0 exactly.  Instead, it will be slightly higher than 1.0,</span>
+<span class="s">        because 0.05 cannot be represented exactly in a standard</span>
+<span class="s">        floating point numeric type. Fixed-point or rational types</span>
+<span class="s">        should be able to handle such computations exactly, avoiding</span>
+<span class="s">        accumulation issues over long time intervals.</span>
+
+<span class="s">        Some potentially useful exact number classes::</span>
+
+<span class="s">         - int: Suitable if all times can be expressed as integers.</span>
+<span class="s">           appropriate.</span>
+
+<span class="s">         - Python&#39;s decimal.Decimal and fractions.Fraction classes:</span>
+<span class="s">           widely available but slow and also awkward to specify times</span>
+<span class="s">           (e.g. cannot simply type 0.05, but have to use a special</span>
+<span class="s">           constructor or a string).</span>
+
+<span class="s">         - fixedpoint.FixedPoint: Allows a natural representation of</span>
+<span class="s">           times in decimal notation, but very slow and needs to be</span>
+<span class="s">           installed separately.</span>
+
+<span class="s">         - gmpy.mpq: Allows a natural representation of times in</span>
+<span class="s">           decimal notation, and very fast because it uses the GNU</span>
+<span class="s">           Multi-Precision library, but needs to be installed</span>
+<span class="s">           separately and depends on a non-Python library.  gmpy.mpq</span>
+<span class="s">           is gmpy&#39;s rational type.</span>
+<span class="s">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">timestep</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Stepsize to be used with the iterator interface.</span>
+<span class="s">        Time can be advanced or decremented by any value, not just</span>
+<span class="s">        those corresponding to the stepsize, and so this value is only</span>
+<span class="s">        a default.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">until</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">forever</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">         Declaration of an expected end to time values, if any.  When</span>
+<span class="s">         using the iterator interface, iteration will end before this</span>
+<span class="s">         value is exceeded.&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Time</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exhausted</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pushed_state</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">self_params</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">until</span><span class="p">)</span>
+        <span class="n">other_params</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span><span class="n">other</span><span class="o">.</span><span class="n">until</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">self_params</span> <span class="o">!=</span> <span class="n">other_params</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span> <span class="o">==</span> <span class="n">other</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span>
+
+
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">timestep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timestep</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exhausted</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_exhausted</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">+</span> <span class="n">timestep</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">until</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">+=</span> <span class="n">timestep</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_exhausted</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">time_type</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        When called with no arguments, returns the current time value.</span>
+
+<span class="sd">        When called with a specified val, sets the time to it.</span>
+
+<span class="sd">        When called with a specified time_type, changes the time_type</span>
+<span class="sd">        and sets the current time to the given val (which *must* be</span>
+<span class="sd">        specified) converted to that time type.  To ensure that</span>
+<span class="sd">        the current state remains consistent, this is normally the only</span>
+<span class="sd">        way to change the time_type of an existing Time instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">time_type</span> <span class="ow">and</span> <span class="n">val</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Please specify a value for the new time_type.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">time_type</span><span class="p">:</span>
+            <span class="n">type_param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">(</span><span class="s">&#39;time_type&#39;</span><span class="p">)</span>
+            <span class="n">type_param</span><span class="o">.</span><span class="n">constant</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span> <span class="o">=</span> <span class="n">time_type</span>
+            <span class="n">type_param</span><span class="o">.</span><span class="n">constant</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span>
+
+
+    <span class="k">def</span> <span class="nf">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+    <span class="k">def</span> <span class="nf">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Enter the context and push the current state.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pushed_state</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">until</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_context</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Exit from the current context, restoring the previous state.</span>
+<span class="sd">        The StopIteration exception raised in context will force the</span>
+<span class="sd">        context to exit. Any other exception exc that is raised in the</span>
+<span class="sd">        block will not be caught.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">until</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pushed_state</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_context</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pushed_state</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">exc</span> <span class="ow">is</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
 
 </div>
 <div class="viewcode-block" id="Dynamic"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Dynamic">[docs]</a><span class="k">class</span> <span class="nc">Dynamic</span><span class="p">(</span><span class="n">Parameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameter whose value can be generated dynamically by a callable</span>
 <span class="sd">    object.</span>
-<span class="sd">    </span>
+
 <span class="sd">    If a Parameter is declared as Dynamic, it can be set a callable</span>
 <span class="sd">    object (such as a function or callable class), and getting the</span>
 <span class="sd">    parameter&#39;s value will call that callable.</span>
 
 <span class="sd">    Note that at present, the callable object must allow attributes</span>
 <span class="sd">    to be set on itself.</span>
-<span class="sd">    </span>
+
 <span class="sd">    [Python 2.4 limitation: the callable object must be an instance of a</span>
 <span class="sd">    callable class, rather than a named function or a lambda function,</span>
 <span class="sd">    otherwise the object will not be picklable or deepcopyable.]</span>
 
+<span class="sd">    If set as time_dependent, setting the Dynamic.time_fn allows the</span>
+<span class="sd">    production of dynamic values to be controlled: a new value will be</span>
+<span class="sd">    produced only if the current value of time_fn is different from</span>
+<span class="sd">    what it was the last time the parameter value was requested.</span>
 
-<span class="sd">    Setting Dynamic.time_fn allows the production of dynamic values to</span>
-<span class="sd">    be controlled: a new value will be produced only if the current</span>
-<span class="sd">    value of time_fn is greater than what it was last time the</span>
-<span class="sd">    parameter value was requested.</span>
-
-<span class="sd">    If time_fn is set to None, a new value is always produced.</span>
-
-<span class="sd">    If Dynamic.time_fn is set to something other than None, it must,</span>
-<span class="sd">    when called, produce a number.</span>
+<span class="sd">    By default, the Dynamic parameters are not time_dependent so that</span>
+<span class="sd">    new values are generated on every call regardless of the time. The</span>
+<span class="sd">    default time_fn used when time_dependent is a single Time instance</span>
+<span class="sd">    that allows general manipulations of time. It may be set to some</span>
+<span class="sd">    other callable as required so long as a number is returned on each</span>
+<span class="sd">    call.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c"># CB: making Dynamic support iterators and generators is sf.net</span>
     <span class="c"># feature request 1864370. When working on that task, note that</span>
     <span class="c"># detection of a dynamic generator by &#39;callable&#39; needs to be</span>
     <span class="c"># replaced by something that matches whatever Dynamic becomes</span>
     <span class="c"># capable of using.</span>
-    
-    <span class="n">time_fn</span> <span class="o">=</span> <span class="bp">None</span> <span class="c"># could add a slot for time_fn to allow instances</span>
-                   <span class="c"># to override</span>
-    
+
+    <span class="n">time_fn</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
+    <span class="n">time_dependent</span> <span class="o">=</span> <span class="bp">False</span>
+
     <span class="c"># CBENHANCEMENT: Add an &#39;epsilon&#39; slot.</span>
     <span class="c"># See email &#39;Re: simulation-time-controlled Dynamic parameters&#39;</span>
     <span class="c"># Dec 22, 2007 CB-&gt;JAB</span>
-        
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call the superclass&#39;s __init__ and set instantiate=True if the</span>
@@ -168,8 +401,8 @@
 
         <span class="n">gen</span><span class="o">.</span><span class="n">_saved_Dynamic_last</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">gen</span><span class="o">.</span><span class="n">_saved_Dynamic_time</span> <span class="o">=</span> <span class="p">[]</span>
-                
-        
+
+
     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">objtype</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call the superclass&#39;s __get__; if the result is not dynamic</span>
@@ -182,7 +415,7 @@
             <span class="k">return</span> <span class="n">gen</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_produce_value</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
-            
+
 
     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -194,7 +427,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Dynamic</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
 
-        <span class="n">dynamic</span> <span class="o">=</span> <span class="nb">callable</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>        
+        <span class="n">dynamic</span> <span class="o">=</span> <span class="nb">callable</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">dynamic</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_generator</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">obj</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_instantiate</span><span class="p">(</span><span class="n">dynamic</span><span class="p">)</span>
 
@@ -206,24 +439,25 @@
 <span class="sd">        If there is no time_fn, then a new value will be returned</span>
 <span class="sd">        (i.e. gen will be asked to produce a new value).</span>
 
-<span class="sd">        If force is True, or the value of time_fn() is greater than</span>
-<span class="sd">        what it was was last time produce_value was called, a</span>
-<span class="sd">        new value will be produced and returned. Otherwise,</span>
-<span class="sd">        the last value gen produced will be returned.</span>
+<span class="sd">        If force is True, or the value of time_fn() is different from</span>
+<span class="sd">        what it was was last time produce_value was called, a new</span>
+<span class="sd">        value will be produced and returned. Otherwise, the last value</span>
+<span class="sd">        gen produced will be returned.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span><span class="s">&quot;_Dynamic_time_fn&quot;</span><span class="p">):</span>            
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span><span class="s">&quot;_Dynamic_time_fn&quot;</span><span class="p">):</span>
             <span class="n">time_fn</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_time_fn</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">time_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_fn</span>
-        
-        <span class="k">if</span> <span class="n">time_fn</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">time_fn</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_dependent</span><span class="p">):</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">produce_value</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
             <span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_last</span> <span class="o">=</span> <span class="n">value</span>
         <span class="k">else</span><span class="p">:</span>
-            
+
             <span class="n">time</span> <span class="o">=</span> <span class="n">time_fn</span><span class="p">()</span>
 
-            <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="n">time</span><span class="o">&gt;</span><span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_time</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="n">time</span><span class="o">!=</span><span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_time</span><span class="p">:</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">produce_value</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
                 <span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_last</span> <span class="o">=</span> <span class="n">value</span>
                 <span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_time</span> <span class="o">=</span> <span class="n">time</span>
@@ -244,22 +478,22 @@
     <span class="k">def</span> <span class="nf">_inspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">objtype</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the last generated value for this parameter.&quot;&quot;&quot;</span>
         <span class="n">gen</span><span class="o">=</span><span class="nb">super</span><span class="p">(</span><span class="n">Dynamic</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">objtype</span><span class="p">)</span>
-        
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span><span class="s">&#39;_Dynamic_last&#39;</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_last</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">gen</span> 
 
-    
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span><span class="s">&#39;_Dynamic_last&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">gen</span><span class="o">.</span><span class="n">_Dynamic_last</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">gen</span>
+
+
     <span class="k">def</span> <span class="nf">_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">objtype</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Force a new value to be generated, and return it.&quot;&quot;&quot;</span>
         <span class="n">gen</span><span class="o">=</span><span class="nb">super</span><span class="p">(</span><span class="n">Dynamic</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">objtype</span><span class="p">)</span>
-        
+
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span><span class="s">&#39;_Dynamic_last&#39;</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_produce_value</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span><span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">gen</span> 
-        
+            <span class="k">return</span> <span class="n">gen</span>
+
 
 <span class="c"># CEBNOTE: isinstance(x,Number) should be possible in Python 2.6</span>
 <span class="c"># (Number is a new abstract base class).</span>
@@ -315,7 +549,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;bounds&#39;</span><span class="p">,</span><span class="s">&#39;_softbounds&#39;</span><span class="p">,</span><span class="s">&#39;allow_None&#39;</span><span class="p">,</span><span class="s">&#39;inclusive_bounds&#39;</span><span class="p">,</span><span class="s">&#39;set_hook&#39;</span><span class="p">]</span>
- 
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">softbounds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">allow_None</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">inclusive_bounds</span><span class="o">=</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">),</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize this parameter object and store the bounds.</span>
@@ -323,14 +557,14 @@
 <span class="sd">        Non-dynamic default values are checked against the bounds.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Number</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">set_hook</span> <span class="o">=</span> <span class="n">identity_hook</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inclusive_bounds</span> <span class="o">=</span> <span class="n">inclusive_bounds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_softbounds</span> <span class="o">=</span> <span class="n">softbounds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">allow_None</span> <span class="o">=</span> <span class="p">(</span><span class="n">default</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">allow_None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">default</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_value</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>  
-        
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">default</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_value</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
+
 
     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">objtype</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -350,7 +584,7 @@
 <span class="sd">        Set to the given value raising an exception if out of bounds.</span>
 <span class="sd">        Also applies set_hook, providing support for conversions</span>
 <span class="sd">        and transformations of the value.</span>
-<span class="sd">        &quot;&quot;&quot;</span>        
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_hook</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">val</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_value</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
@@ -369,7 +603,7 @@
             <span class="n">bounded_val</span> <span class="o">=</span> <span class="n">val</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Number</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">bounded_val</span><span class="p">)</span>
 
-    
+
     <span class="c"># CEBERRORALERT: doesn&#39;t take account of exclusive bounds. When</span>
     <span class="c"># the gui uses set_in_bounds(), expecting to get acceptable</span>
     <span class="c"># values, it actually gets an out-of-bounds error. When fixed,</span>
@@ -394,7 +628,7 @@
         <span class="k">if</span> <span class="n">_is_number</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">val</span>
-            <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> 
+            <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
             <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">vmin</span><span class="p">:</span>
                     <span class="k">return</span>  <span class="n">vmin</span>
@@ -405,7 +639,7 @@
 
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_None</span> <span class="ow">and</span> <span class="n">val</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">val</span>
-        
+
         <span class="k">else</span><span class="p">:</span>
             <span class="c"># non-numeric value sent in: reverts to default value</span>
             <span class="k">return</span>  <span class="bp">self</span><span class="o">.</span><span class="n">default</span>
@@ -414,7 +648,7 @@
 
 
     <span class="k">def</span> <span class="nf">_checkBounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
-    
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
             <span class="n">incmin</span><span class="p">,</span><span class="n">incmax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inclusive_bounds</span>
@@ -447,9 +681,9 @@
 <span class="c">##              raise ValueError(&quot;Parameter &#39;%s&#39; must be in the range %s&quot; % (self._attrib_name,self.rangestr()))</span>
 
 <span class="c">##         where self.rangestr() formats the range using the usual notation for</span>
-<span class="c">##         indicating exclusivity, e.g. &quot;[0,10)&quot;.     </span>
-    
-    
+<span class="c">##         indicating exclusivity, e.g. &quot;[0,10)&quot;.</span>
+
+
     <span class="k">def</span> <span class="nf">_check_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checks that the value is numeric and that it is within the hard</span>
@@ -460,7 +694,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_number</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Parameter &#39;</span><span class="si">%s</span><span class="s">&#39; only takes numeric values&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">))</span>
-            
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_checkBounds</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 
 
@@ -479,7 +713,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">sl</span><span class="p">,</span><span class="n">su</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_softbounds</span>
 
-                
+
         <span class="k">if</span> <span class="n">sl</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="n">l</span> <span class="o">=</span> <span class="n">hl</span>
         <span class="k">else</span><span class="p">:</span>          <span class="n">l</span> <span class="o">=</span> <span class="n">sl</span>
 
@@ -499,11 +733,11 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Parameter &#39;</span><span class="si">%s</span><span class="s">&#39; must be an integer.&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">)</span>
-            
-        <span class="bp">self</span><span class="o">.</span><span class="n">_checkBounds</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>    
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_checkBounds</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 
 
-            </div>
+</div>
 <div class="viewcode-block" id="Magnitude"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Magnitude">[docs]</a><span class="k">class</span> <span class="nc">Magnitude</span><span class="p">(</span><span class="n">Number</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Numeric Parameter required to be in the range [0.0-1.0].&quot;&quot;&quot;</span>
 
@@ -523,19 +757,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">allow_None</span> <span class="o">=</span> <span class="p">(</span><span class="n">default</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">allow_None</span><span class="p">)</span>
         <span class="n">Parameter</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        
+
     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_None</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Boolean &#39;</span><span class="si">%s</span><span class="s">&#39; only takes a Boolean value or None.&quot;</span>
                                  <span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">)</span>
-    
+
             <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span> <span class="ow">and</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Boolean &#39;</span><span class="si">%s</span><span class="s">&#39; must be True, False, or None.&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="nb">bool</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Boolean &#39;</span><span class="si">%s</span><span class="s">&#39; only takes a Boolean value.&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">)</span>
-    
+
             <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span> <span class="ow">and</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">False</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Boolean &#39;</span><span class="si">%s</span><span class="s">&#39; must be True or False.&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">)</span>
 
@@ -559,21 +793,21 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">length</span>
-            
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_check</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
         <span class="n">Parameter</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        
+
     <span class="k">def</span> <span class="nf">_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="nb">tuple</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;NumericTuple &#39;</span><span class="si">%s</span><span class="s">&#39; only takes a tuple value.&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">)</span>
-        
+
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: tuple is not of the correct length (</span><span class="si">%d</span><span class="s"> instead of </span><span class="si">%d</span><span class="s">).&quot;</span> <span class="o">%</span>
                              <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_number</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: tuple element is not numeric: </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
-            
+
     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">NumericTuple</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
@@ -587,11 +821,11 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">XYCoordinates</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
 
-                 </div>
+</div>
 <div class="viewcode-block" id="Callable"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Callable">[docs]</a><span class="k">class</span> <span class="nc">Callable</span><span class="p">(</span><span class="n">Parameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameter holding a value that is a callable object, such as a function.</span>
-<span class="sd">    </span>
+
 <span class="sd">    A keyword argument instantiate=True should be provided when a</span>
 <span class="sd">    function object is used that might have state.  On the other hand,</span>
 <span class="sd">    regular standalone functions cannot be deepcopied as of Python</span>
@@ -604,7 +838,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">Callable</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
 
 
-        
+
 <span class="c"># CBNOTE: python now has abstract base classes, so we could update</span>
 <span class="c"># this. At least if the check is in a method, all such checks could be</span>
 <span class="c"># changed at once.</span></div>
@@ -614,8 +848,8 @@
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
 
-    
-    
+
+
 <span class="c"># CEBALERT: this should be a method of ClassSelector.</span>
 <div class="viewcode-block" id="concrete_descendents"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.concrete_descendents">[docs]</a><span class="k">def</span> <span class="nf">concrete_descendents</span><span class="p">(</span><span class="n">parentclass</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -634,8 +868,8 @@
 </div>
 <div class="viewcode-block" id="Composite"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Composite">[docs]</a><span class="k">class</span> <span class="nc">Composite</span><span class="p">(</span><span class="n">Parameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Parameter that is a composite of a set of other attributes of the class.  </span>
-<span class="sd">    </span>
+<span class="sd">    A Parameter that is a composite of a set of other attributes of the class.</span>
+
 <span class="sd">    The constructor argument &#39;attribs&#39; takes a list of attribute</span>
 <span class="sd">    names, which may or may not be Parameters.  Getting the parameter</span>
 <span class="sd">    returns a list of the values of the constituents of the composite,</span>
@@ -666,7 +900,7 @@
 <span class="sd">        Set the values of all the attribs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attribs</span><span class="p">),</span><span class="s">&quot;Compound parameter &#39;</span><span class="si">%s</span><span class="s">&#39; got the wrong number of values (needed </span><span class="si">%d</span><span class="s">, but got </span><span class="si">%d</span><span class="s">).&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attribs</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
-        
+
         <span class="k">if</span> <span class="ow">not</span> <span class="n">obj</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attribs</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">objtype</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
@@ -683,11 +917,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
-    
+
     <span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;get_range() must be implemented in subclasses.&quot;</span><span class="p">)</span>
 
-    </div>
+</div>
 <div class="viewcode-block" id="ObjectSelector"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.ObjectSelector">[docs]</a><span class="k">class</span> <span class="nc">ObjectSelector</span><span class="p">(</span><span class="n">Selector</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameter whose value must be one object from a list of possible objects.</span>
@@ -724,13 +958,13 @@
 
         <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_on_set</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_check_value</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
-            
+
         <span class="nb">super</span><span class="p">(</span><span class="n">ObjectSelector</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span><span class="n">instantiate</span><span class="o">=</span><span class="n">instantiate</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        
+
 
     <span class="c"># CBNOTE: if the list of objects is changed, the current value for</span>
     <span class="c"># this parameter in existing POs could be out of the new range.</span>
-    
+
     <span class="k">def</span> <span class="nf">compute_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If this parameter&#39;s compute_default_fn is callable, call it</span>
@@ -740,7 +974,7 @@
 <span class="sd">        no longer None).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_default_fn</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_default_fn</span><span class="p">()</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_default_fn</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">default</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
 
@@ -786,7 +1020,7 @@
             <span class="n">d</span><span class="o">=</span><span class="nb">dict</span><span class="p">([(</span><span class="n">obj</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">d</span>
 
-    </div>
+</div>
 <div class="viewcode-block" id="ClassSelector"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.ClassSelector">[docs]</a><span class="k">class</span> <span class="nc">ClassSelector</span><span class="p">(</span><span class="n">Selector</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parameter whose value is an instance of the specified class.&quot;&quot;&quot;</span>
 
@@ -810,7 +1044,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_value</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ClassSelector</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
 
-        
+
     <span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the possible types for this parameter&#39;s value.</span>
@@ -849,7 +1083,7 @@
 
     <span class="c"># Could add range() method from ClassSelector, to allow</span>
     <span class="c"># list to be populated in the GUI</span>
-    
+
     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set to the given value, raising an exception if out of bounds.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_bounds</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
@@ -870,7 +1104,7 @@
                 <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">min_length</span> <span class="o">&lt;=</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">max_length</span><span class="p">):</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: list length must be between </span><span class="si">%s</span><span class="s"> and </span><span class="si">%s</span><span class="s"> (inclusive)&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">,</span><span class="n">min_length</span><span class="p">,</span><span class="n">max_length</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">min_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">min_length</span> <span class="o">&lt;=</span> <span class="n">l</span><span class="p">:</span> 
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">min_length</span> <span class="o">&lt;=</span> <span class="n">l</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: list length must be at least </span><span class="si">%s</span><span class="s">.&quot;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">,</span><span class="n">min_length</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">max_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">max_length</span><span class="p">:</span>
@@ -918,12 +1152,12 @@
         <span class="c"># CEBALERT: instead use python array as default?</span>
         <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Array</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-                
+
 
 <span class="c"># For portable code:</span>
 <span class="c">#   - specify paths in unix (rather than Windows) style;</span>
-<span class="c">#   - use resolve_file_path() for paths to existing files to be read, </span>
-<span class="c">#   - use resolve_folder_path() for paths to existing folders to be read, </span>
+<span class="c">#   - use resolve_file_path() for paths to existing files to be read,</span>
+<span class="c">#   - use resolve_folder_path() for paths to existing folders to be read,</span>
 <span class="c">#     and normalize_path() for paths to new files to be written.</span>
 </div>
 <div class="viewcode-block" id="resolve_path"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.resolve_path">[docs]</a><span class="k">class</span> <span class="nc">resolve_path</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
@@ -949,7 +1183,7 @@
 
     <span class="n">path_to_file</span> <span class="o">=</span> <span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pickle_default_value</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        String specifying whether the path refers to a &#39;File&#39; or a &#39;Folder&#39;.&quot;&quot;&quot;</span><span class="p">)</span>
-        
+
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
 
@@ -968,12 +1202,12 @@
                     <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Folder &#39;</span><span class="si">%s</span><span class="s">&#39; not found.&quot;</span> <span class="o">%</span><span class="n">path</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Type &#39;</span><span class="si">%s</span><span class="s">&#39; not recognised.&quot;</span> <span class="o">%</span><span class="n">p</span><span class="o">.</span><span class="n">path_type</span><span class="p">)</span>
-                
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">paths_tried</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">search_paths</span><span class="p">:</span>
                 <span class="n">try_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span> <span class="n">path</span><span class="p">)</span>
-                
+
                 <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">path_to_file</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">try_path</span><span class="p">):</span>
                         <span class="k">return</span> <span class="n">try_path</span>
@@ -987,7 +1221,7 @@
 
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot; was not found in the following place(s): &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">paths_tried</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span><span class="p">)</span>
 
-            </div>
+</div>
 <div class="viewcode-block" id="normalize_path"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.normalize_path">[docs]</a><span class="k">class</span> <span class="nc">normalize_path</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a UNIX-style path to the current OS&#39;s format,</span>
@@ -1017,7 +1251,7 @@
 <div class="viewcode-block" id="Path"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Path">[docs]</a><span class="k">class</span> <span class="nc">Path</span><span class="p">(</span><span class="n">Parameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameter that can be set to a string specifying the path of a file or folder.</span>
-<span class="sd"> </span>
+
 <span class="sd">    The string should be specified in UNIX style, but it will be</span>
 <span class="sd">    returned in the format of the user&#39;s operating system. Please use</span>
 <span class="sd">    the Filename or Foldername classes if you require discrimination</span>
@@ -1026,29 +1260,29 @@
 <span class="sd">    The specified path can be absolute, or relative to either:</span>
 
 <span class="sd">    * any of the paths specified in the search_paths attribute (if</span>
-<span class="sd">      search_paths is not None); </span>
+<span class="sd">      search_paths is not None);</span>
 
 <span class="sd">    or</span>
-<span class="sd">    </span>
+
 <span class="sd">    * any of the paths searched by resolve_path() (if search_paths</span>
 <span class="sd">      is None).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;search_paths&#39;</span><span class="p">]</span> 
-    
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;search_paths&#39;</span><span class="p">]</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">search_paths</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">search_paths</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">search_paths</span> <span class="o">=</span> <span class="p">[]</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">search_paths</span> <span class="o">=</span> <span class="n">search_paths</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">default</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-            
+
     <span class="k">def</span> <span class="nf">_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_paths</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">search_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">search_paths</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>                               
-        
+            <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call Parameter&#39;s __set__, but warn if the file cannot be found.</span>
@@ -1059,7 +1293,7 @@
             <span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_attrib_name</span><span class="p">))</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
-        
+
     <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">objtype</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an absolute, normalized path (see resolve_path).</span>
@@ -1068,12 +1302,12 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolve</span><span class="p">(</span><span class="n">raw_path</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c"># don&#39;t want to pickle the search_paths        </span>
+        <span class="c"># don&#39;t want to pickle the search_paths</span>
         <span class="n">state</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
-        
+
         <span class="k">if</span> <span class="s">&#39;search_paths&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
             <span class="n">state</span><span class="p">[</span><span class="s">&#39;search_paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        
+
         <span class="k">return</span> <span class="n">state</span>
 
 
@@ -1083,38 +1317,38 @@
 <span class="sd">    Parameter that can be set to a string specifying the path of a file.</span>
 
 <span class="sd">    The string should be specified in UNIX style, but it will be</span>
-<span class="sd">    returned in the format of the user&#39;s operating system. </span>
+<span class="sd">    returned in the format of the user&#39;s operating system.</span>
 
 <span class="sd">    The specified path can be absolute, or relative to either:</span>
 
 <span class="sd">    * any of the paths specified in the search_paths attribute (if</span>
-<span class="sd">      search_paths is not None); </span>
+<span class="sd">      search_paths is not None);</span>
 <span class="sd">    or</span>
-<span class="sd">    </span>
+
 <span class="sd">    * any of the paths searched by resolve_path() (if search_paths</span>
 <span class="sd">      is None).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
+
     <span class="k">def</span> <span class="nf">_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_paths</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">search_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">search_paths</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>       
+            <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-            </div>
+</div>
 <div class="viewcode-block" id="Foldername"><a class="viewcode-back" href="../Reference_Manual/param-module.html#param.Foldername">[docs]</a><span class="k">class</span> <span class="nc">Foldername</span><span class="p">(</span><span class="n">Path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameter that can be set to a string specifying the path of a folder.</span>
 
 <span class="sd">    The string should be specified in UNIX style, but it will be</span>
-<span class="sd">    returned in the format of the user&#39;s operating system. </span>
+<span class="sd">    returned in the format of the user&#39;s operating system.</span>
 
 <span class="sd">    The specified path can be absolute, or relative to either:</span>
 
 <span class="sd">    * any of the paths specified in the search_paths attribute (if</span>
-<span class="sd">      search_paths is not None); </span>
+<span class="sd">      search_paths is not None);</span>
 <span class="sd">    or</span>
-<span class="sd">    </span>
+
 <span class="sd">    * any of the paths searched by resolve_dir_path() (if search_paths</span>
 <span class="sd">      is None).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1123,7 +1357,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_paths</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">search_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">search_paths</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>       </div>
+            <span class="k">return</span> <span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -1148,6 +1382,7 @@
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 
@@ -1196,7 +1431,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

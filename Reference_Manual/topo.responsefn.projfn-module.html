@@ -54,6 +54,12 @@
 <h1>topo.responsefn.projfn<a class="headerlink" href="#topo-responsefn-projfn" title="Permalink to this headline">¶</a></h1>
 <div class="inheritance_box"><img src="../_images/inheritance9cc735fe36.svg" usemap="#inheritance9cc735fe36" class="inheritance"/></div><map id="inheritance9cc735fe36" name="inheritance9cc735fe36">
 </map>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="topo.responsefn.projfn.pyc-module.html">topo.responsefn.projfn.pyc</a></li>
+</ul>
+</div>
 <div class="section" id="module-topo.responsefn.projfn">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.responsefn.projfn" title="Permalink to this headline">¶</a></h2>
 <p>Projection-level response functions.</p>
@@ -90,17 +96,17 @@ curve:</p>
 J. Experimental Botany 10: 290&#8211;300, 1959.
 <a class="reference external" href="http://en.wikipedia.org/wiki/Generalised_logistic_curve">http://en.wikipedia.org/wiki/Generalised_logistic_curve</a></p>
 <dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">b</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">b</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Controls position of maximum growth</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00278&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00297&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>ResponseFn to apply to each CF individually.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">m</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">m</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time of maximum growth.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">l</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-1.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">l</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-1.3, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Value at infinity</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">r</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">r</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=-200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Growth rate, controls the gradient</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">u</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">u</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>(u + l) is the value at minus infinity</dd>
 </dl>
 </dd></dl>
@@ -120,7 +126,7 @@ identically shaped matrices X (the input) and W (the
 ConnectionField weights) and computes a scalar activation value
 based on those weights.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00026&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00044&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a ResponseFn that will be applied to each CF individually.</dd>
 </dl>
 </dd></dl>
@@ -151,10 +157,12 @@ based on those weights.</p>
 <li><a href="../FAQ/index.html">FAQ</a></li>
 <li><a href="../Links/index.html">Links</a></li>
 <li><a href="../Home/pubs.html">Publications</a></li>
+<li><a href="../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">topo.responsefn.projfn</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-topo.responsefn.projfn">Module</a></li>
 </ul>
 </li>
@@ -200,7 +208,7 @@ based on those weights.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Nov 04, 2013.
+      Last updated on Dec 16, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
