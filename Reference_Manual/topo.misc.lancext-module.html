@@ -356,6 +356,43 @@ point error.</p>
 </dl>
 </dd></dl>
 
+<dl class="class">
+<dt id="topo.misc.lancext.topo_metadata">
+<em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">topo_metadata</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#topo_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.topo_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>Topographica specific helper function that expands on Lancet&#8217;s
+vcs_metadata function to generate suitable metadata information for
+logging with Lancet. Records Topographica version control
+information as well as information about all relevant submodules
+and the current numpy version.</p>
+<p>No arguments should be necessary when either contructing or calling
+this object as the default behaviour is designed to be useful. The
+summary method prints out the key information collected to assist
+with reproducibility. For instance, this may be called to print all
+the relevant git revisions in an IPython Notebook before launching
+jobs.</p>
+<dl class="docutils">
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">paths</span></tt> (<em>bounds=(0, None), constant=False, default=[&#8216;/var/lib/buildbot/slaves/docs/build&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/param&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/paramtk&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/imagen&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/lancet&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>List of git repositories including Topographica and relevant
+   submodules. Version control information from these repositories
+   will be returned as a dictionary when called. The most important
+   information is pretty printed when the summary method is called.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">commands</span></tt> (<em>allow_None=False, constant=False, default={&#8216;.git&#8217;: ([&#8216;git&#8217;, &#8216;rev-parse&#8217;, &#8216;HEAD&#8217;], [&#8216;git&#8217;, &#8216;log&#8217;, &#8216;&#8211;oneline&#8217;, &#8216;-n&#8217;, &#8216;1&#8217;], [&#8216;git&#8217;, &#8216;diff&#8217;])}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The git commands to pass to subprocess to extract the
+      necessary version control information. Uses the same
+      specification format as the lancet.vsc_metdata helper function.</dd>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">max_log_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=90, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Maximum number of characters that will be shown per message in
+      the printed summary.</dd>
+</dl>
+<dl class="method">
+<dt id="topo.misc.lancext.topo_metadata.summary">
+<tt class="descname">summary</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#topo_metadata.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.topo_metadata.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Printed summary of the versioning information captured via git.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

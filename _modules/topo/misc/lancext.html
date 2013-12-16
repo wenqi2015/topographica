@@ -69,10 +69,11 @@
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">types</span><span class="o">,</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">inspect</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
+<span class="kn">import</span> <span class="nn">numpy.version</span> <span class="kn">as</span> <span class="nn">np_version</span>
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">import</span> <span class="nn">param</span>
 
-<span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">PrettyPrinted</span>
+<span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">vcs_metadata</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Command</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Launcher</span><span class="p">,</span> <span class="n">review_and_launch</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">NumpyFile</span>
@@ -83,6 +84,109 @@
 <span class="n">Launcher</span><span class="o">.</span><span class="n">output_directory</span> <span class="o">=</span> <span class="n">default_output_path</span><span class="p">()</span>
 
 
+<div class="viewcode-block" id="topo_metadata"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.topo_metadata">[docs]</a><span class="k">class</span> <span class="nc">topo_metadata</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+   <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Topographica specific helper function that expands on Lancet&#39;s</span>
+<span class="sd">   vcs_metadata function to generate suitable metadata information for</span>
+<span class="sd">   logging with Lancet. Records Topographica version control</span>
+<span class="sd">   information as well as information about all relevant submodules</span>
+<span class="sd">   and the current numpy version.</span>
+
+<span class="sd">   No arguments should be necessary when either contructing or calling</span>
+<span class="sd">   this object as the default behaviour is designed to be useful. The</span>
+<span class="sd">   summary method prints out the key information collected to assist</span>
+<span class="sd">   with reproducibility. For instance, this may be called to print all</span>
+<span class="sd">   the relevant git revisions in an IPython Notebook before launching</span>
+<span class="sd">   jobs.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+
+   <span class="n">max_log_length</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">      Maximum number of characters that will be shown per message in</span>
+<span class="s">      the printed summary.&quot;&quot;&quot;</span><span class="p">)</span>
+
+   <span class="n">paths</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span>
+         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;topographica&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">],</span>
+         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/param&#39;</span><span class="p">,</span>  <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/paramtk&#39;</span><span class="p">,</span><span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/imagen&#39;</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/lancet&#39;</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+         <span class="p">],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">   List of git repositories including Topographica and relevant</span>
+<span class="s">   submodules. Version control information from these repositories</span>
+<span class="s">   will be returned as a dictionary when called. The most important</span>
+<span class="s">   information is pretty printed when the summary method is called.&quot;&quot;&quot;</span><span class="p">)</span>
+
+   <span class="n">commands</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;.git&#39;</span><span class="p">:([</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;rev-parse&#39;</span><span class="p">,</span> <span class="s">&#39;HEAD&#39;</span><span class="p">],</span>
+                                          <span class="p">[</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;log&#39;</span><span class="p">,</span> <span class="s">&#39;--oneline&#39;</span><span class="p">,</span> <span class="s">&#39;-n&#39;</span><span class="p">,</span> <span class="s">&#39;1&#39;</span><span class="p">],</span>
+                                          <span class="p">[</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;diff&#39;</span><span class="p">])},</span>
+      <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;The git commands to pass to subprocess to extract the</span>
+<span class="s">      necessary version control information. Uses the same</span>
+<span class="s">      specification format as the lancet.vsc_metdata helper function.&quot;&quot;&quot;</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="nb">super</span><span class="p">(</span><span class="n">topo_metadata</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_repos</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Topographica&#39;</span><span class="p">,</span> <span class="s">&#39;Param&#39;</span><span class="p">,</span> <span class="s">&#39;Param Tk&#39;</span><span class="p">,</span> <span class="s">&#39;Imagen&#39;</span><span class="p">,</span> <span class="s">&#39;Lancet&#39;</span><span class="p">]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_summarized</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Topographica&#39;</span><span class="p">,</span> <span class="s">&#39;Param&#39;</span><span class="p">,</span> <span class="s">&#39;Imagen&#39;</span><span class="p">,</span> <span class="s">&#39;Lancet&#39;</span><span class="p">]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_paths</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">))</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+   <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params_to_override</span><span class="p">):</span>
+      <span class="n">p</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params_to_override</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="o">=</span> <span class="n">vcs_metadata</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">paths</span><span class="p">,</span>
+                                <span class="n">commands</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">commands</span><span class="p">)</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s">&#39;numpy_version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np_version</span><span class="o">.</span><span class="n">full_version</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s">&#39;numpy_git_revision&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np_version</span><span class="o">.</span><span class="n">git_revision</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span>
+
+   <span class="k">def</span> <span class="nf">_modified_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diff</span><span class="p">):</span>
+      <span class="s">&quot;Returns the set of files mentioned in a given git diff string.&quot;</span>
+      <span class="n">modified_files</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">diff_marker</span> <span class="o">=</span> <span class="s">&#39;diff --git &#39;</span>
+      <span class="n">diff_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">diff</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">diff_marker</span><span class="p">)]</span>
+
+      <span class="k">for</span> <span class="n">diff_line</span> <span class="ow">in</span> <span class="n">diff_lines</span><span class="p">:</span>
+         <span class="n">bfilepath</span> <span class="o">=</span> <span class="n">diff_line</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">diff_marker</span><span class="p">):]</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s">&#39; b/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+         <span class="n">bfile</span> <span class="o">=</span> <span class="n">bfilepath</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+         <span class="n">modified_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bfile</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">modified_files</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="topo_metadata.summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.topo_metadata.summary">[docs]</a>   <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="s">&quot;Printed summary of the versioning information captured via git.&quot;</span>
+      <span class="n">np_name</span> <span class="o">=</span> <span class="s">&#39;Numpy&#39;</span>
+      <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="k">else</span> <span class="bp">self</span><span class="p">()</span>
+
+      <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s">&#39;vcs_messages&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_paths</span><span class="p">[</span><span class="n">repo</span><span class="p">]]</span> <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summarized</span><span class="p">]</span>
+      <span class="n">diffs</span> <span class="o">=</span> <span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s">&#39;vcs_diffs&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_paths</span><span class="p">[</span><span class="n">repo</span><span class="p">]]</span> <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summarized</span><span class="p">]</span>
+
+      <span class="n">diff_message</span> <span class="o">=</span> <span class="s">&quot;   </span><span class="si">%s</span><span class="s">  [</span><span class="si">%d</span><span class="s"> files have uncommited changes as captured by git diff]&quot;</span>
+      <span class="n">longest_name</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_summarized</span> <span class="o">+</span> <span class="p">[</span><span class="n">np_name</span><span class="p">])</span>
+
+      <span class="k">print</span> <span class="s">&quot;Topographica version control summary:</span><span class="se">\n</span><span class="s">&quot;</span>
+      <span class="k">for</span> <span class="n">repo_name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">diff</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_summarized</span><span class="p">,</span> <span class="n">messages</span><span class="p">,</span> <span class="n">diffs</span><span class="p">):</span>
+         <span class="n">truncate_len</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_log_length</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">truncate_len</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="p">[:</span><span class="n">truncate_len</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;...&#39;</span>
+
+         <span class="n">sha_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+         <span class="n">modified_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modified_files</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+         <span class="k">print</span> <span class="s">&#39;   </span><span class="si">%s</span><span class="s">: </span><span class="si">%s%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">repo_name</span><span class="p">,</span>
+                                <span class="s">&#39; &#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">longest_name</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">repo_name</span><span class="p">)),</span>
+                                <span class="n">message</span><span class="p">)</span>
+         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">modified_files</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">diff_message</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39; &#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">sha_len</span><span class="o">+</span><span class="n">longest_name</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+                                  <span class="nb">len</span><span class="p">(</span><span class="n">modified_files</span><span class="p">))</span>
+
+      <span class="n">numpy_sha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s">&#39;numpy_git_revision&#39;</span><span class="p">][:</span><span class="mi">7</span><span class="p">]</span>
+      <span class="n">np_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">np_name</span><span class="p">,</span>   <span class="s">&#39; &#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">longest_name</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">np_name</span><span class="p">)),</span>
+                 <span class="n">numpy_sha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s">&#39;numpy_version&#39;</span><span class="p">],</span>
+                 <span class="s">&#39;&#39;</span> <span class="k">if</span> <span class="n">np_version</span><span class="o">.</span><span class="n">release</span> <span class="k">else</span> <span class="s">&#39;Non-&#39;</span><span class="p">)</span>
+      <span class="k">print</span> <span class="s">&#39;   </span><span class="si">%s</span><span class="s">: </span><span class="si">%s%s</span><span class="s"> Version </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">release)&#39;</span> <span class="o">%</span> <span class="n">np_info</span>
+
+</div></div>
 <div class="viewcode-block" id="param_formatter"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.param_formatter">[docs]</a><span class="k">class</span> <span class="nc">param_formatter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   This class is closely related to the param_formatter class in</span>
