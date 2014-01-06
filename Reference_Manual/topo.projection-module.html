@@ -221,12 +221,6 @@ apply the output_fn to non-responding units.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.projection.Projection.get_projection_view">
-<tt class="descname">get_projection_view</tt><big>(</big><em>timestamp</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.get_projection_view" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the activity in a single projection</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="topo.projection.Projection.learn">
 <tt class="descname">learn</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.projection.Projection.learn" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function has to be re-implemented by sub-classes, if they wish
@@ -278,6 +272,12 @@ be affected by this call.</p>
 <p>By default, this call simply calls override_plasticity_state()
 on the Projection&#8217;s output_fn, and sets the &#8216;plastic&#8217;
 parameter to False.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.Projection.projection_view">
+<tt class="descname">projection_view</tt><big>(</big><em>timestamp</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.projection_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the activity in a single projection</p>
 </dd></dl>
 
 <dl class="method">
@@ -919,16 +919,16 @@ input and stores it in the activity array.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.projection.CFProjection.get_view">
-<tt class="descname">get_view</tt><big>(</big><em>sheet_x</em>, <em>sheet_y</em>, <em>timestamp=None</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.get_view" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a single connection field SheetView, for the unit
-located nearest to sheet coordinate (sheet_x,sheet_y).</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="topo.projection.CFProjection.learn">
 <tt class="descname">learn</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.learn" title="Permalink to this definition">¶</a></dt>
 <dd><p>For a CFProjection, learn consists of calling the learning_fn.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.CFProjection.view">
+<tt class="descname">view</tt><big>(</big><em>sheet_x</em>, <em>sheet_y</em>, <em>timestamp=None</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single connection field SheetView, for the unit
+located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 </dd></dl>
 
 </dd></dl>
