@@ -155,6 +155,20 @@
 
 
 </div>
+<span class="k">class</span> <span class="nc">measure_projection</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Number of CF rows.&quot;</span><span class="p">)</span>
+
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;Number of CF columns.&quot;</span><span class="p">)</span>
+
+    <span class="n">projection</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ObjectSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">projection</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">cols</span><span class="p">)</span>
+
+
+
 <div class="viewcode-block" id="update_projectionactivity"><a class="viewcode-back" href="../../../Reference_Manual/topo.command.analysis-module.html#topo.command.analysis.update_projectionactivity">[docs]</a><span class="k">class</span> <span class="nc">update_projectionactivity</span><span class="p">(</span><span class="n">ProjectionSheetMeasurementCommand</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add SheetViews for all of the Projections of the ProjectionSheet</span>
