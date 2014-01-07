@@ -115,7 +115,7 @@ while presenting many input patterns.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.FeatureResponses">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">FeatureResponses</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.FeatureResponses" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.PatternDrivenAnalysis</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.PatternDrivenAnalysis</span></tt></p>
 <p>Systematically vary input pattern feature values and collate the
 responses.</p>
 <p>A DistributionMatrix for each measurement source and feature is
@@ -133,7 +133,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x67ba140&gt;, &lt;function clear_event_queue at 0x67b7758&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x701b1b8&gt;, &lt;function clear_event_queue at 0x74fe7d0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -175,7 +175,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
         itself.</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">measurement_storage_hook</span></tt> (<em>constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface to store measurements after they have been completed.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x689bc08&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x7034c80&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -184,7 +184,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 </dl>
 <dl class="attribute">
 <dt id="topo.analysis.featureresponses.FeatureResponses.set_cmd_overrides">
-<tt class="descname">set_cmd_overrides</tt><em class="property"> = &lt;functools.partial object at 0x6a81520&gt;</em><a class="headerlink" href="#topo.analysis.featureresponses.FeatureResponses.set_cmd_overrides" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_cmd_overrides</tt><em class="property"> = &lt;functools.partial object at 0x71a9520&gt;</em><a class="headerlink" href="#topo.analysis.featureresponses.FeatureResponses.set_cmd_overrides" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -192,13 +192,13 @@ tuning curves, or for similar types of feature-based analyses.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.ReverseCorrelation">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">ReverseCorrelation</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.ReverseCorrelation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.FeatureResponses</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.FeatureResponses</span></tt></p>
 <p>Calculate the receptive fields for all neurons using reverse correlation.</p>
 <dl class="docutils">
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x67ba140&gt;, &lt;function clear_event_queue at 0x67b7758&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x701b1b8&gt;, &lt;function clear_event_queue at 0x74fe7d0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -243,7 +243,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 </dl>
 <p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">continue_measurement</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x689bc08&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x7034c80&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -261,7 +261,7 @@ tuning curves, or for similar types of feature-based analyses.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.FeatureMaps">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">FeatureMaps</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.FeatureMaps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.FeatureResponses</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.FeatureResponses</span></tt></p>
 <p>Measure and collect the responses to a set of features, for
 calculating feature maps.</p>
 <p>For each feature and each measurement source, the results are
@@ -272,7 +272,7 @@ selectivity maps.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x67ba140&gt;, &lt;function clear_event_queue at 0x67b7758&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x701b1b8&gt;, &lt;function clear_event_queue at 0x74fe7d0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">post_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run after each pattern is presented.</dd>
@@ -324,7 +324,7 @@ selectivity maps.</p>
         etc. from the distribution of responses. Note that this default
         is overridden by specific functions for individual features, if
         specified in the Feature objects.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x689bc08&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x7034c80&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -342,7 +342,7 @@ selectivity maps.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.FeatureCurves">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">FeatureCurves</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.FeatureCurves" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.FeatureResponses</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.FeatureResponses</span></tt></p>
 <p>Measures and collects the responses to a set of features, for calculating
 tuning and similar curves.</p>
 <p>These curves represent the response of a measurement source to patterns
@@ -363,7 +363,7 @@ the storage_fn and are finally returned.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Presenter command responsible for presenting the input patterns provided
         to it and returning the response for the requested measurement sources.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x67ba140&gt;, &lt;function clear_event_queue at 0x67b7758&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">pre_presentation_hooks</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function wipe_out_activity at 0x701b1b8&gt;, &lt;function clear_event_queue at 0x74fe7d0&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of callable objects to be run before each pattern is presented.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">curve_params</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Curve label, specifying the value along some feature dimension.</dd>
@@ -411,7 +411,7 @@ the storage_fn and are finally returned.</p>
         itself.</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">measurement_storage_hook</span></tt> (<em>constant=False, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface to store measurements after they have been completed.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x689bc08&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metadata_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;function topo_metadata_fn at 0x7034c80&gt;], instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Interface functions for metadata. Should return a dictionary that at a
         minimum must contain the name and dimensions of the inputs and outputs
         for pattern presentation and response measurement.</dd>
@@ -460,7 +460,7 @@ feature.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.MeasureResponseCommand">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">MeasureResponseCommand</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.MeasureResponseCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.command.PatternPresentingCommand</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.command.PatternPresentingCommand</span></tt></p>
 <p>Parameterized command for presenting input patterns and measuring
 responses.</p>
 <dl class="docutils">
@@ -495,7 +495,7 @@ responses.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">measurement_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Optional prefix to add to the name under which results are stored as
         part of a measurement response.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;fmapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;featuremapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Metafeature_fns is a hooklist, which accepts any function, which applies
         coordinated changes to a set of inputs based on some parameter or feature
         value. Can be used to present different patterns to different inputs or
@@ -521,7 +521,7 @@ responses.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.SinusoidalMeasureResponseCommand">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">SinusoidalMeasureResponseCommand</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.SinusoidalMeasureResponseCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.command.MeasureResponseCommand</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.command.MeasureResponseCommand</span></tt></p>
 <p>Parameterized command for presenting sine gratings and measuring
 responses.</p>
 <dl class="docutils">
@@ -560,7 +560,7 @@ responses.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">measurement_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Optional prefix to add to the name under which results are stored as
         part of a measurement response.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;fmapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;featuremapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Metafeature_fns is a hooklist, which accepts any function, which applies
         coordinated changes to a set of inputs based on some parameter or feature
         value. Can be used to present different patterns to different inputs or
@@ -581,7 +581,7 @@ responses.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.PositionMeasurementCommand">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">PositionMeasurementCommand</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.PositionMeasurementCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.command.MeasureResponseCommand</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.command.MeasureResponseCommand</span></tt></p>
 <p>Parameterized command for measuring topographic position.</p>
 <dl class="docutils">
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -619,7 +619,7 @@ responses.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">measurement_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Optional prefix to add to the name under which results are stored as
         part of a measurement response.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;fmapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;featuremapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Metafeature_fns is a hooklist, which accepts any function, which applies
         coordinated changes to a set of inputs based on some parameter or feature
         value. Can be used to present different patterns to different inputs or
@@ -645,7 +645,7 @@ responses.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.SingleInputResponseCommand">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">SingleInputResponseCommand</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.SingleInputResponseCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.command.MeasureResponseCommand</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.command.MeasureResponseCommand</span></tt></p>
 <p>A callable Parameterized command for measuring the response to
 input on a specified Sheet.</p>
 <p>Note that at present the input is actually presented to all input
@@ -684,7 +684,7 @@ on one input sheet only.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">measurement_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Optional prefix to add to the name under which results are stored as
         part of a measurement response.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;fmapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;featuremapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Metafeature_fns is a hooklist, which accepts any function, which applies
         coordinated changes to a set of inputs based on some parameter or feature
         value. Can be used to present different patterns to different inputs or
@@ -704,7 +704,7 @@ on one input sheet only.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.FeatureCurveCommand">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">FeatureCurveCommand</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.FeatureCurveCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.command.SinusoidalMeasureResponseCommand</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.command.SinusoidalMeasureResponseCommand</span></tt></p>
 <p>A callable Parameterized command for measuring tuning curves.</p>
 <dl class="docutils">
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">pattern_response_fn</span></tt> (<em>constant=False, default=pattern_response(), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -746,7 +746,7 @@ on one input sheet only.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">measurement_prefix</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Optional prefix to add to the name under which results are stored as
         part of a measurement response.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;fmapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">metafeature_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[&lt;class &#8216;featuremapper.metaparams.contrast2scale&#8217;&gt;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Metafeature_fns is a hooklist, which accepts any function, which applies
         coordinated changes to a set of inputs based on some parameter or feature
         value. Can be used to present different patterns to different inputs or
@@ -771,7 +771,7 @@ on one input sheet only.</p>
 <dl class="class">
 <dt id="topo.analysis.featureresponses.UnitCurveCommand">
 <em class="property">class </em><tt class="descclassname">topo.analysis.featureresponses.</tt><tt class="descname">UnitCurveCommand</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.analysis.featureresponses.UnitCurveCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">fmapper.command.FeatureCurveCommand</span></tt></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">featuremapper.command.FeatureCurveCommand</span></tt></p>
 <p>Measures tuning curve(s) of particular unit(s).</p>
 <dl class="docutils">
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">static_parameters</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
