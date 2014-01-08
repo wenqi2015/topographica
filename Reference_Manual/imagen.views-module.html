@@ -66,29 +66,23 @@
 systems.</p>
 <dl class="class">
 <dt id="imagen.views.ProjectionGrid">
-<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">ProjectionGrid</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#ProjectionGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.ProjectionGrid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetIndexing" title="imagen.views.SheetIndexing"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetIndexing</span></tt></a>, <a class="reference internal" href="imagen.ndmapping-module.html#imagen.ndmapping.NdMapping" title="imagen.ndmapping.NdMapping"><tt class="xref py py-class docutils literal"><span class="pre">imagen.ndmapping.NdMapping</span></tt></a></p>
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">ProjectionGrid</tt><big>(</big><em>bounds</em>, <em>shape</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#ProjectionGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.ProjectionGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="imagen.ndmapping-module.html#imagen.ndmapping.NdMapping" title="imagen.ndmapping.NdMapping"><tt class="xref py py-class docutils literal"><span class="pre">imagen.ndmapping.NdMapping</span></tt></a>, <a class="reference internal" href="imagen.sheetcoords-module.html#imagen.sheetcoords.SheetCoordinateSystem" title="imagen.sheetcoords.SheetCoordinateSystem"><tt class="xref py py-class docutils literal"><span class="pre">imagen.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
 <p>ProjectionView indexes other NdMapping objects, containing projections
 onto coordinate systems. The X and Y dimensions are mapped onto the bounds
 object, allowing for bounds checking and grid-snapping.</p>
 <dl class="docutils">
-<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The ROI can be specified to select only a sub-region of the bounds to
-        be stored as data. NOT YET IMPLEMENTED.</dd>
-</dl>
-<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">enforced_type</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<dl class="docutils">
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The bounds of the coordinate system in which the data items reside.</dd>
-<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">shape</span></tt> (<em>constant=False, default=(0, 0), instantiate=False, length=2, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The shape of the grid is required to determine grid spacing and to
-        create a SheetCoordinateSystem.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines whether to keep internal data structure sorted, using
+        all dimensions indices to sort on. Important if data is not added in
+        a consistently increasing order but the order matters for plotting
+        or other purposes.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=False, default=[&#8216;X&#8217;, &#8216;Y&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension_labels parameter accepts a list of the features
         along which the data will indexed.</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>No need to keep ProjectionGrid sorted, since order of keys is
-        irrelevant.</dd>
+</dl>
+<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">enforced_type</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Additional labels to be associated with the Dataview.</dd>
 </dl>
@@ -98,26 +92,6 @@ object, allowing for bounds checking and grid-snapping.</p>
 <dd><p>Adds bounds checking to the default update behavior.</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="class">
-<dt id="imagen.views.SheetIndexing">
-<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetIndexing</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetIndexing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetIndexing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>SheetIndexing provides methods to transform indices and slices from one
-coordinate system to another. By default it maps from sheet coordinates
-to matrix coordinates using the _transform_indices method. However,
-subclasses can change this behavior by subclassing the _transform_values
-method, which takes an index value along a certain dimension along with the
-dimension number as input and returns the transformed value.</p>
-<dl class="docutils">
-<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The ROI can be specified to select only a sub-region of the bounds to
-        be stored as data. NOT YET IMPLEMENTED.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The bounds of the two dimensional coordinate system in which the data
-        resides.</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
@@ -154,14 +128,14 @@ which SheetViews may vary.</p>
 <dl class="class">
 <dt id="imagen.views.SheetView">
 <em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetView</tt><big>(</big><em>data</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetIndexing" title="imagen.views.SheetIndexing"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetIndexing</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a>, <a class="reference internal" href="imagen.sheetcoords-module.html#imagen.sheetcoords.SheetCoordinateSystem" title="imagen.sheetcoords.SheetCoordinateSystem"><tt class="xref py py-class docutils literal"><span class="pre">imagen.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
 <p>SheetView is the atomic unit as which 2D data is stored, along with its
 bounds object. Allows slicing operations of the data in sheet coordinates or
 direct access to the data, via the .data attribute.</p>
 <dl class="docutils">
-<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">roi</span></tt> (<em>constant=False, default=(0, 0, 0, 0), instantiate=False, length=4, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">roi_bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The ROI can be specified to select only a sub-region of the bounds to
-        be stored as data. NOT YET IMPLEMENTED.</dd>
+        be stored as data.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=True, bounds=(0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>For a cyclic quantity, the range over which the values repeat. For
         instance, the orientation of a mirror-symmetric pattern in a plane is
@@ -170,9 +144,6 @@ direct access to the data, via the .data attribute.</p>
         cyclic. This parameter is metadata, declaring properties of the data
         that can be useful for automatic plotting and/or normalization, and is
         not used within this class itself.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The bounds of the two dimensional coordinate system in which the data
-        resides.</dd>
 </dl>
 </dd></dl>
 
@@ -209,7 +180,7 @@ given in the docstring of the Time class.</p>
 </dl>
 <dl class="method">
 <dt id="imagen.views.Timeline.ndmap">
-<tt class="descname">ndmap</tt><big>(</big><em>obj</em>, <em>until</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>value_fn=&lt;function &lt;lambda&gt; at 0x5323b18&gt;</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.ndmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.ndmap" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">ndmap</tt><big>(</big><em>obj</em>, <em>until</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>value_fn=&lt;function &lt;lambda&gt; at 0x2cf47d0&gt;</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.ndmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.ndmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds an NDMapping across time, taking snapshots of some
 time-varying object. The value stored in the NDMapping is
 generated by evaluating value_fn from the time &#8216;offset&#8217; till
@@ -218,7 +189,7 @@ the time &#8216;until&#8217; in steps of &#8216;timestep&#8217;.</p>
 
 <dl class="method">
 <dt id="imagen.views.Timeline.stack">
-<tt class="descname">stack</tt><big>(</big><em>obj</em>, <em>steps</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>bounds=None</em>, <em>array_fn=&lt;function &lt;lambda&gt; at 0x5323a28&gt;</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.stack" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">stack</tt><big>(</big><em>obj</em>, <em>steps</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>bounds=None</em>, <em>array_fn=&lt;function &lt;lambda&gt; at 0x4ab01b8&gt;</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.stack" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a SheetStack from some time-varying object with bounds
 and representation as a numpy array. The bounds are used
 together with the numpy arrays returned by array_fn to build a
@@ -306,7 +277,7 @@ without needing to specify array_fn.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 07, 2014.
+      Last updated on Jan 08, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
