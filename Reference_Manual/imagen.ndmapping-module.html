@@ -93,18 +93,22 @@ because the NdMapping subclass extends it with a range of useful slicing
 methods for selecting subsets of the data. Even so, keeping the slicing
 support separate from the indexing and data storage methods helps make both
 classes easier to understand.</p>
+<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">data_type</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">key_type</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Type checking of the keys, if empty
+        no type checking is applied.</dd>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The dimension_labels parameter accepts a list of the features
+        along which the data will indexed.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Determines whether to keep internal data structure sorted, using
         all dimensions indices to sort on. Important if data is not added in
         a consistently increasing order but the order matters for plotting
         or other purposes.</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The dimension_labels parameter accepts a list of the features
-        along which the data will indexed.</dd>
-</dl>
-<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">enforced_type</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<dl class="docutils">
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">info_format</span></tt> (<em>allow_None=False, constant=False, default={label}={value} , instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines how the info string is formatted from the dimension labels
+        and values.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Additional labels to be associated with the Dataview.</dd>
 </dl>
@@ -193,18 +197,22 @@ into the metadata dictionary.</p>
 <dd><p>Bases: <a class="reference internal" href="#imagen.ndmapping.NdIndexableMapping" title="imagen.ndmapping.NdIndexableMapping"><tt class="xref py py-class docutils literal"><span class="pre">imagen.ndmapping.NdIndexableMapping</span></tt></a></p>
 <p>NdMapping supports the same indexing semantics as NdIndexableMapping but
 also supports filtering of items using slicing ranges.</p>
+<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">data_type</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">key_type</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Type checking of the keys, if empty
+        no type checking is applied.</dd>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The dimension_labels parameter accepts a list of the features
+        along which the data will indexed.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">sorted</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Determines whether to keep internal data structure sorted, using
         all dimensions indices to sort on. Important if data is not added in
         a consistently increasing order but the order matters for plotting
         or other purposes.</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The dimension_labels parameter accepts a list of the features
-        along which the data will indexed.</dd>
-</dl>
-<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">enforced_type</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<dl class="docutils">
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">info_format</span></tt> (<em>allow_None=False, constant=False, default={label}={value} , instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Determines how the info string is formatted from the dimension labels
+        and values.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Additional labels to be associated with the Dataview.</dd>
 </dl>
@@ -287,7 +295,7 @@ also supports filtering of items using slicing ranges.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 11, 2014.
+      Last updated on Jan 12, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
