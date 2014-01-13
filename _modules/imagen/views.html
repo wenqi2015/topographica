@@ -65,72 +65,88 @@
 
 <span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision$&#39;</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span><span class="p">,</span> <span class="n">Slice</span>
 <span class="kn">from</span> <span class="nn">boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegion</span>
 <span class="kn">from</span> <span class="nn">ndmapping</span> <span class="kn">import</span> <span class="n">NdMapping</span><span class="p">,</span> <span class="n">AttrDict</span>
 
 
-<div class="viewcode-block" id="SheetPoints"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetPoints">[docs]</a><span class="k">class</span> <span class="nc">SheetPoints</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Allows sets of points to be positioned over a sheet coordinate</span>
-<span class="sd">    system.</span>
 
-<span class="sd">    The input data is an Nx2 Numpy array where each point in the numpy</span>
-<span class="sd">    array corresponds to an X,Y coordinate in sheet coordinates,</span>
-<span class="sd">    within the declared bounding region.</span>
+<div class="viewcode-block" id="SheetLayer"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetLayer">[docs]</a><span class="k">class</span> <span class="nc">SheetLayer</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A SheetLayer is a data structure for holding one or more numpy</span>
+<span class="sd">    arrays embedded within a two-dimensional space. The array(s) may</span>
+<span class="sd">    correspond to a discretisation of an image (i.e. a rasterisation)</span>
+<span class="sd">    or vector elements such as points or lines. Lines may be linearly</span>
+<span class="sd">    interpolated or correspond to control nodes of a smooth vector</span>
+<span class="sd">    representation such as Bezier splines.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 
-    <span class="n">style</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{},</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">roi_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        The ROI can be specified to select only a sub-region of the bounds to</span>
+<span class="s">        be stored as data.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">style</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Optional keywords for specifying the display style.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">_deep_indexable</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Additional information to be associated with the SheetView.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SheetPoints</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">_abstract</span> <span class="o">=</span> <span class="bp">True</span>
 
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SheetPoints</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
 
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">SheetLayer</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Can only create an overlay using SheetLayers.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">SheetOverlay</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SheetStack</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Index&#39;</span><span class="p">],</span> <span class="n">initial_items</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="p">)])</span>
 
 
 </div>
-<div class="viewcode-block" id="SheetContours"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetContours">[docs]</a><span class="k">class</span> <span class="nc">SheetContours</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Allows sets of contour lines to be defined over a</span>
-<span class="sd">    SheetCoordinateSystem.</span>
+<span class="k">class</span> <span class="nc">SheetOverlay</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">):</span>
 
-<span class="sd">    The input data is a list of Nx2 numpy arrays where each array</span>
-<span class="sd">    corresponds to a contour in the group. Each point in the numpy</span>
-<span class="sd">    array corresponds to an X,Y coordinate.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">overlays</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
-    <span class="n">bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">lbrt_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()]</span> <span class="o">+</span> <span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">overlays</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">lbrt_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">lbrt</span> <span class="k">for</span> <span class="n">lbrt</span> <span class="ow">in</span> <span class="n">lbrt_list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;All layers in a SheetOverlay must have common bounds&quot;</span><span class="p">)</span>
 
-    <span class="n">style</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{},</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Optional keywords for specifying the display style.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">_deep_indexable</span> <span class="o">=</span> <span class="bp">False</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">contours</span> <span class="o">=</span> <span class="n">contours</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SheetContours</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SheetContours</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contours</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetOverlay</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">overlays</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
-</div>
-<div class="viewcode-block" id="SheetView"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetView">[docs]</a><span class="k">class</span> <span class="nc">SheetView</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Layer must have same bounds as SheetOverlay&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SheetOverlay</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
+                            <span class="p">[</span><span class="n">el</span><span class="o">.</span><span class="n">roi</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
+                            <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+
+
+<div class="viewcode-block" id="SheetView"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetView">[docs]</a><span class="k">class</span> <span class="nc">SheetView</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    SheetView is the atomic unit as which 2D data is stored, along with its</span>
 <span class="sd">    bounds object. Allows slicing operations of the data in sheet coordinates or</span>
@@ -146,36 +162,18 @@
 <span class="s">        that can be useful for automatic plotting and/or normalization, and is</span>
 <span class="s">        not used within this class itself.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">roi_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        The ROI can be specified to select only a sub-region of the bounds to</span>
-<span class="s">        be stored as data.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">layers</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Annotation layers for the SheetView such as SheetPoints or SheetContours.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">metadata</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Additional information to be associated with the SheetView.&quot;&quot;&quot;</span><span class="p">)</span>
-
     <span class="n">_deep_indexable</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="n">lbrt_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()]</span> <span class="o">+</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">lbrt_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">lbrt</span> <span class="k">for</span> <span class="n">lbrt</span> <span class="ow">in</span> <span class="n">lbrt_list</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;All layers of a SheetComposite must share the same bounds&quot;</span><span class="p">)</span>
 
         <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
         <span class="p">(</span><span class="n">dim1</span><span class="p">,</span> <span class="n">dim2</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
         <span class="n">xdensity</span> <span class="o">=</span> <span class="n">dim1</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span>
         <span class="n">ydensity</span> <span class="o">=</span> <span class="n">dim2</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
 
+        <span class="n">SheetLayer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">SheetCoordinateSystem</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">xdensity</span><span class="p">,</span> <span class="n">ydensity</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
-
 
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -198,40 +196,129 @@
         <span class="k">return</span> <span class="n">Slice</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">submatrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
 
+    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">norm_factor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">norm_factor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cyclic_range</span> <span class="k">if</span> <span class="n">norm_factor</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">norm_factor</span>
+        <span class="k">if</span> <span class="n">norm_factor</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">norm_factor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">min</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">norm_data</span> <span class="o">=</span> <span class="p">(((</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="n">norm_factor</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">((</span><span class="nb">max</span><span class="o">-</span><span class="nb">min</span><span class="p">)))</span> <span class="o">+</span> <span class="nb">min</span>
+        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">norm_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">cyclic_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cyclic_range</span><span class="p">,</span>
+                         <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="n">roi_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
+                         <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">submatrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
-                         <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">Slice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">submatrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+                         <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span> <span class="n">cyclic_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cyclic_range</span><span class="p">,</span>
+                         <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+
+</div>
+<div class="viewcode-block" id="SheetPoints"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetPoints">[docs]</a><span class="k">class</span> <span class="nc">SheetPoints</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Allows sets of points to be positioned over a sheet coordinate</span>
+<span class="sd">    system.</span>
+
+<span class="sd">    The input data is an Nx2 Numpy array where each point in the numpy</span>
+<span class="sd">    array corresponds to an X,Y coordinate in sheet coordinates,</span>
+<span class="sd">    within the declared bounding region.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetPoints</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SheetPoints</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">roi_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">,:]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">SheetPoints</span><span class="p">(</span><span class="n">roi_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
+                           <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+
+</div>
+<div class="viewcode-block" id="SheetContours"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetContours">[docs]</a><span class="k">class</span> <span class="nc">SheetContours</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Allows sets of contour lines to be defined over a</span>
+<span class="sd">    SheetCoordinateSystem.</span>
+
+<span class="sd">    The input data is a list of Nx2 numpy arrays where each array</span>
+<span class="sd">    corresponds to a contour in the group. Each point in the numpy</span>
+<span class="sd">    array corresponds to an X,Y coordinate.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetContours</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SheetContours</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contours</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Note: Data returned is not sliced to ROI because vertices</span>
+        <span class="c"># outside the bounds need to be snapped to the bounding box</span>
+        <span class="c"># edges.</span>
+        <span class="k">return</span> <span class="n">SheetContours</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
+                             <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 
 
 </div>
 <div class="viewcode-block" id="SheetStack"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetStack">[docs]</a><span class="k">class</span> <span class="nc">SheetStack</span><span class="p">(</span><span class="n">NdMapping</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A SheetStack is a stack of SheetViews over some dimensions. The</span>
+<span class="sd">    A SheetStack is a stack of SheetLayers over some dimensions. The</span>
 <span class="sd">    dimension may be a spatial dimension (i.e., a ZStack), time</span>
 <span class="sd">    (specifying a frame sequence) or any other dimensions along</span>
-<span class="sd">    which SheetViews may vary.</span>
+<span class="sd">    which SheetLayers may vary.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">data_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SheetView</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">data_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SheetLayer</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_item_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_item_check</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;bounds&#39;</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">bounds</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;All SheetView elements must have matching bounds.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;All SheetLayer elements must have matching bounds.&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">stack_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_class_</span>
+            <span class="n">stack_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">__class__</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">stack_type</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;All elements of SheetStack must be of matching SheetLayer type&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_fn</span><span class="p">):</span>
+        <span class="n">new_stack</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+        <span class="n">new_stack</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">map_fn</span><span class="p">(</span><span class="n">el</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()]))</span>
+        <span class="k">return</span> <span class="n">new_stack</span>
+
+
+    <span class="k">def</span> <span class="nf">normalize_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="n">data_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">el</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+        <span class="n">data_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">el</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+        <span class="n">norm_factor</span> <span class="o">=</span> <span class="n">data_max</span><span class="o">-</span><span class="n">data_min</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="nb">max</span><span class="p">,</span>
+                                              <span class="n">norm_factor</span><span class="o">=</span><span class="n">norm_factor</span><span class="p">))</span>
 
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">new_stack</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
-        <span class="n">new_stack</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">roi</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()]))</span>
-        <span class="k">return</span> <span class="n">new_stack</span>
-
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">roi</span><span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="ProjectionGrid"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.ProjectionGrid">[docs]</a><span class="k">class</span> <span class="nc">ProjectionGrid</span><span class="p">(</span><span class="n">NdMapping</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span><span class="p">):</span>

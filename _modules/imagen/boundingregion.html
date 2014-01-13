@@ -85,6 +85,9 @@
 
     <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">point</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
     <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">xoff</span><span class="p">,</span><span class="n">yoff</span><span class="p">):</span>
@@ -172,6 +175,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_aarect</span> <span class="o">=</span> <span class="n">AARectangle</span><span class="p">((</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">))</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">BoundingBox</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BoundingBox</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">containsbb_inclusive</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">other</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="BoundingBox.contains"><a class="viewcode-back" href="../../Reference_Manual/imagen.boundingregion-module.html#imagen.boundingregion.BoundingBox.contains">[docs]</a>    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>

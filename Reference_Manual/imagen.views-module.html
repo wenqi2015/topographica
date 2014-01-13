@@ -107,32 +107,64 @@ metadata copied across.</p>
 
 <dl class="class">
 <dt id="imagen.views.SheetContours">
-<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetContours</tt><big>(</big><em>contours</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetContours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetContours" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetContours</tt><big>(</big><em>data</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetContours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetContours" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetLayer" title="imagen.views.SheetLayer"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetLayer</span></tt></a></p>
 <p>Allows sets of contour lines to be defined over a
 SheetCoordinateSystem.</p>
 <p>The input data is a list of Nx2 numpy arrays where each array
 corresponds to a contour in the group. Each point in the numpy
 array corresponds to an X,Y coordinate.</p>
 <dl class="docutils">
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">roi_bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The ROI can be specified to select only a sub-region of the bounds to
+        be stored as data.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">style</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Optional keywords for specifying the display style.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Additional information to be associated with the SheetView.</dd>
+</dl>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="imagen.views.SheetLayer">
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetLayer</tt><big>(</big><em>data</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<p>A SheetLayer is a data structure for holding one or more numpy
+arrays embedded within a two-dimensional space. The array(s) may
+correspond to a discretisation of an image (i.e. a rasterisation)
+or vector elements such as points or lines. Lines may be linearly
+interpolated or correspond to control nodes of a smooth vector
+representation such as Bezier splines.</p>
+<dl class="docutils">
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">roi_bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The ROI can be specified to select only a sub-region of the bounds to
+        be stored as data.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">style</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional keywords for specifying the display style.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Additional information to be associated with the SheetView.</dd>
 </dl>
 <p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="imagen.views.SheetPoints">
-<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetPoints</tt><big>(</big><em>points</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetPoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetPoints" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetPoints</tt><big>(</big><em>data</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetPoints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetPoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetLayer" title="imagen.views.SheetLayer"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetLayer</span></tt></a></p>
 <p>Allows sets of points to be positioned over a sheet coordinate
 system.</p>
 <p>The input data is an Nx2 Numpy array where each point in the numpy
 array corresponds to an X,Y coordinate in sheet coordinates,
 within the declared bounding region.</p>
 <dl class="docutils">
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">roi_bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The ROI can be specified to select only a sub-region of the bounds to
+        be stored as data.</dd>
 <dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">style</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Optional keywords for specifying the display style.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Additional information to be associated with the SheetView.</dd>
 </dl>
 <p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 </dd></dl>
@@ -141,11 +173,11 @@ within the declared bounding region.</p>
 <dt id="imagen.views.SheetStack">
 <em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetStack</tt><big>(</big><em>initial_items=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetStack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetStack" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="imagen.ndmapping-module.html#imagen.ndmapping.NdMapping" title="imagen.ndmapping.NdMapping"><tt class="xref py py-class docutils literal"><span class="pre">imagen.ndmapping.NdMapping</span></tt></a></p>
-<p>A SheetStack is a stack of SheetViews over some dimensions. The
+<p>A SheetStack is a stack of SheetLayers over some dimensions. The
 dimension may be a spatial dimension (i.e., a ZStack), time
 (specifying a frame sequence) or any other dimensions along
-which SheetViews may vary.</p>
-<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">data_type</span></tt> (<em>constant=True, default=&lt;class &#8216;imagen.views.SheetView&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+which SheetLayers may vary.</p>
+<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">data_type</span></tt> (<em>constant=True, default=&lt;class &#8216;imagen.views.SheetLayer&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">key_type</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type checking of the keys, if empty
@@ -167,7 +199,7 @@ which SheetViews may vary.</p>
 <dl class="attribute">
 <dt id="imagen.views.SheetStack.data_type">
 <tt class="descname">data_type</tt><a class="headerlink" href="#imagen.views.SheetStack.data_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="#imagen.views.SheetView" title="imagen.views.SheetView"><tt class="xref py py-class docutils literal"><span class="pre">SheetView</span></tt></a></p>
+<dd><p>alias of <a class="reference internal" href="#imagen.views.SheetLayer" title="imagen.views.SheetLayer"><tt class="xref py py-class docutils literal"><span class="pre">SheetLayer</span></tt></a></p>
 </dd></dl>
 
 </dd></dl>
@@ -175,18 +207,19 @@ which SheetViews may vary.</p>
 <dl class="class">
 <dt id="imagen.views.SheetView">
 <em class="property">class </em><tt class="descclassname">imagen.views.</tt><tt class="descname">SheetView</tt><big>(</big><em>data</em>, <em>bounds</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#SheetView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.SheetView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a>, <a class="reference internal" href="imagen.sheetcoords-module.html#imagen.sheetcoords.SheetCoordinateSystem" title="imagen.sheetcoords.SheetCoordinateSystem"><tt class="xref py py-class docutils literal"><span class="pre">imagen.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="#imagen.views.SheetLayer" title="imagen.views.SheetLayer"><tt class="xref py py-class docutils literal"><span class="pre">imagen.views.SheetLayer</span></tt></a>, <a class="reference internal" href="imagen.sheetcoords-module.html#imagen.sheetcoords.SheetCoordinateSystem" title="imagen.sheetcoords.SheetCoordinateSystem"><tt class="xref py py-class docutils literal"><span class="pre">imagen.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
 <p>SheetView is the atomic unit as which 2D data is stored, along with its
 bounds object. Allows slicing operations of the data in sheet coordinates or
 direct access to the data, via the .data attribute.</p>
 <dl class="docutils">
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">layers</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Annotation layers for the SheetView such as SheetPoints or SheetContours.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">style</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional keywords for specifying the display style.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">roi_bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The ROI can be specified to select only a sub-region of the bounds to
         be stored as data.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Additional information to be associated with the SheetView.</dd>
+</dl>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=True, bounds=(0, None), constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>For a cyclic quantity, the range over which the values repeat. For
         instance, the orientation of a mirror-symmetric pattern in a plane is
@@ -195,6 +228,8 @@ direct access to the data, via the .data attribute.</p>
         cyclic. This parameter is metadata, declaring properties of the data
         that can be useful for automatic plotting and/or normalization, and is
         not used within this class itself.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Additional information to be associated with the SheetView.</dd>
 </dl>
 </dd></dl>
 
@@ -231,7 +266,7 @@ given in the docstring of the Time class.</p>
 </dl>
 <dl class="method">
 <dt id="imagen.views.Timeline.ndmap">
-<tt class="descname">ndmap</tt><big>(</big><em>obj</em>, <em>until</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>value_fn=&lt;function &lt;lambda&gt; at 0x52bc488&gt;</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.ndmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.ndmap" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">ndmap</tt><big>(</big><em>obj</em>, <em>until</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>value_fn=&lt;function &lt;lambda&gt; at 0x464ec80&gt;</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.ndmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.ndmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds an NDMapping across time, taking snapshots of some
 time-varying object. The value stored in the NDMapping is
 generated by evaluating value_fn from the time &#8216;offset&#8217; till
@@ -240,7 +275,7 @@ the time &#8216;until&#8217; in steps of &#8216;timestep&#8217;.</p>
 
 <dl class="method">
 <dt id="imagen.views.Timeline.stack">
-<tt class="descname">stack</tt><big>(</big><em>obj</em>, <em>steps</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>bounds=None</em>, <em>array_fn=&lt;function &lt;lambda&gt; at 0x52bcaa0&gt;</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.stack" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">stack</tt><big>(</big><em>obj</em>, <em>steps</em>, <em>offset=0</em>, <em>timestep=None</em>, <em>bounds=None</em>, <em>array_fn=&lt;function &lt;lambda&gt; at 0x464ed70&gt;</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/views.html#Timeline.stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.views.Timeline.stack" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a SheetStack from some time-varying object with bounds
 and representation as a numpy array. The bounds are used
 together with the numpy arrays returned by array_fn to build a

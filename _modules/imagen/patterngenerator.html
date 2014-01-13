@@ -72,6 +72,7 @@
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
 <span class="kn">from</span> <span class="nn">boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span>
+<span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="n">SheetView</span>
 <span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
 <span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span>
 
@@ -299,11 +300,13 @@
                 <span class="n">of</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PatternGenerator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
 
-
+</div>
+    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bounds&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">))</span>
 
 
 <span class="c"># Override class type; must be set here rather than when mask_shape is declared,</span>
-<span class="c"># to avoid referring to class not yet constructed</span></div></div>
+<span class="c"># to avoid referring to class not yet constructed</span></div>
 <span class="n">PatternGenerator</span><span class="o">.</span><span class="n">params</span><span class="p">(</span><span class="s">&#39;mask_shape&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">class_</span><span class="o">=</span><span class="n">PatternGenerator</span>
 
 
