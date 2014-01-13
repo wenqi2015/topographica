@@ -218,6 +218,8 @@
         <span class="n">measured_sheets</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">CFSheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
                            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="s">&#39;measure_maps&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">measure_maps</span><span class="p">]</span>
 
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
         <span class="c"># Could easily be extended to measure CoG of all projections</span>
         <span class="c"># and e.g. register them using different names (e.g. &quot;Afferent</span>
         <span class="c"># XCoG&quot;), but then it&#39;s not clear how the PlotGroup would be</span>
@@ -225,14 +227,14 @@
         <span class="c"># only a fixed-named plot).</span>
         <span class="n">requested_proj</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">proj_name</span>
         <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">measured_sheets</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sheet</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">sheet</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">in_connections</span><span class="p">:</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">requested_proj</span><span class="p">)</span> <span class="ow">or</span> \
                    <span class="p">(</span><span class="n">requested_proj</span> <span class="o">==</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">src</span> <span class="o">!=</span> <span class="n">sheet</span><span class="p">)):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_update_proj_cog</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">requested_proj</span><span class="o">==</span><span class="s">&#39;&#39;</span><span class="p">:</span>
-                        <span class="k">print</span> <span class="s">&quot;measure_cog: Measured </span><span class="si">%s</span><span class="s"> projection </span><span class="si">%s</span><span class="s"> from </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> \
-                              <span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">proj</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                        <span class="k">break</span>
+                   <span class="n">results</span><span class="p">[</span><span class="n">sheet</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_proj_cog</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
 
 
     <span class="k">def</span> <span class="nf">_update_proj_cog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">proj</span><span class="p">):</span>
@@ -256,16 +258,23 @@
                 <span class="n">ypref</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span> <span class="n">ycentroid</span>
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span> <span class="n">row_precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
-                        <span class="n">src_name</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                        <span class="n">src_name</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">])</span>
 
-        <span class="n">timestamp</span><span class="o">=</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">xpref_stack</span> <span class="o">=</span> <span class="n">SheetStack</span><span class="p">((</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">xpref</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)),</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="n">ypref_stack</span> <span class="o">=</span> <span class="n">SheetStack</span><span class="p">((</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">ypref</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)),</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
 
-        <span class="n">xpref_sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">xpref</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
-        <span class="n">ypref_sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">ypref</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s">&#39;XCoG&#39;</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">:</span>
+            <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;XCoG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">xpref_stack</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;XCoG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xpref_stack</span>
 
-        <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;XCoG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SheetStack</span><span class="p">((</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">xpref_sv</span><span class="p">),</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s">&#39;YCoG&#39;</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">:</span>
+            <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;YCoG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ypref_stack</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;YCoG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ypref_stack</span>
 
-        <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;YCoG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SheetStack</span><span class="p">((</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">ypref_sv</span><span class="p">),</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;XCoG&#39;</span><span class="p">:</span> <span class="n">xpref_stack</span><span class="p">,</span> <span class="s">&#39;YCoG&#39;</span><span class="p">:</span> <span class="n">ypref_stack</span><span class="p">}</span>
 
 </div>
 <span class="kn">import</span> <span class="nn">types</span>
