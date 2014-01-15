@@ -6,12 +6,8 @@ topo.hardware
 
 Submodules
 ==========
-* `topo.hardware.__init__.pyc <topo.hardware.__init__.pyc-module.html>`_
 * `topo.hardware.playerrobot <topo.hardware.playerrobot-module.html>`_
-* `topo.hardware.ptz.pyc <topo.hardware.ptz.pyc-module.html>`_
 * `topo.hardware.robotics <topo.hardware.robotics-module.html>`_
-* `topo.hardware.playerrobot.pyc <topo.hardware.playerrobot.pyc-module.html>`_
-* `topo.hardware.robotics.pyc <topo.hardware.robotics.pyc-module.html>`_
 * `topo.hardware.ptz <topo.hardware.ptz-module.html>`_
 
 

@@ -4,9 +4,6 @@ topo.tests.unit.testparameterizedobject
 
 .. inheritance-diagram:: topo.tests.unit.testparameterizedobject
 
-Submodules
-==========
-* `topo.tests.unit.testparameterizedobject.pyc <topo.tests.unit.testparameterizedobject.pyc-module.html>`_
 
 
 Module

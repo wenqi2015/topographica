@@ -4,9 +4,6 @@ imagen.odict
 
 .. inheritance-diagram:: imagen.odict
 
-Submodules
-==========
-* `imagen.odict.pyc <imagen.odict.pyc-module.html>`_
 
 
 Module
