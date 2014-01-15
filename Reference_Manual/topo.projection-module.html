@@ -57,6 +57,8 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><a class="reference external" href="topo.projection.optimized.pyc-module.html">topo.projection.optimized.pyc</a></li>
+<li><a class="reference external" href="topo.projection.__init__.pyc-module.html">topo.projection.__init__.pyc</a></li>
 <li><a class="reference external" href="topo.projection.optimized-module.html">topo.projection.optimized</a></li>
 </ul>
 </div>
@@ -97,7 +99,7 @@ input sheet are treated as having zero weight.</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.11, readonly=False</em>)</dt>
 <dd>The EventProcessor to which messages are delivered.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00087&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00091&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a destination unit coordinate into the src sheet.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">private</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Set to true if this connection is for internal use only, not to be manipulated by a user.</dd>
@@ -110,7 +112,7 @@ input sheet are treated as having zero weight.</p>
        of events.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the Projection activity after it is computed.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00088&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00092&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weight values for each unit of the destination sheet.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">activity_group</span></tt> (<em>constant=False, default=(0.5, &lt;ufunc &#8216;add&#8217;&gt;), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Grouping and precedence specifier for computing activity from
@@ -123,7 +125,7 @@ input sheet are treated as having zero weight.</p>
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00089&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00093&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Learning function applied to weights.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest_port</span></tt> (<em>constant=False, default=Activity, instantiate=False, pickle_default_value=True, precedence=0.21, readonly=False</em>)</dt>
 <dd>Identifier that can be used to distinguish different types of incoming connections.
@@ -379,13 +381,13 @@ currently disabled.</p>
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00083&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00087&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00051&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00085&#8217;, single_cf_fn=IdentityTF(name=&#8217;IdentityTF00086&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00089&#8217;, single_cf_fn=IdentityTF(name=&#8217;IdentityTF00090&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -937,7 +939,7 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 <dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPOutputFn" title="topo.base.cf.CFPOutputFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPOutputFn</span></tt></a></p>
 <p>CFPOutputFn for use with SharedWeightCFProjections.</p>
 <p>Applies the single_cf_fn to the single shared CF&#8217;s weights.</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00081&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00085&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 </dd></dl>
 
 </div>

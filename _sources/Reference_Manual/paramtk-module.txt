@@ -6,6 +6,9 @@ paramtk
 
 Submodules
 ==========
+* `paramtk.__init__.pyc <paramtk.__init__.pyc-module.html>`_
+* `paramtk.odict.pyc <paramtk.odict.pyc-module.html>`_
+* `paramtk.tilewrapper.pyc <paramtk.tilewrapper.pyc-module.html>`_
 * `paramtk.odict <paramtk.odict-module.html>`_
 * `paramtk.tilewrapper <paramtk.tilewrapper-module.html>`_
 * `paramtk.tcl.README <paramtk.tcl.README-module.html>`_

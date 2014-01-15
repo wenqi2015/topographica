@@ -4,6 +4,9 @@ topo.plotting.plotgroup
 
 .. inheritance-diagram:: topo.plotting.plotgroup
 
+Submodules
+==========
+* `topo.plotting.plotgroup.pyc <topo.plotting.plotgroup.pyc-module.html>`_
 
 
 Module

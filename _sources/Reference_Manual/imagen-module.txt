@@ -10,11 +10,13 @@ Submodules
 * `imagen.patterngenerator.pyc <imagen.patterngenerator.pyc-module.html>`_
 * `imagen.audio <imagen.audio-module.html>`_
 * `imagen.__init__.pyc <imagen.__init__.pyc-module.html>`_
+* `imagen.odict.pyc <imagen.odict.pyc-module.html>`_
 * `imagen.random <imagen.random-module.html>`_
 * `imagen.opencvcamera <imagen.opencvcamera-module.html>`_
 * `imagen.boundingregion <imagen.boundingregion-module.html>`_
 * `imagen.ipython <imagen.ipython-module.html>`_
 * `imagen.image <imagen.image-module.html>`_
+* `imagen.audio.pyc <imagen.audio.pyc-module.html>`_
 * `imagen.boundingregion.pyc <imagen.boundingregion.pyc-module.html>`_
 * `imagen.transferfn <imagen.transferfn-module.html>`_
 * `imagen.ndmapping.pyc <imagen.ndmapping.pyc-module.html>`_
