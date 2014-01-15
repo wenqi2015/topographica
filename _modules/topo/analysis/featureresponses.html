@@ -389,9 +389,9 @@
     <span class="k">for</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">sheet_data</span> <span class="ow">in</span> <span class="n">measurement_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sheet_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">new_data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span>
+            <span class="n">reindexed_items</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">timestamp</span><span class="p">))</span>
+                               <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+            <span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">reindexed_items</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">data_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">rfs</span><span class="p">:</span>
                 <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">rfs</span><span class="p">[</span><span class="n">data_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_data</span>
             <span class="k">else</span><span class="p">:</span>
@@ -543,7 +543,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 13, 2014.
+      Last updated on Jan 15, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

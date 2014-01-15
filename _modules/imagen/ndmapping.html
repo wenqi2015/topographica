@@ -201,6 +201,15 @@
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Key does not match declared key type.&#39;</span><span class="p">)</span>
 
 
+    <span class="k">def</span> <span class="nf">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resort</span><span class="p">()</span>
+        <span class="k">return</span>
+
+
+    <span class="k">def</span> <span class="nf">_resort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+
     <span class="k">def</span> <span class="nf">_add_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Records data indexing it in the specified feature dimensions.</span>
@@ -210,7 +219,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_item_check</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_item</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">sort</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">sorted</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resort</span><span class="p">()</span>
 
 
     <span class="k">def</span> <span class="nf">_update_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -237,7 +246,7 @@
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_item</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sorted</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resort</span><span class="p">()</span>
 
 </div>
 <div class="viewcode-block" id="NdIndexableMapping.reindex"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.reindex">[docs]</a>    <span class="k">def</span> <span class="nf">reindex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimension_labels</span><span class="p">):</span>
@@ -293,13 +302,13 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">initial_items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="NdIndexableMapping.empty"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="NdIndexableMapping.clone"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns an empty duplicate of itself with all parameter values and</span>
-<span class="sd">        metadata copied across.</span>
+<span class="sd">        Returns a clone with matching parameter values and metadata, containing</span>
+<span class="sd">        the specified items (empty by default).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">initial_items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
 
 </div>
     <span class="k">def</span> <span class="nf">dframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value_label</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">):</span>
@@ -589,7 +598,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 13, 2014.
+      Last updated on Jan 15, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
