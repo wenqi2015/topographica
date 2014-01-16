@@ -65,13 +65,15 @@
 
 <span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision$&#39;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">param</span>
+
 <span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span><span class="p">,</span> <span class="n">Slice</span>
 <span class="kn">from</span> <span class="nn">boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegion</span>
-<span class="kn">from</span> <span class="nn">ndmapping</span> <span class="kn">import</span> <span class="n">NdMapping</span><span class="p">,</span> <span class="n">AttrDict</span>
-
+<span class="kn">from</span> <span class="nn">ndmapping</span> <span class="kn">import</span> <span class="n">NdMapping</span><span class="p">,</span> <span class="n">AttrDict</span><span class="p">,</span> <span class="n">map_type</span>
 
 
 <div class="viewcode-block" id="SheetLayer"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetLayer">[docs]</a><span class="k">class</span> <span class="nc">SheetLayer</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
@@ -84,11 +86,15 @@
 <span class="sd">    representation such as Bezier splines.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       The bounding region in sheet coordinates containing the data.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">roi_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        The ROI can be specified to select only a sub-region of the bounds to</span>
 <span class="s">        be stored as data.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       A short description of the layer that may be used as a title.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">style</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Optional keywords for specifying the display style.&quot;&quot;&quot;</span><span class="p">)</span>
@@ -109,43 +115,72 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SheetLayer</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Can only create an overlay using SheetLayers.&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">):</span>
+            <span class="k">if</span>  <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">):</span>
+                <span class="n">overlays</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">overlays</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="p">[</span><span class="n">other</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">):</span>
+            <span class="n">overlays</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">data</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">SheetOverlay</span><span class="p">([</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+            <span class="n">overlays</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SheetStack</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Index&#39;</span><span class="p">],</span> <span class="n">initial_items</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">SheetOverlay</span><span class="p">(</span><span class="n">overlays</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
+                            <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+                            <span class="n">roi_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">)</span>
 
-
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">GridLayout</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">GridLayout</span><span class="p">(</span><span class="n">initial_grid</span><span class="o">=</span><span class="p">[[</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">]])</span>
 </div>
-<span class="k">class</span> <span class="nc">SheetOverlay</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">):</span>
+<div class="viewcode-block" id="SheetOverlay"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetOverlay">[docs]</a><span class="k">class</span> <span class="nc">SheetOverlay</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A SheetOverlay allows a group of SheetLayers with common bounds to</span>
+<span class="sd">    be overlaid together. Layers can be indexed out of an overlay and</span>
+<span class="sd">    an overlay is an iterable that iterates over the contained layers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">overlays</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetOverlay</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">([],</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">overlays</span><span class="p">)</span>
 
-        <span class="n">lbrt_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()]</span> <span class="o">+</span> <span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">overlays</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">lbrt_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">lbrt</span> <span class="k">for</span> <span class="n">lbrt</span> <span class="ow">in</span> <span class="n">lbrt_list</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;All layers in a SheetOverlay must have common bounds&quot;</span><span class="p">)</span>
-
-        <span class="nb">super</span><span class="p">(</span><span class="n">SheetOverlay</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">overlays</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
+<div class="viewcode-block" id="SheetOverlay.add"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetOverlay.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Overlay a single layer on top of the existing overlay.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Layer must have same bounds as SheetOverlay&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
-
+</div>
+<div class="viewcode-block" id="SheetOverlay.set"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetOverlay.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layers</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set a collection of layers to be overlaid with each other.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+</div>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">SheetOverlay</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
                             <span class="p">[</span><span class="n">el</span><span class="o">.</span><span class="n">roi</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">],</span>
                             <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
 
 
+</div>
 <div class="viewcode-block" id="SheetView"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetView">[docs]</a><span class="k">class</span> <span class="nc">SheetView</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    SheetView is the atomic unit as which 2D data is stored, along with its</span>
@@ -165,8 +200,8 @@
     <span class="n">_deep_indexable</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
 
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">]])</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">data</span>
         <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
         <span class="p">(</span><span class="n">dim1</span><span class="p">,</span> <span class="n">dim2</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
         <span class="n">xdensity</span> <span class="o">=</span> <span class="n">dim1</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">)</span>
@@ -237,6 +272,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[],[]])</span><span class="o">.</span><span class="n">T</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">data</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SheetPoints</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
@@ -259,7 +295,7 @@
             <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
             <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
 </div>
-<div class="viewcode-block" id="SheetContours"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetContours">[docs]</a><span class="k">class</span> <span class="nc">SheetContours</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">):</span>
+<div class="viewcode-block" id="SheetLines"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetLines">[docs]</a><span class="k">class</span> <span class="nc">SheetLines</span><span class="p">(</span><span class="n">SheetLayer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Allows sets of contour lines to be defined over a</span>
 <span class="sd">    SheetCoordinateSystem.</span>
@@ -270,10 +306,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SheetContours</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">data</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetLines</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SheetContours</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contours</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SheetLines</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contours</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -283,7 +320,7 @@
         <span class="c"># Note: Data returned is not sliced to ROI because vertices</span>
         <span class="c"># outside the bounds need to be snapped to the bounding box</span>
         <span class="c"># edges.</span>
-        <span class="k">return</span> <span class="n">SheetContours</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
+        <span class="k">return</span> <span class="n">SheetLines</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
                              <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 
 
@@ -298,15 +335,40 @@
 
     <span class="n">data_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SheetLayer</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
+    <span class="n">title</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       A short description of the stack that may be used as a title</span>
+<span class="s">       (e.g. the title of an animation) but may also accept a</span>
+<span class="s">       formatting string to generate a unique title per layer. For</span>
+<span class="s">       instance the format string &#39;{label0} = {value0}&#39; will generate</span>
+<span class="s">       a title using the first dimension label and corresponding key</span>
+<span class="s">       value. Numbering is by dimension position and extends across</span>
+<span class="s">       all available dimensions e.g. {label1}, {value2} and so on.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       The bounding region in sheet coordinates containing the data&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="SheetStack.type"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetStack.type">[docs]</a>    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">&quot;The type of elements stored in the stack.&quot;</span>
+        <span class="k">return</span> <span class="bp">None</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">__class__</span>
+</div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">roi</span><span class="p">)</span>
+
+
     <span class="k">def</span> <span class="nf">_item_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_item_check</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;bounds&#39;</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">bounds</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;All SheetLayer elements must have matching bounds.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">stack_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">__class__</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">stack_type</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;All elements of SheetStack must be of matching SheetLayer type&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> must only contain one type of SheetLayer.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_item_check</span><span class="p">(</span><span class="n">dim_vals</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
 
     <span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_fn</span><span class="p">):</span>
@@ -324,13 +386,49 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="nb">max</span><span class="p">,</span>
                                               <span class="n">norm_factor</span><span class="o">=</span><span class="n">norm_factor</span><span class="p">))</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+<div class="viewcode-block" id="SheetStack.split"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.SheetStack.split">[docs]</a>    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given a SheetStack of SheetOverlays of N layers, split out the</span>
+<span class="sd">        layers into N separate SheetStacks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">SheetOverlay</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">roi</span><span class="p">)</span>
+        <span class="n">stacks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">item_stacks</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">overlay</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">overlay</span><span class="p">):</span>
+                <span class="n">item_stacks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">el</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">item_stacks</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">stacks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">item_stacks</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">stacks</span>
+
+</div>
+    <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SheetStack</span><span class="p">):</span>
+            <span class="n">all_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_keys</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">other</span><span class="p">):</span>
+                    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="n">other</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+                <span class="k">elif</span> <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">):</span>
+                    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span> <span class="o">*</span> <span class="n">other</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SheetLayer</span><span class="p">):</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span>  <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Can only overlay with SheetLayer of SheetStack.&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">GridLayout</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">GridLayout</span><span class="p">(</span><span class="n">initial_grid</span><span class="o">=</span><span class="p">[[</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">]])</span>
+
+
 
 
 </div>
@@ -396,16 +494,144 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">ProjectionGrid</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionGrid.clone"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.ProjectionGrid.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionGrid.clone"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.ProjectionGrid.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an empty duplicate of itself with all parameter values and</span>
 <span class="sd">        metadata copied across.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
-
+        <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span>
+                              <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
 
 </div></div>
+<span class="k">class</span> <span class="nc">GridLayout</span><span class="p">(</span><span class="n">NdMapping</span><span class="p">):</span>
+
+    <span class="n">key_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="n">dimension_labels</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Row&#39;</span><span class="p">,</span> <span class="s">&#39;Column&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_grid</span><span class="o">=</span><span class="p">[],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_cols</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">initial_grid</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="k">if</span> <span class="n">initial_grid</span> <span class="o">==</span> <span class="p">[]</span> <span class="k">else</span> <span class="n">initial_grid</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grid_to_items</span><span class="p">(</span><span class="n">initial_grid</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GridLayout</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">initial_items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">SheetStack</span><span class="p">)]</span><span class="o">+</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the list of (row,column,view) elements from the</span>
+<span class="sd">        current set of items (i.e. tuples of form ((row, column), view))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">==</span> <span class="p">[]:</span>  <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">((</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">),</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max_cols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_cols</span>
+
+    <span class="nd">@max_cols.setter</span>
+    <span class="k">def</span> <span class="nf">max_cols</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_cols</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">({},</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cols</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">({},</span> <span class="n">n</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">_grid_to_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given a grid (i.e. a list of lists), compute the list of</span>
+<span class="sd">        items.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c"># Flatten this method to single list comprehension.</span>
+        <span class="k">for</span> <span class="n">rind</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">cind</span><span class="p">,</span> <span class="n">view</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+                <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(((</span><span class="n">rind</span><span class="p">,</span> <span class="n">cind</span><span class="p">),</span> <span class="n">view</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">items</span>
+
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given a mapping or iterable of additional views, extend the</span>
+<span class="sd">        grid in scaline order, obeying max_cols if applicable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">other</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span> <span class="o">==</span> <span class="p">[]</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+        <span class="n">new_grid</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">([</span><span class="n">grid</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span> <span class="n">values</span><span class="p">])</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_cols</span> <span class="k">if</span> <span class="n">cols</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">cols</span>
+        <span class="n">reshaped_grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reshape_grid</span><span class="p">(</span><span class="n">new_grid</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_grid_to_items</span><span class="p">(</span><span class="n">reshaped_grid</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Recompute the grid layout of the views based on precedence and</span>
+<span class="sd">        row_precendence value metadata. Formats the grid to a maximum</span>
+<span class="sd">        of cols columns if specified.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Plots are sorted first by precedence, then grouped by row_precedence</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;precedence&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+        <span class="n">precedences</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;row_precedence&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">))</span>
+
+        <span class="n">coords</span><span class="o">=</span><span class="p">[]</span>
+        <span class="c"># Can use collections.Counter in Python &gt;= 2.7</span>
+        <span class="n">column_counter</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">precedences</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+            <span class="c"># Find the row number based on the row_precedences</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">precedences</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;row_precedence&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+            <span class="c"># Look up the current column position of the row</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">column_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+            <span class="c"># The next view on this row will have to be in the next column</span>
+            <span class="n">column_counter</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">coords</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">view</span><span class="p">))</span>
+
+        <span class="n">grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reshape_grid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">(</span><span class="n">coords</span><span class="p">),</span> <span class="n">cols</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">map_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_grid_to_items</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        From a list of coordinates of form [&lt;(row, col, view)&gt;] build</span>
+<span class="sd">        a corresponding list of lists grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">r</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">coords</span> <span class="o">!=</span> <span class="p">[]</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">unpadded_grid</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">_</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="ow">in</span> <span class="n">coords</span> <span class="k">if</span> <span class="n">r</span><span class="o">==</span><span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">unpadded_grid</span>
+
+
+    <span class="k">def</span> <span class="nf">_reshape_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given a grid (i.e. a list of lists) , reformat it to a layout</span>
+<span class="sd">        with a maximum of cols columns (if not None).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">cols</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span> <span class="n">grid</span>
+        <span class="n">flattened</span> <span class="o">=</span> <span class="p">[</span><span class="n">view</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span> <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">row</span> <span class="k">if</span> <span class="p">(</span><span class="n">view</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)]</span>
+        <span class="n">row_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">flattened</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">cols</span><span class="p">)))</span>
+
+        <span class="n">reshaped_grid</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">rind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">row_num</span><span class="p">):</span>
+            <span class="n">new_row</span> <span class="o">=</span> <span class="n">flattened</span><span class="p">[</span><span class="n">rind</span><span class="o">*</span><span class="n">cols</span><span class="p">:</span><span class="n">cols</span><span class="o">*</span><span class="p">(</span><span class="n">rind</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">reshaped_grid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">reshaped_grid</span>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">new_values</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">GridLayout</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">other</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+
+
 <div class="viewcode-block" id="Timeline"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.Timeline">[docs]</a><span class="k">class</span> <span class="nc">Timeline</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Timeline object takes a time function of type param.Time and</span>
@@ -492,25 +718,7 @@
             <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
                 <span class="n">val</span> <span class="o">=</span> <span class="n">value_fn</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
                 <span class="n">ndmap</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
-        <span class="k">return</span> <span class="n">ndmap</span>
-
-</div>
-<div class="viewcode-block" id="Timeline.stack"><a class="viewcode-back" href="../../Reference_Manual/imagen.views-module.html#imagen.views.Timeline.stack">[docs]</a>    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-              <span class="n">array_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">obj</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Builds a SheetStack from some time-varying object with bounds</span>
-<span class="sd">        and representation as a numpy array. The bounds are used</span>
-<span class="sd">        together with the numpy arrays returned by array_fn to build a</span>
-<span class="sd">        series of SheetViews into a SheetStack.</span>
-
-<span class="sd">        This method accepts time-varying Imagen patterns directly,</span>
-<span class="sd">        without needing to specify array_fn.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">bounds</span> <span class="k">if</span> <span class="p">(</span><span class="n">bounds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="k">else</span> <span class="n">bounds</span>
-        <span class="n">ndmap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndmap</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="n">timestep</span><span class="p">,</span>
-                           <span class="n">value_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">array_fn</span><span class="p">(</span><span class="n">obj</span><span class="p">),</span>
-                                                          <span class="n">bounds</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">SheetStack</span><span class="p">(</span><span class="n">ndmap</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">ndmap</span></div></div>
 </pre></div>
 
           </div>

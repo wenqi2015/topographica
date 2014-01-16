@@ -115,10 +115,6 @@
 
     <span class="n">data_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="n">info_format</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&quot;{label}={value} &quot;</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Determines how the info string is formatted from the dimension labels</span>
-<span class="s">        and values.&quot;&quot;&quot;</span><span class="p">)</span>
-
     <span class="n">key_type</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Type checking of the keys, if empty</span>
 <span class="s">        no type checking is applied.&quot;&quot;&quot;</span><span class="p">)</span>
 
@@ -227,10 +223,6 @@
 <span class="sd">        Subclasses default method to allow updating of nested data structures</span>
 <span class="sd">        rather than simply overriding them.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">&#39;metadata&#39;</span><span class="p">):</span>
-            <span class="n">info_els</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">info_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span>
-                        <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dimension_labels</span><span class="p">,</span> <span class="n">dim_vals</span><span class="p">)]</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">info_els</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">dim_vals</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">dim_vals</span><span class="p">],</span> <span class="s">&#39;update&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">dim_vals</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -302,12 +294,12 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">initial_items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="NdIndexableMapping.clone"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="NdIndexableMapping.clone"><a class="viewcode-back" href="../../Reference_Manual/imagen.ndmapping-module.html#imagen.ndmapping.NdIndexableMapping.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a clone with matching parameter values and metadata, containing</span>
 <span class="sd">        the specified items (empty by default).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">initial_items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
 
 </div>

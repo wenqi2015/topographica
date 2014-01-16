@@ -301,9 +301,8 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">PatternGenerator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
 
 </div>
-    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;bounds&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">))</span>
-
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
 
 <span class="c"># Override class type; must be set here rather than when mask_shape is declared,</span>
 <span class="c"># to avoid referring to class not yet constructed</span></div>

@@ -71,7 +71,7 @@ written in C to optimize performance.</p>
 <dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPLF_Plugin" title="topo.base.cf.CFPLF_Plugin"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPLF_Plugin</span></tt></a></p>
 <p>Same as CFPLF_Plugin(single_cf_fn=BCMFixed()); just for non-optimized fallback.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;BCMFixed BCMFixed00071&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;BCMFixed BCMFixed00073&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
 <dd>Accepts a LearningFn that will be applied to each CF individually.</dd>
 </dl>
 </dd></dl>
@@ -100,7 +100,7 @@ out to be zero.</p>
 <dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPLF_Plugin" title="topo.base.cf.CFPLF_Plugin"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPLF_Plugin</span></tt></a></p>
 <p>Same as CFPLF_Plugin(single_cf_fn=Hebbian()); just for non-optimized fallback.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00070&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00072&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
 <dd>Accepts a LearningFn that will be applied to each CF individually.</dd>
 </dl>
 </dd></dl>
@@ -117,7 +117,7 @@ weights are updated during learning, to speed up later operations
 that might depend on it.</p>
 <p>May return without modifying anything if the learning rate turns
 out to be zero.</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00069&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00071&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</p>
 </dd></dl>
 
 <dl class="class">
@@ -126,7 +126,7 @@ out to be zero.</p>
 <dd><p>Bases: <a class="reference internal" href="topo.learningfn.projfn-module.html#topo.learningfn.projfn.CFPLF_PluginScaled" title="topo.learningfn.projfn.CFPLF_PluginScaled"><tt class="xref py py-class docutils literal"><span class="pre">topo.learningfn.projfn.CFPLF_PluginScaled</span></tt></a></p>
 <p>Same as CFPLF_PluginScaled(single_cf_fn=Hebbian()); just for non-optimized fallback.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00073&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00075&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
 <dd>Accepts a LearningFn that will be applied to each CF individually.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">learning_rate_scaling_factor</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Matrix of scaling factors for scaling the learning rate of each CF individually.</dd>
@@ -144,7 +144,7 @@ CFPLF_PluginScaled(single_cf_fn=Hebbian), except faster.</p>
 weights are updated during learning, to speed up later operations
 that might depend on it.</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00072&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00074&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
 <dd>Accepts a LearningFn that will be applied to each CF individually.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">learning_rate_scaling_factor</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Matrix of scaling factors for scaling the learning rate of each CF individually.</dd>
@@ -157,7 +157,7 @@ that might depend on it.</p>
 <dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPLearningFn" title="topo.base.cf.CFPLearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPLearningFn</span></tt></a></p>
 <p>Optimized version of CFPLF_Trace; see projfn.py for more info</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00074&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;Hebbian Hebbian00076&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=True</em>)</dt>
 <dd>LearningFn that will be applied to each CF individually.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">trace_strength</span></tt> (<em>allow_None=False, bounds=(0.0, 1.0), constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>How much the learning is dominated by the activity trace, relative to the current value.</dd>
