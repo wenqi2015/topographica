@@ -88,6 +88,8 @@
 <span class="kn">from</span> <span class="nn">boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span>
 <span class="kn">from</span> <span class="nn">functionfamily</span> <span class="kn">import</span> <span class="n">TransferFn</span>
 
+<span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span>
+
 <span class="n">activity_type</span> <span class="o">=</span> <span class="n">float64</span>
 
 <div class="viewcode-block" id="AttrDict"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheet-module.html#topo.base.sheet.AttrDict">[docs]</a><span class="k">class</span> <span class="nc">AttrDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
@@ -358,7 +360,15 @@
 <span class="sd">        significant amount of data other than in the activity array.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">nbytes</span>
-</pre></div></div></div>
+
+</div>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                        <span class="n">precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
+                        <span class="n">row_precedence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
+                        <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
+</pre></div></div>
 
           </div>
         </div>
