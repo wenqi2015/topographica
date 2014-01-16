@@ -363,11 +363,10 @@
 
 </div>
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
-        <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                        <span class="n">precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
                         <span class="n">row_precedence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
                         <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
-        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
 </pre></div></div>
 
           </div>
