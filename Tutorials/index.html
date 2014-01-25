@@ -53,36 +53,49 @@
   <div class="section" id="tutorials">
 <h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
 <p>Topographica comes with the following step-by-step guides to running
-simulations:</p>
+simulations.</p>
+<div class="section" id="tutorials-using-the-tk-gui">
+<h2>Tutorials using the Tk GUI<a class="headerlink" href="#tutorials-using-the-tk-gui" title="Permalink to this headline">¶</a></h2>
+<p>The Tk GUI is a good way to explore a model without needing to
+write any additional code.</p>
 <p><a class="reference internal" href="gcal.html"><em>GCAL Orientation Map</em></a></p>
-<p>How to run and test a simple orientation map simulation in the
-Topographica Tk GUI using the GCAL cortical model from <a class="reference external" href="http://dx.doi.org/10.1523/JNEUROSCI.1037-13.2013">Stevens et
-al. (J. Neuroscience 2013)</a>.  The tutorial
-allows you to present various objects to a saved orientation map
-network, and to visualize and analyze the responses. It also shows how
-to develop a new simulation using different input patterns.</p>
+<p>How to run and test a simple orientation map simulation using the
+GCAL cortical model from
+<a class="reference external" href="http://dx.doi.org/10.1523/JNEUROSCI.1037-13.2013">Stevens et al. (J. Neuroscience 2013)</a>.
+The tutorial allows you to present various objects to a saved
+orientation map network, and to visualize and analyze the
+responses. It also shows how to develop a new simulation using
+different input patterns.</p>
 <p>This tutorial supersedes an <a class="reference external" href="./lissom_oo_or.html">older tutorial</a> using the LISSOM model
 from  <a class="reference external" href="http://computationalmaps.org">Miikkulainen et al. (2005)</a>.</p>
-<p><a class="reference external" href="../_static/som_retinotopy_notebook.html"><em>SOM Retinotopic Map</em></a></p>
+<p><a class="reference internal" href="som_retinotopy.html"><em>SOM Retinotopic Map</em></a></p>
 <p>How to run a model that develops selectivity for position,
 mapping the input space to the cortical space. The model uses the
 abstract SOM algorithm, focusing on the basic principles of
 self-organization rather than modeling any particular biological
-system. This notebook supersedes an older tutorial exploring the
-<a class="reference external" href="./som_retinotopy.html">SOM in the Tk GUI</a>.</p>
-<p><a class="reference external" href="../_static/gcal.html"><em>GCAL Model definition</em></a></p>
+system.</p>
+</div>
+<div class="section" id="ipython-notebooks">
+<h2>IPython Notebooks<a class="headerlink" href="#ipython-notebooks" title="Permalink to this headline">¶</a></h2>
 <p>In addition to the GUI-based way of interacting with Topographica
 illustrated in the tutorials above, you can also use <a class="reference external" href="http://ipython.org/notebook.html">IPython Notebook</a>, which provides a command-line
 prompt that allows you to weave together Python code, textual output,
 and graphical output.  This approach makes it easier to modify a
 model, look at parts of it not currently exposed in the GUI, and to
 develop new types of analyses not yet offered in the GUI.</p>
-<p>The link above takes you to a static HTML snapshot of a notebook that
-illustrates how to define, explore, and analyze the GCAL model (see
-above) from within IPython Notebook.  In practice, you&#8217;ll want to try
-out the actual notebook for yourself, which you can do by
-downloading the latest git version of Topographica using
-<a class="reference external" href="https://github.com/ioam/topographica/tree/master/models/stevens.jn13#topographica-installation">these instructions</a>.</p>
+<p><a class="reference external" href="http://ioam.github.io/media/som_retinotopy.html"><em>SOM Retinotopic Map</em></a></p>
+<p>How to run and explore the SOM algorithm in the notebook environment.
+This tutorial covers the same material as the first SOM tutorial,
+illustrating how a model may be explored without requiring the GUI. In
+addition, this notebook includes several videos showing how the SOM
+develops over time, showcasing a feature only available in the
+notebook environment.</p>
+<p><a class="reference external" href="../_static/gcal.html"><em>GCAL Model definition</em></a></p>
+<p>A static HTML snapshot of a notebook that illustrates how to
+define, explore, and analyze the GCAL model (see above) from
+within IPython Notebook.  In practice, you&#8217;ll want to try out the
+actual notebook for yourself, which you can do by downloading the
+latest git version of Topographica using <a class="reference external" href="https://github.com/ioam/topographica/tree/master/models/stevens.jn13#topographica-installation">these instructions</a>.</p>
 <p><a class="reference external" href="../_static/stevens_jn13.html"><em>Replicating Stevens et al. (J. Neuroscience 2013)</em></a></p>
 <p>Building on the GCAL IPython Notebook described above, this second
 notebook shows how to reproduce
@@ -98,6 +111,7 @@ replicate it for yourself just follow
 Topographica works and how to use a Topographica model in practice. If
 you develop any other tutorials for your own models, we would love to
 add them here!</p>
+</div>
 </div>
 
 
@@ -127,7 +141,11 @@ add them here!</p>
 </ul>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
-<li><a class="reference internal" href="#">Tutorials</a></li>
+<li><a class="reference internal" href="#">Tutorials</a><ul>
+<li><a class="reference internal" href="#tutorials-using-the-tk-gui">Tutorials using the Tk GUI</a></li>
+<li><a class="reference internal" href="#ipython-notebooks">IPython Notebooks</a></li>
+</ul>
+</li>
 </ul>
 
 
