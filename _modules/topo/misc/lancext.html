@@ -78,6 +78,11 @@
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Launcher</span><span class="p">,</span> <span class="n">review_and_launch</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">NumpyFile</span>
 
+<span class="k">try</span><span class="p">:</span>
+   <span class="kn">from</span> <span class="nn">external</span> <span class="kn">import</span> <span class="n">sys_paths</span>
+   <span class="n">submodules</span> <span class="o">=</span> <span class="n">sys_paths</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+   <span class="n">submodules</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">default_output_path</span>
 <span class="n">review_and_launch</span><span class="o">.</span><span class="n">output_directory</span> <span class="o">=</span> <span class="n">default_output_path</span><span class="p">()</span>
@@ -104,13 +109,7 @@
 <span class="s">      Maximum number of characters that will be shown per message in</span>
 <span class="s">      the printed summary.&quot;&quot;&quot;</span><span class="p">)</span>
 
-   <span class="n">paths</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span>
-         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;topographica&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">],</span>
-         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/param&#39;</span><span class="p">,</span>  <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/paramtk&#39;</span><span class="p">,</span><span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/imagen&#39;</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
-         <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;external/lancet&#39;</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-         <span class="p">],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+   <span class="n">paths</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span> <span class="o">=</span> <span class="n">submodules</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">   List of git repositories including Topographica and relevant</span>
 <span class="s">   submodules. Version control information from these repositories</span>
 <span class="s">   will be returned as a dictionary when called. The most important</span>
@@ -866,7 +865,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 16, 2014.
+      Last updated on Jan 25, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

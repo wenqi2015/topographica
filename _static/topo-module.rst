@@ -307,11 +307,13 @@ Submodules
 * `topo.transferfn.projfn <topo.transferfn.projfn-module.html>`_
 * `topo.transferfn.misc.pyc <topo.transferfn.misc.pyc-module.html>`_
 * `topo.hardware.__init__.pyc <topo.hardware.__init__.pyc-module.html>`_
+* `topo.hardware.opencvcamera <topo.hardware.opencvcamera-module.html>`_
 * `topo.hardware.playerrobot <topo.hardware.playerrobot-module.html>`_
 * `topo.hardware <topo.hardware-module.html>`_
 * `topo.hardware.ptz.pyc <topo.hardware.ptz.pyc-module.html>`_
 * `topo.hardware.robotics <topo.hardware.robotics-module.html>`_
 * `topo.hardware.playerrobot.pyc <topo.hardware.playerrobot.pyc-module.html>`_
+* `topo.hardware.opencvcamera.pyc <topo.hardware.opencvcamera.pyc-module.html>`_
 * `topo.hardware.robotics.pyc <topo.hardware.robotics.pyc-module.html>`_
 * `topo.hardware.ptz <topo.hardware.ptz-module.html>`_
 * `topo.learningfn.optimized.pyc <topo.learningfn.optimized.pyc-module.html>`_

@@ -94,9 +94,9 @@ methods for selecting subsets of the data. Even so, keeping the slicing
 support separate from the indexing and data storage methods helps make both
 classes easier to understand.</p>
 <dl class="docutils">
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">key_type</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Type checking of the keys, if empty
-        no type checking is applied.</dd>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">key_type</span></tt> (<em>bounds=(0, None), constant=True, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Type checking of the
+        keys, if empty no type checking is applied.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension_labels parameter accepts a list of the features
         along which the data will indexed.</dd>
@@ -108,7 +108,7 @@ classes easier to understand.</p>
 </dl>
 <dl class="method">
 <dt id="imagen.ndmapping.NdIndexableMapping.add_dimension">
-<tt class="descname">add_dimension</tt><big>(</big><em>dim_name</em>, <em>dim_pos</em>, <em>dim_val</em><big>)</big><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping.add_dimension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping.add_dimension" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">add_dimension</tt><big>(</big><em>dim_name</em>, <em>dim_pos</em>, <em>dim_val</em>, <em>dim_type=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping.add_dimension"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping.add_dimension" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new object with an additional dimension along which items are
 indexed. Requires the dimension name, the desired position in the
 dimension labels and a dimension value that applies to all existing
@@ -126,6 +126,12 @@ the specified items (empty by default).</p>
 <dt id="imagen.ndmapping.NdIndexableMapping.dim_index">
 <tt class="descname">dim_index</tt><big>(</big><em>dimension_label</em><big>)</big><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping.dim_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping.dim_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the tuple index of the requested dimension.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="imagen.ndmapping.NdIndexableMapping.dimension_keys">
+<tt class="descname">dimension_keys</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/imagen/ndmapping.html#NdIndexableMapping.dimension_keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.ndmapping.NdIndexableMapping.dimension_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of keys together with the dimension labels.</p>
 </dd></dl>
 
 <dl class="method">
@@ -192,9 +198,9 @@ into the metadata dictionary.</p>
 <p>NdMapping supports the same indexing semantics as NdIndexableMapping but
 also supports filtering of items using slicing ranges.</p>
 <dl class="docutils">
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">key_type</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Type checking of the keys, if empty
-        no type checking is applied.</dd>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">key_type</span></tt> (<em>bounds=(0, None), constant=True, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Type checking of the
+        keys, if empty no type checking is applied.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">dimension_labels</span></tt> (<em>bounds=(0, None), constant=True, default=[None], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The dimension_labels parameter accepts a list of the features
         along which the data will indexed.</dd>
@@ -283,7 +289,7 @@ also supports filtering of items using slicing ranges.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 16, 2014.
+      Last updated on Jan 25, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

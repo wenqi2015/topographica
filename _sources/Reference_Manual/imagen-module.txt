@@ -12,7 +12,6 @@ Submodules
 * `imagen.__init__.pyc <imagen.__init__.pyc-module.html>`_
 * `imagen.odict.pyc <imagen.odict.pyc-module.html>`_
 * `imagen.random <imagen.random-module.html>`_
-* `imagen.opencvcamera <imagen.opencvcamera-module.html>`_
 * `imagen.boundingregion <imagen.boundingregion-module.html>`_
 * `imagen.ipython <imagen.ipython-module.html>`_
 * `imagen.ipython.pyc <imagen.ipython.pyc-module.html>`_
@@ -28,6 +27,7 @@ Submodules
 * `imagen.patternfn.pyc <imagen.patternfn.pyc-module.html>`_
 * `imagen.image.pyc <imagen.image.pyc-module.html>`_
 * `imagen.transferfn.pyc <imagen.transferfn.pyc-module.html>`_
+* `imagen.analysis <imagen.analysis-module.html>`_
 * `imagen.sheetcoords.pyc <imagen.sheetcoords.pyc-module.html>`_
 * `imagen.plots.pyc <imagen.plots.pyc-module.html>`_
 * `imagen.patternfn <imagen.patternfn-module.html>`_

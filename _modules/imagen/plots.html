@@ -58,11 +58,12 @@
           <div class="body">
             
   <h1>Source code for imagen.plots</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">groupby</span>
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
-<span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">SheetLayer</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">,</span> <span class="n">SheetLines</span><span class="p">,</span> <span class="n">SheetStack</span><span class="p">,</span> <span class="n">SheetPoints</span><span class="p">,</span> <span class="n">GridLayout</span>
+<span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">SheetLayer</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">,</span> <span class="n">SheetLines</span><span class="p">,</span> <span class="n">SheetStack</span><span class="p">,</span> <span class="n">SheetPoints</span><span class="p">,</span> <span class="n">GridLayout</span><span class="p">,</span> <span class="n">ProjectionGrid</span>
 
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib.collections</span> <span class="kn">import</span> <span class="n">LineCollection</span>
@@ -234,8 +235,9 @@
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">())</span>
-        <span class="n">line_segments</span> <span class="o">=</span> <span class="n">LineCollection</span><span class="p">([],</span> <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">,</span> <span class="n">linestyles</span> <span class="o">=</span> <span class="s">&#39;solid&#39;</span><span class="p">)</span>
-        <span class="n">line_segments</span><span class="o">.</span><span class="n">set_paths</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">top</span>
+        <span class="n">line_segments</span> <span class="o">=</span> <span class="n">LineCollection</span><span class="p">([],</span> <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">,</span> <span class="o">**</span><span class="n">lines</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+        <span class="n">line_segments</span><span class="o">.</span><span class="n">set_paths</span><span class="p">(</span><span class="n">lines</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;line_segments&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">line_segments</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="n">line_segments</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;fig&#39;</span><span class="p">])</span>
@@ -285,10 +287,9 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="p">)</span>
 
 
-
 <span class="k">class</span> <span class="nc">SheetViewPlot</span><span class="p">(</span><span class="n">Plot</span><span class="p">):</span>
 
-    <span class="n">colorbar</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ObjectSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span>
+    <span class="n">colorbar</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ObjectSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                                     <span class="n">objects</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span><span class="s">&#39;vertical&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">],</span>
         <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;The style of the colorbar if applicable. &quot;&quot;&quot;</span><span class="p">)</span>
 
@@ -315,11 +316,9 @@
         <span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stack</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">,</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
 
-        <span class="n">cmap</span> <span class="o">=</span> <span class="s">&#39;hsv&#39;</span> <span class="k">if</span> <span class="p">(</span><span class="n">sheetview</span><span class="o">.</span><span class="n">cyclic_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span> <span class="k">else</span> <span class="s">&#39;gray&#39;</span>
-        <span class="n">cmap</span> <span class="o">=</span> <span class="n">sheetview</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;cmap&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="p">)</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;cmap&#39;</span><span class="p">:</span><span class="n">sheetview</span><span class="o">.</span><span class="n">mode</span><span class="p">}</span> <span class="k">if</span> <span class="n">sheetview</span><span class="o">.</span><span class="n">depth</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sheetview</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">],</span>
-                       <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">,</span>
-                       <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
+                       <span class="n">zorder</span><span class="o">=</span><span class="n">zorder</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">cmap</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;im&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">im</span>
 
         <span class="n">normalization</span> <span class="o">=</span> <span class="n">sheetview</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
@@ -408,8 +407,8 @@
     <span class="n">roi</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">      Whether to apply the ROI to each element of the grid.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">show_axes</span><span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">      Whether to show labelled axes for the entire grid plot.&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">show_axes</span><span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">      Whether to show labelled axes for individual subplots.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
@@ -425,6 +424,9 @@
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
         <span class="n">coords</span> <span class="o">=</span> <span class="p">[(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">)]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">subplots</span> <span class="o">=</span> <span class="p">[]</span>
@@ -450,11 +452,113 @@
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
 
+
+</div>
+<div class="viewcode-block" id="ProjectionGridPlot"><a class="viewcode-back" href="../../Reference_Manual/imagen.plots-module.html#imagen.plots.ProjectionGridPlot">[docs]</a><span class="k">class</span> <span class="nc">ProjectionGridPlot</span><span class="p">(</span><span class="n">Plot</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ProjectionGridPlot evenly spaces out plots of individual projections on</span>
+<span class="sd">    a grid, even when they differ in size. The projections can be situated</span>
+<span class="sd">    or an ROI can be applied to each element. Since this class uses a single</span>
+<span class="sd">    axis to generate all the individual plots it is much faster than the</span>
+<span class="sd">    equivalent using subplots.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">border</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Aggregate border as a fraction of total plot size.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">situate</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Determines whether to situate the projection in the full bounds or</span>
+<span class="s">        apply the ROI.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">ProjectionGrid</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;ProjectionGridPlot only accepts ProjectionGrids.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProjectionGridPlot</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="n">grid_shape</span> <span class="o">=</span> <span class="p">[[</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                                                                 <span class="k">lambda</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">):</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">b_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_borders</span><span class="p">(</span><span class="n">grid_shape</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;projs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">b_w</span><span class="p">,</span> <span class="n">b_h</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid_shape</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_dims</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">view</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">SheetOverlay</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">situate</span> <span class="k">else</span> <span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">roi</span><span class="o">.</span><span class="n">data</span>
+                    <span class="n">cmap</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;cmap&#39;</span><span class="p">:</span><span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">}</span> <span class="k">if</span> <span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">depth</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="p">{}</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">situate</span> <span class="k">else</span> <span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">roi</span><span class="o">.</span><span class="n">data</span>
+                    <span class="n">cmap</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;cmap&#39;</span><span class="p">:</span><span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">mode</span><span class="p">}</span> <span class="k">if</span> <span class="n">view</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">depth</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="p">{}</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;projs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">),</span>
+                                                        <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span>
+                                                        <span class="o">**</span><span class="n">cmap</span><span class="p">))</span>
+                <span class="n">y</span> <span class="o">+=</span> <span class="n">h</span> <span class="o">+</span> <span class="n">b_h</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">b_h</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="n">w</span> <span class="o">+</span> <span class="n">b_w</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">axis</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;fig&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">ax</span> <span class="k">if</span> <span class="n">axis</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;fig&#39;</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="nf">update_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span>  <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">plot</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">[</span><span class="s">&#39;projs&#39;</span><span class="p">]):</span>
+            <span class="n">view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="n">n</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">SheetOverlay</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">view</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">situate</span> <span class="k">else</span> <span class="n">view</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">roi</span><span class="o">.</span><span class="n">data</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">situate</span> <span class="k">else</span> <span class="n">view</span><span class="o">.</span><span class="n">roi</span><span class="o">.</span><span class="n">data</span>
+
+            <span class="n">plot</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_get_dims</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
+        <span class="n">l</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">situate</span> <span class="k">else</span> <span class="n">view</span><span class="o">.</span><span class="n">roi</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">,</span> <span class="n">t</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_compute_borders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_shape</span><span class="p">):</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">grid_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">height</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_dims</span><span class="p">(</span><span class="n">view</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">width</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid_shape</span><span class="p">]:</span>
+            <span class="n">width</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_dims</span><span class="p">(</span><span class="n">view</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">border_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">border_height</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">width</span> <span class="o">+=</span> <span class="n">width</span><span class="o">/</span><span class="mi">10</span>
+        <span class="n">height</span> <span class="o">+=</span> <span class="n">height</span><span class="o">/</span><span class="mi">10</span>
+
+        <span class="k">return</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">border_width</span><span class="p">,</span> <span class="n">border_height</span>
+
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+
 </div>
 <span class="n">viewmap</span> <span class="o">=</span> <span class="p">{</span><span class="n">SheetView</span><span class="p">:</span><span class="n">SheetViewPlot</span><span class="p">,</span>
            <span class="n">SheetPoints</span><span class="p">:</span><span class="n">SheetPointsPlot</span><span class="p">,</span>
            <span class="n">SheetLines</span><span class="p">:</span><span class="n">SheetLinesPlot</span><span class="p">,</span>
-           <span class="n">SheetOverlay</span><span class="p">:</span><span class="n">SheetPlot</span><span class="p">}</span>
+           <span class="n">SheetOverlay</span><span class="p">:</span><span class="n">SheetPlot</span><span class="p">,</span>
+           <span class="n">ProjectionGrid</span><span class="p">:</span><span class="n">ProjectionGridPlot</span><span class="p">}</span>
 </pre></div>
 
           </div>
@@ -529,7 +633,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 16, 2014.
+      Last updated on Jan 25, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
