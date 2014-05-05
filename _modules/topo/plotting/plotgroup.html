@@ -73,7 +73,7 @@
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">resolve_path</span>
 
 <span class="kn">from</span> <span class="nn">imagen.random</span> <span class="kn">import</span> <span class="n">UniformRandom</span>
-<span class="kn">from</span> <span class="nn">imagen.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">dataviews.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="kn">from</span> <span class="nn">featuremapper</span> <span class="kn">import</span> <span class="n">distribution</span>
 
@@ -1750,7 +1750,7 @@
 <span class="n">pg</span> <span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Ocular Preference&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
                       <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for sine gratings between two &#39;</span>
                           <span class="s">&#39;eyes.&#39;</span><span class="p">,</span>
-                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">()])</span>
+                      <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_od_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">()])</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Ocular Preference&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OcularPreference&#39;</span><span class="p">)])</span>
 <span class="n">pg</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="s">&#39;Ocular Selectivity&#39;</span><span class="p">,</span> <span class="p">[(</span><span class="s">&#39;Strength&#39;</span><span class="p">,</span> <span class="s">&#39;OcularSelectivity&#39;</span><span class="p">)])</span>
 
@@ -1876,7 +1876,7 @@
 <span class="n">pg</span><span class="o">=</span> <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Position Preference&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Preference Maps&quot;</span><span class="p">,</span>
            <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure preference for the X and Y position of a Gaussian.&#39;</span><span class="p">,</span>
            <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_position_pref</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span>
-            <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_WeightedAverage</span><span class="p">(</span> <span class="n">selectivity_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">17.</span><span class="p">)</span> <span class="p">))],</span>
+            <span class="n">preference_fn</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">DSF_WeightedAverage</span><span class="p">(</span><span class="n">selectivity_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">17.</span><span class="p">)</span> <span class="p">))],</span>
            <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">topographic_grid</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
            <span class="n">normalize</span><span class="o">=</span><span class="s">&#39;Individually&#39;</span><span class="p">)</span>
 
@@ -1891,7 +1891,7 @@
 <span class="s">            Although the data takes a long time to collect, once it is ready the plots</span>
 <span class="s">            are available immediately for any unit.&quot;&quot;&quot;</span><span class="p">,</span>
         <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_or_tuning_fullfield</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;orientation&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&#39;degrees&#39;</span><span class="p">)])</span>
+        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;orientation&#39;</span><span class="p">)])</span>
 
 
 <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
@@ -1905,28 +1905,29 @@
 <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Size Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
         <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the size preference for a specific unit.&#39;</span><span class="p">,</span>
         <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_size_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;size&#39;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;Diameter of stimulus&quot;</span><span class="p">)],</span>
+        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&#39;size&#39;</span><span class="p">)],</span>
         <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
 
 
 <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Contrast Response&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
         <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the contrast response function for a specific unit.&#39;</span><span class="p">,</span>
         <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_contrast_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;contrast&quot;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;%&quot;</span><span class="p">)],</span>
+        <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;contrast&quot;</span><span class="p">)],</span>
         <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
 
 
 <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Frequency Tuning&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
         <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the spatial frequency preference for a specific unit.&#39;</span><span class="p">,</span>
         <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_frequency_response</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span><span class="n">unit</span><span class="o">=</span><span class="s">&quot;cycles per unit distance&quot;</span><span class="p">)],</span>
+                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">)],</span>
         <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
 
 
 <span class="n">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&quot;curve&quot;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Orientation Contrast&#39;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="s">&quot;Tuning Curves&quot;</span><span class="p">,</span>
                  <span class="n">doc</span><span class="o">=</span><span class="s">&#39;Measure the response of one unit to a center and surround sine grating disk.&#39;</span><span class="p">,</span>
                  <span class="n">pre_plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">analysis</span><span class="o">.</span><span class="n">measure_orientation_contrast</span><span class="o">.</span><span class="n">instance</span><span class="p">()],</span>
-                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;orientationsurround&quot;</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">relative_labels</span><span class="o">=</span><span class="bp">True</span><span class="p">)],</span>
+                 <span class="n">plot_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">pylabplot</span><span class="o">.</span><span class="n">cyclic_tuning_curve</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">x_axis</span><span class="o">=</span><span class="s">&quot;orientationsurround&quot;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                                                    <span class="n">relative_labels</span><span class="o">=</span><span class="bp">True</span><span class="p">)],</span>
                  <span class="n">prerequisites</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OrientationPreference&#39;</span><span class="p">,</span><span class="s">&#39;XPreference&#39;</span><span class="p">])</span>
 </pre></div>
 
@@ -1946,6 +1947,7 @@
 <li><a href="../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../Future_Work/index.html">Future Work</a></li>
@@ -2001,7 +2003,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

@@ -62,7 +62,6 @@
 <span class="sd">Generic support for objects with full-featured Parameters and</span>
 <span class="sd">messaging.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision$&#39;</span>
 
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -171,6 +170,28 @@
     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">arg1</span><span class="o">==</span><span class="n">arg2</span>
 
+
+
+<span class="c"># For Python 2 compatibility.</span>
+<span class="c">#</span>
+<span class="c"># The syntax to use a metaclass changed incompatibly between 2 and</span>
+<span class="c"># 3. The add_metaclass() class decorator below creates a class using a</span>
+<span class="c"># specified metaclass in a way that works on both 2 and 3. For 3, can</span>
+<span class="c"># remove this decorator and specify metaclasses in a simpler way</span>
+<span class="c"># (https://docs.python.org/3/reference/datamodel.html#customizing-class-creation)</span>
+<span class="c">#</span>
+<span class="c"># Code from six (https://bitbucket.org/gutworth/six; version 1.4.1).</span></div>
+<div class="viewcode-block" id="add_metaclass"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.add_metaclass">[docs]</a><span class="k">def</span> <span class="nf">add_metaclass</span><span class="p">(</span><span class="n">metaclass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class decorator for creating a class with a metaclass.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">orig_vars</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">orig_vars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;__dict__&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">orig_vars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;__weakref__&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">slots_var</span> <span class="ow">in</span> <span class="n">orig_vars</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;__slots__&#39;</span><span class="p">,</span> <span class="p">()):</span>
+            <span class="n">orig_vars</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">slots_var</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">metaclass</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">__bases__</span><span class="p">,</span> <span class="n">orig_vars</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
 </div>
 <div class="viewcode-block" id="bothmethod"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.bothmethod">[docs]</a><span class="k">class</span> <span class="nc">bothmethod</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="c"># pylint: disable-msg=R0903</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -240,6 +261,7 @@
 <span class="c"># a parameter to discover things about itself when created (would also</span>
 <span class="c"># allow things like checking a Parameter is owned by a</span>
 <span class="c"># Parameterized). I have some vague ideas about what to do.</span></div>
+<span class="nd">@add_metaclass</span><span class="p">(</span><span class="n">ParameterMetaclass</span><span class="p">)</span>
 <div class="viewcode-block" id="Parameter"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.Parameter">[docs]</a><span class="k">class</span> <span class="nc">Parameter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An attribute descriptor for declaring parameters.</span>
@@ -319,7 +341,6 @@
 <span class="sd">    or as class attributes of non-Parameterized classes, will not have</span>
 <span class="sd">    the behavior described here.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ParameterMetaclass</span>
 
     <span class="c"># Because they implement __get__ and __set__, Parameters are known</span>
     <span class="c"># as &#39;descriptors&#39; in Python; see &quot;Implementing Descriptors&quot; and</span>
@@ -659,8 +680,8 @@
                 <span class="c"># mechanisms, which has have consequences for warning</span>
                 <span class="c"># counts, warnings as exceptions, etc.</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">attribute_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">):</span>
-                    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Warning: Setting non-Parameter class attribute </span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s"> &quot;</span>
-                           <span class="o">%</span> <span class="p">(</span><span class="n">mcs</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span><span class="n">attribute_name</span><span class="p">,</span><span class="sb">`value`</span><span class="p">))</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Warning: Setting non-Parameter class attribute </span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s"> &quot;</span>
+                           <span class="o">%</span> <span class="p">(</span><span class="n">mcs</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span><span class="n">attribute_name</span><span class="p">,</span><span class="nb">repr</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span>
 
 
     <span class="k">def</span> <span class="nf">__param_inheritance</span><span class="p">(</span><span class="n">mcs</span><span class="p">,</span><span class="n">param_name</span><span class="p">,</span><span class="n">param</span><span class="p">):</span>
@@ -721,7 +742,7 @@
             <span class="c"># we run out of classes to search.</span>
             <span class="k">while</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="n">slot</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">param_super_class</span> <span class="o">=</span> <span class="n">superclasses</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                    <span class="n">param_super_class</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">superclasses</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
                     <span class="k">break</span>
 
@@ -814,7 +835,7 @@
 
 <span class="c"># why I have to type prefix and settings?</span>
 <span class="k">def</span> <span class="nf">function_script_repr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span><span class="n">imports</span><span class="p">,</span><span class="n">prefix</span><span class="p">,</span><span class="n">settings</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">func_name</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">__name__</span>
     <span class="n">module</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">__module__</span>
     <span class="n">imports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;import </span><span class="si">%s</span><span class="s">&#39;</span><span class="o">%</span><span class="n">module</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">module</span><span class="o">+</span><span class="s">&#39;.&#39;</span><span class="o">+</span><span class="n">name</span>
@@ -855,6 +876,7 @@
 
 
 </div>
+<span class="nd">@add_metaclass</span><span class="p">(</span><span class="n">ParameterizedMetaclass</span><span class="p">)</span>
 <div class="viewcode-block" id="Parameterized"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.Parameterized">[docs]</a><span class="k">class</span> <span class="nc">Parameterized</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for named objects that support Parameters and message</span>
@@ -879,7 +901,7 @@
 
 <span class="sd">    in this case foo.xx gets the value 20.</span>
 
-<span class="sd">    Message formatting: Each Parameterized instance has several methods</span>
+<span class="sd">    Message formatting: Each Parameterized instance has several</span>
 <span class="sd">    methods for optionally printing output. This functionality is</span>
 <span class="sd">    based on the standard Python &#39;logging&#39; module; using the methods</span>
 <span class="sd">    provided here, wraps calls to the &#39;logging&#39; module&#39;s root logger</span>
@@ -888,8 +910,6 @@
 <span class="sd">    the global logging level and change the default message prefix,</span>
 <span class="sd">    see documentation for the &#39;logging&#39; module.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ParameterizedMetaclass</span>
 
     <span class="n">name</span>           <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">    String identifier for this object.&quot;&quot;&quot;</span><span class="p">)</span>
@@ -940,7 +960,7 @@
         <span class="c"># &quot;add_param()&quot; method has to deal with it (plus any future</span>
         <span class="c"># remove_param() method.)</span>
         <span class="nb">type</span><span class="o">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="n">param_name</span><span class="p">,</span><span class="n">param_obj</span><span class="p">)</span>
-        <span class="n">cls</span><span class="o">.</span><span class="n">__metaclass__</span><span class="o">.</span><span class="n">_initialize_parameter</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="n">param_name</span><span class="p">,</span><span class="n">param_obj</span><span class="p">)</span>
+        <span class="n">ParameterizedMetaclass</span><span class="o">.</span><span class="n">_initialize_parameter</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="n">param_name</span><span class="p">,</span><span class="n">param_obj</span><span class="p">)</span>
         <span class="c"># delete cached params()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="nb">delattr</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span><span class="s">&#39;_</span><span class="si">%s</span><span class="s">__params&#39;</span><span class="o">%</span><span class="n">cls</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
@@ -1160,7 +1180,7 @@
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">FunctionType</span><span class="p">):</span> <span class="n">args</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">a</span><span class="p">)]</span><span class="o">=</span><span class="n">a</span><span class="p">()</span>
 
-            <span class="n">s</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">])</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">dbprint_prefix</span> <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="n">dbprint_prefix</span><span class="p">):</span>
                 <span class="n">prefix</span><span class="o">=</span><span class="n">dbprint_prefix</span><span class="p">()</span> <span class="c"># pylint: disable-msg=E1102</span>
@@ -1180,7 +1200,7 @@
             <span class="n">warning_count</span><span class="o">+=</span><span class="mi">1</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__db_print</span><span class="p">(</span><span class="n">WARNING</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">,</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;Warning:&quot;</span><span class="p">,]</span><span class="o">+</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">])</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&quot;Warning:&quot;</span><span class="p">,]</span><span class="o">+</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]))</span>
 
 </div>
 <div class="viewcode-block" id="Parameterized.message"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.Parameterized.message">[docs]</a>    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
@@ -1370,7 +1390,7 @@
 <div class="viewcode-block" id="Parameterized.print_param_values"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.Parameterized.print_param_values">[docs]</a>    <span class="k">def</span> <span class="nf">print_param_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Print the values of all this object&#39;s Parameters.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">():</span>
-            <span class="k">print</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">.</span><span class="si">%s</span><span class="s"> = </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">val</span><span class="p">))</span>
 
 </div>
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1446,7 +1466,7 @@
         <span class="sd">&quot;&quot;&quot;Print the default values of all cls&#39;s Parameters.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">Parameter</span><span class="p">):</span>
-                <span class="k">print</span> <span class="n">cls</span><span class="o">.</span><span class="n">__name__</span><span class="o">+</span><span class="s">&#39;.&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">__name__</span><span class="o">+</span><span class="s">&#39;.&#39;</span><span class="o">+</span><span class="n">key</span><span class="p">,</span> <span class="s">&#39;=&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">default</span><span class="p">))</span>
 
 </div>
 <div class="viewcode-block" id="Parameterized.defaults"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.Parameterized.defaults">[docs]</a>    <span class="k">def</span> <span class="nf">defaults</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1517,15 +1537,15 @@
 </div></div>
 <div class="viewcode-block" id="print_all_param_defaults"><a class="viewcode-back" href="../../Reference_Manual/param.parameterized-module.html#param.parameterized.print_all_param_defaults">[docs]</a><span class="k">def</span> <span class="nf">print_all_param_defaults</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Print the default values for all imported Parameters.&quot;&quot;&quot;</span>
-    <span class="k">print</span> <span class="s">&quot;_______________________________________________________________________________&quot;</span>
-    <span class="k">print</span> <span class="s">&quot;&quot;</span>
-    <span class="k">print</span> <span class="s">&quot;                           Parameter Default Values&quot;</span>
-    <span class="k">print</span> <span class="s">&quot;&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;_______________________________________________________________________________&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;                           Parameter Default Values&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
     <span class="n">classes</span> <span class="o">=</span> <span class="n">descendents</span><span class="p">(</span><span class="n">Parameterized</span><span class="p">)</span>
     <span class="n">classes</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
         <span class="n">c</span><span class="o">.</span><span class="n">print_param_defaults</span><span class="p">()</span>
-    <span class="k">print</span> <span class="s">&quot;_______________________________________________________________________________&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;_______________________________________________________________________________&quot;</span><span class="p">)</span>
 
 
 
@@ -1608,7 +1628,7 @@
 <span class="sd">        Print a warning if params contains something that is not a</span>
 <span class="sd">        Parameter of the overridden object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">overridden_object_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_overridden</span><span class="o">.</span><span class="n">params</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">overridden_object_params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_overridden</span><span class="o">.</span><span class="n">params</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">overridden_object_params</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39; will be ignored (not a Parameter).&quot;</span><span class="o">%</span><span class="n">item</span><span class="p">)</span>
@@ -1731,7 +1751,7 @@
         <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&quot;unreadable attribute&quot;</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&quot;unreadable attribute&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;&lt;lambda&gt;&#39;</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="o">.</span><span class="n">__name__</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1739,7 +1759,7 @@
 
     <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fset</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&quot;can&#39;t set attribute&quot;</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&quot;can&#39;t set attribute&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fset</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;&lt;lambda&gt;&#39;</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fset</span><span class="o">.</span><span class="n">__name__</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1747,7 +1767,7 @@
 
     <span class="k">def</span> <span class="nf">__delete__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fdel</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&quot;can&#39;t delete attribute&quot;</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&quot;can&#39;t delete attribute&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fdel</span><span class="o">.</span><span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;&lt;lambda&gt;&#39;</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">fdel</span><span class="o">.</span><span class="n">__name__</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fdel</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1770,6 +1790,7 @@
 <li><a href="../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../Forums/index.html">Forums</a></li>
 <li><a href="../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../Future_Work/index.html">Future Work</a></li>
@@ -1826,7 +1847,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

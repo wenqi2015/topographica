@@ -216,9 +216,7 @@ optimization requires careful consideration of the details of how
 Python and Topographica allocate memory in specific cases.
 <a class="reference external" href="../Reference_Manual/topo.misc.asizeof-module.html#asizeof">asizeof</a> can be useful in this respect, but much more detailed
 information is available from an external program <a class="reference external" href="http://guppy-pe.sourceforge.net/#Heapy">Heapy</a>, which
-can be installed using:</p>
-<div class="highlight-python"><pre>$ make -C external guppy</pre>
-</div>
+can be installed using e.g. <tt class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-guppy</span></tt>.</p>
 <p>Heapy will give you output similar to a performance profiler, but
 for memory usage. For example:</p>
 <div class="highlight-python"><pre>$ ./topographica -i \
@@ -301,9 +299,28 @@ optimization is on the Slice class. Using this information, we can
 start examining Slice to determine how its memory usage can be
 reduced. This process is similar to that for <a class="reference external" href="optimization.html">performance
 optimization</a>, but focusing on memory rather than speed.</p>
+<p>If you are debugging memory usage during the running of a simulation,
+you may want to use <tt class="docutils literal"><span class="pre">setrelheap()</span></tt> after loading the simulation but
+before running. Similarly, you can subtract one <tt class="docutils literal"><span class="pre">heap()</span></tt> from
+another.</p>
 <p>Note that <a class="reference external" href="http://guppy-pe.sourceforge.net/heapy_Use.html">documentation for Heapy</a> is sparse and difficult to
-follow; it may be easier to start with some <a class="reference external" href="http://www.pkgcore.org/trac/pkgcore/doc/dev-notes/heapy.rst">notes from another
+follow; it may be easier to start with some <a class="reference external" href="http://smira.ru/wp-content/uploads/2011/08/heapy.html">notes from another
 developer</a>.</p>
+</div>
+<div class="section" id="beyond-python">
+<h2>Beyond Python<a class="headerlink" href="#beyond-python" title="Permalink to this headline">¶</a></h2>
+<p>If the memory usage reported by heapy is vastly different from the
+memory usage reported by the operating system (e.g. via top), you may
+have encountered a bug outside Python code. Various tools exist to
+investigate such a situation (e.g. <a class="reference external" href="https://github.com/rogerhu/gdb-heap">gdb-heap</a>, valgrind) but are
+beyond the scope of this guide. You might be able to narrow down the
+problem to a particular extension or operation by cutting out parts of
+your simulation bit by bit until you find the culprit (at which point
+you could search the web for known bugs in that extension).</p>
+<p>Another possible cause of discrepancy in memory usage is that Python
+does not always <a class="reference external" href="http://effbot.org/pyfaq/why-doesnt-python-release-the-memory-when-i-delete-a-large-object.htm">return memory to the operating system</a>, even after
+you free that memory in Python. If you do use a lot of memory in
+Python at any point, this could be your problem.</p>
 </div>
 </div>
 
@@ -324,6 +341,7 @@ developer</a>.</p>
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -340,6 +358,7 @@ developer</a>.</p>
 <li><a class="reference internal" href="#n-bytes-n-conns-and-print-sizes">n_bytes, n_conns, and print_sizes</a></li>
 <li><a class="reference internal" href="#allsizes-mb-and-memuse-batch-total-memory-usage">allsizes_mb and memuse_batch: total memory usage</a></li>
 <li><a class="reference internal" href="#heapy">Heapy</a></li>
+<li><a class="reference internal" href="#beyond-python">Beyond Python</a></li>
 </ul>
 </li>
 </ul>
@@ -384,7 +403,7 @@ developer</a>.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

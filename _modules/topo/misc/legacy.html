@@ -61,6 +61,8 @@
 <span class="sd">Code used to support old snapshots (those created from 0.9.7/r11275</span>
 <span class="sd">onwards).</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">odict</span>
+
 <span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision: 8021 $&#39;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -360,8 +362,8 @@
 
 <span class="k">def</span> <span class="nf">param_external_removed</span><span class="p">():</span>
     <span class="c"># CB: From param/external.py, only odict should be relevant to snapshots.</span>
-    <span class="kn">import</span> <span class="nn">imagen.odict</span>
-    <span class="n">allow_import</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span><span class="s">&#39;param.external&#39;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">dataviews.odict</span>
+    <span class="n">allow_import</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span><span class="s">&#39;param.external&#39;</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">12024</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_external_removed</span>
 
@@ -614,7 +616,7 @@
     <span class="c"># Convert old sheet_views and curve_dict</span>
     <span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
     <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
-    <span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span>
+    <span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span>
     <span class="k">def</span> <span class="nf">_set_sheet_views</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;simulation&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">None</span>
@@ -679,18 +681,18 @@
 
 
 <span class="k">def</span> <span class="nf">topo_misc_odict_removed</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">imagen.odict</span>
-    <span class="n">allow_import</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span> <span class="s">&#39;topo.misc.odict&#39;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">dataviews.odict</span>
+    <span class="n">allow_import</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span> <span class="s">&#39;topo.misc.odict&#39;</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">90800361</span><span class="p">]</span> <span class="o">=</span> <span class="n">topo_misc_odict_removed</span>
 
 
 <span class="k">def</span> <span class="nf">ndmapping_ndim_remove</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">imagen</span>
+    <span class="kn">import</span> <span class="nn">dataviews</span>
     <span class="k">def</span> <span class="nf">remove_ndmapping</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
         <span class="k">if</span> <span class="s">&#39;ndim&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
             <span class="k">del</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;ndim&#39;</span><span class="p">]</span>
-    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">ndmapping</span><span class="o">.</span><span class="n">NdMapping</span><span class="p">,</span> <span class="n">remove_ndmapping</span><span class="p">)</span>
+    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">NdMapping</span><span class="p">,</span> <span class="n">remove_ndmapping</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">90800401</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndmapping_ndim_remove</span>
 
@@ -729,7 +731,6 @@
 
 
 <span class="k">def</span> <span class="nf">replace_keyedlist</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">imagen</span> <span class="kn">import</span> <span class="n">odict</span>
     <span class="k">class</span> <span class="nc">KeyedList</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">key</span><span class="p">]:</span> <span class="k">return</span> <span class="n">value</span>
@@ -764,7 +765,7 @@
                         <span class="s">&#39;ProjectionGrid&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;bounds&#39;</span><span class="p">,)}</span>
     <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">deleted_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">param_no_restore</span><span class="p">)</span>
 
-    <span class="kn">import</span> <span class="nn">imagen</span>
+    <span class="kn">import</span> <span class="nn">dataviews</span>
     <span class="k">def</span> <span class="nf">remove_shape</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
         <span class="k">if</span> <span class="s">&#39;shape&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;shape&#39;</span><span class="p">)</span>
@@ -787,8 +788,8 @@
         <span class="n">state</span><span class="p">[</span><span class="s">&#39;lbrt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
         <span class="n">state</span><span class="p">[</span><span class="s">&#39;bounds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bounds</span>
 
-    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">SheetView</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
-    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">imagen</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">ProjectionGrid</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
+    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">SheetView</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
+    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">CoordinateGrid</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">90800536</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmapper_rename</span>
 
@@ -862,6 +863,7 @@
 <li><a href="../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../Future_Work/index.html">Future Work</a></li>
@@ -917,7 +919,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

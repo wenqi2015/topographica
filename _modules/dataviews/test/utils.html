@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dataviews.test.utils &mdash; The Topographica Neural Map Simulator</title>
+    
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.98',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/topo.js"></script>
+    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <link rel="up" title="dataviews" href="../../dataviews.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+<li><a href="../../../index.html">Home</a></li>
+<li><a href="../../../Downloads/index.html">Downloads</a></li>
+<li><a href="../../../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../../../User_Manual/index.html">User Manual</a></li>
+
+
+<li><ul class="parents">
+
+
+
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../../dataviews.html" accesskey="U">dataviews</a> &raquo;</li>
+
+</ul></li>
+
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for dataviews.test.utils</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">numpy.testing</span> <span class="kn">import</span> <span class="n">assert_array_almost_equal</span>
+
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetStack</span><span class="p">,</span> <span class="n">SheetOverlay</span>
+<span class="kn">from</span> <span class="nn">dataviews.sheetviews</span> <span class="kn">import</span> <span class="n">SheetView</span>
+
+
+<div class="viewcode-block" id="ViewTestCase"><a class="viewcode-back" href="../../../Reference_Manual/dataviews.test.utils-module.html#dataviews.test.utils.ViewTestCase">[docs]</a><span class="k">class</span> <span class="nc">ViewTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The class implements comparisons between View objects for the</span>
+<span class="sd">    purposes of testing. The most important attribute that needs to be</span>
+<span class="sd">    compared is the data attribute as this contains the raw data held</span>
+<span class="sd">    by the View object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ViewTestCase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">addTypeEqualityFunc</span><span class="p">(</span><span class="n">SheetView</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compare_sheetviews</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addTypeEqualityFunc</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compare_sheetstack</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">addTypeEqualityFunc</span><span class="p">(</span><span class="n">SheetOverlay</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compare_overlays</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">compare_sheetstack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds_check</span><span class="p">(</span><span class="n">view1</span><span class="p">,</span><span class="n">view2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compare_stack</span><span class="p">(</span><span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">compare_stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">view1</span><span class="o">.</span><span class="n">ndims</span> <span class="o">!=</span> <span class="n">view2</span><span class="o">.</span><span class="n">ndims</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="s">&quot;Stacks have different numbers of dimensions.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">view1</span><span class="o">.</span><span class="n">dimension_labels</span> <span class="o">!=</span> <span class="n">view2</span><span class="o">.</span><span class="n">dimension_labels</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="s">&quot;Stacks have different dimension labels.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">view1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">view2</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="s">&quot;Stacks have different numbers of keys.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">view1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">view2</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="s">&quot;Stacks have different sets of keys.&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">el1</span><span class="p">,</span> <span class="n">el2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">el1</span><span class="p">,</span><span class="n">el2</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">compare_sheetviews</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">assert_array_almost_equal</span><span class="p">(</span><span class="n">view1</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">view2</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds_check</span><span class="p">(</span><span class="n">view1</span><span class="p">,</span><span class="n">view2</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">compare_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">view1</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">view2</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="s">&quot;Annotations contain different sets of annotations.&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">compare_overlays</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">view1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">view2</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="s">&quot;Overlays have different lengths.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bounds_check</span><span class="p">(</span><span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">layer1</span><span class="p">,</span> <span class="n">layer2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">layer1</span><span class="p">,</span> <span class="n">layer2</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">bounds_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view1</span><span class="p">,</span> <span class="n">view2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">view1</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">!=</span> <span class="n">view2</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">failureException</span><span class="p">(</span><span class="s">&quot;BoundingBoxes are mismatched.&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/topo-banner7.png" alt="Logo"/>
+            </a></p>
+<ul class="global-toc">
+<li><a href="../../../index.html">Home</a></li>
+<li><a href="../../../News/index.html">News</a></li>
+<li><a href="../../../Downloads/index.html">Downloads</a></li>
+<li><a href="../../../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../../../User_Manual/index.html">User Manual</a></li>
+<li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
+<li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
+<li><a href="../../../Forums/index.html">Forums</a></li>
+<li><a href="../../../Team_Members/index.html">Team Members</a></li>
+<li><a href="../../../Future_Work/index.html">Future Work</a></li>
+<li><a href="../../../FAQ/index.html">FAQ</a></li>
+<li><a href="../../../Links/index.html">Links</a></li>
+<li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
+</ul>
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+
+
+<h3>This Page</h3>
+<ul class="this-page-menu">
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/dataviews/test/utils.rst" rel="nofollow">Edit on GitHub</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+<li><a href="../../../index.html">Home</a></li>
+<li><a href="../../../Downloads/index.html">Downloads</a></li>
+<li><a href="../../../Tutorials/index.html">Tutorials</a></li>
+<li><a href="../../../User_Manual/index.html">User Manual</a></li>
+
+
+<li><ul class="parents">
+
+
+
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../../dataviews.html" >dataviews</a> &raquo;</li>
+
+</ul></li>
+
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, IOAM.
+      Last updated on May 05, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

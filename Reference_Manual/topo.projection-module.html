@@ -99,7 +99,7 @@ input sheet are treated as having zero weight.</p>
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.11, readonly=False</em>)</dt>
 <dd>The EventProcessor to which messages are delivered.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00272&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00334&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a destination unit coordinate into the src sheet.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">private</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Set to true if this connection is for internal use only, not to be manipulated by a user.</dd>
@@ -112,7 +112,7 @@ input sheet are treated as having zero weight.</p>
        of events.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the Projection activity after it is computed.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00273&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00335&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weight values for each unit of the destination sheet.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">activity_group</span></tt> (<em>constant=False, default=(0.5, &lt;ufunc &#8216;add&#8217;&gt;), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Grouping and precedence specifier for computing activity from
@@ -125,7 +125,7 @@ input sheet are treated as having zero weight.</p>
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00274&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00336&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Learning function applied to weights.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest_port</span></tt> (<em>constant=False, default=Activity, instantiate=False, pickle_default_value=True, precedence=0.21, readonly=False</em>)</dt>
 <dd>Identifier that can be used to distinguish different types of incoming connections.
@@ -329,7 +329,7 @@ currently disabled.</p>
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00064&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -341,7 +341,7 @@ currently disabled.</p>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00050&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00061&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -360,7 +360,7 @@ currently disabled.</p>
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00058&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00069&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -381,13 +381,13 @@ currently disabled.</p>
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00268&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00330&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00052&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00063&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00270&#8217;, single_cf_fn=IdentityTF(name=&#8217;IdentityTF00271&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00332&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00333&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -449,7 +449,7 @@ and then the weighted sum of x(t) is calculated.</p>
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00064&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -463,7 +463,7 @@ and then the weighted sum of x(t) is calculated.</p>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00050&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00061&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -482,7 +482,7 @@ and then the weighted sum of x(t) is calculated.</p>
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00058&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00069&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -503,13 +503,13 @@ and then the weighted sum of x(t) is calculated.</p>
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00054&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00065&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00052&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00063&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00056&#8217;, single_cf_fn=IdentityTF(name=&#8217;IdentityTF00057&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00067&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00068&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -570,7 +570,7 @@ activity, e.g. during map measurement.</p>
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00064&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -582,7 +582,7 @@ activity, e.g. during map measurement.</p>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00050&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00061&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -601,7 +601,7 @@ activity, e.g. during map measurement.</p>
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00058&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00069&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -622,15 +622,15 @@ activity, e.g. during map measurement.</p>
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00054&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00065&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">target</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.045, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Target average activity for the projection.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00052&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00063&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00056&#8217;, single_cf_fn=IdentityTF(name=&#8217;IdentityTF00057&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00067&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00068&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -694,7 +694,7 @@ overridden by a subclass to calculate the factors differently.</p>
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00064&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -706,7 +706,7 @@ overridden by a subclass to calculate the factors differently.</p>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00050&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00061&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -725,7 +725,7 @@ overridden by a subclass to calculate the factors differently.</p>
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00058&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00069&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -746,13 +746,13 @@ overridden by a subclass to calculate the factors differently.</p>
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00054&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00065&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00052&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00063&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00056&#8217;, single_cf_fn=IdentityTF(name=&#8217;IdentityTF00057&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00067&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00068&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -822,7 +822,7 @@ input and stores it in the activity array.</p>
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00064&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -834,7 +834,7 @@ input and stores it in the activity array.</p>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00050&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00061&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -853,7 +853,7 @@ input and stores it in the activity array.</p>
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00058&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00069&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -874,13 +874,13 @@ input and stores it in the activity array.</p>
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00054&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00065&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00052&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00063&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00056&#8217;, single_cf_fn=IdentityTF(name=&#8217;IdentityTF00057&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00067&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00068&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -926,7 +926,7 @@ input and stores it in the activity array.</p>
 
 <dl class="method">
 <dt id="topo.projection.CFProjection.view">
-<tt class="descname">view</tt><big>(</big><em>sheet_x</em>, <em>sheet_y</em>, <em>timestamp=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.view" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">view</tt><big>(</big><em>sheet_x</em>, <em>sheet_y</em>, <em>timestamp=None</em>, <em>situated=False</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.view" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a single connection field SheetView, for the unit
 located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 </dd></dl>
@@ -939,7 +939,7 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 <dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPOutputFn" title="topo.base.cf.CFPOutputFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPOutputFn</span></tt></a></p>
 <p>CFPOutputFn for use with SharedWeightCFProjections.</p>
 <p>Applies the single_cf_fn to the single shared CF&#8217;s weights.</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00266&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00328&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 </dd></dl>
 
 </div>
@@ -962,6 +962,7 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -1019,7 +1020,7 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

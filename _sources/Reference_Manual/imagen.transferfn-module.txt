@@ -6,7 +6,8 @@ imagen.transferfn
 
 Submodules
 ==========
-* `imagen.transferfn.pyc <imagen.transferfn.pyc-module.html>`_
+* `imagen.transferfn.__init__.pyc <imagen.transferfn.__init__.pyc-module.html>`_
+* `imagen.transferfn.sheet_tf <imagen.transferfn.sheet_tf-module.html>`_
 
 
 Module

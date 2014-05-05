@@ -66,15 +66,17 @@
 
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
 
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span><span class="n">subtract</span><span class="p">,</span><span class="n">cos</span><span class="p">,</span><span class="n">sin</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">subtract</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
-<span class="kn">from</span> <span class="nn">boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span>
-<span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="n">SheetView</span>
-<span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
-<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span>
+<span class="kn">from</span> <span class="nn">dataviews.boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span>
+<span class="kn">from</span> <span class="nn">dataviews.sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
+<span class="kn">from</span> <span class="nn">dataviews.options</span> <span class="kn">import</span> <span class="n">options</span><span class="p">,</span> <span class="n">StyleOpts</span>
+
+<span class="kn">from</span> <span class="nn">transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span>
 
 
 <span class="c"># CEBALERT: PatternGenerator has become a bit of a monster abstract</span>
@@ -125,10 +127,10 @@
         <span class="n">default</span><span class="o">=</span><span class="n">BoundingBox</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">((</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">))),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">doc</span><span class="o">=</span><span class="s">&quot;BoundingBox of the area in which the pattern is generated.&quot;</span><span class="p">)</span>
 
-    <span class="n">xdensity</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">xdensity</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Density (number of samples per 1.0 length) in the x direction.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">ydensity</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">ydensity</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Density (number of samples per 1.0 length) in the y direction.</span>
 <span class="s">        Typically the same as the xdensity.&quot;&quot;&quot;</span><span class="p">)</span>
 
@@ -187,6 +189,9 @@
 <span class="sd">        as currently set on the object. Otherwise, any params</span>
 <span class="sd">        specified override those currently set on the object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s">&#39;output_fns&#39;</span> <span class="ow">in</span> <span class="n">params_to_override</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Output functions specified through the call method will be ignored.&quot;</span><span class="p">)</span>
+
         <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params_to_override</span><span class="p">)</span>
 
         <span class="c"># CEBERRORALERT: position parameter is not currently</span>
@@ -283,7 +288,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xdensity</span> <span class="o">=</span> <span class="n">xdensity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ydensity</span> <span class="o">=</span> <span class="n">ydensity</span>
-
+        <span class="n">scs</span> <span class="o">=</span> <span class="n">SheetCoordinateSystem</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">xdensity</span><span class="p">,</span> <span class="n">ydensity</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
+            <span class="n">of</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">SCS</span><span class="o">=</span><span class="n">scs</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">scs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="PatternGenerator.state_push"><a class="viewcode-back" href="../../Reference_Manual/imagen.patterngenerator-module.html#imagen.patterngenerator.PatternGenerator.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">&quot;Save the state of the output functions, to be restored with state_pop.&quot;</span>
@@ -302,7 +309,8 @@
 
 </div>
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coords</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="o">+</span> <span class="s">&#39; Pattern&#39;</span>
+        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
 
 <span class="c"># Override class type; must be set here rather than when mask_shape is declared,</span>
 <span class="c"># to avoid referring to class not yet constructed</span></div>
@@ -334,7 +342,10 @@
         <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
             <span class="n">of</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">result</span></div>
+        <span class="k">return</span> <span class="n">result</span>
+
+</div>
+<span class="n">options</span><span class="o">.</span><span class="n">Pattern_SheetView</span> <span class="o">=</span> <span class="n">StyleOpts</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">)</span>
 </pre></div>
 
           </div>
@@ -353,6 +364,7 @@
 <li><a href="../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../Forums/index.html">Forums</a></li>
 <li><a href="../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../Future_Work/index.html">Future Work</a></li>
@@ -409,7 +421,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

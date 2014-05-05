@@ -82,7 +82,7 @@ automatically become available for any model.</p>
 <dl class="class">
 <dt id="topo.sheet.Sheet">
 <em class="property">class </em><tt class="descclassname">topo.sheet.</tt><tt class="descname">Sheet</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.simulation-module.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a>, <a class="reference internal" href="imagen.sheetcoords-module.html#imagen.sheetcoords.SheetCoordinateSystem" title="imagen.sheetcoords.SheetCoordinateSystem"><tt class="xref py py-class docutils literal"><span class="pre">imagen.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="topo.base.simulation-module.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a>, <a class="reference internal" href="dataviews.sheetcoords-module.html#dataviews.sheetcoords.SheetCoordinateSystem" title="dataviews.sheetcoords.SheetCoordinateSystem"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
 <p>The generic base class for neural sheets.</p>
 <p>See SheetCoordinateSystem for how Sheet represents space, and
 EventProcessor for how Sheet handles time.</p>
@@ -277,7 +277,7 @@ Cybernetics 71:66-78, 1994) for one example of its usage.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00042&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -379,7 +379,7 @@ or analysis, CFSheet and ProjectionSheet are interchangeable.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00042&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -481,7 +481,7 @@ random distribution, but can use any mechanism.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00059&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00070&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 </dl>
 <dl class="method">
@@ -552,7 +552,7 @@ to model modulatory or other more complicated types of connections.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00042&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -750,7 +750,7 @@ immediately after completion.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00059&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00070&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 </dl>
 </dd></dl>
@@ -796,7 +796,7 @@ together, as long as an appropriate TransferFn is being used.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00042&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -925,7 +925,7 @@ Sheet, e.g. when wrapping an external simulation.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00042&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -978,7 +978,7 @@ be normalized jointly.</p>
 <dl class="class">
 <dt id="topo.sheet.BoundingBox">
 <em class="property">class </em><tt class="descclassname">topo.sheet.</tt><tt class="descname">BoundingBox</tt><big>(</big><em>**args</em><big>)</big><a class="headerlink" href="#topo.sheet.BoundingBox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="imagen.boundingregion-module.html#imagen.boundingregion.BoundingRegion" title="imagen.boundingregion.BoundingRegion"><tt class="xref py py-class docutils literal"><span class="pre">imagen.boundingregion.BoundingRegion</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="dataviews.boundingregion-module.html#dataviews.boundingregion.BoundingRegion" title="dataviews.boundingregion.BoundingRegion"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.boundingregion.BoundingRegion</span></tt></a></p>
 <p>A rectangular bounding box defined either by two points forming
 an axis-aligned rectangle (or simply a radius for a square).</p>
 <dl class="method">
@@ -1056,6 +1056,7 @@ regions.</p>
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -1113,7 +1114,7 @@ regions.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

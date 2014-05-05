@@ -137,7 +137,7 @@
     <span class="kn">from</span> <span class="nn">topo.pattern</span> <span class="kn">import</span> <span class="n">TwoRectangles</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tp</span><span class="o">.</span><span class="n">pattern_generator</span><span class="p">,</span><span class="n">TwoRectangles</span><span class="p">),</span> <span class="s">&quot;Pattern generator did not change.&quot;</span>
 
-    <span class="n">preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">data</span>
     <span class="n">two_rectangles</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]])</span>
     <span class="n">assert_array_equal</span><span class="p">(</span><span class="n">preview</span><span class="p">,</span><span class="n">two_rectangles</span><span class="p">,</span><span class="s">&quot;Incorrect pattern in preview plot.&quot;</span><span class="p">)</span>
 
@@ -145,19 +145,19 @@
     <span class="n">tp</span><span class="o">.</span><span class="n">Present</span><span class="p">()</span>
     <span class="n">gs_view</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">act</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span>
     <span class="k">assert</span> <span class="n">gs_view</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">src_name</span><span class="o">==</span><span class="s">&#39;GS&#39;</span>
-    <span class="n">gs_plot_array</span> <span class="o">=</span> <span class="n">gs_view</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">gs_plot_array</span> <span class="o">=</span> <span class="n">gs_view</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">data</span>
     <span class="n">assert_array_equal</span><span class="p">(</span><span class="n">gs_plot_array</span><span class="p">,</span><span class="n">two_rectangles</span><span class="p">,</span><span class="s">&quot;Incorrect pattern in activity plot after Present.&quot;</span><span class="p">)</span>
 
 
     <span class="n">tp</span><span class="o">.</span><span class="n">params_frame</span><span class="o">.</span><span class="n">gui_set_param</span><span class="p">(</span><span class="s">&#39;scale&#39;</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">data</span>
     <span class="n">assert_array_equal</span><span class="p">(</span><span class="n">preview</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="n">two_rectangles</span><span class="p">,</span><span class="s">&quot;Changing pattern parameters did not update preview.&quot;</span><span class="p">)</span>
 
 
     <span class="c">### Defaults button</span>
 
     <span class="c"># first change several more parameters</span>
-    <span class="n">initial_preview</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">initial_preview</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">data</span>
 
     <span class="n">new_param_values</span> <span class="o">=</span> <span class="p">[</span><span class="c">#(&#39;output_fns&#39;,&#39;Sigmoid&#39;),</span>
                         <span class="p">(</span><span class="s">&#39;scale&#39;</span><span class="p">,</span><span class="s">&#39;2&#39;</span><span class="p">)]</span>
@@ -165,7 +165,7 @@
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">new_param_values</span><span class="p">:</span>
         <span class="n">tp</span><span class="o">.</span><span class="n">params_frame</span><span class="o">.</span><span class="n">gui_set_param</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
 
-    <span class="n">changed_preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">changed_preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">data</span>
     <span class="c"># and check the preview did change</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">assert_array_equal</span><span class="p">(</span><span class="n">changed_preview</span><span class="p">,</span><span class="n">initial_preview</span><span class="p">)</span>
@@ -176,7 +176,7 @@
 
     <span class="c"># test that preview display is correct</span>
     <span class="n">tp</span><span class="o">.</span><span class="n">params_frame</span><span class="o">.</span><span class="n">Defaults</span><span class="p">()</span>
-    <span class="n">preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">preview</span> <span class="o">=</span> <span class="n">_get_named_plot</span><span class="p">(</span><span class="s">&#39;GS&#39;</span><span class="p">,</span><span class="n">tp</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">plots</span><span class="p">)</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;Strength&#39;</span><span class="p">,{})[</span><span class="s">&#39;Activity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">data</span>
     <span class="n">assert_array_equal</span><span class="p">(</span><span class="n">preview</span><span class="p">,</span><span class="n">two_rectangles</span><span class="p">,</span><span class="s">&quot;Defaults button failed to revert params to default values.&quot;</span><span class="p">)</span>
 
     <span class="c"># CB: still need to test duration, learning, etc</span>
@@ -200,7 +200,7 @@
 
     <span class="n">p</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">guimain</span><span class="p">[</span><span class="s">&#39;Plots&#39;</span><span class="p">][</span><span class="s">&#39;Tuning Curves&#39;</span><span class="p">][</span><span class="s">&#39;Orientation Tuning&#39;</span><span class="p">]()</span>
     <span class="kn">from</span> <span class="nn">topo.command.analysis</span> <span class="kn">import</span> <span class="n">measure_or_tuning</span>
-    <span class="n">p</span><span class="o">.</span><span class="n">pre_plot_hooks</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure_or_tuning</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">num_phase</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">num_orientation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">curve_parameters</span><span class="o">=</span><span class="p">[{</span><span class="s">&#39;contrast&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">}])]</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">pre_plot_hooks</span> <span class="o">=</span> <span class="p">[</span><span class="n">measure_or_tuning</span><span class="o">.</span><span class="n">instance</span><span class="p">(</span><span class="n">num_phase</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">num_orientation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">contrasts</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">])]</span>
     <span class="n">p</span><span class="o">.</span><span class="n">Refresh</span><span class="p">()</span>
 
 
@@ -270,6 +270,7 @@
 <li><a href="../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../Future_Work/index.html">Future Work</a></li>
@@ -325,7 +326,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

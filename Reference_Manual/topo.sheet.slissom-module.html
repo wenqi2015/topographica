@@ -153,7 +153,7 @@ neurons using dynamic synapses.</p>
             of this object.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">trace_n</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=400, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of steps to track neuron&#8217;s membrane potential</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00042&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -161,7 +161,7 @@ neurons using dynamic synapses.</p>
         disables all masking, but subclasses can use this mask to
         implement optimizations, non-rectangular Sheet shapes,
         lesions, etc.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[PiecewiseLinear(lower_bound=0.1, name=&#8217;PiecewiseLinear00298&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[PiecewiseLinear(init_keys=[], lower_bound=0.1, name=&#8217;PiecewiseLinear00360&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">allow_skip_non_responding_units</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If true, then units that are inactive after the response
@@ -235,6 +235,7 @@ This method simply calls plot_trace().</p>
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -292,7 +293,7 @@ This method simply calls plot_trace().</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

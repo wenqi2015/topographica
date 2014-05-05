@@ -82,7 +82,7 @@
         applied. This can be used to shape the pattern.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>BoundingBox of the area in which the pattern is generated.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Density (number of samples per 1.0 length) in the x direction.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">mask_shape</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=0.06, readonly=False</em>)</dt>
 <dd>Optional PatternGenerator used to construct a mask to be applied to
@@ -99,7 +99,7 @@
         Provides a convenient way to set the x and y parameters together
         as a tuple (x,y), but shares the same actual storage as x and y
         (and thus only position OR x and y need to be specified).</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Density (number of samples per 1.0 length) in the y direction.
         Typically the same as the xdensity.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">size</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.3, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -143,7 +143,7 @@ translated, etc. uniformly.</p>
         applied. This can be used to shape the pattern.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>BoundingBox of the area in which the pattern is generated.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Density (number of samples per 1.0 length) in the x direction.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">mask_shape</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=0.06, readonly=False</em>)</dt>
 <dd>Optional PatternGenerator used to construct a mask to be applied to
@@ -160,7 +160,7 @@ translated, etc. uniformly.</p>
         Provides a convenient way to set the x and y parameters together
         as a tuple (x,y), but shares the same actual storage as x and y
         (and thus only position OR x and y need to be specified).</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Density (number of samples per 1.0 length) in the y direction.
         Typically the same as the xdensity.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">size</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.3, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -223,6 +223,7 @@ may depend on the matrix dimensions.</p>
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -280,7 +281,7 @@ may depend on the matrix dimensions.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

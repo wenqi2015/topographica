@@ -298,6 +298,12 @@ Submodules
 * `topo.projection.__init__.pyc <topo.projection.__init__.pyc-module.html>`_
 * `topo.projection.optimized <topo.projection.optimized-module.html>`_
 * `topo.projection <topo.projection-module.html>`_
+* `topo.optimized.__init__.pyc <topo.optimized.__init__.pyc-module.html>`_
+* `topo.optimized.optimized.h <topo.optimized.optimized.h-module.html>`_
+* `topo.optimized <topo.optimized-module.html>`_
+* `topo.optimized.unoptimized <topo.optimized.unoptimized-module.html>`_
+* `topo.optimized.optimized.pyx <topo.optimized.optimized.pyx-module.html>`_
+* `topo.optimized.compile <topo.optimized.compile-module.html>`_
 * `topo.transferfn.optimized.pyc <topo.transferfn.optimized.pyc-module.html>`_
 * `topo.transferfn.__init__.pyc <topo.transferfn.__init__.pyc-module.html>`_
 * `topo.transferfn.optimized <topo.transferfn.optimized-module.html>`_

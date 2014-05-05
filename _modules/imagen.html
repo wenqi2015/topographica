@@ -71,7 +71,6 @@
 
 <span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision$&#39;</span>
 
-<span class="c">#from math import pi, sqrt</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">from</span> <span class="nn">numpy.oldnumeric</span> <span class="kn">import</span> <span class="n">around</span><span class="p">,</span> <span class="n">bitwise_and</span><span class="p">,</span> <span class="n">bitwise_or</span>
@@ -86,8 +85,10 @@
 <span class="c"># Imported here so that all PatternGenerators will be in the same package</span>
 <span class="kn">from</span> <span class="nn">patterngenerator</span> <span class="kn">import</span> <span class="n">Constant</span><span class="p">,</span> <span class="n">PatternGenerator</span>
 
-<span class="kn">from</span> <span class="nn">views</span> <span class="kn">import</span> <span class="n">SheetStack</span>
-<span class="kn">from</span> <span class="nn">sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetStack</span>
+<span class="kn">from</span> <span class="nn">dataviews.sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">boundingregion</span><span class="p">,</span> <span class="n">sheetcoords</span> <span class="c"># pyflakes:ignore (API import)</span>
+
 <span class="kn">from</span> <span class="nn">patternfn</span> <span class="kn">import</span> <span class="n">gaussian</span><span class="p">,</span><span class="n">exponential</span><span class="p">,</span><span class="n">gabor</span><span class="p">,</span><span class="n">line</span><span class="p">,</span><span class="n">disk</span><span class="p">,</span><span class="n">ring</span><span class="p">,</span>\
     <span class="n">sigmoid</span><span class="p">,</span><span class="n">arc_by_radian</span><span class="p">,</span><span class="n">arc_by_center</span><span class="p">,</span><span class="n">smooth_rectangle</span><span class="p">,</span><span class="n">float_error_ignore</span><span class="p">,</span> \
     <span class="n">log_gaussian</span>
@@ -654,7 +655,7 @@
 </div>
 <div class="viewcode-block" id="Composite.state_pop"><a class="viewcode-back" href="../Reference_Manual/imagen-module.html#imagen.Composite.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Push the state of all generators</span>
+<span class="sd">        Pop the state of all generators</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Composite</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">generators</span><span class="p">:</span>
@@ -792,7 +793,7 @@
 <span class="s">       must be an integer multiple of this timestep value (which may</span>
 <span class="s">       be a float or some other numeric type).&quot;&quot;&quot;</span> <span class="p">)</span>
 
-    <span class="n">dimension_labels</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">],</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;frames&#39;</span><span class="p">],</span> <span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">       Animations are indexed by time. This may be by integer frame</span>
 <span class="s">       number or some continuous (e.g. floating point or rational)</span>
 <span class="s">       representation of time.&quot;&quot;&quot;</span><span class="p">)</span>
@@ -800,9 +801,7 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_items</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">initial_items</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Initial items can only be used if frames is set to None.&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">initial_items</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_fn</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
                 <span class="n">t</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
@@ -1595,12 +1594,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_create_latency_indices</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Spectrogram</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__call__</span><span class="p">()</span>
-
-
 </div>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="n">_public</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">_k</span> <span class="k">for</span> <span class="n">_k</span><span class="p">,</span><span class="n">_v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_v</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">_v</span><span class="p">,</span><span class="n">PatternGenerator</span><span class="p">)]))</span>
-<span class="k">del</span> <span class="n">_k</span><span class="p">,</span><span class="n">_v</span>
-<span class="n">__all__</span> <span class="o">=</span> <span class="n">_public</span> <span class="o">+</span> <span class="p">[</span><span class="s">&quot;image&quot;</span><span class="p">,</span><span class="s">&quot;random&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="n">_public</span> <span class="o">+</span> <span class="p">[</span><span class="s">&quot;image&quot;</span><span class="p">,</span> <span class="s">&quot;random&quot;</span><span class="p">,</span><span class="s">&quot;boundingregion&quot;</span><span class="p">,</span> <span class="s">&quot;sheetcoords&quot;</span><span class="p">]</span>
+<span class="n">__path__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">boundingregion</span><span class="o">.</span><span class="n">__file__</span><span class="p">)))</span>
+<span class="n">__path__</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sheetcoords</span><span class="o">.</span><span class="n">__file__</span><span class="p">)))</span>
 
 <span class="c"># Avoids loading the audio and opencvcamera modules, which rely on external</span>
 <span class="c"># libraries that might not be present on this system.</span>
@@ -1622,6 +1621,7 @@
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -1677,7 +1677,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

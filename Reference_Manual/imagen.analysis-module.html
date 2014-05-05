@@ -56,55 +56,74 @@
 </map>
 <div class="section" id="module-imagen.analysis">
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-imagen.analysis" title="Permalink to this headline">¶</a></h2>
-<p>ImaGen analysis provides common analysis functions, which can be applied to
-any SheetView or SheetStack. This allows the user to perform analyses on their
-input patterns or any other arrays embedded within a SheetView and display
-the output of the analysis alongside the original patterns.</p>
-<p>Currently this module provides FFT, auto-correlation and gradient analyses as
-well the analysis baseclass, which will apply any TransferFn to the data.</p>
-<dl class="class">
-<dt id="imagen.analysis.analysis">
-<em class="property">class </em><tt class="descclassname">imagen.analysis.</tt><tt class="descname">analysis</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/analysis.html#analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.analysis.analysis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.ParameterizedFunction" title="param.parameterized.ParameterizedFunction"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
-<p>The analysis baseclass provides support for processing SheetStacks,
-SheetViews and lists of SheetView objects. The actual transformation is
-performed by the _analysis method, which can be subclassed to provide any
-desired transformation, however by default it will apply the supplied
-transfer_fn.</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">transfer_fn</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-</dd></dl>
-
+<p>The ImaGen analysis module provides common analysis functions, which
+can be applied to any SheetView or SheetStack. This allows the user to
+perform analyses on their input patterns or any other arrays embedded
+within a SheetView and display the output of the analysis alongside
+the original patterns.</p>
+<p>Currently this module provides FFT, auto-correlation and gradient
+analyses.</p>
 <dl class="class">
 <dt id="imagen.analysis.autocorrelation">
 <em class="property">class </em><tt class="descclassname">imagen.analysis.</tt><tt class="descname">autocorrelation</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/analysis.html#autocorrelation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.analysis.autocorrelation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#imagen.analysis.analysis" title="imagen.analysis.analysis"><tt class="xref py py-class docutils literal"><span class="pre">imagen.analysis.analysis</span></tt></a></p>
-<p>Compute the 2D autocorrelation of the supplied data. Requires the external
-SciPy package.</p>
-<p>Example:: autocorrelation(topo.sim.V1.views.maps.OrientationPreference)</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">transfer_fn</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dd><p>Bases: <a class="reference internal" href="dataviews.operation-module.html#dataviews.operation.ViewOperation" title="dataviews.operation.ViewOperation"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.operation.ViewOperation</span></tt></a></p>
+<p>Compute the 2D autocorrelation of the supplied data. Requires the
+external SciPy package.</p>
+<p>Example::
+autocorrelation(topo.sim.V1.views.maps.OrientationPreference)</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="imagen.analysis.fft">
-<em class="property">class </em><tt class="descclassname">imagen.analysis.</tt><tt class="descname">fft</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/analysis.html#fft"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.analysis.fft" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#imagen.analysis.analysis" title="imagen.analysis.analysis"><tt class="xref py py-class docutils literal"><span class="pre">imagen.analysis.analysis</span></tt></a></p>
+<dt id="imagen.analysis.contours">
+<em class="property">class </em><tt class="descclassname">imagen.analysis.</tt><tt class="descname">contours</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/analysis.html#contours"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.analysis.contours" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dataviews.operation-module.html#dataviews.operation.ViewOperation" title="dataviews.operation.ViewOperation"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.operation.ViewOperation</span></tt></a></p>
+<p>Given a SheetView with a single channel, annotate it with contour
+lines for a given set of contour levels.</p>
+<p>The return is a overlay with a Contours layer for each given
+level, overlaid on top of the input SheetView.</p>
+<dl class="docutils">
+<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">levels</span></tt> (<em>constant=False, default=(0.5,), instantiate=False, length=1, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A list of scalar values used to specify the contour levels.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="imagen.analysis.cyclic_similarity_index">
+<em class="property">class </em><tt class="descclassname">imagen.analysis.</tt><tt class="descname">cyclic_similarity_index</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/analysis.html#cyclic_similarity_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.analysis.cyclic_similarity_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dataviews.operation-module.html#dataviews.operation.ViewOperation" title="dataviews.operation.ViewOperation"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.operation.ViewOperation</span></tt></a></p>
+<p>The similarity index between any two cyclic maps. By default, a
+zero value indicates uncorrelated SheetView data. The similarity
+index may be useful for quantifying the stability of some cyclic
+quantity over time by comparing each sample in a SheetStack to the
+final SheetView element.</p>
+<dl class="docutils">
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">unit_range</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether to scale the similarity values linearly so that
+        uncorrelated values have a value of zero and exactly matching
+        elements are indicated with a value of 1.0. Negative values
+        are then used to indicate anticorrelation.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="imagen.analysis.fft_power_spectrum">
+<em class="property">class </em><tt class="descclassname">imagen.analysis.</tt><tt class="descname">fft_power_spectrum</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/analysis.html#fft_power_spectrum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.analysis.fft_power_spectrum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dataviews.operation-module.html#dataviews.operation.ViewOperation" title="dataviews.operation.ViewOperation"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.operation.ViewOperation</span></tt></a></p>
 <p>Compute the 2D Fast Fourier Transform (FFT) of the supplied sheet view.</p>
-<p>Example:: fft(topo.sim.V1.views.maps.OrientationPreference)</p>
+<p>Example::
+fft_power_spectrum(topo.sim.V1.views.maps.OrientationPreference)</p>
 <p><em>param Number</em> <tt class="docutils literal"><span class="pre">peak_val</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">transfer_fn</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="imagen.analysis.gradient">
 <em class="property">class </em><tt class="descclassname">imagen.analysis.</tt><tt class="descname">gradient</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/imagen/analysis.html#gradient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.analysis.gradient" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#imagen.analysis.analysis" title="imagen.analysis.analysis"><tt class="xref py py-class docutils literal"><span class="pre">imagen.analysis.analysis</span></tt></a></p>
+<dd><p>Bases: <a class="reference internal" href="dataviews.operation-module.html#dataviews.operation.ViewOperation" title="dataviews.operation.ViewOperation"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.operation.ViewOperation</span></tt></a></p>
 <p>Compute the gradient plot of the supplied SheetView or SheetStack.
 Translated from Octave code originally written by Yoonsuck Choe.</p>
-<p>If the SheetView has a cyclic_range, negative differences will
-be wrapped into the range.</p>
+<p>If the SheetView has a cyclic_range, negative differences will be
+wrapped into the range.</p>
 <p>Example:: gradient(topo.sim.V1.views.maps.OrientationPreference)</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">transfer_fn</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
 </dd></dl>
 
 </div>
@@ -127,6 +146,7 @@ be wrapped into the range.</p>
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -183,7 +203,7 @@ be wrapped into the range.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

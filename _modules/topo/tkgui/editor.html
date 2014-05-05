@@ -1432,7 +1432,7 @@
                 <span class="c"># AL, the idea will be to allow any available plots to be shown on the sheet.</span>
                 <span class="c"># eg m = self.simobj.sheet_views[&#39;OrientationPreference&#39;].view()[0]</span>
                 <span class="n">update_activity</span><span class="p">()</span>
-                <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simobj</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;_activity_buffer&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+                <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">simobj</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="s">&#39;_activity_buffer&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">data</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
                     <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize_plot</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
                 <span class="n">matrix_width</span><span class="p">,</span> <span class="n">matrix_height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">element_count</span>
@@ -2012,6 +2012,7 @@
 <li><a href="../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../Future_Work/index.html">Future Work</a></li>
@@ -2068,7 +2069,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

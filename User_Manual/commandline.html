@@ -54,11 +54,16 @@
 <h1>Topographica Command Line<a class="headerlink" href="#topographica-command-line" title="Permalink to this headline">¶</a></h1>
 <p>The GUI interface of Topographica provides the most commonly used
 plots and displays, but it is often useful to be able to manipulate
-the underlying program objects interactively. The Topographica
-command prompt allows you to do this easily, using the same syntax
-as in Topographica scripts. This section will eventually include
-detailed information on how to do this, but hopefully the current
-information will help you get started.</p>
+the underlying program objects interactively. The Topographica command
+prompt allows you to do this easily, using the same syntax as in
+Topographica scripts. This section describes the basic
+<a class="reference external" href="http://ipython.org/">IPython</a>-based interactive prompt that is available whenever
+Topographica starts.  Topographica also supports the more
+full-featured <cite>IPython Notebook</cite> interface using a web browser, which
+supports all of the same commands and also provides interactive
+visualization facilities similar to those in the GUI (but more
+flexible).  See the <cite>Tutorials</cite> for examples of using the notebook
+interface.</p>
 <p>The command prompt gives you direct access to <a class="reference external" href="http://python.org/doc/">Python</a>, and so any
 expression valid for Python can be entered. For instance, if your
 script defines a Sheet named V1, you can display and change V1&#8217;s
@@ -178,10 +183,8 @@ class GeneratorSheet(topo.base.sheet.Sheet)
  |
 ...</pre>
 </div>
-<p>Topographica uses <a class="reference external" href="http://ipython.scipy.org/">IPython</a> for its interactive prompt, providing
-many convenient facilities for interactive work (such as tab
-completion). The <a class="reference external" href="http://ipython.scipy.org/doc/manual/html/interactive/tutorial.html">IPython Quick Tutorial</a> is a good place to learn
-about these.</p>
+<p>See the <a class="reference external" href="http://ipython.scipy.org/doc/manual/html/interactive/tutorial.html">IPython Quick Tutorial</a> for IPython-specific extensions useful
+from the command prompt.</p>
 <div class="section" id="recreating-results-from-interactive-sessions">
 <h2>Recreating results from interactive sessions<a class="headerlink" href="#recreating-results-from-interactive-sessions" title="Permalink to this headline">¶</a></h2>
 <p>While interactive creation and exploration of a simulation can be
@@ -256,7 +259,8 @@ labels, titles, line styles, etc.</p>
 process of generating and saving the various bitmap images visible
 in the Topographica GUI. For instance, to measure an orientation map
 and save the resulting bitmaps to disk, just do:</p>
-<div class="highlight-python"><pre>Topographica&gt; from topo.command.analysis import save_plotgroup, measure_or_pref
+<div class="highlight-python"><pre>Topographica&gt; from topo.command.analysis import measure_or_pref
+Topographica&gt; from topo.plotting.plotgroup import save_plotgroup
 Topographica&gt; measure_or_pref()
 Topographica&gt; save_plotgroup("Orientation Preference")</pre>
 </div>
@@ -312,7 +316,7 @@ whichever technique you prefer.</p>
 <div class="section" id="simplifying-imports-during-interactive-runs">
 <span id="option-a"></span><h2>Simplifying imports during interactive runs<a class="headerlink" href="#simplifying-imports-during-interactive-runs" title="Permalink to this headline">¶</a></h2>
 <p>When working interactively, typing common import lines (such as
-<tt class="docutils literal"><span class="pre">from</span> <span class="pre">topo.command.analysis</span> <span class="pre">import</span> <span class="pre">save_plotgroup,</span> <span class="pre">measure_or_pref</span></tt>,
+<tt class="docutils literal"><span class="pre">from</span> <span class="pre">topo.command.analysis</span> <span class="pre">import</span> <span class="pre">measure_or_pref</span></tt>,
 from the earlier example) can be tedious. Topographica therefore
 provides the &#8220;-a&#8221; command-line option, which automatically imports
 every command in topo/command/*.py. The &#8220;-g&#8221; option also
@@ -493,6 +497,7 @@ editor</a>.)</p>
 <li><a href="index.html">User Manual</a></li>
 <li><a href="../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -561,7 +566,7 @@ editor</a>.)</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

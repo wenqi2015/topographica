@@ -68,7 +68,15 @@
 <span class="sd">originating source object.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
 <span class="kn">import</span> <span class="nn">param</span>
+
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span> <span class="k">as</span> <span class="n">ImagenSheetView</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetStack</span>
+<span class="kn">from</span> <span class="nn">dataviews.sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
+<span class="kn">from</span> <span class="nn">dataviews.boundingregion</span> <span class="kn">import</span> <span class="n">BoundingRegion</span>
+<span class="kn">from</span> <span class="nn">dataviews.options</span> <span class="kn">import</span> <span class="n">options</span><span class="p">,</span> <span class="n">StyleOpts</span>
 
 
 <div class="viewcode-block" id="SheetView"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheetview-module.html#topo.base.sheetview.SheetView">[docs]</a><span class="k">class</span> <span class="nc">SheetView</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
@@ -141,19 +149,43 @@
     <span class="k">return</span> <span class="n">unitview</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionView"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.sheetview-module.html#topo.base.sheetview.ProjectionView">[docs]</a><span class="k">def</span> <span class="nf">ProjectionView</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">),</span> <span class="n">projection</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function for backward compatibility with earlier ProjectionView</span>
-<span class="sd">    compoennt. Original docstring for ProjectionView:</span>
+<span class="k">class</span> <span class="nc">CFView</span><span class="p">(</span><span class="n">ImagenSheetView</span><span class="p">):</span>
 
-<span class="sd">    ProjectionViews should be stored in Sheets via a tuple</span>
-<span class="sd">    (&#39;Weights&#39;,Sheet,Projection).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">projectionview</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">),</span> <span class="n">projection</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                               <span class="n">projection</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span>
-                               <span class="n">row_precedence</span> <span class="o">=</span> <span class="n">projection</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-    <span class="n">projectionview</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">projection</span>
-    <span class="k">return</span> <span class="n">projectionview</span></div>
+    <span class="n">situated_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        The situated bounds can be set to embed the SheetLayer in a larger</span>
+<span class="s">        bounded region.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">input_sheet_slice</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">NumericTuple</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Slice indices of the embedded view into the situated matrix.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">situated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
+        <span class="n">xd</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">)))</span>
+        <span class="n">yd</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">b</span><span class="p">)))</span>
+
+        <span class="n">scs</span> <span class="o">=</span> <span class="n">SheetCoordinateSystem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span> <span class="n">xd</span><span class="p">,</span> <span class="n">yd</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">scs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_sheet_slice</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">r1</span><span class="p">:</span><span class="n">r2</span><span class="p">,</span> <span class="n">c1</span><span class="p">:</span><span class="n">c2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="k">return</span> <span class="n">ImagenSheetView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span> <span class="n">roi_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
+                               <span class="n">situated_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span>
+                               <span class="n">cyclic_range</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cyclic_range</span><span class="p">,</span>
+                               <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CFStack</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">):</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">situated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">situated</span><span class="p">)</span>
+
+
+<span class="n">options</span><span class="o">.</span><span class="n">CFView</span> <span class="o">=</span> <span class="n">StyleOpts</span><span class="p">(</span><span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
 </pre></div>
 
           </div>
@@ -172,6 +204,7 @@
 <li><a href="../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../Future_Work/index.html">Future Work</a></li>
@@ -227,7 +260,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

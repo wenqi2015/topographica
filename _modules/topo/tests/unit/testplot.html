@@ -63,23 +63,21 @@
 
 
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="kn">from</span> <span class="nn">topo.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">topo.plotting.bitmap</span> <span class="kn">import</span> <span class="n">RGBBitmap</span><span class="p">,</span> <span class="n">HSVBitmap</span>
 <span class="c">#from testsheetview import ImageGenerator</span>
 
 <span class="n">SHOW_PLOTS</span> <span class="o">=</span> <span class="bp">False</span>
 
 <span class="c">### JC: My new imports</span>
 <span class="kn">from</span> <span class="nn">topo.plotting.plot</span> <span class="kn">import</span> <span class="n">make_template_plot</span>
-<span class="kn">from</span> <span class="nn">numpy.oldnumeric</span> <span class="kn">import</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">divide</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span><span class="n">reshape</span><span class="p">,</span><span class="n">array</span>
+<span class="kn">from</span> <span class="nn">numpy.oldnumeric</span> <span class="kn">import</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">array</span>
 <span class="kn">from</span> <span class="nn">topo.base.boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span>
 <span class="kn">import</span> <span class="nn">numpy.oldnumeric.random_array</span> <span class="kn">as</span> <span class="nn">RandomArray</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
 
-<span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span><span class="p">,</span> <span class="n">AttrDict</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span>
+<span class="kn">from</span> <span class="nn">dataviews.ndmapping</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
 
 <span class="c">### This function is defined here, where it might be useful for testing</span>
@@ -442,6 +440,7 @@
 <li><a href="../../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../../Future_Work/index.html">Future Work</a></li>
@@ -497,7 +496,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

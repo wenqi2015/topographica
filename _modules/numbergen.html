@@ -305,7 +305,12 @@
                          <span class="s">&quot;random values conditional on object instantiation order.&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_hash_and_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">hashval</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_fn</span><span class="p">(),</span> <span class="n">param</span><span class="o">.</span><span class="n">random_seed</span><span class="p">))</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_fn</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s">&#39;numer&#39;</span><span class="p">):</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">numer</span><span class="p">()),</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">denom</span><span class="p">()))</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Cannot generate known hash format for time type &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="n">hashval</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">random_seed</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_generator</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">hashval</span><span class="p">)</span>
 
 
@@ -449,7 +454,7 @@
 
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_fn</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_fn</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">factor</span><span class="p">)</span>
 
 
 </div>
@@ -648,6 +653,7 @@
 <li><a href="../User_Manual/index.html">User Manual</a></li>
 <li><a href="../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../Forums/index.html">Forums</a></li>
 <li><a href="../Team_Members/index.html">Team Members</a></li>
 <li><a href="../Future_Work/index.html">Future Work</a></li>
@@ -703,7 +709,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 25, 2014.
+      Last updated on May 05, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
