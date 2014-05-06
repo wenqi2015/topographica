@@ -301,6 +301,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">Command</span>
 <span class="kn">from</span> <span class="nn">distutils.command.sdist</span> <span class="kn">import</span> <span class="n">sdist</span> <span class="k">as</span> <span class="n">_sdist</span>
 <span class="kn">from</span> <span class="nn">distutils.command.build</span> <span class="kn">import</span> <span class="n">build</span> <span class="k">as</span> <span class="n">_build</span>
@@ -505,7 +506,6 @@
 
 
 <span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">errno</span>
 
 
@@ -541,9 +541,6 @@
     <span class="k">return</span> <span class="n">stdout</span>
 
 
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">os.path</span>
 
 <span class="k">def</span> <span class="nf">get_expanded_variables</span><span class="p">(</span><span class="n">versionfile_abs</span><span class="p">):</span>
     <span class="c"># the code embedded in _version.py can just fetch the value of these</span>
@@ -647,8 +644,6 @@
                   <span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">parentdir_prefix</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">return</span> <span class="p">{</span><span class="s">&quot;version&quot;</span><span class="p">:</span> <span class="n">dirname</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">parentdir_prefix</span><span class="p">):],</span> <span class="s">&quot;full&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">}</span>
-<span class="kn">import</span> <span class="nn">os.path</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="c"># os.path.relpath only appeared in Python-2.6 . Define it here for 2.5.</span>
 <span class="k">def</span> <span class="nf">os_path_relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">curdir</span><span class="p">):</span>
