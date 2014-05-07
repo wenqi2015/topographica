@@ -160,7 +160,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sv1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sv2</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;Array mismatch not detected&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;SheetView: </span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_bounds_mismatch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -176,13 +176,13 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay1_depth2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlay4_depth3</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;Overlays have different lengths.&quot;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;SheetOverlays have different lengths.&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_element_mismatch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay1_depth2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">overlay2_depth2</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;SheetView: </span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_bounds_mismatch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -235,7 +235,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack1_1D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack4_1D</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;Element mismatch in array data not detected.&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;SheetView: </span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
 
 
     <span class="k">def</span> <span class="nf">test_overlay_mismatch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -243,10 +243,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stack7_1D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stack8_1D</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s">&quot;Overlay element mismatch in array data not detected.&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;SheetView: </span><span class="se">\n</span><span class="s">Arrays are not almost equal to 6 decimals&#39;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
     <span class="kn">import</span> <span class="nn">nose</span>
     <span class="n">nose</span><span class="o">.</span><span class="n">runmodule</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&quot;--logging-level&quot;</span><span class="p">,</span> <span class="s">&quot;ERROR&quot;</span><span class="p">])</span>
 </pre></div>
@@ -324,7 +325,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 06, 2014.
+      Last updated on May 07, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

@@ -64,7 +64,7 @@
 <span id="module"></span><h2>Module<a class="headerlink" href="#module-dataviews.plots" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="dataviews.plots.Plot">
-<em class="property">class </em><tt class="descclassname">dataviews.plots.</tt><tt class="descname">Plot</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/dataviews/plots.html#Plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataviews.plots.Plot" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">dataviews.plots.</tt><tt class="descname">Plot</tt><big>(</big><em>zorder=0</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/dataviews/plots.html#Plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataviews.plots.Plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>A Plot object returns either a matplotlib figure object (when
 called or indexed) or a matplotlib animation object as
@@ -134,6 +134,7 @@ x value to make the plots easier to interpret.</p>
 </dl>
 <p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">center</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <p><em>param Integer</em> <tt class="docutils literal"><span class="pre">num_ticks</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</p>
+<p><em>param Boolean</em> <tt class="docutils literal"><span class="pre">rescale_individually</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="docutils">
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">style_opts</span></tt> (<em>bounds=(0, None), constant=True, default=[&#8216;alpha&#8217;, &#8216;color&#8217;, &#8216;linestyle&#8217;, &#8216;linewidth&#8217;, &#8216;visible&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The style options for CurvePlot match those of matplotlib&#8217;s
@@ -333,7 +334,7 @@ animation.</p>
 </dl>
 <dl class="method">
 <dt id="dataviews.plots.HistogramPlot.update_frame">
-<tt class="descname">update_frame</tt><big>(</big><em>n</em><big>)</big><a class="reference internal" href="../_modules/dataviews/plots.html#HistogramPlot.update_frame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataviews.plots.HistogramPlot.update_frame" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">update_frame</tt><big>(</big><em>n</em>, <em>lbrt=None</em><big>)</big><a class="reference internal" href="../_modules/dataviews/plots.html#HistogramPlot.update_frame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataviews.plots.HistogramPlot.update_frame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update the plot for an animation.</p>
 </dd></dl>
 
@@ -398,7 +399,7 @@ respectively.</p>
 <dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">max_font_size</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=20, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=False, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The largest allowable font size for the text in each table
        cell.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">font_types</span></tt> (<em>allow_None=False, constant=False, default={&#8216;heading&#8217;: &lt;matplotlib.font_manager.FontProperties object at 0x5a391d0&gt;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">font_types</span></tt> (<em>allow_None=False, constant=False, default={&#8216;heading&#8217;: &lt;matplotlib.font_manager.FontProperties object at 0x5365390&gt;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The font style used for heading labels used for emphasis.</dd>
 <dt><em>param ObjectSelector</em> <tt class="docutils literal"><span class="pre">aspect</span></tt> (<em>check_on_set=True, compute_default_fn=None, constant=False, default=None, instantiate=False, objects=[&#8216;auto&#8217;, &#8216;equal&#8217;, &#8216;square&#8217;, None], pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The aspect ratio mode of the plot. By default, a plot may select
@@ -646,7 +647,7 @@ object.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 06, 2014.
+      Last updated on May 07, 2014.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
