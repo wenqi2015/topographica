@@ -52,8 +52,6 @@
             
   <div class="section" id="topo-learningfn">
 <h1>topo.learningfn<a class="headerlink" href="#topo-learningfn" title="Permalink to this headline">¶</a></h1>
-<div class="inheritance_box"><img src="../_images/inheritancefe104bf3e4.svg" usemap="#inheritancefe104bf3e4" class="inheritance"/></div><map id="inheritancefe104bf3e4" name="inheritancefe104bf3e4">
-</map>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -68,114 +66,6 @@
 </div>
 <div class="section" id="module">
 <h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-topo.learningfn"></span><p>A family of function objects for changing a set of weights over time.</p>
-<p>Learning functions come in two varieties: LearningFunction, and
-CFPLearningFunction.  A LearningFunction (e.g. Hebbian) applies to one
-set of weights, typically from one ConnectionField.  To apply learning
-to an entire CFProjection, a LearningFunction can be plugged in to
-CFPLF_Plugin.  CFPLF_Plugin is one example of a CFPLearningFunction,
-which is a function that works with the entire Projection at once.
-Some optimizations and algorithms can only be applied at the full
-CFPLearningFn level, so there are other CFPLearningFns beyond
-CFPLF_Plugin.</p>
-<p>Any new learning functions added to this directory will automatically
-become available for any model.</p>
-<dl class="class">
-<dt id="topo.learningfn.IdentityLF">
-<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">IdentityLF</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.learningfn.IdentityLF" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
-<p>Identity function; does not modify the weights.</p>
-<p>For speed, calling this function object is sometimes optimized
-away entirely.  To make this feasible, it is not allowable to
-derive other classes from this object, modify it to have different
-behavior, add side effects, or anything of that nature.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.learningfn.BCMFixed">
-<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">BCMFixed</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/learningfn.html#BCMFixed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.learningfn.BCMFixed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
-<p>Bienenstock, Cooper, and Munro (1982) learning rule with a fixed threshold.</p>
-<p>(See Dayan and Abbott, 2001, equation 8.12) In the BCM rule,
-activities change only when there is both pre- and post-synaptic
-activity.  The full BCM rule requires a sliding threshold (see
-CFPBCM), but this version is simpler and easier to analyze.</p>
-<p>Requires some form of output_fn normalization for stability.</p>
-<dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">unit_threshold</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Threshold between LTD and LTP.</dd>
-</dl>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.learningfn.Covariance">
-<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">Covariance</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/learningfn.html#Covariance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.learningfn.Covariance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
-<p>Covariance learning rule supporting either input or unit thresholds.</p>
-<p>As presented by Dayan and Abbott (2001), covariance rules allow
-either potentiation or depression of the same synapse, depending
-on an activity level.  By default, this implementation follows
-Dayan and Abbott equation 8.8, with the unit_threshold determining
-the level of postsynaptic activity (activity of the target unit),
-below which LTD (depression) will occur.</p>
-<p>If you wish to use an input threshold as in Dayan and Abbott
-equation 8.9 instead, set unit_threshold to zero and change
-input_threshold to some positive value instead.  When both
-thresholds are zero this rule degenerates to the standard Hebbian
-rule.</p>
-<p>Requires some form of output_fn normalization for stability.</p>
-<dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">input_threshold</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Threshold between LTD and LTP, applied to the input activity.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">unit_threshold</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Threshold between LTD and LTP, applied to the activity of this unit.</dd>
-</dl>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.learningfn.LearningFn">
-<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">LearningFn</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.learningfn.LearningFn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>Abstract base class for learning functions that plug into
-CFPLF_Plugin.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.learningfn.Oja">
-<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">Oja</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/learningfn.html#Oja"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.learningfn.Oja" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
-<p>Oja&#8217;s rule (Oja, 1982; Dayan and Abbott, 2001, equation 8.16.)</p>
-<p>Hebbian rule with soft multiplicative normalization, tending the
-weights toward a constant sum-squared value over time.  Thus this
-function does not normally need a separate output_fn for normalization.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">alpha</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.learningfn.Hebbian">
-<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">Hebbian</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.learningfn.Hebbian" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
-<p>Basic Hebbian rule; Dayan and Abbott, 2001, equation 8.3.</p>
-<p>Increases each weight in proportion to the product of this
-neuron&#8217;s activity and the input activity.</p>
-<p>Requires some form of output_fn normalization for stability.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.learningfn.CPCA">
-<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">CPCA</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/learningfn.html#CPCA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.learningfn.CPCA" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.functionfamily-module.html#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
-<p>CPCA (Conditional Principal Component Analysis) rule.</p>
-<p>(See O&#8217;Reilly and Munakata, Computational Explorations in
-Cognitive Neuroscience, 2000, equation 4.12.)</p>
-<p>Increases each weight in proportion to the product of this
-neuron&#8217;s activity, input activity, and connection weights.</p>
-<p>Has built-in normalization, and so does not require output_fn
-normalization for stability.  Intended to be a more biologically
-plausible version of the Oja rule.</p>
-<p>Submitted by Veldri Kurniawan and Lewis Ng.</p>
-</dd></dl>
-
 </div>
 </div>
 

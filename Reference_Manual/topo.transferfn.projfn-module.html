@@ -58,33 +58,8 @@
 <li><a class="reference external" href="topo.transferfn.projfn.pyc-module.html">topo.transferfn.projfn.pyc</a></li>
 </ul>
 </div>
-<div class="section" id="module-topo.transferfn.projfn">
-<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.transferfn.projfn" title="Permalink to this headline">¶</a></h2>
-<p>Output functions (see basic.py) that apply to a whole Projection. For
-example, for a CFProjection this involves iterating through all the
-CFs and applying an output function to each set of weights in turn.</p>
-<dl class="class">
-<dt id="topo.transferfn.projfn.CFPOF_Plugin">
-<em class="property">class </em><tt class="descclassname">topo.transferfn.projfn.</tt><tt class="descname">CFPOF_Plugin</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.transferfn.projfn.CFPOF_Plugin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPOutputFn" title="topo.base.cf.CFPOutputFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPOutputFn</span></tt></a></p>
-<p>Applies the specified single_cf_fn to each CF in the CFProjection
-for which the mask is nonzero.</p>
-<dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00059&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Accepts a TransferFn that will be applied to each CF individually.</dd>
-</dl>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.transferfn.projfn.CFPOF_Identity">
-<em class="property">class </em><tt class="descclassname">topo.transferfn.projfn.</tt><tt class="descname">CFPOF_Identity</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.transferfn.projfn.CFPOF_Identity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.cf-module.html#topo.base.cf.CFPOutputFn" title="topo.base.cf.CFPOutputFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPOutputFn</span></tt></a></p>
-<p>CFPOutputFn that leaves the CFs unchanged.</p>
-<p>Must never be changed or subclassed, because it might never
-be called. (I.e., it could simply be tested for and skipped.)</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;IdentityTF IdentityTF00060&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-</dd></dl>
-
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -118,7 +93,7 @@ be called. (I.e., it could simply be tested for and skipped.)</p>
 <ul>
 <li><a class="reference internal" href="#">topo.transferfn.projfn</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-topo.transferfn.projfn">Module</a></li>
+<li><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
 </ul>

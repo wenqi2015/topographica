@@ -52,73 +52,14 @@
             
   <div class="section" id="topo-base-ep">
 <h1>topo.base.ep<a class="headerlink" href="#topo-base-ep" title="Permalink to this headline">¶</a></h1>
-<div class="inheritance_box"><img src="../_images/inheritance87315e6b61.svg" usemap="#inheritance87315e6b61" class="inheritance"/></div><map id="inheritance87315e6b61" name="inheritance87315e6b61">
-</map>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="topo.base.ep.pyc-module.html">topo.base.ep.pyc</a></li>
 </ul>
 </div>
-<div class="section" id="module-topo.base.ep">
-<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.base.ep" title="Permalink to this headline">¶</a></h2>
-<p>EventProcessor classes.</p>
-<p>An EventProcessor is an object that the Simulation is aware of, and can
-accept simulation Events. EventProcessors can also generate Events, and
-will presumably do some computation as well.  Most EventProcessors
-will be in other more specific packages, such as topo.sheet; those
-here are the remaining uncategorized EventProcessors.  Any new
-EventProcessors classes added to this directory will automatically
-become available for any model.</p>
-<dl class="class">
-<dt id="topo.base.ep.PulseGenerator">
-<em class="property">class </em><tt class="descclassname">topo.base.ep.</tt><tt class="descname">PulseGenerator</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/ep.html#PulseGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.ep.PulseGenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.simulation-module.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a></p>
-<p>A simple pulse generator node.</p>
-<p>Produces pulses (scalars) of a fixed amplitude at a fixed
-frequency and phase.  Period and phase are in units of simulation
-time.</p>
-<dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">phase</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The time after starting the simulation to wait before sending the first pulse.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The size of the pulse to generate.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">period</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The period with which to repeat the pulse. Must be greater than zero.</dd>
-</dl>
-<dl class="method">
-<dt id="topo.base.ep.PulseGenerator.input_event">
-<tt class="descname">input_event</tt><big>(</big><em>conn</em>, <em>data</em><big>)</big><a class="reference internal" href="../_modules/topo/base/ep.html#PulseGenerator.input_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.ep.PulseGenerator.input_event" title="Permalink to this definition">¶</a></dt>
-<dd><p>On input from self, generate output. Ignore all other inputs.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.base.ep.SumUnit">
-<em class="property">class </em><tt class="descclassname">topo.base.ep.</tt><tt class="descname">SumUnit</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/ep.html#SumUnit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.ep.SumUnit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.simulation-module.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a></p>
-<p>A simple unit that outputs the running sum of input received thus far.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.base.ep.ThresholdUnit">
-<em class="property">class </em><tt class="descclassname">topo.base.ep.</tt><tt class="descname">ThresholdUnit</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/ep.html#ThresholdUnit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.ep.ThresholdUnit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.simulation-module.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a></p>
-<p>A simple pulse-accumulator threshold node.  Accumulates incoming
-pulses.  When the accumulated value rises above threshold, it
-generates a pulse of a given amplitude and resets the accumulator
-to zero.</p>
-<dl class="docutils">
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">threshold</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The threshold at which to fire.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">initial_accum</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The initial accumulator value.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">amplitude</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The size of the pulse to generate.</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -152,7 +93,7 @@ to zero.</p>
 <ul>
 <li><a class="reference internal" href="#">topo.base.ep</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-topo.base.ep">Module</a></li>
+<li><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
 </ul>

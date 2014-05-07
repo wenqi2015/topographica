@@ -52,39 +52,8 @@
             
   <div class="section" id="imagen-transferfn-sheet-tf">
 <h1>imagen.transferfn.sheet_tf<a class="headerlink" href="#imagen-transferfn-sheet-tf" title="Permalink to this headline">¶</a></h1>
-<div class="inheritance_box"><img src="../_images/inheritanced7d49f6d9a.svg" usemap="#inheritanced7d49f6d9a" class="inheritance"/></div><map id="inheritanced7d49f6d9a" name="inheritanced7d49f6d9a">
-</map>
-<div class="section" id="module-imagen.transferfn.sheet_tf">
-<span id="module"></span><h2>Module<a class="headerlink" href="#module-imagen.transferfn.sheet_tf" title="Permalink to this headline">¶</a></h2>
-<p>A family of transfer functions that are aware of sheet coordinate
-systems.</p>
-<p>The transfer functions in this file are allowed to make used of Imagen
-patterns and are to be supplied with an appropriate
-SheetCoordinateSystem object via the initialize method.</p>
-<dl class="class">
-<dt id="imagen.transferfn.sheet_tf.Convolve">
-<em class="property">class </em><tt class="descclassname">imagen.transferfn.sheet_tf.</tt><tt class="descname">Convolve</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/imagen/transferfn/sheet_tf.html#Convolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#imagen.transferfn.sheet_tf.Convolve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="imagen.transferfn-module.html#imagen.transferfn.TransferFn" title="imagen.transferfn.TransferFn"><tt class="xref py py-class docutils literal"><span class="pre">imagen.transferfn.TransferFn</span></tt></a></p>
-<p>Transfer function that convolves the array data with the supplied
-kernel pattern.</p>
-<p>The bounds and densities of the supplied kernel pattern do not
-affect the convolution operation. The spatial scale of the
-convolution is determined by the &#8216;size&#8217; parameter of the
-kernel. The resulting convolution is applied of a spatial scale
-relative to the overall size of the input, as expressed in
-sheetcoordinates.</p>
-<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">norm_value</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">kernel_pattern</span></tt> (<em>allow_None=False, constant=False, default=&lt;Gaussian Gaussian00043&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The kernel pattern used in the convolution. The default kernel
-      results in an isotropic Gaussian blur.</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">init_keys</span></tt> (<em>bounds=(0, None), constant=True, default=[&#8216;SCS&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>List of item key labels for metadata that that must be
-        supplied to the initialize method before the TransferFn may be
-        used.</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -117,7 +86,7 @@ sheetcoordinates.</p>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul>
 <li><a class="reference internal" href="#">imagen.transferfn.sheet_tf</a><ul>
-<li><a class="reference internal" href="#module-imagen.transferfn.sheet_tf">Module</a></li>
+<li><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
 </ul>

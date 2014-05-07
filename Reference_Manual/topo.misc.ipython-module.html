@@ -52,94 +52,14 @@
             
   <div class="section" id="topo-misc-ipython">
 <h1>topo.misc.ipython<a class="headerlink" href="#topo-misc-ipython" title="Permalink to this headline">¶</a></h1>
-<div class="inheritance_box"><img src="../_images/inheritanceb275281aee.svg" usemap="#inheritanceb275281aee" class="inheritance"/></div><map id="inheritanceb275281aee" name="inheritanceb275281aee">
-</map>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="topo.misc.ipython.pyc-module.html">topo.misc.ipython.pyc</a></li>
 </ul>
 </div>
-<div class="section" id="module-topo.misc.ipython">
-<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.misc.ipython" title="Permalink to this headline">¶</a></h2>
-<p>Topographica IPython extension for notebook support. Automatically
-loaded when importing the topo module but may also be explicitly
-loaded using:</p>
-<p>%load_ext topo.misc.ipython</p>
-<dl class="class">
-<dt id="topo.misc.ipython.ProgressBar">
-<em class="property">class </em><tt class="descclassname">topo.misc.ipython.</tt><tt class="descname">ProgressBar</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#ProgressBar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.ProgressBar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>A simple text progress bar suitable for the IPython notebook.</p>
-<dl class="docutils">
-<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">width</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=70, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The width of the progress bar in multiples of &#8216;char&#8217;.</dd>
-<dt><em>param String</em> <tt class="docutils literal"><span class="pre">fill_char</span></tt> (<em>allow_None=False, constant=False, default=#, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The character used to fill the progress bar.</dd>
-</dl>
-<dl class="method">
-<dt id="topo.misc.ipython.ProgressBar.update">
-<tt class="descname">update</tt><big>(</big><em>percentage</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#ProgressBar.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.ProgressBar.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the progress bar to the given percentage value</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="topo.misc.ipython.RunProgress">
-<em class="property">class </em><tt class="descclassname">topo.misc.ipython.</tt><tt class="descname">RunProgress</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#RunProgress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.RunProgress" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#topo.misc.ipython.ProgressBar" title="topo.misc.ipython.ProgressBar"><tt class="xref py py-class docutils literal"><span class="pre">topo.misc.ipython.ProgressBar</span></tt></a></p>
-<p>Progress bar for running Topographica simulations in a Notebook.</p>
-<dl class="docutils">
-<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">width</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=70, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The width of the progress bar in multiples of &#8216;char&#8217;.</dd>
-<dt><em>param String</em> <tt class="docutils literal"><span class="pre">fill_char</span></tt> (<em>allow_None=False, constant=False, default=#, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The character used to fill the progress bar.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">interval</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=20, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>How often to update the progress bar in topo.sim.time units</dd>
-</dl>
-<dl class="method">
-<dt id="topo.misc.ipython.RunProgress.run">
-<tt class="descname">run</tt><big>(</big><em>duration</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#RunProgress.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.RunProgress.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run topo.sim(duration), updating every interval duration.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="topo.misc.ipython.export_notebook">
-<tt class="descclassname">topo.misc.ipython.</tt><tt class="descname">export_notebook</tt><big>(</big><em>notebook</em>, <em>output_path=None</em>, <em>ext='.ty'</em>, <em>identifier='_export_'</em>, <em>diff=True</em>, <em>invert=False</em>, <em>stale_time=None</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#export_notebook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.export_notebook" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a v3-format .ipynb notebook file (from IPython 0.13 or
-later), allows the contents of labelled code cells to be exported
-to a plaintext file.  The typical use case is for generating a
-runnable plain Python source file from selected cells of an
-IPython notebook.</p>
-<p>Code is selected for export by placing the given identifier on the first
-line of the chosen code cells. By default, only the labelled cells are
-exported. This behavior may be inverted to exclude labelled cells by
-setting the invert flag.</p>
-<p>notebook    The filename of the notebook (.ipynb).
-output_path Optional output file path. Otherwise, uses the notebook basename.
-ext         The file extension of the output.
-identifier  The identifier used to label cells.
-diff        Whether to print a diff when overwriting content.
-invert      When set, only the non-labelled cells are exported.
-stale_time  Number of seconds that may elapse since the last notebook</p>
-<blockquote>
-<div>save before a staleness warning is issued. Useful when
-exporting from an active IPython notebook.</div></blockquote>
-</dd></dl>
-
-<dl class="function">
-<dt id="topo.misc.ipython.prompt">
-<tt class="descclassname">topo.misc.ipython.</tt><tt class="descname">prompt</tt><big>(</big><em>message</em>, <em>default</em>, <em>options</em>, <em>skip=False</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#prompt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.prompt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Helper function to repeatedly prompt the user with a list of
-options. If no input is given, the default value is returned. If
-wither the skip flag is True or the prompt is in a batch mode
-environment (e.g. for automated testing), the default value is
-immediately returned.</p>
-</dd></dl>
-
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -173,7 +93,7 @@ immediately returned.</p>
 <ul>
 <li><a class="reference internal" href="#">topo.misc.ipython</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-topo.misc.ipython">Module</a></li>
+<li><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
 </ul>

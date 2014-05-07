@@ -52,67 +52,14 @@
             
   <div class="section" id="topo-base-sheetview">
 <h1>topo.base.sheetview<a class="headerlink" href="#topo-base-sheetview" title="Permalink to this headline">¶</a></h1>
-<div class="inheritance_box"><img src="../_images/inheritance5c943e4cbf.svg" usemap="#inheritance5c943e4cbf" class="inheritance"/></div><map id="inheritance5c943e4cbf" name="inheritance5c943e4cbf">
-</map>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="topo.base.sheetview.pyc-module.html">topo.base.sheetview.pyc</a></li>
 </ul>
 </div>
-<div class="section" id="module-topo.base.sheetview">
-<span id="module"></span><h2>Module<a class="headerlink" href="#module-topo.base.sheetview" title="Permalink to this headline">¶</a></h2>
-<p>Topographica SheetView objects and its subclasses.</p>
-<p>For use with the Topographica plotting and data analysis mechanisms.
-A Sheet object has its internal data which remains hidden, but it will
-create views of this data depending on the Sheet defaults or the
-information requested.  This way there can be multiple views recorded
-for a single sheet, and a view can be passed around independent of the
-originating source object.</p>
-<dl class="class">
-<dt id="topo.base.sheetview.SheetView">
-<em class="property">class </em><tt class="descclassname">topo.base.sheetview.</tt><tt class="descname">SheetView</tt><big>(</big><em>(data</em>, <em>bounds)</em>, <em>src_name=None</em>, <em>precedence=0.0</em>, <em>timestamp=-1</em>, <em>row_precedence=0.5</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/sheetview.html#SheetView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.sheetview.SheetView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="param.parameterized-module.html#param.parameterized.Parameterized" title="param.parameterized.Parameterized"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>Class provided for backward compatibility with earlier SheetView
-component.</p>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
-<dl class="docutils">
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cyclic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If cyclic is True, this value is the cyclic range.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">timestamp</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The initial timestamp. If None, the DataView will not all slicing of
-            a time interval and record method will be disabled.</dd>
-</dl>
-<p><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</p>
-<dl class="docutils">
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">bounds</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The bounds of the two dimensional coordinate system in which the data resides.</dd>
-</dl>
-<p><em>param String</em> <tt class="docutils literal"><span class="pre">src_name</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<p><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cyclic_range</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
-<dl class="method">
-<dt id="topo.base.sheetview.SheetView.view">
-<tt class="descname">view</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/base/sheetview.html#SheetView.view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.sheetview.SheetView.view" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the requested view as a (data, bbox) tuple.  Provided
-for backward compatibility with the original Topographica
-SheetView model. It is now easier to access the data and
-bounds attributes directly.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="topo.base.sheetview.UnitView">
-<tt class="descclassname">topo.base.sheetview.</tt><tt class="descname">UnitView</tt><big>(</big><em>(data</em>, <em>bounds)</em>, <em>x</em>, <em>y</em>, <em>projection</em>, <em>timestamp</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/base/sheetview.html#UnitView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.base.sheetview.UnitView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function for backward compatibility with earlier UnitView
-component. Original docstring for UnitView:</p>
-<p>Consists of an X,Y position for the unit that this View is
-created for.  Subclasses SheetView.</p>
-<p>UnitViews should be stored in Sheets via a tuple
-(&#8216;Weights&#8217;,Sheet,Projection,X,Y).  The dictionary in Sheets can be
-accessed by any valid key.</p>
-</dd></dl>
-
+<div class="section" id="module">
+<h2>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -146,7 +93,7 @@ accessed by any valid key.</p>
 <ul>
 <li><a class="reference internal" href="#">topo.base.sheetview</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-topo.base.sheetview">Module</a></li>
+<li><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
 </ul>
