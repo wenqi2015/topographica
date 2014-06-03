@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Test suite &mdash; The Topographica Neural Map Simulator</title>
+    <title>Test suite &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +24,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -78,7 +81,8 @@ debugging, because it probably needs work too. You can check how
 well a particular test file covers a particular file by running
 coverage. Here is an example of checking to see how well
 topo/tests/testimage.py covers topo/pattern/image.py:</p>
-<div class="highlight-python"><pre>./topographica -c "import topo.tests;t=topo.tests.run_coverage( \   runner_fn=topo.tests.run_named,runner_args=('testimage.py',), \   targets=['topo/pattern/image.py'])"</pre>
+<div class="highlight-python"><div class="highlight"><pre>./topographica -c &quot;import topo.tests;t=topo.tests.run_coverage( \   runner_fn=topo.tests.run_named,runner_args=(&#39;testimage.py&#39;,), \   targets=[&#39;topo/pattern/image.py&#39;])&quot;
+</pre></div>
 </div>
 <div class="section" id="unittests-and-doctests">
 <h2>Unittests and Doctests<a class="headerlink" href="#unittests-and-doctests" title="Permalink to this headline">¶</a></h2>
@@ -95,19 +99,20 @@ the topographica command <tt class="docutils literal"><span class="pre">topo.tes
 of Python expressions to be evaluated, each followed by the expected
 result of the command. The entire sequence should be formatted like
 a trace of an interactive python session. For example:</p>
-<div class="highlight-python"><pre>&gt;&gt;&gt; def f(x):
-...    return x+1
-...
-&gt;&gt;&gt; f(3)
-4
-&gt;&gt;&gt; f(2)
-3
-&gt;&gt;&gt; f('foo')
-Traceback (most recent call last):
-  File "", line 1, in ?
-  File "", line 2, in f
-TypeError: cannot concatenate 'str' and 'int' objects
-&gt;&gt;&gt;</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="gr">  File &quot;&quot;, line 1, in ?</span>
+<span class="gr">  File &quot;&quot;, line 2, in f</span>
+<span class="gr">TypeError</span>: <span class="n">cannot concatenate &#39;str&#39; and &#39;int&#39; objects</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
 </div>
 <p>As long as each command produces the expected output (including any
 errors), the test passes. See the <a class="reference external" href="http://docs.python.org/lib/module-doctest.html">doctest documentation</a> for
@@ -176,7 +181,7 @@ tested on Linux, OS X, and Windows (automatically, using
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Developer_Manual/testing.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/Developer_Manual/testing.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -199,6 +204,9 @@ tested on Linux, OS X, and Windows (automatically, using
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -213,8 +221,7 @@ tested on Linux, OS X, and Windows (automatically, using
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

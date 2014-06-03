@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Developing Topographica Using Git &mdash; The Topographica Neural Map Simulator</title>
+    <title>Developing Topographica Using Git &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +24,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -77,8 +80,9 @@ tutorials for people with different backgrounds (including those
 coming from Subversion).</p>
 <p>Note that before committing to your repository for the first time,
 you should identify yourself to git:</p>
-<div class="highlight-python"><pre>$ git config --global user.email user@address.ext
-$ git config --global user.name "User Name"</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git config --global user.email user@address.ext
+$ git config --global user.name &quot;User Name&quot;
+</pre></div>
 </div>
 <p>You should also check that your machine has the correct time and
 date, otherwise your history can become confusing.</p>
@@ -95,7 +99,8 @@ so, please visit github.com. You can then clone the Topographica
 repository using the instructions on the <a class="reference external" href="https://github.com/ioam/topographica">Topographica page at
 GitHub</a>. You can then push your local repository to the remote one
 as often as you want by doing e.g.</p>
-<div class="highlight-python"><pre>$ git push</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git push
+</pre></div>
 </div>
 </div>
 <div class="section" id="pull-requests">
@@ -219,7 +224,7 @@ copies.</p>
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Developer_Manual/git.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/Developer_Manual/git.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -242,6 +247,9 @@ copies.</p>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -256,8 +264,7 @@ copies.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

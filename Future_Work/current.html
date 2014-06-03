@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Current work &mdash; The Topographica Neural Map Simulator</title>
+    <title>Current work &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +24,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -78,7 +81,7 @@ please feel free to volunteer!!!!). Dates indicate when the item was
 first added to the list, or a change was made.</p>
 <div class="section" id="alerts-in-topo-base">
 <h2>ALERTs in topo.base<a class="headerlink" href="#alerts-in-topo-base" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><pre>Priorities:
+<div class="highlight-python"><div class="highlight"><pre>Priorities:
 8: release 1.0
 3: release someday
 0: remove alert
@@ -114,7 +117,7 @@ of attribute access) (CEB)
 
 * PatternGenerator
 (8) needs to support plasticity of output functions (after fixing
-Pipeline's plasticity support)
+Pipeline&#39;s plasticity support)
 
 
 * Simulation
@@ -127,7 +130,7 @@ Pipeline's plasticity support)
     ## then the user can construct a periodic sequence using a
     ## combination of PeriodicEvent and EventSequence.  This would
     ## change the behavior if the sequence length is longer than the
-    ## period, but I'm not sure how important that is, and it might
+    ## period, but I&#39;m not sure how important that is, and it might
     ## actually be useful the other way.
 (8) gc alert in simulation.__new__ (CEB)
 
@@ -136,7 +139,8 @@ Pipeline's plasticity support)
 # JABALERT: Only partially achieved so far -- objects of the same
 # type and parameter values are treated as different, so anything
 # for which instantiate == True is reported as being non-default.
-(8) ParamOverrides should check_params() (CEB)</pre>
+(8) ParamOverrides should check_params() (CEB)
+</pre></div>
 </div>
 </div>
 <div class="section" id="tasks-to-be-addressed-by-release-1-0">
@@ -239,15 +243,16 @@ ScientificPython, Chaco, Pyro (the robotics package), g, logger
 </div>
 <div class="section" id="which-version-of-libraries-is-numpy-using">
 <h3>2007/02/23: which version of libraries is numpy using?<a class="headerlink" href="#which-version-of-libraries-is-numpy-using" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>- numpy.__config__.show()
-- warn users if they're using a slow version?
+<div class="highlight-python"><div class="highlight"><pre>- numpy.__config__.show()
+- warn users if they&#39;re using a slow version?
 - http://www.scipy.org/Numpy_Example_List?highlight=%28example
   %29#head-c7a573f030ff7cbaea62baf219599b3976136bac
 &gt;&gt;&gt;
 &gt;&gt;&gt; import numpy
 &gt;&gt;&gt; if id(dot) == id(numpy.core.multiarray.dot):
 # A way to know if you use fast blas/lapack or not.
-...   print "Not using blas/lapack!"</pre>
+...   print &quot;Not using blas/lapack!&quot;
+</pre></div>
 </div>
 <p>alterdot() numpy.alterdot(...) alterdot() changes all dot functions
 to use blas. (but note that dot() is, for some reason, not a dot
@@ -404,7 +409,7 @@ somatosensory simulations?).
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Future_Work/current.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/Future_Work/current.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -427,6 +432,9 @@ somatosensory simulations?).
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -441,8 +449,7 @@ somatosensory simulations?).
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

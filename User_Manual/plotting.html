@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plotting and visualization &mdash; The Topographica Neural Map Simulator</title>
+    <title>Plotting and visualization &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +24,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -298,14 +301,14 @@ Topographica&#8217;s, for all scripts that you run.</p>
 it is quite straightforward to add a new type of preference map
 plot. As a reference, here is an implementation of Orientation
 Preference plots:</p>
-<div class="highlight-python"><pre>1. pg= create_plotgroup(name='Orientation Preference',category="Preference Maps",
-                        doc='Measure preference for sine grating orientation.',
-2.                  command='measure_or_pref()')
-3. pg.add_plot('Orientation Preference',[('Hue','OrientationPreference')])
-4. pg.add_plot('Orientation Preference&amp;Selectivity',[('Hue','OrientationPreference'),
-                                                     ('Confidence','OrientationSelectivity')])
-5. pg.add_plot('Orientation Selectivity',[('Strength','OrientationSelectivity')])
-6. pg.add_static_image('Color Key','topo/command/or_key_white_vert_small.png')
+<div class="highlight-python"><div class="highlight"><pre>1. pg= create_plotgroup(name=&#39;Orientation Preference&#39;,category=&quot;Preference Maps&quot;,
+                        doc=&#39;Measure preference for sine grating orientation.&#39;,
+2.                  command=&#39;measure_or_pref()&#39;)
+3. pg.add_plot(&#39;Orientation Preference&#39;,[(&#39;Hue&#39;,&#39;OrientationPreference&#39;)])
+4. pg.add_plot(&#39;Orientation Preference&amp;Selectivity&#39;,[(&#39;Hue&#39;,&#39;OrientationPreference&#39;),
+                                                     (&#39;Confidence&#39;,&#39;OrientationSelectivity&#39;)])
+5. pg.add_plot(&#39;Orientation Selectivity&#39;,[(&#39;Strength&#39;,&#39;OrientationSelectivity&#39;)])
+6. pg.add_static_image(&#39;Color Key&#39;,&#39;topo/command/or_key_white_vert_small.png&#39;)
 
 
 7. def measure_or_pref(num_phase=18,num_orientation=4,frequencies=[2.4],
@@ -315,13 +318,14 @@ Preference plots:</p>
        step_phase=2*pi/num_phase
        step_orientation=pi/num_orientation
 
-9. feature_values = [Feature(name="frequency",values=frequencies),
-                         Feature(name="orientation",range=(0.0,pi),step=step_orientation,cyclic=True),
-                         Feature(name="phase",range=(0.0,2*pi),step=step_phase,cyclic=True)]
+9. feature_values = [Feature(name=&quot;frequency&quot;,values=frequencies),
+                         Feature(name=&quot;orientation&quot;,range=(0.0,pi),step=step_orientation,cyclic=True),
+                         Feature(name=&quot;phase&quot;,range=(0.0,2*pi),step=step_phase,cyclic=True)]
 
-10.param_dict = {"scale":scale,"offset":offset}
+10.param_dict = {&quot;scale&quot;:scale,&quot;offset&quot;:offset}
 11.x=FeatureMaps(feature_values)
-       x.collect_feature_responses(pattern_presenter,param_dict,display,weighted_average)</pre>
+       x.collect_feature_responses(pattern_presenter,param_dict,display,weighted_average)
+</pre></div>
 </div>
 <p>What the first part of this code (the PlotGroup specification) does
 is:</p>
@@ -430,7 +434,7 @@ any input patterns).</p>
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/User_Manual/plotting.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/User_Manual/plotting.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -453,6 +457,9 @@ any input patterns).</p>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -467,8 +474,7 @@ any input patterns).</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

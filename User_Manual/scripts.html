@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Starting Topographica scripts interactively &mdash; The Topographica Neural Map Simulator</title>
+    <title>Starting Topographica scripts interactively &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +24,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -80,7 +83,8 @@ script located at the specified path.</p>
 <p id="copy-examples">To be able to run the examples easily, you will first need to get
 your own personal copy of the example scripts:</p>
 <blockquote>
-<div><div class="highlight-python"><pre>topographica -c "from topo.misc.genexamples import copy_examples; copy_examples()"</pre>
+<div><div class="highlight-python"><div class="highlight"><pre>topographica -c &quot;from topo.misc.genexamples import copy_examples; copy_examples()&quot;
+</pre></div>
 </div>
 </div></blockquote>
 <p>During installation, the Topographica example scripts are installed
@@ -92,7 +96,8 @@ type; this command copies those to an examples subdirectory of your
 <p>Now you can run an example script using a command like the
 following:</p>
 <blockquote>
-<div><div class="highlight-python"><pre>topographica ~/Documents/Topographica/examples/som_retinotopy.ty -g</pre>
+<div><div class="highlight-python"><div class="highlight"><pre>topographica ~/Documents/Topographica/examples/som_retinotopy.ty -g
+</pre></div>
 </div>
 </div></blockquote>
 <p>Topographica can also be run without the GUI by omitting the <tt class="docutils literal"><span class="pre">-g</span></tt>
@@ -127,7 +132,8 @@ always <tt class="docutils literal"><span class="pre">~/topographica</span></tt>
 <p>You can override the default output path by setting the value of
 <a class="reference external" href="../Reference_Manual/param.normalize_path-class.html">param.normalize_path</a>&#8216;s <tt class="docutils literal"><span class="pre">prefix</span></tt> parameter, e.g.:</p>
 <blockquote>
-<div><div class="highlight-python"><pre>import param param.normalize_path.prefix = "/some/other/path/"</pre>
+<div><div class="highlight-python"><div class="highlight"><pre>import param param.normalize_path.prefix = &quot;/some/other/path/&quot;
+</pre></div>
 </div>
 </div></blockquote>
 <p>To override the default location every time you use Topographica,
@@ -230,8 +236,9 @@ themselves can also be controlled by options passed at startup. For
 instance, many of our examples read parameters that can optionally
 be set at startup, such as <tt class="docutils literal"><span class="pre">retina_density</span></tt>, <tt class="docutils literal"><span class="pre">lgn_density</span></tt>, and
 <tt class="docutils literal"><span class="pre">cortex_density</span></tt>, e.g.:</p>
-<div class="highlight-python"><pre>topographica -i -p retina_density=12 -p cortex_density=12 \
-~/Documents/Topographica/examples/lissom_oo_or.ty</pre>
+<div class="highlight-python"><div class="highlight"><pre>topographica -i -p retina_density=12 -p cortex_density=12 \
+~/Documents/Topographica/examples/lissom_oo_or.ty
+</pre></div>
 </div>
 <p>In this case, we are specifying that the retina and V1 sheets in a
 LISSOM simulation should have a density of 12 rather than the
@@ -246,8 +253,9 @@ before the script.</p>
 <p>In addition to setting startup parameters, arbitrary Python commands
 can be specified at the commandline by using the <tt class="docutils literal"><span class="pre">-c</span></tt> option. For
 instance:</p>
-<div class="highlight-python"><pre>topographica -c 'from topo.command.analysis import measure_sine_pref'\
--c 'measure_sine_pref.num_directions=12' ~/Documents/Topographica/examples/tiny.ty</pre>
+<div class="highlight-python"><div class="highlight"><pre>topographica -c &#39;from topo.command.analysis import measure_sine_pref&#39;\
+-c &#39;measure_sine_pref.num_directions=12&#39; ~/Documents/Topographica/examples/tiny.ty
+</pre></div>
 </div>
 <p>would import <tt class="docutils literal"><span class="pre">measure_sine_pref</span></tt> and set its <tt class="docutils literal"><span class="pre">num_directions</span></tt>
 attribute to <tt class="docutils literal"><span class="pre">12</span></tt>, and then execute the <tt class="docutils literal"><span class="pre">tiny.ty</span></tt> example
@@ -300,7 +308,7 @@ script. As with ordinary Python commands, you can use a semicolon
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/User_Manual/scripts.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/User_Manual/scripts.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -323,6 +331,9 @@ script. As with ordinary Python commands, you can use a semicolon
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -337,8 +348,7 @@ script. As with ordinary Python commands, you can use a semicolon
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

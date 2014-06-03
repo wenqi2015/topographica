@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Topographica Command Line &mdash; The Topographica Neural Map Simulator</title>
+    <title>Topographica Command Line &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +24,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -68,7 +71,7 @@ interface.</p>
 expression valid for Python can be entered. For instance, if your
 script defines a Sheet named V1, you can display and change V1&#8217;s
 parameters using Python commands:</p>
-<div class="highlight-python"><pre>[cloud]v1cball: topographica -i ~/Documents/Topographica/examples/tiny.ty
+<div class="highlight-python"><div class="highlight"><pre>[cloud]v1cball: topographica -i ~/Documents/Topographica/examples/tiny.ty
 
 Welcome to Topographica!
 
@@ -79,44 +82,47 @@ licensing information.
 
 
 
-topo_t000000.00_c1&gt;&gt;&gt; topo.sim['V1'].density
+topo_t000000.00_c1&gt;&gt;&gt; topo.sim[&#39;V1&#39;].density
                Out[1]:5.0
 
-topo_t000000.00_c2&gt;&gt;&gt; topo.sim['V1'].output_fns[0]
+topo_t000000.00_c2&gt;&gt;&gt; topo.sim[&#39;V1&#39;].output_fns[0]
                Out[2]:PiecewiseLinear(lower_bound=...)
 
 topo_t000000.00_c3&gt;&gt;&gt; from topo.transferfn import *
 
-topo_t000000.00_c4&gt;&gt;&gt; topo.sim['V1'].output_fns=[IdentityTF()]
+topo_t000000.00_c4&gt;&gt;&gt; topo.sim[&#39;V1&#39;].output_fns=[IdentityTF()]
 
-topo_t000000.00_c5&gt;&gt;&gt; topo.sim['V1'].output_fns[0]
+topo_t000000.00_c5&gt;&gt;&gt; topo.sim[&#39;V1&#39;].output_fns[0]
                Out[5]:IdentityTF(name=...)
 
-topo_t000000.00_c6&gt;&gt;&gt; topo.sim['V1'].activity
+topo_t000000.00_c6&gt;&gt;&gt; topo.sim[&#39;V1&#39;].activity
                Out[6]:
 array([[ 0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.]])
-...</pre>
+...
+</pre></div>
 </div>
 <p>For very large arrays, numpy will suppress printing the array data
 to avoid filling your terminal with numbers. If you do want to see
 the data, you can tell numpy to print even the largest arrays:</p>
-<div class="highlight-python"><pre>topo_t000000.00_c7&gt;&gt;&gt; numpy.set_printoptions(threshold=2**30)</pre>
+<div class="highlight-python"><div class="highlight"><pre>topo_t000000.00_c7&gt;&gt;&gt; numpy.set_printoptions(threshold=2**30)
+</pre></div>
 </div>
 <p>To see what is available for inspection or manipulation for any
 object, you can use <tt class="docutils literal"><span class="pre">dir()</span></tt>:</p>
-<div class="highlight-python"><pre>topo_t000000.00_c10&gt;&gt;&gt; dir(topo.sim['V1'])
+<div class="highlight-python"><div class="highlight"><pre>topo_t000000.00_c10&gt;&gt;&gt; dir(topo.sim[&#39;V1&#39;])
                Out[10]:
-['_EventProcessor__abstract',
+[&#39;_EventProcessor__abstract&#39;,
 ...
- 'activity',
- 'activity_len',
- 'apply_output_fns',
- 'bounds',
-...]</pre>
+ &#39;activity&#39;,
+ &#39;activity_len&#39;,
+ &#39;apply_output_fns&#39;,
+ &#39;bounds&#39;,
+...]
+</pre></div>
 </div>
 <p>Note the directory will typically include many items that are not
 useful to inspect, including those starting with an underscore
@@ -124,7 +130,7 @@ useful to inspect, including those starting with an underscore
 also get information about most objects by typing <tt class="docutils literal"><span class="pre">?</span></tt> after the
 name, or by using the <tt class="docutils literal"><span class="pre">help()</span></tt> function for more detailed
 information:</p>
-<div class="highlight-python"><pre>topo_t000000.00_c11&gt;&gt;&gt; PiecewiseLinear?
+<div class="highlight-python"><div class="highlight"><pre>topo_t000000.00_c11&gt;&gt;&gt; PiecewiseLinear?
 ...
 Docstring:
     Piecewise-linear TransferFn with lower and upper thresholds.
@@ -143,11 +149,11 @@ Docstring:
     values will override the class default values for this one
     instance.
 
-    If no 'name' parameter is supplied, self.name defaults to the
-    object's class name with a unique number appended to it.
+    If no &#39;name&#39; parameter is supplied, self.name defaults to the
+    object&#39;s class name with a unique number appended to it.
 
 
-topo_t000000.00_c12&gt;&gt;&gt; help(topo.sim['Retina'])
+topo_t000000.00_c12&gt;&gt;&gt; help(topo.sim[&#39;Retina&#39;])
 
 Help on GeneratorSheet in module topo.sheet object:
 
@@ -179,9 +185,10 @@ class GeneratorSheet(topo.base.sheet.Sheet)
  |  ----------------------------------------------------------------------
  |  Data and other attributes defined here:
  |
- |  src_ports = ['Activity']
+ |  src_ports = [&#39;Activity&#39;]
  |
-...</pre>
+...
+</pre></div>
 </div>
 <p>See the <a class="reference external" href="http://ipython.scipy.org/doc/manual/html/interactive/tutorial.html">IPython Quick Tutorial</a> for IPython-specific extensions useful
 from the command prompt.</p>
@@ -205,15 +212,16 @@ entering its commands manually.</p>
 <span id="pylab"></span><h3>Plotting from the command line<a class="headerlink" href="#plotting-from-the-command-line" title="Permalink to this headline">¶</a></h3>
 <p>If the GUI is running, you can also plot any vector or matrix in the
 program:</p>
-<div class="highlight-python"><pre>$ topographica -g ~/Documents/Topographica/examples/tiny.ty
+<div class="highlight-python"><div class="highlight"><pre>$ topographica -g ~/Documents/Topographica/examples/tiny.ty
 Topographica&gt; topo.sim.run(1)
 Topographica&gt; from topo.command.pylabplot import *
-Topographica&gt; V1 = topo.sim['V1']
+Topographica&gt; V1 = topo.sim[&#39;V1&#39;]
 Topographica&gt; matrixplot(V1.activity)
 Topographica&gt; vectorplot(V1.activity[0])
 Topographica&gt; vectorplot(V1.activity[1])
 Topographica&gt; vectorplot(V1.activity[10])
-Topographica&gt;</pre>
+Topographica&gt;
+</pre></div>
 </div>
 <p>Result:</p>
 <div class="figure align-center">
@@ -232,7 +240,7 @@ wireframe plot:</p>
 viewpoint.</p>
 <p>The prompt can also be used for any mathematical calculation or
 plotting one might wish to do, a la Matlab:</p>
-<div class="highlight-python"><pre>$ topographica -g
+<div class="highlight-python"><div class="highlight"><pre>$ topographica -g
 Topographica&gt; from numpy import *
 Topographica&gt; 2*pi*exp(1.6)
 31.120820554943471
@@ -242,7 +250,8 @@ Topographica&gt; from pylab import *
 Topographica&gt; plot(s)
 [&lt;matplotlib.lines.Line2D instance at 0xb6b1aeac&gt;]
 Topographica&gt; show._needmain = False
-Topographica&gt; show()</pre>
+Topographica&gt; show()
+</pre></div>
 </div>
 <p>Resulting plot:</p>
 <div class="figure align-center">
@@ -259,10 +268,11 @@ labels, titles, line styles, etc.</p>
 process of generating and saving the various bitmap images visible
 in the Topographica GUI. For instance, to measure an orientation map
 and save the resulting bitmaps to disk, just do:</p>
-<div class="highlight-python"><pre>Topographica&gt; from topo.command.analysis import measure_or_pref
+<div class="highlight-python"><div class="highlight"><pre>Topographica&gt; from topo.command.analysis import measure_or_pref
 Topographica&gt; from topo.plotting.plotgroup import save_plotgroup
 Topographica&gt; measure_or_pref()
-Topographica&gt; save_plotgroup("Orientation Preference")</pre>
+Topographica&gt; save_plotgroup(&quot;Orientation Preference&quot;)
+</pre></div>
 </div>
 <p>The name &#8220;Orientation Preference&#8221; here is just the name used in the
 Plots menu, and the command &#8220;measure_or_pref()&#8221; is listed at the
@@ -373,8 +383,9 @@ changing the <tt class="docutils literal"><span class="pre">param.parameterized.
 that messages will be printed whenever Topographica performs an
 action. For instance, you can enable verbose messaging by starting
 Topographica as:</p>
-<div class="highlight-python"><pre>topographica -c "import param" \
--c "param.parameterized.min_print_level=param.parameterized.VERBOSE" ...</pre>
+<div class="highlight-python"><div class="highlight"><pre>topographica -c &quot;import param&quot; \
+-c &quot;param.parameterized.min_print_level=param.parameterized.VERBOSE&quot; ...
+</pre></div>
 </div>
 <p>Instead of VERBOSE, you can use any of the other message levels
 defined in parameterized.py, such as DEBUG, which gives even more
@@ -529,7 +540,7 @@ editor</a>.)</p>
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/User_Manual/commandline.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/User_Manual/commandline.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -552,6 +563,9 @@ editor</a>.)</p>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="../Downloads/index.html">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -566,8 +580,7 @@ editor</a>.)</p>
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

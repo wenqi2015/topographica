@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Downloads &mdash; The Topographica Neural Map Simulator</title>
+    <title>Downloads &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +24,17 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../index.html" /> 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="#">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -103,7 +106,8 @@ each case.</p>
 <h3>Install via pip<a class="headerlink" href="#install-via-pip" title="Permalink to this headline">¶</a></h3>
 <p>The typical way to install the most recently released version of
 Topographica is via <a class="reference external" href="http://www.pip-installer.org">pip</a> from the command prompt:</p>
-<div class="highlight-python"><pre>pip install --user topographica</pre>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user topographica
+</pre></div>
 </div>
 <p>This will fetch Topographica and its required dependencies (i.e.,
 param, paramtk, imagen, numpy, and PIL, for the 0.9.8 release) from
@@ -115,7 +119,8 @@ named <tt class="docutils literal"><span class="pre">Application</span> <span cl
 want to install others necessary for good performance (by at least a
 factor of 100), to provide some optional types of plotting, and to
 improve the command-line interface:</p>
-<div class="highlight-python"><pre>pip install --user gmpy matplotlib scipy ipython</pre>
+<div class="highlight-python"><div class="highlight"><pre>pip install --user gmpy matplotlib scipy ipython
+</pre></div>
 </div>
 <p>Other useful packages are described on our <a class="reference external" href="dependencies.html">dependencies</a> page, and
 can usually be installed the same way.</p>
@@ -126,7 +131,8 @@ package manager, if any.</p>
 <p>If your system does not have pip installed or has an old version
 lacking the <tt class="docutils literal"><span class="pre">--user</span> <span class="pre">option</span></tt>, but you do have root or administrator
 access, you should first install pip using:</p>
-<div class="highlight-python"><pre>easy_install pip</pre>
+<div class="highlight-python"><div class="highlight"><pre>easy_install pip
+</pre></div>
 </div>
 <p>or the equivalent for your package manager. If you don&#8217;t have
 easy_install, you can install pip by downloading <a class="reference external" href="https://raw.github.com/pypa/pip/master/contrib/get-pip.py">get-pip.py</a> and
@@ -139,9 +145,10 @@ access, then you can obtain a local copy of pip by downloading
 <a class="reference external" href="https://raw.github.com/pypa/virtualenv/master/virtualenv.py">virtualenv.py</a>. Just run it using Python to create a clean
 &#8220;virtual environment&#8221; that includes pip and into which you can
 install Topographica and its dependencies:</p>
-<div class="highlight-python"><pre>&gt; python virtualenv.py VENV
+<div class="highlight-python"><div class="highlight"><pre>&gt; python virtualenv.py VENV
 &gt; VENV/bin/pip install topographica
-&gt; VENV/bin/topographica -g</pre>
+&gt; VENV/bin/topographica -g
+</pre></div>
 </div>
 <p>(Not tested under Windows.) You can then install any other
 dependencies using <a class="reference external" href="http://www.pip-installer.org">pip</a> as described above. Of course, instead of
@@ -182,7 +189,8 @@ prompt path. Instructions for doing so differ by platform, but
 should be easily obtainable. On Windows one convenient way to put
 the script on the path is to create a file called <tt class="docutils literal"><span class="pre">topographica.bat</span></tt>
 containing a single line like:</p>
-<div class="highlight-python"><pre>@C:\Python27\python.exe %APPDATA%\Python\scripts\topographica %*</pre>
+<div class="highlight-python"><div class="highlight"><pre>@C:\Python27\python.exe %APPDATA%\Python\scripts\topographica %*
+</pre></div>
 </div>
 <p>(where you use the appropriate path to both Python and your
 topographica script) and put it somewhere in your path (e.g.
@@ -251,7 +259,7 @@ network, a good way to begin is by working through the <a class="reference exter
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Downloads/index.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/Downloads/index.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -274,6 +282,9 @@ network, a good way to begin is by working through the <a class="reference exter
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
 <li><a href="../index.html">Home</a></li>
 <li><a href="#">Downloads</a></li>
 <li><a href="../Tutorials/index.html">Tutorials</a></li>
@@ -288,8 +299,7 @@ network, a good way to begin is by working through the <a class="reference exter
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>
