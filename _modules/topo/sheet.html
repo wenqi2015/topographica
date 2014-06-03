@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.sheet &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.sheet &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -87,7 +93,7 @@
 <span class="kn">from</span> <span class="nn">topo.base.simulation</span> <span class="kn">import</span> <span class="n">FunctionEvent</span><span class="p">,</span> <span class="n">PeriodicEventSequence</span><span class="p">,</span> <span class="n">EPConnectionEvent</span>
 
 
-<div class="viewcode-block" id="ActivityCopy"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.ActivityCopy">[docs]</a><span class="k">class</span> <span class="nc">ActivityCopy</span><span class="p">(</span><span class="n">Sheet</span><span class="p">):</span>
+<div class="viewcode-block" id="ActivityCopy"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.ActivityCopy">[docs]</a><span class="k">class</span> <span class="nc">ActivityCopy</span><span class="p">(</span><span class="n">Sheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Copies incoming Activity patterns to its activity matrix and output port.</span>
 
@@ -111,7 +117,7 @@
 
 
 </div>
-<div class="viewcode-block" id="SequenceGeneratorSheet"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.SequenceGeneratorSheet">[docs]</a><span class="k">class</span> <span class="nc">SequenceGeneratorSheet</span><span class="p">(</span><span class="n">GeneratorSheet</span><span class="p">):</span>
+<div class="viewcode-block" id="SequenceGeneratorSheet"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.SequenceGeneratorSheet">[docs]</a><span class="k">class</span> <span class="nc">SequenceGeneratorSheet</span><span class="p">(</span><span class="n">GeneratorSheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sheet that generates a timed sequence of patterns.</span>
 
@@ -146,7 +152,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">enqueue_event</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="compute_joint_norm_totals"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.compute_joint_norm_totals">[docs]</a><span class="k">def</span> <span class="nf">compute_joint_norm_totals</span><span class="p">(</span><span class="n">projlist</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="compute_joint_norm_totals"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.compute_joint_norm_totals">[docs]</a><span class="k">def</span> <span class="nf">compute_joint_norm_totals</span><span class="p">(</span><span class="n">projlist</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute norm_total for each CF in each projection from a group to</span>
 <span class="sd">    be normalized jointly.</span>
@@ -162,7 +168,7 @@
             <span class="n">p</span><span class="o">.</span><span class="n">flatcfs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">norm_total</span><span class="o">=</span><span class="n">joint_sum</span>
 
 </div>
-<div class="viewcode-block" id="JointNormalizingCFSheet"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.JointNormalizingCFSheet">[docs]</a><span class="k">class</span> <span class="nc">JointNormalizingCFSheet</span><span class="p">(</span><span class="n">CFSheet</span><span class="p">):</span>
+<div class="viewcode-block" id="JointNormalizingCFSheet"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.JointNormalizingCFSheet">[docs]</a><span class="k">class</span> <span class="nc">JointNormalizingCFSheet</span><span class="p">(</span><span class="n">CFSheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A type of CFSheet extended to support joint sum-based normalization.</span>
 
@@ -223,7 +229,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;  &#39;</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="JointNormalizingCFSheet.learn"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.JointNormalizingCFSheet.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="JointNormalizingCFSheet.learn"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.JointNormalizingCFSheet.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call the learn() method on every Projection to the Sheet, and</span>
 <span class="sd">        call the output functions (jointly if necessary).</span>
@@ -240,7 +246,7 @@
 
 
 </div></div>
-<div class="viewcode-block" id="JointNormalizingCFSheet_Continuous"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.JointNormalizingCFSheet_Continuous">[docs]</a><span class="k">class</span> <span class="nc">JointNormalizingCFSheet_Continuous</span><span class="p">(</span><span class="n">JointNormalizingCFSheet</span><span class="p">):</span>
+<div class="viewcode-block" id="JointNormalizingCFSheet_Continuous"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.JointNormalizingCFSheet_Continuous">[docs]</a><span class="k">class</span> <span class="nc">JointNormalizingCFSheet_Continuous</span><span class="p">(</span><span class="n">JointNormalizingCFSheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CFSheet that runs continuously, with no &#39;resting&#39; periods between pattern presentations.</span>
 
@@ -258,7 +264,7 @@
 
 
 </div>
-<div class="viewcode-block" id="SettlingCFSheet"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.SettlingCFSheet">[docs]</a><span class="k">class</span> <span class="nc">SettlingCFSheet</span><span class="p">(</span><span class="n">JointNormalizingCFSheet</span><span class="p">):</span>
+<div class="viewcode-block" id="SettlingCFSheet"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.SettlingCFSheet">[docs]</a><span class="k">class</span> <span class="nc">SettlingCFSheet</span><span class="p">(</span><span class="n">JointNormalizingCFSheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A JointNormalizingCFSheet implementing the idea of settling.</span>
 
@@ -345,7 +351,7 @@
     <span class="c">### flagged).</span>
     <span class="c"># CEBALERT: there is at least one bug in here for tsettle==0: see</span>
     <span class="c"># CB/JAB email &quot;LISSOM tsettle question&quot;, 2010/03/22.</span>
-<div class="viewcode-block" id="SettlingCFSheet.process_current_time"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.SettlingCFSheet.process_current_time">[docs]</a>    <span class="k">def</span> <span class="nf">process_current_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SettlingCFSheet.process_current_time"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.SettlingCFSheet.process_current_time">[docs]</a>    <span class="k">def</span> <span class="nf">process_current_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Pass the accumulated stimulation through self.output_fns and</span>
 <span class="sd">        send it out on the default output port.</span>
@@ -395,7 +401,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">SettlingCFSheet</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_pop</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">activation_count</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">new_iteration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__counter_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 
-<div class="viewcode-block" id="SettlingCFSheet.send_output"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet-module.html#topo.sheet.SettlingCFSheet.send_output">[docs]</a>    <span class="k">def</span> <span class="nf">send_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">src_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="SettlingCFSheet.send_output"><a class="viewcode-back" href="../../Reference_Manual/topo.sheet.html#topo.sheet.SettlingCFSheet.send_output">[docs]</a>    <span class="k">def</span> <span class="nf">send_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">src_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Send some data out to all connections on the given src_port.&quot;&quot;&quot;</span>
 
         <span class="n">out_conns_on_src_port</span> <span class="o">=</span> <span class="p">[</span><span class="n">conn</span> <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_connections</span>
@@ -461,7 +467,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/sheet.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/sheet.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -484,6 +490,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -503,8 +515,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

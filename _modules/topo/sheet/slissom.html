@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.sheet.slissom &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.sheet.slissom &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.sheet" href="../sheet.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -79,7 +85,7 @@
 
 <span class="n">activity_type</span> <span class="o">=</span> <span class="n">Numeric</span><span class="o">.</span><span class="n">Float32</span>
 
-<div class="viewcode-block" id="SLISSOM"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.slissom-module.html#topo.sheet.slissom.SLISSOM">[docs]</a><span class="k">class</span> <span class="nc">SLISSOM</span><span class="p">(</span><span class="n">SettlingCFSheet</span><span class="p">):</span>
+<div class="viewcode-block" id="SLISSOM"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.slissom.SLISSOM">[docs]</a><span class="k">class</span> <span class="nc">SLISSOM</span><span class="p">(</span><span class="n">SettlingCFSheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Sheet class implementing the SLISSOM algorithm</span>
 <span class="sd">    (Choe and Miikkulainen, Neurocomputing 21:139-157, 1998).</span>
@@ -143,7 +149,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">membrane_potential_trace</span> <span class="o">=</span> \
             <span class="n">Numeric</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_traces</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">trace_n</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">activity_type</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SLISSOM.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.slissom-module.html#topo.sheet.slissom.SLISSOM.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SLISSOM.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.slissom.SLISSOM.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        For now, this is the same as the parent&#39;s activate(), plus</span>
 <span class="sd">        fixed+dynamic thresholding. Overloading was necessary to</span>
@@ -195,7 +201,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_trace</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send_output</span><span class="p">(</span><span class="n">src_port</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="SLISSOM.input_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.slissom-module.html#topo.sheet.slissom.SLISSOM.input_event">[docs]</a>    <span class="k">def</span> <span class="nf">input_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="SLISSOM.input_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.slissom.SLISSOM.input_event">[docs]</a>    <span class="k">def</span> <span class="nf">input_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        SLISSOM-specific input_event handeling:</span>
 <span class="sd">        On a new afferent input, DO NOT clear the activity matrix unless</span>
@@ -209,7 +215,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SettlingCFSheet</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">input_event</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="SLISSOM.plot_trace"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.slissom-module.html#topo.sheet.slissom.SLISSOM.plot_trace">[docs]</a>    <span class="k">def</span> <span class="nf">plot_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SLISSOM.plot_trace"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.slissom.SLISSOM.plot_trace">[docs]</a>    <span class="k">def</span> <span class="nf">plot_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot membrane potential trace of the unit designated by the</span>
 <span class="sd">        trace_coords list. This plot has trace_n data points.</span>
@@ -220,7 +226,7 @@
             <span class="n">vectorplot</span><span class="p">(</span><span class="n">trace</span><span class="o">+</span><span class="n">trace_offset</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s">&quot;rx&quot;</span><span class="p">)</span>
             <span class="n">trace_offset</span> <span class="o">+=</span> <span class="mi">3</span>
 </div>
-<div class="viewcode-block" id="SLISSOM.vectorplot_trace"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.slissom-module.html#topo.sheet.slissom.SLISSOM.vectorplot_trace">[docs]</a>    <span class="k">def</span> <span class="nf">vectorplot_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SLISSOM.vectorplot_trace"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.slissom.SLISSOM.vectorplot_trace">[docs]</a>    <span class="k">def</span> <span class="nf">vectorplot_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot membrane potential trace of the unit designated by the</span>
 <span class="sd">        trace_coords list. This plot has trace_n data points.</span>
@@ -228,7 +234,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="SLISSOM.matrixplot_trace"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.slissom-module.html#topo.sheet.slissom.SLISSOM.matrixplot_trace">[docs]</a>    <span class="k">def</span> <span class="nf">matrixplot_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SLISSOM.matrixplot_trace"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.slissom.SLISSOM.matrixplot_trace">[docs]</a>    <span class="k">def</span> <span class="nf">matrixplot_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Matrixplot membrane potential trace of the unit designated by the</span>
 <span class="sd">        trace_coords list.</span>
@@ -286,7 +292,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/sheet/slissom.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/sheet/slissom.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -309,6 +315,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -329,8 +341,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

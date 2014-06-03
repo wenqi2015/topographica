@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.plotting.plotgroup &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.plotting.plotgroup &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -73,7 +79,7 @@
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">resolve_path</span>
 
 <span class="kn">from</span> <span class="nn">imagen.random</span> <span class="kn">import</span> <span class="n">UniformRandom</span>
-<span class="kn">from</span> <span class="nn">dataviews.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="kn">from</span> <span class="nn">featuremapper</span> <span class="kn">import</span> <span class="n">distribution</span>
 
@@ -117,7 +123,7 @@
                    <span class="p">(</span><span class="n">plot2</span><span class="o">.</span><span class="n">plot_src_name</span><span class="o">+</span><span class="n">plot2</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="PlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.PlotGroup">[docs]</a><span class="k">class</span> <span class="nc">PlotGroup</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.PlotGroup">[docs]</a><span class="k">class</span> <span class="nc">PlotGroup</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Container that has one or more Plots and also knows how to arrange</span>
 <span class="sd">    the plots and other special parameters.</span>
@@ -162,7 +168,7 @@
     <span class="c">##############################</span>
     <span class="c">########## interface for users</span>
 
-<div class="viewcode-block" id="PlotGroup.make_plots"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.PlotGroup.make_plots">[docs]</a>    <span class="k">def</span> <span class="nf">make_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">update</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotGroup.make_plots"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.PlotGroup.make_plots">[docs]</a>    <span class="k">def</span> <span class="nf">make_plots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">update</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create and scale the plots, after first executing the PlotGroup&#39;s pre_plot_hooks</span>
 <span class="sd">        (if update is True) and plot_hooks.</span>
@@ -172,7 +178,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_create_images</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_images</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="PlotGroup.scale_images"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.PlotGroup.scale_images">[docs]</a>    <span class="k">def</span> <span class="nf">scale_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">zoom_factor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotGroup.scale_images"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.PlotGroup.scale_images">[docs]</a>    <span class="k">def</span> <span class="nf">scale_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">zoom_factor</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Scale the images by the given zoom factor, if appropriate; default is to do nothing.&quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
@@ -242,7 +248,7 @@
 
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="PlotGroup.coords"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.PlotGroup.coords">[docs]</a>    <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotGroup.coords"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.PlotGroup.coords">[docs]</a>    <span class="k">def</span> <span class="nf">coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the grid layout of the plots from their precedences</span>
 <span class="sd">        and row_precedences. Returns a list of triples (row, col, plot).</span>
@@ -265,7 +271,7 @@
         <span class="k">return</span> <span class="n">coords</span>
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="PlotGroup.grid"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.PlotGroup.grid">[docs]</a>    <span class="k">def</span> <span class="nf">grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotGroup.grid"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.PlotGroup.grid">[docs]</a>    <span class="k">def</span> <span class="nf">grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the plots in grid format, i.e., a list of rows, each of</span>
 <span class="sd">        which is a list of plots. The rows are right padded with None</span>
@@ -509,7 +515,7 @@
 
 
 
-<div class="viewcode-block" id="TemplatePlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.TemplatePlotGroup">[docs]</a><span class="k">class</span> <span class="nc">TemplatePlotGroup</span><span class="p">(</span><span class="n">SheetPlotGroup</span><span class="p">):</span>
+<div class="viewcode-block" id="TemplatePlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.TemplatePlotGroup">[docs]</a><span class="k">class</span> <span class="nc">TemplatePlotGroup</span><span class="p">(</span><span class="n">SheetPlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Container that allows creation of different types of plots in a</span>
 <span class="sd">    way that is independent of particular models or Sheets.</span>
@@ -670,7 +676,7 @@
     <span class="n">add_plot</span> <span class="o">=</span> <span class="n">add_template</span> <span class="c"># CEBALERT: should be removed when callers updated</span>
 
 
-<div class="viewcode-block" id="TemplatePlotGroup.add_static_image"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.TemplatePlotGroup.add_static_image">[docs]</a>    <span class="k">def</span> <span class="nf">add_static_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">file_path</span><span class="p">):</span>
+<div class="viewcode-block" id="TemplatePlotGroup.add_static_image"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.TemplatePlotGroup.add_static_image">[docs]</a>    <span class="k">def</span> <span class="nf">add_static_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">file_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a static image Plot (e.g. a color key for an Orientation Preference map).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -720,7 +726,7 @@
 
 
 </div>
-<div class="viewcode-block" id="default_measureable_sheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.default_measureable_sheet">[docs]</a><span class="k">def</span> <span class="nf">default_measureable_sheet</span><span class="p">():</span>
+<div class="viewcode-block" id="default_measureable_sheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.default_measureable_sheet">[docs]</a><span class="k">def</span> <span class="nf">default_measureable_sheet</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Returns the first sheet for which measure_maps is True (if any), or else the first sheet, for use as a default value.&quot;&quot;&quot;</span>
 
     <span class="n">sheets</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
@@ -736,7 +742,7 @@
 
 
 </div>
-<div class="viewcode-block" id="ProjectionSheetPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.ProjectionSheetPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">ProjectionSheetPlotGroup</span><span class="p">(</span><span class="n">TemplatePlotGroup</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheetPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.ProjectionSheetPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">ProjectionSheetPlotGroup</span><span class="p">(</span><span class="n">TemplatePlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Abstract PlotGroup for visualizations of the Projections of one ProjectionSheet.&quot;&quot;&quot;</span>
     <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
 
@@ -937,7 +943,7 @@
 
 
 </div>
-<div class="viewcode-block" id="ProjectionActivityPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.ProjectionActivityPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">ProjectionActivityPlotGroup</span><span class="p">(</span><span class="n">ProjectionSheetPlotGroup</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionActivityPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.ProjectionActivityPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">ProjectionActivityPlotGroup</span><span class="p">(</span><span class="n">ProjectionSheetPlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Visualize the activity of all Projections into a ProjectionSheet.&quot;&quot;&quot;</span>
 
     <span class="n">keyname</span><span class="o">=</span><span class="s">&#39;ProjectionActivity&#39;</span>
@@ -960,7 +966,7 @@
 
 <span class="c"># CEBALERT: Total mess. should be a mix-in class, or something like</span>
 <span class="c"># that.</span></div>
-<div class="viewcode-block" id="GridPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.GridPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">GridPlotGroup</span><span class="p">(</span><span class="n">ProjectionSheetPlotGroup</span><span class="p">):</span>
+<div class="viewcode-block" id="GridPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.GridPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">GridPlotGroup</span><span class="p">(</span><span class="n">ProjectionSheetPlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A ProjectionSheetPlotGroup capable of generating coordinates on a 2D grid.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1029,7 +1035,7 @@
     <span class="c">##############################</span>
     <span class="c">########## adds for subclasses</span>
 
-<div class="viewcode-block" id="GridPlotGroup.generate_coords"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.GridPlotGroup.generate_coords">[docs]</a>    <span class="k">def</span> <span class="nf">generate_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GridPlotGroup.generate_coords"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.GridPlotGroup.generate_coords">[docs]</a>    <span class="k">def</span> <span class="nf">generate_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evenly space out the units within the sheet bounding box, so</span>
 <span class="sd">        that it doesn&#39;t matter which corner the measurements start</span>
@@ -1056,7 +1062,7 @@
 
 
 </div></div>
-<div class="viewcode-block" id="default_input_sheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.default_input_sheet">[docs]</a><span class="k">def</span> <span class="nf">default_input_sheet</span><span class="p">():</span>
+<div class="viewcode-block" id="default_input_sheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.default_input_sheet">[docs]</a><span class="k">def</span> <span class="nf">default_input_sheet</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Returns the first GeneratorSheet defined, for use as a default value.&quot;&quot;&quot;</span>
     <span class="n">sheets</span><span class="o">=</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">GeneratorSheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sheets</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">:</span>
@@ -1106,7 +1112,7 @@
 
 
 
-<div class="viewcode-block" id="TwoOrientationsPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.TwoOrientationsPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">TwoOrientationsPlotGroup</span><span class="p">(</span> <span class="n">TemplatePlotGroup</span> <span class="p">):</span>
+<div class="viewcode-block" id="TwoOrientationsPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.TwoOrientationsPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">TwoOrientationsPlotGroup</span><span class="p">(</span> <span class="n">TemplatePlotGroup</span> <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Display with small segments the two most preferred orientations for each</span>
 <span class="sd">    units in the sheet. Only orientation with significative selectivity are</span>
 <span class="sd">    shown. Darker segments correspond to orientations with more selective</span>
@@ -1202,7 +1208,7 @@
 
 
 
-<div class="viewcode-block" id="CFProjectionPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.CFProjectionPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">CFProjectionPlotGroup</span><span class="p">(</span><span class="n">ProjectionPlotGroup</span><span class="p">):</span>
+<div class="viewcode-block" id="CFProjectionPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.CFProjectionPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">CFProjectionPlotGroup</span><span class="p">(</span><span class="n">ProjectionPlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Visualize one CFProjection.&quot;&quot;&quot;</span>
 
     <span class="n">situate</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
@@ -1272,7 +1278,7 @@
 
 
 <span class="c"># a mix-in?</span></div>
-<div class="viewcode-block" id="UnitPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.UnitPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">UnitPlotGroup</span><span class="p">(</span><span class="n">ProjectionSheetPlotGroup</span><span class="p">):</span>
+<div class="viewcode-block" id="UnitPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.UnitPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">UnitPlotGroup</span><span class="p">(</span><span class="n">ProjectionSheetPlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Visualize anything related to a unit.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1301,7 +1307,7 @@
 
 
 </div>
-<div class="viewcode-block" id="ConnectionFieldsPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.ConnectionFieldsPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">ConnectionFieldsPlotGroup</span><span class="p">(</span><span class="n">UnitPlotGroup</span><span class="p">):</span>
+<div class="viewcode-block" id="ConnectionFieldsPlotGroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.ConnectionFieldsPlotGroup">[docs]</a><span class="k">class</span> <span class="nc">ConnectionFieldsPlotGroup</span><span class="p">(</span><span class="n">UnitPlotGroup</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Visualize ConnectionField for each of a CFSheet&#39;s CFProjections.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1391,7 +1397,7 @@
                    <span class="s">&#39;Projection Activity&#39;</span><span class="p">:</span> <span class="n">ProjectionActivityPlotGroup</span><span class="p">}</span>
 
 
-<div class="viewcode-block" id="create_plotgroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.create_plotgroup">[docs]</a><span class="k">def</span> <span class="nf">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&#39;bitmap&#39;</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="create_plotgroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.create_plotgroup">[docs]</a><span class="k">def</span> <span class="nf">create_plotgroup</span><span class="p">(</span><span class="n">template_plot_type</span><span class="o">=</span><span class="s">&#39;bitmap&#39;</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a new PlotGroup and add it to the plotgroups list.</span>
 
@@ -1438,7 +1444,7 @@
 
 
 
-<div class="viewcode-block" id="save_plotgroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.save_plotgroup">[docs]</a><span class="k">class</span> <span class="nc">save_plotgroup</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+<div class="viewcode-block" id="save_plotgroup"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.save_plotgroup">[docs]</a><span class="k">class</span> <span class="nc">save_plotgroup</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convenience command for saving a set of plots to disk.  Examples:</span>
 
@@ -1517,7 +1523,7 @@
 
 
 </div>
-<div class="viewcode-block" id="Subplotting"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.Subplotting">[docs]</a><span class="k">class</span> <span class="nc">Subplotting</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="Subplotting"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.Subplotting">[docs]</a><span class="k">class</span> <span class="nc">Subplotting</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convenience functions for handling subplots (such as colorized</span>
 <span class="sd">    Activity plots).  Only needed for avoiding typing, as plots can be</span>
@@ -1538,7 +1544,7 @@
     <span class="n">_last_args</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">())</span>
 
     <span class="nd">@staticmethod</span>
-<div class="viewcode-block" id="Subplotting.set_subplots"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.plotgroup-module.html#topo.plotting.plotgroup.Subplotting.set_subplots">[docs]</a>    <span class="k">def</span> <span class="nf">set_subplots</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Subplotting.set_subplots"><a class="viewcode-back" href="../../../Reference_Manual/topo.plotting.html#topo.plotting.plotgroup.Subplotting.set_subplots">[docs]</a>    <span class="k">def</span> <span class="nf">set_subplots</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Define Hue and Confidence subplots for each of the</span>
 <span class="sd">        plotgroups_to_subplot.</span>
@@ -1961,7 +1967,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/plotting/plotgroup.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/plotting/plotgroup.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -1984,6 +1990,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -2003,8 +2015,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

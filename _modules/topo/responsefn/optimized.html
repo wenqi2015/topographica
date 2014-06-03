@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.responsefn.optimized &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.responsefn.optimized &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.responsefn" href="../responsefn.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -79,7 +85,7 @@
 <span class="c"># out of date. Need to update for this and other optimized fns that</span>
 <span class="c"># have been flattened.</span>
 
-<div class="viewcode-block" id="CFPRF_DotProduct_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.responsefn.optimized-module.html#topo.responsefn.optimized.CFPRF_DotProduct_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPRF_DotProduct_opt</span><span class="p">(</span><span class="n">CFPResponseFn</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPRF_DotProduct_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.responsefn.html#topo.responsefn.optimized.CFPRF_DotProduct_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPRF_DotProduct_opt</span><span class="p">(</span><span class="n">CFPResponseFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dot-product response function.</span>
 
@@ -158,7 +164,7 @@
         <span class="n">inline</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;mask&#39;</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="s">&#39;strength&#39;</span><span class="p">,</span> <span class="s">&#39;icols&#39;</span><span class="p">,</span> <span class="s">&#39;temp_act&#39;</span><span class="p">,</span><span class="s">&#39;cfs&#39;</span><span class="p">,</span><span class="s">&#39;num_cfs&#39;</span><span class="p">,</span><span class="s">&#39;cf_type&#39;</span><span class="p">],</span>
                <span class="n">local_dict</span><span class="o">=</span><span class="nb">locals</span><span class="p">(),</span> <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;&lt;structmember.h&gt;&#39;</span><span class="p">])</span>
 </div>
-<div class="viewcode-block" id="CFPRF_DotProduct"><a class="viewcode-back" href="../../../Reference_Manual/topo.responsefn.optimized-module.html#topo.responsefn.optimized.CFPRF_DotProduct">[docs]</a><span class="k">class</span> <span class="nc">CFPRF_DotProduct</span><span class="p">(</span><span class="n">CFPRF_Plugin</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPRF_DotProduct"><a class="viewcode-back" href="../../../Reference_Manual/topo.responsefn.html#topo.responsefn.optimized.CFPRF_DotProduct">[docs]</a><span class="k">class</span> <span class="nc">CFPRF_DotProduct</span><span class="p">(</span><span class="n">CFPRF_Plugin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wrapper written to allow transparent non-optimized fallback;</span>
 <span class="sd">    equivalent to CFPRF_Plugin(single_cf_fn=DotProduct()).</span>
@@ -180,7 +186,7 @@
 
 
 <span class="c"># CEBERRORALERT: ignores the sheet mask!</span>
-<div class="viewcode-block" id="CFPRF_EuclideanDistance_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.responsefn.optimized-module.html#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPRF_EuclideanDistance_opt</span><span class="p">(</span><span class="n">CFPResponseFn</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPRF_EuclideanDistance_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.responsefn.html#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPRF_EuclideanDistance_opt</span><span class="p">(</span><span class="n">CFPResponseFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Euclidean-distance response function.</span>
 
@@ -285,7 +291,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/responsefn/optimized.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/responsefn/optimized.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -308,6 +314,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -328,8 +340,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

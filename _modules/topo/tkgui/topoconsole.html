@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.tkgui.topoconsole &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.tkgui.topoconsole &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.tkgui" href="../tkgui.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -82,7 +88,7 @@
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">normalize_path</span><span class="p">,</span><span class="n">resolve_path</span>
 <span class="kn">import</span> <span class="nn">paramtk</span> <span class="kn">as</span> <span class="nn">tk</span>
-<span class="kn">from</span> <span class="nn">dataviews.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">from</span> <span class="nn">topo.plotting.plotgroup</span> <span class="kn">import</span> <span class="n">plotgroups</span><span class="p">,</span> <span class="n">FeatureCurvePlotGroup</span>
 <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">sim_name_from_filename</span>
@@ -170,7 +176,7 @@
 
 
 
-<div class="viewcode-block" id="PlotsMenuEntry"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.PlotsMenuEntry">[docs]</a><span class="k">class</span> <span class="nc">PlotsMenuEntry</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotsMenuEntry"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.PlotsMenuEntry">[docs]</a><span class="k">class</span> <span class="nc">PlotsMenuEntry</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Stores information about a Plots menu command</span>
 <span class="sd">    (including the command itself, and the plotgroup template).</span>
@@ -216,7 +222,7 @@
 <span class="c"># Notebook only available for Tkinter&gt;=8.5</span></div>
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">paramtk.tilewrapper</span> <span class="kn">import</span> <span class="n">Notebook</span>
-<div class="viewcode-block" id="DockManager"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.DockManager">[docs]</a>    <span class="k">class</span> <span class="nc">DockManager</span><span class="p">(</span><span class="n">Notebook</span><span class="p">):</span>
+<div class="viewcode-block" id="DockManager"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.DockManager">[docs]</a>    <span class="k">class</span> <span class="nc">DockManager</span><span class="p">(</span><span class="n">Notebook</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Manages windows that can be tabs in a notebook, or toplevels.&quot;&quot;&quot;</span>
         <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cnf</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
             <span class="n">Notebook</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">cnf</span><span class="o">=</span><span class="n">cnf</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
@@ -334,7 +340,7 @@
 
 <span class="kn">import</span> <span class="nn">Tkinter</span>
 
-<div class="viewcode-block" id="TopoConsole"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole">[docs]</a><span class="k">class</span> <span class="nc">TopoConsole</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">AppWindow</span><span class="p">,</span><span class="n">tk</span><span class="o">.</span><span class="n">TkParameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole">[docs]</a><span class="k">class</span> <span class="nc">TopoConsole</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">AppWindow</span><span class="p">,</span><span class="n">tk</span><span class="o">.</span><span class="n">TkParameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main window for the Tk-based GUI.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -579,7 +585,7 @@
 
 
 
-<div class="viewcode-block" id="TopoConsole.quit_topographica"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.quit_topographica">[docs]</a>    <span class="k">def</span> <span class="nf">quit_topographica</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">exit_status</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.quit_topographica"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.quit_topographica">[docs]</a>    <span class="k">def</span> <span class="nf">quit_topographica</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">exit_status</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Quit topographica.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">check</span> <span class="ow">or</span> <span class="p">(</span><span class="n">check</span> <span class="ow">and</span> <span class="n">tk</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="s">&quot;Quit Topographica&quot;</span><span class="p">,</span><span class="s">&quot;Really quit?&quot;</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
@@ -619,7 +625,7 @@
                 <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">exit_status</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="TopoConsole.run_script"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.run_script">[docs]</a>    <span class="k">def</span> <span class="nf">run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.run_script"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.run_script">[docs]</a>    <span class="k">def</span> <span class="nf">run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Dialog to run a user-selected script</span>
 
@@ -661,7 +667,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">messageBar</span><span class="o">.</span><span class="n">response</span><span class="p">(</span><span class="s">&#39;Script saved to &#39;</span> <span class="o">+</span> <span class="n">script_name</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="TopoConsole.load_snapshot"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.load_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">load_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.load_snapshot"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.load_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">load_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Dialog to load a user-selected snapshot (see topo.command.load_snapshot() ).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -679,7 +685,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">auto_refresh</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="TopoConsole.save_snapshot"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.save_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">save_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.save_snapshot"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.save_snapshot">[docs]</a>    <span class="k">def</span> <span class="nf">save_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Dialog to save a snapshot (see topo.command.save_snapshot() ).</span>
 
@@ -701,7 +707,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">messageBar</span><span class="o">.</span><span class="n">response</span><span class="p">(</span><span class="s">&#39;Snapshot saved to &#39;</span> <span class="o">+</span> <span class="n">snapshot_name</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="TopoConsole.auto_refresh"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.auto_refresh">[docs]</a>    <span class="k">def</span> <span class="nf">auto_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.auto_refresh"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.auto_refresh">[docs]</a>    <span class="k">def</span> <span class="nf">auto_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Refresh all windows in auto_refresh_panels.</span>
 
@@ -721,7 +727,7 @@
     <span class="c">### hierarchical example? I guess this is the reason I thought the</span>
     <span class="c">### updating never worked properly (or I really did break it</span>
     <span class="c">### recently - or I&#39;m confused)...</span></div>
-<div class="viewcode-block" id="TopoConsole.refresh_activity_windows"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.refresh_activity_windows">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_activity_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.refresh_activity_windows"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.refresh_activity_windows">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_activity_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update any windows with a plotgroup_key ending in &#39;Activity&#39;.</span>
 
@@ -733,7 +739,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">update_idletasks</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="TopoConsole.open_model_editor"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.open_model_editor">[docs]</a>    <span class="k">def</span> <span class="nf">open_model_editor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.open_model_editor"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.open_model_editor">[docs]</a>    <span class="k">def</span> <span class="nf">open_model_editor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Start the Model editor.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ModelEditor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -747,7 +753,7 @@
         <span class="n">win</span><span class="o">.</span><span class="n">deiconify</span><span class="p">()</span>
         <span class="c">#self.messageBar.message(&#39;state&#39;, &#39;OK&#39;)</span>
 
-<div class="viewcode-block" id="TopoConsole.open_location"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.open_location">[docs]</a>    <span class="k">def</span> <span class="nf">open_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locations</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.open_location"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.open_location">[docs]</a>    <span class="k">def</span> <span class="nf">open_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locations</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Try to open one of the specified locations in a new window of the default</span>
 <span class="sd">        browser. See webbrowser module for more information.</span>
@@ -785,7 +791,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">messageBar</span><span class="o">.</span><span class="n">response</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="TopoConsole.run_simulation"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.run_simulation">[docs]</a>    <span class="k">def</span> <span class="nf">run_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="c"># event=None allows use as callback</span>
+<div class="viewcode-block" id="TopoConsole.run_simulation"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.run_simulation">[docs]</a>    <span class="k">def</span> <span class="nf">run_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span> <span class="c"># event=None allows use as callback</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run the simulation for the duration specified in the</span>
 <span class="sd">        &#39;run for&#39; taggedslider.</span>
@@ -841,7 +847,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">messageBar</span>
 
 
-<div class="viewcode-block" id="TopoConsole.open_progress_window"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.TopoConsole.open_progress_window">[docs]</a>    <span class="k">def</span> <span class="nf">open_progress_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">timer</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoConsole.open_progress_window"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.TopoConsole.open_progress_window">[docs]</a>    <span class="k">def</span> <span class="nf">open_progress_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">timer</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide a convenient link to progress bars.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -856,7 +862,7 @@
 <span class="c"># dictionary style access rather than .config()! Either document</span>
 <span class="c"># clearly or abandon, and get() and set() to access menu entries by</span>
 <span class="c"># name.</span></div></div>
-<div class="viewcode-block" id="ControllableMenu"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.topoconsole-module.html#topo.tkgui.topoconsole.ControllableMenu">[docs]</a><span class="k">class</span> <span class="nc">ControllableMenu</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">):</span>
+<div class="viewcode-block" id="ControllableMenu"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.topoconsole.ControllableMenu">[docs]</a><span class="k">class</span> <span class="nc">ControllableMenu</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Menu, but where entries are accessible by name (using</span>
 <span class="sd">    dictionary-style access).</span>
@@ -906,7 +912,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/tkgui/topoconsole.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/tkgui/topoconsole.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -929,6 +935,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -949,8 +961,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

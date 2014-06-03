@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.misc.lancext &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.misc.lancext &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -76,7 +82,7 @@
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">vcs_metadata</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Command</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Launcher</span><span class="p">,</span> <span class="n">review_and_launch</span>
-<span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">NumpyFile</span>
+<span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">ViewFile</span><span class="p">,</span> <span class="n">NumpyFile</span>
 
 <span class="k">try</span><span class="p">:</span>
    <span class="kn">from</span> <span class="nn">external</span> <span class="kn">import</span> <span class="n">sys_paths</span>
@@ -88,8 +94,9 @@
 <span class="n">review_and_launch</span><span class="o">.</span><span class="n">output_directory</span> <span class="o">=</span> <span class="n">default_output_path</span><span class="p">()</span>
 <span class="n">Launcher</span><span class="o">.</span><span class="n">output_directory</span> <span class="o">=</span> <span class="n">default_output_path</span><span class="p">()</span>
 
+<span class="kn">from</span> <span class="nn">topo.analysis</span> <span class="kn">import</span> <span class="n">Collector</span>
 
-<div class="viewcode-block" id="topo_metadata"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.topo_metadata">[docs]</a><span class="k">class</span> <span class="nc">topo_metadata</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="topo_metadata"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.topo_metadata">[docs]</a><span class="k">class</span> <span class="nc">topo_metadata</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   Topographica specific helper function that expands on Lancet&#39;s</span>
 <span class="sd">   vcs_metadata function to generate suitable metadata information for</span>
@@ -153,7 +160,7 @@
       <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">modified_files</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="topo_metadata.summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.topo_metadata.summary">[docs]</a>   <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="topo_metadata.summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.topo_metadata.summary">[docs]</a>   <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="s">&quot;Printed summary of the versioning information captured via git.&quot;</span>
       <span class="n">np_name</span> <span class="o">=</span> <span class="s">&#39;Numpy&#39;</span>
       <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="k">else</span> <span class="bp">self</span><span class="p">()</span>
@@ -186,7 +193,7 @@
       <span class="k">print</span> <span class="s">&#39;   </span><span class="si">%s</span><span class="s">: </span><span class="si">%s%s</span><span class="s"> Version </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">release)&#39;</span> <span class="o">%</span> <span class="n">np_info</span>
 
 </div></div>
-<div class="viewcode-block" id="param_formatter"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.param_formatter">[docs]</a><span class="k">class</span> <span class="nc">param_formatter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+<div class="viewcode-block" id="param_formatter"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.param_formatter">[docs]</a><span class="k">class</span> <span class="nc">param_formatter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   This class is closely related to the param_formatter class in</span>
 <span class="sd">   topo/command/__init__.py.  Like that default class, it formats</span>
@@ -245,7 +252,7 @@
 
 
 </div>
-<div class="viewcode-block" id="TopoCommand"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.TopoCommand">[docs]</a><span class="k">class</span> <span class="nc">TopoCommand</span><span class="p">(</span><span class="n">Command</span><span class="p">):</span>
+<div class="viewcode-block" id="TopoCommand"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.TopoCommand">[docs]</a><span class="k">class</span> <span class="nc">TopoCommand</span><span class="p">(</span><span class="n">Command</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   TopoCommand is designed to to format Lancet Args objects into</span>
 <span class="sd">   run_batch commands in a general way. Note that Topographica is</span>
@@ -424,7 +431,7 @@
 
 
 </div>
-<div class="viewcode-block" id="AnalysisFn"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.AnalysisFn">[docs]</a><span class="k">class</span> <span class="nc">AnalysisFn</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="AnalysisFn"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.AnalysisFn">[docs]</a><span class="k">class</span> <span class="nc">AnalysisFn</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   An AnalysisFn records information about a function so that run_batch</span>
 <span class="sd">   can invoke it via an Analysis object. It also allows checks on the</span>
@@ -469,7 +476,7 @@
       <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">argspec</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">alist</span><span class="p">,</span> <span class="n">kwdict</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="AnalysisFn.get_module"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.AnalysisFn.get_module">[docs]</a>   <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AnalysisFn.get_module"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.AnalysisFn.get_module">[docs]</a>   <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;Return a module object that contains the analysis function.&quot;&quot;&quot;</span>
       <span class="c"># In Python 2.7+, importlib.import_module should be used instead</span>
       <span class="nb">__import__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">)</span>
@@ -481,7 +488,7 @@
 
 
 </div>
-<div class="viewcode-block" id="Analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.Analysis">[docs]</a><span class="k">class</span> <span class="nc">Analysis</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="Analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.Analysis">[docs]</a><span class="k">class</span> <span class="nc">Analysis</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   Analysis is a callable that behaves like a general analysis_fn for</span>
 <span class="sd">   run_batch. You can add multiple analysis functions, the return</span>
@@ -507,7 +514,7 @@
 
 
    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Analysis.pickle_path"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.Analysis.pickle_path">[docs]</a>   <span class="k">def</span> <span class="nf">pickle_path</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">root_directory</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Analysis.pickle_path"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.Analysis.pickle_path">[docs]</a>   <span class="k">def</span> <span class="nf">pickle_path</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">root_directory</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Locates the pickle file based on the given launch info</span>
 <span class="sd">      dictionary. Used by load as a classmethod and by save as an</span>
@@ -517,7 +524,7 @@
 
 </div>
    <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="Analysis.load"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.Analysis.load">[docs]</a>   <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">tid</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">root_directory</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">,</span> <span class="n">batch_tag</span><span class="p">):</span>
+<div class="viewcode-block" id="Analysis.load"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.Analysis.load">[docs]</a>   <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">tid</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">root_directory</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">,</span> <span class="n">batch_tag</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Classmethod used to load the RunBatchCommand callable into a</span>
 <span class="sd">      Topographica run_batch context. Loads the pickle file based on</span>
@@ -550,7 +557,7 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="p">{}</span>
 
 
-<div class="viewcode-block" id="Analysis.add_analysis_fn"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.Analysis.add_analysis_fn">[docs]</a>   <span class="k">def</span> <span class="nf">add_analysis_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
+<div class="viewcode-block" id="Analysis.add_analysis_fn"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.Analysis.add_analysis_fn">[docs]</a>   <span class="k">def</span> <span class="nf">add_analysis_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Add an analysis function of type AnalysisFn. If path is not</span>
 <span class="sd">      None, the module needs to be on the path.</span>
@@ -601,7 +608,7 @@
       <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="p">{};</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="p">{}</span>
 
 
-<div class="viewcode-block" id="Analysis.verify"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.Analysis.verify">[docs]</a>   <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">model_params</span><span class="p">):</span>
+<div class="viewcode-block" id="Analysis.verify"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.Analysis.verify">[docs]</a>   <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">model_params</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      The final check of argument specification before launch. Used to</span>
 <span class="sd">      make sure the analysis functions have all the necessary</span>
@@ -639,7 +646,7 @@
                          <span class="o">%</span> <span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">el</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">missing</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="Analysis.summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.Analysis.summary">[docs]</a>   <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Analysis.summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.Analysis.summary">[docs]</a>   <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;Summary of the analysis and the analysis functions used.&quot;&quot;&quot;</span>
 
       <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_argument_sets</span><span class="p">()</span>
@@ -715,15 +722,119 @@
 
 
 </div>
-<div class="viewcode-block" id="RunBatchCommand"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.RunBatchCommand">[docs]</a><span class="k">class</span> <span class="nc">RunBatchCommand</span><span class="p">(</span><span class="n">TopoCommand</span><span class="p">):</span>
+<div class="viewcode-block" id="BatchCollector"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.BatchCollector">[docs]</a><span class="k">class</span> <span class="nc">BatchCollector</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">   Runs a custom analysis function of type Analysis with</span>
+<span class="sd">   BatchCollector is a wrapper class used to execute a Collector in a</span>
+<span class="sd">   Topographica run_batch context, saving the dataviews to disk as</span>
+<span class="sd">   *.view files. It supports the same core interface as the deprecated</span>
+<span class="sd">   Analysis objects.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+
+   <span class="n">metadata</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       Keys to include as metadata in the output file along with</span>
+<span class="s">       &#39;time&#39; (Topographica simulation time).&quot;&quot;&quot;</span><span class="p">)</span>
+
+
+   <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="BatchCollector.pickle_path"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.BatchCollector.pickle_path">[docs]</a>   <span class="k">def</span> <span class="nf">pickle_path</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">root_directory</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Locates the pickle file based on the given launch info</span>
+<span class="sd">      dictionary. Used by load as a classmethod and by save as an</span>
+<span class="sd">      instance method.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_directory</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">.collector&#39;</span> <span class="o">%</span> <span class="n">batch_name</span><span class="p">)</span>
+
+</div>
+   <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="BatchCollector.load"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.BatchCollector.load">[docs]</a>   <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">tid</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">root_directory</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">,</span> <span class="n">batch_tag</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Classmethod used to load the RunBatchCommand callable into a</span>
+<span class="sd">      Topographica run_batch context. Loads the pickle file based on</span>
+<span class="sd">      the batch_name and root directory in batch_info.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="n">pkl_path</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">pickle_path</span><span class="p">(</span><span class="n">root_directory</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">)</span>
+      <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pkl_path</span><span class="p">,</span><span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pkl</span><span class="p">:</span>
+         <span class="n">collectorfn</span> <span class="o">=</span>  <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pkl</span><span class="p">)</span>
+
+      <span class="n">info</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;info&#39;</span><span class="p">,[</span><span class="s">&#39;tid&#39;</span><span class="p">,</span> <span class="s">&#39;specs&#39;</span><span class="p">,</span> <span class="s">&#39;batch_name&#39;</span><span class="p">,</span> <span class="s">&#39;batch_tag&#39;</span><span class="p">])</span>
+      <span class="n">collectorfn</span><span class="o">.</span><span class="n">_info</span> <span class="o">=</span> <span class="n">info</span><span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">batch_name</span><span class="p">,</span> <span class="n">batch_tag</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">collectorfn</span>
+
+</div>
+   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collector</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="kn">from</span> <span class="nn">topo.analysis</span> <span class="kn">import</span> <span class="n">Collector</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_pprint_args</span> <span class="o">=</span> <span class="p">([],[],</span><span class="bp">None</span><span class="p">,{})</span>
+      <span class="nb">super</span><span class="p">(</span><span class="n">BatchCollector</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">collector</span><span class="p">,</span> <span class="n">Collector</span><span class="p">):</span>
+         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Please supply a Collector to BatchCollector&quot;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">collector</span> <span class="o">=</span> <span class="n">collector</span>
+      <span class="c"># The _info attribute holds information about the batch.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="o">=</span> <span class="p">()</span>
+
+
+   <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Calls the collector specified by the user in the run_batch</span>
+<span class="sd">      context. Invoked as an analysis function by RunBatchCommand.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="kn">from</span> <span class="nn">dataviews.collector</span> <span class="kn">import</span> <span class="n">AttrTree</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">collector</span><span class="o">.</span><span class="n">interval_hook</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span>
+
+      <span class="n">topo_time</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+      <span class="n">metadata_items</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="o">.</span><span class="n">specs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">metadata_items</span> <span class="o">+</span> <span class="p">[(</span><span class="s">&#39;time&#39;</span><span class="p">,</span><span class="n">topo_time</span><span class="p">)])</span>
+
+      <span class="n">filename</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s%s</span><span class="s">_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="o">.</span><span class="n">batch_name</span><span class="p">,</span>
+                              <span class="p">(</span><span class="s">&#39;[</span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="o">.</span><span class="n">batch_tag</span>
+                               <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="o">.</span><span class="n">batch_tag</span> <span class="k">else</span> <span class="s">&#39;&#39;</span><span class="p">),</span>
+                              <span class="n">topo_time</span><span class="p">)</span>
+
+      <span class="n">viewtree</span> <span class="o">=</span> <span class="n">AttrTree</span><span class="p">()</span>
+      <span class="n">viewtree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collector</span><span class="p">(</span><span class="n">viewtree</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="p">[</span><span class="n">topo_time</span><span class="p">])</span>
+
+      <span class="n">ViewFile</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
+               <span class="n">hash_suffix</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
+                                         <span class="n">viewtree</span><span class="p">,</span>
+                                         <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">model_params</span><span class="p">):</span>
+      <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;_model_params&#39;</span><span class="p">):</span>
+         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Implement once model parameters can be inspected easily.&quot;</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">print</span> <span class="s">&quot;Collector definition summary:</span><span class="se">\n\n</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">collector</span>
+
+   <span class="k">def</span> <span class="nf">_pprint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">annotate</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+               <span class="n">onlychanged</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tab</span> <span class="o">=</span> <span class="s">&#39;   &#39;</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;Pretty print the collector in a declarative style.&quot;&quot;&quot;</span>
+      <span class="n">split</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tab</span><span class="o">*</span><span class="p">(</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+      <span class="n">spec_strs</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">collector</span><span class="o">.</span><span class="n">path_items</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+         <span class="n">key</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">))</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="s">&#39;None&#39;</span>
+         <span class="n">spec_strs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;(</span><span class="si">%s</span><span class="s">,</span><span class="si">%s%s%r</span><span class="s">),&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span> <span class="n">tab</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+
+      <span class="k">return</span> <span class="s">&#39;Collector([</span><span class="si">%s%s%s</span><span class="s">])&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">split</span><span class="p">,</span> <span class="n">split</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">spec_strs</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">split</span><span class="p">)</span>
+
+
+</div>
+<div class="viewcode-block" id="RunBatchCommand"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.RunBatchCommand">[docs]</a><span class="k">class</span> <span class="nc">RunBatchCommand</span><span class="p">(</span><span class="n">TopoCommand</span><span class="p">):</span>
+   <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Runs a custom analysis function of type Analysis or Collector with</span>
 <span class="sd">   run_batch. This command is far more flexible for regular usage than</span>
 <span class="sd">   TopoCommand as it allows you to build a run_batch analysis</span>
 <span class="sd">   incrementally.</span>
 <span class="sd">   &quot;&quot;&quot;</span>
 
-   <span class="n">analysis</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">Analysis</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+   <span class="n">metadata</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">List</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       Keys to include as metadata in the output file along with</span>
+<span class="s">       &#39;time&#39; (Topographica simulation time).&quot;&quot;&quot;</span><span class="p">)</span>
+
+   <span class="n">analysis</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="p">(</span><span class="n">Analysis</span><span class="p">,</span> <span class="n">Collector</span><span class="p">,</span> <span class="n">BatchCollector</span><span class="p">),</span>
+                                  <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">      The object used to define the analysis executed in</span>
+<span class="s">      RunBatch. This object may be an Analysis object a Topographica</span>
+<span class="s">      Collector or BatchCollector (which wraps a Collector). Analysis</span>
+<span class="s">      objects are now deprecated and only retained for legacy reasons.&quot;&quot;&quot;</span> <span class="p">)</span>
 
    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tyfile</span><span class="p">,</span> <span class="n">analysis</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
       <span class="nb">super</span><span class="p">(</span><span class="n">RunBatchCommand</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">tyfile</span><span class="o">=</span><span class="n">tyfile</span><span class="p">,</span>
@@ -732,9 +843,13 @@
                                             <span class="n">do_format</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">pprint_args</span><span class="p">([</span><span class="s">&#39;executable&#39;</span><span class="p">,</span> <span class="s">&#39;tyfile&#39;</span><span class="p">,</span> <span class="s">&#39;analysis&#39;</span><span class="p">],</span> <span class="p">[])</span>
+      <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">,</span> <span class="n">Collector</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span> <span class="o">=</span> <span class="n">BatchCollector</span><span class="p">(</span><span class="n">analysis</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">,</span> <span class="n">Analysis</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Analysis objects are deprecated: Collectors should be used instead.&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="RunBatchCommand.get_model_params"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.RunBatchCommand.get_model_params">[docs]</a>   <span class="k">def</span> <span class="nf">get_model_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RunBatchCommand.get_model_params"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.RunBatchCommand.get_model_params">[docs]</a>   <span class="k">def</span> <span class="nf">get_model_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;Obtains all the script parameters used in the model file.&quot;&quot;&quot;</span>
       <span class="c"># FIXME: This functionality cannot be properly integrated with</span>
       <span class="c"># Topographica until models are defined as classes, allowing</span>
@@ -755,9 +870,10 @@
                                                   <span class="c"># mistakenly included.</span>
 
       <span class="c"># Load and configure the Analysis object.</span>
-      <span class="n">prelude</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;from topo.misc.lancext import Analysis&#39;</span><span class="p">]</span>
-      <span class="n">prelude</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&quot;analysis_fn=Analysis.load(</span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">)&quot;</span>
-                  <span class="o">%</span> <span class="p">(</span><span class="n">tid</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s">&#39;root_directory&#39;</span><span class="p">],</span>
+      <span class="n">class_type</span> <span class="o">=</span> <span class="s">&#39;Analysis&#39;</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">,</span> <span class="n">Analysis</span><span class="p">)</span> <span class="k">else</span> <span class="s">&#39;BatchCollector&#39;</span>
+      <span class="n">prelude</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;from topo.misc.lancext import </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">class_type</span><span class="p">]</span>
+      <span class="n">prelude</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&quot;analysis_fn=</span><span class="si">%s</span><span class="s">.load(</span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">)&quot;</span>
+                  <span class="o">%</span> <span class="p">(</span><span class="n">class_type</span><span class="p">,</span> <span class="n">tid</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="s">&#39;root_directory&#39;</span><span class="p">],</span>
                      <span class="n">info</span><span class="p">[</span><span class="s">&#39;batch_name&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s">&#39;batch_tag&#39;</span><span class="p">])</span> <span class="p">]</span>
 
       <span class="c"># Create the keyword representation to pass into run_batch</span>
@@ -770,7 +886,7 @@
       <span class="k">return</span>  <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">executable</span><span class="p">]</span> <span class="o">+</span> <span class="n">topo_args</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;-c&#39;</span><span class="p">,</span>  <span class="s">&#39;; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">run_batch_list</span><span class="p">)]</span>
 
 
-<div class="viewcode-block" id="RunBatchCommand.verify"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.RunBatchCommand.verify">[docs]</a>   <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="RunBatchCommand.verify"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.RunBatchCommand.verify">[docs]</a>   <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Check that the supplied arguments make sense given the specified</span>
 <span class="sd">      analysis.</span>
@@ -781,7 +897,7 @@
          <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">specs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_model_params</span><span class="p">())</span>
 
 </div>
-<div class="viewcode-block" id="RunBatchCommand.finalize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.lancext-module.html#topo.misc.lancext.RunBatchCommand.finalize">[docs]</a>   <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+<div class="viewcode-block" id="RunBatchCommand.finalize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.RunBatchCommand.finalize">[docs]</a>   <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;Pickle the analysis before launch.&quot;&quot;&quot;</span>
       <span class="n">pkl_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">pickle_path</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s">&#39;root_directory&#39;</span><span class="p">],</span>
                                            <span class="n">info</span><span class="p">[</span><span class="s">&#39;batch_name&#39;</span><span class="p">])</span>
@@ -824,7 +940,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/lancext.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/lancext.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -847,6 +963,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -866,8 +988,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

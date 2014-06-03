@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.command &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.command &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -70,8 +76,12 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">cPickle</span> <span class="kn">as</span> <span class="nn">pickle</span>
-
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span><span class="o">,</span><span class="nn">re</span><span class="o">,</span><span class="nn">string</span><span class="o">,</span><span class="nn">time</span><span class="o">,</span><span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">platform</span>
 
 <span class="kn">import</span> <span class="nn">__main__</span>
 
@@ -86,10 +96,7 @@
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">normalize_path</span>
 
 <span class="kn">import</span> <span class="nn">imagen</span><span class="o">,</span> <span class="nn">numbergen</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">imagen.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span> <span class="c"># pyflakes:ignore (try/except import)</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
@@ -104,7 +111,7 @@
 
 
 
-<div class="viewcode-block" id="generate_example"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.generate_example">[docs]</a><span class="k">def</span> <span class="nf">generate_example</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_example"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.generate_example">[docs]</a><span class="k">def</span> <span class="nf">generate_example</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate the saved network target, as defined in</span>
 <span class="sd">    topo.misc.genexamples.</span>
@@ -156,7 +163,7 @@
 
 
 
-<div class="viewcode-block" id="Command"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.Command">[docs]</a><span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+<div class="viewcode-block" id="Command"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.Command">[docs]</a><span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameterized command: any error when the command is run (called)</span>
 <span class="sd">    will not raise an exception, but will instead generate a warning.</span>
@@ -173,7 +180,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Command</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__call__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ImportErrorObject"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.ImportErrorObject">[docs]</a><span class="k">class</span> <span class="nc">ImportErrorObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ImportErrorObject"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.ImportErrorObject">[docs]</a><span class="k">class</span> <span class="nc">ImportErrorObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Raises an ImportError on any attempt to access an attribute, call,</span>
 <span class="sd">    or get an item.</span>
@@ -208,7 +215,7 @@
 
 
 </div>
-<div class="viewcode-block" id="ImportErrorRaisingFakeModule"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.ImportErrorRaisingFakeModule">[docs]</a><span class="k">class</span> <span class="nc">ImportErrorRaisingFakeModule</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="ImportErrorRaisingFakeModule"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.ImportErrorRaisingFakeModule">[docs]</a><span class="k">class</span> <span class="nc">ImportErrorRaisingFakeModule</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns an ImportErrorObject for any attribute request.</span>
 
@@ -227,7 +234,7 @@
 <span class="c"># CEBALERT: commands in here should inherit from Command, and make use</span>
 <span class="c"># of _except() to ensure all necessary state is reverted.</span>
 </div>
-<div class="viewcode-block" id="save_input_generators"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.save_input_generators">[docs]</a><span class="k">def</span> <span class="nf">save_input_generators</span><span class="p">():</span>
+<div class="viewcode-block" id="save_input_generators"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.save_input_generators">[docs]</a><span class="k">def</span> <span class="nf">save_input_generators</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Save a copy of the active_sim&#39;s current input_generators for all GeneratorSheets.&quot;&quot;&quot;</span>
     <span class="c"># ensure EPs get started (if save_input_generators is called before the simulation is run())</span>
     <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
@@ -237,19 +244,19 @@
         <span class="n">sheet</span><span class="o">.</span><span class="n">push_input_generator</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="restore_input_generators"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.restore_input_generators">[docs]</a><span class="k">def</span> <span class="nf">restore_input_generators</span><span class="p">():</span>
+<div class="viewcode-block" id="restore_input_generators"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.restore_input_generators">[docs]</a><span class="k">def</span> <span class="nf">restore_input_generators</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Restore previously saved input_generators for all of topo.sim&#39;s GeneratorSheets.&quot;&quot;&quot;</span>
     <span class="n">generator_sheets</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">GeneratorSheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">generator_sheets</span><span class="p">:</span>
         <span class="n">sheet</span><span class="o">.</span><span class="n">pop_input_generator</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="clear_event_queue"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.clear_event_queue">[docs]</a><span class="k">def</span> <span class="nf">clear_event_queue</span><span class="p">():</span>
+<div class="viewcode-block" id="clear_event_queue"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.clear_event_queue">[docs]</a><span class="k">def</span> <span class="nf">clear_event_queue</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Remove pending events from the simulator&#39;s event queue.&quot;&quot;&quot;</span>
     <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">event_clear</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="runscript"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.runscript">[docs]</a><span class="k">class</span> <span class="nc">runscript</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+<div class="viewcode-block" id="runscript"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.runscript">[docs]</a><span class="k">class</span> <span class="nc">runscript</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Runs a script that has been parameterized with script parameters.</span>
 <span class="sd">    For example, runscript(&#39;tiny.ty&#39;, cortex_density=10) will execute</span>
@@ -270,7 +277,8 @@
         <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">global_params</span><span class="o">.</span><span class="n">exec_in_context</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">=</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">))</span>
 
-        <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s">&quot;&lt;execution&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;exec&quot;</span><span class="p">)</span>
+        <span class="n">source_path</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="n">source_file</span><span class="p">)</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s">&quot;&lt;execution&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;exec&quot;</span><span class="p">)</span>
         <span class="k">exec</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">ns</span> <span class="c">#globals and locals</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
@@ -285,7 +293,7 @@
         <span class="n">L</span><span class="o">.</span><span class="n">SnapshotSupport</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s">&quot;0.9.7&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="UnpickleEnvironmentCreator"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.UnpickleEnvironmentCreator">[docs]</a><span class="k">class</span> <span class="nc">UnpickleEnvironmentCreator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="UnpickleEnvironmentCreator"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.UnpickleEnvironmentCreator">[docs]</a><span class="k">class</span> <span class="nc">UnpickleEnvironmentCreator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;When unpickled, installs any necessary legacy support.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">release</span><span class="p">,</span><span class="n">version</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">release</span> <span class="o">=</span> <span class="n">release</span>
@@ -300,7 +308,7 @@
         <span class="n">L</span><span class="o">.</span><span class="n">SnapshotSupport</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="save_snapshot"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.save_snapshot">[docs]</a><span class="k">def</span> <span class="nf">save_snapshot</span><span class="p">(</span><span class="n">snapshot_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="save_snapshot"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.save_snapshot">[docs]</a><span class="k">def</span> <span class="nf">save_snapshot</span><span class="p">(</span><span class="n">snapshot_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save a snapshot of the network&#39;s current state.</span>
 
@@ -355,7 +363,7 @@
     <span class="n">snapshot_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="load_snapshot"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.load_snapshot">[docs]</a><span class="k">def</span> <span class="nf">load_snapshot</span><span class="p">(</span><span class="n">snapshot_name</span><span class="p">):</span>
+<div class="viewcode-block" id="load_snapshot"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.load_snapshot">[docs]</a><span class="k">def</span> <span class="nf">load_snapshot</span><span class="p">(</span><span class="n">snapshot_name</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load the simulation stored in snapshot_name.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -424,7 +432,7 @@
 
 
 </div>
-<div class="viewcode-block" id="save_script_repr"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.save_script_repr">[docs]</a><span class="k">def</span> <span class="nf">save_script_repr</span><span class="p">(</span><span class="n">script_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="save_script_repr"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.save_script_repr">[docs]</a><span class="k">def</span> <span class="nf">save_script_repr</span><span class="p">(</span><span class="n">script_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save the current simulation as a Topographica script.</span>
 
@@ -573,7 +581,7 @@
 <span class="c"># in case Activity plot includes map subplots</span>
 <span class="n">default_analysis_plotgroups</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;Orientation Preference&quot;</span><span class="p">,</span><span class="s">&quot;Activity&quot;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="default_analysis_function"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.default_analysis_function">[docs]</a><span class="k">def</span> <span class="nf">default_analysis_function</span><span class="p">():</span>
+<div class="viewcode-block" id="default_analysis_function"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.default_analysis_function">[docs]</a><span class="k">def</span> <span class="nf">default_analysis_function</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Basic example of an analysis command for run_batch; users are</span>
 <span class="sd">    likely to need something similar but highly customized.</span>
@@ -601,7 +609,7 @@
     <span class="n">save_plotgroup</span><span class="p">(</span><span class="s">&quot;Activity&quot;</span><span class="p">,</span><span class="n">saver_params</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;filename_suffix&quot;</span><span class="p">:</span><span class="s">&quot;_45d&quot;</span><span class="p">})</span>
 
 </div>
-<div class="viewcode-block" id="load_kwargs"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.load_kwargs">[docs]</a><span class="k">def</span> <span class="nf">load_kwargs</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">glob</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">fail_exception</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="load_kwargs"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.load_kwargs">[docs]</a><span class="k">def</span> <span class="nf">load_kwargs</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">glob</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">fail_exception</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function to allow keyword arguments (dictionary format)</span>
 <span class="sd">    to be  loaded from a file &#39;fname&#39;. The intended use is to allow a callable</span>
@@ -629,7 +637,7 @@
 
 
 <span class="c"># ALERT: Need to move docs into params.</span></div>
-<div class="viewcode-block" id="run_batch"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.run_batch">[docs]</a><span class="k">class</span> <span class="nc">run_batch</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+<div class="viewcode-block" id="run_batch"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.run_batch">[docs]</a><span class="k">class</span> <span class="nc">run_batch</span><span class="p">(</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run a Topographica simulation in batch mode.</span>
 
@@ -906,7 +914,7 @@
 
 
 </div>
-<div class="viewcode-block" id="wipe_out_activity"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.wipe_out_activity">[docs]</a><span class="k">def</span> <span class="nf">wipe_out_activity</span><span class="p">():</span>
+<div class="viewcode-block" id="wipe_out_activity"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.wipe_out_activity">[docs]</a><span class="k">def</span> <span class="nf">wipe_out_activity</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Resets activity of all Sheets and their connections to zero.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -922,7 +930,7 @@
 
 
 </div>
-<div class="viewcode-block" id="n_bytes"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.n_bytes">[docs]</a><span class="k">def</span> <span class="nf">n_bytes</span><span class="p">():</span>
+<div class="viewcode-block" id="n_bytes"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.n_bytes">[docs]</a><span class="k">def</span> <span class="nf">n_bytes</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Estimate the minimum memory needed for the Sheets in this Simulation, in bytes.</span>
 
@@ -933,22 +941,23 @@
 
 
 </div>
-<div class="viewcode-block" id="n_conns"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.n_conns">[docs]</a><span class="k">def</span> <span class="nf">n_conns</span><span class="p">():</span>
+<div class="viewcode-block" id="n_conns"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.n_conns">[docs]</a><span class="k">def</span> <span class="nf">n_conns</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Count the number of connections in all ProjectionSheets in the current Simulation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">s</span><span class="o">.</span><span class="n">n_conns</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">ProjectionSheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
 
 </div>
-<div class="viewcode-block" id="print_sizes"><a class="viewcode-back" href="../../Reference_Manual/topo.command-module.html#topo.command.print_sizes">[docs]</a><span class="k">def</span> <span class="nf">print_sizes</span><span class="p">():</span>
+<div class="viewcode-block" id="print_sizes"><a class="viewcode-back" href="../../Reference_Manual/topo.command.html#topo.command.print_sizes">[docs]</a><span class="k">def</span> <span class="nf">print_sizes</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Format the results from n_conns() and n_bytes() for use in batch output.&quot;&quot;&quot;</span>
     <span class="k">print</span> <span class="s">&quot;Defined </span><span class="si">%d</span><span class="s">-connection network; </span><span class="si">%0.0f</span><span class="s">MB required for weight storage.&quot;</span> <span class="o">%</span> \
     <span class="p">(</span><span class="n">n_conns</span><span class="p">(),</span><span class="nb">max</span><span class="p">(</span><span class="n">n_bytes</span><span class="p">()</span><span class="o">/</span><span class="mf">1024.0</span><span class="o">/</span><span class="mf">1024.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
 
 <span class="c"># added these two function to the PatternDrivenAnalysis hooks</span></div>
+<span class="n">PatternDrivenAnalysis</span><span class="o">.</span><span class="n">pre_presentation_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">state_push</span><span class="p">)</span>
 <span class="n">PatternDrivenAnalysis</span><span class="o">.</span><span class="n">pre_presentation_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wipe_out_activity</span><span class="p">)</span>
 <span class="n">PatternDrivenAnalysis</span><span class="o">.</span><span class="n">pre_presentation_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clear_event_queue</span><span class="p">)</span>
-
+<span class="n">PatternDrivenAnalysis</span><span class="o">.</span><span class="n">post_presentation_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">state_pop</span><span class="p">)</span>
 
 <span class="c"># maybe an explicit list would be better?</span>
 <span class="kn">import</span> <span class="nn">types</span>
@@ -985,6 +994,7 @@
 <li><a href="../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../Forums/index.html">Forums</a></li>
 <li><a href="../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../Future_Work/index.html">Future Work</a></li>
@@ -998,7 +1008,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/command.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/command.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -1021,6 +1031,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -1040,8 +1056,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

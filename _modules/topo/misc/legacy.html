@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.misc.legacy &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.misc.legacy &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -61,9 +67,7 @@
 <span class="sd">Code used to support old snapshots (those created from 0.9.7/r11275</span>
 <span class="sd">onwards).</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">odict</span>
-
-<span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision: 8021 $&#39;</span>
+<span class="kn">import</span> <span class="nn">collections</span> <span class="kn">as</span> <span class="nn">odict</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">decimal</span> <span class="c"># CEBALERT: when did decimal appear? too late to use?</span>
@@ -198,7 +202,7 @@
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
 
-<div class="viewcode-block" id="preprocess_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.legacy-module.html#topo.misc.legacy.preprocess_state">[docs]</a><span class="k">def</span> <span class="nf">preprocess_state</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="n">state_mod_fn</span><span class="p">):</span>
+<div class="viewcode-block" id="preprocess_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.legacy.preprocess_state">[docs]</a><span class="k">def</span> <span class="nf">preprocess_state</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="n">state_mod_fn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Allow processing of state with state_mod_fn before</span>
 <span class="sd">    class_.__setstate__(instance,state) is called.</span>
@@ -215,7 +219,7 @@
         <span class="n">old_setstate</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">)</span>
     <span class="n">class_</span><span class="o">.</span><span class="n">__setstate__</span> <span class="o">=</span> <span class="n">new_setstate</span>
 </div>
-<div class="viewcode-block" id="postprocess_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.legacy-module.html#topo.misc.legacy.postprocess_state">[docs]</a><span class="k">def</span> <span class="nf">postprocess_state</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="n">state_mod_fn</span><span class="p">):</span>
+<div class="viewcode-block" id="postprocess_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.legacy.postprocess_state">[docs]</a><span class="k">def</span> <span class="nf">postprocess_state</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span><span class="n">state_mod_fn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Allow processing of instance and state after state has been applied.</span>
 
@@ -233,7 +237,7 @@
 
 <span class="c"># CEBNOTE: eventually, might have to support multiple redirections for</span>
 <span class="c"># one module (see version in r11323).</span></div>
-<div class="viewcode-block" id="module_redirect"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.legacy-module.html#topo.misc.legacy.module_redirect">[docs]</a><span class="k">def</span> <span class="nf">module_redirect</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">parent</span><span class="p">,</span><span class="n">actual_module</span><span class="p">):</span>
+<div class="viewcode-block" id="module_redirect"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.legacy.module_redirect">[docs]</a><span class="k">def</span> <span class="nf">module_redirect</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">parent</span><span class="p">,</span><span class="n">actual_module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    For use when module parent.name is now actual_module.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -268,7 +272,7 @@
             <span class="k">return</span> <span class="n">faker</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-<div class="viewcode-block" id="allow_import"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.legacy-module.html#topo.misc.legacy.allow_import">[docs]</a><span class="k">def</span> <span class="nf">allow_import</span><span class="p">(</span><span class="n">module</span><span class="p">,</span><span class="n">location</span><span class="p">):</span>
+<div class="viewcode-block" id="allow_import"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.legacy.allow_import">[docs]</a><span class="k">def</span> <span class="nf">allow_import</span><span class="p">(</span><span class="n">module</span><span class="p">,</span><span class="n">location</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Allow module to be imported from location.&quot;&quot;&quot;</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">meta_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_ModuleImporter</span><span class="p">(</span><span class="n">module</span><span class="p">,</span><span class="n">location</span><span class="p">))</span>
 
@@ -362,8 +366,8 @@
 
 <span class="k">def</span> <span class="nf">param_external_removed</span><span class="p">():</span>
     <span class="c"># CB: From param/external.py, only odict should be relevant to snapshots.</span>
-    <span class="kn">import</span> <span class="nn">dataviews.odict</span>
-    <span class="n">allow_import</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span><span class="s">&#39;param.external&#39;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">collections</span>
+    <span class="n">allow_import</span><span class="p">(</span><span class="n">collections</span><span class="p">,</span><span class="s">&#39;param.external&#39;</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">12024</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_external_removed</span>
 
@@ -681,8 +685,8 @@
 
 
 <span class="k">def</span> <span class="nf">topo_misc_odict_removed</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">dataviews.odict</span>
-    <span class="n">allow_import</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">odict</span><span class="p">,</span> <span class="s">&#39;topo.misc.odict&#39;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">collections</span>
+    <span class="n">allow_import</span><span class="p">(</span><span class="n">collections</span><span class="p">,</span> <span class="s">&#39;topo.misc.odict&#39;</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">90800361</span><span class="p">]</span> <span class="o">=</span> <span class="n">topo_misc_odict_removed</span>
 
@@ -877,7 +881,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/legacy.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/legacy.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -900,6 +904,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -919,8 +929,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

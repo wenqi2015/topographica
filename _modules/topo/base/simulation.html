@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.base.simulation &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.base.simulation &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -125,7 +131,7 @@
 
 
 
-<div class="viewcode-block" id="EventProcessor"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventProcessor">[docs]</a><span class="k">class</span> <span class="nc">EventProcessor</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="EventProcessor"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventProcessor">[docs]</a><span class="k">class</span> <span class="nc">EventProcessor</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for EventProcessors, i.e. objects that can accept and</span>
 <span class="sd">    handle events.  This base class handles the basic mechanics of</span>
@@ -244,7 +250,7 @@
         <span class="k">raise</span> <span class="ne">AttributeError</span>
 
 
-<div class="viewcode-block" id="EventProcessor.start"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventProcessor.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EventProcessor.start"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventProcessor.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the simulation when the EventProcessor is added to</span>
 <span class="sd">        the simulation.</span>
@@ -256,7 +262,7 @@
         <span class="k">pass</span>
 
     <span class="c">### JABALERT: Should change send_output to accept a list of src_ports, not a single src_port.</span></div>
-<div class="viewcode-block" id="EventProcessor.send_output"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventProcessor.send_output">[docs]</a>    <span class="k">def</span> <span class="nf">send_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">src_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="EventProcessor.send_output"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventProcessor.send_output">[docs]</a>    <span class="k">def</span> <span class="nf">send_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">src_port</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Send some data out to all connections on the given src_port.</span>
 <span class="sd">        The data is deepcopied before it is sent out, to ensure that</span>
@@ -274,7 +280,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">enqueue_event</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="EventProcessor.input_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventProcessor.input_event">[docs]</a>    <span class="k">def</span> <span class="nf">input_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="EventProcessor.input_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventProcessor.input_event">[docs]</a>    <span class="k">def</span> <span class="nf">input_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the simulation when an EPConnectionEvent is delivered;</span>
 <span class="sd">        the EventProcessor should process the data somehow.</span>
@@ -282,7 +288,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 </div>
-<div class="viewcode-block" id="EventProcessor.process_current_time"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventProcessor.process_current_time">[docs]</a>    <span class="k">def</span> <span class="nf">process_current_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EventProcessor.process_current_time"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventProcessor.process_current_time">[docs]</a>    <span class="k">def</span> <span class="nf">process_current_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the simulation before advancing the simulation</span>
 <span class="sd">        time.  Allows the event processor to do any computation that</span>
@@ -293,7 +299,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 </div>
-<div class="viewcode-block" id="EventProcessor.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventProcessor.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="EventProcessor.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventProcessor.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a runnable command for creating this EventProcessor.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">_simulation_path</span><span class="o">+</span><span class="s">&quot;[&#39;&quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s">&quot;&#39;]=&quot;</span><span class="o">+</span>\
         <span class="nb">super</span><span class="p">(</span><span class="n">EventProcessor</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">script_repr</span><span class="p">(</span><span class="n">imports</span><span class="o">=</span><span class="n">imports</span><span class="p">,</span><span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
@@ -301,7 +307,7 @@
 
 
 </div></div>
-<div class="viewcode-block" id="EventProcessorParameter"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventProcessorParameter">[docs]</a><span class="k">class</span> <span class="nc">EventProcessorParameter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">):</span>
+<div class="viewcode-block" id="EventProcessorParameter"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventProcessorParameter">[docs]</a><span class="k">class</span> <span class="nc">EventProcessorParameter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parameter whose value can be any EventProcessor instance.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">EventProcessor</span><span class="p">(),</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
@@ -316,7 +322,7 @@
 </div>
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">parameterized</span>
 
-<div class="viewcode-block" id="EPConnection"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EPConnection">[docs]</a><span class="k">class</span> <span class="nc">EPConnection</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="EPConnection"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EPConnection">[docs]</a><span class="k">class</span> <span class="nc">EPConnection</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    EPConnection stores basic information for a connection between</span>
 <span class="sd">    two EventProcessors.</span>
@@ -385,7 +391,7 @@
 
     <span class="c"># CEBALERT: should be reimplemented. It&#39;s difficult to understand,</span>
     <span class="c"># and contains the same code twice. But it does work.</span>
-<div class="viewcode-block" id="EPConnection.remove"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EPConnection.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EPConnection.remove"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EPConnection.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove this connection from its src&#39;s list of out_connections and its</span>
 <span class="sd">        dest&#39;s list of in_connections.</span>
@@ -413,7 +419,7 @@
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">out_connections</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
 </div>
-<div class="viewcode-block" id="EPConnection.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EPConnection.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="EPConnection.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EPConnection.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a runnable command for creating this connection.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">private</span><span class="p">:</span>
@@ -448,7 +454,7 @@
 
 
 <span class="c"># CB: event is not a Parameterized because of a (small) performance hit.</span></div></div>
-<div class="viewcode-block" id="Event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Event">[docs]</a><span class="k">class</span> <span class="nc">Event</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Event">[docs]</a><span class="k">class</span> <span class="nc">Event</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Hierarchy of classes for storing simulation events of various types.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">time</span><span class="p">):</span>
@@ -479,7 +485,7 @@
             <span class="k">return</span> <span class="mi">0</span>
 
 </div>
-<div class="viewcode-block" id="EPConnectionEvent"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EPConnectionEvent">[docs]</a><span class="k">class</span> <span class="nc">EPConnectionEvent</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
+<div class="viewcode-block" id="EPConnectionEvent"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EPConnectionEvent">[docs]</a><span class="k">class</span> <span class="nc">EPConnectionEvent</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An Event for delivery to an EPConnection.</span>
 
@@ -510,7 +516,7 @@
         <span class="k">return</span> <span class="s">&quot;EPConnectionEvent(time=&quot;</span><span class="o">+</span><span class="sb">`self.time`</span><span class="o">+</span><span class="s">&quot;,conn=&quot;</span><span class="o">+</span><span class="sb">`self.conn`</span><span class="o">+</span><span class="s">&quot;)&quot;</span>
 
 </div>
-<div class="viewcode-block" id="CommandEvent"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.CommandEvent">[docs]</a><span class="k">class</span> <span class="nc">CommandEvent</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
+<div class="viewcode-block" id="CommandEvent"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.CommandEvent">[docs]</a><span class="k">class</span> <span class="nc">CommandEvent</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;An Event consisting of a command string to execute.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">command_string</span><span class="p">):</span>
@@ -528,7 +534,7 @@
         <span class="k">return</span> <span class="s">&quot;CommandEvent(time=&quot;</span><span class="o">+</span><span class="sb">`self.time`</span><span class="o">+</span><span class="s">&quot;, command_string=&#39;&quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">command_string</span><span class="o">+</span><span class="s">&quot;&#39;)&quot;</span>
 
 
-<div class="viewcode-block" id="CommandEvent.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.CommandEvent.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="CommandEvent.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.CommandEvent.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a runnable command for creating this CommandEvent.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">_simulation_path</span><span class="o">+</span><span class="s">&#39;.schedule_command(&#39;</span>\
                <span class="o">+</span><span class="sb">`self.time`</span><span class="o">+</span><span class="s">&#39;,&quot;&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">command_string</span><span class="o">+</span><span class="s">&#39;&quot;)&#39;</span>
@@ -567,7 +573,7 @@
             <span class="k">raise</span>
 
 </div>
-<div class="viewcode-block" id="FunctionEvent"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.FunctionEvent">[docs]</a><span class="k">class</span> <span class="nc">FunctionEvent</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
+<div class="viewcode-block" id="FunctionEvent"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.FunctionEvent">[docs]</a><span class="k">class</span> <span class="nc">FunctionEvent</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Event that executes a given function function(*args,**kw).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -583,7 +589,7 @@
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">&#39;FunctionEvent(</span><span class="si">%s</span><span class="s">,</span><span class="si">%s</span><span class="s">,*</span><span class="si">%s</span><span class="s">,**</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="sb">`self.time`</span><span class="p">,</span><span class="sb">`self.fn`</span><span class="p">,</span><span class="sb">`self.args`</span><span class="p">,</span><span class="sb">`self.kw`</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="EventSequence"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.EventSequence">[docs]</a><span class="k">class</span> <span class="nc">EventSequence</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
+<div class="viewcode-block" id="EventSequence"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.EventSequence">[docs]</a><span class="k">class</span> <span class="nc">EventSequence</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Event that contains a sequence of other events to be scheduled and</span>
 <span class="sd">    executed.</span>
@@ -611,7 +617,7 @@
 
 
 </div>
-<div class="viewcode-block" id="PeriodicEventSequence"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.PeriodicEventSequence">[docs]</a><span class="k">class</span> <span class="nc">PeriodicEventSequence</span><span class="p">(</span><span class="n">EventSequence</span><span class="p">):</span>
+<div class="viewcode-block" id="PeriodicEventSequence"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.PeriodicEventSequence">[docs]</a><span class="k">class</span> <span class="nc">PeriodicEventSequence</span><span class="p">(</span><span class="n">EventSequence</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An EventSequence that reschedules itself periodically</span>
 
@@ -661,7 +667,7 @@
 <span class="c">### implemented using PeriodicEvents?</span>
 </div>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">floor</span>
-<div class="viewcode-block" id="SomeTimer"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.SomeTimer">[docs]</a><span class="k">class</span> <span class="nc">SomeTimer</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="SomeTimer"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.SomeTimer">[docs]</a><span class="k">class</span> <span class="nc">SomeTimer</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Provides a countdown timer for functions that run repeatedly.</span>
 
@@ -783,14 +789,14 @@
 
 
 
-<div class="viewcode-block" id="SomeTimer.call_fixed_num_times"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.SomeTimer.call_fixed_num_times">[docs]</a>    <span class="k">def</span> <span class="nf">call_fixed_num_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args_for_iterations</span><span class="p">):</span>
+<div class="viewcode-block" id="SomeTimer.call_fixed_num_times"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.SomeTimer.call_fixed_num_times">[docs]</a>    <span class="k">def</span> <span class="nf">call_fixed_num_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args_for_iterations</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call self.func(args_for_iterations[i]) for all i in args_for_iterations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__measure</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args_for_iterations</span><span class="p">),</span><span class="mf">1.0</span><span class="p">,</span><span class="n">arg_list</span><span class="o">=</span><span class="n">args_for_iterations</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="SomeTimer.call_and_time"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.SomeTimer.call_and_time">[docs]</a>    <span class="k">def</span> <span class="nf">call_and_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fduration</span><span class="p">):</span>
+<div class="viewcode-block" id="SomeTimer.call_and_time"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.SomeTimer.call_and_time">[docs]</a>    <span class="k">def</span> <span class="nf">call_and_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fduration</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Call self.func(self.step or fduration/50.0) for fduration.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -902,7 +908,7 @@
 <span class="c"># efficient one.  Jeff has an O(log N) minheap implementation, but</span>
 <span class="c"># there are likely to be many others to select from.</span>
 <span class="c">#</span>
-<div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation">[docs]</a><span class="k">class</span> <span class="nc">Simulation</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">,</span><span class="n">OptionalSingleton</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation">[docs]</a><span class="k">class</span> <span class="nc">Simulation</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">,</span><span class="n">OptionalSingleton</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A simulation class that uses a simple sorted event list (instead of</span>
 <span class="sd">    e.g. a sched.scheduler object) to manage events and dispatching.</span>
@@ -1045,7 +1051,7 @@
 
 
     <span class="c"># CEBALERT: if we&#39;re keeping this, should have a better name</span>
-<div class="viewcode-block" id="Simulation.convert_to_time_type"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.convert_to_time_type">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_time_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.convert_to_time_type"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.convert_to_time_type">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_time_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">time</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert the supplied time to the Simulation&#39;s time_type.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1211,7 +1217,7 @@
             <span class="k">raise</span> <span class="ne">AttributeError</span>
 
 
-<div class="viewcode-block" id="Simulation.timestr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.timestr">[docs]</a>    <span class="k">def</span> <span class="nf">timestr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">specified_time</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.timestr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.timestr">[docs]</a>    <span class="k">def</span> <span class="nf">timestr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">specified_time</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the specified time (or the current time, if none</span>
 <span class="sd">        specified) formatted using time.time_printing_format, which allows</span>
@@ -1234,7 +1240,7 @@
 
 </div>
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Simulation.timestr_prop"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.timestr_prop">[docs]</a>    <span class="k">def</span> <span class="nf">timestr_prop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.timestr_prop"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.timestr_prop">[docs]</a>    <span class="k">def</span> <span class="nf">timestr_prop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A property that simply returns self.timestr(); useful for setting the</span>
 <span class="sd">        interactive command-line prompt.</span>
@@ -1242,7 +1248,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestr</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.basename"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.basename">[docs]</a>    <span class="k">def</span> <span class="nf">basename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.basename"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.basename">[docs]</a>    <span class="k">def</span> <span class="nf">basename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a string suitable for labeling an object created</span>
 <span class="sd">        by the current simulation at the current time.  By default</span>
@@ -1272,7 +1278,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">call_and_time</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Simulation.run"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">forever</span><span class="p">,</span> <span class="n">until</span><span class="o">=</span><span class="n">forever</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.run"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">forever</span><span class="p">,</span> <span class="n">until</span><span class="o">=</span><span class="n">forever</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Process simulation events for the specified duration or until the</span>
 <span class="sd">        specified time.</span>
@@ -1363,7 +1369,7 @@
         <span class="k">if</span> <span class="n">stop_time</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forever</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">stop_time</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Simulation.sleep"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.sleep">[docs]</a>    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">delay</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.sleep"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.sleep">[docs]</a>    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">delay</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Advance the simulator time by the specified amount.</span>
 <span class="sd">        By default simply increments the _time value, but subclasses can</span>
@@ -1373,7 +1379,7 @@
         <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span>
         <span class="n">time</span> <span class="o">+=</span> <span class="n">delay</span>
 </div>
-<div class="viewcode-block" id="Simulation.enqueue_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.enqueue_event">[docs]</a>    <span class="k">def</span> <span class="nf">enqueue_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.enqueue_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.enqueue_event">[docs]</a>    <span class="k">def</span> <span class="nf">enqueue_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enqueue an Event at an absolute simulation clock time.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1395,7 +1401,7 @@
             <span class="c"># are executed FIFO.</span>
             <span class="n">bisect</span><span class="o">.</span><span class="n">insort_right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">,</span><span class="n">event</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Simulation.schedule_command"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.schedule_command">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">command_string</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.schedule_command"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.schedule_command">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">command_string</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a command to execute in __main__.__dict__ at the</span>
 <span class="sd">        specified time.</span>
@@ -1406,7 +1412,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">enqueue_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.state_push"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.state_push"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save a copy of the current state of the simulation for later restoration.</span>
 
@@ -1424,7 +1430,7 @@
         <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="o">.</span><span class="n">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.state_pop"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.state_pop"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Pop the most recently saved state off the stack.</span>
 
@@ -1437,7 +1443,7 @@
         <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="o">.</span><span class="n">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.event_push"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.event_push">[docs]</a>    <span class="k">def</span> <span class="nf">event_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.event_push"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.event_push">[docs]</a>    <span class="k">def</span> <span class="nf">event_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save a copy of the events queue for later restoration.</span>
 
@@ -1450,7 +1456,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_events_stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(),[</span><span class="n">copy</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">]))</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.event_pop"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.event_pop">[docs]</a>    <span class="k">def</span> <span class="nf">event_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.event_pop"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.event_pop">[docs]</a>    <span class="k">def</span> <span class="nf">event_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Pop the most recently saved events queue off the stack.</span>
 
@@ -1460,7 +1466,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.event_clear"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.event_clear">[docs]</a>    <span class="k">def</span> <span class="nf">event_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event_type</span><span class="o">=</span><span class="n">EPConnectionEvent</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.event_clear"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.event_clear">[docs]</a>    <span class="k">def</span> <span class="nf">event_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">event_type</span><span class="o">=</span><span class="n">EPConnectionEvent</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clear out all scheduled events of the specified type.</span>
 
@@ -1481,7 +1487,7 @@
     <span class="c"># Could just process src and dest in conn_params.</span>
     <span class="c"># Also could accept the connection already created, rather than</span>
     <span class="c"># creating one.</span></div>
-<div class="viewcode-block" id="Simulation.connect"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">dest</span><span class="p">,</span><span class="n">connection_type</span><span class="o">=</span><span class="n">EPConnection</span><span class="p">,</span><span class="o">**</span><span class="n">conn_params</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.connect"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">dest</span><span class="p">,</span><span class="n">connection_type</span><span class="o">=</span><span class="n">EPConnection</span><span class="p">,</span><span class="o">**</span><span class="n">conn_params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Connect the src EventProcessor to the dest EventProcessor.</span>
 
@@ -1502,7 +1508,7 @@
         <span class="k">return</span> <span class="n">conn</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.objects"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.objects">[docs]</a>    <span class="k">def</span> <span class="nf">objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">baseclass</span><span class="o">=</span><span class="n">EventProcessor</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.objects"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.objects">[docs]</a>    <span class="k">def</span> <span class="nf">objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">baseclass</span><span class="o">=</span><span class="n">EventProcessor</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a dictionary of simulation objects having the specified</span>
 <span class="sd">        base class.  All simulation objects have a base class of</span>
@@ -1517,7 +1523,7 @@
                      <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span><span class="n">baseclass</span><span class="p">)])</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.connections"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.connections">[docs]</a>    <span class="k">def</span> <span class="nf">connections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.connections"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.connections">[docs]</a>    <span class="k">def</span> <span class="nf">connections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a list of all unique connections to or from any object.&quot;&quot;&quot;</span>
         <span class="c"># The return value cannot be a dictionary like objects(),</span>
         <span class="c"># because connection names are not guaranteed to be unique</span>
@@ -1531,7 +1537,7 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">conns</span><span class="p">)]</span>
 
 </div>
-<div class="viewcode-block" id="Simulation.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.script_repr"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.script_repr">[docs]</a>    <span class="k">def</span> <span class="nf">script_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">imports</span><span class="o">=</span><span class="p">[],</span><span class="n">prefix</span><span class="o">=</span><span class="s">&quot;    &quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a nearly runnable script recreating this simulation.</span>
 
@@ -1574,7 +1580,7 @@
 
 
     <span class="c"># Convenience function for use in graphical editors of the simulation</span></div>
-<div class="viewcode-block" id="Simulation.grid_layout"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.Simulation.grid_layout">[docs]</a>    <span class="k">def</span> <span class="nf">grid_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objgrid</span><span class="p">,</span><span class="n">xstart</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">xstep</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="n">ystart</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">ystep</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="n">item_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.grid_layout"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.grid_layout">[docs]</a>    <span class="k">def</span> <span class="nf">grid_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objgrid</span><span class="p">,</span><span class="n">xstart</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">xstep</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="n">ystart</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">ystep</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="n">item_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the layout_location of simulation objects in a grid pattern.</span>
 
@@ -1602,7 +1608,7 @@
 
 
 </div></div>
-<div class="viewcode-block" id="RealTimeSimulation"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.RealTimeSimulation">[docs]</a><span class="k">class</span> <span class="nc">RealTimeSimulation</span><span class="p">(</span><span class="n">Simulation</span><span class="p">):</span>
+<div class="viewcode-block" id="RealTimeSimulation"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.RealTimeSimulation">[docs]</a><span class="k">class</span> <span class="nc">RealTimeSimulation</span><span class="p">(</span><span class="n">Simulation</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A (quasi) real-time simulation object.</span>
 
@@ -1658,7 +1664,7 @@
     <span class="k">def</span> <span class="nf">real_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span>
 
-<div class="viewcode-block" id="RealTimeSimulation.sleep"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.simulation-module.html#topo.base.simulation.RealTimeSimulation.sleep">[docs]</a>    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">delay</span><span class="p">):</span>
+<div class="viewcode-block" id="RealTimeSimulation.sleep"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.RealTimeSimulation.sleep">[docs]</a>    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">delay</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sleep for the number of real milliseconds seconds corresponding to the</span>
 <span class="sd">        given delay, subtracting off the amount of time elapsed since the</span>
@@ -1706,7 +1712,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/base/simulation.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/base/simulation.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -1729,6 +1735,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -1748,8 +1760,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.misc.genexamples &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.misc.genexamples &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -98,11 +104,11 @@
 <span class="kn">from</span> <span class="nn">param</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
 <span class="c">### Convenience functions</span>
-<div class="viewcode-block" id="snapshot"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.genexamples-module.html#topo.misc.genexamples.snapshot">[docs]</a><span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="snapshot"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.genexamples.snapshot">[docs]</a><span class="k">def</span> <span class="nf">snapshot</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return a command for saving a snapshot named filename.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s">&quot;from topo.command import save_snapshot ; save_snapshot(&#39;</span><span class="si">%s</span><span class="s">&#39;)&quot;</span><span class="o">%</span><span class="n">filename</span>
 </div>
-<div class="viewcode-block" id="or_analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.genexamples-module.html#topo.misc.genexamples.or_analysis">[docs]</a><span class="k">def</span> <span class="nf">or_analysis</span><span class="p">():</span>
+<div class="viewcode-block" id="or_analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.genexamples.or_analysis">[docs]</a><span class="k">def</span> <span class="nf">or_analysis</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Return a command for orientation analysis.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s">from featuremapper.command import measure_or_pref ; </span><span class="se">\</span>
@@ -110,7 +116,7 @@
 <span class="s">measure_or_pref(); </span><span class="se">\</span>
 <span class="s">measure_cog()&quot;&quot;&quot;</span>
 </div>
-<div class="viewcode-block" id="retinotopy_analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.genexamples-module.html#topo.misc.genexamples.retinotopy_analysis">[docs]</a><span class="k">def</span> <span class="nf">retinotopy_analysis</span><span class="p">():</span>
+<div class="viewcode-block" id="retinotopy_analysis"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.genexamples.retinotopy_analysis">[docs]</a><span class="k">def</span> <span class="nf">retinotopy_analysis</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Return a command for retinotopy analysis.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s">from featuremapper.command import measure_position_pref ; </span><span class="se">\</span>
@@ -121,7 +127,7 @@
 
 
 </div>
-<div class="viewcode-block" id="run"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.genexamples-module.html#topo.misc.genexamples.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">script_name</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(1)&quot;</span><span class="p">]):</span>
+<div class="viewcode-block" id="run"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.genexamples.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">script_name</span><span class="p">,</span><span class="n">density</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(1)&quot;</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a complete command for running the given topographica</span>
 <span class="sd">    example script (i.e. a script in the examples/ directory) at the</span>
@@ -274,35 +280,40 @@
                                                        <span class="s">&quot;print &#39;printing a string&#39;&quot;</span><span class="p">]),</span>
 
         <span class="s">&quot;lissom_oo_or_10000.typ&quot;</span><span class="p">:</span><span class="n">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">scripts</span><span class="p">[</span><span class="s">&quot;lissom_oo_or&quot;</span><span class="p">],</span>
-                                     <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(10000)&quot;</span><span class="p">,</span>
+                                     <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;from topo.misc.ipython import RunProgress&quot;</span><span class="p">,</span>
+                                               <span class="s">&quot;RunProgress(label=None)(10000)&quot;</span><span class="p">,</span>
                                                <span class="n">or_analysis</span><span class="p">(),</span>
                                                <span class="n">snapshot</span><span class="p">(</span><span class="s">&quot;lissom_oo_or_10000.typ&quot;</span><span class="p">)]),</span>
 
 
         <span class="s">&quot;lissom_or_10000.typ&quot;</span><span class="p">:</span><span class="n">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">scripts</span><span class="p">[</span><span class="s">&quot;lissom_or&quot;</span><span class="p">],</span>
-                                  <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(10000)&quot;</span><span class="p">,</span>
+                                  <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;from topo.misc.ipython import RunProgress&quot;</span><span class="p">,</span>
+                                            <span class="s">&quot;RunProgress(label=None)(10000)&quot;</span><span class="p">,</span>
                                             <span class="n">or_analysis</span><span class="p">(),</span>
                                             <span class="n">snapshot</span><span class="p">(</span><span class="s">&quot;lissom_or_10000.typ&quot;</span><span class="p">)]),</span>
 
         <span class="s">&quot;lissom_fsa_10000.typ&quot;</span><span class="p">:</span><span class="n">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">scripts</span><span class="p">[</span><span class="s">&quot;lissom_fsa&quot;</span><span class="p">],</span>
-                                   <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(10000)&quot;</span><span class="p">,</span>
+                                   <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;from topo.misc.ipython import RunProgress&quot;</span><span class="p">,</span>
+                                             <span class="s">&quot;RunProgress(label=None)(10000)&quot;</span><span class="p">,</span>
                                              <span class="n">snapshot</span><span class="p">(</span><span class="s">&quot;lissom_fsa_10000.typ&quot;</span><span class="p">)]),</span>
 
         <span class="s">&quot;obermayer_pnas90_40000.typ&quot;</span><span class="p">:</span><span class="n">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">scripts</span><span class="p">[</span><span class="s">&quot;obermayer_pnas90&quot;</span><span class="p">],</span>
-                                         <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(40000)&quot;</span><span class="p">,</span>
+                                         <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;from topo.misc.ipython import RunProgress&quot;</span><span class="p">,</span>
+                                                   <span class="s">&quot;RunProgress(label=None)(40000)&quot;</span><span class="p">,</span>
                                                    <span class="n">or_analysis</span><span class="p">(),</span>
                                                    <span class="n">snapshot</span><span class="p">(</span><span class="s">&quot;obermayer_pnas90_30000.typ&quot;</span><span class="p">)]),</span>
 
         <span class="s">&quot;som_retinotopy_40000.typ&quot;</span><span class="p">:</span><span class="n">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">scripts</span><span class="p">[</span><span class="s">&quot;som_retinotopy&quot;</span><span class="p">],</span>
-                                       <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(40000)&quot;</span><span class="p">,</span>
+                                       <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;from topo.misc.ipython import RunProgress&quot;</span><span class="p">,</span>
+                                                 <span class="s">&quot;RunProgress(label=None)(40000)&quot;</span><span class="p">,</span>
                                                  <span class="n">retinotopy_analysis</span><span class="p">(),</span>
                                                  <span class="n">snapshot</span><span class="p">(</span><span class="s">&quot;som_retinotopy_40000.typ&quot;</span><span class="p">)]),</span>
 
         <span class="s">&quot;gcal_10000.typ&quot;</span><span class="p">:</span><span class="n">run</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span><span class="n">scripts</span><span class="p">[</span><span class="s">&quot;gcal&quot;</span><span class="p">],</span>
-                                   <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;topo.sim.run(10000)&quot;</span><span class="p">,</span>
-                                             <span class="n">or_analysis</span><span class="p">(),</span>
-                                             <span class="n">snapshot</span><span class="p">(</span><span class="s">&quot;gcal_10000.typ&quot;</span><span class="p">)])</span>
-
+                             <span class="n">commands</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;from topo.misc.ipython import RunProgress&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;RunProgress(label=None)(10000)&quot;</span><span class="p">,</span>
+                                       <span class="n">or_analysis</span><span class="p">(),</span>
+                                       <span class="n">snapshot</span><span class="p">(</span><span class="s">&quot;gcal_10000.typ&quot;</span><span class="p">)])</span>
         <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">command_labels</span><span class="p">,</span><span class="n">available_targets</span>
@@ -352,7 +363,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/genexamples.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/genexamples.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -375,6 +386,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -394,8 +411,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.transferfn &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.transferfn &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -95,7 +101,7 @@
 <span class="c"># CEBHACKALERT: these need to respect the mask - which will be passed in.</span>
 
 
-<div class="viewcode-block" id="PiecewiseLinear"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.PiecewiseLinear">[docs]</a><span class="k">class</span> <span class="nc">PiecewiseLinear</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="PiecewiseLinear"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.PiecewiseLinear">[docs]</a><span class="k">class</span> <span class="nc">PiecewiseLinear</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Piecewise-linear TransferFn with lower and upper thresholds.</span>
 
@@ -114,7 +120,7 @@
 
 
 </div>
-<div class="viewcode-block" id="Sigmoid"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.Sigmoid">[docs]</a><span class="k">class</span> <span class="nc">Sigmoid</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="Sigmoid"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.Sigmoid">[docs]</a><span class="k">class</span> <span class="nc">Sigmoid</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sigmoidal (logistic) transfer function: 1/(1+exp-(r*x+k)).</span>
 
@@ -139,7 +145,7 @@
 
 
 </div>
-<div class="viewcode-block" id="NakaRushton"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.NakaRushton">[docs]</a><span class="k">class</span> <span class="nc">NakaRushton</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="NakaRushton"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.NakaRushton">[docs]</a><span class="k">class</span> <span class="nc">NakaRushton</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="c">#JABALERT: Please write the equation into words in the docstring, as in Sigmoid.</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Naka-Rushton curve.</span>
@@ -175,7 +181,7 @@
 
 
 </div>
-<div class="viewcode-block" id="GeneralizedLogistic"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.GeneralizedLogistic">[docs]</a><span class="k">class</span> <span class="nc">GeneralizedLogistic</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="GeneralizedLogistic"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.GeneralizedLogistic">[docs]</a><span class="k">class</span> <span class="nc">GeneralizedLogistic</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The generalized logistic curve (Richards&#39; curve): y = l + (u /(1 + b * exp(-r*(x-2*m))^(1/b))).</span>
 
@@ -212,7 +218,7 @@
 
 
 </div>
-<div class="viewcode-block" id="HalfRectifyAndSquare"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.HalfRectifyAndSquare">[docs]</a><span class="k">class</span> <span class="nc">HalfRectifyAndSquare</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="HalfRectifyAndSquare"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.HalfRectifyAndSquare">[docs]</a><span class="k">class</span> <span class="nc">HalfRectifyAndSquare</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transfer function that applies a half-wave rectification (clips at zero)</span>
 <span class="sd">    and then squares the values.</span>
@@ -227,7 +233,7 @@
 
 
 </div>
-<div class="viewcode-block" id="HalfRectifyAndPower"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.HalfRectifyAndPower">[docs]</a><span class="k">class</span> <span class="nc">HalfRectifyAndPower</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="HalfRectifyAndPower"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.HalfRectifyAndPower">[docs]</a><span class="k">class</span> <span class="nc">HalfRectifyAndPower</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transfer function that applies a half-wave rectification (i.e.,</span>
 <span class="sd">    clips at zero), and then raises the result to the e-th power</span>
@@ -248,7 +254,7 @@
 
 
 </div>
-<div class="viewcode-block" id="ExpLinear"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.ExpLinear">[docs]</a><span class="k">class</span> <span class="nc">ExpLinear</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="ExpLinear"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.ExpLinear">[docs]</a><span class="k">class</span> <span class="nc">ExpLinear</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transfer function that is exponential until t from which point it is linear.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -273,7 +279,7 @@
 
 
 </div>
-<div class="viewcode-block" id="Square"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.Square">[docs]</a><span class="k">class</span> <span class="nc">Square</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="Square"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.Square">[docs]</a><span class="k">class</span> <span class="nc">Square</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transfer function that applies a squaring nonlinearity.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
@@ -282,7 +288,7 @@
 
 
 <span class="c"># JAALERT: rename to something like PlasticTransferFn</span></div>
-<div class="viewcode-block" id="TransferFnWithState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithState</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithState</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for TransferFns that need to maintain a self.plastic parameter.</span>
 
@@ -302,7 +308,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_plasticity_setting_stack</span> <span class="o">=</span> <span class="p">[]</span>
 
 
-<div class="viewcode-block" id="TransferFnWithState.override_plasticity_state"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithState.override_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">override_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_plasticity_state</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithState.override_plasticity_state"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.override_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">override_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_plasticity_state</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Temporarily disable plasticity of internal state.</span>
 
@@ -322,7 +328,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">plastic</span><span class="o">=</span><span class="n">new_plasticity_state</span>
 
 </div>
-<div class="viewcode-block" id="TransferFnWithState.restore_plasticity_state"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithState.restore_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">restore_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithState.restore_plasticity_state"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.restore_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">restore_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Re-enable plasticity of internal state after an override_plasticity_state call.</span>
 
@@ -336,7 +342,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plastic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plasticity_setting_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="TransferFnWithState.state_push"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithState.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithState.state_push"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the current state onto a stack, to be restored using state_pop.</span>
 
@@ -347,7 +353,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 </div>
-<div class="viewcode-block" id="TransferFnWithState.state_pop"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithState.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithState.state_pop"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Restore the state saved by the most recent state_push call.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -357,7 +363,7 @@
 
 <span class="c"># CB: it&#39;s not ideal that all TransferFnWithRandomState fns have</span>
 <span class="c"># the plastic stuff (from TransferFnWithState).</span></div></div>
-<div class="viewcode-block" id="TransferFnWithRandomState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithRandomState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithRandomState</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithRandomState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithRandomState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithRandomState</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for TransferFns that use a random number generator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -381,7 +387,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__random_generators_stack</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="TransferFnWithRandomState.state_push"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithRandomState.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithRandomState.state_push"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithRandomState.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the current random number generator (onto the stack),</span>
 <span class="sd">        replacing it with a copy.</span>
@@ -390,7 +396,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">random_generator</span><span class="o">=</span><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_generator</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="TransferFnWithRandomState.state_pop"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.TransferFnWithRandomState.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithRandomState.state_pop"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithRandomState.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retrieve the previous random number generator from the stack.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -399,7 +405,7 @@
 
 
 </div></div>
-<div class="viewcode-block" id="PoissonSample"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.PoissonSample">[docs]</a><span class="k">class</span> <span class="nc">PoissonSample</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">):</span>
+<div class="viewcode-block" id="PoissonSample"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.PoissonSample">[docs]</a><span class="k">class</span> <span class="nc">PoissonSample</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Simulate Poisson-distributed activity with specified mean values.</span>
 
@@ -444,7 +450,7 @@
 <span class="c"># alter the input array. Is a TransferFn the right thing to use to</span>
 <span class="c"># record an average activity? Could consider replacing this with my</span>
 <span class="c"># &quot;attribute tracking&quot; code (some of which is not yet in SVN).</span></div>
-<div class="viewcode-block" id="ActivityAveragingTF"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.ActivityAveragingTF">[docs]</a><span class="k">class</span> <span class="nc">ActivityAveragingTF</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
+<div class="viewcode-block" id="ActivityAveragingTF"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.ActivityAveragingTF">[docs]</a><span class="k">class</span> <span class="nc">ActivityAveragingTF</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates the average of the input activity.</span>
 
@@ -490,7 +496,7 @@
 
 
 </div>
-<div class="viewcode-block" id="HomeostaticMaxEnt"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.HomeostaticMaxEnt">[docs]</a><span class="k">class</span> <span class="nc">HomeostaticMaxEnt</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">):</span>
+<div class="viewcode-block" id="HomeostaticMaxEnt"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.HomeostaticMaxEnt">[docs]</a><span class="k">class</span> <span class="nc">HomeostaticMaxEnt</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of homeostatic intrinsic plasticity from Jochen Triesch,</span>
 <span class="sd">    ICANN 2005, LNCS 3696 pp.65-70.</span>
@@ -583,7 +589,7 @@
 
 
 </div>
-<div class="viewcode-block" id="ScalingTF"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.ScalingTF">[docs]</a><span class="k">class</span> <span class="nc">ScalingTF</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
+<div class="viewcode-block" id="ScalingTF"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.ScalingTF">[docs]</a><span class="k">class</span> <span class="nc">ScalingTF</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Scales input activity based on the current average activity (x_avg).</span>
 
@@ -634,7 +640,7 @@
         <span class="n">x</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sf</span>
 
 </div>
-<div class="viewcode-block" id="Hysteresis"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn-module.html#topo.transferfn.Hysteresis">[docs]</a><span class="k">class</span> <span class="nc">Hysteresis</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
+<div class="viewcode-block" id="Hysteresis"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.Hysteresis">[docs]</a><span class="k">class</span> <span class="nc">Hysteresis</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Smoothly interpolates a matrix between simulation time steps, with</span>
 <span class="sd">    exponential falloff.</span>
@@ -712,7 +718,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/transferfn.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/transferfn.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -735,6 +741,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -754,8 +766,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.base.projection &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.base.projection &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -68,7 +74,7 @@
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">overridable_property</span>
 
 <span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span>
-<span class="kn">from</span> <span class="nn">dataviews.odict</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
@@ -76,7 +82,7 @@
 <span class="kn">from</span> <span class="nn">simulation</span> <span class="kn">import</span> <span class="n">EPConnection</span>
 <span class="kn">from</span> <span class="nn">functionfamily</span> <span class="kn">import</span> <span class="n">TransferFn</span>
 
-<div class="viewcode-block" id="SheetMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.SheetMask">[docs]</a><span class="k">class</span> <span class="nc">SheetMask</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="SheetMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.SheetMask">[docs]</a><span class="k">class</span> <span class="nc">SheetMask</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An abstract class that defines a mask over a ProjectionSheet object.</span>
 
@@ -123,12 +129,12 @@
 
     <span class="c"># JABALERT: Shouldn&#39;t this just keep one matrix around and zero it out,</span>
     <span class="c"># instead of allocating a new one each time?</span>
-<div class="viewcode-block" id="SheetMask.reset"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.SheetMask.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SheetMask.reset"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.SheetMask.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize mask to default value (with no neurons masked out).&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="SheetMask.calculate"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.SheetMask.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SheetMask.calculate"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.SheetMask.calculate">[docs]</a>    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate a new mask based on the activity of the sheet.</span>
 
@@ -144,7 +150,7 @@
 
 
     <span class="c"># JABALERT: Not clear what the user should do with this.</span></div>
-<div class="viewcode-block" id="SheetMask.update"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.SheetMask.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SheetMask.update"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.SheetMask.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the current mask based on the current activity and a previous mask.</span>
 
@@ -157,7 +163,7 @@
         <span class="k">pass</span>
 
 </div></div>
-<div class="viewcode-block" id="CompositeSheetMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.CompositeSheetMask">[docs]</a><span class="k">class</span> <span class="nc">CompositeSheetMask</span><span class="p">(</span><span class="n">SheetMask</span><span class="p">):</span>
+<div class="viewcode-block" id="CompositeSheetMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.CompositeSheetMask">[docs]</a><span class="k">class</span> <span class="nc">CompositeSheetMask</span><span class="p">(</span><span class="n">SheetMask</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A SheetMask that computes its value from other SheetMasks.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -200,7 +206,7 @@
 
 
 </div>
-<div class="viewcode-block" id="AndMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.AndMask">[docs]</a><span class="k">class</span> <span class="nc">AndMask</span><span class="p">(</span><span class="n">CompositeSheetMask</span><span class="p">):</span>
+<div class="viewcode-block" id="AndMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.AndMask">[docs]</a><span class="k">class</span> <span class="nc">AndMask</span><span class="p">(</span><span class="n">CompositeSheetMask</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A composite SheetMask that computes its value as the logical AND (i.e. intersection) of its sub-masks.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -209,7 +215,7 @@
 
 
 </div>
-<div class="viewcode-block" id="OrMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.OrMask">[docs]</a><span class="k">class</span> <span class="nc">OrMask</span><span class="p">(</span><span class="n">CompositeSheetMask</span><span class="p">):</span>
+<div class="viewcode-block" id="OrMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.OrMask">[docs]</a><span class="k">class</span> <span class="nc">OrMask</span><span class="p">(</span><span class="n">CompositeSheetMask</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A composite SheetMask that computes its value as the logical OR (i.e. union) of its sub-masks.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -218,7 +224,7 @@
 
 
 </div>
-<div class="viewcode-block" id="Projection"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection">[docs]</a><span class="k">class</span> <span class="nc">Projection</span><span class="p">(</span><span class="n">EPConnection</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection">[docs]</a><span class="k">class</span> <span class="nc">Projection</span><span class="p">(</span><span class="n">EPConnection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A projection from a Sheet into a ProjectionSheet.</span>
 
@@ -265,7 +271,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_plasticity_setting_stack</span> <span class="o">=</span> <span class="p">[]</span>
 
 
-<div class="viewcode-block" id="Projection.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute an activity matrix for output, based on the specified input_activity.</span>
 
@@ -275,7 +281,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 </div>
-<div class="viewcode-block" id="Projection.learn"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.learn"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function has to be re-implemented by sub-classes, if they wish</span>
 <span class="sd">        to support learning.</span>
@@ -283,7 +289,7 @@
         <span class="k">pass</span>
 
 </div>
-<div class="viewcode-block" id="Projection.apply_learn_output_fns"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.apply_learn_output_fns">[docs]</a>    <span class="k">def</span> <span class="nf">apply_learn_output_fns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.apply_learn_output_fns"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.apply_learn_output_fns">[docs]</a>    <span class="k">def</span> <span class="nf">apply_learn_output_fns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sub-classes can implement this function if they wish to</span>
 <span class="sd">        perform an operation after learning has completed, such as</span>
@@ -296,7 +302,7 @@
 
 
 </div>
-<div class="viewcode-block" id="Projection.override_plasticity_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.override_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">override_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_plasticity_state</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.override_plasticity_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.override_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">override_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_plasticity_state</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Temporarily override plasticity of medium and long term internal</span>
 <span class="sd">        state.</span>
@@ -334,7 +340,7 @@
                 <span class="n">of</span><span class="o">.</span><span class="n">override_plasticity_state</span><span class="p">(</span><span class="n">new_plasticity_state</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Projection.restore_plasticity_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.restore_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">restore_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.restore_plasticity_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.restore_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">restore_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Restore previous plasticity state of medium and long term</span>
 <span class="sd">        internal state after a override_plasticity_state call.</span>
@@ -350,17 +356,19 @@
                 <span class="n">of</span><span class="o">.</span><span class="n">restore_plasticity_state</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="Projection.projection_view"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.projection_view">[docs]</a>    <span class="k">def</span> <span class="nf">projection_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.projection_view"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.projection_view">[docs]</a>    <span class="k">def</span> <span class="nf">projection_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the activity in a single projection&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">timestamp</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
-                         <span class="n">metadata</span><span class="o">=</span><span class="n">AttrDict</span><span class="p">(</span><span class="n">proj_src_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                                           <span class="n">precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
-                                           <span class="n">proj_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                                           <span class="n">row_precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
-                                           <span class="n">src_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                                           <span class="n">timestamp</span><span class="o">=</span><span class="n">timestamp</span><span class="p">))</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
+                         <span class="n">label</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> {label}&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">AttrDict</span><span class="p">(</span><span class="n">proj_src_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                             <span class="n">precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
+                             <span class="n">proj_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                             <span class="n">row_precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
+                             <span class="n">src_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                             <span class="n">timestamp</span><span class="o">=</span><span class="n">timestamp</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sv</span>
 
 </div>
     <span class="k">def</span> <span class="nf">get_projection_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
@@ -368,7 +376,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection_view</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Projection.n_bytes"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.n_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">n_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.n_bytes"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.n_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">n_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Estimate the memory bytes taken by this Projection.</span>
 
@@ -382,7 +390,7 @@
         <span class="k">return</span> <span class="n">rows</span><span class="o">*</span><span class="n">cols</span>
 
 </div>
-<div class="viewcode-block" id="Projection.n_conns"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.Projection.n_conns">[docs]</a>    <span class="k">def</span> <span class="nf">n_conns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Projection.n_conns"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.n_conns">[docs]</a>    <span class="k">def</span> <span class="nf">n_conns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the size of this projection, in number of connections.</span>
 
@@ -393,7 +401,7 @@
 
 
 </div></div>
-<div class="viewcode-block" id="ProjectionSheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet">[docs]</a><span class="k">class</span> <span class="nc">ProjectionSheet</span><span class="p">(</span><span class="n">Sheet</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet">[docs]</a><span class="k">class</span> <span class="nc">ProjectionSheet</span><span class="p">(</span><span class="n">Sheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Sheet whose activity is computed using Projections from other sheets.</span>
 
@@ -463,7 +471,7 @@
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;ProjectionSheets only accept Projections, not other types of connection.&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ProjectionSheet.input_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.input_event">[docs]</a>    <span class="k">def</span> <span class="nf">input_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.input_event"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.input_event">[docs]</a>    <span class="k">def</span> <span class="nf">input_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Accept input from some sheet.  Call .present_input() to</span>
 <span class="sd">        compute the stimulation from that sheet.</span>
@@ -525,7 +533,7 @@
         <span class="k">return</span> <span class="n">in_proj</span>
 
 
-<div class="viewcode-block" id="ProjectionSheet.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Collect activity from each projection, combine it to calculate</span>
 <span class="sd">        the activity for this sheet, and send the result out.</span>
@@ -559,7 +567,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">send_output</span><span class="p">(</span><span class="n">src_port</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionSheet.process_current_time"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.process_current_time">[docs]</a>    <span class="k">def</span> <span class="nf">process_current_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.process_current_time"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.process_current_time">[docs]</a>    <span class="k">def</span> <span class="nf">process_current_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the simulation after all the events are processed for the</span>
 <span class="sd">        current time but before time advances.  Allows the event processor</span>
@@ -573,7 +581,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionSheet.learn"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.learn"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        By default, call the learn() and apply_learn_output_fns()</span>
 <span class="sd">        methods on every Projection to this Sheet.</span>
@@ -590,7 +598,7 @@
                 <span class="n">proj</span><span class="o">.</span><span class="n">apply_learn_output_fns</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionSheet.present_input"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.present_input">[docs]</a>    <span class="k">def</span> <span class="nf">present_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">,</span><span class="n">conn</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.present_input"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.present_input">[docs]</a>    <span class="k">def</span> <span class="nf">present_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">,</span><span class="n">conn</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Provide the given input_activity to each in_projection that has a dest_port</span>
 <span class="sd">        equal to the specified port, asking each one to compute its activity.</span>
@@ -601,7 +609,7 @@
         <span class="n">conn</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">input_activity</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionSheet.projections"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.projections">[docs]</a>    <span class="k">def</span> <span class="nf">projections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.projections"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.projections">[docs]</a>    <span class="k">def</span> <span class="nf">projections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Return either a named input p, or a dictionary</span>
@@ -621,7 +629,7 @@
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionSheet.override_plasticity_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.override_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">override_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_plasticity_state</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.override_plasticity_state"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.override_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">override_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_plasticity_state</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Temporarily override plasticity state of medium and long term</span>
 <span class="sd">        internal state.</span>
@@ -667,7 +675,7 @@
                 <span class="n">proj</span><span class="o">.</span><span class="n">restore_plasticity_state</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="ProjectionSheet.n_bytes"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.n_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">n_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.n_bytes"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.n_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">n_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Estimate the memory bytes taken by this Sheet and its Projections.</span>
 
@@ -689,7 +697,7 @@
                     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">Projection</span><span class="p">)])</span>
 
 </div>
-<div class="viewcode-block" id="ProjectionSheet.n_conns"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.ProjectionSheet.n_conns">[docs]</a>    <span class="k">def</span> <span class="nf">n_conns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ProjectionSheet.n_conns"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.ProjectionSheet.n_conns">[docs]</a>    <span class="k">def</span> <span class="nf">n_conns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Count the total size of all incoming projections, in number of connections.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -698,7 +706,7 @@
 
 
 <span class="c"># CEBALERT: untested</span></div></div>
-<div class="viewcode-block" id="NeighborhoodMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.projection-module.html#topo.base.projection.NeighborhoodMask">[docs]</a><span class="k">class</span> <span class="nc">NeighborhoodMask</span><span class="p">(</span><span class="n">SheetMask</span><span class="p">):</span>
+<div class="viewcode-block" id="NeighborhoodMask"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.NeighborhoodMask">[docs]</a><span class="k">class</span> <span class="nc">NeighborhoodMask</span><span class="p">(</span><span class="n">SheetMask</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A SheetMask where the mask includes a neighborhood around active neurons.</span>
 
@@ -772,7 +780,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/base/projection.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/base/projection.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -795,6 +803,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -814,8 +828,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

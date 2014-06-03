@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.projection &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.projection &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -87,7 +93,7 @@
 <span class="kn">from</span> <span class="nn">topo.learningfn</span> <span class="kn">import</span> <span class="n">LearningFn</span><span class="p">,</span><span class="n">IdentityLF</span>
 <span class="kn">from</span> <span class="nn">topo.base</span> <span class="kn">import</span> <span class="n">patterngenerator</span>
 
-<div class="viewcode-block" id="CFPOF_SharedWeight"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.CFPOF_SharedWeight">[docs]</a><span class="k">class</span> <span class="nc">CFPOF_SharedWeight</span><span class="p">(</span><span class="n">CFPOutputFn</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPOF_SharedWeight"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.CFPOF_SharedWeight">[docs]</a><span class="k">class</span> <span class="nc">CFPOF_SharedWeight</span><span class="p">(</span><span class="n">CFPOutputFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CFPOutputFn for use with SharedWeightCFProjections.</span>
 
@@ -158,7 +164,7 @@
 
 
 
-<div class="viewcode-block" id="SharedWeightCFProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.SharedWeightCFProjection">[docs]</a><span class="k">class</span> <span class="nc">SharedWeightCFProjection</span><span class="p">(</span><span class="n">CFProjection</span><span class="p">):</span>
+<div class="viewcode-block" id="SharedWeightCFProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.SharedWeightCFProjection">[docs]</a><span class="k">class</span> <span class="nc">SharedWeightCFProjection</span><span class="p">(</span><span class="n">CFProjection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Projection with a single set of weights, shared by all units.</span>
 
@@ -214,7 +220,7 @@
         <span class="k">return</span> <span class="n">CF</span>
 
 
-<div class="viewcode-block" id="SharedWeightCFProjection.learn"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.SharedWeightCFProjection.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SharedWeightCFProjection.learn"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.SharedWeightCFProjection.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Because of how output functions are applied, it is not currently</span>
 <span class="sd">        possible to use learning functions and learning output functions for</span>
@@ -223,7 +229,7 @@
         <span class="k">pass</span>
 
 </div>
-<div class="viewcode-block" id="SharedWeightCFProjection.apply_learn_output_fns"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.SharedWeightCFProjection.apply_learn_output_fns">[docs]</a>    <span class="k">def</span> <span class="nf">apply_learn_output_fns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="SharedWeightCFProjection.apply_learn_output_fns"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.SharedWeightCFProjection.apply_learn_output_fns">[docs]</a>    <span class="k">def</span> <span class="nf">apply_learn_output_fns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Because of how output functions are applied, it is not currently</span>
 <span class="sd">        possible to use learning functions and learning output functions for</span>
@@ -243,7 +249,7 @@
 
 <span class="c"># JABALERT: Can this be replaced with a CFProjection with a Hysteresis output_fn?</span>
 <span class="c"># If not it should probably be replaced with a new output_fn type instead.</span></div>
-<div class="viewcode-block" id="LeakyCFProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.LeakyCFProjection">[docs]</a><span class="k">class</span> <span class="nc">LeakyCFProjection</span><span class="p">(</span><span class="n">ResizableCFProjection</span><span class="p">):</span>
+<div class="viewcode-block" id="LeakyCFProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.LeakyCFProjection">[docs]</a><span class="k">class</span> <span class="nc">LeakyCFProjection</span><span class="p">(</span><span class="n">ResizableCFProjection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A projection that has a decay_rate parameter so that incoming</span>
 <span class="sd">    input is decayed over time as x(t) = input + x(t-1)*exp(-decay_rate),</span>
@@ -259,7 +265,7 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">LeakyCFProjection</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">leaky_input_buffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-<div class="viewcode-block" id="LeakyCFProjection.activate"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.LeakyCFProjection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
+<div class="viewcode-block" id="LeakyCFProjection.activate"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.LeakyCFProjection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retain input_activity from the previous step in leaky_input_buffer</span>
 <span class="sd">        and add a leaked version of it to the current input_activity. This</span>
@@ -273,7 +279,7 @@
                <span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">nbytes</span><span class="o">*</span><span class="mi">1</span> <span class="c"># for leaky_input_buffer</span>
 
 </div>
-<div class="viewcode-block" id="ScaledCFProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.ScaledCFProjection">[docs]</a><span class="k">class</span> <span class="nc">ScaledCFProjection</span><span class="p">(</span><span class="n">CFProjection</span><span class="p">):</span>
+<div class="viewcode-block" id="ScaledCFProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.ScaledCFProjection">[docs]</a><span class="k">class</span> <span class="nc">ScaledCFProjection</span><span class="p">(</span><span class="n">CFProjection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Allows scaling of activity based on a specified target average activity.</span>
 
@@ -304,7 +310,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">scaled_x_avg</span><span class="o">=</span><span class="bp">None</span>
 
 
-<div class="viewcode-block" id="ScaledCFProjection.calculate_sf"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.ScaledCFProjection.calculate_sf">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_sf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScaledCFProjection.calculate_sf"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.ScaledCFProjection.calculate_sf">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_sf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate current scaling factors based on the target and previous average activities.</span>
 
@@ -321,7 +327,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">scaled_x_avg</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothing</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">sf</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">smoothing</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scaled_x_avg</span>
 
 </div>
-<div class="viewcode-block" id="ScaledCFProjection.do_scaling"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.ScaledCFProjection.do_scaling">[docs]</a>    <span class="k">def</span> <span class="nf">do_scaling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScaledCFProjection.do_scaling"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.ScaledCFProjection.do_scaling">[docs]</a>    <span class="k">def</span> <span class="nf">do_scaling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Scale the projection activity and learning rate for the projection.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -332,7 +338,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Projections to be called must have learning function which supports scaling (e.g. CFPLF_PluginScaled).&quot;</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ScaledCFProjection.activate"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.ScaledCFProjection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
+<div class="viewcode-block" id="ScaledCFProjection.activate"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.ScaledCFProjection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Activate using the specified response_fn and output_fn.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_buffer</span> <span class="o">=</span> <span class="n">input_activity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">activity</span> <span class="o">*=</span><span class="mf">0.0</span>
@@ -359,7 +365,7 @@
 
 
 </div>
-<div class="viewcode-block" id="OneToOneProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection-module.html#topo.projection.OneToOneProjection">[docs]</a><span class="k">class</span> <span class="nc">OneToOneProjection</span><span class="p">(</span><span class="n">Projection</span><span class="p">):</span>
+<div class="viewcode-block" id="OneToOneProjection"><a class="viewcode-back" href="../../Reference_Manual/topo.projection.html#topo.projection.OneToOneProjection">[docs]</a><span class="k">class</span> <span class="nc">OneToOneProjection</span><span class="p">(</span><span class="n">Projection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A projection that has at most one input connection for each unit.</span>
 
@@ -492,7 +498,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/projection.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/projection.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -515,6 +521,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -534,8 +546,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

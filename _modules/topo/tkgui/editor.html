@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.tkgui.editor &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.tkgui.editor &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.tkgui" href="../tkgui.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -67,7 +73,6 @@
 
 <span class="sd">Originally written by Alan Lindsay.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision: 8989 $&#39;</span>
 
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">getdoc</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -108,7 +113,7 @@
 <span class="sd">&quot;&quot;&quot;Size of the canvas, as a bounding box (xl yl xh yh).&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="EditorCanvas"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas">[docs]</a><span class="k">class</span> <span class="nc">EditorCanvas</span><span class="p">(</span><span class="n">Canvas</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas">[docs]</a><span class="k">class</span> <span class="nc">EditorCanvas</span><span class="p">(</span><span class="n">Canvas</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    EditorCanvas extends the Tk Canvas class.</span>
@@ -221,14 +226,14 @@
         <span class="n">vertical_scrollbar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">Y</span><span class="p">)</span>
         <span class="n">horizontal_scrollbar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span> <span class="o">=</span> <span class="n">BOTTOM</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">X</span><span class="p">)</span>
 
-<div class="viewcode-block" id="EditorCanvas.key_press"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.key_press">[docs]</a>    <span class="k">def</span> <span class="nf">key_press</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.key_press"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.key_press">[docs]</a>    <span class="k">def</span> <span class="nf">key_press</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="s">&quot;What happens when a key is pressed.&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_mode</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">char</span><span class="p">)</span>
 
 
     <span class="c">#   Left mouse button event handlers</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.left_click"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.left_click">[docs]</a>    <span class="k">def</span> <span class="nf">left_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.left_click"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.left_click">[docs]</a>    <span class="k">def</span> <span class="nf">left_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="s">&quot;What is to happen if the left button is pressed.&quot;</span>
 
         <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvasx</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvasy</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -237,7 +242,7 @@
          <span class="s">&quot;CONNECTION&quot;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_connection</span> <span class="c"># case Connection mode.</span>
         <span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">](</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>                    <span class="c"># select function depending on mode</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.left_click_drag"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.left_click_drag">[docs]</a>    <span class="k">def</span> <span class="nf">left_click_drag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.left_click_drag"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.left_click_drag">[docs]</a>    <span class="k">def</span> <span class="nf">left_click_drag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="s">&quot;What is to happen if the mouse is dragged while the left button is pressed.&quot;</span>
 
         <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvasx</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvasy</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -246,7 +251,7 @@
          <span class="s">&quot;CONNECTION&quot;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_connection</span> <span class="c"># case Connection mode.</span>
         <span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">](</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>                      <span class="c"># select function depending on mode</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.left_release"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.left_release">[docs]</a>    <span class="k">def</span> <span class="nf">left_release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.left_release"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.left_release">[docs]</a>    <span class="k">def</span> <span class="nf">left_release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="s">&quot;What is to happen when the left mouse button is released.&quot;</span>
 
         <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvasx</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvasy</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
@@ -255,7 +260,7 @@
          <span class="s">&quot;CONNECTION&quot;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_connection</span>  <span class="c"># case Connection mode.</span>
         <span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">](</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>                    <span class="c"># select function depending on mode</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.left_double_click"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.left_double_click">[docs]</a>    <span class="k">def</span> <span class="nf">left_double_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.left_double_click"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.left_double_click">[docs]</a>    <span class="k">def</span> <span class="nf">left_double_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        What is to happen if the left button is double clicked.</span>
 <span class="sd">        The same for all modes - show the properties for the clicked item.</span>
@@ -270,11 +275,11 @@
 
     <span class="c">#   Right mouse button event handlers</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.right_click"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.right_click">[docs]</a>    <span class="k">def</span> <span class="nf">right_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.right_click"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.right_click">[docs]</a>    <span class="k">def</span> <span class="nf">right_click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="s">&quot;What is to happen if the right button is pressed.&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_hang_list</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.right_release"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.right_release">[docs]</a>    <span class="k">def</span> <span class="nf">right_release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.right_release"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.right_release">[docs]</a>    <span class="k">def</span> <span class="nf">right_release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="s">&quot;What is to happen when the right mouse button is released (bound to the menu).&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">focus</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">)</span> <span class="p">:</span> <span class="c"># remove focus.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">focus</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
@@ -282,7 +287,7 @@
 
     <span class="c">#   Mode Methods</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.change_mode"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.change_mode">[docs]</a>    <span class="k">def</span> <span class="nf">change_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.change_mode"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.change_mode">[docs]</a>    <span class="k">def</span> <span class="nf">change_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char</span><span class="p">):</span>
         <span class="s">&quot;Changes the mode of the canvas, i.e., what mouse events will do.&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">char</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="p">:</span> <span class="k">return</span>
@@ -353,7 +358,7 @@
     <span class="c"># If an object is left clicked in the canvas, these methods allow</span>
     <span class="c"># it to be repositioned in the canvas.</span>
 
-<div class="viewcode-block" id="EditorCanvas.init_move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.init_move">[docs]</a>    <span class="k">def</span> <span class="nf">init_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.init_move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.init_move">[docs]</a>    <span class="k">def</span> <span class="nf">init_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;Determine if click was on an object.&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">current_object</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -361,13 +366,13 @@
             <span class="c"># if it was, give it the focus</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_object</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.update_move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.update_move">[docs]</a>    <span class="k">def</span> <span class="nf">update_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.update_move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.update_move">[docs]</a>    <span class="k">def</span> <span class="nf">update_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;If dragging an object, refresh its position&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_object</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_object</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.end_move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.end_move">[docs]</a>    <span class="k">def</span> <span class="nf">end_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.end_move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.end_move">[docs]</a>    <span class="k">def</span> <span class="nf">end_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;If dropping an object, remove focus and refresh.&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_object</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
@@ -381,7 +386,7 @@
     <span class="c">#</span>
     <span class="c"># these methods allow a connection to be made between two objects in the canvas</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.init_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.init_connection">[docs]</a>    <span class="k">def</span> <span class="nf">init_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.init_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.init_connection">[docs]</a>    <span class="k">def</span> <span class="nf">init_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;Determine if click was on an object, and retain if so.&quot;</span>
 
         <span class="n">current_object</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -391,11 +396,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">current_connection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection_tool</span><span class="o">.</span><span class="n">new_cover</span><span class="p">(</span><span class="n">current_object</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">current_connection</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.update_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.update_connection">[docs]</a>    <span class="k">def</span> <span class="nf">update_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.update_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.update_connection">[docs]</a>    <span class="k">def</span> <span class="nf">update_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;Update connection&#39;s position.&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_connection</span><span class="o">.</span><span class="n">update_position</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.end_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.end_connection">[docs]</a>    <span class="k">def</span> <span class="nf">end_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.end_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.end_connection">[docs]</a>    <span class="k">def</span> <span class="nf">end_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;Determine if the connection has been dropped on an object.&quot;</span>
 
         <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -413,7 +418,7 @@
         <span class="c"># dereference</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_connection</span> <span class="o">=</span> <span class="bp">None</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.get_connection_xy"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.get_connection_xy">[docs]</a>    <span class="k">def</span> <span class="nf">get_connection_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.get_connection_xy"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.get_connection_xy">[docs]</a>    <span class="k">def</span> <span class="nf">get_connection_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;Return connection at given x, y (None if no connection).&quot;</span>
 
         <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_list</span><span class="p">:</span>
@@ -426,21 +431,21 @@
 
     <span class="c">#   Object Methods</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.create_object"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.create_object">[docs]</a>    <span class="k">def</span> <span class="nf">create_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="EditorCanvas.create_object"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.create_object">[docs]</a>    <span class="k">def</span> <span class="nf">create_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span>
         <span class="s">&quot;Create a new object.&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_object</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_tool</span><span class="o">.</span><span class="n">create_node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.add_object"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.add_object">[docs]</a>    <span class="k">def</span> <span class="nf">add_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="EditorCanvas.add_object"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.add_object">[docs]</a>    <span class="k">def</span> <span class="nf">add_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="p">:</span>
         <span class="s">&quot;Add a new object to the Canvas.&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">object_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_list</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.add_object_to_back"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.add_object_to_back">[docs]</a>    <span class="k">def</span> <span class="nf">add_object_to_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="EditorCanvas.add_object_to_back"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.add_object_to_back">[docs]</a>    <span class="k">def</span> <span class="nf">add_object_to_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="p">:</span>
         <span class="s">&quot;Add a new object to the Canvas at back of the list.&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">object_list</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">object_list</span> <span class="o">+</span> <span class="p">[</span><span class="n">obj</span><span class="p">]</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.remove_object"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.remove_object">[docs]</a>    <span class="k">def</span> <span class="nf">remove_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="EditorCanvas.remove_object"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.remove_object">[docs]</a>    <span class="k">def</span> <span class="nf">remove_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="p">:</span>
         <span class="s">&quot;Remove an object from the canvas.&quot;</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">object_list</span><span class="p">))</span> <span class="p">:</span>
@@ -463,7 +468,7 @@
             <span class="n">EditorSheet</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="s">&#39;activity&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
 
-<div class="viewcode-block" id="EditorCanvas.get_object_xy"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.get_object_xy">[docs]</a>    <span class="k">def</span> <span class="nf">get_object_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="EditorCanvas.get_object_xy"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.get_object_xy">[docs]</a>    <span class="k">def</span> <span class="nf">get_object_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span>
         <span class="s">&quot;Return object at given x, y (or None if no object).&quot;</span>
 
         <span class="c"># search through the bounds of each object in the canvas.</span>
@@ -475,14 +480,14 @@
         <span class="k">return</span> <span class="n">obj</span>
 
 </div>
-<div class="viewcode-block" id="EditorCanvas.show_properties"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.show_properties">[docs]</a>    <span class="k">def</span> <span class="nf">show_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.show_properties"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.show_properties">[docs]</a>    <span class="k">def</span> <span class="nf">show_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
         <span class="s">&quot;Show properties of an object or connection, and remove the focus.&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">focus</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span>
             <span class="n">focus</span><span class="o">.</span><span class="n">show_properties</span><span class="p">()</span>
             <span class="n">focus</span><span class="o">.</span><span class="n">set_focus</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.delete_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.delete_focus">[docs]</a>    <span class="k">def</span> <span class="nf">delete_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.delete_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.delete_focus">[docs]</a>    <span class="k">def</span> <span class="nf">delete_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
         <span class="s">&quot;Tell a connection or object to delete itself.&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">focus</span> <span class="o">==</span> <span class="bp">None</span><span class="p">)</span> <span class="p">:</span>
@@ -496,7 +501,7 @@
     <span class="c"># These methods ensure the ordering in the canvas window is held</span>
     <span class="c"># and allows manipulation of the order.</span>
 </div>
-<div class="viewcode-block" id="EditorCanvas.redraw_objects"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.redraw_objects">[docs]</a>    <span class="k">def</span> <span class="nf">redraw_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.redraw_objects"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.redraw_objects">[docs]</a>    <span class="k">def</span> <span class="nf">redraw_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Redraw all the objects in the canvas.</span>
 
@@ -595,7 +600,7 @@
     <span class="c"># does nothing</span>
     <span class="k">def</span> <span class="nf">none</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span> <span class="k">pass</span>
 
-<div class="viewcode-block" id="EditorCanvas.get_xy"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorCanvas.get_xy">[docs]</a>    <span class="k">def</span> <span class="nf">get_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorCanvas.get_xy"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorCanvas.get_xy">[docs]</a>    <span class="k">def</span> <span class="nf">get_xy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="s">&quot;Returns the connection or object at this x, y position or None if there is not one.&quot;</span>
 
         <span class="c"># check for a connection</span>
@@ -610,7 +615,7 @@
 
 <span class="c"># JABALERT: I made this into parameterized.Parameterized to make self.warning work,</span>
 <span class="c"># but it should be changed to a PlotGroupPanel eventually</span></div></div>
-<div class="viewcode-block" id="ModelEditor"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ModelEditor">[docs]</a><span class="k">class</span> <span class="nc">ModelEditor</span><span class="p">(</span><span class="n">parameterized</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="ModelEditor"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ModelEditor">[docs]</a><span class="k">class</span> <span class="nc">ModelEditor</span><span class="p">(</span><span class="n">parameterized</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class constructs the main editor window. It uses a instance</span>
 <span class="sd">    of GUICanvas as the main editing canvas and inserts the</span>
@@ -746,7 +751,7 @@
 <span class="c">## TOOLS</span>
 <span class="c">###########################################################################</span>
 </div>
-<div class="viewcode-block" id="ArrowTool"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ArrowTool">[docs]</a><span class="k">class</span> <span class="nc">ArrowTool</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
+<div class="viewcode-block" id="ArrowTool"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ArrowTool">[docs]</a><span class="k">class</span> <span class="nc">ArrowTool</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    ArrowTool is a selectable frame containing an arrow icon and a label. It is a</span>
 <span class="sd">    toolbar item in a ModelEditor that allows the user to change the GUICanvas to</span>
@@ -776,7 +781,7 @@
     <span class="k">def</span> <span class="nf">change_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">change_mode</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="c"># (ARROW)</span>
 
-<div class="viewcode-block" id="ArrowTool.set_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ArrowTool.set_focus">[docs]</a>    <span class="k">def</span> <span class="nf">set_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
+<div class="viewcode-block" id="ArrowTool.set_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ArrowTool.set_focus">[docs]</a>    <span class="k">def</span> <span class="nf">set_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
         <span class="s">&quot;Change the background highlight to reflect whether this toolbar item is selected.&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">focus</span><span class="p">):</span>
@@ -800,7 +805,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">class_</span><span class="o">.</span><span class="n">__name__</span> <span class="k">for</span> <span class="n">class_</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="NodeTool"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.NodeTool">[docs]</a><span class="k">class</span> <span class="nc">NodeTool</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
+<div class="viewcode-block" id="NodeTool"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.NodeTool">[docs]</a><span class="k">class</span> <span class="nc">NodeTool</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    NodeTool extends Frame. It is expected to be included in a topographica</span>
 <span class="sd">    model development GUI and functions as a self populating Node tool.</span>
@@ -854,7 +859,7 @@
     <span class="k">def</span> <span class="nf">change_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">change_mode</span><span class="p">(</span><span class="s">&#39;m&#39;</span><span class="p">)</span> <span class="c"># (&#39;MAKE&#39;)</span>
 
-<div class="viewcode-block" id="NodeTool.set_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.NodeTool.set_focus">[docs]</a>    <span class="k">def</span> <span class="nf">set_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
+<div class="viewcode-block" id="NodeTool.set_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.NodeTool.set_focus">[docs]</a>    <span class="k">def</span> <span class="nf">set_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
         <span class="s">&quot;Change the background highlight to reflect whether this toolbar item is selected.&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">focus</span><span class="p">):</span>
@@ -900,7 +905,7 @@
 
     <span class="c">#   Util Methods</span>
 
-<div class="viewcode-block" id="NodeTool.set_option"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.NodeTool.set_option">[docs]</a>    <span class="k">def</span> <span class="nf">set_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="NodeTool.set_option"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.NodeTool.set_option">[docs]</a>    <span class="k">def</span> <span class="nf">set_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_option</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">option_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_mode</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
@@ -909,7 +914,7 @@
 
 
 <span class="c"># JABHACKALERT: Currently only searches for topo.projection (connections have not been implemented yet).</span></div></div>
-<div class="viewcode-block" id="ConnectionTool"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ConnectionTool">[docs]</a><span class="k">class</span> <span class="nc">ConnectionTool</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
+<div class="viewcode-block" id="ConnectionTool"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ConnectionTool">[docs]</a><span class="k">class</span> <span class="nc">ConnectionTool</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    ConnectionTool extends Frame. It is expected to be included in a topographica</span>
 <span class="sd">    model development GUI and functions as a self populating Connection toolbar.</span>
@@ -954,7 +959,7 @@
 
     <span class="c">#   Canvas Topo Linking Methods</span>
 
-<div class="viewcode-block" id="ConnectionTool.new_cover"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ConnectionTool.new_cover">[docs]</a>    <span class="k">def</span> <span class="nf">new_cover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_node</span><span class="p">):</span>
+<div class="viewcode-block" id="ConnectionTool.new_cover"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ConnectionTool.new_cover">[docs]</a>    <span class="k">def</span> <span class="nf">new_cover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_node</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an EditorProjection and return it.</span>
 
@@ -964,7 +969,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">EditorProjection</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">,</span> <span class="n">from_node</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="ConnectionTool.create_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ConnectionTool.create_connection">[docs]</a>    <span class="k">def</span> <span class="nf">create_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">editor_connection</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+<div class="viewcode-block" id="ConnectionTool.create_connection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ConnectionTool.create_connection">[docs]</a>    <span class="k">def</span> <span class="nf">create_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">editor_connection</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
         <span class="s">&quot;Connects the editor connection and the topo simulation connection.&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameter_tool</span><span class="o">.</span><span class="n">focus</span><span class="p">:</span>
@@ -991,7 +996,7 @@
         <span class="k">return</span> <span class="bp">True</span>
 
 </div>
-<div class="viewcode-block" id="ConnectionTool.set_option"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ConnectionTool.set_option">[docs]</a>    <span class="k">def</span> <span class="nf">set_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="ConnectionTool.set_option"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ConnectionTool.set_option">[docs]</a>    <span class="k">def</span> <span class="nf">set_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_option</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">option_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_mode</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
@@ -1002,7 +1007,7 @@
     <span class="k">def</span> <span class="nf">change_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">change_mode</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span> <span class="c"># (&#39;CONNECTION&#39;)</span>
 
-<div class="viewcode-block" id="ConnectionTool.set_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.ConnectionTool.set_focus">[docs]</a>    <span class="k">def</span> <span class="nf">set_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
+<div class="viewcode-block" id="ConnectionTool.set_focus"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.ConnectionTool.set_focus">[docs]</a>    <span class="k">def</span> <span class="nf">set_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
         <span class="s">&quot;Change the background highlight to reflect whether this toolbar item is selected.&quot;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">focus</span><span class="p">):</span>
@@ -1061,7 +1066,7 @@
 <span class="c">###########################################################################</span>
 
 <span class="c"># CEBALERT: should be a Parameterized</span>
-<div class="viewcode-block" id="EditorObject"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorObject">[docs]</a><span class="k">class</span> <span class="nc">EditorObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorObject"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorObject">[docs]</a><span class="k">class</span> <span class="nc">EditorObject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Anything that can be added and manipulated in an EditorCanvas. Every EditorCanvas</span>
 <span class="sd">    has a corresponding Topo object associated with it. An instance of this class can</span>
@@ -1077,11 +1082,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">viewing_choices</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">=</span><span class="bp">None</span>
 
-<div class="viewcode-block" id="EditorObject.draw"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorObject.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorObject.draw"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorObject.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">&quot;Draw the object at the current x, y position.&quot;</span>
         <span class="k">pass</span>
 </div>
-<div class="viewcode-block" id="EditorObject.objdoc"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorObject.objdoc">[docs]</a>    <span class="k">def</span> <span class="nf">objdoc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorObject.objdoc"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorObject.objdoc">[docs]</a>    <span class="k">def</span> <span class="nf">objdoc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Documentation string for this object.&quot;&quot;&quot;</span>
         <span class="c">### JABALERT: Should be expanded to allow a per-object description,</span>
         <span class="c">### and should be bound to the actual editor object as well.</span>
@@ -1089,7 +1094,7 @@
                <span class="n">shortclassname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simobj</span><span class="p">)</span> <span class="o">+</span> \
                <span class="s">&quot;:</span><span class="se">\n\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">getdoc</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simobj</span><span class="p">))</span>
 </div>
-<div class="viewcode-block" id="EditorObject.show_properties"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorObject.show_properties">[docs]</a>    <span class="k">def</span> <span class="nf">show_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorObject.show_properties"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorObject.show_properties">[docs]</a>    <span class="k">def</span> <span class="nf">show_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">&quot;Show parameters frame for object.&quot;</span>
 
         <span class="n">parameter_window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">AppWindow</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">guimain</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -1120,21 +1125,21 @@
     <span class="k">def</span> <span class="nf">set_focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">)</span> <span class="p">:</span> <span class="c"># set focus</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">focus</span> <span class="o">=</span> <span class="n">focus</span>
 
-<div class="viewcode-block" id="EditorObject.move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorObject.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorObject.move"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorObject.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">&quot;Update position of object and redraw.&quot;</span>
         <span class="k">pass</span>
 </div>
-<div class="viewcode-block" id="EditorObject.remove"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorObject.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorObject.remove"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorObject.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">&quot;Remove this object from the canvas and from the Topographica simulation.&quot;</span>
         <span class="k">pass</span>
 </div>
-<div class="viewcode-block" id="EditorObject.in_bounds"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorObject.in_bounds">[docs]</a>    <span class="k">def</span> <span class="nf">in_bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span>
+<div class="viewcode-block" id="EditorObject.in_bounds"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorObject.in_bounds">[docs]</a>    <span class="k">def</span> <span class="nf">in_bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">:</span>
         <span class="s">&quot;Return true if x,y lies within this gui object&#39;s boundary.&quot;</span>
         <span class="k">pass</span>
 
 
 </div></div>
-<div class="viewcode-block" id="EditorNode"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorNode">[docs]</a><span class="k">class</span> <span class="nc">EditorNode</span><span class="p">(</span><span class="n">EditorObject</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorNode"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorNode">[docs]</a><span class="k">class</span> <span class="nc">EditorNode</span><span class="p">(</span><span class="n">EditorObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An EditorNode is used to cover any topographica node, presently this can only be a sheet.</span>
 <span class="sd">    It is a sub class of EditorObject and supplies the methods required by any node to be used</span>
@@ -1215,7 +1220,7 @@
 
 
 <span class="c"># JABALERT: Should probably combine this with EditorNode</span></div>
-<div class="viewcode-block" id="EditorEP"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorEP">[docs]</a><span class="k">class</span> <span class="nc">EditorEP</span><span class="p">(</span><span class="n">EditorNode</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorEP"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorEP">[docs]</a><span class="k">class</span> <span class="nc">EditorEP</span><span class="p">(</span><span class="n">EditorNode</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents any topo EventProcessor as a small, fixed-size oval by default.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1380,7 +1385,7 @@
 
 
 </div>
-<div class="viewcode-block" id="EditorSheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorSheet">[docs]</a><span class="k">class</span> <span class="nc">EditorSheet</span><span class="p">(</span><span class="n">EditorEP</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorSheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorSheet">[docs]</a><span class="k">class</span> <span class="nc">EditorSheet</span><span class="p">(</span><span class="n">EditorEP</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents any topo sheet. It is a subclass of EditorEP and fills in the</span>
 <span class="sd">    methods that are not defined. It is represented by a Parallelogram in its</span>
@@ -1476,7 +1481,7 @@
                 <span class="n">y2</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">create_line</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&#39;slate blue&#39;</span><span class="p">)]</span>
 
-<div class="viewcode-block" id="EditorSheet.normalize_plot"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorSheet.normalize_plot">[docs]</a>    <span class="k">def</span> <span class="nf">normalize_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorSheet.normalize_plot"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorSheet.normalize_plot">[docs]</a>    <span class="k">def</span> <span class="nf">normalize_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Normalize an array s.</span>
 <span class="sd">        In case of a constant array, ones is returned for value greater than zero,</span>
@@ -1542,7 +1547,7 @@
 
 
 </div>
-<div class="viewcode-block" id="EditorConnection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorConnection">[docs]</a><span class="k">class</span> <span class="nc">EditorConnection</span><span class="p">(</span><span class="n">EditorObject</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorConnection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorConnection">[docs]</a><span class="k">class</span> <span class="nc">EditorConnection</span><span class="p">(</span><span class="n">EditorObject</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A connection formed between 2 EditorNodes on a EditorCanvas. A EditorConnection is used</span>
@@ -1606,7 +1611,7 @@
 
 
 <span class="c"># JABALERT: Should probably combine this with EditorConnection</span></div>
-<div class="viewcode-block" id="EditorEPConnection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorEPConnection">[docs]</a><span class="k">class</span> <span class="nc">EditorEPConnection</span><span class="p">(</span><span class="n">EditorConnection</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorEPConnection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorEPConnection">[docs]</a><span class="k">class</span> <span class="nc">EditorEPConnection</span><span class="p">(</span><span class="n">EditorConnection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents any topo EPConnection using a line with an arrow head in the middle.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1731,7 +1736,7 @@
     <span class="k">def</span> <span class="nf">get_middle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">)</span> <span class="p">:</span> <span class="c"># returns the middle of two points</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">pos1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">pos2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pos1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">pos2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="mf">0.5</span><span class="p">)</span>
 
-<div class="viewcode-block" id="EditorEPConnection.get_radius"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorEPConnection.get_radius">[docs]</a>    <span class="k">def</span> <span class="nf">get_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorEPConnection.get_radius"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorEPConnection.get_radius">[docs]</a>    <span class="k">def</span> <span class="nf">get_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Not implemented in this class&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </div>
@@ -1745,7 +1750,7 @@
 
     <span class="c"># returns the gradients of the two lines making the opening &#39;v&#39; part of the receptive field.</span>
     <span class="c"># this depends on the draw_index, as it determines where the projection&#39;s representation begins.</span>
-<div class="viewcode-block" id="EditorEPConnection.calculate_gradient"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorEPConnection.calculate_gradient">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_gradient</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorEPConnection.calculate_gradient"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorEPConnection.calculate_gradient">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_gradient</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Not implemented in this class&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </div>
@@ -1772,7 +1777,7 @@
 
 
 </div>
-<div class="viewcode-block" id="EditorProjection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.editor-module.html#topo.tkgui.editor.EditorProjection">[docs]</a><span class="k">class</span> <span class="nc">EditorProjection</span><span class="p">(</span><span class="n">EditorEPConnection</span><span class="p">):</span>
+<div class="viewcode-block" id="EditorProjection"><a class="viewcode-back" href="../../../Reference_Manual/topo.tkgui.html#topo.tkgui.editor.EditorProjection">[docs]</a><span class="k">class</span> <span class="nc">EditorProjection</span><span class="p">(</span><span class="n">EditorEPConnection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents any topo CFProjection. It is a subclass of EditorEPConnection and fills</span>
 <span class="sd">    in the methods that are not defined. Can be represented by a representation of a</span>
@@ -2026,7 +2031,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/tkgui/editor.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/tkgui/editor.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -2049,6 +2054,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -2069,8 +2080,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

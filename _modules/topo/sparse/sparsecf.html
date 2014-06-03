@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.sparse.sparsecf &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.sparse.sparsecf &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -94,14 +100,14 @@
 <span class="n">sparse_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
 
 
-<div class="viewcode-block" id="CFSPLF_Plugin"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPLF_Plugin">[docs]</a><span class="k">class</span> <span class="nc">CFSPLF_Plugin</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPLF_Plugin"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPLF_Plugin">[docs]</a><span class="k">class</span> <span class="nc">CFSPLF_Plugin</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;CFSPLearningFunction applying the specified single_cf_fn to each Sparse CF.&quot;&quot;&quot;</span>
 
     <span class="n">single_cf_fn</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">LearningFn</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">Hebbian</span><span class="p">(),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Accepts a LearningFn that will be applied to each CF individually.&quot;&quot;&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="CFSPLF_Plugin.constant_sum_connection_rate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPLF_Plugin.constant_sum_connection_rate">[docs]</a>    <span class="k">def</span> <span class="nf">constant_sum_connection_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_units</span><span class="p">,</span><span class="n">learning_rate</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPLF_Plugin.constant_sum_connection_rate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPLF_Plugin.constant_sum_connection_rate">[docs]</a>    <span class="k">def</span> <span class="nf">constant_sum_connection_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n_units</span><span class="p">,</span><span class="n">learning_rate</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the learning rate for a single connection assuming that</span>
 <span class="sd">        the total rate is to be divided evenly among all the units in</span>
@@ -126,7 +132,7 @@
 
 
 </div>
-<div class="viewcode-block" id="CFSPOF_Plugin"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPOF_Plugin">[docs]</a><span class="k">class</span> <span class="nc">CFSPOF_Plugin</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPOF_Plugin"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPOF_Plugin">[docs]</a><span class="k">class</span> <span class="nc">CFSPOF_Plugin</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies the specified single_cf_fn to each SparseCF in the SparseCFProjection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -147,7 +153,7 @@
 
 
 </div>
-<div class="viewcode-block" id="CFSPOF_Prune"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPOF_Prune">[docs]</a><span class="k">class</span> <span class="nc">CFSPOF_Prune</span><span class="p">(</span><span class="n">CFSPOF_Plugin</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPOF_Prune"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPOF_Prune">[docs]</a><span class="k">class</span> <span class="nc">CFSPOF_Prune</span><span class="p">(</span><span class="n">CFSPOF_Plugin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Prunes specified percentage of connections from CFs in SparseCFProjection</span>
 <span class="sd">    at specified interval.</span>
@@ -179,7 +185,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> has </span><span class="si">%f%%</span><span class="s"> of initial connections&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">n_conns</span><span class="p">())</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_conns</span><span class="p">[</span><span class="n">projection</span><span class="o">.</span><span class="n">name</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="CFSPOF_SproutRetract"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPOF_SproutRetract">[docs]</a><span class="k">class</span> <span class="nc">CFSPOF_SproutRetract</span><span class="p">(</span><span class="n">CFSPOF_Plugin</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPOF_SproutRetract"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPOF_SproutRetract">[docs]</a><span class="k">class</span> <span class="nc">CFSPOF_SproutRetract</span><span class="p">(</span><span class="n">CFSPOF_Plugin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sprouting and retraction weights output function. At a preset time</span>
 <span class="sd">    interval, the function removes and adds connections based on a</span>
@@ -286,7 +292,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> pruned by </span><span class="si">%d</span><span class="s"> and sprouted </span><span class="si">%d</span><span class="s">, connection is now </span><span class="si">%f%%</span><span class="s"> dense&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">prune_sum</span><span class="p">,</span><span class="n">sprout_sum</span><span class="p">,(</span><span class="nb">float</span><span class="p">(</span><span class="n">unit_total</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">mask_total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="CFSPOF_SproutRetract.sprout"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPOF_SproutRetract.sprout">[docs]</a>    <span class="k">def</span> <span class="nf">sprout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp_weights</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">sprout_count</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPOF_SproutRetract.sprout"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPOF_SproutRetract.sprout">[docs]</a>    <span class="k">def</span> <span class="nf">sprout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp_weights</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">sprout_count</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Applies a Gaussian blur to the existing connection field,</span>
 <span class="sd">        selecting the n units with the highest probabilities to sprout</span>
@@ -306,7 +312,7 @@
         <span class="n">temp_weights</span><span class="p">[</span><span class="n">sprout_inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">init_weight</span>
 
 </div>
-<div class="viewcode-block" id="CFSPOF_SproutRetract.prune"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPOF_SproutRetract.prune">[docs]</a>    <span class="k">def</span> <span class="nf">prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp_weights</span><span class="p">,</span> <span class="n">prune_idx</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPOF_SproutRetract.prune"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPOF_SproutRetract.prune">[docs]</a>    <span class="k">def</span> <span class="nf">prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp_weights</span><span class="p">,</span> <span class="n">prune_idx</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retracts n connections with the lowest weights, where n is</span>
 <span class="sd">        determined by the piecewise linear function in the calc_ratios</span>
@@ -318,7 +324,7 @@
         <span class="n">temp_weights</span><span class="p">[</span><span class="n">temp_weights</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 
 </div>
-<div class="viewcode-block" id="CFSPOF_SproutRetract.calc_ratios"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPOF_SproutRetract.calc_ratios">[docs]</a>    <span class="k">def</span> <span class="nf">calc_ratios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">temp_weights</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPOF_SproutRetract.calc_ratios"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPOF_SproutRetract.calc_ratios">[docs]</a>    <span class="k">def</span> <span class="nf">calc_ratios</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">temp_weights</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Uses a piecewise linear function to determine the unit</span>
 <span class="sd">        proportion of sprouting and retraction and the associated</span>
@@ -365,7 +371,7 @@
 
 
 </div></div>
-<div class="viewcode-block" id="CFSPRF_Plugin"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFSPRF_Plugin">[docs]</a><span class="k">class</span> <span class="nc">CFSPRF_Plugin</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="CFSPRF_Plugin"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFSPRF_Plugin">[docs]</a><span class="k">class</span> <span class="nc">CFSPRF_Plugin</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generic large-scale response function based on a simple single-CF function.</span>
 
@@ -391,7 +397,7 @@
         <span class="n">projection</span><span class="o">.</span><span class="n">activity</span> <span class="o">*=</span> <span class="n">projection</span><span class="o">.</span><span class="n">strength</span>
 
 </div>
-<div class="viewcode-block" id="compute_sparse_joint_norm_totals"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.compute_sparse_joint_norm_totals">[docs]</a><span class="k">def</span> <span class="nf">compute_sparse_joint_norm_totals</span><span class="p">(</span><span class="n">projlist</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="compute_sparse_joint_norm_totals"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.compute_sparse_joint_norm_totals">[docs]</a><span class="k">def</span> <span class="nf">compute_sparse_joint_norm_totals</span><span class="p">(</span><span class="n">projlist</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute norm_total for each CF in each projection from a group to be</span>
 <span class="sd">    normalized jointly.</span>
@@ -411,7 +417,7 @@
 
 
 </div>
-<div class="viewcode-block" id="CFPOF_DivisiveNormalizeL1_Sparse"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFPOF_DivisiveNormalizeL1_Sparse">[docs]</a><span class="k">def</span> <span class="nf">CFPOF_DivisiveNormalizeL1_Sparse</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPOF_DivisiveNormalizeL1_Sparse"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFPOF_DivisiveNormalizeL1_Sparse">[docs]</a><span class="k">def</span> <span class="nf">CFPOF_DivisiveNormalizeL1_Sparse</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sparse CF Projection output function applying L1 divisive normalization</span>
 <span class="sd">    to individual CFs.</span>
@@ -425,7 +431,7 @@
 
 
 </div>
-<div class="viewcode-block" id="CFPLF_Hebbian_Sparse"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFPLF_Hebbian_Sparse">[docs]</a><span class="k">def</span> <span class="nf">CFPLF_Hebbian_Sparse</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_Hebbian_Sparse"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFPLF_Hebbian_Sparse">[docs]</a><span class="k">def</span> <span class="nf">CFPLF_Hebbian_Sparse</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sparse CF Projection learning function applying Hebbian learning</span>
 <span class="sd">    to the weights in a projection.</span>
@@ -438,7 +444,7 @@
     <span class="n">projection</span><span class="o">.</span><span class="n">has_norm_total</span> <span class="o">=</span> <span class="bp">True</span>
 
 </div>
-<div class="viewcode-block" id="CFPLF_Hebbian_Sparse_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFPLF_Hebbian_Sparse_opt">[docs]</a><span class="k">def</span> <span class="nf">CFPLF_Hebbian_Sparse_opt</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_Hebbian_Sparse_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFPLF_Hebbian_Sparse_opt">[docs]</a><span class="k">def</span> <span class="nf">CFPLF_Hebbian_Sparse_opt</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sparse CF Projection learning function, which calls an optimized Hebbian</span>
 <span class="sd">    learning function while skipping over inactive units.</span>
@@ -452,7 +458,7 @@
 
 
 </div>
-<div class="viewcode-block" id="CFPRF_DotProduct_Sparse"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFPRF_DotProduct_Sparse">[docs]</a><span class="k">def</span> <span class="nf">CFPRF_DotProduct_Sparse</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPRF_DotProduct_Sparse"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFPRF_DotProduct_Sparse">[docs]</a><span class="k">def</span> <span class="nf">CFPRF_DotProduct_Sparse</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sparse CF Projection response function calculating the dot-product</span>
 <span class="sd">    between incoming activities and CF weights.</span>
@@ -461,7 +467,7 @@
     <span class="n">projection</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">DotProduct</span><span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">strength</span><span class="p">,</span> <span class="n">projection</span><span class="o">.</span><span class="n">input_buffer</span><span class="p">,</span> <span class="n">projection</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="CFPRF_DotProduct_Sparse_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.CFPRF_DotProduct_Sparse_opt">[docs]</a><span class="k">def</span> <span class="nf">CFPRF_DotProduct_Sparse_opt</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPRF_DotProduct_Sparse_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.CFPRF_DotProduct_Sparse_opt">[docs]</a><span class="k">def</span> <span class="nf">CFPRF_DotProduct_Sparse_opt</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sparse CF Projection response function calculating the dot-product</span>
 <span class="sd">    between incoming activities and CF weights. Optimization skips</span>
@@ -477,7 +483,7 @@
 
 
 </div>
-<div class="viewcode-block" id="SparseConnectionField"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.sparsecf-module.html#topo.sparse.sparsecf.SparseConnectionField">[docs]</a><span class="k">class</span> <span class="nc">SparseConnectionField</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
+<div class="viewcode-block" id="SparseConnectionField"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseConnectionField">[docs]</a><span class="k">class</span> <span class="nc">SparseConnectionField</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A set of weights on one input Sheet.</span>
 
@@ -837,7 +843,7 @@
         <span class="k">return</span> <span class="n">CF</span>
 
 
-    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
+<div class="viewcode-block" id="SparseCFProjection.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseCFProjection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Activate using the specified response_fn and output_fn.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_fns</span><span class="p">:</span>
             <span class="n">input_activity</span> <span class="o">=</span> <span class="n">input_activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -849,8 +855,8 @@
         <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
             <span class="n">of</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
 
-
-    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="SparseCFProjection.learn"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseCFProjection.learn">[docs]</a>    <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        For a SparseCFProjection, learn consists of calling the learning_fn.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -859,15 +865,15 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_buffer</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">learning_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-
-    <span class="k">def</span> <span class="nf">apply_learn_output_fns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="SparseCFProjection.apply_learn_output_fns"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseCFProjection.apply_learn_output_fns">[docs]</a>    <span class="k">def</span> <span class="nf">apply_learn_output_fns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">active_units_mask</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Apply the weights_output_fns to each unit.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">of</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights_output_fns</span><span class="p">:</span> <span class="n">of</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-
-    <span class="k">def</span> <span class="nf">n_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="SparseCFProjection.n_bytes"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseCFProjection.n_bytes">[docs]</a>    <span class="k">def</span> <span class="nf">n_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Estimates the size on the basis of the number non-zeros in the</span>
 <span class="sd">        sparse matrix, asssuming indices and values are stored using</span>
@@ -875,18 +881,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_conns</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
 
-
-    <span class="k">def</span> <span class="nf">n_conns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="SparseCFProjection.n_conns"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseCFProjection.n_conns">[docs]</a>    <span class="k">def</span> <span class="nf">n_conns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns number of nonzero weights.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">getnnz</span><span class="p">()</span>
 
-
+</div>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">use_sparse</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">&quot;WARNING: Sparse component could not be imported, replacing SparseCFProjection with regular CFProjection&quot;</span>
-    <span class="k">def</span> <span class="nf">SparseCFProjection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c"># pyflakes:ignore (optimized version provided)</span>
-        <span class="k">return</span> <span class="n">CFProjection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="viewcode-block" id="SparseCFProjection"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseCFProjection">[docs]</a>    <span class="k">def</span> <span class="nf">SparseCFProjection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="c"># pyflakes:ignore (optimized version provided)</span>
+        <span class="k">return</span> <span class="n">CFProjection</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
@@ -905,19 +911,21 @@
 <li><a href="../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../Future_Work/index.html">Future Work</a></li>
 <li><a href="../../../FAQ/index.html">FAQ</a></li>
 <li><a href="../../../Links/index.html">Links</a></li>
 <li><a href="../../../Home/pubs.html">Publications</a></li>
+<li><a href="../../../site_map.html">Site Map</a></li>
 </ul>
 <h3><a href="../../../index.html">Table Of Contents</a></h3>
 
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/sparse/sparsecf.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/sparse/sparsecf.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -940,6 +948,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -959,8 +973,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Oct 29, 2013.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

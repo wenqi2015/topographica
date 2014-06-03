@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.misc.picklemain &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.misc.picklemain &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -77,7 +83,7 @@
 
 
 
-<div class="viewcode-block" id="PickleMain"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.PickleMain">[docs]</a><span class="k">class</span> <span class="nc">PickleMain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="PickleMain"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.PickleMain">[docs]</a><span class="k">class</span> <span class="nc">PickleMain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Pickle support for types and functions defined in __main__.</span>
 
@@ -161,7 +167,7 @@
 <span class="c"># removed the lines that change pickle&#39;s defaults)</span>
 
 </div>
-<div class="viewcode-block" id="save_code"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.save_code">[docs]</a><span class="k">def</span> <span class="nf">save_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<div class="viewcode-block" id="save_code"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.save_code">[docs]</a><span class="k">def</span> <span class="nf">save_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Save a code object by value &quot;&quot;&quot;</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">co_argcount</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">co_nlocals</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">co_stacksize</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">co_flags</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">co_code</span><span class="p">,</span>
@@ -170,7 +176,7 @@
     <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">save_reduce</span><span class="p">(</span><span class="n">new</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="save_function"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.save_function">[docs]</a><span class="k">def</span> <span class="nf">save_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<div class="viewcode-block" id="save_function"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.save_function">[docs]</a><span class="k">def</span> <span class="nf">save_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Save functions by value if they are defined interactively &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_name_is_main</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">or</span> <span class="n">obj</span><span class="o">.</span><span class="n">func_name</span> <span class="o">==</span> <span class="s">&#39;&lt;lambda&gt;&#39;</span><span class="p">:</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">func_code</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">func_globals</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">func_defaults</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">func_closure</span><span class="p">)</span>
@@ -179,12 +185,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">save_global</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="c">#pickle.Pickler.save_global(self, obj)</span>
 </div>
-<div class="viewcode-block" id="save_global_byname"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.save_global_byname">[docs]</a><span class="k">def</span> <span class="nf">save_global_byname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">modname</span><span class="p">,</span> <span class="n">objname</span><span class="p">):</span>
+<div class="viewcode-block" id="save_global_byname"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.save_global_byname">[docs]</a><span class="k">def</span> <span class="nf">save_global_byname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">modname</span><span class="p">,</span> <span class="n">objname</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Save obj as a global reference. Used for objects that pickle does not find correctly. &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s%s</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">GLOBAL</span><span class="p">,</span> <span class="n">modname</span><span class="p">,</span> <span class="n">objname</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="save_module_dict"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.save_module_dict">[docs]</a><span class="k">def</span> <span class="nf">save_module_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">main_dict</span><span class="o">=</span><span class="nb">vars</span><span class="p">(</span><span class="nb">__import__</span><span class="p">(</span><span class="s">&#39;__main__&#39;</span><span class="p">))):</span>
+<div class="viewcode-block" id="save_module_dict"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.save_module_dict">[docs]</a><span class="k">def</span> <span class="nf">save_module_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">main_dict</span><span class="o">=</span><span class="nb">vars</span><span class="p">(</span><span class="nb">__import__</span><span class="p">(</span><span class="s">&#39;__main__&#39;</span><span class="p">))):</span>
     <span class="sd">&quot;&quot;&quot; Special-case __main__.__dict__. Useful for a function&#39;s func_globals member. &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="n">main_dict</span><span class="p">:</span>
         <span class="n">save_global_byname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="s">&#39;__main__&#39;</span><span class="p">,</span> <span class="s">&#39;__dict__&#39;</span><span class="p">)</span>
@@ -192,7 +198,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_dict</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="c">#return pickle.Pickler.save_dict(self, obj)      # fallback to original</span>
 </div>
-<div class="viewcode-block" id="save_classobj"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.save_classobj">[docs]</a><span class="k">def</span> <span class="nf">save_classobj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<div class="viewcode-block" id="save_classobj"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.save_classobj">[docs]</a><span class="k">def</span> <span class="nf">save_classobj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Save an interactively defined classic class object by value &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_name_is_main</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">__bases__</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
@@ -202,13 +208,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">save_global</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">name</span><span class="p">)</span>
         <span class="c">#pickle.Pickler.save_global(self, obj, name)</span>
 </div>
-<div class="viewcode-block" id="save_instancemethod"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.save_instancemethod">[docs]</a><span class="k">def</span> <span class="nf">save_instancemethod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<div class="viewcode-block" id="save_instancemethod"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.save_instancemethod">[docs]</a><span class="k">def</span> <span class="nf">save_instancemethod</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Save an instancemethod object &quot;&quot;&quot;</span>
     <span class="c"># Instancemethods are re-created each time they are accessed so this will not be memoized</span>
     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">im_func</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">im_self</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">im_class</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">save_reduce</span><span class="p">(</span><span class="n">new</span><span class="o">.</span><span class="n">instancemethod</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="save_module"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.picklemain-module.html#topo.misc.picklemain.save_module">[docs]</a><span class="k">def</span> <span class="nf">save_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<div class="viewcode-block" id="save_module"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.picklemain.save_module">[docs]</a><span class="k">def</span> <span class="nf">save_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Save modules by reference, except __main__ which also gets its contents saved by value &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_name_is_main</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_reduce</span><span class="p">(</span><span class="nb">__import__</span><span class="p">,</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">__name__</span><span class="p">,),</span> <span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="nb">vars</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
@@ -274,7 +280,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/picklemain.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/picklemain.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -297,6 +303,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -316,8 +328,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

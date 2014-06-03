@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.learningfn.optimized &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.learningfn.optimized &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.learningfn" href="../learningfn.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -82,7 +88,7 @@
 
 
 
-<div class="viewcode-block" id="CFPLF_Hebbian_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.optimized-module.html#topo.learningfn.optimized.CFPLF_Hebbian_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Hebbian_opt</span><span class="p">(</span><span class="n">CFPLearningFn</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_Hebbian_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.html#topo.learningfn.optimized.CFPLF_Hebbian_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Hebbian_opt</span><span class="p">(</span><span class="n">CFPLearningFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CF-aware Hebbian learning rule.</span>
 
@@ -174,7 +180,7 @@
                <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;&lt;structmember.h&gt;&#39;</span><span class="p">])</span>
 
 </div>
-<div class="viewcode-block" id="CFPLF_Hebbian"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.optimized-module.html#topo.learningfn.optimized.CFPLF_Hebbian">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Hebbian</span><span class="p">(</span><span class="n">CFPLF_Plugin</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_Hebbian"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.html#topo.learningfn.optimized.CFPLF_Hebbian">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Hebbian</span><span class="p">(</span><span class="n">CFPLF_Plugin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Same as CFPLF_Plugin(single_cf_fn=Hebbian()); just for non-optimized fallback.&quot;&quot;&quot;</span>
     <span class="n">single_cf_fn</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">LearningFn</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">Hebbian</span><span class="p">(),</span><span class="n">readonly</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></div>
 <span class="n">provide_unoptimized_equivalent</span><span class="p">(</span><span class="s">&quot;CFPLF_Hebbian_opt&quot;</span><span class="p">,</span><span class="s">&quot;CFPLF_Hebbian&quot;</span><span class="p">,</span><span class="nb">locals</span><span class="p">())</span>
@@ -183,7 +189,7 @@
 <span class="c"># CBERRORALERT: classes from here on probably ignore the sheet mask</span>
 
 <span class="c"># JABALERT: Is this really a fixed-threshold BCM rule?  If so, is that really useful?</span>
-<div class="viewcode-block" id="CFPLF_BCMFixed_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.optimized-module.html#topo.learningfn.optimized.CFPLF_BCMFixed_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_BCMFixed_opt</span><span class="p">(</span><span class="n">CFPLearningFn</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_BCMFixed_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.html#topo.learningfn.optimized.CFPLF_BCMFixed_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_BCMFixed_opt</span><span class="p">(</span><span class="n">CFPLearningFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CF-aware BCM learning rule.</span>
 
@@ -270,14 +276,14 @@
                <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;&lt;structmember.h&gt;&#39;</span><span class="p">])</span>
 
 </div>
-<div class="viewcode-block" id="CFPLF_BCMFixed"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.optimized-module.html#topo.learningfn.optimized.CFPLF_BCMFixed">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_BCMFixed</span><span class="p">(</span><span class="n">CFPLF_Plugin</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_BCMFixed"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.html#topo.learningfn.optimized.CFPLF_BCMFixed">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_BCMFixed</span><span class="p">(</span><span class="n">CFPLF_Plugin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Same as CFPLF_Plugin(single_cf_fn=BCMFixed()); just for non-optimized fallback.&quot;&quot;&quot;</span>
     <span class="n">single_cf_fn</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">LearningFn</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">BCMFixed</span><span class="p">(),</span><span class="n">readonly</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></div>
 <span class="n">provide_unoptimized_equivalent</span><span class="p">(</span><span class="s">&quot;CFPLF_BCMFixed_opt&quot;</span><span class="p">,</span><span class="s">&quot;CFPLF_Hebbian&quot;</span><span class="p">,</span><span class="nb">locals</span><span class="p">())</span>
 
 
 <span class="c"># CEBALERT: 2009/04/03 - when used in GCA-LISSOM, causes Python to crash.</span>
-<div class="viewcode-block" id="CFPLF_Scaled_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.optimized-module.html#topo.learningfn.optimized.CFPLF_Scaled_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Scaled_opt</span><span class="p">(</span><span class="n">CFPLF_PluginScaled</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_Scaled_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.html#topo.learningfn.optimized.CFPLF_Scaled_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Scaled_opt</span><span class="p">(</span><span class="n">CFPLF_PluginScaled</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    CF-aware Scaled Hebbian learning rule.</span>
 
@@ -365,14 +371,14 @@
                <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;&lt;structmember.h&gt;&#39;</span><span class="p">])</span>
 
 </div>
-<div class="viewcode-block" id="CFPLF_Scaled"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.optimized-module.html#topo.learningfn.optimized.CFPLF_Scaled">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Scaled</span><span class="p">(</span><span class="n">CFPLF_PluginScaled</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_Scaled"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.html#topo.learningfn.optimized.CFPLF_Scaled">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Scaled</span><span class="p">(</span><span class="n">CFPLF_PluginScaled</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Same as CFPLF_PluginScaled(single_cf_fn=Hebbian()); just for non-optimized fallback.&quot;&quot;&quot;</span>
     <span class="n">single_cf_fn</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">LearningFn</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="n">Hebbian</span><span class="p">(),</span><span class="n">readonly</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></div>
 <span class="n">provide_unoptimized_equivalent</span><span class="p">(</span><span class="s">&quot;CFPLF_Scaled_opt&quot;</span><span class="p">,</span><span class="s">&quot;CFPLF_Scaled&quot;</span><span class="p">,</span><span class="nb">locals</span><span class="p">())</span>
 
 
 
-<div class="viewcode-block" id="CFPLF_Trace_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.optimized-module.html#topo.learningfn.optimized.CFPLF_Trace_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Trace_opt</span><span class="p">(</span><span class="n">CFPLearningFn</span><span class="p">):</span>
+<div class="viewcode-block" id="CFPLF_Trace_opt"><a class="viewcode-back" href="../../../Reference_Manual/topo.learningfn.html#topo.learningfn.optimized.CFPLF_Trace_opt">[docs]</a><span class="k">class</span> <span class="nc">CFPLF_Trace_opt</span><span class="p">(</span><span class="n">CFPLearningFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Optimized version of CFPLF_Trace; see projfn.py for more info</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -488,7 +494,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/learningfn/optimized.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/learningfn/optimized.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -511,6 +517,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -531,8 +543,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

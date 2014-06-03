@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.analysis.featureresponses &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.analysis.featureresponses &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -73,13 +79,13 @@
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
-<span class="kn">from</span> <span class="nn">imagen.views</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">SheetStack</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">SheetStack</span>
+<span class="kn">from</span> <span class="nn">dataviews.ndmapping</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">import</span> <span class="nn">topo.base.sheetcoords</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
 <span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">restore_input_generators</span><span class="p">,</span> <span class="n">save_input_generators</span>
-<span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 <span class="kn">from</span> <span class="nn">topo</span> <span class="kn">import</span> <span class="n">pattern</span>
 <span class="kn">from</span> <span class="nn">topo.sheet</span> <span class="kn">import</span> <span class="n">GeneratorSheet</span>
 
@@ -89,11 +95,12 @@
 <span class="kn">from</span> <span class="nn">featuremapper</span> <span class="kn">import</span> <span class="n">MeasurementInterrupt</span><span class="p">,</span> <span class="n">DistributionMatrix</span><span class="p">,</span> <span class="n">FullMatrix</span><span class="p">,</span> <span class="n">FeatureResponses</span><span class="p">,</span>\
     <span class="n">ReverseCorrelation</span><span class="p">,</span> <span class="n">FeatureMaps</span><span class="p">,</span> <span class="n">FeatureCurves</span><span class="p">,</span> <span class="n">Feature</span>
 <span class="kn">from</span> <span class="nn">featuremapper.metaparams</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c"># pyflakes:ignore (API import)</span>
+<span class="kn">from</span> <span class="nn">featuremapper.features</span> <span class="kn">import</span> <span class="n">Time</span>
 
 <span class="n">activity_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
 
 
-<span class="k">def</span> <span class="nf">update_sheet_activity</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="update_sheet_activity"><a class="viewcode-back" href="../../../Reference_Manual/topo.analysis.html#topo.analysis.featureresponses.update_sheet_activity">[docs]</a><span class="k">def</span> <span class="nf">update_sheet_activity</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Update the &#39;_activity_buffer&#39; SheetStack for a given sheet by name.</span>
 
@@ -104,21 +111,25 @@
     <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)[</span><span class="n">sheet_name</span><span class="p">]</span>
     <span class="n">view</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">(</span><span class="n">precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
+                        <span class="n">row_precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
+                        <span class="n">src_name</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                        <span class="n">timestamp</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">view</span><span class="p">:</span>
-        <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">],</span>
-                        <span class="n">precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span> <span class="n">row_precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
-                        <span class="n">src_name</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">activity</span><span class="p">),</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
-        <span class="n">view</span> <span class="o">=</span> <span class="n">SheetStack</span><span class="p">((</span><span class="n">time</span><span class="p">,</span> <span class="n">sv</span><span class="p">),</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="n">SheetStack</span><span class="p">((</span><span class="n">time</span><span class="p">,</span> <span class="n">sv</span><span class="p">),</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="n">Time</span><span class="p">])</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="n">view</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">&lt;</span> <span class="n">time</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="n">view</span><span class="o">.</span><span class="n">dim_range</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">time</span><span class="p">:</span>
             <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">activity</span><span class="p">),</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+            <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
             <span class="n">view</span><span class="p">[</span><span class="n">time</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span>
     <span class="k">return</span> <span class="n">view</span>
 
-
-<span class="k">def</span> <span class="nf">update_activity</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="update_activity"><a class="viewcode-back" href="../../../Reference_Manual/topo.analysis.html#topo.analysis.featureresponses.update_activity">[docs]</a><span class="k">def</span> <span class="nf">update_activity</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Make a map of neural activity available for each sheet, for use in</span>
 <span class="sd">    template-based plots.</span>
@@ -131,8 +142,8 @@
     <span class="k">for</span> <span class="n">sheet_name</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="n">update_sheet_activity</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">,</span> <span class="n">force</span><span class="p">)</span>
 
-
-<span class="k">class</span> <span class="nc">pattern_present</span><span class="p">(</span><span class="n">PatternPresentingCommand</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="pattern_present"><a class="viewcode-back" href="../../../Reference_Manual/topo.analysis.html#topo.analysis.featureresponses.pattern_present">[docs]</a><span class="k">class</span> <span class="nc">pattern_present</span><span class="p">(</span><span class="n">PatternPresentingCommand</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a set of input patterns, installs them into the specified</span>
 <span class="sd">    GeneratorSheets, runs the simulation for the specified length of</span>
@@ -242,7 +253,8 @@
             <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">event_push</span><span class="p">()</span>
 
         <span class="n">durations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">durations</span><span class="p">)</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="n">outputs</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">projection_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">conn</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span> <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">connections</span><span class="p">())</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">outputs</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">+</span> <span class="n">projection_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
         <span class="n">responses</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">durations</span><span class="p">):</span>
@@ -252,8 +264,12 @@
                 <span class="n">update_activity</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">install_sheetview</span><span class="p">)</span>
                 <span class="n">topo</span><span class="o">.</span><span class="n">guimain</span><span class="o">.</span><span class="n">refresh_activity_windows</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">return_responses</span><span class="p">:</span>
+
                 <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">:</span>
-                    <span class="n">responses</span><span class="p">[(</span><span class="n">output</span><span class="p">,</span> <span class="n">time</span><span class="p">)]</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">output</span><span class="p">]</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                        <span class="n">responses</span><span class="p">[(</span><span class="n">output</span><span class="p">,</span> <span class="n">time</span><span class="p">)]</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">output</span><span class="p">]</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                    <span class="k">elif</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">projection_dict</span><span class="p">:</span>
+                        <span class="n">responses</span><span class="p">[(</span><span class="n">output</span><span class="p">,</span> <span class="n">time</span><span class="p">)]</span> <span class="o">=</span> <span class="n">projection_dict</span><span class="p">[</span><span class="n">output</span><span class="p">]</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">restore_events</span><span class="p">:</span>
             <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">event_pop</span><span class="p">()</span>
@@ -277,8 +293,8 @@
         <span class="k">return</span> <span class="n">responses</span>
 
 
-
-<span class="k">class</span> <span class="nc">pattern_response</span><span class="p">(</span><span class="n">pattern_present</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="pattern_response"><a class="viewcode-back" href="../../../Reference_Manual/topo.analysis.html#topo.analysis.featureresponses.pattern_response">[docs]</a><span class="k">class</span> <span class="nc">pattern_response</span><span class="p">(</span><span class="n">pattern_present</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This command is used to perform measurements, which require a</span>
 <span class="sd">    number of permutations to complete. The inputs and outputs are</span>
@@ -332,7 +348,7 @@
         <span class="k">return</span> <span class="n">responses</span>
 
 
-
+</div>
 <span class="k">def</span> <span class="nf">topo_metadata_fn</span><span class="p">(</span><span class="n">input_names</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_names</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the shapes of the specified GeneratorSheets and measurement</span>
@@ -342,102 +358,69 @@
     <span class="n">metadata</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
     <span class="n">metadata</span><span class="p">[</span><span class="s">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-    <span class="n">sheets</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">,</span> <span class="n">input_name</span><span class="p">,</span> <span class="n">input_name</span><span class="p">)</span>
-                        <span class="k">for</span> <span class="n">input_name</span> <span class="ow">in</span> <span class="n">input_names</span><span class="p">]</span>
-    <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">,</span> <span class="n">output_name</span><span class="p">,</span> <span class="n">output_name</span><span class="p">)</span> <span class="k">for</span>
-                         <span class="n">output_name</span> <span class="ow">in</span> <span class="n">output_names</span><span class="p">]</span>
+    <span class="n">generator_sheets</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">GeneratorSheet</span><span class="p">)</span>
+    <span class="n">all_sheets</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="n">measurement_sheets</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                              <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s">&#39;measure_maps&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">measure_maps</span><span class="p">)</span>
+    <span class="n">projections</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">conn</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span> <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">connections</span><span class="p">())</span>
 
-    <span class="k">for</span> <span class="n">input_name</span> <span class="ow">in</span> <span class="n">input_names</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">input_name</span> <span class="ow">in</span> <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">]:</span>
-            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Input sheet {0} not found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_name</span><span class="p">))</span>
-            <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">sheets</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">input_name</span><span class="p">))</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">input_names</span><span class="p">:</span>
-            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="s">&quot;Warning specified input sheets do not exist, using all &quot;</span>
-                <span class="s">&quot;generator sheets instead.&quot;</span><span class="p">)</span>
-        <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">GeneratorSheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">input_names</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">input_names</span> <span class="o">=</span> <span class="n">generator_sheets</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">output_name</span> <span class="ow">in</span> <span class="n">output_names</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">output_name</span> <span class="ow">in</span> <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">]:</span>
-            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Output sheet {0} not found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output_name</span><span class="p">))</span>
-            <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">sheets</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">output_name</span><span class="p">))</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">output_names</span><span class="p">:</span>
-            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="s">&quot;Warning specified output sheets do not exist, using all &quot;</span>
-                <span class="s">&quot;sheets with measure_maps enabled.&quot;</span><span class="p">)</span>
-        <span class="n">sheets</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span>
-                             <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s">&#39;measure_maps&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">measure_maps</span><span class="p">]</span>
+    <span class="n">metadata</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">input_names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">generator_sheets</span><span class="p">:</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="n">generator_sheets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s">&#39;inputs&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;bounds&#39;</span><span class="p">:</span> <span class="n">gs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="s">&#39;precedence&#39;</span><span class="p">:</span> <span class="n">gs</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
+                                     <span class="s">&#39;row_precedence&#39;</span><span class="p">:</span> <span class="n">gs</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
+                                     <span class="s">&#39;shape&#39;</span><span class="p">:</span> <span class="n">gs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s">&#39;src_name&#39;</span><span class="p">:</span> <span class="n">gs</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Input sheet {0} not found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 
-    <span class="k">for</span> <span class="n">sheet_type</span><span class="p">,</span> <span class="n">sheet_list</span> <span class="ow">in</span> <span class="n">sheets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">metadata</span><span class="p">[</span><span class="n">sheet_type</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="p">[(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;bounds&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="s">&#39;precedence&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
-                       <span class="s">&#39;row_precedence&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
-                       <span class="s">&#39;shape&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s">&#39;src_name&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">})</span>
-             <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sheet_list</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">output_names</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="n">measurement_sheets</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="n">metadata</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">output_names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">all_sheets</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">all_sheets</span><span class="p">[</span><span class="n">o</span><span class="p">]</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">][</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;bounds&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="s">&#39;precedence&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
+                                      <span class="s">&#39;row_precedence&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
+                                      <span class="s">&#39;shape&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s">&#39;src_name&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">projections</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">projections</span><span class="p">[</span><span class="n">o</span><span class="p">]</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="s">&#39;outputs&#39;</span><span class="p">][</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;bounds&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="s">&#39;precedence&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
+                                      <span class="s">&#39;row_precedence&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
+                                      <span class="s">&#39;shape&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s">&#39;dest_name&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                      <span class="s">&#39;src_name&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Output sheet {0} not found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">o</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">metadata</span>
 
 
-<span class="k">def</span> <span class="nf">store_rfs</span><span class="p">(</span><span class="n">measurement_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Store RFs in the global sheet views dictionary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">measurement_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;fullmatrix&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">sheet_data</span> <span class="ow">in</span> <span class="n">measurement_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sheet_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">reindexed_items</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">timestamp</span><span class="p">))</span>
-                               <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-            <span class="n">new_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">reindexed_items</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">data_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">rfs</span><span class="p">:</span>
-                <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">rfs</span><span class="p">[</span><span class="n">data_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_data</span>
+<span class="k">class</span> <span class="nc">StorageHook</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">ParameterizedFunction</span><span class="p">):</span>
+
+    <span class="n">sublabel</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">allow_None</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Storage location on the sheet specific view object. If None simply</span>
+<span class="s">        inserts results into top level views object.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewcontainer</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">objects</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(),</span> <span class="o">**</span><span class="nb">dict</span><span class="p">([(</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span> <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">connections</span><span class="p">()]))</span>
+        <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">viewcontainer</span><span class="o">.</span><span class="n">path_items</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">label</span><span class="p">,</span> <span class="n">src_name</span> <span class="o">=</span> <span class="n">path</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="n">src_name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">Sheet</span><span class="p">):</span>
+                <span class="n">storage</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">sublabel</span><span class="p">]</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">sublabel</span> <span class="k">else</span> <span class="n">source</span><span class="o">.</span><span class="n">views</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">rfs</span><span class="p">[</span><span class="n">data_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">store_curves</span><span class="p">(</span><span class="n">measurement_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Store curves in the global sheet views dictionary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">measurement_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;fullmatrix&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">measurement_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
-        <span class="n">storage</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">curves</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">curve_label</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">storage</span><span class="p">:</span>
-            <span class="n">storage</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">storage</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
-
-
-<span class="k">def</span> <span class="nf">store_maps</span><span class="p">(</span><span class="n">measurement_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Store maps in the global sheet view dictionary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">measurement_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;fullmatrix&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">sheet_data</span> <span class="ow">in</span> <span class="n">measurement_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">map_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sheet_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">add_dimension</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">map_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">:</span>
-                <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">map_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+                <span class="n">proj_store</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">proj_store</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">sublabel</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">storage</span> <span class="o">=</span> <span class="n">proj_store</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">sublabel</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">storage</span><span class="p">:</span>
+                <span class="n">storage</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">container</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">map_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">store_activity</span><span class="p">(</span><span class="n">measurement_dict</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">sheet_data</span> <span class="ow">in</span> <span class="n">measurement_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">data_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sheet_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-
-            <span class="k">if</span> <span class="n">data_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">:</span>
-                <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">data_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">data_name</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">storage</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">get_feature_preference</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
@@ -446,7 +429,7 @@
         <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
         <span class="n">map_name</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;Preference&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">coords</span>
-        <span class="k">return</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">map_name</span><span class="p">]</span><span class="o">.</span><span class="n">top</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">map_name</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
             <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> should be measured before plotting this tuning curve -- &quot;</span>
@@ -469,6 +452,10 @@
     <span class="s">&quot;SingleInputResponseCommand&quot;</span><span class="p">,</span>
     <span class="s">&quot;FeatureCurveCommand&quot;</span><span class="p">,</span>
     <span class="s">&quot;UnitCurveCommand&quot;</span><span class="p">,</span>
+    <span class="s">&quot;pattern_present&quot;</span><span class="p">,</span>
+    <span class="s">&quot;pattern_response&quot;</span><span class="p">,</span>
+    <span class="s">&quot;update_activity&quot;</span><span class="p">,</span>
+    <span class="s">&quot;update_sheet_activity&quot;</span>
 <span class="p">]</span>
 </pre></div>
 
@@ -488,6 +475,7 @@
 <li><a href="../../../User_Manual/index.html">User Manual</a></li>
 <li><a href="../../../Reference_Manual/index.html">Reference Manual</a></li>
 <li><a href="../../../Developer_Manual/index.html">Developer Manual</a></li>
+<li><a href="http://github.com/ioam/topographica">Github Source Code</a></li>
 <li><a href="../../../Forums/index.html">Forums</a></li>
 <li><a href="../../../Team_Members/index.html">Team Members</a></li>
 <li><a href="../../../Future_Work/index.html">Future Work</a></li>
@@ -501,7 +489,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/analysis/featureresponses.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/analysis/featureresponses.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -524,6 +512,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -543,8 +537,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on Jan 15, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

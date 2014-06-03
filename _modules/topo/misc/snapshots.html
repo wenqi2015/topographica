@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.misc.snapshots &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.misc.snapshots &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -69,7 +75,7 @@
 <span class="c"># CEBALERT: Can&#39;t this stuff move to the ParameterizedMetaclass?</span>
 <span class="k">class</span> <span class="nc">PicklableClassAttributes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="PicklableClassAttributes"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.snapshots-module.html#topo.misc.snapshots.PicklableClassAttributes">[docs]</a><span class="sd">    Supports pickling of Parameterized class attributes for a given module.</span>
+<div class="viewcode-block" id="PicklableClassAttributes"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.snapshots.PicklableClassAttributes">[docs]</a><span class="sd">    Supports pickling of Parameterized class attributes for a given module.</span>
 
 <span class="sd">    When requested to be pickled, stores a module&#39;s PO classes&#39; attributes,</span>
 <span class="sd">    and any given startup_commands. On unpickling, executes the startup</span>
@@ -217,7 +223,7 @@
     <span class="c"># CB: I guess this could be simplified</span>
     <span class="k">def</span> <span class="nf">get_PO_class_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">module</span><span class="p">,</span><span class="n">class_attributes</span><span class="p">,</span><span class="n">processed_modules</span><span class="p">,</span><span class="n">exclude</span><span class="o">=</span><span class="p">()):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<div class="viewcode-block" id="PicklableClassAttributes.get_PO_class_attributes"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.snapshots-module.html#topo.misc.snapshots.PicklableClassAttributes.get_PO_class_attributes">[docs]</a><span class="sd">        Recursively search module and get attributes of Parameterized classes within it.</span>
+<div class="viewcode-block" id="PicklableClassAttributes.get_PO_class_attributes"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.snapshots.PicklableClassAttributes.get_PO_class_attributes">[docs]</a><span class="sd">        Recursively search module and get attributes of Parameterized classes within it.</span>
 
 <span class="sd">        class_attributes is a dictionary {module.path.and.Classname: state}, where state</span>
 <span class="sd">        is the dictionary {attribute: value}.</span>
@@ -287,7 +293,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/snapshots.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/snapshots.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -310,6 +316,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -329,8 +341,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

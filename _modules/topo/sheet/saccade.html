@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.sheet.saccade &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.sheet.saccade &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.sheet" href="../sheet.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -94,7 +100,7 @@
 <span class="c"># activity_sample, and activity_mode) could actually apply to any</span>
 <span class="c"># Sheet.  Maybe they should be moved to topo.base.sheet?</span>
 
-<div class="viewcode-block" id="activity_centroid"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.saccade-module.html#topo.sheet.saccade.activity_centroid">[docs]</a><span class="k">def</span> <span class="nf">activity_centroid</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span><span class="n">activity</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<div class="viewcode-block" id="activity_centroid"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.saccade.activity_centroid">[docs]</a><span class="k">def</span> <span class="nf">activity_centroid</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span><span class="n">activity</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the sheet coords of the (weighted) centroid of sheet activity.</span>
 
@@ -120,7 +126,7 @@
     <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">centroid</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">xy</span><span class="p">,</span><span class="n">idxs</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">take</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">idxs</span><span class="p">))</span>
 
 </div>
-<div class="viewcode-block" id="activity_sample"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.saccade-module.html#topo.sheet.saccade.activity_sample">[docs]</a><span class="k">def</span> <span class="nf">activity_sample</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span><span class="n">activity</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="activity_sample"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.saccade.activity_sample">[docs]</a><span class="k">def</span> <span class="nf">activity_sample</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span><span class="n">activity</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sample from the sheet activity as if it were a probability distribution.</span>
 
@@ -136,7 +142,7 @@
     <span class="k">return</span> <span class="n">sheet</span><span class="o">.</span><span class="n">matrix2sheet</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="activity_mode"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.saccade-module.html#topo.sheet.saccade.activity_mode">[docs]</a><span class="k">def</span> <span class="nf">activity_mode</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span><span class="n">activity</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="activity_mode"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.saccade.activity_mode">[docs]</a><span class="k">def</span> <span class="nf">activity_mode</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span><span class="n">activity</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the sheet coordinates of the mode (highest value) of</span>
 <span class="sd">    the sheet activity.</span>
@@ -156,7 +162,7 @@
 
 
 </div>
-<div class="viewcode-block" id="SaccadeController"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.saccade-module.html#topo.sheet.saccade.SaccadeController">[docs]</a><span class="k">class</span> <span class="nc">SaccadeController</span><span class="p">(</span><span class="n">CFSheet</span><span class="p">):</span>
+<div class="viewcode-block" id="SaccadeController"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.saccade.SaccadeController">[docs]</a><span class="k">class</span> <span class="nc">SaccadeController</span><span class="p">(</span><span class="n">CFSheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sheet that decodes activity on CFProjections into a saccade command.</span>
 
@@ -231,7 +237,7 @@
 
 
 </div>
-<div class="viewcode-block" id="ShiftingGeneratorSheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.saccade-module.html#topo.sheet.saccade.ShiftingGeneratorSheet">[docs]</a><span class="k">class</span> <span class="nc">ShiftingGeneratorSheet</span><span class="p">(</span><span class="n">SequenceGeneratorSheet</span><span class="p">):</span>
+<div class="viewcode-block" id="ShiftingGeneratorSheet"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.saccade.ShiftingGeneratorSheet">[docs]</a><span class="k">class</span> <span class="nc">ShiftingGeneratorSheet</span><span class="p">(</span><span class="n">SequenceGeneratorSheet</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A GeneratorSheet that takes an extra input on port &#39;Saccade&#39;</span>
 <span class="sd">    that specifies a saccade command as a tuple (amplitude,direction),</span>
@@ -286,7 +292,7 @@
                          <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">aarect</span><span class="p">()</span><span class="o">.</span><span class="n">centroid</span><span class="p">())</span>
 
 
-<div class="viewcode-block" id="ShiftingGeneratorSheet.shift"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.saccade-module.html#topo.sheet.saccade.ShiftingGeneratorSheet.shift">[docs]</a>    <span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">amplitude</span><span class="p">,</span><span class="n">direction</span><span class="p">,</span><span class="n">generate</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ShiftingGeneratorSheet.shift"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.saccade.ShiftingGeneratorSheet.shift">[docs]</a>    <span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">amplitude</span><span class="p">,</span><span class="n">direction</span><span class="p">,</span><span class="n">generate</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Shift the bounding box by the given amplitude and</span>
 <span class="sd">        direction.</span>
@@ -338,7 +344,7 @@
         <span class="k">if</span> <span class="n">generate</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="ShiftingGeneratorSheet.refixate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.saccade-module.html#topo.sheet.saccade.ShiftingGeneratorSheet.refixate">[docs]</a>    <span class="k">def</span> <span class="nf">refixate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ShiftingGeneratorSheet.refixate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sheet.html#topo.sheet.saccade.ShiftingGeneratorSheet.refixate">[docs]</a>    <span class="k">def</span> <span class="nf">refixate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the bounds toward the fixation point.</span>
 
@@ -443,7 +449,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/sheet/saccade.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/sheet/saccade.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -466,6 +472,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -486,8 +498,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.coordmapper &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.coordmapper &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -84,7 +90,7 @@
 
 
 
-<div class="viewcode-block" id="ConstantMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.ConstantMapper">[docs]</a><span class="k">class</span> <span class="nc">ConstantMapper</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="ConstantMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.ConstantMapper">[docs]</a><span class="k">class</span> <span class="nc">ConstantMapper</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Map all values to the same constant, pre-specified coordinates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -100,7 +106,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_cons</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_cons</span>
 
 </div>
-<div class="viewcode-block" id="Pipeline"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Pipeline">[docs]</a><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="Pipeline"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Pipeline">[docs]</a><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Applies a sequence of coordmappers, left to right.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -113,7 +119,7 @@
                        <span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mappers</span> <span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Jitter"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Jitter">[docs]</a><span class="k">class</span> <span class="nc">Jitter</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="Jitter"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Jitter">[docs]</a><span class="k">class</span> <span class="nc">Jitter</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Additively modifies calculated x,y coordinates, e.g. with random noise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -127,7 +133,7 @@
         <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
 
 </div>
-<div class="viewcode-block" id="NormalJitter"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.NormalJitter">[docs]</a><span class="k">class</span> <span class="nc">NormalJitter</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="NormalJitter"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.NormalJitter">[docs]</a><span class="k">class</span> <span class="nc">NormalJitter</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Additively modifies calculated x,y coordinates with Gaussian random noise.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -139,7 +145,7 @@
         <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">(),</span><span class="n">y</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">()</span>
 
 </div>
-<div class="viewcode-block" id="Grid"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Grid">[docs]</a><span class="k">class</span> <span class="nc">Grid</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="Grid"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Grid">[docs]</a><span class="k">class</span> <span class="nc">Grid</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Divides the 2D area into a grid, where all points within each grid</span>
 <span class="sd">    element map to the same location.</span>
@@ -161,7 +167,7 @@
         <span class="k">return</span>  <span class="n">xquant</span><span class="p">,</span><span class="n">yquant</span>
 
 </div>
-<div class="viewcode-block" id="Polar2Cartesian"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Polar2Cartesian">[docs]</a><span class="k">class</span> <span class="nc">Polar2Cartesian</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="Polar2Cartesian"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Polar2Cartesian">[docs]</a><span class="k">class</span> <span class="nc">Polar2Cartesian</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Map from polar (radius,angle) to Cartesian (x,y) coordinates.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -177,7 +183,7 @@
             <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">r</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Cartesian2Polar"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Cartesian2Polar">[docs]</a><span class="k">class</span> <span class="nc">Cartesian2Polar</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="Cartesian2Polar"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Cartesian2Polar">[docs]</a><span class="k">class</span> <span class="nc">Cartesian2Polar</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Maps from Cartesian (x,y) to polar (radius,angle).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -208,7 +214,7 @@
 
 
 </div>
-<div class="viewcode-block" id="AffineTransform"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.AffineTransform">[docs]</a><span class="k">class</span> <span class="nc">AffineTransform</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="AffineTransform"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.AffineTransform">[docs]</a><span class="k">class</span> <span class="nc">AffineTransform</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Remaps the input with an affine transform.</span>
 
@@ -289,7 +295,7 @@
                    <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
 
 
-<div class="viewcode-block" id="Translate2d"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Translate2d">[docs]</a><span class="k">class</span> <span class="nc">Translate2d</span><span class="p">(</span><span class="n">AffineTransform</span><span class="p">):</span>
+<div class="viewcode-block" id="Translate2d"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Translate2d">[docs]</a><span class="k">class</span> <span class="nc">Translate2d</span><span class="p">(</span><span class="n">AffineTransform</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Translate the input by xoff,yoff.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -301,7 +307,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">Translate2dMat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xoff</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">yoff</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Rotate2d"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Rotate2d">[docs]</a><span class="k">class</span> <span class="nc">Rotate2d</span><span class="p">(</span><span class="n">AffineTransform</span><span class="p">):</span>
+<div class="viewcode-block" id="Rotate2d"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Rotate2d">[docs]</a><span class="k">class</span> <span class="nc">Rotate2d</span><span class="p">(</span><span class="n">AffineTransform</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Rotate the input around the origin by an angle in radians.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -312,7 +318,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">Rotate2dMat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="Scale2d"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.Scale2d">[docs]</a><span class="k">class</span> <span class="nc">Scale2d</span><span class="p">(</span><span class="n">AffineTransform</span><span class="p">):</span>
+<div class="viewcode-block" id="Scale2d"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.Scale2d">[docs]</a><span class="k">class</span> <span class="nc">Scale2d</span><span class="p">(</span><span class="n">AffineTransform</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Scale the input along the x and y axes by sx and sy, respectively.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -324,7 +330,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">Scale2dMat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sx</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">sy</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="SingleDimensionMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.SingleDimensionMapper">[docs]</a><span class="k">class</span> <span class="nc">SingleDimensionMapper</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="SingleDimensionMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.SingleDimensionMapper">[docs]</a><span class="k">class</span> <span class="nc">SingleDimensionMapper</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Coordinate Mapper that uses an origin-centered 1-D mapping function.</span>
 
@@ -368,7 +374,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 </div>
-<div class="viewcode-block" id="MagnifyingMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.MagnifyingMapper">[docs]</a><span class="k">class</span> <span class="nc">MagnifyingMapper</span><span class="p">(</span><span class="n">SingleDimensionMapper</span><span class="p">):</span>
+<div class="viewcode-block" id="MagnifyingMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.MagnifyingMapper">[docs]</a><span class="k">class</span> <span class="nc">MagnifyingMapper</span><span class="p">(</span><span class="n">SingleDimensionMapper</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exponential (magnifying) mapping function.</span>
 
@@ -388,7 +394,7 @@
             <span class="k">return</span> <span class="n">sgn</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span> <span class="o">*</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">*</span><span class="n">k</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="ReducingMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.ReducingMapper">[docs]</a><span class="k">class</span> <span class="nc">ReducingMapper</span><span class="p">(</span><span class="n">SingleDimensionMapper</span><span class="p">):</span>
+<div class="viewcode-block" id="ReducingMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.ReducingMapper">[docs]</a><span class="k">class</span> <span class="nc">ReducingMapper</span><span class="p">(</span><span class="n">SingleDimensionMapper</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Provides a mapping that reduces the center of the activity.</span>
 
@@ -402,7 +408,7 @@
         <span class="k">return</span> <span class="n">sgn</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_range</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">in_range</span><span class="o">*</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="OttesSCMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.OttesSCMapper">[docs]</a><span class="k">class</span> <span class="nc">OttesSCMapper</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
+<div class="viewcode-block" id="OttesSCMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.OttesSCMapper">[docs]</a><span class="k">class</span> <span class="nc">OttesSCMapper</span><span class="p">(</span><span class="n">CoordinateMapperFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract class for superior colliculus mappings.</span>
 
@@ -441,7 +447,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 </div>
-<div class="viewcode-block" id="OttesSCMotorMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.OttesSCMotorMapper">[docs]</a><span class="k">class</span> <span class="nc">OttesSCMotorMapper</span><span class="p">(</span><span class="n">OttesSCMapper</span><span class="p">):</span>
+<div class="viewcode-block" id="OttesSCMotorMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.OttesSCMotorMapper">[docs]</a><span class="k">class</span> <span class="nc">OttesSCMotorMapper</span><span class="p">(</span><span class="n">OttesSCMapper</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Efferent superior colliculus mapping.</span>
 
@@ -468,7 +474,7 @@
 
 
 </div>
-<div class="viewcode-block" id="OttesSCSenseMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper-module.html#topo.coordmapper.OttesSCSenseMapper">[docs]</a><span class="k">class</span> <span class="nc">OttesSCSenseMapper</span><span class="p">(</span><span class="n">OttesSCMapper</span><span class="p">):</span>
+<div class="viewcode-block" id="OttesSCSenseMapper"><a class="viewcode-back" href="../../Reference_Manual/topo.coordmapper.html#topo.coordmapper.OttesSCSenseMapper">[docs]</a><span class="k">class</span> <span class="nc">OttesSCSenseMapper</span><span class="p">(</span><span class="n">OttesSCMapper</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Afferent superior colliculus mapping.</span>
 
@@ -593,7 +599,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/coordmapper.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/coordmapper.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -616,6 +622,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../index.html">Home</a></li>
 <li><a href="../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../Tutorials/index.html">Tutorials</a></li>
@@ -635,8 +647,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

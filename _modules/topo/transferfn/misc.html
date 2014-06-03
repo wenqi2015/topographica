@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.transferfn.misc &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.transferfn.misc &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.transferfn" href="../transferfn.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -63,7 +69,6 @@
 
 <span class="sd">$Id: basic.py 10790 2009-11-21 17:51:33Z antolikjan $</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="n">__version__</span><span class="o">=</span><span class="s">&#39;$Revision: 10790 $&#39;</span>
 
 <span class="kn">import</span> <span class="nn">copy</span>
 
@@ -80,12 +85,11 @@
 <span class="kn">from</span> <span class="nn">topo.base.boundingregion</span> <span class="kn">import</span> <span class="n">BoundingBox</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span>
 
-<span class="kn">from</span> <span class="nn">topo.transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span><span class="p">,</span><span class="n">TransferFnWithState</span>
+<span class="kn">from</span> <span class="nn">topo.transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span><span class="p">,</span> <span class="n">TransferFnWithState</span>
 <span class="kn">from</span> <span class="nn">topo.pattern</span> <span class="kn">import</span> <span class="n">Gaussian</span>
 
-
 <span class="c"># Not suitable for basic.py due to its dependence on patterns.</span>
-<div class="viewcode-block" id="PatternCombine"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.misc-module.html#topo.transferfn.misc.PatternCombine">[docs]</a><span class="k">class</span> <span class="nc">PatternCombine</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="PatternCombine"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.html#topo.transferfn.misc.PatternCombine">[docs]</a><span class="k">class</span> <span class="nc">PatternCombine</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Combine the supplied pattern with one generated using a</span>
 <span class="sd">    PatternGenerator.</span>
@@ -121,7 +125,7 @@
 
 
 <span class="c"># Not suitable for basic.py due to its dependence on patterns.</span></div>
-<div class="viewcode-block" id="KernelMax"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.misc-module.html#topo.transferfn.misc.KernelMax">[docs]</a><span class="k">class</span> <span class="nc">KernelMax</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="KernelMax"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.html#topo.transferfn.misc.KernelMax">[docs]</a><span class="k">class</span> <span class="nc">KernelMax</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Replaces the given matrix with a kernel function centered around the maximum value.</span>
 
@@ -181,9 +185,8 @@
         <span class="n">x</span> <span class="o">*=</span> <span class="mf">0.0</span>
         <span class="n">x</span><span class="p">[</span><span class="n">rmin</span><span class="p">:</span><span class="n">rmax</span><span class="p">,</span><span class="n">cmin</span><span class="p">:</span><span class="n">cmax</span><span class="p">]</span> <span class="o">=</span> <span class="n">kernel</span>
 
-
 </div>
-<div class="viewcode-block" id="HalfRectify"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.misc-module.html#topo.transferfn.misc.HalfRectify">[docs]</a><span class="k">class</span> <span class="nc">HalfRectify</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
+<div class="viewcode-block" id="HalfRectify"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.html#topo.transferfn.misc.HalfRectify">[docs]</a><span class="k">class</span> <span class="nc">HalfRectify</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Transfer function that applies a half-wave rectification (clips at zero)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -225,7 +228,7 @@
 
 
 </div>
-<div class="viewcode-block" id="HomeostaticResponse"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.misc-module.html#topo.transferfn.misc.HomeostaticResponse">[docs]</a><span class="k">class</span> <span class="nc">HomeostaticResponse</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
+<div class="viewcode-block" id="HomeostaticResponse"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.html#topo.transferfn.misc.HomeostaticResponse">[docs]</a><span class="k">class</span> <span class="nc">HomeostaticResponse</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Adapts the parameters of a linear threshold function to maintain a</span>
 <span class="sd">    constant desired average activity. Defined in:</span>
@@ -359,7 +362,7 @@
 
 
 </div>
-<div class="viewcode-block" id="AttributeTrackingTF"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.misc-module.html#topo.transferfn.misc.AttributeTrackingTF">[docs]</a><span class="k">class</span> <span class="nc">AttributeTrackingTF</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
+<div class="viewcode-block" id="AttributeTrackingTF"><a class="viewcode-back" href="../../../Reference_Manual/topo.transferfn.html#topo.transferfn.misc.AttributeTrackingTF">[docs]</a><span class="k">class</span> <span class="nc">AttributeTrackingTF</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Keeps track of attributes of a specified Parameterized over time, for analysis or plotting.</span>
 
@@ -502,7 +505,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/transferfn/misc.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/transferfn/misc.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -525,6 +528,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -545,8 +554,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

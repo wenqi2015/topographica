@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.misc.asizeof &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.misc.asizeof &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -270,7 +276,7 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="n">_Zz</span> <span class="o">=</span> <span class="s">&#39;Ll&#39;</span>
 
-<div class="viewcode-block" id="calcsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.calcsize">[docs]</a><span class="k">def</span> <span class="nf">calcsize</span><span class="p">(</span><span class="n">fmt</span><span class="p">):</span>
+<div class="viewcode-block" id="calcsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.calcsize">[docs]</a><span class="k">def</span> <span class="nf">calcsize</span><span class="p">(</span><span class="n">fmt</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;struct.calcsize() handling &#39;z&#39; for signed Py_ssize_t and &#39;Z&#39; for unsigned size_t.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">_calcsize</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;Z&#39;</span><span class="p">,</span> <span class="n">_Zz</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="n">_Zz</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
@@ -1546,7 +1552,7 @@
 
  <span class="c"># public classes</span>
 
-<div class="viewcode-block" id="Asized"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asized">[docs]</a><span class="k">class</span> <span class="nc">Asized</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Asized"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asized">[docs]</a><span class="k">class</span> <span class="nc">Asized</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Store the results of an  asized object</span>
 <span class="sd">       in these 4 attributes:</span>
 
@@ -1570,12 +1576,12 @@
         <span class="k">return</span> <span class="s">&#39;size </span><span class="si">%r</span><span class="s">, flat </span><span class="si">%r</span><span class="s">, refs[</span><span class="si">%d</span><span class="s">], name </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Asized.format"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asized.format">[docs]</a>    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">named</span><span class="p">):</span>
+<div class="viewcode-block" id="Asized.format"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asized.format">[docs]</a>    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">named</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Format name from _NamedRef instance.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">strf</span><span class="p">[</span><span class="n">named</span><span class="o">.</span><span class="n">typ</span><span class="p">]</span> <span class="o">%</span> <span class="n">named</span><span class="o">.</span><span class="n">name</span>
 </div></div>
-<div class="viewcode-block" id="Asizer"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer">[docs]</a><span class="k">class</span> <span class="nc">Asizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer">[docs]</a><span class="k">class</span> <span class="nc">Asizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Sizer state and options.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">_align_</span>    <span class="o">=</span> <span class="mi">8</span>
@@ -1735,7 +1741,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_total</span> <span class="o">+=</span> <span class="n">s</span>  <span class="c"># accumulate</span>
         <span class="k">return</span> <span class="n">s</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Asizer.asized"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.asized">[docs]</a>    <span class="k">def</span> <span class="nf">asized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.asized"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.asized">[docs]</a>    <span class="k">def</span> <span class="nf">asized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Size each object and return an Asized instance with</span>
 <span class="sd">           size information and referents up to the given detail</span>
 <span class="sd">           level (and with modified options, see method  set).</span>
@@ -1752,7 +1758,7 @@
             <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">t</span>
 </div>
-<div class="viewcode-block" id="Asizer.asizeof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.asizeof">[docs]</a>    <span class="k">def</span> <span class="nf">asizeof</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.asizeof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.asizeof">[docs]</a>    <span class="k">def</span> <span class="nf">asizeof</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return the combined size of the given objects</span>
 <span class="sd">           (with modified options, see also method  set).</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -1761,7 +1767,7 @@
         <span class="n">s</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sizes</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">s</span>
 </div>
-<div class="viewcode-block" id="Asizer.asizesof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.asizesof">[docs]</a>    <span class="k">def</span> <span class="nf">asizesof</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.asizesof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.asizesof">[docs]</a>    <span class="k">def</span> <span class="nf">asizesof</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Return the individual sizes of the given objects</span>
 <span class="sd">           (with modified options, see also method  set).</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -1770,7 +1776,7 @@
         <span class="n">_</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sizes</span><span class="p">(</span><span class="n">objs</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">t</span>
 </div>
-<div class="viewcode-block" id="Asizer.exclude_refs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.exclude_refs">[docs]</a>    <span class="k">def</span> <span class="nf">exclude_refs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.exclude_refs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.exclude_refs">[docs]</a>    <span class="k">def</span> <span class="nf">exclude_refs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Exclude any references to the specified objects from sizing.</span>
 
 <span class="sd">           While any references to the given objects are excluded, the</span>
@@ -1780,7 +1786,7 @@
         <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_seen</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">o</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Asizer.exclude_types"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.exclude_types">[docs]</a>    <span class="k">def</span> <span class="nf">exclude_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.exclude_types"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.exclude_types">[docs]</a>    <span class="k">def</span> <span class="nf">exclude_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">objs</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Exclude the specified object instances and types from sizing.</span>
 
 <span class="sd">           All instances and types of the given objects are excluded,</span>
@@ -1792,7 +1798,7 @@
                 <span class="k">if</span> <span class="n">t</span> <span class="ow">and</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_excl_d</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_excl_d</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </div>
-<div class="viewcode-block" id="Asizer.print_profiles"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.print_profiles">[docs]</a>    <span class="k">def</span> <span class="nf">print_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.print_profiles"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.print_profiles">[docs]</a>    <span class="k">def</span> <span class="nf">print_profiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Print the profiles above cutoff percentage.</span>
 
 <span class="sd">               w=0            -- indentation for each line</span>
@@ -1826,7 +1832,7 @@
             <span class="k">if</span> <span class="n">z</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">_printf</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%+*d</span><span class="s"> </span><span class="si">%r</span><span class="s"> object</span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="s">&#39;zero&#39;</span><span class="p">,</span> <span class="n">_plural</span><span class="p">(</span><span class="n">z</span><span class="p">),</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Asizer.print_stats"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.print_stats">[docs]</a>    <span class="k">def</span> <span class="nf">print_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objs</span><span class="o">=</span><span class="p">(),</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="n">sized</span><span class="o">=</span><span class="p">(),</span> <span class="n">sizes</span><span class="o">=</span><span class="p">(),</span> <span class="n">stats</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.print_stats"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.print_stats">[docs]</a>    <span class="k">def</span> <span class="nf">print_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objs</span><span class="o">=</span><span class="p">(),</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="n">sized</span><span class="o">=</span><span class="p">(),</span> <span class="n">sizes</span><span class="o">=</span><span class="p">(),</span> <span class="n">stats</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Print the statistics.</span>
 
 <span class="sd">               w=0            -- indentation for each line</span>
@@ -1870,7 +1876,7 @@
                 <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>  <span class="c"># print typedefs</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">print_typedefs</span><span class="p">(</span><span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Asizer.print_summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.print_summary">[docs]</a>    <span class="k">def</span> <span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">objs</span><span class="o">=</span><span class="p">(),</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.print_summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.print_summary">[docs]</a>    <span class="k">def</span> <span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">objs</span><span class="o">=</span><span class="p">(),</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Print the summary statistics.</span>
 
 <span class="sd">               w=0            -- indentation for each line</span>
@@ -1899,7 +1905,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_depth</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">_printf</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%*d</span><span class="s"> recursion depth&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_depth</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Asizer.print_typedefs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.print_typedefs">[docs]</a>    <span class="k">def</span> <span class="nf">print_typedefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.print_typedefs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.print_typedefs">[docs]</a>    <span class="k">def</span> <span class="nf">print_typedefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Print the types and dict tables.</span>
 
 <span class="sd">               w=0            -- indentation for each line</span>
@@ -1920,7 +1926,7 @@
             <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_items</span><span class="p">(</span><span class="n">_dict_classes</span><span class="p">):</span>
                 <span class="n">_printf</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%*s</span><span class="s"> </span><span class="si">%s</span><span class="s">:  </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepr</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="o">**</span><span class="n">print3opts</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Asizer.set"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Asizer.set"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Set some options.  Any options not set</span>
 <span class="sd">           remain the same as the previous setting.</span>
 
@@ -1973,7 +1979,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_total</span>
     <span class="n">total</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_total</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="n">_get_total</span><span class="o">.</span><span class="n">__doc__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Asizer.reset"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.Asizer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="nb">all</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>    <span class="n">clip</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>     <span class="n">code</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">derive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>  <span class="c">#PYCHOK expected</span>
+<div class="viewcode-block" id="Asizer.reset"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.Asizer.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="nb">all</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>    <span class="n">clip</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>     <span class="n">code</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">derive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>  <span class="c">#PYCHOK expected</span>
                     <span class="n">detail</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignored</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">infer</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="n">stats</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Reset options, state, etc.</span>
 
@@ -2013,7 +2019,7 @@
 
  <span class="c"># public functions</span>
 </div></div>
-<div class="viewcode-block" id="adict"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.adict">[docs]</a><span class="k">def</span> <span class="nf">adict</span><span class="p">(</span><span class="o">*</span><span class="n">classes</span><span class="p">):</span>
+<div class="viewcode-block" id="adict"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.adict">[docs]</a><span class="k">def</span> <span class="nf">adict</span><span class="p">(</span><span class="o">*</span><span class="n">classes</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Install one or more classes to be handled as dict.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">a</span> <span class="o">=</span> <span class="bp">True</span>
@@ -2030,7 +2036,7 @@
 </div>
 <span class="n">_asizer</span> <span class="o">=</span> <span class="n">Asizer</span><span class="p">()</span>
 
-<div class="viewcode-block" id="asized"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.asized">[docs]</a><span class="k">def</span> <span class="nf">asized</span><span class="p">(</span><span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="asized"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.asized">[docs]</a><span class="k">def</span> <span class="nf">asized</span><span class="p">(</span><span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return a tuple containing an  Asized instance for each</span>
 <span class="sd">       object passed as positional argment using the following</span>
 <span class="sd">       options.</span>
@@ -2066,7 +2072,7 @@
         <span class="n">s</span> <span class="o">=</span> <span class="p">()</span>
     <span class="k">return</span> <span class="n">s</span>
 </div>
-<div class="viewcode-block" id="asizeof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.asizeof">[docs]</a><span class="k">def</span> <span class="nf">asizeof</span><span class="p">(</span><span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="asizeof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.asizeof">[docs]</a><span class="k">def</span> <span class="nf">asizeof</span><span class="p">(</span><span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return the combined size in bytes of all objects passed</span>
 <span class="sd">       as positional argments.</span>
 
@@ -2138,7 +2144,7 @@
         <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="n">s</span>
 </div>
-<div class="viewcode-block" id="asizesof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.asizesof">[docs]</a><span class="k">def</span> <span class="nf">asizesof</span><span class="p">(</span><span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="asizesof"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.asizesof">[docs]</a><span class="k">def</span> <span class="nf">asizesof</span><span class="p">(</span><span class="o">*</span><span class="n">objs</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return a tuple containing the size in bytes of all objects</span>
 <span class="sd">       passed as positional argments using the following options.</span>
 
@@ -2178,7 +2184,7 @@
             <span class="n">_typedefs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
     <span class="k">return</span> <span class="n">v</span>
 
-<div class="viewcode-block" id="basicsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.basicsize">[docs]</a><span class="k">def</span> <span class="nf">basicsize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="basicsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.basicsize">[docs]</a><span class="k">def</span> <span class="nf">basicsize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return the basic size of an object (in bytes).</span>
 
 <span class="sd">       Valid options and defaults are</span>
@@ -2191,7 +2197,7 @@
         <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">base</span>
     <span class="k">return</span> <span class="n">v</span>
 </div>
-<div class="viewcode-block" id="flatsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.flatsize">[docs]</a><span class="k">def</span> <span class="nf">flatsize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="flatsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.flatsize">[docs]</a><span class="k">def</span> <span class="nf">flatsize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return the flat size of an object (in bytes),</span>
 <span class="sd">       optionally aligned to a given power of 2.</span>
 
@@ -2210,7 +2216,7 @@
         <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">flat</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">v</span>
 </div>
-<div class="viewcode-block" id="itemsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.itemsize">[docs]</a><span class="k">def</span> <span class="nf">itemsize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="itemsize"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.itemsize">[docs]</a><span class="k">def</span> <span class="nf">itemsize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return the item size of an object (in bytes).</span>
 
 <span class="sd">       See function  basicsize for a description of</span>
@@ -2221,7 +2227,7 @@
         <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">item</span>
     <span class="k">return</span> <span class="n">v</span>
 </div>
-<div class="viewcode-block" id="leng"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.leng">[docs]</a><span class="k">def</span> <span class="nf">leng</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="leng"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.leng">[docs]</a><span class="k">def</span> <span class="nf">leng</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return the length of an object (in items).</span>
 
 <span class="sd">       See function  basicsize for a description</span>
@@ -2234,7 +2240,7 @@
             <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">v</span>
 </div>
-<div class="viewcode-block" id="refs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.asizeof-module.html#topo.misc.asizeof.refs">[docs]</a><span class="k">def</span> <span class="nf">refs</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="refs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.asizeof.refs">[docs]</a><span class="k">def</span> <span class="nf">refs</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return (a generator for) specific referents of an</span>
 <span class="sd">       object.</span>
 
@@ -2696,7 +2702,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/asizeof.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/asizeof.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -2719,6 +2725,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -2738,8 +2750,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>

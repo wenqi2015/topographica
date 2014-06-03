@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,16 +6,16 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>topo.misc.util &mdash; The Topographica Neural Map Simulator</title>
+    <title>topo.misc.util &mdash; Topographica</title>
     
     <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/topo.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.98',
+        VERSION:     '0.9.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,14 +24,21 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/topo.js"></script>
-    <link rel="top" title="The Topographica Neural Map Simulator" href="../../../index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -68,7 +74,7 @@
 
 
 
-<div class="viewcode-block" id="NxN"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.NxN">[docs]</a><span class="k">def</span> <span class="nf">NxN</span><span class="p">(</span><span class="nb">tuple</span><span class="p">):</span>
+<div class="viewcode-block" id="NxN"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.NxN">[docs]</a><span class="k">def</span> <span class="nf">NxN</span><span class="p">(</span><span class="nb">tuple</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts a tuple (X1,X2,...,Xn) to a string &#39;X1xX2x...xXn&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -79,7 +85,7 @@
 <span class="n">enum</span> <span class="o">=</span> <span class="nb">enumerate</span>
 
 
-<div class="viewcode-block" id="Struct"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.Struct">[docs]</a><span class="k">class</span> <span class="nc">Struct</span><span class="p">:</span>
+<div class="viewcode-block" id="Struct"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.Struct">[docs]</a><span class="k">class</span> <span class="nc">Struct</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A simple structure class, taking keyword args and assigning them to attributes.</span>
 
@@ -103,7 +109,7 @@
 
 
 </div>
-<div class="viewcode-block" id="flat_indices"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.flat_indices">[docs]</a><span class="k">def</span> <span class="nf">flat_indices</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+<div class="viewcode-block" id="flat_indices"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.flat_indices">[docs]</a><span class="k">def</span> <span class="nf">flat_indices</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns a list of the indices needed to address or loop over all</span>
 <span class="sd">    the elements of a 1D or 2D matrix with the given shape. E.g.:</span>
@@ -118,7 +124,7 @@
 
 
 </div>
-<div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.flatten">[docs]</a><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+<div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.flatten">[docs]</a><span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flattens a list.</span>
 
@@ -168,7 +174,7 @@
 
 
 <span class="c"># JABALERT: Should frange be replaced with numpy.arange or numpy.linspace?</span>
-<div class="viewcode-block" id="frange"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.frange">[docs]</a><span class="k">def</span> <span class="nf">frange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">inc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="frange"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.frange">[docs]</a><span class="k">def</span> <span class="nf">frange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">inc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A range function that accepts float increments.</span>
 
@@ -205,7 +211,7 @@
 
 
 </div>
-<div class="viewcode-block" id="shortclassname"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.shortclassname">[docs]</a><span class="k">def</span> <span class="nf">shortclassname</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="shortclassname"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.shortclassname">[docs]</a><span class="k">def</span> <span class="nf">shortclassname</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the class name of x as a string with the leading package information removed.</span>
 
@@ -216,7 +222,7 @@
 
 
 </div>
-<div class="viewcode-block" id="profile"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.profile">[docs]</a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">sorting</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;cumulative&#39;</span><span class="p">,</span><span class="s">&#39;time&#39;</span><span class="p">),</span><span class="n">strip_dirs</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="profile"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.profile">[docs]</a><span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">sorting</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;cumulative&#39;</span><span class="p">,</span><span class="s">&#39;time&#39;</span><span class="p">),</span><span class="n">strip_dirs</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Profile the given command (supplied as a string), printing</span>
 <span class="sd">    statistics about the top n functions when ordered according to</span>
@@ -267,7 +273,7 @@
 
 
 </div>
-<div class="viewcode-block" id="weighted_sample"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.weighted_sample">[docs]</a><span class="k">def</span> <span class="nf">weighted_sample</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">weights</span><span class="o">=</span><span class="p">[]):</span>
+<div class="viewcode-block" id="weighted_sample"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.weighted_sample">[docs]</a><span class="k">def</span> <span class="nf">weighted_sample</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">weights</span><span class="o">=</span><span class="p">[]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Select randomly from the given sequence.</span>
 
@@ -281,7 +287,7 @@
         <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="n">weighted_sample_idx</span><span class="p">(</span><span class="n">weights</span><span class="p">)]</span>
 
 </div>
-<div class="viewcode-block" id="weighted_sample_idx"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.weighted_sample_idx">[docs]</a><span class="k">def</span> <span class="nf">weighted_sample_idx</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+<div class="viewcode-block" id="weighted_sample_idx"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.weighted_sample_idx">[docs]</a><span class="k">def</span> <span class="nf">weighted_sample_idx</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return an integer generated by sampling the discrete distribution</span>
 <span class="sd">    represented by the sequence of weights.</span>
@@ -304,7 +310,7 @@
             <span class="k">return</span> <span class="n">i</span>
 
 </div>
-<div class="viewcode-block" id="idx2rowcol"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.idx2rowcol">[docs]</a><span class="k">def</span> <span class="nf">idx2rowcol</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">shape</span><span class="p">):</span>
+<div class="viewcode-block" id="idx2rowcol"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.idx2rowcol">[docs]</a><span class="k">def</span> <span class="nf">idx2rowcol</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">shape</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a flat matrix index and a 2D matrix shape, return the (row,col)</span>
 <span class="sd">    coordinates of the index.</span>
@@ -316,7 +322,7 @@
 
 
 </div>
-<div class="viewcode-block" id="rowcol2idx"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.rowcol2idx">[docs]</a><span class="k">def</span> <span class="nf">rowcol2idx</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">shape</span><span class="p">):</span>
+<div class="viewcode-block" id="rowcol2idx"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.rowcol2idx">[docs]</a><span class="k">def</span> <span class="nf">rowcol2idx</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">shape</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a row, column, and matrix shape, return the corresponding index</span>
 <span class="sd">    into the flattened (raveled) matrix.</span>
@@ -328,7 +334,7 @@
 
 
 </div>
-<div class="viewcode-block" id="centroid"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.centroid">[docs]</a><span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span><span class="n">weights</span><span class="p">):</span>
+<div class="viewcode-block" id="centroid"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.centroid">[docs]</a><span class="k">def</span> <span class="nf">centroid</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span><span class="n">weights</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the centroid of a weighted set of points as an array.</span>
 
@@ -340,7 +346,7 @@
 
 
 </div>
-<div class="viewcode-block" id="signabs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.signabs">[docs]</a><span class="k">def</span> <span class="nf">signabs</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="signabs"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.signabs">[docs]</a><span class="k">def</span> <span class="nf">signabs</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Split x into its sign and absolute value.</span>
 
@@ -356,7 +362,7 @@
     <span class="k">return</span> <span class="n">sgn</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="linearly_interpolate"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.linearly_interpolate">[docs]</a><span class="k">def</span> <span class="nf">linearly_interpolate</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="linearly_interpolate"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.linearly_interpolate">[docs]</a><span class="k">def</span> <span class="nf">linearly_interpolate</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Interpolate an appropriate value from the given list of values, by number.</span>
 
@@ -394,7 +400,7 @@
 
 <span class="c"># CB: note that this has only really been tested for output;</span>
 <span class="c"># I&#39;ve never tried using it to e.g. read multiple files.</span></div>
-<div class="viewcode-block" id="MultiFile"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.util-module.html#topo.misc.util.MultiFile">[docs]</a><span class="k">class</span> <span class="nc">MultiFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiFile"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.util.MultiFile">[docs]</a><span class="k">class</span> <span class="nc">MultiFile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    For all file_like_objs passed on initialization, provides a</span>
 <span class="sd">    convenient way to call any of file&#39;s methods (on all of them).</span>
@@ -534,7 +540,7 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/util.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/util.rst" rel="nofollow">Edit on GitHub</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
@@ -557,6 +563,12 @@
     <div class="related">
       <h3>Navigation</h3>
       <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
 <li><a href="../../../index.html">Home</a></li>
 <li><a href="../../../Downloads/index.html">Downloads</a></li>
 <li><a href="../../../Tutorials/index.html">Tutorials</a></li>
@@ -576,8 +588,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2013, IOAM.
-      Last updated on May 07, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>
