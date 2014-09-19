@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
@@ -87,7 +88,7 @@ automatically become available for any model.</p>
 <dl class="class">
 <dt id="topo.sheet.Sheet">
 <em class="property">class </em><tt class="descclassname">topo.sheet.</tt><tt class="descname">Sheet</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">dataviews.sheetviews.sheetcoords.SheetCoordinateSystem</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.simulation.EventProcessor" title="topo.base.simulation.EventProcessor"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.EventProcessor</span></tt></a>, <a class="reference external" href="http://ioam.github.io/dataviews/Reference_Manual/dataviews.sheetviews.html#dataviews.sheetviews.sheetcoords.SheetCoordinateSystem" title="(in DataViews v2014.05.14)"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.sheetviews.sheetcoords.SheetCoordinateSystem</span></tt></a></p>
 <p>The generic base class for neural sheets.</p>
 <p>See SheetCoordinateSystem for how Sheet represents space, and
 EventProcessor for how Sheet handles time.</p>
@@ -132,6 +133,14 @@ output_fns.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.Sheet.activate">
@@ -179,7 +188,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed2b8&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224368&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -193,7 +202,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed208&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224520&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -205,7 +214,7 @@ the EventProcessor should process the data somehow.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed310&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71622249f0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -349,12 +358,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed418&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224ec0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed4c8&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224d08&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -506,7 +515,7 @@ Cybernetics 71:66-78, 1994) for one example of its usage.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -561,6 +570,14 @@ Cybernetics 71:66-78, 1994) for one example of its usage.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">joint_norm_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to use to compute the norm_total for each CF in each
         projection from a group to be normalized jointly.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">strict_tsettle</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If non-None, delay sending output until activation_count reaches this value.</dd>
 </dl>
@@ -610,7 +627,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed050&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224578&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -624,12 +641,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed4c8&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224ec0&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed0a8&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224368&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -803,12 +820,12 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed578&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71622243c0&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed520&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b84c8&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -926,7 +943,7 @@ or analysis, CFSheet and ProjectionSheet are interchangeable.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -963,6 +980,14 @@ or analysis, CFSheet and ProjectionSheet are interchangeable.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.CFSheet.activate">
@@ -1010,7 +1035,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed578&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224520&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1024,7 +1049,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed520&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224578&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1036,7 +1061,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed100&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71622245d0&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1211,12 +1236,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed5d0&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b84c8&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed680&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8578&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1279,25 +1304,13 @@ in the subclass.</p>
 <dl class="method">
 <dt id="topo.sheet.CFSheet.state_pop">
 <tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.state_pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pop the most recently saved state off the stack.</p>
-<p>See state_push() for more details.</p>
+<dd><p>Subclasses Sheet state_pop to also pop projection activities.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.CFSheet.state_push">
 <tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.state_push" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save the current state of this sheet to an internal stack.</p>
-<p>This method is used by operations that need to test the
-response of the sheet without permanently altering its state,
-e.g. for measuring maps or probing the current behavior
-non-invasively.  By default, only the activity pattern of this
-sheet is saved, but subclasses should add saving for any
-additional state that they maintain, or strange bugs are
-likely to occur.  The state can be restored using state_pop().</p>
-<p>Note that Sheets that do learning need not save the
-values of all connection weights, if any, because
-plasticity can be turned off explicitly.  Thus this method
-is intended only for shorter-term state.</p>
+<dd><p>Subclasses Sheet state_push to also push projection activities.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1349,6 +1362,8 @@ random distribution, but can use any mechanism.</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00132&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds</span></tt> (<em>constant=True, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -1385,15 +1400,22 @@ random distribution, but can use any mechanism.</p>
 <dd>Delay (in Simulation time) between generating new input patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">phase</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.05, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Delay after the start of the Simulation (at time zero) before
-        generating an input pattern.  For a clocked, feedforward simulation,
-        one would typically want to use a small nonzero phase and use delays less
-        than the user-visible step size (typically 1.0), so that inputs are
-        generated and processed before this step is complete.</dd>
+        generating an input pattern.  For a clocked, feedforward
+        simulation, one would typically want to use a small nonzero
+        phase and use delays less than the user-visible step size
+        (typically 1.0), so that inputs are generated and processed
+        before this step is complete.</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.activate">
@@ -1441,7 +1463,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed260&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224ec0&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1461,12 +1483,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed5d0&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224d60&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed050&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224368&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1623,13 +1645,14 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed158&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8578&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.set_input_generator">
 <tt class="descname">set_input_generator</tt><big>(</big><em>new_ig</em>, <em>push_existing=False</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_input_generator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the input_generator, overwriting the existing one by default.</p>
+<dd><p>Set the input_generator, overwriting the existing one by
+default.</p>
 <p>If push_existing is false, the existing input_generator is
 discarded permanently.  Otherwise, the existing one is put
 onto a stack, and can later be restored by calling
@@ -1638,7 +1661,7 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed730&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8628&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1779,7 +1802,7 @@ to model modulatory or other more complicated types of connections.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -1814,6 +1837,14 @@ to model modulatory or other more complicated types of connections.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.activate">
@@ -1861,7 +1892,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed680&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71622245d0&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1875,7 +1906,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed158&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71622244c8&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1887,7 +1918,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed1b0&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224730&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2062,12 +2093,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed628&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8520&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed788&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8680&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2130,25 +2161,13 @@ in the subclass.</p>
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.state_pop">
 <tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.state_pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pop the most recently saved state off the stack.</p>
-<p>See state_push() for more details.</p>
+<dd><p>Subclasses Sheet state_pop to also pop projection activities.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.state_push">
 <tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.state_push" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save the current state of this sheet to an internal stack.</p>
-<p>This method is used by operations that need to test the
-response of the sheet without permanently altering its state,
-e.g. for measuring maps or probing the current behavior
-non-invasively.  By default, only the activity pattern of this
-sheet is saved, but subclasses should add saving for any
-additional state that they maintain, or strange bugs are
-likely to occur.  The state can be restored using state_pop().</p>
-<p>Note that Sheets that do learning need not save the
-values of all connection weights, if any, because
-plasticity can be turned off explicitly.  Thus this method
-is intended only for shorter-term state.</p>
+<dd><p>Subclasses Sheet state_push to also push projection activities.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2194,6 +2213,8 @@ immediately after completion.</p>
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00132&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds</span></tt> (<em>constant=True, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -2230,10 +2251,11 @@ immediately after completion.</p>
 <dd>Delay (in Simulation time) between generating new input patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">phase</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.05, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Delay after the start of the Simulation (at time zero) before
-        generating an input pattern.  For a clocked, feedforward simulation,
-        one would typically want to use a small nonzero phase and use delays less
-        than the user-visible step size (typically 1.0), so that inputs are
-        generated and processed before this step is complete.</dd>
+        generating an input pattern.  For a clocked, feedforward
+        simulation, one would typically want to use a small nonzero
+        phase and use delays less than the user-visible step size
+        (typically 1.0), so that inputs are generated and processed
+        before this step is complete.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">input_sequence</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The sequence of patterns to generate.  Must be a list of
           (onset,generator) tuples. An empty list defaults to the
@@ -2242,8 +2264,14 @@ immediately after completion.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.activate">
@@ -2291,7 +2319,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed628&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224368&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2311,12 +2339,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed368&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71622245d0&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed260&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162224628&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2473,13 +2501,14 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed4c8&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8680&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.set_input_generator">
 <tt class="descname">set_input_generator</tt><big>(</big><em>new_ig</em>, <em>push_existing=False</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_input_generator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the input_generator, overwriting the existing one by default.</p>
+<dd><p>Set the input_generator, overwriting the existing one by
+default.</p>
 <p>If push_existing is false, the existing input_generator is
 discarded permanently.  Otherwise, the existing one is put
 onto a stack, and can later be restored by calling
@@ -2488,7 +2517,7 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed7e0&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b86d8&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2593,6 +2622,440 @@ matrix representation, in the y direction.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="topo.sheet.ChannelGeneratorSheet">
+<em class="property">class </em><tt class="descclassname">topo.sheet.</tt><tt class="descname">ChannelGeneratorSheet</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.generatorsheet.GeneratorSheet" title="topo.base.generatorsheet.GeneratorSheet"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.generatorsheet.GeneratorSheet</span></tt></a></p>
+<p>A GeneratorSheet that handles input patterns with multiple
+simultaneous channels.</p>
+<p>Accepts either a single-channel or an NChannel input_generator.
+If the input_generator stores separate channel patterns, it is
+used as-is; if other (single-channel) PatternGenerators are used,
+the Class behaves like a normal GeneratorSheet.</p>
+<p>When a pattern is generated, the average of the channels is sent
+out on the Activity port as usual for a GeneratorSheet, and
+channel activities are sent out on the Activity0, Activity1, ...,
+ActivityN-1 ports.  Thus this class can be used just like
+GeneratorSheet, but with optional color channels available, too.</p>
+<p>If the input_generator is NChannel, this GeneratorSheet will
+handle the separate channels and create the specific output
+ports. If the input_generator is single-channel (eg, a monochrome
+image) then this GeneratorSheet will behave as a normal
+non-NChannel GeneratorSheet.</p>
+<dl class="docutils">
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">constant_mean_total_channels_output</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>If set, it enforces the average of the mean channel values to
+        be fixed. Eg, M = ( activity0+activity1+...+activity(N-1)
+        ).mean() / N = constant_mean_total_channels_output</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">channel_output_fns</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Dictionary with arrays of channel-specific output functions:
+        eg, {0:[fnc1, fnc2],3:[fnc3]}.  The dictionary isn&#8217;t required
+        to specify every channel, but rather only those required.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00132&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
+<dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds</span></tt> (<em>constant=True, default=BoundingBox(radius=0.5), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>User-specified BoundingBox of the Sheet coordinate area
+            covered by this Sheet.  The left and right bounds&#8211;if
+            specified&#8211;will always be observed, but the top and bottom
+            bounds may be adjusted to ensure the density in the y
+            direction is the same as the density in the x direction.
+            In such a case, the top and bottom bounds are adjusted
+            so that the center y point remains the same, and each
+            bound is as close as possible to its specified value. The
+            actual value of this Parameter is not adjusted, but the
+            true bounds may be found from the &#8216;bounds&#8217; attribute
+            of this object.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Allows grouping of Sheets before sorting precedence is
+            applied, e.g. for two-dimensional plots in the GUI.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Setting this to False tells the Sheet not to change its
+            permanent state (e.g. any connection weights) based on
+            incoming events.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">nominal_density</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=10, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>User-specified number of processing units per 1.0 distance
+            horizontally or vertically in Sheet coordinates. The actual
+            number may be different because of discretization; the matrix
+            needs to tile the plane exactly, and for that to work the
+            density might need to be adjusted.  For instance, an area of 3x2
+            cannot have a density of 2 in each direction. The true density
+            may be obtained from either the xdensity or ydensity attribute
+            (since these are identical for a Sheet).</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">period</span></tt> (<em>allow_None=False, bounds=(0, None), constant=True, default=1, inclusive_bounds=(False, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Delay (in Simulation time) between generating new input patterns.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">phase</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.05, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Delay after the start of the Simulation (at time zero) before
+        generating an input pattern.  For a clocked, feedforward
+        simulation, one would typically want to use a small nonzero
+        phase and use delays less than the user-visible step size
+        (typically 1.0), so that inputs are generated and processed
+        before this step is complete.</dd>
+<dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dd>Location for this Sheet in an arbitrary pixel-based space
+            in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
+</dl>
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.activate">
+<tt class="descname">activate</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.activate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect activity from each projection, combine it to calculate
+the activity for this sheet, and send the result out.</p>
+<p>Subclasses will need to override this method to whatever it
+means to calculate activity in that subclass.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.activity_len">
+<tt class="descname">activity_len</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.activity_len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of items that have been saved by state_push().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.closest_cell_center">
+<tt class="descname">closest_cell_center</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.closest_cell_center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given arbitary sheet coordinates, return the sheet coordinates
+of the center of the closest unit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.debug">
+<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a debugging statement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.defaults">
+<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return {parameter_name:parameter.default} for all non-constant
+Parameters.</p>
+<p>Note that a Parameter for which instantiate==True has its default
+instantiated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.density">
+<tt class="descname">density</tt><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.density" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sheet&#8217;s true density (i.e. the
+xdensity, which is equal to the ydensity for a Sheet.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value">
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b86d8&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.generate">
+<tt class="descname">generate</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Works as in the superclass, but also generates NChannel output and sends
+it out on the Activity0, Activity1, ..., ActivityN ports.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.get_param_values">
+<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.get_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of name,value pairs for all Parameters of this
+object.</p>
+<p>If onlychanged is True, will only return values that are not
+equal to the default value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.get_value_generator">
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8e10&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.inspect_value">
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8db8&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.matrix2sheet">
+<tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a floating-point location (float_row,float_col) in matrix
+coordinates to its corresponding location (x,y) in sheet
+coordinates.</p>
+<p>Valid for scalar or array float_row and float_col.</p>
+<p>Inverse of sheet2matrix().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.matrixidx2sheet">
+<tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return (x,y) where x and y are the floating point coordinates of
+the <em>center</em> of the given matrix cell (row,col). If the matrix cell
+represents a 0.2 by 0.2 region, then the center location returned
+would be 0.1,0.1.</p>
+<p>NOTE: This is NOT the strict mathematical inverse of
+sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
+portion of the continuous matrix coordinate.</p>
+<p>Valid only for scalar or array row and col.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.message">
+<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.n_bytes">
+<tt class="descname">n_bytes</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.n_bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a lower bound for the memory taken by this sheet, in bytes.</p>
+<p>Typically, this number will include the activity array and any
+similar arrays, plus any other significant data owned (in some
+sense) by this Sheet.  It will not usually include memory
+taken by the Python dictionary or various &#8220;housekeeping&#8221;
+attributes, which usually contribute only a small amount to
+the memory requirements.</p>
+<p>Subclasses should reimplement this method if they store a
+significant amount of data other than in the activity array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.override_plasticity_state">
+<tt class="descname">override_plasticity_state</tt><big>(</big><em>new_plasticity_state</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.override_plasticity_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temporarily override plasticity of medium and long term internal state.</p>
+<p>This function should be implemented by all subclasses so that
+it preserves the ability of the Sheet to compute activity,
+i.e. to operate over a short time scale, while preventing any
+lasting changes to the state (if new_plasticity_state=False).</p>
+<p>Any operation that does not have any lasting state, such as
+those affecting only the current activity level, should not
+be affected by this call.</p>
+<p>By default, simply saves a copy of the plastic flag to an
+internal stack (so that it can be restored by
+restore_plasticity_state()), and then sets plastic to
+new_plasticity_state.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.sheet.ChannelGeneratorSheet.params">
+<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Parameters of this class as the
+dictionary {name: parameter_object}</p>
+<p>Includes Parameters from this class and its
+superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.pop_input_generator">
+<tt class="descname">pop_input_generator</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.pop_input_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discard the current input_generator, and retrieve the previous one from the stack.</p>
+<p>Warns if no input_generator is available on the stack.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.sheet.ChannelGeneratorSheet.print_param_defaults">
+<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.print_param_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the default values of all cls&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.print_param_values">
+<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.print_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the values of all this object&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.process_current_time">
+<tt class="descname">process_current_time</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.process_current_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by the simulation before advancing the simulation
+time.  Allows the event processor to do any computation that
+requires that all events for this time have been delivered.
+Computations performed in this method should not generate any
+events with a zero time delay, or else causality could be
+violated. (By default, does nothing.)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.push_input_generator">
+<tt class="descname">push_input_generator</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.push_input_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push the current input_generator onto a stack for future retrieval.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.release_sheet_view">
+<tt class="descname">release_sheet_view</tt><big>(</big><em>view_name</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.release_sheet_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the dictionary entry with key entry &#8216;view_name&#8217; to save
+memory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.restore_plasticity_state">
+<tt class="descname">restore_plasticity_state</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.restore_plasticity_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restores plasticity of medium and long term internal state after
+a override_plasticity_state call.</p>
+<p>This function should be implemented by all subclasses to
+remove the effect of the most recent override_plasticity_state call,
+i.e. to restore plasticity of any type that was overridden.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.row_col_sheetcoords">
+<tt class="descname">row_col_sheetcoords</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.row_col_sheetcoords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an array of Y-coordinates corresponding to the rows of
+the activity matrix of the sheet, and an array of
+X-coordinates corresponding to the columns.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a runnable command for creating this EventProcessor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.send_output">
+<tt class="descname">send_output</tt><big>(</big><em>src_port=None</em>, <em>data=None</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.send_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send some data out to all connections on the given src_port.
+The data is deepcopied before it is sent out, to ensure that
+future changes to the data are not reflected in events from
+the past.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.sheet.ChannelGeneratorSheet.set_default">
+<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default value of param_name.</p>
+<p>Equivalent to setting param_name on the class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn">
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa5d0&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.set_input_generator">
+<tt class="descname">set_input_generator</tt><big>(</big><em>new_ig</em>, <em>push_existing=False</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_input_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>If single-channel generators are used, the Class reverts to a
+simple GeneratorSheet behavior.  If NChannel inputs are used,
+it will update the number of channels of the
+ChannelGeneratorSheet to match those of the input. If the
+number of channels doesn&#8217;t change, there&#8217;s no need to reset.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.set_param">
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa4c8&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.sheet2matrix">
+<tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
+coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to y,
+and float_col to x.</p>
+<p>Valid for scalar or array x and y.</p>
+<p>Note about Bounds
+For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
+and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
+corresponds to float_col=3.0.  float_col=3.0 is not inside the
+matrix representing this Sheet, which has the three columns
+(0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
+is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
+is outside (at row 3) (it&#8217;s the other way round for y because
+the matrix row index increases as y decreases).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.sheet2matrixidx">
+<tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
+column index of the matrix cell in which that point falls, given a
+bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary are
+passed into this function, the returned matrix coordinate of the
+boundary will be just outside the matrix, because the right and
+bottom boundaries are exclusive.</p>
+<p>Valid for scalar or array x and y.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.sheetcoordinates_of_matrixidx">
+<tt class="descname">sheetcoordinates_of_matrixidx</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.sheetcoordinates_of_matrixidx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return x,y where x is a vector of sheet coordinates
+representing the x-center of each matrix cell, and y
+represents the corresponding y-center of the cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.sheetcoords_of_idx_grid">
+<tt class="descname">sheetcoords_of_idx_grid</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.sheetcoords_of_idx_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an array of x-coordinates and an array of y-coordinates
+corresponding to the activity matrix of the sheet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.state_pop">
+<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.state_pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pop the most recently saved state off the stack.</p>
+<p>See state_push() for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.state_push">
+<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.state_push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the current state of this sheet to an internal stack.</p>
+<p>This method is used by operations that need to test the
+response of the sheet without permanently altering its state,
+e.g. for measuring maps or probing the current behavior
+non-invasively.  By default, only the activity pattern of this
+sheet is saved, but subclasses should add saving for any
+additional state that they maintain, or strange bugs are
+likely to occur.  The state can be restored using state_pop().</p>
+<p>Note that Sheets that do learning need not save the
+values of all connection weights, if any, because
+plasticity can be turned off explicitly.  Thus this method
+is intended only for shorter-term state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.verbose">
+<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a verbose message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.warning">
+<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a warning, unless module variable
+warnings_as_exceptions is True, then raise an Exception
+containing the arguments.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.xdensity">
+<tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.xdensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The spacing between elements in an underlying
+matrix representation, in the x direction.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.sheet.ChannelGeneratorSheet.ydensity">
+<tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.ydensity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The spacing between elements in an underlying
+matrix representation, in the y direction.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="topo.sheet.JointNormalizingCFSheet">
 <em class="property">class </em><tt class="descclassname">topo.sheet.</tt><tt class="descname">JointNormalizingCFSheet</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/sheet.html#JointNormalizingCFSheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.cf.CFSheet" title="topo.base.cf.CFSheet"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFSheet</span></tt></a></p>
@@ -2633,7 +3096,7 @@ together, as long as an appropriate TransferFn is being used.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -2673,6 +3136,14 @@ together, as long as an appropriate TransferFn is being used.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">joint_norm_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to use to compute the norm_total for each CF in each
         projection from a group to be normalized jointly.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.activate">
@@ -2720,7 +3191,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed0a8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8680&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2734,7 +3205,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed4c8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8c58&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2746,7 +3217,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed7e0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b87e0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -2925,12 +3396,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed838&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa260&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed890&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa838&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2983,25 +3454,13 @@ corresponding to the activity matrix of the sheet.</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.state_pop">
 <tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.state_pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pop the most recently saved state off the stack.</p>
-<p>See state_push() for more details.</p>
+<dd><p>Subclasses Sheet state_pop to also pop projection activities.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.state_push">
 <tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.state_push" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save the current state of this sheet to an internal stack.</p>
-<p>This method is used by operations that need to test the
-response of the sheet without permanently altering its state,
-e.g. for measuring maps or probing the current behavior
-non-invasively.  By default, only the activity pattern of this
-sheet is saved, but subclasses should add saving for any
-additional state that they maintain, or strange bugs are
-likely to occur.  The state can be restored using state_pop().</p>
-<p>Note that Sheets that do learning need not save the
-values of all connection weights, if any, because
-plasticity can be turned off explicitly.  Thus this method
-is intended only for shorter-term state.</p>
+<dd><p>Subclasses Sheet state_push to also push projection activities.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3089,6 +3548,14 @@ Sheet, e.g. when wrapping an external simulation.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.activate">
@@ -3136,7 +3603,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed158&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8680&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3150,12 +3617,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed890&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8470&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed368&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8cb0&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3288,12 +3755,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed838&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa680&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed5d0&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa260&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3430,7 +3897,7 @@ matrix representation, in the y direction.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -3470,6 +3937,14 @@ matrix representation, in the y direction.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">joint_norm_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to use to compute the norm_total for each CF in each
         projection from a group to be normalized jointly.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.activate">
@@ -3517,7 +3992,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed5d0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8db8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3531,7 +4006,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed0a8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b86d8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3543,7 +4018,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed7e0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71620b8680&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -3713,12 +4188,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed4c8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa6d8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7aed8e8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71621aa890&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3771,25 +4246,13 @@ corresponding to the activity matrix of the sheet.</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.state_pop">
 <tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.state_pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pop the most recently saved state off the stack.</p>
-<p>See state_push() for more details.</p>
+<dd><p>Subclasses Sheet state_pop to also pop projection activities.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.state_push">
 <tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.state_push" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save the current state of this sheet to an internal stack.</p>
-<p>This method is used by operations that need to test the
-response of the sheet without permanently altering its state,
-e.g. for measuring maps or probing the current behavior
-non-invasively.  By default, only the activity pattern of this
-sheet is saved, but subclasses should add saving for any
-additional state that they maintain, or strange bugs are
-likely to occur.  The state can be restored using state_pop().</p>
-<p>Note that Sheets that do learning need not save the
-values of all connection weights, if any, because
-plasticity can be turned off explicitly.  Thus this method
-is intended only for shorter-term state.</p>
+<dd><p>Subclasses Sheet state_push to also push projection activities.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3841,7 +4304,7 @@ be normalized jointly.</p>
 <dl class="class">
 <dt id="topo.sheet.BoundingBox">
 <em class="property">class </em><tt class="descclassname">topo.sheet.</tt><tt class="descname">BoundingBox</tt><big>(</big><em>**args</em><big>)</big><a class="headerlink" href="#topo.sheet.BoundingBox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">dataviews.sheetviews.boundingregion.BoundingRegion</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/dataviews/Reference_Manual/dataviews.sheetviews.html#dataviews.sheetviews.boundingregion.BoundingRegion" title="(in DataViews v2014.05.14)"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.sheetviews.boundingregion.BoundingRegion</span></tt></a></p>
 <p>A rectangular bounding box defined either by two points forming
 an axis-aligned rectangle (or simply a radius for a square).</p>
 <dl class="method">
@@ -3971,6 +4434,14 @@ on composer&#8217;s activity.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.activate">
@@ -4018,7 +4489,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6f72680&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71619c57e0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4032,12 +4503,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6f72628&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71619c59f0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6f72730&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71619c5af8&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4178,12 +4649,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6f72838&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71619c5c00&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6f72890&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71619c5c58&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4405,7 +4876,7 @@ Cybernetics 71:66-78, 1994) for one example of its usage.</p>
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -4460,6 +4931,14 @@ Cybernetics 71:66-78, 1994) for one example of its usage.</p>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">joint_norm_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to use to compute the norm_total for each CF in each
         projection from a group to be normalized jointly.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">strict_tsettle</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If non-None, delay sending output until activation_count reaches this value.</dd>
 </dl>
@@ -4509,7 +4988,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e78d4f18&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10310&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4523,12 +5002,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc9050&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10418&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc90a8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10470&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -4702,12 +5181,12 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc99f0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10db8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc9a48&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10e10&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4837,7 +5316,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e78d4af8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10208&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4851,12 +5330,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e78d4c00&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b103c0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc9d08&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10470&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4907,12 +5386,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc9368&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10838&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc93c0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7161b10890&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5032,11 +5511,19 @@ the brightest pixel will be in the center of the sheet.</p>
             (since these are identical for a Sheet).</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>An instance of ptzcamera.PTZ to be controlled.</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along x.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -5104,7 +5591,7 @@ for this class.  Returns None if no appropriate location can be found.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fdd60&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5118,12 +5605,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6af8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fdec0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6b50&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fdf18&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5262,12 +5749,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e6bc9c58&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71621c0628&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7870fc8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71621c06d8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5432,11 +5919,19 @@ in the image.</p>
             (since these are identical for a Sheet).</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>An instance of ptzcamera.PTZ to be controlled.</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along x.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -5494,7 +5989,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6788&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fde10&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5508,12 +6003,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6b50&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fd940&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6a48&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fd998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5652,12 +6147,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6628&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71621c0578&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7870c00&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71621c06d8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5822,11 +6317,19 @@ rectangle around each detected face.</p>
             (since these are identical for a Sheet).</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>An instance of ptzcamera.PTZ to be controlled.</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=4480, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum position of the camera along x.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">maxrange_y</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1920, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -5884,7 +6387,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6aa0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fd9f0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5898,12 +6401,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6cb0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fdc58&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6c00&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71625fdc00&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6042,12 +6545,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74c6730&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71621c06d8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7870ba8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71621c0628&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6231,7 +6734,7 @@ superior colliculus: a quantitative model.  Vision Research;
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -6273,12 +6776,20 @@ superior colliculus: a quantitative model.  Vision Research;
         processing. Whether or not the units will actually be skipped
         depends on the implementation of learning and learning output
         functions.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00330&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00341&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A CoordinateMapperFn that will be applied to the command vector extracted
         from the sheet activity.</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">decode_fn</span></tt> (<em>constant=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The function for extracting a single point from sheet activity.
         Should take a sheet as the first argument, and return (x,y).</dd>
@@ -6329,7 +6840,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e721bf70&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9f998&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6343,7 +6854,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e721bd08&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9f788&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6355,7 +6866,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e721bfc8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9fa48&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6530,12 +7041,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7433260&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9fcb0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74332b8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9fd08&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6598,25 +7109,13 @@ in the subclass.</p>
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.state_pop">
 <tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.state_pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pop the most recently saved state off the stack.</p>
-<p>See state_push() for more details.</p>
+<dd><p>Subclasses Sheet state_pop to also pop projection activities.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.state_push">
 <tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.state_push" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save the current state of this sheet to an internal stack.</p>
-<p>This method is used by operations that need to test the
-response of the sheet without permanently altering its state,
-e.g. for measuring maps or probing the current behavior
-non-invasively.  By default, only the activity pattern of this
-sheet is saved, but subclasses should add saving for any
-additional state that they maintain, or strange bugs are
-likely to occur.  The state can be restored using state_pop().</p>
-<p>Note that Sheets that do learning need not save the
-values of all connection weights, if any, because
-plasticity can be turned off explicitly.  Thus this method
-is intended only for shorter-term state.</p>
+<dd><p>Subclasses Sheet state_push to also push projection activities.</p>
 </dd></dl>
 
 <dl class="method">
@@ -6673,8 +7172,8 @@ saccade bounds limits the region within which the saccades may occur.</p>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fixation_jitter_period</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Period, in time units, indicating how often the eye jitters.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fixation_jitter</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Standard deviation of Gaussian fixation jitter.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00132&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">saccade_bounds</span></tt> (<em>constant=False, default=BoundingBox(radius=1.0), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -6697,6 +7196,8 @@ saccade bounds limits the region within which the saccades may occur.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">row_precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows grouping of Sheets before sorting precedence is
             applied, e.g. for two-dimensional plots in the GUI.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fixation_jitter</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Standard deviation of Gaussian fixation jitter.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Setting this to False tells the Sheet not to change its
             permanent state (e.g. any connection weights) based on
@@ -6716,10 +7217,11 @@ saccade bounds limits the region within which the saccades may occur.</p>
 <dd>Delay (in Simulation time) between generating new input patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">phase</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.05, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Delay after the start of the Simulation (at time zero) before
-        generating an input pattern.  For a clocked, feedforward simulation,
-        one would typically want to use a small nonzero phase and use delays less
-        than the user-visible step size (typically 1.0), so that inputs are
-        generated and processed before this step is complete.</dd>
+        generating an input pattern.  For a clocked, feedforward
+        simulation, one would typically want to use a small nonzero
+        phase and use delays less than the user-visible step size
+        (typically 1.0), so that inputs are generated and processed
+        before this step is complete.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">input_sequence</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The sequence of patterns to generate.  Must be a list of
           (onset,generator) tuples. An empty list defaults to the
@@ -6728,8 +7230,14 @@ saccade bounds limits the region within which the saccades may occur.</p>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Location for this Sheet in an arbitrary pixel-based space
             in which Sheets can be laid out for visualization.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00053&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">visual_angle_scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=90, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The scale factor determining the visual angle subtended by this sheet, in
         degrees per unit of sheet.</dd>
@@ -6780,7 +7288,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e721be10&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9fd08&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6794,12 +7302,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e721be68&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9fcb0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e721bf70&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9f7e0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6965,13 +7473,14 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7433208&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9fc58&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.set_input_generator">
 <tt class="descname">set_input_generator</tt><big>(</big><em>new_ig</em>, <em>push_existing=False</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_input_generator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the input_generator, overwriting the existing one by default.</p>
+<dd><p>Set the input_generator, overwriting the existing one by
+default.</p>
 <p>If push_existing is false, the existing input_generator is
 discarded permanently.  Otherwise, the existing one is put
 onto a stack, and can later be restored by calling
@@ -6980,7 +7489,7 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e74332b8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7162d9f8e8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7205,6 +7714,14 @@ neurons using dynamic synapses.</p>
 <dd>List of callables to be executed at the end of each iteration.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">reset_on_new_iteration</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Reset activity and projection activity when new iteration starts</dd>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">properties</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A dictionary of property values associated with the Sheet
+       object.  For instance, the dictionary:
+
+       {&#8216;polarity&#8217;:&#8217;ON&#8217;, &#8216;eye&#8217;:&#8217;Left&#8217;}
+
+       could be used to indicate a left, LGN Sheet with ON-surround
+       receptive fields.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">absolute_refractory</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Absolute refractory period</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">noise_rate</span></tt> (<em>allow_None=False, bounds=(0, 1.0), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -7231,7 +7748,7 @@ neurons using dynamic synapses.</p>
             of this object.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">trace_n</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=400, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of steps to track neuron&#8217;s membrane potential</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00036&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=&lt;SheetMask SheetMask00115&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -7239,7 +7756,7 @@ neurons using dynamic synapses.</p>
         disables all masking, but subclasses can use this mask to
         implement optimizations, non-rectangular Sheet shapes,
         lesions, etc.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[PiecewiseLinear(init_keys=[], lower_bound=0.1, name=&#8217;PiecewiseLinear00331&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[PiecewiseLinear(init_keys=[], lower_bound=0.1, name=&#8217;PiecewiseLinear00342&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">allow_skip_non_responding_units</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If true, then units that are inactive after the response
@@ -7298,7 +7815,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7e940a8&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715ef720a8&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7312,7 +7829,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7e94158&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715ef721b0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7325,7 +7842,7 @@ reset_on_new_iteration is True.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7e94100&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715ef72158&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -7513,12 +8030,12 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7e94310&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715ef72310&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e7e943c0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715ef723c0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7663,7 +8180,8 @@ matrix representation, in the y direction.</p>
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/Reference_Manual/topo.sheet.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Reference_Manual/topo.sheet.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

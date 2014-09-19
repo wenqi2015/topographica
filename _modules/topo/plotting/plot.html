@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
@@ -72,9 +73,7 @@
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">numpy.oldnumeric</span> <span class="kn">import</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">divide</span>
-
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">dataviews.ndmapping</span> <span class="kn">import</span> <span class="n">NdMapping</span>
 <span class="kn">from</span> <span class="nn">topo.base.sheetcoords</span> <span class="kn">import</span> <span class="n">SheetCoordinateSystem</span><span class="p">,</span><span class="n">Slice</span>
@@ -283,6 +282,14 @@
         <span class="c"># def annotated_bitmap(self):</span>
         <span class="c"># enable other construction....</span>
 
+    <span class="k">def</span> <span class="nf">_get_sv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">sheet_view_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">NdMapping</span><span class="p">):</span>
+            <span class="n">sv</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">last</span>
+
+        <span class="k">return</span> <span class="n">sv</span>
+
 
     <span class="k">def</span> <span class="nf">_get_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -295,10 +302,7 @@
 <span class="sd">        will be used as Hue, the matrix is normalized in range 0..1</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">sheet_view_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-        <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">NdMapping</span><span class="p">):</span>
-            <span class="n">sv</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">last</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sv</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">sv</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">matrix</span> <span class="o">=</span> <span class="bp">None</span>
@@ -324,7 +328,7 @@
         <span class="sd">&quot;&quot;&quot; Set the Plot plot_src_name. Called when Plot is created&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span>
             <span class="n">sheet_view_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
-            <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sheet_view_key</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">sv</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
                  <span class="bp">self</span><span class="o">.</span><span class="n">plot_src_name</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">src_name</span>
                  <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">precedence</span>
@@ -370,9 +374,9 @@
 
              <span class="k">if</span> <span class="n">range_min</span><span class="o">==</span><span class="n">range_max</span><span class="p">:</span>
                   <span class="k">if</span> <span class="n">range_min</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-                       <span class="n">resu</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                       <span class="n">resu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
                   <span class="k">else</span><span class="p">:</span>
-                       <span class="n">resu</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                       <span class="n">resu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
              <span class="k">else</span><span class="p">:</span>
                   <span class="n">a_offset</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">range_min</span>
                   <span class="n">resu</span> <span class="o">=</span> <span class="n">a_offset</span><span class="o">/</span><span class="p">(</span><span class="n">range_max</span><span class="o">-</span><span class="n">range_min</span><span class="p">)</span>
@@ -392,12 +396,12 @@
                   <span class="n">max_a_offset</span> <span class="o">=</span> <span class="n">a_offset</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
                   <span class="k">if</span> <span class="n">max_a_offset</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
-                       <span class="n">a</span> <span class="o">=</span> <span class="n">divide</span><span class="p">(</span><span class="n">a_offset</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="n">max_a_offset</span><span class="p">))</span>
+                       <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">a_offset</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="n">max_a_offset</span><span class="p">))</span>
                   <span class="k">else</span><span class="p">:</span>
                        <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">:</span>
-                            <span class="n">a</span><span class="o">=</span><span class="n">zeros</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">Float</span><span class="p">)</span>
+                            <span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
                        <span class="k">else</span><span class="p">:</span>
-                            <span class="n">a</span><span class="o">=</span><span class="n">ones</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">Float</span><span class="p">)</span>
+                            <span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
                   <span class="k">return</span> <span class="n">a</span>
 
 
@@ -418,7 +422,7 @@
         <span class="c"># into SheetCoordinateSystem.</span>
         <span class="k">if</span> <span class="n">plot_bounding_box</span><span class="o">.</span><span class="n">containsbb_exclusive</span><span class="p">(</span><span class="n">box</span><span class="p">):</span>
              <span class="n">ct</span> <span class="o">=</span> <span class="n">SheetCoordinateSystem</span><span class="p">(</span><span class="n">plot_bounding_box</span><span class="p">,</span><span class="n">density</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
-             <span class="n">new_mat</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">Float</span><span class="p">)</span>
+             <span class="n">new_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
              <span class="n">r1</span><span class="p">,</span><span class="n">r2</span><span class="p">,</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span> <span class="o">=</span> <span class="n">Slice</span><span class="p">(</span><span class="n">box</span><span class="p">,</span><span class="n">ct</span><span class="p">)</span>
              <span class="n">new_mat</span><span class="p">[</span><span class="n">r1</span><span class="p">:</span><span class="n">r2</span><span class="p">,</span><span class="n">c1</span><span class="p">:</span><span class="n">c2</span><span class="p">]</span> <span class="o">=</span> <span class="n">mat</span>
         <span class="k">else</span><span class="p">:</span>
@@ -453,7 +457,7 @@
         <span class="n">c_mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_matrix</span><span class="p">(</span><span class="s">&#39;Confidence&#39;</span><span class="p">)</span>
 
         <span class="c"># If it is an empty plot: self.bitmap=None</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">s_mat</span><span class="o">==</span><span class="bp">None</span> <span class="ow">and</span> <span class="n">c_mat</span><span class="o">==</span><span class="bp">None</span> <span class="ow">and</span> <span class="n">h_mat</span><span class="o">==</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">s_mat</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">c_mat</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">h_mat</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;Empty plot.&#39;</span><span class="p">)</span>
 
         <span class="c"># Otherwise, we construct self.bitmap according to what is specified by the channels.</span>
@@ -488,8 +492,8 @@
 
 <span class="sd">        Applies normalizing and cropping if required.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">zero</span><span class="o">=</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">Float</span><span class="p">)</span>
-        <span class="n">one</span><span class="o">=</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">Float</span><span class="p">)</span>
+        <span class="n">zero</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+        <span class="n">one</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 
         <span class="n">s</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">hsc_matrices</span>
         <span class="c"># Determine appropriate defaults for each matrix</span>
@@ -571,7 +575,7 @@
 
 <span class="sd">        Applies normalizing and cropping if required.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">zero</span><span class="o">=</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">Float</span><span class="p">)</span>
+        <span class="n">zero</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 
         <span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">rgb_matrices</span>
         <span class="c"># Determine appropriate defaults for each matrix</span>
@@ -705,16 +709,16 @@
 <span class="sd">        is the selectivity. The list is ordered by the orientation preference.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">vertices_from_or</span>        <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vertices_from_or</span><span class="p">,</span> <span class="n">otypes</span><span class="o">=</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">object_</span><span class="p">]</span> <span class="p">)</span>
+        <span class="n">vertices_from_or</span>        <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vertices_from_or</span><span class="p">,</span> <span class="n">otypes</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">object_</span><span class="p">]</span> <span class="p">)</span>
         <span class="n">mat_list</span>                <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">o</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">matrices</span><span class="p">:</span>
             <span class="n">a</span>   <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
             <span class="n">d</span>   <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
             <span class="n">ad</span>  <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">d</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span> <span class="n">ad</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">number</span> <span class="p">)</span> <span class="ow">and</span> <span class="n">ad</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span> <span class="n">ad</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span> <span class="p">)</span> <span class="ow">and</span> <span class="n">ad</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">mat_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span> <span class="n">vertices_from_or</span><span class="p">(</span> <span class="n">o</span> <span class="p">),</span> <span class="p">(</span> <span class="n">s</span> <span class="o">-</span> <span class="n">d</span> <span class="p">)</span> <span class="o">/</span> <span class="n">ad</span> <span class="p">)</span> <span class="p">)</span>
 
-        <span class="n">lines</span>   <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span> <span class="n">shape</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">object_</span> <span class="p">)</span>
+        <span class="n">lines</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span> <span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">object_</span> <span class="p">)</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">shape</span><span class="p">[</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">):</span>
             <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">shape</span><span class="p">[</span> <span class="mi">1</span> <span class="p">]</span> <span class="p">):</span>
                 <span class="n">os_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -757,7 +761,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/plotting/plot.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/plotting/plot.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

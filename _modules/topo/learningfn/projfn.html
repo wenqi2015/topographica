@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.learningfn" href="../learningfn.html" /> 
   </head>
@@ -74,10 +75,7 @@
 <span class="sd">ConnectionFields when given an input and output pattern and a set of</span>
 <span class="sd">ConnectionField objects.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ones</span><span class="p">,</span><span class="n">zeros</span>
-<span class="kn">import</span> <span class="nn">numpy.oldnumeric</span> <span class="kn">as</span> <span class="nn">Numeric</span>
-<span class="kn">from</span> <span class="nn">numpy.oldnumeric</span> <span class="kn">import</span> <span class="n">Float</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
 
@@ -140,7 +138,7 @@
 <span class="c">##        cfs = iterator.proj._cfs</span>
 <span class="c">##        # Initialize thresholds the first time we learn the size of the output_activity.</span>
 <span class="c">##        if not hasattr(self,&#39;unit_thresholds&#39;):</span>
-<span class="c">##            self.unit_thresholds=ones(output_activity.shape,Float32)*self.unit_threshold_0</span>
+<span class="c">##            self.unit_thresholds=np.ones(output_activity.shape, dtype=np.float32)*self.unit_threshold_0</span>
 <span class="c">##</span>
 <span class="c">##        rows,cols = output_activity.shape</span>
 <span class="c">##</span>
@@ -192,7 +190,7 @@
         <span class="n">single_connection_learning_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">constant_sum_connection_rate</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">proj_n_units</span><span class="p">,</span><span class="n">learning_rate</span><span class="p">)</span>
         <span class="c">##Initialise traces to zero if they don&#39;t already exist</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s">&#39;traces&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">traces</span><span class="o">=</span><span class="n">zeros</span><span class="p">(</span><span class="n">output_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">activity_type</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">traces</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">output_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">activity_type</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">cf</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">():</span>
             <span class="n">unit_activity</span> <span class="o">=</span> <span class="n">output_activity</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="c">#   print &quot;unit activity is&quot;,unit_activity</span>
@@ -226,7 +224,7 @@
         <span class="n">single_connection_learning_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">constant_sum_connection_rate</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">proj_n_units</span><span class="p">,</span><span class="n">learning_rate</span><span class="p">)</span>
         <span class="c"># avoid evaluating these references each time in the loop</span>
         <span class="n">single_cf_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">single_cf_fn</span>
-        <span class="n">outstar_wsum</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">input_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">outstar_wsum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">input_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">cf</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">():</span>
             <span class="n">single_cf_fn</span><span class="p">(</span><span class="n">cf</span><span class="o">.</span><span class="n">get_input_matrix</span><span class="p">(</span><span class="n">input_activity</span><span class="p">),</span>
                          <span class="n">output_activity</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cf</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">single_connection_learning_rate</span><span class="p">)</span>
@@ -279,12 +277,12 @@
 <span class="sd">        a per-connection learning rate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s">&#39;averages&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">averages</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">output_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">Float</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">averages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">output_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
 
 
             <span class="c"># normalize initial weights to 1.0</span>
             <span class="k">for</span> <span class="n">cf</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">():</span>
-                <span class="n">current_norm_value</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">Numeric</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">cf</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
+                <span class="n">current_norm_value</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">cf</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
                 <span class="k">if</span> <span class="n">current_norm_value</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">factor</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">current_norm_value</span><span class="p">)</span>
                     <span class="n">cf</span><span class="o">.</span><span class="n">weights</span> <span class="o">*=</span> <span class="n">factor</span>
@@ -311,7 +309,7 @@
         <span class="c"># For analysis only; can be removed (in which case also remove the initializations above)</span>
 <span class="c"># CEBALERT: I changed [0][7] to [0]!</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ave_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">averages</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temp_hist</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">Numeric</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">flatcfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">ravel</span><span class="p">())))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp_hist</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">flatcfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">ravel</span><span class="p">())))</span>
 
 
 
@@ -335,7 +333,7 @@
         <span class="sd">&quot;&quot;&quot;Apply the specified single_cf_fn to every CF.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scaling_factor</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scaling_factor</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">output_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate_scaling_factor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">output_activity</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
         <span class="n">single_cf_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">single_cf_fn</span>
         <span class="n">single_connection_learning_rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">constant_sum_connection_rate</span><span class="p">(</span><span class="n">iterator</span><span class="o">.</span><span class="n">proj_n_units</span><span class="p">,</span><span class="n">learning_rate</span><span class="p">)</span>
@@ -396,7 +394,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/learningfn/projfn.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/learningfn/projfn.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

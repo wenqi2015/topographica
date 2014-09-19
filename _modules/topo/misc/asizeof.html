@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
@@ -1737,7 +1738,7 @@
                 <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sizer</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sized</span><span class="p">)</span>
             <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">sized</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">_sum</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="n">size</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">_values</span><span class="p">(</span><span class="n">s</span><span class="p">)])</span>  <span class="c"># [] for Python 2.2</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">_sum</span><span class="p">([</span><span class="n">el</span><span class="o">.</span><span class="n">size</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">_values</span><span class="p">(</span><span class="n">s</span><span class="p">)])</span>  <span class="c"># [] for Python 2.2</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">_sum</span><span class="p">(</span><span class="n">_values</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_total</span> <span class="o">+=</span> <span class="n">s</span>  <span class="c"># accumulate</span>
@@ -2583,9 +2584,9 @@
         <span class="n">t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">_typedefs</span><span class="p">)</span>
         <span class="n">w</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="o">*</span> <span class="s">&#39; &#39;</span>
         <span class="n">_printf</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s%d</span><span class="s"> type definitions: basic- and itemsize (leng), kind ... </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">linesep</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s">&#39;-type[def]s&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_sorted</span><span class="p">([(</span><span class="n">_prepr</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_items</span><span class="p">(</span><span class="n">_typedefs</span><span class="p">)]):</span>  <span class="c"># [] for Python 2.2</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%(base)s</span><span class="s"> and </span><span class="si">%(item)s%(leng)s</span><span class="s">, </span><span class="si">%(kind)s%(code)s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">v</span><span class="o">.</span><span class="n">format</span><span class="p">()</span>
-            <span class="n">_printf</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k2</span><span class="p">,</span> <span class="n">v2</span> <span class="ow">in</span> <span class="n">_sorted</span><span class="p">([(</span><span class="n">_prepr</span><span class="p">(</span><span class="n">k1</span><span class="p">),</span> <span class="n">v1</span><span class="p">)</span> <span class="k">for</span> <span class="n">k1</span><span class="p">,</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">_items</span><span class="p">(</span><span class="n">_typedefs</span><span class="p">)]):</span>  <span class="c"># [] for Python 2.2</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%(base)s</span><span class="s"> and </span><span class="si">%(item)s%(leng)s</span><span class="s">, </span><span class="si">%(kind)s%(code)s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">v2</span><span class="o">.</span><span class="n">format</span><span class="p">()</span>
+            <span class="n">_printf</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">_opts</span><span class="p">(</span><span class="s">&#39;-test&#39;</span><span class="p">):</span>
          <span class="c"># compare the results of flatsize() *without* using sys.getsizeof()</span>
@@ -2706,7 +2707,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/asizeof.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/asizeof.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

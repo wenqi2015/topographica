@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
@@ -86,11 +87,13 @@
 
 <span class="kn">import</span> <span class="nn">param</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span><span class="o">,</span> <span class="nn">numpy.random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">ones</span><span class="p">,</span><span class="n">power</span>
 
 <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">activity_type</span>
 <span class="kn">from</span> <span class="nn">topo.base.arrayutil</span> <span class="kn">import</span> <span class="n">clip_lower</span>
+
+<span class="kn">from</span> <span class="nn">numbergen</span> <span class="kn">import</span> <span class="n">TimeAwareRandomState</span>
 
 <span class="c"># Imported here so that all TransferFns will be in the same package</span>
 <span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span><span class="p">,</span><span class="n">IdentityTF</span><span class="p">,</span><span class="n">Threshold</span>  <span class="c"># pyflakes:ignore (API import)</span>
@@ -365,22 +368,20 @@
 
 <span class="c"># CB: it&#39;s not ideal that all TransferFnWithRandomState fns have</span>
 <span class="c"># the plastic stuff (from TransferFnWithState).</span></div></div>
-<div class="viewcode-block" id="TransferFnWithRandomState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithRandomState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithRandomState</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
+<div class="viewcode-block" id="TransferFnWithRandomState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithRandomState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithRandomState</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">,</span> <span class="n">TimeAwareRandomState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Abstract base class for TransferFns that use a random number generator.</span>
+<span class="sd">    Abstract base class for TransferFns that use a random</span>
+<span class="sd">    state. Inherits time-dependent control of the random state from</span>
+<span class="sd">    numbergen.TimeAwareRandomState. Consult the help of</span>
+<span class="sd">    TimeAwareRandomState for more information.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">random_generator</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span><span class="n">doc</span><span class="o">=</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span><span class="n">precedence</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        numpy&#39;s RandomState provides methods for generating random</span>
-<span class="sd">        numbers (see RandomState&#39;s help for more information).</span>
-
-<span class="sd">        Note that all instances of subclasses of</span>
-<span class="sd">        TransferFnWithRandomState will share this RandomState object,</span>
-<span class="sd">        and hence its state. To create an instance of an</span>
-<span class="sd">        TransferFnWithRandomState subclass that has its own state, set</span>
-<span class="sd">        this parameter on the instance to a new RandomState instance.</span>
+<span class="sd">        Using Numpy&#39;s RandomState instead of random.Random as the</span>
+<span class="sd">        former can generate random arrays and more random</span>
+<span class="sd">        distributions. See RandomState&#39;s help for more information.</span>
 <span class="sd">        &quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
@@ -388,6 +389,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__random_generators_stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_random_state</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">shared</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="TransferFnWithRandomState.state_push"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithRandomState.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -404,7 +406,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__random_generators_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
-
 
 </div></div>
 <div class="viewcode-block" id="PoissonSample"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.PoissonSample">[docs]</a><span class="k">class</span> <span class="nc">PoissonSample</span><span class="p">(</span><span class="n">TransferFnWithRandomState</span><span class="p">):</span>
@@ -438,6 +439,7 @@
 <span class="s">       Amount by which to scale the output (e.g. 1.0/in_scale).&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_dependent</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash_and_seed</span><span class="p">()</span>
 
         <span class="n">x</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_scale</span>
         <span class="n">x</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseline_rate</span>
@@ -550,6 +552,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">y_avg</span><span class="o">=</span><span class="bp">None</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_dependent</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash_and_seed</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="o">=</span> <span class="bp">False</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_init</span><span class="o">==</span><span class="bp">None</span><span class="p">:</span>
@@ -722,7 +726,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/transferfn.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/transferfn.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

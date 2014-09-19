@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
@@ -648,9 +649,9 @@
                 <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">])</span>
                 <span class="n">metadata_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;cyclic_range&#39;</span><span class="p">,</span> <span class="s">&#39;precedence&#39;</span><span class="p">,</span>
                                   <span class="s">&#39;row_precedence&#39;</span><span class="p">,</span> <span class="s">&#39;src_name&#39;</span><span class="p">]</span>
-                <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">metadata_names</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
-                        <span class="n">metadata</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">metadata_names</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+                        <span class="n">metadata</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
                 <span class="n">state</span><span class="p">[</span><span class="s">&#39;views&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">NdMapping</span><span class="p">((</span><span class="n">sv</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">new_sv</span><span class="p">),</span>
                                                   <span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
         <span class="k">if</span> <span class="s">&#39;curve_dict&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
@@ -885,7 +886,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/legacy.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/legacy.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

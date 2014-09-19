@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
@@ -63,11 +64,12 @@
 <div class="section" id="opencvcamera-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">opencvcamera</span></tt> Module<a class="headerlink" href="#opencvcamera-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-df7d365a137c561e58459d06c009b4eb172fc939.png" alt="Inheritance diagram of topo.hardware.opencvcamera" usemap="#inheritance1b0934e756" class="inheritance"/>
+<img src="../_images/inheritance-d056a60a146f21e70a1b4f40c315daa3d20f88a2.png" alt="Inheritance diagram of topo.hardware.opencvcamera" usemap="#inheritance1b0934e756" class="inheritance"/>
 <map id="inheritance1b0934e756" name="inheritance1b0934e756">
-<area shape="rect" id="node1" title="Generic 2D image generator." alt="" coords="618,4,812,28"/>
-<area shape="rect" id="node2" title="A class hierarchy for callable objects that can generate 2D patterns." alt="" coords="292,4,572,28"/>
-<area shape="rect" id="node3" title="Base class for named objects that support Parameters and message" alt="" coords="5,4,247,28"/>
+<area shape="rect" id="node1" title="Generic 2D image generator with support for multiple channels." alt="" coords="737,3,887,22"/>
+<area shape="rect" id="node2" title="Abstract base class for patterns supporting multiple channels natively." alt="" coords="480,3,701,22"/>
+<area shape="rect" id="node3" title="A class hierarchy for callable objects that can generate 2D patterns." alt="" coords="227,3,445,22"/>
+<area shape="rect" id="node4" title="Base class for named objects that support Parameters and message" alt="" coords="4,3,192,22"/>
 </map>
 </p>
 <span class="target" id="module-topo.hardware.opencvcamera"></span><p>A class for grabbing frames from the camera.
@@ -286,15 +288,16 @@ it is a Logitech software for webcam.</p>
 <div class="section" id="robotics-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">robotics</span></tt> Module<a class="headerlink" href="#robotics-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-bc37ca9052bc11b7335057e91fef1a72047883d9.png" alt="Inheritance diagram of topo.hardware.robotics" usemap="#inheritance317af4f87e" class="inheritance"/>
+<img src="../_images/inheritance-1ddaf3d4ab3ab1adc206685ace163881345a3203.png" alt="Inheritance diagram of topo.hardware.robotics" usemap="#inheritance317af4f87e" class="inheritance"/>
 <map id="inheritance317af4f87e" name="inheritance317af4f87e">
-<area shape="rect" id="node1" title="Generic 2D image generator." alt="" coords="491,3,645,22"/>
-<area shape="rect" id="node5" href="#topo.hardware.robotics.CameraImage" title="An image pattern generator that gets its image from a Player" alt="" coords="681,3,878,22"/>
-<area shape="rect" id="node2" title="A class hierarchy for callable objects that can generate 2D patterns." alt="" coords="232,3,455,22"/>
-<area shape="rect" id="node3" title="Base class for named objects that support Parameters and message" alt="" coords="4,22,197,41"/>
-<area shape="rect" id="node4" href="topo.base.html#topo.base.simulation.EventProcessor" title="Base class for EventProcessors, i.e. objects that can accept and" alt="" coords="247,40,440,59"/>
-<area shape="rect" id="node7" href="#topo.hardware.robotics.PTZ" title="Pan/Tilt/Zoom control." alt="" coords="494,40,642,59"/>
-<area shape="rect" id="node6" href="#topo.hardware.robotics.CameraImageQueued" title="A version of CameraImage that gets the image from the camera&#39;s image queue," alt="" coords="914,3,1148,22"/>
+<area shape="rect" id="node1" title="Generic 2D image generator with support for multiple channels." alt="" coords="614,3,739,18"/>
+<area shape="rect" id="node6" href="#topo.hardware.robotics.CameraImage" title="An image pattern generator that gets its image from a Player" alt="" coords="769,3,929,18"/>
+<area shape="rect" id="node2" title="Abstract base class for patterns supporting multiple channels natively." alt="" coords="400,3,584,18"/>
+<area shape="rect" id="node3" title="A class hierarchy for callable objects that can generate 2D patterns." alt="" coords="189,3,371,18"/>
+<area shape="rect" id="node4" title="Base class for named objects that support Parameters and message" alt="" coords="3,18,160,34"/>
+<area shape="rect" id="node5" href="topo.base.html#topo.base.simulation.EventProcessor" title="Base class for EventProcessors, i.e. objects that can accept and" alt="" coords="201,33,358,48"/>
+<area shape="rect" id="node8" href="#topo.hardware.robotics.PTZ" title="Pan/Tilt/Zoom control." alt="" coords="432,33,552,48"/>
+<area shape="rect" id="node7" href="#topo.hardware.robotics.CameraImageQueued" title="A version of CameraImage that gets the image from the camera&#39;s image queue," alt="" coords="958,3,1149,18"/>
 </map>
 </p>
 <span class="target" id="module-topo.hardware.robotics"></span><p>Classes for using robotic or other hardware using Topographica.</p>
@@ -309,7 +312,7 @@ high-level communications with Player robots.</p>
 <dl class="class">
 <dt id="topo.hardware.robotics.CameraImage">
 <em class="property">class </em><tt class="descclassname">topo.hardware.robotics.</tt><tt class="descname">CameraImage</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/hardware/robotics.html#CameraImage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.hardware.robotics.CameraImage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.image-module.html#imagen.image.GenericImage" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.image.GenericImage</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.html#imagen.image.GenericImage" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.image.GenericImage</span></tt></a></p>
 <p>An image pattern generator that gets its image from a Player
 camera device.</p>
 <dl class="docutils">
@@ -317,15 +320,17 @@ camera device.</p>
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If False, discards the image and pattern_sampler after drawing the pattern each time,
-        to make it possible to use very large databases of images without
-        running out of memory.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00037&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The PatternSampler to use to resample/resize the image.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>If False, discards the image and pattern_sampler after drawing
+        the pattern each time, to make it possible to use very large
+        databases of images without running out of memory.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">orientation</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.4, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Polar angle of pattern, i.e., the orientation in the Cartesian coordinate
         system, with zero at 3 o&#8217;clock and increasing counterclockwise.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00031&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The PatternSampler to use to resample/resize the image.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">channel_transforms</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional functions to apply post processing to the set of channels.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Optional object (expected to be an array) with which to multiply the
         pattern array after it has been created, before any output_fns are
@@ -334,7 +339,7 @@ camera device.</p>
 <dd>BoundingBox of the area in which the pattern is generated.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Density (number of samples per 1.0 length) in the x direction.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">mask_shape</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=0.06, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">mask_shape</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=0.06, readonly=False</em>)</dt>
 <dd>Optional PatternGenerator used to construct a mask to be applied to
         the pattern.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=0.08, readonly=False</em>)</dt>
@@ -354,7 +359,7 @@ camera device.</p>
         Typically the same as the xdensity.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">aspect_ratio</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.31, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio of width to height; size*aspect_ratio gives the width.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">camera</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">camera</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>An instance of playerrobot.CameraDevice to be used
        to generate images.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">size</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.3, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -377,7 +382,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b1b0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715f6e9310&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -391,12 +396,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b520&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795fc8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b3c0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795e68&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -441,22 +446,23 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b470&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795f70&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImage.set_matrix_dimensions">
 <tt class="descname">set_matrix_dimensions</tt><big>(</big><em>bounds</em>, <em>xdensity</em>, <em>ydensity</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_matrix_dimensions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Change the dimensions of the matrix into which the pattern will be drawn.
-Users of this class should call this method rather than changing
-the bounds, xdensity, and ydensity parameters directly.  Subclasses
-can override this method to update any internal data structures that
-may depend on the matrix dimensions.</p>
+<dd><p>Change the dimensions of the matrix into which the pattern
+will be drawn.  Users of this class should call this method
+rather than changing the bounds, xdensity, and ydensity
+parameters directly.  Subclasses can override this method to
+update any internal data structures that may depend on the
+matrix dimensions.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b418&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795998&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -502,15 +508,17 @@ most recent as the current pattern.</p>
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>If False, discards the image and pattern_sampler after drawing the pattern each time,
-        to make it possible to use very large databases of images without
-        running out of memory.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00037&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The PatternSampler to use to resample/resize the image.</dd>
+<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>If False, discards the image and pattern_sampler after drawing
+        the pattern each time, to make it possible to use very large
+        databases of images without running out of memory.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">orientation</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.4, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Polar angle of pattern, i.e., the orientation in the Cartesian coordinate
         system, with zero at 3 o&#8217;clock and increasing counterclockwise.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00031&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The PatternSampler to use to resample/resize the image.</dd>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">channel_transforms</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Optional functions to apply post processing to the set of channels.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
 <dd>Optional object (expected to be an array) with which to multiply the
         pattern array after it has been created, before any output_fns are
@@ -519,7 +527,7 @@ most recent as the current pattern.</p>
 <dd>BoundingBox of the area in which the pattern is generated.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">xdensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Density (number of samples per 1.0 length) in the x direction.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">mask_shape</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=0.06, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">mask_shape</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=0.06, readonly=False</em>)</dt>
 <dd>Optional PatternGenerator used to construct a mask to be applied to
         the pattern.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=0.08, readonly=False</em>)</dt>
@@ -539,7 +547,7 @@ most recent as the current pattern.</p>
         Typically the same as the xdensity.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">aspect_ratio</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.31, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio of width to height; size*aspect_ratio gives the width.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">camera</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">camera</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>An instance of playerrobot.CameraDevice to be used
        to generate images.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">size</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.3, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -562,7 +570,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b2b8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715f6e93c0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -576,12 +584,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b368&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795fc8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b1b0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795f70&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -626,22 +634,23 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b418&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795e68&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImageQueued.set_matrix_dimensions">
 <tt class="descname">set_matrix_dimensions</tt><big>(</big><em>bounds</em>, <em>xdensity</em>, <em>ydensity</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_matrix_dimensions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Change the dimensions of the matrix into which the pattern will be drawn.
-Users of this class should call this method rather than changing
-the bounds, xdensity, and ydensity parameters directly.  Subclasses
-can override this method to update any internal data structures that
-may depend on the matrix dimensions.</p>
+<dd><p>Change the dimensions of the matrix into which the pattern
+will be drawn.  Users of this class should call this method
+rather than changing the bounds, xdensity, and ydensity
+parameters directly.  Subclasses can override this method to
+update any internal data structures that may depend on the
+matrix dimensions.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b208&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795c58&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -689,7 +698,7 @@ can be set as a parameter.</p>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">invert_amplitude</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Invert the sense of the amplitude signal, in order to get the
        appropriate ipsi-/contralateral sense of saccades.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">ptz</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>An instance of playerrobot.PTZDevice to be controlled.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">zoom</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=120, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Desired FOV width in degrees.</dd>
@@ -711,7 +720,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b3c0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715f6e9520&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -725,12 +734,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b520&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795fc8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b208&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795f70&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -795,12 +804,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b4c8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795c58&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e384b628&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715e795890&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -884,7 +893,8 @@ containing the arguments.</p>
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/Reference_Manual/topo.hardware.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Reference_Manual/topo.hardware.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

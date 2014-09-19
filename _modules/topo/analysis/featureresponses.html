@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
@@ -82,6 +83,7 @@
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
 <span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">SheetStack</span>
+<span class="kn">from</span> <span class="nn">dataviews.ipython.widgets</span> <span class="kn">import</span> <span class="n">ProgressBar</span>
 <span class="kn">from</span> <span class="nn">dataviews.ndmapping</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
 <span class="kn">import</span> <span class="nn">topo</span>
@@ -109,9 +111,9 @@
 <span class="sd">    If force is False and the existing Activity SheetView isn&#39;t stale,</span>
 <span class="sd">    the existing view is returned.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;_activity_buffer&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;ActivityBuffer&#39;</span>
     <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">Sheet</span><span class="p">)[</span><span class="n">sheet_name</span><span class="p">]</span>
-    <span class="n">view</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">view</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">Maps</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">metadata</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">(</span><span class="n">precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
                         <span class="n">row_precedence</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
@@ -122,7 +124,7 @@
         <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
         <span class="n">view</span> <span class="o">=</span> <span class="n">SheetStack</span><span class="p">((</span><span class="n">time</span><span class="p">,</span> <span class="n">sv</span><span class="p">),</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="n">Time</span><span class="p">])</span>
         <span class="n">view</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-        <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
+        <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">Maps</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="n">view</span><span class="o">.</span><span class="n">dim_range</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">time</span><span class="p">:</span>
             <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">activity</span><span class="p">),</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
@@ -177,7 +179,7 @@
 <span class="sd">    In order to to see the sequence of values presented, you may use</span>
 <span class="sd">    the back arrow history mechanism in the GUI. Note that the GUI&#39;s Activity</span>
 <span class="sd">    window must be open. Alternatively or access the activities through the</span>
-<span class="sd">    Activity entry in the views.maps dictionary on the specified sheets.</span>
+<span class="sd">    Activity entry in the views.Maps dictionary on the specified sheets.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">apply_output_fns</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
@@ -319,6 +321,10 @@
     <span class="n">return_responses</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        If True, return a dictionary of the measured sheet activities.&quot;&quot;&quot;</span><span class="p">)</span>
 
+    <span class="n">progress_bar</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       Whether or not to display a textual progress bar during</span>
+<span class="s">       measurements. Disabled when using the Tk GUI.&quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">{},</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[],</span> <span class="n">current</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="n">all_input_names</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">GeneratorSheet</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
@@ -333,12 +339,22 @@
         <span class="k">if</span> <span class="n">current</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">timer</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_progress</span> <span class="o">=</span> <span class="n">current</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">topo</span><span class="p">,</span> <span class="s">&#39;guimain&#39;</span><span class="p">):</span>
                 <span class="n">topo</span><span class="o">.</span><span class="n">guimain</span><span class="o">.</span><span class="n">open_progress_window</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">install_sheetview</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;Measurement Progress&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MeasurementInterrupt</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">update_timer</span><span class="p">(</span><span class="s">&#39;Measurement Timer&#39;</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+        <span class="n">progress</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">current</span><span class="p">)</span><span class="o">/</span><span class="n">total</span><span class="o">*</span><span class="mi">100</span> <span class="k">if</span> <span class="n">total</span> <span class="k">else</span> <span class="mi">100</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span> <span class="ow">and</span> <span class="p">(</span><span class="n">progress</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_progress</span> <span class="ow">or</span> <span class="n">progress</span> <span class="o">==</span> <span class="mi">100</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_progress</span> <span class="o">=</span> <span class="n">progress</span> <span class="o">+</span> <span class="mi">1</span> <span class="c"># +1 reduces fast updates/flicker</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">progressbar</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
 
         <span class="n">responses</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">pattern_response</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__call__</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
                                                            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
@@ -407,6 +423,9 @@
 <span class="s">        Storage location on the sheet specific view object. If None simply</span>
 <span class="s">        inserts results into top level views object.&quot;&quot;&quot;</span><span class="p">)</span>
 
+    <span class="n">only_latest</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Whether to replace any existing results in the global AttrTree.&quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewcontainer</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="n">objects</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(),</span> <span class="o">**</span><span class="nb">dict</span><span class="p">([(</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span> <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">connections</span><span class="p">()]))</span>
@@ -419,7 +438,7 @@
                 <span class="n">proj_store</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
                 <span class="n">proj_store</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">sublabel</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
                 <span class="n">storage</span> <span class="o">=</span> <span class="n">proj_store</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">sublabel</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">storage</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">storage</span> <span class="ow">or</span> <span class="n">p</span><span class="o">.</span><span class="n">only_latest</span><span class="p">:</span>
                 <span class="n">storage</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">container</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">storage</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
@@ -431,7 +450,7 @@
         <span class="n">sheet</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
         <span class="n">map_name</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;Preference&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">coords</span>
-        <span class="k">return</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="p">[</span><span class="n">map_name</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">Maps</span><span class="p">[</span><span class="n">map_name</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
             <span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> should be measured before plotting this tuning curve -- &quot;</span>
@@ -493,7 +512,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/analysis/featureresponses.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/analysis/featureresponses.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

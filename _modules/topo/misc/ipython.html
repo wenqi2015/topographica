@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
@@ -81,6 +82,7 @@
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">IPython</span> <span class="c"># pyflakes:ignore (Required import)</span>
+    <span class="kn">from</span> <span class="nn">IPython.core.magic</span> <span class="kn">import</span> <span class="n">Magics</span><span class="p">,</span> <span class="n">magics_class</span><span class="p">,</span> <span class="n">line_magic</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">nose.plugins.skip</span> <span class="kn">import</span> <span class="n">SkipTest</span>
     <span class="k">raise</span> <span class="n">SkipTest</span><span class="p">(</span><span class="s">&quot;IPython extension requires IPython &gt;= 0.12&quot;</span><span class="p">)</span>
@@ -137,6 +139,7 @@
 <span class="sd">                save before a staleness warning is issued. Useful when</span>
 <span class="sd">                exporting from an active IPython notebook.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Deprecation Warning: Please use the </span><span class="si">%d</span><span class="s">efine_exporter magic instead&quot;</span><span class="p">)</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">output_path</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">notebook</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">ext</span>
@@ -169,20 +172,57 @@
         <span class="n">deltas</span> <span class="o">=</span><span class="n">difflib</span><span class="o">.</span><span class="n">unified_diff</span><span class="p">(</span><span class="n">old_contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">new_contents</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(),</span> <span class="n">lineterm</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
         <span class="k">print</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">deltas</span><span class="p">))</span>
 
+</div>
+<span class="nd">@magics_class</span>
+<div class="viewcode-block" id="ExportMagic"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.ipython.ExportMagic">[docs]</a><span class="k">class</span> <span class="nc">ExportMagic</span><span class="p">(</span><span class="n">Magics</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Line magic that defines a cell magic to export the cell contents</span>
+<span class="sd">    to a specific file. For instance, running</span>
+
+<span class="sd">    %define_exporter OUT ./output.txt</span>
+
+<span class="sd">    will define an %%OUT cell magic that writes to the file</span>
+<span class="sd">    output.txt. This cell magic takes a optional arguments &#39;clear&#39; and</span>
+<span class="sd">    &#39;run&#39;. If &#39;clear&#39; should be specified for the first cell to be</span>
+<span class="sd">    exported. If &#39;run&#39; is specified, the cell is executed in the</span>
+<span class="sd">    active notebook as well as exported.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@line_magic</span>
+    <span class="k">def</span> <span class="nf">define_exporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Please supply the export magic name and target filename&quot;</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">split</span>
+
+        <span class="k">def</span> <span class="nf">exporter</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="s">&#39;w&#39;</span> <span class="k">if</span> <span class="s">&#39;clear&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">else</span> <span class="s">&#39;a&#39;</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">mode</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cell</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s">&#39;run&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">run_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">register_magic_function</span><span class="p">(</span><span class="n">exporter</span><span class="p">,</span> <span class="n">magic_kind</span><span class="o">=</span><span class="s">&#39;cell&#39;</span><span class="p">,</span>
+                                           <span class="n">magic_name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">set_hook</span><span class="p">(</span><span class="s">&#39;complete_command&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;clear&#39;</span><span class="p">],</span>
+                            <span class="n">str_key</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%%</span><span class="s">{name}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
+
+
 <span class="c">#===============#</span>
 <span class="c"># Display hooks #</span>
 <span class="c">#===============#</span>
 </div>
-<span class="kn">from</span> <span class="nn">topo.base.sheetview</span> <span class="kn">import</span> <span class="n">CFView</span>
+<span class="kn">from</span> <span class="nn">topo.base.sheetview</span> <span class="kn">import</span> <span class="n">CFView</span><span class="p">,</span> <span class="n">CFStack</span>
 
 <span class="kn">from</span> <span class="nn">dataviews.ipython</span> <span class="kn">import</span> <span class="n">load_ipython_extension</span> <span class="k">as</span> <span class="n">load_imagen_extension</span>
 <span class="kn">from</span> <span class="nn">dataviews.ipython.display_hooks</span> <span class="kn">import</span> <span class="n">stack_display</span><span class="p">,</span> <span class="n">view_display</span>
-<span class="kn">from</span> <span class="nn">dataviews.plots</span> <span class="kn">import</span> <span class="n">SheetViewPlot</span><span class="p">,</span> <span class="n">Plot</span>
+<span class="kn">from</span> <span class="nn">dataviews.plotting</span> <span class="kn">import</span> <span class="n">SheetViewPlot</span><span class="p">,</span> <span class="n">Plot</span>
 
 <span class="kn">from</span> <span class="nn">dataviews.ipython.widgets</span> <span class="kn">import</span> <span class="n">RunProgress</span>
 <span class="n">RunProgress</span><span class="o">.</span><span class="n">run_hook</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span>
 
-<span class="n">Plot</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">CFView</span><span class="p">:</span> <span class="n">SheetViewPlot</span><span class="p">})</span>
+<span class="n">Plot</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">CFView</span><span class="p">:</span> <span class="n">SheetViewPlot</span><span class="p">,</span>
+                      <span class="n">CFStack</span><span class="p">:</span> <span class="n">SheetViewPlot</span><span class="p">})</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">ViewFrame</span>
@@ -201,6 +241,8 @@
     <span class="k">global</span> <span class="n">_loaded</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">_loaded</span><span class="p">:</span>
         <span class="n">_loaded</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">ip</span><span class="o">.</span><span class="n">register_magics</span><span class="p">(</span><span class="n">ExportMagic</span><span class="p">)</span>
+
 
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">load_ipython_extension</span> <span class="k">as</span> <span class="n">load_lancet_extension</span>
@@ -210,6 +252,9 @@
         <span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">runscript</span>
         <span class="n">runscript</span><span class="o">.</span><span class="n">ns</span> <span class="o">=</span> <span class="n">ip</span><span class="o">.</span><span class="n">user_ns</span>
         <span class="n">runscript</span><span class="o">.</span><span class="n">push</span> <span class="o">=</span> <span class="n">ip</span><span class="o">.</span><span class="n">push</span>
+
+        <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">exec_startup_files</span>
+        <span class="n">exec_startup_files</span><span class="p">()</span>
 </pre></div>
 
           </div>
@@ -244,7 +289,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/ipython.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/ipython.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

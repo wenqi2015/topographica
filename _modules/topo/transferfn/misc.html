@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.transferfn" href="../transferfn.html" /> 
   </head>
@@ -345,7 +346,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_y_avg_prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_avg</span>   <span class="c"># Copy only if not in continuous mode</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_apply_threshold</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>            <span class="c"># Apply the threshold only after it is updated</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_x_prev</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>  <span class="c"># Recording activity for the next periodic update</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_x_prev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:]</span>  <span class="c"># Recording activity for the next periodic update</span>
 
 
     <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -509,7 +510,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/transferfn/misc.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/transferfn/misc.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

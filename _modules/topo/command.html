@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
@@ -84,6 +85,7 @@
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">tarfile</span><span class="o">,</span> <span class="nn">zipfile</span>
 
 <span class="kn">import</span> <span class="nn">__main__</span>
 
@@ -272,6 +274,10 @@
 <span class="s">        Hook to push the updated namespace for handling more</span>
 <span class="s">        complicated namespaces, such as IPython Notebook.&quot;&quot;&quot;</span><span class="p">)</span>
 
+    <span class="n">load</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       Whether to automatically load class based models when called.</span>
+<span class="s">       Useful for compatibility with older ty script definition files.&quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_file</span><span class="p">,</span> <span class="n">ns</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">global_params</span>
@@ -282,8 +288,9 @@
         <span class="n">source_path</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="n">source_file</span><span class="p">)</span>
         <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s">&quot;&lt;execution&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;exec&quot;</span><span class="p">)</span>
         <span class="k">exec</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">ns</span> <span class="c">#globals and locals</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">load</span><span class="p">:</span>
+            <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;verbose&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
 
 <span class="c"># This class is left around to support older snapshots: All snapshots</span>
 <span class="c"># since 0.9.7 up until r11545 (addition of UnpickleEnvironmentCreator)</span>
@@ -428,9 +435,10 @@
 
     <span class="c"># Temporary -- broadcast topo.sim.time to all subpackages</span>
     <span class="n">param</span><span class="o">.</span><span class="n">Dynamic</span><span class="o">.</span><span class="n">time_fn</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span>
-    <span class="n">numbergen</span><span class="o">.</span><span class="n">TimeDependent</span><span class="o">.</span><span class="n">time_fn</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span>
+    <span class="n">numbergen</span><span class="o">.</span><span class="n">TimeAware</span><span class="o">.</span><span class="n">time_fn</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span>
     <span class="n">imagen</span><span class="o">.</span><span class="n">Translator</span><span class="o">.</span><span class="n">time_fn</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span>
-
+    <span class="n">imagen</span><span class="o">.</span><span class="n">Sweeper</span><span class="o">.</span><span class="n">time_fn</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span>
+    <span class="n">imagen</span><span class="o">.</span><span class="n">Animation</span><span class="o">.</span><span class="n">time_fn</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span>
 
 
 </div>
@@ -750,8 +758,27 @@
 <span class="s">        output_directory&#39;s name.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">metadata_dir</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;Specifies the name of a</span>
-<span class="s">        subdirectory used to output metadata from run_batch if set.&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s">        subdirectory used to output metadata from run_batch (if set).&quot;&quot;&quot;</span><span class="p">)</span>
 
+
+    <span class="n">compress_metadata</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ObjectSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                              <span class="n">objects</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="s">&#39;tar.gz&#39;</span><span class="p">,</span> <span class="s">&#39;zip&#39;</span><span class="p">],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">         If not None and a metadata directory is specified, the</span>
+<span class="s">         metadata directory will be replaced by either a tar.gz file</span>
+<span class="s">         or a .zip file.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">save_script_repr</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ObjectSelector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;first&#39;</span><span class="p">,</span>
+                    <span class="n">objects</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="s">&#39;first&#39;</span><span class="p">,</span> <span class="s">&#39;last&#39;</span><span class="p">,</span> <span class="s">&#39;all&#39;</span><span class="p">],</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       Whether to save a script_repr and if so, how often. If set to</span>
+<span class="s">       &#39;first&#39;, the script_repr is saved on the first time value, if</span>
+<span class="s">       set to &#39;last&#39; then it will be saved on the last time value. If</span>
+<span class="s">       set to &#39;all&#39; then a script repr is saved for all time values.</span>
+<span class="s">       Saving is disabled entirely if set to None.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">progress_bar</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;stdout&#39;</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">      The display mode for the progress bar. By default, the progress</span>
+<span class="s">      of run_batch is displayed using standard output but may also be</span>
+<span class="s">      set to &#39;disabled&#39; as necessary.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_truncate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -763,7 +790,6 @@
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">script_file</span><span class="p">,</span><span class="o">**</span><span class="n">params_to_override</span><span class="p">):</span>
         <span class="n">p</span><span class="o">=</span><span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">params_to_override</span><span class="p">,</span><span class="n">allow_extra_keywords</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
         <span class="kn">import</span> <span class="nn">os</span>
         <span class="kn">import</span> <span class="nn">shutil</span>
 
@@ -882,12 +908,32 @@
             <span class="n">print_sizes</span><span class="p">()</span>
             <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">simname</span>
 
+            <span class="kn">from</span> <span class="nn">dataviews.ipython.widgets</span> <span class="kn">import</span> <span class="n">ProgressBar</span><span class="p">,</span> <span class="n">RunProgress</span>
+            <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+            <span class="n">ProgressBar</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">progress_bar</span>
+            <span class="n">progress_bar</span> <span class="o">=</span> <span class="n">RunProgress</span><span class="p">(</span><span class="n">run_hook</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
+                                       <span class="n">display</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">times</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">completion</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+                <span class="n">completion</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">times</span> <span class="o">-</span> <span class="n">times</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">times</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+                <span class="n">completion</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">completion</span><span class="p">))</span>
+
             <span class="c"># Run each segment, doing the analysis and saving the script state each time</span>
-            <span class="k">for</span> <span class="n">run_to</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
-                <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_to</span> <span class="o">-</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">run_to</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+                <span class="n">progress_bar</span><span class="o">.</span><span class="n">percent_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">completion</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">completion</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">progress_bar</span><span class="p">(</span><span class="n">run_to</span> <span class="o">-</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+
                 <span class="n">p</span><span class="o">.</span><span class="n">analysis_fn</span><span class="p">()</span>
                 <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">metadata_dir</span>
-                <span class="n">save_script_repr</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">save_script_repr</span> <span class="o">==</span> <span class="s">&#39;first&#39;</span>  <span class="ow">and</span> <span class="n">run_to</span> <span class="o">==</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">save_script_repr</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="n">p</span><span class="o">.</span><span class="n">save_script_repr</span> <span class="o">==</span> <span class="s">&#39;last&#39;</span>  <span class="ow">and</span> <span class="p">(</span><span class="n">run_to</span> <span class="o">==</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">save_script_repr</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="n">p</span><span class="o">.</span><span class="n">save_script_repr</span> <span class="o">==</span> <span class="s">&#39;all&#39;</span><span class="p">:</span>
+                    <span class="n">save_script_repr</span><span class="p">()</span>
                 <span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">dirpath</span>
                 <span class="n">elapsedtime</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">starttime</span>
                 <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;run_batch&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">message</span><span class="p">(</span>
@@ -901,6 +947,23 @@
             <span class="kn">import</span> <span class="nn">traceback</span>
             <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Warning -- Error detected: execution halted.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">metadata_dir</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">compress_metadata</span> <span class="o">==</span> <span class="s">&#39;tar.gz&#39;</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">)</span>
+            <span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">.tar.gz&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">),</span> <span class="s">&quot;w:gz&quot;</span><span class="p">)</span>
+            <span class="n">tar</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">,</span> <span class="n">arcname</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">tar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">p</span><span class="o">.</span><span class="n">metadata_dir</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">compress_metadata</span> <span class="o">==</span> <span class="s">&#39;zip&#39;</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">)</span>
+            <span class="n">zipf</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">normalize_path</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">.zip&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">),</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+            <span class="n">zipf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">,</span> <span class="n">arcname</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">):</span>
+                <span class="n">zipf</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span>
+                           <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">metadata_dir</span><span class="p">,</span><span class="n">f</span><span class="p">))</span>
+            <span class="n">zipf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">metadata_dir</span><span class="p">)</span>
+
 
 
         <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Batch run completed at </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%a </span><span class="si">%d</span><span class="s"> %b %Y %H:%M:%S +0000&quot;</span><span class="p">,</span>
@@ -1012,7 +1075,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/command.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/command.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

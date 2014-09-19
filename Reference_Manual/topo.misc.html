@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../index.html" /> 
   </head>
   <body>
@@ -651,6 +652,10 @@ In either case, this is followed by: for k in F: D[k] = F[k]</p>
 </dd></dl>
 
 </div>
+<div class="section" id="color-module">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">color</span></tt> Module<a class="headerlink" href="#color-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-topo.misc.color"></span><p>Provides optimized color conversion utilities to speedup imagen color conversion (imagen.colorspaces.rgb_to_hsv and imagen.colorspaces.hsv_to_rgb.</p>
+</div>
 <div class="section" id="commandline-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">commandline</span></tt> Module<a class="headerlink" href="#commandline-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
@@ -726,7 +731,7 @@ CommandPrompt.set_format(&#8216;{my_var}&gt;&gt;&gt; &#8216;)</dd>
 <dl class="class">
 <dt id="topo.misc.commandline.GlobalParams">
 <em class="property">class </em><tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">GlobalParams</tt><big>(</big><em>context=None</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#GlobalParams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.GlobalParams" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.OptionalSingleton</span></tt></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">topo.base.simulation.OptionalSingleton</span></tt></p>
 <p>A Parameterized class providing script-level parameters.</p>
 <p>Script-level parameters can be set from the commandline by passing
 via -p, e.g. ./topographica -p retina_density=10</p>
@@ -794,7 +799,7 @@ warning of any replacements.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.commandline.GlobalParams.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e5676470&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71604a9100&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -808,12 +813,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.commandline.GlobalParams.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e5676578&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b71604a9208&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.commandline.GlobalParams.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e56765d0&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b71604a9260&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -858,7 +863,7 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.commandline.GlobalParams.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e5676940&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b71604a95d0&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -870,7 +875,7 @@ tracking new names and warning of any replacements.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.commandline.GlobalParams.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e5676a48&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b71604a96d8&gt;</em><a class="headerlink" href="#topo.misc.commandline.GlobalParams.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1060,6 +1065,602 @@ set already.</p>
 <dt id="topo.misc.commandline.v_action">
 <tt class="descclassname">topo.misc.commandline.</tt><tt class="descname">v_action</tt><big>(</big><em>option</em>, <em>opt_str</em>, <em>value</em>, <em>parser</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/commandline.html#v_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.commandline.v_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback function for the -v option.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="featurecoordinators-module">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">featurecoordinators</span></tt> Module<a class="headerlink" href="#featurecoordinators-module" title="Permalink to this headline">¶</a></h2>
+<p class="graphviz">
+<img src="../_images/inheritance-daf0087f7ba43f8eaf698e9c499b6125da75f9da.png" alt="Inheritance diagram of topo.misc.featurecoordinators" usemap="#inheritance084e3a6692" class="inheritance"/>
+<map id="inheritance084e3a6692" name="inheritance084e3a6692">
+<area shape="rect" id="node1" title="A FeatureCoordinator modifies a supplied PatternGenerator." alt="" coords="535,63,789,83"/>
+<area shape="rect" id="node4" href="#topo.misc.featurecoordinators.DisparityCoordinator" title="Coordinates the disparity (difference of pattern locations) of two" alt="" coords="848,4,1127,24"/>
+<area shape="rect" id="node5" href="#topo.misc.featurecoordinators.MotionCoordinator" title="Coordinates the motion of patterns." alt="" coords="853,43,1122,63"/>
+<area shape="rect" id="node6" href="#topo.misc.featurecoordinators.OcularityCoordinator" title="Coordinates the ocularity (brightness difference) of two pattern" alt="" coords="848,82,1127,102"/>
+<area shape="rect" id="node7" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator" title="Coordinates the size of pattern generators. This is useful when" alt="" coords="827,121,1148,142"/>
+<area shape="rect" id="node2" title="Acts like a Python function, but with arguments that are Parameters." alt="" coords="248,63,496,83"/>
+<area shape="rect" id="node3" title="Base class for named objects that support Parameters and message" alt="" coords="4,63,210,83"/>
+</map>
+</p>
+<span class="target" id="module-topo.misc.featurecoordinators"></span><p>Additional FeatureCoordinators specific to cortical modelling work,
+supplementing the general-purpose ones in imagen.patterncoordinator.</p>
+<dl class="class">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator">
+<em class="property">class </em><tt class="descclassname">topo.misc.featurecoordinators.</tt><tt class="descname">DisparityCoordinator</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/featurecoordinators.html#DisparityCoordinator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.html#imagen.patterncoordinator.FeatureCoordinator" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.patterncoordinator.FeatureCoordinator</span></tt></a></p>
+<p>Coordinates the disparity (difference of pattern locations) of two
+pattern generators.  The pattern_label of the generators must
+contain &#8216;Left&#8217; or &#8216;Right&#8217;</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">disparity_bound</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.08333, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Maximum difference of the pattern locations between the two
+        eyes (on the x axis).</dd>
+</dl>
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.debug">
+<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a debugging statement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.defaults">
+<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return {parameter_name:parameter.default} for all non-constant
+Parameters.</p>
+<p>Note that a Parameter for which instantiate==True has its default
+instantiated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.force_new_dynamic_value">
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8730&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.get_param_values">
+<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.get_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of name,value pairs for all Parameters of this
+object.</p>
+<p>If onlychanged is True, will only return values that are not
+equal to the default value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.get_value_generator">
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8260&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.inspect_value">
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8310&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.inspect_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.instance">
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8368&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.message">
+<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a message.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.params">
+<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Parameters of this class as the
+dictionary {name: parameter_object}</p>
+<p>Includes Parameters from this class and its
+superclasses.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.print_param_defaults">
+<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.print_param_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the default values of all cls&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.print_param_values">
+<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.print_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the values of all this object&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as Parameterized.script_repr, except that X.classname(Y
+is replaced with X.classname.instance(Y</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.set_default">
+<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.set_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default value of param_name.</p>
+<p>Equivalent to setting param_name on the class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.set_dynamic_time_fn">
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715dc39af8&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.set_param">
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715dc39cb0&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.set_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.state_pop">
+<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.state_pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the most recently saved state.</p>
+<p>See state_push() for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.state_push">
+<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.state_push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save this instance&#8217;s state.</p>
+<p>For Parameterized instances, this includes the state of
+dynamically generated values.</p>
+<p>Subclasses that maintain short-term state should additionally
+save and restore that state using state_push() and
+state_pop().</p>
+<p>Generally, this method is used by operations that need to test
+something without permanently altering the objects&#8217; state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.verbose">
+<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a verbose message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.DisparityCoordinator.warning">
+<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.DisparityCoordinator.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a warning, unless module variable
+warnings_as_exceptions is True, then raise an Exception
+containing the arguments.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator">
+<em class="property">class </em><tt class="descclassname">topo.misc.featurecoordinators.</tt><tt class="descname">MotionCoordinator</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/featurecoordinators.html#MotionCoordinator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.html#imagen.patterncoordinator.FeatureCoordinator" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.patterncoordinator.FeatureCoordinator</span></tt></a></p>
+<p>Coordinates the motion of patterns.</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">reset_period</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=4, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Period between generating each new translation episode.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">speed</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=0.0833333333333, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>The speed with which the pattern should move,
+        in sheet coordinates per time_fn unit.</dd>
+<dt><em>param Callable</em> <tt class="docutils literal"><span class="pre">time_fn</span></tt> (<em>constant=False, default=&lt;Time Time00001&gt;, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Function to generate the time used as a base for translation.</dd>
+</dl>
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.debug">
+<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a debugging statement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.defaults">
+<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return {parameter_name:parameter.default} for all non-constant
+Parameters.</p>
+<p>Note that a Parameter for which instantiate==True has its default
+instantiated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.force_new_dynamic_value">
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8998&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.get_param_values">
+<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.get_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of name,value pairs for all Parameters of this
+object.</p>
+<p>If onlychanged is True, will only return values that are not
+equal to the default value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.get_value_generator">
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8368&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.inspect_value">
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8470&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.inspect_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.instance">
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8418&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.message">
+<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a message.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.params">
+<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Parameters of this class as the
+dictionary {name: parameter_object}</p>
+<p>Includes Parameters from this class and its
+superclasses.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.print_param_defaults">
+<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.print_param_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the default values of all cls&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.print_param_values">
+<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.print_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the values of all this object&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as Parameterized.script_repr, except that X.classname(Y
+is replaced with X.classname.instance(Y</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.set_default">
+<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.set_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default value of param_name.</p>
+<p>Equivalent to setting param_name on the class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.set_dynamic_time_fn">
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8310&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.set_param">
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8158&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.set_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.state_pop">
+<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.state_pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the most recently saved state.</p>
+<p>See state_push() for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.state_push">
+<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.state_push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save this instance&#8217;s state.</p>
+<p>For Parameterized instances, this includes the state of
+dynamically generated values.</p>
+<p>Subclasses that maintain short-term state should additionally
+save and restore that state using state_push() and
+state_pop().</p>
+<p>Generally, this method is used by operations that need to test
+something without permanently altering the objects&#8217; state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.verbose">
+<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a verbose message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.MotionCoordinator.warning">
+<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.MotionCoordinator.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a warning, unless module variable
+warnings_as_exceptions is True, then raise an Exception
+containing the arguments.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator">
+<em class="property">class </em><tt class="descclassname">topo.misc.featurecoordinators.</tt><tt class="descname">OcularityCoordinator</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/featurecoordinators.html#OcularityCoordinator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.html#imagen.patterncoordinator.FeatureCoordinator" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.patterncoordinator.FeatureCoordinator</span></tt></a></p>
+<p>Coordinates the ocularity (brightness difference) of two pattern
+generators.  The pattern_label of the generators must contain
+&#8216;Left&#8217; or &#8216;Right&#8217;</p>
+<dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">dim_fraction</span></tt> (<em>allow_None=False, bounds=(0.0, 1.0), constant=False, default=0.7, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Fraction by which the pattern brightness varies between the two eyes.</dd>
+</dl>
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.debug">
+<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a debugging statement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.defaults">
+<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return {parameter_name:parameter.default} for all non-constant
+Parameters.</p>
+<p>Note that a Parameter for which instantiate==True has its default
+instantiated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.force_new_dynamic_value">
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda8208&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.get_param_values">
+<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.get_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of name,value pairs for all Parameters of this
+object.</p>
+<p>If onlychanged is True, will only return values that are not
+equal to the default value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.get_value_generator">
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fda81b0&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.inspect_value">
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715dc399f0&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.inspect_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.instance">
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x2b715dc39af8&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.message">
+<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a message.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.params">
+<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Parameters of this class as the
+dictionary {name: parameter_object}</p>
+<p>Includes Parameters from this class and its
+superclasses.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.print_param_defaults">
+<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.print_param_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the default values of all cls&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.print_param_values">
+<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.print_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the values of all this object&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as Parameterized.script_repr, except that X.classname(Y
+is replaced with X.classname.instance(Y</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.set_default">
+<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.set_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default value of param_name.</p>
+<p>Equivalent to setting param_name on the class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.set_dynamic_time_fn">
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715f733c58&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.set_param">
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715e7a0890&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.set_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.state_pop">
+<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.state_pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the most recently saved state.</p>
+<p>See state_push() for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.state_push">
+<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.state_push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save this instance&#8217;s state.</p>
+<p>For Parameterized instances, this includes the state of
+dynamically generated values.</p>
+<p>Subclasses that maintain short-term state should additionally
+save and restore that state using state_push() and
+state_pop().</p>
+<p>Generally, this method is used by operations that need to test
+something without permanently altering the objects&#8217; state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.verbose">
+<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a verbose message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.OcularityCoordinator.warning">
+<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.OcularityCoordinator.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a warning, unless module variable
+warnings_as_exceptions is True, then raise an Exception
+containing the arguments.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator">
+<em class="property">class </em><tt class="descclassname">topo.misc.featurecoordinators.</tt><tt class="descname">SpatialFrequencyCoordinator</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/featurecoordinators.html#SpatialFrequencyCoordinator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.html#imagen.patterncoordinator.FeatureCoordinator" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.patterncoordinator.FeatureCoordinator</span></tt></a></p>
+<p>Coordinates the size of pattern generators. This is useful when
+multiple spatial frequency channels are used, to cover a wide
+range of sizes of pattern generators.</p>
+<dl class="docutils">
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">sf_max_channel</span></tt> (<em>allow_None=False, bounds=(2, None), constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Highest spatial frequency channel. Together with sf_spacing,
+        this is used to compute the upper bound of the size of the
+        supplied pattern generator.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">sf_spacing</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=2.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Determines the factor by which successive SF channels increase
+        in size. Together with sf_max_channel, this is used to compute
+        the upper bound of the size of the supplied pattern
+        generator.</dd>
+</dl>
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.debug">
+<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a debugging statement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.defaults">
+<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return {parameter_name:parameter.default} for all non-constant
+Parameters.</p>
+<p>Note that a Parameter for which instantiate==True has its default
+instantiated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.force_new_dynamic_value">
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715f7330a8&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.get_param_values">
+<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.get_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of name,value pairs for all Parameters of this
+object.</p>
+<p>If onlychanged is True, will only return values that are not
+equal to the default value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.get_value_generator">
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715f733c00&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.inspect_value">
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715f733100&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.inspect_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.instance">
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x2b715f733d60&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.message">
+<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a message.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.params">
+<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Parameters of this class as the
+dictionary {name: parameter_object}</p>
+<p>Includes Parameters from this class and its
+superclasses.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.print_param_defaults">
+<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.print_param_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the default values of all cls&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.print_param_values">
+<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.print_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the values of all this object&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as Parameterized.script_repr, except that X.classname(Y
+is replaced with X.classname.instance(Y</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.set_default">
+<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.set_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default value of param_name.</p>
+<p>Equivalent to setting param_name on the class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.set_dynamic_time_fn">
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715f733c58&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.set_param">
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715f733cb0&gt;</em><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.set_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.state_pop">
+<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.state_pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the most recently saved state.</p>
+<p>See state_push() for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.state_push">
+<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.state_push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save this instance&#8217;s state.</p>
+<p>For Parameterized instances, this includes the state of
+dynamically generated values.</p>
+<p>Subclasses that maintain short-term state should additionally
+save and restore that state using state_push() and
+state_pop().</p>
+<p>Generally, this method is used by operations that need to test
+something without permanently altering the objects&#8217; state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.verbose">
+<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a verbose message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.featurecoordinators.SpatialFrequencyCoordinator.warning">
+<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.featurecoordinators.SpatialFrequencyCoordinator.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a warning, unless module variable
+warnings_as_exceptions is True, then raise an Exception
+containing the arguments.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1412,10 +2013,197 @@ calling location:</p>
 </div>
 <div class="section" id="ipython-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">ipython</span></tt> Module<a class="headerlink" href="#ipython-module" title="Permalink to this headline">¶</a></h2>
+<p class="graphviz">
+<img src="../_images/inheritance-74b55393abc5da45a8c6c75d4a0dbf50e6468e4a.png" alt="Inheritance diagram of topo.misc.ipython" usemap="#inheritanceb275281aee" class="inheritance"/>
+<map id="inheritanceb275281aee" name="inheritanceb275281aee">
+<area shape="rect" id="node3" title="Base class for implementing magic functions." alt="" coords="595,5,787,30"/>
+<area shape="rect" id="node4" href="#topo.misc.ipython.ExportMagic" title="Line magic that defines a cell magic to export the cell contents" alt="" coords="835,5,1053,30"/>
+</map>
+</p>
 <span class="target" id="module-topo.misc.ipython"></span><p>Topographica IPython extension for notebook support. Automatically
 loaded when importing the topo module but may also be explicitly
 loaded using:</p>
 <p>%load_ext topo.misc.ipython</p>
+<dl class="class">
+<dt id="topo.misc.ipython.ExportMagic">
+<em class="property">class </em><tt class="descclassname">topo.misc.ipython.</tt><tt class="descname">ExportMagic</tt><big>(</big><em>shell=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#ExportMagic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.ExportMagic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://ipython.org/ipython-doc/2/api/generated/IPython.core.magic.html#IPython.core.magic.Magics" title="(in IPython v2.2.0)"><tt class="xref py py-class docutils literal"><span class="pre">IPython.core.magic.Magics</span></tt></a></p>
+<p>Line magic that defines a cell magic to export the cell contents
+to a specific file. For instance, running</p>
+<p>%define_exporter OUT ./output.txt</p>
+<p>will define an %%OUT cell magic that writes to the file
+output.txt. This cell magic takes a optional arguments &#8216;clear&#8217; and
+&#8216;run&#8217;. If &#8216;clear&#8217; should be specified for the first cell to be
+exported. If &#8216;run&#8217; is specified, the cell is executed in the
+active notebook as well as exported.</p>
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.arg_err">
+<tt class="descname">arg_err</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.arg_err" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print docstring if incorrect arguments were passed</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.ipython.ExportMagic.class_config_section">
+<em class="property">classmethod </em><tt class="descname">class_config_section</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.class_config_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the config class config section</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.ipython.ExportMagic.class_get_help">
+<em class="property">classmethod </em><tt class="descname">class_get_help</tt><big>(</big><em>inst=None</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.class_get_help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the help string for this class in ReST format.</p>
+<p>If <cite>inst</cite> is given, it&#8217;s current trait values will be used in place of
+class defaults.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.ipython.ExportMagic.class_get_trait_help">
+<em class="property">classmethod </em><tt class="descname">class_get_trait_help</tt><big>(</big><em>trait</em>, <em>inst=None</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.class_get_trait_help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the help string for a single trait.</p>
+<p>If <cite>inst</cite> is given, it&#8217;s current trait values will be used in place of
+the class default.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.ipython.ExportMagic.class_print_help">
+<em class="property">classmethod </em><tt class="descname">class_print_help</tt><big>(</big><em>inst=None</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.class_print_help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the help string for a single trait and print it.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.ipython.ExportMagic.class_trait_names">
+<em class="property">classmethod </em><tt class="descname">class_trait_names</tt><big>(</big><em>**metadata</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.class_trait_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all the names of this class&#8217; traits.</p>
+<p>This method is just like the <a class="reference internal" href="#topo.misc.ipython.ExportMagic.trait_names" title="topo.misc.ipython.ExportMagic.trait_names"><tt class="xref py py-meth docutils literal"><span class="pre">trait_names()</span></tt></a> method,
+but is unbound.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.ipython.ExportMagic.class_traits">
+<em class="property">classmethod </em><tt class="descname">class_traits</tt><big>(</big><em>**metadata</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.class_traits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <cite>dict</cite> of all the traits of this class.  The dictionary
+is keyed on the name and the values are the TraitType objects.</p>
+<p>This method is just like the <a class="reference internal" href="#topo.misc.ipython.ExportMagic.traits" title="topo.misc.ipython.ExportMagic.traits"><tt class="xref py py-meth docutils literal"><span class="pre">traits()</span></tt></a> method, but is unbound.</p>
+<p>The TraitTypes returned don&#8217;t know anything about the values
+that the various HasTrait&#8217;s instances are holding.</p>
+<p>The metadata kwargs allow functions to be passed in which
+filter traits based on metadata values.  The functions should
+take a single value as an argument and return a boolean.  If
+any function returns False, then the trait is not included in
+the output.  This does not allow for any simple way of
+testing that a metadata name exists and has any
+value because get_metadata returns None if a metadata key
+doesn&#8217;t exist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.default_option">
+<tt class="descname">default_option</tt><big>(</big><em>fn</em>, <em>optstr</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.default_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an entry in the options_table for fn, with value optstr</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.format_latex">
+<tt class="descname">format_latex</tt><big>(</big><em>strng</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.format_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a string for latex inclusion.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.on_trait_change">
+<tt class="descname">on_trait_change</tt><big>(</big><em>handler</em>, <em>name=None</em>, <em>remove=False</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.on_trait_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup a handler to be called when a trait changes.</p>
+<p>This is used to setup dynamic notifications of trait changes.</p>
+<p>Static handlers can be created by creating methods on a HasTraits
+subclass with the naming convention &#8216;_[traitname]_changed&#8217;.  Thus,
+to create static handler for the trait &#8216;a&#8217;, create the method
+_a_changed(self, name, old, new) (fewer arguments can be used, see
+below).</p>
+<dl class="docutils">
+<dt>handler <span class="classifier-delimiter">:</span> <span class="classifier">callable</span></dt>
+<dd>A callable that is called when a trait changes.  Its
+signature can be handler(), handler(name), handler(name, new)
+or handler(name, old, new).</dd>
+<dt>name <span class="classifier-delimiter">:</span> <span class="classifier">list, str, None</span></dt>
+<dd>If None, the handler will apply to all traits.  If a list
+of str, handler will apply to all names in the list.  If a
+str, the handler will apply just to that name.</dd>
+<dt>remove <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd>If False (the default), then install the handler.  If True
+then unintall it.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.parse_options">
+<tt class="descname">parse_options</tt><big>(</big><em>arg_str</em>, <em>opt_str</em>, <em>*long_opts</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.parse_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse options passed to an argument string.</p>
+<p>The interface is similar to that of <a class="reference external" href="http://docs.python.org/library/getopt.html#getopt.getopt" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">getopt.getopt()</span></tt></a>, but it
+returns a <tt class="xref py py-class docutils literal"><span class="pre">Struct</span></tt> with the options as keys
+and the stripped argument string still as a string.</p>
+<p>arg_str is quoted as a true sys.argv vector by using shlex.split.
+This allows us to easily expand variables, glob files, quote
+arguments, etc.</p>
+<dl class="docutils">
+<dt>arg_str <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd>The arguments to parse.</dd>
+<dt>opt_str <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd>The options specification.</dd>
+<dt>mode <span class="classifier-delimiter">:</span> <span class="classifier">str, default &#8216;string&#8217;</span></dt>
+<dd>If given as &#8216;list&#8217;, the argument string is returned as a list (split
+on whitespace) instead of a string.</dd>
+<dt>list_all <span class="classifier-delimiter">:</span> <span class="classifier">bool, default False</span></dt>
+<dd>Put all option values in lists. Normally only options
+appearing more than once are put in a list.</dd>
+<dt>posix <span class="classifier-delimiter">:</span> <span class="classifier">bool, default True</span></dt>
+<dd>Whether to split the input line in POSIX mode or not, as per the
+conventions outlined in the <a class="reference external" href="http://docs.python.org/library/shlex.html#module-shlex" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">shlex</span></tt></a> module from the standard
+library.</dd>
+</dl>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.misc.ipython.ExportMagic.section_names">
+<em class="property">classmethod </em><tt class="descname">section_names</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.section_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>return section names as a list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.trait_metadata">
+<tt class="descname">trait_metadata</tt><big>(</big><em>traitname</em>, <em>key</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.trait_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get metadata values for trait by key.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.trait_names">
+<tt class="descname">trait_names</tt><big>(</big><em>**metadata</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.trait_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all the names of this class&#8217; traits.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.traits">
+<tt class="descname">traits</tt><big>(</big><em>**metadata</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.traits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <cite>dict</cite> of all the traits of this class.  The dictionary
+is keyed on the name and the values are the TraitType objects.</p>
+<p>The TraitTypes returned don&#8217;t know anything about the values
+that the various HasTrait&#8217;s instances are holding.</p>
+<p>The metadata kwargs allow functions to be passed in which
+filter traits based on metadata values.  The functions should
+take a single value as an argument and return a boolean.  If
+any function returns False, then the trait is not included in
+the output.  This does not allow for any simple way of
+testing that a metadata name exists and has any
+value because get_metadata returns None if a metadata key
+doesn&#8217;t exist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.ipython.ExportMagic.update_config">
+<tt class="descname">update_config</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="#topo.misc.ipython.ExportMagic.update_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fire the traits events when the config is updated.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="function">
 <dt id="topo.misc.ipython.export_notebook">
 <tt class="descclassname">topo.misc.ipython.</tt><tt class="descname">export_notebook</tt><big>(</big><em>notebook</em>, <em>output_path=None</em>, <em>ext='.ty'</em>, <em>identifier='_export_'</em>, <em>diff=True</em>, <em>invert=False</em>, <em>stale_time=None</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/ipython.html#export_notebook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.ipython.export_notebook" title="Permalink to this definition">¶</a></dt>
@@ -1454,83 +2242,130 @@ immediately returned.</p>
 <div class="section" id="lancext-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">lancext</span></tt> Module<a class="headerlink" href="#lancext-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-45514da1861de7500c62e2170d94795b585d2fde.png" alt="Inheritance diagram of topo.misc.lancext" usemap="#inheritance7784a43624" class="inheritance"/>
+<img src="../_images/inheritance-0e9b538cfab7b33faa00836b2c42da5554667b70.png" alt="Inheritance diagram of topo.misc.lancext" usemap="#inheritance7784a43624" class="inheritance"/>
 <map id="inheritance7784a43624" name="inheritance7784a43624">
-<area shape="rect" id="node1" title="A mixin class for generating pretty&#45;printed representations." alt="" coords="41,165,208,188"/>
-<area shape="rect" id="node2" title="A command is a way of converting the dictionaries returned by" alt="" coords="351,142,517,165"/>
-<area shape="rect" id="node5" href="#topo.misc.lancext.Analysis" title="Analysis is a callable that behaves like a general analysis_fn for" alt="" coords="345,187,522,211"/>
-<area shape="rect" id="node6" href="#topo.misc.lancext.AnalysisFn" title="An AnalysisFn records information about a function so that run_batch" alt="" coords="338,233,530,256"/>
-<area shape="rect" id="node7" href="#topo.misc.lancext.BatchCollector" title="BatchCollector is a wrapper class used to execute a Collector in a" alt="" coords="326,96,541,119"/>
-<area shape="rect" id="node9" href="#topo.misc.lancext.TopoCommand" title="TopoCommand is designed to to format Lancet Args objects into" alt="" coords="630,142,848,165"/>
-<area shape="rect" id="node3" title="Base class for named objects that support Parameters and message" alt="" coords="5,96,245,119"/>
-<area shape="rect" id="node4" title="Acts like a Python function, but with arguments that are Parameters." alt="" coords="289,4,578,28"/>
-<area shape="rect" id="node11" href="#topo.misc.lancext.topo_metadata" title="Topographica specific helper function that expands on Lancet&#39;s" alt="" coords="323,50,544,74"/>
-<area shape="rect" id="node10" href="#topo.misc.lancext.param_formatter" title="This class is closely related to the param_formatter class in" alt="" coords="624,4,855,28"/>
-<area shape="rect" id="node8" href="#topo.misc.lancext.RunBatchCommand" title="Runs a custom analysis function of type Analysis or Collector with" alt="" coords="900,142,1147,165"/>
+<area shape="rect" id="node1" title="Collator is an NdMapping holding AttrTree objects and" alt="" coords="764,4,912,23"/>
+<area shape="rect" id="node9" href="#topo.misc.lancext.BatchCollator" title="BatchCollator provides a convenient interface to load the output" alt="" coords="976,4,1147,23"/>
+<area shape="rect" id="node2" title="NdMapping supports the same indexing semantics as NdIndexableMapping but" alt="" coords="515,4,695,23"/>
+<area shape="rect" id="node3" title="Abstract baseclass implementing common methods for objects with associated" alt="" coords="10,4,195,23"/>
+<area shape="rect" id="node4" title="An NdIndexableMapping is a type of mapping (like a dictionary or array)" alt="" coords="242,4,469,23"/>
+<area shape="rect" id="node5" title="Base class for named objects that support Parameters and message" alt="" coords="4,78,200,98"/>
+<area shape="rect" id="node7" title="A command is a way of converting the dictionaries returned by" alt="" coords="287,153,423,173"/>
+<area shape="rect" id="node8" title="Acts like a Python function, but with arguments that are Parameters." alt="" coords="237,78,474,98"/>
+<area shape="rect" id="node10" href="#topo.misc.lancext.BatchCollector" title="BatchCollector is a wrapper class used to execute a Collector in a" alt="" coords="267,116,443,135"/>
+<area shape="rect" id="node14" href="#topo.misc.lancext.topo_metadata" title="Topographica specific helper function that expands on Lancet&#39;s" alt="" coords="265,41,446,60"/>
+<area shape="rect" id="node6" title="A mixin class for generating pretty&#45;printed representations." alt="" coords="34,135,171,154"/>
+<area shape="rect" id="node12" href="#topo.misc.lancext.TopoCommand" title="TopoCommand is designed to to format Lancet Args objects into" alt="" coords="516,153,694,173"/>
+<area shape="rect" id="node13" href="#topo.misc.lancext.param_formatter" title="This class is closely related to the param_formatter class in" alt="" coords="511,78,700,98"/>
+<area shape="rect" id="node11" href="#topo.misc.lancext.RunBatchCommand" title="Runs a custom analysis function specified by a Collector using" alt="" coords="737,153,939,173"/>
 </map>
 </p>
 <span class="target" id="module-topo.misc.lancext"></span><p>The Topographica Lancet extension allows Topographica simulations to
 be easily integrated into a Lancet workflow (see
 github.com/ioam/lancet). The TopoCommand is appropriate for simple
-runs using the default analysis function, whereas the Analysis and
-RunBatchCommand allow for more sophisticated measurements and analysis
-to be executed during a simulation run.</p>
+runs using the default analysis function, whereas the RunBatchCommand
+allow for more sophisticated measurements and analysis to be executed
+during a simulation run using a dataviews Collector object.</p>
 <dl class="class">
-<dt id="topo.misc.lancext.Analysis">
-<em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">Analysis</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt>, <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>Analysis is a callable that behaves like a general analysis_fn for
-run_batch. You can add multiple analysis functions, the return
-values of which will be collated and saved as a numpy file
-containing topo.sim.time metadata as well as any extra metadata
-supplied by the analysis functions.</p>
+<dt id="topo.misc.lancext.BatchCollator">
+<em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">BatchCollator</tt><big>(</big><em>data</em>, <em>filetype=None</em>, <em>filekey='filename'</em>, <em>log=None</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#BatchCollator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.BatchCollator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/dataviews/Reference_Manual/dataviews.html#dataviews.collector.Collator" title="(in DataViews v2014.05.14)"><tt class="xref py py-class docutils literal"><span class="pre">dataviews.collector.Collator</span></tt></a></p>
+<p>BatchCollator provides a convenient interface to load the output
+of a BatchCollector run, which is spread across a number of
+files. As input it takes a Lancet FileInfo object, an NdMapping or
+a Pandas DataFrame, which contains all the filenames indexed by
+the parameter space values. The regular NdMapping slicing and
+selecting syntax can be used to narrow down the parameter space
+and load just the data that is needed.</p>
+<p>By supplying a log, BatchCollector can also find missing data
+files and return an Args object to relaunch them.</p>
+<p>Internally it uses Pandas operations, making Pandas a core
+dependency.</p>
 <dl class="docutils">
-<dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">strict_verify</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Makes sure no keywords are allowed to fallback to their default
-       values for any of the analysis functions.</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">analysis_fns</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>The list of analysis functions to execute in run_batch</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Keys to include as metadata in the output numpy file along with
-       &#8216;time&#8217; (Topographica simulation time).</dd>
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">paths</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Extra directories to add to the sys.path before trying to load
-       the analysis functions.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">log</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The Log object contains information about the full batch and may be
+        passed optionally to find missing data files.</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">filekey</span></tt> (<em>allow_None=False, constant=False, default=filename, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>The column key in which file paths are stored.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">filetype</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>FileType object required to load data files, can be passed directly
+       or via the FileInfo object.</dd>
+</dl>
+<p><em>param List</em> <tt class="docutils literal"><span class="pre">dimensions</span></tt> (<em>bounds=(0, None), constant=True, default=[Dimension(cyclic=False, format_string=&#8217;{name} = {val}{unit}&#8217;, name=&#8217;Default&#8217;, range=(0, 0), type=None, unit=None)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<dl class="docutils">
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">fileinfo</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>FileInfo object contains the filenames and associated metadata of all
+       files to be loaded.</dd>
 </dl>
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.add_analysis_fn">
-<tt class="descname">add_analysis_fn</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.add_analysis_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.add_analysis_fn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add an analysis function of type AnalysisFn. If path is not
-None, the module needs to be on the path.</p>
-<p>If the return type of the function is a dictionary, the keys are
-assumed to be labels for data. If there is a key &#8216;metadata&#8217; that
-holds a dictionary, those items will be merged into the saved
-metadata dictionary.</p>
+<dt id="topo.misc.lancext.BatchCollator.add_dimension">
+<tt class="descname">add_dimension</tt><big>(</big><em>dimension</em>, <em>dim_pos</em>, <em>dim_val</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.add_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new object with an additional dimension along which items are
+indexed. Requires the dimension name, the desired position in the
+dimension labels and a dimension value that applies to all existing
+elements.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.lancext.BatchCollator.constant_dims">
+<tt class="descname">constant_dims</tt><a class="headerlink" href="#topo.misc.lancext.BatchCollator.constant_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all constant dimensions.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.debug" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.debug">
+<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.debug" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the arguments as a debugging statement.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.defaults">
-<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.defaults" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.defaults">
+<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.defaults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return {parameter_name:parameter.default} for all non-constant
 Parameters.</p>
 <p>Note that a Parameter for which instantiate==True has its default
 instantiated.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.dim_index">
+<tt class="descname">dim_index</tt><big>(</big><em>dimension_label</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.dim_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the tuple index of the requested dimension.</p>
+</dd></dl>
+
 <dl class="attribute">
-<dt id="topo.misc.lancext.Analysis.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff63c0&gt;</em><a class="headerlink" href="#topo.misc.lancext.Analysis.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.dim_ranges">
+<tt class="descname">dim_ranges</tt><a class="headerlink" href="#topo.misc.lancext.BatchCollator.dim_ranges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ranges of all dimensions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.dim_values">
+<tt class="descname">dim_values</tt><big>(</big><em>dim</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.dim_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a sorted list of values for a particular dimensions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.dimension_keys">
+<tt class="descname">dimension_keys</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.dimension_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of keys together with the dimension labels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.drop_dimension">
+<tt class="descname">drop_dimension</tt><big>(</big><em>dim</em>, <em>val</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.drop_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop dimension from the NdMapping using the supplied
+dimension name and value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.lancext.BatchCollator.force_new_dynamic_value">
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77100&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollator.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.get_param_values">
-<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.get_param_values" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.get_param_values">
+<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.get_param_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of name,value pairs for all Parameters of this
 object.</p>
 <p>If onlychanged is True, will only return values that are not
@@ -1538,98 +2373,148 @@ equal to the default value.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="topo.misc.lancext.Analysis.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff64c8&gt;</em><a class="headerlink" href="#topo.misc.lancext.Analysis.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.get_value_generator">
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb772b8&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollator.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="topo.misc.lancext.Analysis.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6418&gt;</em><a class="headerlink" href="#topo.misc.lancext.Analysis.inspect_value" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.info">
+<tt class="descname">info</tt><a class="headerlink" href="#topo.misc.lancext.BatchCollator.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints information about the NdMapping, including the number and type
+of objects contained within it and information about its dimensions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.lancext.BatchCollator.inspect_value">
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77368&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollator.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="classmethod">
-<dt id="topo.misc.lancext.Analysis.load">
-<em class="property">classmethod </em><tt class="descname">load</tt><big>(</big><em>tid</em>, <em>specs</em>, <em>root_directory</em>, <em>batch_name</em>, <em>batch_tag</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Classmethod used to load the RunBatchCommand callable into a
-Topographica run_batch context. Loads the pickle file based on
-the batch_name and root directory in batch_info.</p>
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.key_items">
+<tt class="descname">key_items</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.key_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of dimension and key values.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.message" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.keys">
+<tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns indices for all data elements.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.lancext.BatchCollator.last">
+<tt class="descname">last</tt><a class="headerlink" href="#topo.misc.lancext.BatchCollator.last" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8221;
+Returns the item highest data item along the map dimensions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.lancext.BatchCollator.last_key">
+<tt class="descname">last_key</tt><a class="headerlink" href="#topo.misc.lancext.BatchCollator.last_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>&#8221;
+Returns the last key.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.map">
+<tt class="descname">map</tt><big>(</big><em>map_fn</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map a function across the NdIndexableMapping.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.message">
+<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the arguments as a message.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.missing_args">
+<tt class="descname">missing_args</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#BatchCollator.missing_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.BatchCollator.missing_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds any missing data by merging the FileInfo and Log,
+returning an Args object, which can be used to fill in the
+missing runs.</p>
+</dd></dl>
+
 <dl class="classmethod">
-<dt id="topo.misc.lancext.Analysis.params">
-<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.params" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.params">
+<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the Parameters of this class as the
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
 </dd></dl>
 
-<dl class="classmethod">
-<dt id="topo.misc.lancext.Analysis.pickle_path">
-<em class="property">classmethod </em><tt class="descname">pickle_path</tt><big>(</big><em>root_directory</em>, <em>batch_name</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.pickle_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.pickle_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Locates the pickle file based on the given launch info
-dictionary. Used by load as a classmethod and by save as an
-instance method.</p>
-</dd></dl>
-
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.pprint_args">
-<tt class="descname">pprint_args</tt><big>(</big><em>pos_args</em>, <em>keyword_args</em>, <em>infix_operator=None</em>, <em>extra_params={}</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.pprint_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to define the positional arguments and keyword order
-for pretty printing.</p>
+<dt id="topo.misc.lancext.BatchCollator.pprint_dimkey">
+<tt class="descname">pprint_dimkey</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.pprint_dimkey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a key of the right length as input and returns a formatted string
+of the dimension and value pairs.</p>
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="topo.misc.lancext.Analysis.print_param_defaults">
-<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.print_param_defaults" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.print_param_defaults">
+<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.print_param_defaults" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the default values of all cls&#8217;s Parameters.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.print_param_values">
-<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.print_param_values" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.print_param_values">
+<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.print_param_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the values of all this object&#8217;s Parameters.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.script_repr">
-<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.script_repr" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.reindex">
+<tt class="descname">reindex</tt><big>(</big><em>dimension_labels</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.reindex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new object with a re-ordered or reduced set of dimension
+labels. Accepts either a single dimension label or a list of chosen
+dimension labels.</p>
+<p>Reducing the number of dimension labels will discard information held in
+the dropped dimensions. All data values are accessible in the newly
+created object as the new labels must be sufficient to address each
+value uniquely.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.script_repr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Variant of __repr__ designed for generating a runnable script.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="topo.misc.lancext.BatchCollator.select">
+<tt class="descname">select</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows selecting slices or indices into the NdMapping using
+keyword arguments matching the names of the dimensions.</p>
+</dd></dl>
+
 <dl class="classmethod">
-<dt id="topo.misc.lancext.Analysis.set_default">
-<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.set_default" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.set_default">
+<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.set_default" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the default value of param_name.</p>
 <p>Equivalent to setting param_name on the class.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="topo.misc.lancext.Analysis.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6208&gt;</em><a class="headerlink" href="#topo.misc.lancext.Analysis.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.set_dynamic_time_fn">
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77260&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollator.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="topo.misc.lancext.Analysis.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6628&gt;</em><a class="headerlink" href="#topo.misc.lancext.Analysis.set_param" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.set_param">
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb774c8&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollator.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.state_pop">
-<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.state_pop" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.state_pop">
+<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.state_pop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Restore the most recently saved state.</p>
 <p>See state_push() for more details.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.state_push">
-<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.state_push" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.state_push">
+<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.state_push" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save this instance&#8217;s state.</p>
 <p>For Parameterized instances, this includes the state of
 dynamically generated values.</p>
@@ -1641,29 +2526,28 @@ something without permanently altering the objects&#8217; state.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.summary">
-<tt class="descname">summary</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.summary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Summary of the analysis and the analysis functions used.</p>
+<dt id="topo.misc.lancext.BatchCollator.update">
+<tt class="descname">update</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the NdMapping with another NdMapping or OrderedDict
+instance, checking that they are indexed along the same number
+of dimensions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.misc.lancext.BatchCollator.varying_dims">
+<tt class="descname">varying_dims</tt><a class="headerlink" href="#topo.misc.lancext.BatchCollator.varying_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all varying dimensions.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.verbose" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.verbose">
+<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.verbose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the arguments as a verbose message.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="topo.misc.lancext.Analysis.verify">
-<tt class="descname">verify</tt><big>(</big><em>specs</em>, <em>model_params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#Analysis.verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.Analysis.verify" title="Permalink to this definition">¶</a></dt>
-<dd><p>The final check of argument specification before launch. Used to
-make sure the analysis functions have all the necessary
-arguments and warns about unused keys. If set to strict_verify,
-keywords are not allowed to be left unspecified.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="topo.misc.lancext.Analysis.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.Analysis.warning" title="Permalink to this definition">¶</a></dt>
+<dt id="topo.misc.lancext.BatchCollator.warning">
+<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollator.warning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the arguments as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
@@ -1672,41 +2556,20 @@ containing the arguments.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="topo.misc.lancext.AnalysisFn">
-<em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">AnalysisFn</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#AnalysisFn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.AnalysisFn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>An AnalysisFn records information about a function so that run_batch
-can invoke it via an Analysis object. It also allows checks on the
-function&#8217;s signature using Python&#8217;s introspection mechanisms.</p>
-<p>The supplied function may return any data type and may be a Python
-function or a parameterized function class (but not an instance).</p>
-<dl class="method">
-<dt id="topo.misc.lancext.AnalysisFn.get_module">
-<tt class="descname">get_module</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#AnalysisFn.get_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.AnalysisFn.get_module" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a module object that contains the analysis function.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="topo.misc.lancext.AnalysisFn.pprint_args">
-<tt class="descname">pprint_args</tt><big>(</big><em>pos_args</em>, <em>keyword_args</em>, <em>infix_operator=None</em>, <em>extra_params={}</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.AnalysisFn.pprint_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to define the positional arguments and keyword order
-for pretty printing.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="topo.misc.lancext.BatchCollector">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">BatchCollector</tt><big>(</big><em>collector</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#BatchCollector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.BatchCollector" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt>, <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lancet.core.PrettyPrinted</span></tt>, <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>BatchCollector is a wrapper class used to execute a Collector in a
 Topographica run_batch context, saving the dataviews to disk as
-<a href="#id3"><span class="problematic" id="id4">*</span></a>.view files. It supports the same core interface as the deprecated
-Analysis objects.</p>
+<a href="#id3"><span class="problematic" id="id4">*</span></a>.view files.</p>
 <dl class="docutils">
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">metadata</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
-<dd>Keys to include as metadata in the output file along with
-       &#8216;time&#8217; (Topographica simulation time).</dd>
+<dd>Spec keys or collector paths to include as metadata in the
+       output file along with &#8216;time&#8217; (simulation time).
+
+       AttrTree paths are specified by dotted paths
+       e.g. &#8216;PinwheelAnalysis.V1&#8217; would add the pinwheel analysis on
+       V1 to the metadata.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.misc.lancext.BatchCollector.debug">
@@ -1725,7 +2588,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.BatchCollector.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6628&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77050&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1739,12 +2602,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.BatchCollector.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff65d0&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77100&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.BatchCollector.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff62b8&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb771b0&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="classmethod">
@@ -1812,12 +2675,12 @@ for pretty printing.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.BatchCollector.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6368&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77578&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.BatchCollector.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6520&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77520&gt;</em><a class="headerlink" href="#topo.misc.lancext.BatchCollector.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1847,6 +2710,14 @@ something without permanently altering the objects&#8217; state.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="topo.misc.lancext.BatchCollector.verify">
+<tt class="descname">verify</tt><big>(</big><em>specs</em>, <em>model_params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#BatchCollector.verify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.BatchCollector.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that a times list has been supplied, call verify_times on
+the Collator and if model_params has been supplied, check that a
+valid parameter set has been used.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="topo.misc.lancext.BatchCollector.warning">
 <tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.misc.lancext.BatchCollector.warning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print the arguments as a warning, unless module variable
@@ -1860,7 +2731,7 @@ containing the arguments.</p>
 <dt id="topo.misc.lancext.RunBatchCommand">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">RunBatchCommand</tt><big>(</big><em>tyfile</em>, <em>analysis</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#RunBatchCommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#topo.misc.lancext.TopoCommand" title="topo.misc.lancext.TopoCommand"><tt class="xref py py-class docutils literal"><span class="pre">topo.misc.lancext.TopoCommand</span></tt></a></p>
-<p>Runs a custom analysis function of type Analysis or Collector with
+<p>Runs a custom analysis function specified by a Collector using
 run_batch. This command is far more flexible for regular usage than
 TopoCommand as it allows you to build a run_batch analysis
 incrementally.</p>
@@ -1877,6 +2748,8 @@ incrementally.</p>
 <dd>The name of the analysis_fn to run. If modified from the
        default, the named callable will need to be imported into the
        namespace using a &#8216;-c&#8217; command in topo_flag_options.</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">progress_bar</span></tt> (<em>allow_None=False, constant=False, default=disabled, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">tag</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -1885,20 +2758,24 @@ incrementally.</p>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">do_format</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Set to True to receive input arguments as formatted strings,
         False for the raw unformatted objects.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">analysis</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">analysis</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The object used to define the analysis executed in
-      RunBatch. This object may be an Analysis object a Topographica
-      Collector or BatchCollector (which wraps a Collector). Analysis
-      objects are now deprecated and only retained for legacy reasons.</dd>
+      RunBatch. This object may be a Topographica Collector or a
+      BatchCollector which is a wrapper of a Collector.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">tyfile</span></tt> (<em>allow_None=False, constant=False, default=, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The Topographica model file to run.</dd>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">model_params</span></tt> (<em>constant=False, default={}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>A list or dictionary of model parameters to be passed to the
+     model via run_batch. This is used to validate the parameter names
+     specified. If set to an empty container, no checking is applied
+     (default).</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">vc_info</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">snapshot</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">save_global_params</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">topo_flag_options</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">topo_flag_options</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies Topographica flags and their corresponding options
           as a dictionary.  This parameter is suitable for setting -c
           and -p flags for Topographica. This parameter is important
@@ -1949,14 +2826,8 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.RunBatchCommand.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff64c8&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77368&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="method">
-<dt id="topo.misc.lancext.RunBatchCommand.get_model_params">
-<tt class="descname">get_model_params</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#RunBatchCommand.get_model_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.get_model_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Obtains all the script parameters used in the model file.</p>
-</dd></dl>
 
 <dl class="method">
 <dt id="topo.misc.lancext.RunBatchCommand.get_param_values">
@@ -1969,12 +2840,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.RunBatchCommand.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6520&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb771b0&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.RunBatchCommand.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6578&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77260&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2026,12 +2897,12 @@ for pretty printing.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.RunBatchCommand.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6208&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77208&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.RunBatchCommand.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff61b0&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77628&gt;</em><a class="headerlink" href="#topo.misc.lancext.RunBatchCommand.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2108,6 +2979,8 @@ arbitrarily by the Lancet Args object.</p>
 <dd>The name of the analysis_fn to run. If modified from the
        default, the named callable will need to be imported into the
        namespace using a &#8216;-c&#8217; command in topo_flag_options.</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">progress_bar</span></tt> (<em>allow_None=False, constant=False, default=disabled, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_name_length</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=200, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">tag</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -2124,7 +2997,7 @@ arbitrarily by the Lancet Args object.</p>
 <dd>Matches run_batch parameter of same name.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">save_global_params</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Matches run_batch parameter of same name.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">topo_flag_options</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">topo_flag_options</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies Topographica flags and their corresponding options
           as a dictionary.  This parameter is suitable for setting -c
           and -p flags for Topographica. This parameter is important
@@ -2173,7 +3046,7 @@ launch. The info argument is supplied by the Launcher.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.TopoCommand.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6578&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb773c0&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2187,12 +3060,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.TopoCommand.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6680&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77578&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.TopoCommand.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6368&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77520&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2244,12 +3117,12 @@ for pretty printing.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.TopoCommand.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6628&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb772b8&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.TopoCommand.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff66d8&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77680&gt;</em><a class="headerlink" href="#topo.misc.lancext.TopoCommand.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2316,7 +3189,7 @@ containing the arguments.</p>
 <dl class="class">
 <dt id="topo.misc.lancext.param_formatter">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">param_formatter</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#param_formatter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.param_formatter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.ParameterizedFunction" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.ParameterizedFunction" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.ParameterizedFunction</span></tt></a></p>
 <p>This class is closely related to the param_formatter class in
 topo/command/__init__.py.  Like that default class, it formats
 parameters as a string for use in a directory name. Unlike that
@@ -2346,7 +3219,7 @@ point error.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">truncation_limit</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If None, no truncation is performed, otherwise specifies the
         maximum length of any given specification value.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">abbreviations</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">abbreviations</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A dictionary of abbreviations to use of type {&lt;key&gt;:&lt;abbrev&gt;}.
        If a specifier key has an entry in the dictionary, the
        abbreviation is used.  Useful for shortening long parameter
@@ -2379,7 +3252,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.param_formatter.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6208&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77208&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2393,17 +3266,17 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.param_formatter.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6680&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77578&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.param_formatter.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6520&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77368&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.param_formatter.instance">
-<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff64c8&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.instance" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">instance</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77628&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.instance" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2449,12 +3322,12 @@ is replaced with X.classname.instance(Y</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.param_formatter.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff62b8&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77310&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.param_formatter.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6788&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb776d8&gt;</em><a class="headerlink" href="#topo.misc.lancext.param_formatter.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2496,7 +3369,7 @@ containing the arguments.</p>
 <dl class="class">
 <dt id="topo.misc.lancext.topo_metadata">
 <em class="property">class </em><tt class="descclassname">topo.misc.lancext.</tt><tt class="descname">topo_metadata</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/lancext.html#topo_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.lancext.topo_metadata" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>Topographica specific helper function that expands on Lancet&#8217;s
 vcs_metadata function to generate suitable metadata information for
 logging with Lancet. Records Topographica version control
@@ -2509,12 +3382,12 @@ with reproducibility. For instance, this may be called to print all
 the relevant git revisions in an IPython Notebook before launching
 jobs.</p>
 <dl class="docutils">
-<dt><em>param List</em> <tt class="docutils literal"><span class="pre">paths</span></tt> (<em>bounds=(0, None), constant=False, default=[&#8216;/var/lib/buildbot/slaves/docs/build/external/param&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/paramtk&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/imagen&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/featuremapper&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/lancet&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build/external/dataviews&#8217;, &#8216;/var/lib/buildbot/slaves/docs/build&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param List</em> <tt class="docutils literal"><span class="pre">paths</span></tt> (<em>bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>List of git repositories including Topographica and relevant
    submodules. Version control information from these repositories
    will be returned as a dictionary when called. The most important
    information is pretty printed when the summary method is called.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">commands</span></tt> (<em>allow_None=False, constant=False, default={&#8216;.git&#8217;: ([&#8216;git&#8217;, &#8216;rev-parse&#8217;, &#8216;HEAD&#8217;], [&#8216;git&#8217;, &#8216;log&#8217;, &#8216;&#8211;oneline&#8217;, &#8216;-n&#8217;, &#8216;1&#8217;], [&#8216;git&#8217;, &#8216;diff&#8217;])}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">commands</span></tt> (<em>allow_None=False, constant=False, default={&#8216;.git&#8217;: ([&#8216;git&#8217;, &#8216;rev-parse&#8217;, &#8216;HEAD&#8217;], [&#8216;git&#8217;, &#8216;log&#8217;, &#8216;&#8211;oneline&#8217;, &#8216;-n&#8217;, &#8216;1&#8217;], [&#8216;git&#8217;, &#8216;diff&#8217;])}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The git commands to pass to subprocess to extract the
       necessary version control information. Uses the same
       specification format as the lancet.vsc_metdata helper function.</dd>
@@ -2539,7 +3412,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.topo_metadata.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6628&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb772b8&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2553,12 +3426,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.topo_metadata.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6788&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb776d8&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.topo_metadata.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6368&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77520&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2603,12 +3476,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.topo_metadata.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6208&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb77208&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.lancext.topo_metadata.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2ff6470&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715eb774c8&gt;</em><a class="headerlink" href="#topo.misc.lancext.topo_metadata.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2736,7 +3609,7 @@ currently estimated), topo.sim (apart from weights), and weights.</p>
 
 <dl class="function">
 <dt id="topo.misc.memuse.memuse_batch">
-<tt class="descclassname">topo.misc.memuse.</tt><tt class="descname">memuse_batch</tt><big>(</big><em>script_file, times=[0], analysis_fn=&lt;function default_memuse_analysis_fn at 0x2b83d5d299b0&gt;, **params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/memuse.html#memuse_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.memuse.memuse_batch" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">topo.misc.memuse.</tt><tt class="descname">memuse_batch</tt><big>(</big><em>script_file, times=[0], analysis_fn=&lt;function default_memuse_analysis_fn at 0x2b715ffba8c0&gt;, **params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/memuse.html#memuse_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.memuse.memuse_batch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Similar to run_batch, but analyzes the memory requirement of a simulation at different times.</p>
 <p>First, the specified script file will be run using the specified parameters.
 Then at each of the specified times, the given analysis_fn (which
@@ -2843,7 +3716,7 @@ types and functions back into __main__.</p>
 
 <dl class="function">
 <dt id="topo.misc.picklemain.save_module_dict">
-<tt class="descclassname">topo.misc.picklemain.</tt><tt class="descname">save_module_dict</tt><big>(</big><em>self</em>, <em>obj</em>, <em>main_dict={'make_main': &lt;function make_main at 0x2b83cc424938&gt;</em>, <em>'__builtins__': &lt;module '__builtin__' (built-in)&gt;</em>, <em>'__file__': '/usr/bin/sphinx-build'</em>, <em>'__package__': None</em>, <em>'sys': &lt;module 'sys' (built-in)&gt;</em>, <em>'__name__': '__main__'</em>, <em>'main': &lt;function main at 0x2b83cc424a28&gt;</em>, <em>'__doc__': '\n    Sphinx - Python documentation toolchain\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n    :copyright: Copyright 2007-2014 by the Sphinx team</em>, <em>see AUTHORS.\n    :license: BSD</em>, <em>see LICENSE for details.\n'}</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/picklemain.html#save_module_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.picklemain.save_module_dict" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">topo.misc.picklemain.</tt><tt class="descname">save_module_dict</tt><big>(</big><em>self</em>, <em>obj</em>, <em>main_dict={'make_main': &lt;function make_main at 0x2b7145e46d70&gt;</em>, <em>'__builtins__': &lt;module '__builtin__' (built-in)&gt;</em>, <em>'__file__': '/usr/bin/sphinx-build'</em>, <em>'__package__': None</em>, <em>'sys': &lt;module 'sys' (built-in)&gt;</em>, <em>'__name__': '__main__'</em>, <em>'main': &lt;function main at 0x2b7145e46e60&gt;</em>, <em>'__doc__': '\n    Sphinx - Python documentation toolchain\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n    :copyright: Copyright 2007-2014 by the Sphinx team</em>, <em>see AUTHORS.\n    :license: BSD</em>, <em>see LICENSE for details.\n'}</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/picklemain.html#save_module_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.picklemain.save_module_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Special-case __main__.__dict__. Useful for a function&#8217;s func_globals member.</p>
 </dd></dl>
 
@@ -2919,7 +3792,7 @@ aligned axes.</p>
 <dl class="class">
 <dt id="topo.misc.trace.ActivityMovie">
 <em class="property">class </em><tt class="descclassname">topo.misc.trace.</tt><tt class="descname">ActivityMovie</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/trace.html#ActivityMovie"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.trace.ActivityMovie" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>An object encapsulating a series of movie frames displaying the
 value of one or more matrix-valued time-series contained in a
 DataRecorder object.</p>
@@ -2943,7 +3816,7 @@ adding timecodes to the frames, and the names of the frame files.</p>
         matrix-valued time series data.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">frame_times</span></tt> (<em>bounds=(0, None), constant=False, default=[0, 1], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A list of the times of the frames in the movie.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">timecode_options</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">timecode_options</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=False, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A dictionary of keyword options to be passed to the PIL ImageDraw.text method
         when drawing the timecode on the frame. Valid options include font,
         an ImageFont object indicating the text font, and fill a PIL color
@@ -2966,10 +3839,10 @@ adding timecodes to the frames, and the names of the frame files.</p>
         can include directories.  If the filename contains a path, any
         non-existent directories in the path will be created when the
         movie is saved.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">montage_params</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">montage_params</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=False, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A dictionary containing parameters to be used when
         instantiating the MontageBitmap objects representing each frame.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">overlays</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">overlays</span></tt> (<em>allow_None=False, constant=False, default={}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A dictionary indicating overlays for the variable bitmaps.  The
         for each key in the dict matching the name of a variable, there
         should be associated a triple of matrices to be overlayed on
@@ -2978,7 +3851,7 @@ adding timecodes to the frames, and the names of the frame files.</p>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">timecode_fmt</span></tt> (<em>allow_None=False, constant=False, default=%05.0f, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The format of the timecode displayed in the movie frames, using
         Python string substitution for a floating-point number.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">recorder</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">recorder</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The DataRecorder storing the timeseries.</dd>
 </dl>
 <dl class="method">
@@ -2998,7 +3871,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.ActivityMovie.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315208&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0b50&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3012,12 +3885,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.ActivityMovie.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315260&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0af8&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.ActivityMovie.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315310&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0ba8&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3068,12 +3941,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.ActivityMovie.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23152b8&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0aa0&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.ActivityMovie.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315418&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0cb0&gt;</em><a class="headerlink" href="#topo.misc.trace.ActivityMovie.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3173,7 +4046,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.DataRecorder.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315100&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0af8&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3217,12 +4090,12 @@ earliest or latest available time, respectively.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.DataRecorder.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315158&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce09f0&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.DataRecorder.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23151b0&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0a48&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3294,12 +4167,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.DataRecorder.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315470&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0d08&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.DataRecorder.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23154c8&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0d60&gt;</em><a class="headerlink" href="#topo.misc.trace.DataRecorder.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3357,7 +4230,7 @@ containing the arguments.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The fraction of the difference ymax-ymin to add to the
         top of the plot as padding.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Contains the keyword arguments to pass to the plot command
         when plotting the trace.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">data_name</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -3384,7 +4257,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IdentityTrace.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315310&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0b50&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3398,12 +4271,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IdentityTrace.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315208&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce09f0&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IdentityTrace.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315260&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0ba8&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3448,12 +4321,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IdentityTrace.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23154c8&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0d60&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IdentityTrace.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315368&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0c00&gt;</em><a class="headerlink" href="#topo.misc.trace.IdentityTrace.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3514,7 +4387,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.InMemoryRecorder.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23151b0&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0b50&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3540,12 +4413,12 @@ earliest or latest available time, respectively.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.InMemoryRecorder.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315100&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0a48&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.InMemoryRecorder.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23153c0&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0998&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3610,12 +4483,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.InMemoryRecorder.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315470&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0d08&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.InMemoryRecorder.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315418&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0cb0&gt;</em><a class="headerlink" href="#topo.misc.trace.InMemoryRecorder.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3679,7 +4552,7 @@ indexed with a single integer, and traces the value of one indexed element.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The fraction of the difference ymax-ymin to add to the
         top of the plot as padding.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Contains the keyword arguments to pass to the plot command
         when plotting the trace.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">ybounds</span></tt> (<em>constant=False, default=(None, None), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -3703,7 +4576,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IndexTrace.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315418&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce09f0&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3717,12 +4590,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IndexTrace.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315310&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0998&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IndexTrace.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315260&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0890&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3767,12 +4640,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IndexTrace.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315208&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0cb0&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.IndexTrace.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23154c8&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0ba8&gt;</em><a class="headerlink" href="#topo.misc.trace.IndexTrace.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3833,7 +4706,7 @@ and traces the value of a given (x,y) position on the sheet.</p>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">coordframe</span></tt> (<em>constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The SheetCoordinateSystem to use to convert the position
         into matrix coordinates.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Contains the keyword arguments to pass to the plot command
         when plotting the trace.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">ybounds</span></tt> (<em>constant=False, default=(None, None), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -3857,7 +4730,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.SheetPositionTrace.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23151b0&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0af8&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3871,12 +4744,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.SheetPositionTrace.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315520&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce09f0&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.SheetPositionTrace.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315470&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0d08&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3921,12 +4794,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.SheetPositionTrace.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315100&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0a48&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.SheetPositionTrace.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23155d0&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0e68&gt;</em><a class="headerlink" href="#topo.misc.trace.SheetPositionTrace.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3968,7 +4841,7 @@ containing the arguments.</p>
 <dl class="class">
 <dt id="topo.misc.trace.Trace">
 <em class="property">class </em><tt class="descclassname">topo.misc.trace.</tt><tt class="descname">Trace</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/trace.html#Trace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.trace.Trace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>A specification for generating 1D traces of data from recorded
 timeseries.</p>
 <p>A Trace object is a callable object that encapsulates
@@ -3982,7 +4855,7 @@ sequence of data.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ymargin</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The fraction of the difference ymax-ymin to add to the
         top of the plot as padding.</dd>
-<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Dict</em> <tt class="docutils literal"><span class="pre">plotkw</span></tt> (<em>allow_None=False, constant=False, default={&#8216;linestyle&#8217;: &#8216;steps&#8217;}, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Contains the keyword arguments to pass to the plot command
         when plotting the trace.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">data_name</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -4009,7 +4882,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.Trace.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315520&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0d08&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4023,12 +4896,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.Trace.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315208&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0cb0&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.Trace.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23153c0&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0b50&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4073,12 +4946,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.Trace.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23154c8&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0ba8&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.Trace.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315368&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0c00&gt;</em><a class="headerlink" href="#topo.misc.trace.Trace.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4120,7 +4993,7 @@ containing the arguments.</p>
 <dl class="class">
 <dt id="topo.misc.trace.TraceGroup">
 <em class="property">class </em><tt class="descclassname">topo.misc.trace.</tt><tt class="descname">TraceGroup</tt><big>(</big><em>recorder</em>, <em>traces=</em>, <span class="optional">[</span><span class="optional">]</span><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/misc/trace.html#TraceGroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.trace.TraceGroup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>A group of data traces to be plotted together.</p>
 <p>A TraceGroup defines a set of associated data traces and allows
 them to be plotted on stacked, aligned axes.  The constructor
@@ -4153,7 +5026,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.TraceGroup.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e23155d0&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0e68&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4167,12 +5040,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.TraceGroup.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315470&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0db8&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.TraceGroup.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315208&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0cb0&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4228,12 +5101,12 @@ beginning or end of the timeseries, respectively.</p>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.TraceGroup.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315100&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0a48&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.trace.TraceGroup.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83e2315418&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b715fce0998&gt;</em><a class="headerlink" href="#topo.misc.trace.TraceGroup.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4306,12 +5179,12 @@ setting and resetting the unum unit table allowing sheet specific
 conversions to be performed.</p>
 <dl class="attribute">
 <dt id="topo.misc.unitsupport.Conversions.declare_unit">
-<tt class="descname">declare_unit</tt><em class="property"> = &lt;functools.partial object at 0x2b83e514c050&gt;</em><a class="reference internal" href="../_modules/topo/misc/unitsupport.html#Conversions.declare_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.unitsupport.Conversions.declare_unit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">declare_unit</tt><em class="property"> = &lt;functools.partial object at 0x2b716030d2b8&gt;</em><a class="reference internal" href="../_modules/topo/misc/unitsupport.html#Conversions.declare_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.unitsupport.Conversions.declare_unit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.misc.unitsupport.Conversions.get_unit">
-<tt class="descname">get_unit</tt><em class="property"> = &lt;functools.partial object at 0x2b83e514c0a8&gt;</em><a class="reference internal" href="../_modules/topo/misc/unitsupport.html#Conversions.get_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.unitsupport.Conversions.get_unit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_unit</tt><em class="property"> = &lt;functools.partial object at 0x2b716030d260&gt;</em><a class="reference internal" href="../_modules/topo/misc/unitsupport.html#Conversions.get_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.misc.unitsupport.Conversions.get_unit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="classmethod">
@@ -4532,7 +5405,9 @@ w.flat iterator).</p>
 <li><a class="reference internal" href="#misc-package"><tt class="docutils literal"><span class="pre">misc</span></tt> Package</a></li>
 <li><a class="reference internal" href="#asizeof-module"><tt class="docutils literal"><span class="pre">asizeof</span></tt> Module</a></li>
 <li><a class="reference internal" href="#attrdict-module"><tt class="docutils literal"><span class="pre">attrdict</span></tt> Module</a></li>
+<li><a class="reference internal" href="#color-module"><tt class="docutils literal"><span class="pre">color</span></tt> Module</a></li>
 <li><a class="reference internal" href="#commandline-module"><tt class="docutils literal"><span class="pre">commandline</span></tt> Module</a></li>
+<li><a class="reference internal" href="#featurecoordinators-module"><tt class="docutils literal"><span class="pre">featurecoordinators</span></tt> Module</a></li>
 <li><a class="reference internal" href="#fixedpoint-module"><tt class="docutils literal"><span class="pre">fixedpoint</span></tt> Module</a></li>
 <li><a class="reference internal" href="#gendocs-module"><tt class="docutils literal"><span class="pre">gendocs</span></tt> Module</a></li>
 <li><a class="reference internal" href="#genexamples-module"><tt class="docutils literal"><span class="pre">genexamples</span></tt> Module</a></li>
@@ -4554,7 +5429,8 @@ w.flat iterator).</p>
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/Reference_Manual/topo.misc.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/Reference_Manual/topo.misc.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

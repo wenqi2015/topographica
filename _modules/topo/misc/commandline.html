@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
@@ -259,7 +260,6 @@
 
 </div></div>
 <span class="n">global_params</span><span class="o">=</span><span class="n">GlobalParams</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
-
 
 
 <span class="c">##### Command-prompt formatting</span>
@@ -555,18 +555,29 @@
                        <span class="n">default</span><span class="o">=</span><span class="p">[],</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;commands&quot;</span><span class="p">,</span><span class="n">metavar</span><span class="o">=</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&lt;command&gt;</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
                        <span class="n">help</span><span class="o">=</span><span class="s">&quot;string of arbitrary Python code to be executed in the main namespace&quot;</span><span class="p">)</span>
 
-
 <span class="k">def</span> <span class="nf">n_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">arg</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">arg</span> <span class="o">!=</span> <span class="n">opt_str</span><span class="p">]</span>
+    <span class="n">options</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
     <span class="kn">from</span> <span class="nn">IPython.html.notebookapp</span> <span class="kn">import</span> <span class="n">NotebookApp</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;notebook&#39;</span><span class="p">]</span>
     <span class="n">NotebookApp</span><span class="o">.</span><span class="n">ipython_dir</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="s">&#39;platform/ipython&#39;</span><span class="p">,</span> <span class="n">path_to_file</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     <span class="n">NotebookApp</span><span class="o">.</span><span class="n">profile</span> <span class="o">=</span> <span class="s">&#39;topo&#39;</span>
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">IP</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">NotebookApp</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">IP</span>
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">Port</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">NotebookApp</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">Port</span>
     <span class="n">NotebookApp</span><span class="p">()</span><span class="o">.</span><span class="n">launch_instance</span><span class="p">()</span>
     <span class="k">global</span> <span class="n">something_executed</span>
     <span class="n">something_executed</span> <span class="o">=</span> <span class="bp">True</span>
 
-<span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-n&quot;</span><span class="p">,</span><span class="s">&quot;--notebook&quot;</span><span class="p">,</span><span class="n">action</span> <span class="o">=</span> <span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">n_action</span><span class="p">,</span>
-                       <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;notebook&quot;</span><span class="p">,</span>
+<span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;--ip&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&quot;IP&quot;</span><span class="p">,</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s">&quot;Store the provided notebook IP.&quot;</span><span class="p">)</span>
+
+<span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;--port&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;store&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&quot;Port&quot;</span><span class="p">,</span>
+                       <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;Store the provided notebook port.&quot;</span><span class="p">)</span>
+
+<span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-n&quot;</span><span class="p">,</span> <span class="s">&quot;--notebook&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&quot;callback&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">n_action</span><span class="p">,</span>
+                       <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&quot;notebook&quot;</span><span class="p">,</span>
                        <span class="n">help</span><span class="o">=</span><span class="s">&quot;launch the IPython Notebook interface&quot;</span><span class="p">)</span>
 
 
@@ -666,7 +677,7 @@
     <span class="kn">from</span> <span class="nn">topo.tests.runtests</span> <span class="kn">import</span> <span class="n">target_description</span>
 
     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_description</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&quot;quick&quot;</span><span class="p">,</span><span class="s">&quot;exhaustive&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_description</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Could not find test target </span><span class="si">%r</span><span class="s">.</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">value</span>
             <span class="n">local_targets</span> <span class="o">=</span><span class="p">[</span><span class="s">&#39;list&#39;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
@@ -881,7 +892,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/misc/commandline.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/misc/commandline.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

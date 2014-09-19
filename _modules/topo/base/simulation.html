@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" /> 
   </head>
@@ -1080,6 +1081,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="n">AttrDict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_event_processors</span> <span class="o">=</span> <span class="p">{}</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">specification</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">None</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">:</span>
             <span class="c"># Indicate that no specific name has been set</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
@@ -1280,6 +1284,30 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">call_and_time</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
 
 
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">load</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">setup_options</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                 <span class="n">instantiate_options</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the simulation specification and instantiate the model</span>
+<span class="sd">        (when load is set to True). The specification is created with</span>
+<span class="sd">        the supplied setup_options - see the docstring of Model.setup</span>
+<span class="sd">        for more information.</span>
+
+<span class="sd">        If load is set to True, the model is instantiated using the</span>
+<span class="sd">        supplied instantiate options and verbose flag.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">specification</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">specification</span><span class="p">()</span> <span class="k">if</span> <span class="n">load</span> <span class="k">else</span> <span class="bp">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>  <span class="k">return</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Model object </span><span class="si">%r</span><span class="s"> is not callable&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Please supply an instantiated model object and not a Model class.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">specification</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">setup_options</span><span class="o">=</span><span class="n">setup_options</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">load</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">specification</span><span class="p">(</span><span class="n">instantiate_options</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="Simulation.run"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">forever</span><span class="p">,</span> <span class="n">until</span><span class="o">=</span><span class="n">forever</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Process simulation events for the specified duration or until the</span>
@@ -1301,6 +1329,11 @@
 <span class="sd">        Note that duration and until should be specified in a format suitable for</span>
 <span class="sd">        conversion (coercion?) into the Simulation&#39;s _time_type.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;No model specified to the Simulation instance.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
         <span class="c"># CEBALERT: calls to topo.sim.run() within topo should use a</span>
         <span class="c"># string to specify the time rather than a float (since float</span>
         <span class="c"># is not compatible with all number types).</span>
@@ -1403,15 +1436,18 @@
             <span class="c"># are executed FIFO.</span>
             <span class="n">bisect</span><span class="o">.</span><span class="n">insort_right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">,</span><span class="n">event</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="Simulation.schedule_command"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.schedule_command">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">command_string</span><span class="p">):</span>
+<div class="viewcode-block" id="Simulation.schedule_command"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.schedule_command">[docs]</a>    <span class="k">def</span> <span class="nf">schedule_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">times</span><span class="p">,</span><span class="n">command_string</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a command to execute in __main__.__dict__ at the</span>
 <span class="sd">        specified time.</span>
 
-<span class="sd">        The command should be a string.</span>
+<span class="sd">        The command should be a string and times may be either a</span>
+<span class="sd">        single time value or a list of times.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">event</span> <span class="o">=</span> <span class="n">CommandEvent</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_to_time_type</span><span class="p">(</span><span class="n">time</span><span class="p">),</span><span class="n">command_string</span><span class="o">=</span><span class="n">command_string</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">enqueue_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">times</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">times</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="n">times</span><span class="p">:</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">CommandEvent</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convert_to_time_type</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">command_string</span><span class="o">=</span><span class="n">command_string</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">enqueue_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="Simulation.state_push"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.simulation.Simulation.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1716,7 +1752,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/base/simulation.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/base/simulation.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">

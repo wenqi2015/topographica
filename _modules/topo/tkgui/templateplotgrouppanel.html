@@ -26,6 +26,7 @@
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../../../_static/custom.js"></script>
+    <link rel="shortcut icon" href="../../../_static/topo-favicon.ico"/>
     <link rel="top" title="Topographica" href="../../../index.html" />
     <link rel="up" title="topo.tkgui" href="../tkgui.html" /> 
   </head>
@@ -302,12 +303,12 @@
 <span class="sd">        Also print whatever other channels are there and have views.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">plot</span> <span class="o">=</span> <span class="n">event_info</span><span class="p">[</span><span class="s">&#39;plot&#39;</span><span class="p">]</span>
-        <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">event_info</span><span class="p">[</span><span class="s">&#39;coords&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">event_info</span><span class="p">[</span><span class="s">&#39;coords&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="n">info_string</span> <span class="o">=</span> <span class="n">basic_text</span>
 
         <span class="k">for</span> <span class="n">channel</span><span class="p">,</span><span class="n">channel_name</span> <span class="ow">in</span> <span class="n">available_plot_channels</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">info_string</span><span class="o">+=</span><span class="s">&quot; </span><span class="si">%s</span><span class="s">: </span><span class="si">% 1.3f</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">channel_name</span><span class="p">,</span><span class="n">plot</span><span class="o">.</span><span class="n">_get_matrix</span><span class="p">(</span><span class="n">channel</span><span class="p">)[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">])</span>
+            <span class="n">info_string</span><span class="o">+=</span><span class="s">&quot; </span><span class="si">%s</span><span class="s">: </span><span class="si">% 1.3f</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">channel_name</span><span class="p">,</span><span class="n">plot</span><span class="o">.</span><span class="n">_get_sv</span><span class="p">(</span><span class="n">channel</span><span class="p">)[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">])</span>
 
         <span class="k">return</span> <span class="n">info_string</span>
 
@@ -344,7 +345,7 @@
         <span class="n">sheets</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sheet_type</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
         <span class="n">channels</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;None&#39;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">sheets</span><span class="p">:</span>
-            <span class="n">channels</span> <span class="o">+=</span> <span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;Preference&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">maps</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="n">channels</span> <span class="o">+=</span> <span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;Preference&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">Maps</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
                          <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s">&#39;Preference&#39;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">params</span><span class="p">()[</span><span class="s">&#39;color_channel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="n">channels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plotgroup</span><span class="o">.</span><span class="n">color_channel</span> <span class="o">=</span> <span class="s">&#39;None&#39;</span>
@@ -382,7 +383,8 @@
 
 <h3>This Page</h3>
 <ul class="this-page-menu">
-	<li><a	href="https://github.com/ioam//edit/master/doc/_modules/topo/tkgui/templateplotgrouppanel.rst" rel="nofollow">Edit on GitHub</a></li>
+	<li><a	href="https://github.com/ioam/topographica/edit/master/doc/_modules/topo/tkgui/templateplotgrouppanel.rst" rel="nofollow">Edit on GitHub</a></li>
+    <li><a	href="http://doozy.inf.ed.ac.uk:8010/builders/topographica_docs" rel="nofollow">Rebuild docs</a></li>
 </ul>
 
 <div id="searchbox" style="display: none">
