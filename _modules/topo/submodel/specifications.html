@@ -105,7 +105,6 @@
         <span class="s">&quot;Dictionary of modified specification parameters&quot;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">v</span><span class="p">}</span>
-
 </div>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">resolved_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -124,16 +123,23 @@
     <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_precedence</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">sort_precedence</span>
 
+
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_precedence</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">sort_precedence</span>
+
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_type</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_object_type</span> <span class="o">=</span> <span class="n">object_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sort_precedence</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">default_value</span> <span class="ow">in</span> <span class="n">object_type</span><span class="o">.</span><span class="n">params</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span><span class="o">=</span><span class="n">default_value</span><span class="o">.</span><span class="n">default</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">object_type</span><span class="p">,</span><span class="s">&#39;params&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">default_value</span> <span class="ow">in</span> <span class="n">object_type</span><span class="o">.</span><span class="n">params</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span><span class="o">=</span><span class="n">default_value</span><span class="o">.</span><span class="n">default</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">default_parameters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="Specification.summary"><a class="viewcode-back" href="../../../Reference_Manual/topo.submodel.html#topo.submodel.specifications.Specification.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">printed</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -148,17 +154,66 @@
         <span class="s">&quot;Convenient property access.&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
+
 <div class="viewcode-block" id="Specification.keys"><a class="viewcode-back" href="../../../Reference_Manual/topo.submodel.html#topo.submodel.specifications.Specification.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">&quot;The list of available property keys.&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
 </div>
 <div class="viewcode-block" id="Specification.items"><a class="viewcode-back" href="../../../Reference_Manual/topo.submodel.html#topo.submodel.specifications.Specification.items">[docs]</a>    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">&quot;The property items.&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 
 
-
 </div></div>
+<div class="viewcode-block" id="ArraySpec"><a class="viewcode-back" href="../../../Reference_Manual/topo.submodel.html#topo.submodel.specifications.ArraySpec">[docs]</a><span class="k">class</span> <span class="nc">ArraySpec</span><span class="p">(</span><span class="n">Specification</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A simple specification used to resolve numpy arrays relative to a</span>
+<span class="sd">    Topographica simulation (i.e. topo.sim). This class is primarily</span>
+<span class="sd">    aimed for specifying arrays to a Collector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathspec</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ArraySpec uses a fairly unsophisticated implementation, making</span>
+<span class="sd">        use of eval to resolve the desired array.</span>
+
+<span class="sd">       :&#39;pathspec&#39;: A string specifying how to access the array</span>
+<span class="sd">                    relative to topo.sim.</span>
+<span class="sd">       :&#39;properties&#39;: Optional specification of array properties</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">numpy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathspec</span> <span class="o">=</span> <span class="n">pathspec</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ArraySpec</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">properties</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">topo</span> <span class="kn">import</span> <span class="n">sim</span>   <span class="c"># pyflakes:ignore (import for eval)</span>
+        <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="s">&quot;sim.</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathspec</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;topo.sim.</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathspec</span>
+
+
+    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">printed</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> : Numpy array&quot;</span> <span class="o">%</span> <span class="bp">self</span>
+        <span class="k">if</span> <span class="n">printed</span><span class="p">:</span> <span class="k">print</span> <span class="n">summary</span>
+        <span class="k">else</span><span class="p">:</span>       <span class="k">return</span> <span class="n">summary</span>
+
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">properties_repr</span> <span class="o">=</span> <span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%r</span><span class="s">:</span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+                                    <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="k">return</span> <span class="s">&quot;ArraySpec(</span><span class="si">%r</span><span class="s">, {</span><span class="si">%s</span><span class="s">})&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pathspec</span><span class="p">,</span> <span class="n">properties_repr</span><span class="p">)</span>
+
+
+</div>
 <div class="viewcode-block" id="SheetSpec"><a class="viewcode-back" href="../../../Reference_Manual/topo.submodel.html#topo.submodel.specifications.SheetSpec">[docs]</a><span class="k">class</span> <span class="nc">SheetSpec</span><span class="p">(</span><span class="n">Specification</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    SheetSpec acts as a template for sheet objects.</span>
@@ -215,13 +270,14 @@
         <span class="n">name</span><span class="o">=</span><span class="s">&#39;&#39;</span>
         <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">itervalues</span><span class="p">():</span>
             <span class="n">name</span><span class="o">+=</span><span class="nb">str</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
-
         <span class="k">return</span> <span class="n">name</span>
+
 
     <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">printed</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="n">summary</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> : </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_type</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">printed</span><span class="p">:</span> <span class="k">print</span> <span class="n">summary</span>
         <span class="k">else</span><span class="p">:</span>       <span class="k">return</span> <span class="n">summary</span>
+
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">type_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet_type</span><span class="o">.</span><span class="n">__name__</span>
@@ -281,6 +337,7 @@
         <span class="k">if</span> <span class="n">printed</span><span class="p">:</span> <span class="k">print</span> <span class="n">summary</span>
         <span class="k">else</span><span class="p">:</span>       <span class="k">return</span> <span class="n">summary</span>
 
+
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">type_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection_type</span><span class="o">.</span><span class="n">__name__</span>
         <span class="k">return</span> <span class="s">&quot;ProjectionSpec(</span><span class="si">%s</span><span class="s">, </span><span class="si">%r</span><span class="s">, </span><span class="si">%r</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="p">)</span>
@@ -304,9 +361,11 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">ModelSpec</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">=</span> <span class="n">model</span>
 
+
     <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">topo</span> <span class="kn">import</span> <span class="n">sim</span>     <span class="c"># pyflakes:ignore (needed for eval)</span>
         <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="s">&#39;sim.model&#39;</span><span class="p">)</span>
+
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instantiate_options</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -365,6 +424,7 @@
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
+
 
     <span class="k">def</span> <span class="nf">_repr_pretty_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cycle</span><span class="p">):</span>
         <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">printed</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>

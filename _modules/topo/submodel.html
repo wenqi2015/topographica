@@ -85,7 +85,7 @@
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">import</span> <span class="nn">numbergen</span>
 
-<span class="kn">from</span> <span class="nn">specifications</span> <span class="kn">import</span> <span class="n">SheetSpec</span><span class="p">,</span> <span class="n">ProjectionSpec</span><span class="p">,</span> <span class="n">ModelSpec</span>
+<span class="kn">from</span> <span class="nn">specifications</span> <span class="kn">import</span> <span class="n">SheetSpec</span><span class="p">,</span> <span class="n">ProjectionSpec</span><span class="p">,</span> <span class="n">ModelSpec</span><span class="p">,</span> <span class="n">ArraySpec</span> <span class="c"># pyflakes:ignore (API import)</span>
 <span class="kn">from</span> <span class="nn">dataviews.collector</span> <span class="kn">import</span> <span class="n">AttrTree</span>
 <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">global_params</span>
 
@@ -335,6 +335,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_register_global_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">specification</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c"># Training patterns need to be accessed by GeneratorSheets</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s">&#39;training_patterns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrTree</span><span class="p">()</span>
@@ -429,6 +430,9 @@
 <span class="sd">        Available setup options are:</span>
 <span class="sd">        &#39;training_patterns&#39;,&#39;sheets&#39;,&#39;projections&#39; and &#39;analysis&#39;.</span>
 
+<span class="sd">        This method returns a ModelSpec object which is also set as</span>
+<span class="sd">        the value of the &#39;specification&#39; attribute.</span>
+
 <span class="sd">        Please consult the docstring of the Model class for more</span>
 <span class="sd">        information about each setup option.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -479,6 +483,8 @@
             <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_projection_specs</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="k">if</span> <span class="s">&#39;analysis&#39;</span> <span class="ow">in</span> <span class="n">setup_options</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">analysis_setup</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">specification</span> <span class="o">=</span> <span class="n">model</span>
         <span class="k">return</span> <span class="n">model</span>
 
 </div>
