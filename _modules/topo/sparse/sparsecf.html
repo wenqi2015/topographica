@@ -751,6 +751,9 @@
         <span class="k">if</span> <span class="n">initialize_cfs</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_create_cfs</span><span class="p">()</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_output_fns_init</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apply_learn_output_fns</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">input_buffer</span> <span class="o">=</span> <span class="bp">None</span>
 
 
@@ -824,7 +827,6 @@
             <span class="n">x_array</span> <span class="o">*=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y_array</span> <span class="o">*=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">val_array</span> <span class="o">*=</span> <span class="mf">0.0</span>
         <span class="k">del</span> <span class="n">temp_sparse</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">compress</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">apply_learn_output_fns</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Sparse projection </span><span class="si">%r</span><span class="s"> loaded&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 
