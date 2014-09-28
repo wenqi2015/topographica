@@ -847,6 +847,12 @@
 
         <span class="k">return</span> <span class="n">CF</span>
 
+    <span class="k">def</span> <span class="nf">get_sheet_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_active_units_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="SparseCFProjection.activate"><a class="viewcode-back" href="../../../Reference_Manual/topo.sparse.html#topo.sparse.sparsecf.SparseCFProjection.activate">[docs]</a>    <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Activate using the specified response_fn and output_fn.&quot;&quot;&quot;</span>

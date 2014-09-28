@@ -1318,7 +1318,8 @@
         <span class="k">if</span> <span class="n">setup_options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">setup_options</span><span class="o">=</span><span class="n">setup_options</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">load</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">specification</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">specification</span><span class="p">(</span><span class="n">instantiate_options</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">specification</span><span class="p">(</span><span class="n">instantiate_options</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                                     <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">load</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;No specification found on the self.model object&quot;</span><span class="p">)</span>
 
