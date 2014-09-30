@@ -302,6 +302,10 @@
 <span class="sd">        :&#39;projections&#39;: instantiates all projections and registers</span>
 <span class="sd">        them in topo.sim</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">random_seed</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">       Overrides the default global seed on param.random_seed when not None.&quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="c"># A convenient handle on the definition class decorator</span>
@@ -441,6 +445,9 @@
                                    <span class="s">&#39;sheets&#39;</span><span class="p">,</span>
                                    <span class="s">&#39;projections&#39;</span><span class="p">,</span>
                                    <span class="s">&#39;analysis&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">random_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_seed</span>
 
         <span class="k">if</span> <span class="n">setup_options</span><span class="o">==</span><span class="bp">True</span><span class="p">:</span>
             <span class="n">setup_options</span> <span class="o">=</span> <span class="n">available_setup_options</span>

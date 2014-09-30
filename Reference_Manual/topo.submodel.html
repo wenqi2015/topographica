@@ -174,6 +174,10 @@ registered methods in connect</p>
 :&#8217;projections&#8217;: instantiates all projections and registers
 them in topo.sim</p>
 </div></blockquote>
+<dl class="docutils">
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">random_seed</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Overrides the default global seed on param.random_seed when not None.</dd>
+</dl>
 <dl class="method">
 <dt id="topo.submodel.Model.analysis_setup">
 <tt class="descname">analysis_setup</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/submodel.html#Model.analysis_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.submodel.Model.analysis_setup" title="Permalink to this definition">¶</a></dt>
@@ -198,7 +202,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838a5feec0&gt;</em><a class="headerlink" href="#topo.submodel.Model.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d796fec0&gt;</em><a class="headerlink" href="#topo.submodel.Model.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -212,12 +216,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838a5feba8&gt;</em><a class="headerlink" href="#topo.submodel.Model.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d796ff70&gt;</em><a class="headerlink" href="#topo.submodel.Model.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838a5fef18&gt;</em><a class="headerlink" href="#topo.submodel.Model.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d796ff18&gt;</em><a class="headerlink" href="#topo.submodel.Model.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -292,12 +296,12 @@ attributes of the model components.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838a786050&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7afe050&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838a786100&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7afe100&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -484,6 +488,8 @@ modular system is implemented.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">contrast</span></tt> (<em>allow_None=False, bounds=(0, 100), constant=False, default=70, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Brightness of the input patterns as a contrast (percent). Only
         used if &#8216;od&#8217; not in &#8216;dims&#8217;.</dd>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">random_seed</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Overrides the default global seed on param.random_seed when not None.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">surround_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.2954, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The size of the surround Gaussian used to compute the
         center-surround receptive field.</dd>
@@ -564,7 +570,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab0e0a8&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7e850a8&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -578,12 +584,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab0e1b0&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7e851b0&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab0e208&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7e85208&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -646,12 +652,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab0e680&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7e85680&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab0e6d8&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7e856d8&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -782,6 +788,8 @@ luminosity sheet) as well as the addition of measurement code.</p>
         used if &#8216;od&#8217; not in &#8216;dims&#8217;.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">exc_lr</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Learning rate for the lateral excitatory projection to V1.</dd>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">random_seed</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Overrides the default global seed on param.random_seed when not None.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">surround_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.2954, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The size of the surround Gaussian used to compute the
         center-surround receptive field.</dd>
@@ -870,7 +878,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838a991e68&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7d08ec0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -884,12 +892,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838a991f70&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7d08fc8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838a991ec0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7d08e68&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -952,12 +960,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab1f0a8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7e960a8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab1f158&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7e96158&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1086,6 +1094,8 @@ ModelGCAL subclass of this file.</dd>
         used if &#8216;od&#8217; not in &#8216;dims&#8217;.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">exc_lr</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Learning rate for the lateral excitatory projection to V1.</dd>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">random_seed</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Overrides the default global seed on param.random_seed when not None.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">surround_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.2954, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The size of the surround Gaussian used to compute the
         center-surround receptive field.</dd>
@@ -1174,7 +1184,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838a991ec0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7d08db8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1188,12 +1198,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838a991e10&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7d08e10&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838a991db8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7d08e68&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1256,12 +1266,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab2b050&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7ea3050&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838ab2b158&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d7ea3158&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1404,6 +1414,8 @@ visual pathway.</p>
         used if &#8216;od&#8217; not in &#8216;dims&#8217;.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">exc_lr</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Learning rate for the lateral excitatory projection to V1.</dd>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">random_seed</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Overrides the default global seed on param.random_seed when not None.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">surround_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.2954, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The size of the surround Gaussian used to compute the
         center-surround receptive field.</dd>
@@ -1479,7 +1491,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83890427e0&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d63aa940&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1493,12 +1505,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8389042890&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d63aa890&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8389042788&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d63aa838&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1561,12 +1573,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8389042af8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d63aaaa0&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8389042ba8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d63aaba8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1622,7 +1634,7 @@ containing the arguments.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">topo.submodel.gcal.ModelGCAL</span></tt></p>
 <p>Spatially-tuned GCAL (SCAL) calibrated to represent a 3 degree
 parafoveal region of macaque primary visual cortex, assuming a
-3 mm/deg magnification factor and 1 mm orientation hypercolumn
+3 mm/deg magnification factor and 0.71 mm orientation hypercolumn
 distance.</p>
 <p>Changes from ModelGCAL include relative strengths, homeostatic
 sparsity constraints, connection radii and switching from
@@ -1648,7 +1660,7 @@ calibration process is explained in a forthcoming notebook.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">max_disparity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=4.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Maximum disparity between input pattern positions in the left
         and right eye. Only used if &#8216;dy&#8217; in &#8216;dims&#8217;.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">latexc_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.087, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">latexc_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.06, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Size of the lateral excitatory connections within V1.</dd>
 <dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">num_lags</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=4, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of successive frames before showing a new input
@@ -1672,7 +1684,7 @@ calibration process is explained in a forthcoming notebook.</p>
         corresponding bounds radius.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">cortex_density</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=47.0, inclusive_bounds=(False, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The nominal_density to use for V1.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">num_inputs</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">num_inputs</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>How many input patterns to present per unit area at each
         iteration, when using discrete patterns (e.g. Gaussians).</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">center_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -1684,23 +1696,22 @@ calibration process is explained in a forthcoming notebook.</p>
 <dd>The nominal_density to use for the retina.</dd>
 <dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">sf_channels</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of spatial frequency channels. Only used if &#8216;sf&#8217; in &#8216;dims&#8217;.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">target_activity</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.016, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>The target activity for homeostatic adaptation in V1,</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">contrast</span></tt> (<em>allow_None=False, bounds=(0, 100), constant=False, default=70, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Brightness of the input patterns as a contrast (percent). Only
         used if &#8216;od&#8217; not in &#8216;dims&#8217;.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">exc_lr</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Learning rate for the lateral excitatory projection to V1.</dd>
+<dt><em>param Integer</em> <tt class="docutils literal"><span class="pre">random_seed</span></tt> (<em>allow_None=True, bounds=None, constant=False, default=None, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Overrides the default global seed on param.random_seed when not None.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">surround_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The size of the surround Gaussian used to compute the
         center-surround receptive field.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">aff_strength</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=3.2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">aff_strength</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=2.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Overall strength of the afferent projection to V1.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">latinh_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.16, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">latinh_size</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.115, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Size of the lateral inhibitory connections within V1.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">strength_factor</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Factor by which the strength of afferent connections from
-        retina sheets to LGN sheets is multiplied.</dd>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">strength_factor</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=4.292, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Factor to scale the default afferent strength of 2.33 by.</dd>
 <dt><em>param List</em> <tt class="docutils literal"><span class="pre">dims</span></tt> (<em>bounds=(0, None), constant=False, default=[&#8216;xy&#8217;, &#8216;or&#8217;], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Stimulus dimensions to include, out of the possible list:
           :&#8217;xy&#8217;: Position in x and y coordinates
@@ -1730,16 +1741,16 @@ calibration process is explained in a forthcoming notebook.</p>
         composing multiple patterns together. If None,
         align_orientations will be set to True when speed is non-zero
         (and &#8216;dr&#8217; in dims), otherwise it is set to False.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">exc_strength</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=2.6, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">exc_strength</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Overall strength of the lateral excitatory projection to V1.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">gain_control</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to use divisive lateral inhibition in the LGN for
         contrast gain control.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">inh_strength</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=4.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">inh_strength</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.8, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Overall strength of the lateral inhibitory projection to V1.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">lgn_density</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=24.0, inclusive_bounds=(False, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>The nominal_density to use for the LGN.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">latinh_radius</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.22917, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">latinh_radius</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.18, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Radius of the lateral inhibitory bounds within V1.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">expand_sf_test_range</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>By default, measure_sine_pref() measures SF at the sizes of RF
@@ -1749,7 +1760,7 @@ calibration process is explained in a forthcoming notebook.</p>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">dim_fraction</span></tt> (<em>allow_None=False, bounds=(0.0, 1.0), constant=False, default=0.7, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Fraction by which the input brightness varies between the two
         eyes.  Only used if &#8216;od&#8217; in &#8216;dims&#8217;.</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">lgnlateral_radius</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.4, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">lgnlateral_radius</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=0.5, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Connection field radius of a unit in the LGN level to
         surrounding units, in case gain control is used.</dd>
 </dl>
@@ -1770,7 +1781,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8389203788&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d6580788&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1784,12 +1795,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8389203368&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d6580368&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8389203208&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d6580208&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1802,6 +1813,12 @@ equal to the default value.</p>
 <dt id="topo.submodel.scal.ModelSCAL.keys">
 <tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.keys" title="Permalink to this definition">¶</a></dt>
 <dd><p>The list of available property keys.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.scal.ModelSCAL.lateral_inhibitory">
+<tt class="descname">lateral_inhibitory</tt><big>(</big><em>src_properties</em>, <em>dest_properties</em><big>)</big><a class="reference internal" href="../_modules/topo/submodel/scal.html#ModelSCAL.lateral_inhibitory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.lateral_inhibitory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Switch to divisive inhibition, otherwise parameters unchanged.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1852,12 +1869,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8389203418&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d6580418&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8389203578&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d6580578&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1893,6 +1910,13 @@ save and restore that state using state_push() and
 state_pop().</p>
 <p>Generally, this method is used by operations that need to test
 something without permanently altering the objects&#8217; state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.scal.ModelSCAL.training_pattern_setup">
+<tt class="descname">training_pattern_setup</tt><big>(</big><em>**overrides</em><big>)</big><a class="reference internal" href="../_modules/topo/submodel/scal.html#ModelSCAL.training_pattern_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.training_pattern_setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only the size of Gaussian training patterns has been modified.
+The &#8216;aspect_ratio&#8217; and &#8216;scale&#8217; parameter values are unchanged.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1953,7 +1977,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d0a8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa0a8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1967,12 +1991,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d368&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa368&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d470&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa470&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2035,12 +2059,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d4c8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa4c8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d418&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa838&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2108,7 +2132,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d5d0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aaf18&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2122,12 +2146,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d578&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aaa48&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d838&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa8e8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2200,12 +2224,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d0a8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa0a8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d628&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa628&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2272,7 +2296,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d5d0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aaf18&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2286,12 +2310,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d8e8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa418&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d4c8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa4c8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2354,12 +2378,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d418&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa838&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d1b0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa1b0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2426,7 +2450,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d368&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa368&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2440,12 +2464,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d838&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa8e8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d0a8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa0a8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2508,12 +2532,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d628&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa628&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d5d0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aaf18&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2592,7 +2616,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d3c0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa3c0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2606,12 +2630,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d368&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa368&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d418&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa838&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2682,12 +2706,12 @@ typically a Sheet or a Projection.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d470&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa470&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b838923d6d8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b83d61aa6d8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
