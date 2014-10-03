@@ -92,7 +92,19 @@
 <span class="sd">    calibration process is explained in a forthcoming notebook.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">area</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span>
+        <span class="n">inclusive_bounds</span><span class="o">=</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span><span class="bp">True</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Linear size of cortical area to simulate.</span>
+
+<span class="s">        SCAL and other spatially calibrated variants of GCAL require</span>
+<span class="s">        cortical areas larger than 1.0x1.0 to avoid strong suppressive</span>
+<span class="s">        edge effects.&quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="n">num_inputs</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="bp">None</span><span class="p">))</span>
+
+    <span class="n">lgnaff_strength</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Overall strength of the afferent projection from the retina to</span>
+<span class="s">        the LGN sheets.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">aff_strength</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">2.8</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Overall strength of the afferent projection to V1.&quot;&quot;&quot;</span><span class="p">)</span>
@@ -106,8 +118,6 @@
     <span class="n">t_init</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        The initial threshold value for homeostatic adaptation in V1.&quot;&quot;&quot;</span><span class="p">)</span>
 
-    <span class="n">strength_factor</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">4.292</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Factor to scale the default afferent strength of 2.33 by.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="c">#=================#</span>
     <span class="c"># Spatial extents #</span>
@@ -196,7 +206,7 @@
 </div>
     <span class="k">def</span> <span class="nf">analysis_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ModelSCAL</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">analysis_setup</span><span class="p">()</span>
-        <span class="kn">from</span> <span class="nn">topo.analysis.command</span> <span class="kn">import</span> <span class="n">measure_sine_pref</span>
+        <span class="kn">from</span> <span class="nn">topo.analysis.command</span> <span class="kn">import</span> <span class="n">measure_sine_pref</span><span class="p">,</span> <span class="n">measure_or_pref</span>
 
         <span class="n">sf_relative_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sf_spacing</span> <span class="o">**</span> <span class="p">(</span><span class="n">sf_channel</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
                              <span class="k">for</span> <span class="n">sf_channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s">&#39;SF&#39;</span><span class="p">]]</span>
@@ -207,7 +217,9 @@
 
         <span class="n">relative_sizes</span> <span class="o">=</span> <span class="p">(</span><span class="n">wide_relative_sizes</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand_sf_test_range</span>
                           <span class="k">else</span> <span class="n">sf_relative_sizes</span><span class="p">)</span>
-        <span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.65</span> <span class="o">*</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">relative_sizes</span><span class="p">]</span></div>
+        <span class="n">frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.65</span> <span class="o">*</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">relative_sizes</span><span class="p">]</span>
+        <span class="n">measure_sine_pref</span><span class="o">.</span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">frequencies</span>
+        <span class="n">measure_or_pref</span><span class="o">.</span><span class="n">frequencies</span><span class="o">=</span> <span class="n">frequencies</span></div>
 </pre></div>
 
           </div>
