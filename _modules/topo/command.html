@@ -780,6 +780,10 @@
 <span class="s">      of run_batch is displayed using standard output but may also be</span>
 <span class="s">      set to &#39;disabled&#39; as necessary.&quot;&quot;&quot;</span><span class="p">)</span>
 
+    <span class="n">progress_interval</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">      Interval between updates of the progress bar (if enabled) in</span>
+<span class="s">      units of topo.sim.time.&quot;&quot;&quot;</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_truncate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        If s is greater than the max_name_length parameter, truncate it</span>
@@ -912,7 +916,8 @@
             <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
             <span class="n">ProgressBar</span><span class="o">.</span><span class="n">display</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">progress_bar</span>
             <span class="n">progress_bar</span> <span class="o">=</span> <span class="n">RunProgress</span><span class="p">(</span><span class="n">run_hook</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
-                                       <span class="n">display</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">)</span>
+                                       <span class="n">display</span>  <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">,</span>
+                                       <span class="n">interval</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">progress_interval</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">times</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">completion</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
