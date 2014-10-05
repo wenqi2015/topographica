@@ -751,6 +751,8 @@
         <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                                         <span class="n">src</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                                         <span class="n">dest</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">_CF (</span><span class="si">%.5f</span><span class="s">, </span><span class="si">%.5f</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;&#39;</span> <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">label</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">same_cf_shape_for_all_cfs</span><span class="p">:</span>
                 <span class="n">mask_template</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask_template</span>
@@ -759,7 +761,7 @@
                                              <span class="bp">self</span><span class="o">.</span><span class="n">bounds_template</span><span class="p">,</span>
                                              <span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">autosize_mask</span><span class="p">,</span>
                                              <span class="bp">self</span><span class="o">.</span><span class="n">mask_threshold</span><span class="p">,</span>
-                                             <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+                                             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
             <span class="n">CF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cf_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
                               <span class="n">template</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_slice_template</span><span class="p">,</span>
@@ -941,7 +943,7 @@
 <span class="c"># CEB: have not yet decided proper location for this method</span>
 <span class="c"># JAB: should it be in PatternGenerator?</span></div>
 <span class="k">def</span> <span class="nf">_create_mask</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="n">bounds_template</span><span class="p">,</span><span class="n">sheet</span><span class="p">,</span>
-                 <span class="n">autosize</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Mask&#39;</span><span class="p">):</span>
+                 <span class="n">autosize</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;Mask&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create the mask (see ConnectionField.__init__()).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -956,7 +958,7 @@
     <span class="n">center_r</span><span class="p">,</span><span class="n">center_c</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">sheet2matrixidx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">center_x</span><span class="p">,</span><span class="n">center_y</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">matrixidx2sheet</span><span class="p">(</span><span class="n">center_r</span><span class="p">,</span><span class="n">center_c</span><span class="p">)</span>
 
-    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
                   <span class="n">x</span><span class="o">=</span><span class="n">center_x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">center_y</span><span class="p">,</span>
                   <span class="n">bounds</span><span class="o">=</span><span class="n">bounds_template</span><span class="p">,</span>
                   <span class="n">xdensity</span><span class="o">=</span><span class="n">sheet</span><span class="o">.</span><span class="n">xdensity</span><span class="p">,</span>
