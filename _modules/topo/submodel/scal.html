@@ -183,7 +183,9 @@
                               <span class="s">&#39;aspect_ratio&#39;</span><span class="p">:</span> <span class="mf">4.66667</span> <span class="k">if</span> <span class="n">or_dim</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">,</span>
                               <span class="s">&#39;scale&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">contrast</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">}</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">ModelSCAL</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">training_pattern_setup</span><span class="p">(</span>
-            <span class="n">pattern_parameters</span><span class="o">=</span><span class="n">pattern_parameters</span><span class="p">)</span>
+            <span class="n">pattern_parameters</span><span class="o">=</span><span class="n">pattern_parameters</span><span class="p">,</span>
+            <span class="n">position_bound_x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="mf">2.0</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">v1aff_radius</span><span class="p">,</span>
+            <span class="n">position_bound_y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="mf">2.0</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">v1aff_radius</span><span class="p">)</span>
 
 </div>
     <span class="nd">@Model.CFProjection</span>
