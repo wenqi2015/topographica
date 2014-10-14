@@ -84,7 +84,7 @@
     <span class="kn">import</span> <span class="nn">IPython</span> <span class="c"># pyflakes:ignore (Required import)</span>
     <span class="kn">from</span> <span class="nn">IPython.core.magic</span> <span class="kn">import</span> <span class="n">Magics</span><span class="p">,</span> <span class="n">magics_class</span><span class="p">,</span> <span class="n">line_magic</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">nose.plugins.skip</span> <span class="kn">import</span> <span class="n">SkipTest</span>
+    <span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">SkipTest</span>
     <span class="k">raise</span> <span class="n">SkipTest</span><span class="p">(</span><span class="s">&quot;IPython extension requires IPython &gt;= 0.12&quot;</span><span class="p">)</span>
 
 
