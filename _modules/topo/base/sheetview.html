@@ -81,7 +81,7 @@
 
 <span class="kn">import</span> <span class="nn">param</span>
 
-<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span> <span class="k">as</span> <span class="n">ImagenSheetView</span>
+<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span> <span class="k">as</span> <span class="n">dataviewsSheetView</span>
 <span class="kn">from</span> <span class="nn">dataviews.sheetviews</span> <span class="kn">import</span> <span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span><span class="p">,</span> <span class="n">SheetStack</span>
 <span class="kn">from</span> <span class="nn">dataviews.options</span> <span class="kn">import</span> <span class="n">options</span><span class="p">,</span> <span class="n">StyleOpts</span>
 
@@ -156,7 +156,7 @@
     <span class="k">return</span> <span class="n">unitview</span>
 
 </div>
-<span class="k">class</span> <span class="nc">CFView</span><span class="p">(</span><span class="n">ImagenSheetView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">CFView</span><span class="p">(</span><span class="n">dataviewsSheetView</span><span class="p">):</span>
 
     <span class="n">situated_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        The situated bounds can be set to embed the SheetLayer in a larger</span>
@@ -172,6 +172,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">situated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;CFView is already situated.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span>
         <span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
         <span class="n">xd</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">)))</span>
@@ -183,9 +184,9 @@
         <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_sheet_slice</span>
         <span class="n">data</span><span class="p">[</span><span class="n">r1</span><span class="p">:</span><span class="n">r2</span><span class="p">,</span> <span class="n">c1</span><span class="p">:</span><span class="n">c2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 
-        <span class="k">return</span> <span class="n">ImagenSheetView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span> <span class="n">roi_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">roi_bounds</span><span class="p">,</span>
-                               <span class="n">situated_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span>
-                               <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">CFView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span> <span class="n">roi_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
+                      <span class="n">situated_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span>
+                      <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">CFStack</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">):</span>
