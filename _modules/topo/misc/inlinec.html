@@ -191,6 +191,10 @@
         <span class="s">&#39;compiler&#39;</span><span class="p">:</span><span class="s">&#39;gcc&#39;</span><span class="p">,</span>
         <span class="s">&#39;verbose&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
 
+    <span class="c"># Suppress bogus #warning &quot;Using deprecated NumPy API&quot; warnings from weave;</span>
+    <span class="c"># (unfortunately also suppresses any other explicit #warning)</span>
+    <span class="n">inline_named_params</span><span class="p">[</span><span class="s">&#39;extra_compile_args&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;-Wno-cpp&#39;</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="n">openmp_threads</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">c_decorators</span><span class="p">[</span><span class="s">&#39;cfs_loop_pragma&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;#pragma omp parallel for schedule(guided, 8)&quot;</span>
         <span class="n">inline_named_params</span><span class="p">[</span><span class="s">&#39;extra_compile_args&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;-fopenmp&#39;</span><span class="p">)</span>
