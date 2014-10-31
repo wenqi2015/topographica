@@ -72,15 +72,18 @@
 <span class="sd">github.com/ioam/lancet). The TopoCommand is appropriate for simple</span>
 <span class="sd">runs using the default analysis function, whereas the RunBatchCommand</span>
 <span class="sd">allow for more sophisticated measurements and analysis to be executed</span>
-<span class="sd">during a simulation run using a dataviews Collector object.</span>
+<span class="sd">during a simulation run using a holoviews Collector object.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">pickle</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span><span class="p">,</span> <span class="n">OrderedDict</span>
 
 <span class="kn">import</span> <span class="nn">numpy.version</span> <span class="kn">as</span> <span class="nn">np_version</span>
-<span class="kn">import</span> <span class="nn">topo</span>
+
 <span class="kn">import</span> <span class="nn">param</span>
+
+<span class="kn">from</span> <span class="nn">holoviews.core.ndmapping</span> <span class="kn">import</span> <span class="n">NdMapping</span>
+<span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">Collector</span><span class="p">,</span> <span class="n">Collator</span>
 
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">vcs_metadata</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Command</span>
@@ -88,6 +91,8 @@
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">ViewFile</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Log</span><span class="p">,</span> <span class="n">FileInfo</span><span class="p">,</span> <span class="n">FileType</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Args</span>
+
+<span class="kn">import</span> <span class="nn">topo</span>
 
 <span class="k">try</span><span class="p">:</span>
    <span class="kn">from</span> <span class="nn">external</span> <span class="kn">import</span> <span class="n">sys_paths</span>
@@ -97,10 +102,6 @@
    <span class="n">submodules</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">submodule_paths</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">name</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ordering</span><span class="p">]</span>
 <span class="k">except</span><span class="p">:</span>
    <span class="n">submodules</span> <span class="o">=</span> <span class="p">[]</span>
-
-
-<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">NdMapping</span>
-<span class="kn">from</span> <span class="nn">dataviews.collector</span> <span class="kn">import</span> <span class="n">Collector</span><span class="p">,</span> <span class="n">Collator</span>
 
 <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">default_output_path</span>
 <span class="n">review_and_launch</span><span class="o">.</span><span class="n">output_directory</span> <span class="o">=</span> <span class="n">default_output_path</span><span class="p">()</span>
@@ -463,7 +464,7 @@
 <div class="viewcode-block" id="BatchCollector"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.BatchCollector">[docs]</a><span class="k">class</span> <span class="nc">BatchCollector</span><span class="p">(</span><span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   BatchCollector is a wrapper class used to execute a Collector in a</span>
-<span class="sd">   Topographica run_batch context, saving the dataviews to disk as</span>
+<span class="sd">   Topographica run_batch context, saving the holoviews to disk as</span>
 <span class="sd">   *.view files.</span>
 <span class="sd">   &quot;&quot;&quot;</span>
 
@@ -518,7 +519,7 @@
 <span class="sd">      Calls the collector specified by the user in the run_batch</span>
 <span class="sd">      context. Invoked as an analysis function by RunBatchCommand.</span>
 <span class="sd">      &quot;&quot;&quot;</span>
-      <span class="kn">from</span> <span class="nn">dataviews.collector</span> <span class="kn">import</span> <span class="n">AttrTree</span>
+      <span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrTree</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">collector</span><span class="o">.</span><span class="n">interval_hook</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">run</span>
 
       <span class="n">topo_time</span> <span class="o">=</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>

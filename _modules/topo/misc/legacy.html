@@ -623,7 +623,8 @@
     <span class="c"># Convert old sheet_views and curve_dict</span>
     <span class="kn">from</span> <span class="nn">topo.misc.attrdict</span> <span class="kn">import</span> <span class="n">AttrDict</span>
     <span class="kn">from</span> <span class="nn">topo.base.sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
-    <span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span><span class="p">,</span> <span class="n">NdMapping</span>
+    <span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">SheetMatrix</span><span class="p">,</span> <span class="n">NdMapping</span>
+
     <span class="k">def</span> <span class="nf">_set_sheet_views</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;simulation&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">None</span>
@@ -645,7 +646,7 @@
             <span class="n">svs</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;sheet_views&#39;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">sv</span> <span class="ow">in</span> <span class="n">svs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
-                <span class="n">new_sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+                <span class="n">new_sv</span> <span class="o">=</span> <span class="n">SheetMatrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
                 <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dimension_labels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Time&#39;</span><span class="p">])</span>
                 <span class="n">metadata_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;cyclic_range&#39;</span><span class="p">,</span> <span class="s">&#39;precedence&#39;</span><span class="p">,</span>
                                   <span class="s">&#39;row_precedence&#39;</span><span class="p">,</span> <span class="s">&#39;src_name&#39;</span><span class="p">]</span>
@@ -673,7 +674,7 @@
                                                                        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
                                                                        <span class="n">timestamp</span><span class="o">=</span><span class="n">old_sv</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span>
                         <span class="n">data</span><span class="p">,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">old_sv</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
-                        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+                        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetMatrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
                         <span class="n">curves</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">timestamp</span><span class="p">][</span><span class="n">l_val</span><span class="p">][</span><span class="n">f_val</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span>
         <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;curve_dict&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
         <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;sheet_views&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
@@ -695,11 +696,11 @@
 
 
 <span class="k">def</span> <span class="nf">ndmapping_ndim_remove</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">dataviews</span>
+    <span class="kn">import</span> <span class="nn">holoviews</span>
     <span class="k">def</span> <span class="nf">remove_ndmapping</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
         <span class="k">if</span> <span class="s">&#39;ndim&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
             <span class="k">del</span> <span class="n">state</span><span class="p">[</span><span class="s">&#39;ndim&#39;</span><span class="p">]</span>
-    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">NdMapping</span><span class="p">,</span> <span class="n">remove_ndmapping</span><span class="p">)</span>
+    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">holoviews</span><span class="o">.</span><span class="n">NdMapping</span><span class="p">,</span> <span class="n">remove_ndmapping</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">90800401</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndmapping_ndim_remove</span>
 
@@ -768,35 +769,24 @@
     <span class="kn">import</span> <span class="nn">featuremapper</span>
     <span class="n">allow_import</span><span class="p">(</span><span class="n">featuremapper</span><span class="p">,</span> <span class="s">&#39;fmapper&#39;</span><span class="p">)</span>
 
-    <span class="n">param_no_restore</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;SheetView&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;bounds&#39;</span><span class="p">,),</span>
+    <span class="n">param_no_restore</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;SheetMatrix&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;bounds&#39;</span><span class="p">,),</span>
                         <span class="s">&#39;ProjectionGrid&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;bounds&#39;</span><span class="p">,)}</span>
     <span class="n">PicklableClassAttributes</span><span class="o">.</span><span class="n">deleted_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">param_no_restore</span><span class="p">)</span>
 
-    <span class="kn">import</span> <span class="nn">dataviews</span>
+    <span class="kn">import</span> <span class="nn">holoviews</span>
     <span class="k">def</span> <span class="nf">remove_shape</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
         <span class="k">if</span> <span class="s">&#39;shape&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;shape&#39;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="s">&#39;_shape_param_value&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;_shape_param_value&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="s">&#39;_bounds_param_value&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
-            <span class="n">bounds</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;_bounds_param_value&#39;</span><span class="p">)</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;_bounds_param_value&#39;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="s">&#39;scs&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
-            <span class="n">bounds</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;scs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">bounds</span>
-        <span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;scs&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">bounds</span>
 
-        <span class="n">cl_name</span> <span class="o">=</span> <span class="s">&#39;SheetCoordinateSystem&#39;</span>
-        <span class="n">xdensity</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">l</span><span class="p">)</span>
-        <span class="n">ydensity</span> <span class="o">=</span> <span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
-        <span class="n">state</span><span class="p">[</span><span class="s">&#39;_{cl}__xdensity&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">cl_name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">xdensity</span>
-        <span class="n">state</span><span class="p">[</span><span class="s">&#39;_{cl}__xstep&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">cl_name</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">xdensity</span>
-        <span class="n">state</span><span class="p">[</span><span class="s">&#39;_{cl}__ydensity&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">cl_name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ydensity</span>
-        <span class="n">state</span><span class="p">[</span><span class="s">&#39;_{cl}__ystep&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">cl_name</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">ydensity</span>
-        <span class="n">state</span><span class="p">[</span><span class="s">&#39;_{cl}__shape&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cl</span><span class="o">=</span><span class="n">cl_name</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="n">state</span><span class="p">[</span><span class="s">&#39;lbrt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-        <span class="n">state</span><span class="p">[</span><span class="s">&#39;bounds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bounds</span>
 
-    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">SheetView</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
-    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">dataviews</span><span class="o">.</span><span class="n">CoordinateGrid</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
+    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">holoviews</span><span class="o">.</span><span class="n">SheetMatrix</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
+    <span class="n">preprocess_state</span><span class="p">(</span><span class="n">holoviews</span><span class="o">.</span><span class="n">Grid</span><span class="p">,</span> <span class="n">remove_shape</span><span class="p">)</span>
 
 <span class="n">support</span><span class="p">[</span><span class="mi">90800536</span><span class="p">]</span> <span class="o">=</span> <span class="n">fmapper_rename</span>
 
