@@ -81,14 +81,14 @@
 
 <span class="kn">import</span> <span class="nn">param</span>
 
-<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">SheetView</span> <span class="k">as</span> <span class="n">dataviewsSheetView</span>
-<span class="kn">from</span> <span class="nn">dataviews.sheetviews</span> <span class="kn">import</span> <span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span><span class="p">,</span> <span class="n">SheetStack</span>
-<span class="kn">from</span> <span class="nn">dataviews.options</span> <span class="kn">import</span> <span class="n">options</span><span class="p">,</span> <span class="n">StyleOpts</span>
+<span class="kn">from</span> <span class="nn">holoviews.core</span> <span class="kn">import</span> <span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span>
+<span class="kn">from</span> <span class="nn">holoviews.core.options</span> <span class="kn">import</span> <span class="n">options</span><span class="p">,</span> <span class="n">StyleOpts</span>
+<span class="kn">from</span> <span class="nn">holoviews.view</span> <span class="kn">import</span> <span class="n">SheetMatrix</span>
 
 
 <div class="viewcode-block" id="SheetView"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.sheetview.SheetView">[docs]</a><span class="k">class</span> <span class="nc">SheetView</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Class provided for backward compatibility with earlier SheetView</span>
+<span class="sd">    Class provided for backward compatibility with earlier SheetMatrix</span>
 <span class="sd">    component.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -114,7 +114,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the requested view as a (data, bbox) tuple.  Provided</span>
 <span class="sd">        for backward compatibility with the original Topographica</span>
-<span class="sd">        SheetView model. It is now easier to access the data and</span>
+<span class="sd">        SheetMatrix model. It is now easier to access the data and</span>
 <span class="sd">        bounds attributes directly.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;data&#39;</span><span class="p">):</span>
@@ -124,7 +124,7 @@
 </div>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bounds</span><span class="p">),</span> <span class="n">src_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">precedence</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                  <span class="n">timestamp</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">row_precedence</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Initializing old SheetView class&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Initializing old SheetMatrix class&#39;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SheetView</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
                                        <span class="n">src_name</span> <span class="o">=</span> <span class="n">src_name</span><span class="p">,</span>
                                        <span class="n">precedence</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">,</span>
@@ -140,7 +140,7 @@
 <span class="sd">    component. Original docstring for UnitView:</span>
 
 <span class="sd">    Consists of an X,Y position for the unit that this View is</span>
-<span class="sd">    created for.  Subclasses SheetView.</span>
+<span class="sd">    created for.  Subclasses SheetMatrix.</span>
 
 <span class="sd">    UnitViews should be stored in Sheets via a tuple</span>
 <span class="sd">    (&#39;Weights&#39;,Sheet,Projection,X,Y).  The dictionary in Sheets can be</span>
@@ -156,7 +156,7 @@
     <span class="k">return</span> <span class="n">unitview</span>
 
 </div>
-<span class="k">class</span> <span class="nc">CFView</span><span class="p">(</span><span class="n">dataviewsSheetView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">CFView</span><span class="p">(</span><span class="n">SheetMatrix</span><span class="p">):</span>
 
     <span class="n">situated_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        The situated bounds can be set to embed the SheetLayer in a larger</span>
@@ -164,10 +164,6 @@
 
     <span class="n">input_sheet_slice</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">NumericTuple</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Slice indices of the embedded view into the situated matrix.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">stack_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">CFStack</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">situated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -187,13 +183,6 @@
         <span class="k">return</span> <span class="n">CFView</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span> <span class="n">roi_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                       <span class="n">situated_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span>
                       <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">CFStack</span><span class="p">(</span><span class="n">SheetStack</span><span class="p">):</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">situated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">situated</span><span class="p">)</span>
 
 
 <span class="n">options</span><span class="o">.</span><span class="n">CFView</span> <span class="o">=</span> <span class="n">StyleOpts</span><span class="p">(</span><span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>

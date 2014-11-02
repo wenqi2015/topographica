@@ -85,21 +85,17 @@
 <span class="sd">simply by changing e.g. Sheet.nominal_density.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-
-
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">zeros</span><span class="p">,</span><span class="n">array</span><span class="p">,</span><span class="n">arange</span><span class="p">,</span><span class="n">meshgrid</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">float64</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
 
+<span class="kn">from</span> <span class="nn">holoviews.core</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span>
+<span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrDict</span><span class="p">,</span> <span class="n">AttrTree</span>
+<span class="kn">from</span> <span class="nn">holoviews.view</span> <span class="kn">import</span> <span class="n">SheetMatrix</span>
+
 <span class="kn">from</span> <span class="nn">simulation</span> <span class="kn">import</span> <span class="n">EventProcessor</span>
-
 <span class="kn">from</span> <span class="nn">functionfamily</span> <span class="kn">import</span> <span class="n">TransferFn</span>
-
-<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">AttrDict</span>
-<span class="kn">from</span> <span class="nn">dataviews.collector</span> <span class="kn">import</span> <span class="n">AttrTree</span>
-<span class="kn">from</span> <span class="nn">dataviews.sheetviews</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span><span class="p">,</span>\
-    <span class="n">SheetCoordinateSystem</span><span class="p">,</span> <span class="n">SheetView</span>
 
 <span class="n">activity_type</span> <span class="o">=</span> <span class="n">float64</span>
 
@@ -381,7 +377,7 @@
                             <span class="n">row_precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">row_precedence</span><span class="p">,</span>
                             <span class="n">timestamp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
 
-        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetMatrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                        <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s">&#39; Activity&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
         <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
         <span class="k">return</span> <span class="n">sv</span>

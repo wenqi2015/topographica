@@ -76,7 +76,9 @@
 <span class="kn">from</span> <span class="nn">topo.base.patterngenerator</span> <span class="kn">import</span> <span class="n">PatternGenerator</span><span class="p">,</span><span class="n">Constant</span>
 <span class="kn">from</span> <span class="nn">topo.base.simulation</span> <span class="kn">import</span> <span class="n">FunctionEvent</span><span class="p">,</span> <span class="n">PeriodicEventSequence</span>
 
-<span class="kn">from</span> <span class="nn">dataviews</span> <span class="kn">import</span> <span class="n">AttrDict</span><span class="p">,</span> <span class="n">SheetView</span>
+<span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrDict</span>
+<span class="kn">from</span> <span class="nn">holoviews.view</span> <span class="kn">import</span> <span class="n">SheetMatrix</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 
@@ -345,7 +347,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetView</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetMatrix</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
                        <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s">&#39; Activity&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">)[</span><span class="n">coords</span><span class="p">]</span>
         <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
         <span class="k">return</span> <span class="n">sv</span></div>
