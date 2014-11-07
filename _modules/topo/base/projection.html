@@ -79,7 +79,7 @@
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">overridable_property</span>
 
 <span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrDict</span><span class="p">,</span> <span class="n">AttrTree</span>
-<span class="kn">from</span> <span class="nn">holoviews.view</span> <span class="kn">import</span> <span class="n">SheetMatrix</span>
+<span class="kn">from</span> <span class="nn">holoviews.view</span> <span class="kn">import</span> <span class="n">Matrix</span>
 
 <span class="kn">from</span> <span class="nn">sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
 <span class="kn">from</span> <span class="nn">simulation</span> <span class="kn">import</span> <span class="n">EPConnection</span>
@@ -365,8 +365,8 @@
         <span class="sd">&quot;&quot;&quot;Returns the activity in a single projection&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">timestamp</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        <span class="n">sv</span> <span class="o">=</span> <span class="n">SheetMatrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
-                         <span class="n">label</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> {label}&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> {label}&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">AttrDict</span><span class="p">(</span><span class="n">proj_src_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                              <span class="n">precedence</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">src</span><span class="o">.</span><span class="n">precedence</span><span class="p">,</span>
                              <span class="n">proj_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>

@@ -188,7 +188,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618998&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036ec0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -202,7 +202,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618f18&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036db8&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -214,15 +214,15 @@ the EventProcessor should process the data somehow.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618cb0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036fc8&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.Sheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -230,13 +230,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.Sheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -358,27 +358,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618d08&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036cb0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6189f0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036e68&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.Sheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -388,13 +388,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.Sheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -464,15 +464,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.Sheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.Sheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -627,7 +627,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618d60&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036e10&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -641,12 +641,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618d08&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036cb0&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618998&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036ec0&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -666,9 +666,9 @@ call the output functions (jointly if necessary).</p>
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -676,13 +676,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -820,27 +820,27 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618b50&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef60369f0&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618f70&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036a48&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -850,13 +850,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -901,15 +901,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.SettlingCFSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.SettlingCFSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1035,7 +1035,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618f70&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036a48&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1049,7 +1049,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618d60&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036e10&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1061,7 +1061,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618c58&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036f18&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1077,9 +1077,9 @@ been propagated.</p>
 <dl class="method">
 <dt id="topo.sheet.CFSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -1087,13 +1087,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.CFSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -1236,27 +1236,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6188e8&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036f70&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d5e2f18&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef60368e8&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.CFSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -1266,13 +1266,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.CFSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -1339,15 +1339,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.CFSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.CFSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1463,7 +1463,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6188e8&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036f70&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1483,20 +1483,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618ec0&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036af8&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618d08&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef60368e8&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -1504,13 +1504,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -1645,7 +1645,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d5e2f18&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036940&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1661,22 +1661,22 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d5e2158&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ce7e68&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -1686,13 +1686,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -1752,15 +1752,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.GeneratorSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.GeneratorSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1892,7 +1892,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618cb0&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036c58&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1906,7 +1906,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618998&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036cb0&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1918,7 +1918,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618af8&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036940&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1934,9 +1934,9 @@ been propagated.</p>
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -1944,13 +1944,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -2093,27 +2093,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d5e2f70&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ce72b8&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d5e2418&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ce7e68&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -2123,13 +2123,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -2187,15 +2187,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.ProjectionSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.ProjectionSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2319,7 +2319,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618fc8&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036af8&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2339,20 +2339,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6188e8&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036c58&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618ec0&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6036a48&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -2360,13 +2360,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -2501,7 +2501,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d618940&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ce7e68&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2517,22 +2517,22 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ec58&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ce7f18&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -2542,13 +2542,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -2608,15 +2608,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2753,7 +2753,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ec58&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ce7f18&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2774,20 +2774,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ed60&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632bd08&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ecb0&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632bba8&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -2795,13 +2795,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -2936,7 +2936,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b34d5d0&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a755d0&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2951,22 +2951,22 @@ number of channels doesn&#8217;t change, there&#8217;s no need to reset.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b34d0a8&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a750a8&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -2976,13 +2976,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -3042,15 +3042,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3191,7 +3191,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ec58&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632baa0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3205,7 +3205,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56e838&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632bba8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3217,7 +3217,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56e890&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632be10&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -3237,9 +3237,9 @@ call the output functions (jointly if necessary).</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -3247,13 +3247,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -3396,27 +3396,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b498788&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a12998&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b368cb0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a12788&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -3426,13 +3426,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -3489,15 +3489,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3603,7 +3603,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ec58&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632be10&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3617,20 +3617,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ecb0&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632ba48&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ed08&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632bdb8&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -3638,13 +3638,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -3755,27 +3755,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b498d60&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a12d60&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b498788&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a12998&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -3785,13 +3785,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -3861,15 +3861,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.ActivityCopy.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.ActivityCopy.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3992,7 +3992,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56edb8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632bdb8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4006,7 +4006,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56efc8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632bd08&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4018,7 +4018,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d56ec58&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef632bba8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -4038,9 +4038,9 @@ call the output functions (jointly if necessary).</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -4048,13 +4048,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -4188,27 +4188,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b368cb0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a12d60&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6b368d08&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef4a12c58&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -4218,13 +4218,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -4281,15 +4281,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4489,7 +4489,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6c58b7e0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef675d7e0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4503,20 +4503,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6c58b9f0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef675d9f0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6c58baf8&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef675daf8&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -4524,13 +4524,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -4649,27 +4649,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6c58bc00&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef675dc00&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6c58bc58&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef675dc58&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -4679,13 +4679,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -4755,15 +4755,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.composer.Composer.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.composer.Composer.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4988,7 +4988,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2af4c8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac3470&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5002,12 +5002,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2af5d0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac3578&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2af628&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac35d0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -5027,9 +5027,9 @@ call the output functions (jointly if necessary).</p>
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -5037,13 +5037,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -5181,27 +5181,27 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2aff70&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac3f18&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2b3050&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac3f70&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -5211,13 +5211,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -5262,15 +5262,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -5316,7 +5316,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2af628&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac35d0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5330,12 +5330,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2af730&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac36d8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2af6d8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac3680&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5386,12 +5386,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2afaa0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac3a48&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d2afba8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6ac3b50&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5591,7 +5591,7 @@ for this class.  Returns None if no appropriate location can be found.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f050&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3050&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5605,20 +5605,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f1b0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f31b0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f208&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3208&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -5626,13 +5626,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -5749,27 +5749,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f8e8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f38e8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -5779,13 +5779,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -5855,15 +5855,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -5989,7 +5989,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33fd60&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3d60&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6003,20 +6003,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f158&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3158&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f208&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3208&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -6024,13 +6024,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -6147,27 +6147,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f838&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3838&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -6177,13 +6177,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -6253,15 +6253,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -6387,7 +6387,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33fd60&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3d60&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6401,20 +6401,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f208&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3208&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f0a8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f30a8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -6422,13 +6422,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -6545,27 +6545,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f3998&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d33f8e8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef63f38e8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -6575,13 +6575,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -6651,15 +6651,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -6840,7 +6840,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6b0d60&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef65c9d08&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6854,7 +6854,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6b0b50&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef65c9af8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6866,7 +6866,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6b0e10&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef65c9db8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6882,9 +6882,9 @@ been propagated.</p>
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -6892,13 +6892,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -7041,27 +7041,27 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d88d050&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef65c9fc8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d88d100&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6f93050&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -7071,13 +7071,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -7144,15 +7144,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -7288,7 +7288,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6b0aa0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef65c9b50&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7302,20 +7302,20 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6b0ba8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef65c9fc8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d6b0c00&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef65c9a48&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -7323,13 +7323,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -7473,7 +7473,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d8a5100&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6fac050&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7489,22 +7489,22 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d8a50a8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6fac0a8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -7514,13 +7514,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -7595,15 +7595,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
@@ -7815,7 +7815,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d841680&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6f53628&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7829,7 +7829,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d8415d0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6f53578&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7842,7 +7842,7 @@ reset_on_new_iteration is True.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d8416d8&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6f53680&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -7862,9 +7862,9 @@ call the output functions (jointly if necessary).</p>
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.matrix2sheet">
 <tt class="descname">matrix2sheet</tt><big>(</big><em>float_row</em>, <em>float_col</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.matrix2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a floating-point location (float_row,float_col) in matrix
-coordinates to its corresponding location (x,y) in sheet
-coordinates.</p>
+<dd><p>Convert a floating-point location (float_row,float_col) in
+matrix coordinates to its corresponding location (x,y) in
+sheet coordinates.</p>
 <p>Valid for scalar or array float_row and float_col.</p>
 <p>Inverse of sheet2matrix().</p>
 </dd></dl>
@@ -7872,13 +7872,13 @@ coordinates.</p>
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.matrixidx2sheet">
 <tt class="descname">matrixidx2sheet</tt><big>(</big><em>row</em>, <em>col</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.matrixidx2sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return (x,y) where x and y are the floating point coordinates of
-the <em>center</em> of the given matrix cell (row,col). If the matrix cell
-represents a 0.2 by 0.2 region, then the center location returned
-would be 0.1,0.1.</p>
+<dd><p>Return (x,y) where x and y are the floating point coordinates
+of the <em>center</em> of the given matrix cell (row,col). If the
+matrix cell represents a 0.2 by 0.2 region, then the center
+location returned would be 0.1,0.1.</p>
 <p>NOTE: This is NOT the strict mathematical inverse of
-sheet2matrixidx(), because sheet2matrixidx() discards all but the integer
-portion of the continuous matrix coordinate.</p>
+sheet2matrixidx(), because sheet2matrixidx() discards all but
+the integer portion of the continuous matrix coordinate.</p>
 <p>Valid only for scalar or array row and col.</p>
 </dd></dl>
 
@@ -8030,27 +8030,27 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d841838&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6f537e0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4a6d8418e8&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b4ef6f53890&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.sheet2matrix">
 <tt class="descname">sheet2matrix</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.sheet2matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in Sheet coordinates to continuous matrix
-coordinates.</p>
-<p>Returns (float_row,float_col), where float_row corresponds to y,
-and float_col to x.</p>
+<dd><p>Convert a point (x,y) in Sheet coordinates to continuous
+matrix coordinates.</p>
+<p>Returns (float_row,float_col), where float_row corresponds to
+y, and float_col to x.</p>
 <p>Valid for scalar or array x and y.</p>
-<p>Note about Bounds
-For a Sheet with BoundingBox(points=((-0.5,-0.5),(0.5,0.5)))
-and density=3, x=-0.5 corresponds to float_col=0.0 and x=0.5
-corresponds to float_col=3.0.  float_col=3.0 is not inside the
-matrix representing this Sheet, which has the three columns
+<p>Note about Bounds For a Sheet with
+BoundingBox(points=((-0.5,-0.5),(0.5,0.5))) and density=3,
+x=-0.5 corresponds to float_col=0.0 and x=0.5 corresponds to
+float_col=3.0.  float_col=3.0 is not inside the matrix
+representing this Sheet, which has the three columns
 (0,1,2). That is, x=-0.5 is inside the BoundingBox but x=0.5
 is outside. Similarly, y=0.5 is inside (at row 0) but y=-0.5
 is outside (at row 3) (it&#8217;s the other way round for y because
@@ -8060,13 +8060,13 @@ the matrix row index increases as y decreases).</p>
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.sheet2matrixidx">
 <tt class="descname">sheet2matrixidx</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.sheet2matrixidx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a point (x,y) in sheet coordinates to the integer row and
-column index of the matrix cell in which that point falls, given a
-bounds and density.  Returns (row,column).</p>
-<p>Note that if coordinates along the right or bottom boundary are
-passed into this function, the returned matrix coordinate of the
-boundary will be just outside the matrix, because the right and
-bottom boundaries are exclusive.</p>
+<dd><p>Convert a point (x,y) in sheet coordinates to the integer row
+and column index of the matrix cell in which that point falls,
+given a bounds and density.  Returns (row,column).</p>
+<p>Note that if coordinates along the right or bottom boundary
+are passed into this function, the returned matrix coordinate
+of the boundary will be just outside the matrix, because the
+right and bottom boundaries are exclusive.</p>
 <p>Valid for scalar or array x and y.</p>
 </dd></dl>
 
@@ -8119,15 +8119,15 @@ containing the arguments.</p>
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.xdensity">
 <tt class="descname">xdensity</tt><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.xdensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the x direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the x direction.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.ydensity">
 <tt class="descname">ydensity</tt><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.ydensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>The spacing between elements in an underlying
-matrix representation, in the y direction.</p>
+<dd><p>The spacing between elements in an underlying matrix
+representation, in the y direction.</p>
 </dd></dl>
 
 </dd></dl>
