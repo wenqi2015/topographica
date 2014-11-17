@@ -63,156 +63,154 @@
 <h1>Downloads<a class="headerlink" href="#downloads" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="installing-topographica">
 <h2>Installing Topographica<a class="headerlink" href="#installing-topographica" title="Permalink to this headline">¶</a></h2>
-<p>Topographica is platform-independent, and all instructions below
-apply to Linux, UNIX, Mac, or Windows, unless otherwise specified.
-In Windows, to get a command prompt, you can use the Run command
-from the Start menu and enter cmd; on other systems you can start a
-Terminal or similar application.</p>
-<p>The instructions below explain how to install Topographica <a class="reference external" href="#install-via-pip">using pip</a>
-(for most users), <a class="reference external" href="#install-via-virtualenv">using virtualenv</a> (if you don&#8217;t have pip access
-or want a separate working environment, e.g. just to try out
-Topographica), or <a class="reference external" href="#install-via-git">using git</a> (if you want the latest version, or need to
-track our files using revision control).</p>
-<div class="section" id="first-install-python">
-<h3>First install Python<a class="headerlink" href="#first-install-python" title="Permalink to this headline">¶</a></h3>
-<p>Topographica is written in Python, which is available for nearly all
-operating systems and is usually already installed (try running
-<tt class="docutils literal"><span class="pre">python</span> <span class="pre">--version</span></tt> from the command prompt). If Python version 2.6 or
-later is not installed, you can download the latest version for your
-system from <a class="reference external" href="http://www.python.org/download">python.org</a>. Note that we do not yet support Python3,
-so if only python3 is installed you will need to install python2 as
-well (e.g. Python 2.7).</p>
-<p>If Python isn&#8217;t already installed, it may be convenient to get it
-from one of the integrated scientific Python distributions like
-<a class="reference external" href="http://www.pythonxy.com">Python(X,Y)</a>, <a class="reference external" href="http://www.enthought.com/products/epd.php">EPD</a>, or <a class="reference external" href="https://store.continuum.io">Anaconda CE</a>. These distributions are
-particularly useful for Windows and Mac users, who might not
-otherwise have a C compiler (necessary for good performance in
-Topographica) and optimized math and matrix libraries. On any
-system, the integrated distributions also provide a lot of useful
-related packages, including most of Topographica&#8217;s dependencies.</p>
+<p>Topographica is platform-independent, and all instructions below apply
+to Linux, UNIX, Mac, or Windows, unless otherwise specified.  In
+Windows, to get a command prompt, you can use the Run command from the
+Start menu and enter cmd; on other systems you can start a Terminal or
+similar application.</p>
+<p>The instructions below explain how to install Topographica <a class="reference external" href="#install-via-pip">using
+pip</a> (for most users), or <a class="reference external" href="#install-via-git">using git</a> (if you want the latest
+version, or need to track our files using revision control). However,
+we first provide a <a class="reference internal" href="#quick-start">quick start</a> recipe, which you can follow step by
+step to get the most recent official release in a short time.</p>
+<div class="section" id="quick-start">
+<h3>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h3>
+<p>To get started quickly on 64-bit Linux (even if your user account has
+no system privileges), you can follow the steps below:</p>
+<div class="highlight-python"><div class="highlight"><pre>wget http://repo.continuum.io/archive/Anaconda-2.1.0-Linux-x86_64.sh
+chmod +x ./Anaconda-2.1.0-Linux-x86_64.sh
+./Anaconda-2.1.0-Linux-x86_64.sh -b -p ~/topo-env
+export PATH=~/topo-env:~/topo-env/bin:${PATH}
+conda install --yes numpy=1.8 matplotlib scipy
+conda install --yes --channel https://conda.binstar.org/oarodriguez gmpy
+pip install topographica==0.9.8-1
+</pre></div>
 </div>
-<div class="section" id="quick-recipe-for-ubuntu-linux">
-<h3>Quick recipe for Ubuntu Linux<a class="headerlink" href="#quick-recipe-for-ubuntu-linux" title="Permalink to this headline">¶</a></h3>
-<p>If you&#8217;re installing on Ubuntu Linux 12.04, all you need to do is:</p>
-<ol class="arabic simple">
-<li><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span> <span class="pre">python-tk</span> <span class="pre">python-imaging-tk</span> <span class="pre">python-numpy</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">ipython</span> <span class="pre">python-gmpy</span> <span class="pre">python-matplotlib</span> <span class="pre">python-scipy</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">topographica</span></tt></li>
-</ol>
-<p>Step 3 is optional, but highly recommended.  The remaining sections
-below explain the general cross-platform procedure, but if you have
-problems on any particular platform, you might consider using an
-Ubuntu 12.04 virtual machine to try out Topographica so that you can
-use the simple recipe above.  Similar approaches should work on other
-platforms, but we don&#8217;t currently have a list of the precise steps in
-each case.</p>
+<p>This will install Topographica into a completely self-contained
+<a class="reference external" href="http://continuum.io/downloads">Anaconda</a> Python environment, so will not interfere with any
+existing software, nor will it be affected by any subsequent changes
+to the system. Note that if you decide not to keep Topographica, you
+can uninstall by deleting the ~/topo-env directory.</p>
+<p>Having followed the quick start guide, you can skip ahead to <a class="reference internal" href="#running-topographica">Running
+Topographica</a>. The remaining sections below explain the general
+cross-platform installation procedure, but if you have problems on any
+particular platform, you might consider using e.g. a 64-bit Ubuntu
+14.04 virtual machine (via <a class="reference external" href="http://www.virtualbox.org/">VirtualBox</a>, for instance) to try out
+Topographica so that you can use the simple recipe above.  Similar
+approaches should work on other platforms, but we don&#8217;t currently have
+a list of the precise steps in each case. User-contributed recipes are
+welcome: please submit a <a class="reference external" href="https://github.com/ioam/topographica/issues/new">github issue</a>.</p>
+</div>
+<div class="section" id="install-a-python-environment">
+<h3>Install a Python environment<a class="headerlink" href="#install-a-python-environment" title="Permalink to this headline">¶</a></h3>
+<p>Topographica is written in Python, which is available for nearly all
+operating systems. If you do not already have a Python environment in
+which you wish to install Topographica, you can get one via your
+system&#8217;s package manager, or by installing one of the free integrated
+scientific Python distributions like <a class="reference external" href="http://continuum.io/downloads">Anaconda</a>, <a class="reference external" href="http://www.pythonxy.com">Python(X,Y)</a>, or
+<a class="reference external" href="https://store.enthought.com/downloads/">Canopy</a>. These integrated distributions provide many useful related
+packages (including many of Topographica&#8217;s required and optional
+dependencies), can be installed without requiring special privileges,
+and provide a C compiler on platforms that may otherwise not have one
+(e.g. Windows or Mac), allowing Topographica&#8217;s optional optimized
+components to be used.</p>
+<p>However you obtain a Python environment, note the following minimum
+requirements:</p>
+<ul class="simple">
+<li>Python 2 (2.6 or 2.7; we do not yet support Python 3)</li>
+<li>NumPy</li>
+<li>PIL (from pillow)</li>
+</ul>
 </div>
 <div class="section" id="install-via-pip">
 <h3>Install via pip<a class="headerlink" href="#install-via-pip" title="Permalink to this headline">¶</a></h3>
 <p>The typical way to install the most recently released version of
 Topographica is via <a class="reference external" href="http://www.pip-installer.org">pip</a> from the command prompt:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install --user topographica
+<div class="highlight-python"><div class="highlight"><pre>pip install topographica
 </pre></div>
 </div>
-<p>This will fetch Topographica and its required dependencies (i.e.,
-param, paramtk, imagen, numpy, and PIL, for the 0.9.8 release) from
-<a class="reference external" href="http://pypi.python.org/pypi/topographica">PyPI</a> and install them into your home directory. The files will be
-stored in a subdirectory called <tt class="docutils literal"><span class="pre">.local</span></tt> on Linux and Mac, and
-into the user&#8217;s <tt class="docutils literal"><span class="pre">%APPDATA%</span></tt> subdirectory on Windows (typically
-named <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Data</span></tt>).</p>
-<p>Beyond these absolutely required packages, you will probably also
-want to install others necessary for good performance (by at least a
-factor of 100), to provide some optional types of plotting, and to
-improve the command-line interface:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install --user gmpy matplotlib scipy ipython
+<p>This will install Topographica and any required dependencies your
+Python environment does not have (from <a class="reference external" href="http://pypi.python.org/pypi/topographica">PyPI</a>). Apart from the
+dependencies listed above, Topographica also requires three other IOAM
+packages: param, paramtk, and imagen.</p>
+<p>Note that pip can instead install packages into your home directory
+(via the <tt class="docutils literal"><span class="pre">--user</span></tt> option), or you may use <a class="reference external" href="http://www.virtualenv.org">virtualenv</a> to keep
+Topographica&#8217;s Python environment separate from any others you may
+have.</p>
+<p>Beyond these absolutely required packages, you will probably also want
+to install packages that provide some optional types of plotting, and
+to improve the command-line interface:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install matplotlib scipy ipython
 </pre></div>
 </div>
+<p>For better performance (by at least a factor of 100), you should also
+install gmpy and weave:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install gmpy weave
+</pre></div>
+</div>
+<p>If your system has a C compiler, weave allows Topographica&#8217;s optional
+optimized components to be used. On linux, a C compiler is usually
+included, but on minimal distributions you may need to install the
+equivalent of a &#8220;build-essential&#8221; package (e.g. <cite>sudo apt-get install
+build-essential</cite> on Ubuntu). On other platforms, an integrated
+scientific Python environment such as <a class="reference external" href="http://continuum.io/downloads">Anaconda</a> or <cite>Python(X,Y)</cite> may
+be the easiest way to obtain a compiler.</p>
 <p>Other useful packages are described on our <a class="reference external" href="dependencies.html">dependencies</a> page, and
-can usually be installed the same way.</p>
-<p>If you have root or adminstrator access to your machine and want
-these libraries to be available to all users of your system, you can
-omit <tt class="docutils literal"><span class="pre">--user</span></tt>, or else install the dependencies via your system&#8217;s
-package manager, if any.</p>
-<p>If your system does not have pip installed or has an old version
-lacking the <tt class="docutils literal"><span class="pre">--user</span> <span class="pre">option</span></tt>, but you do have root or administrator
-access, you should first install pip using:</p>
-<div class="highlight-python"><div class="highlight"><pre>easy_install pip
-</pre></div>
-</div>
-<p>or the equivalent for your package manager. If you don&#8217;t have
-easy_install, you can install pip by downloading <a class="reference external" href="https://raw.github.com/pypa/pip/master/contrib/get-pip.py">get-pip.py</a> and
-running <tt class="docutils literal"><span class="pre">python</span> <span class="pre">get-pip.py</span></tt>.</p>
-</div>
-<div class="section" id="install-via-virtualenv">
-<h3>Install via virtualenv<a class="headerlink" href="#install-via-virtualenv" title="Permalink to this headline">¶</a></h3>
-<p>If your machine lacks pip and you do not have root or administrator
-access, then you can obtain a local copy of pip by downloading
-<a class="reference external" href="https://raw.github.com/pypa/virtualenv/master/virtualenv.py">virtualenv.py</a>. Just run it using Python to create a clean
-&#8220;virtual environment&#8221; that includes pip and into which you can
-install Topographica and its dependencies:</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt; python virtualenv.py VENV
-&gt; VENV/bin/pip install topographica
-&gt; VENV/bin/topographica -g
-</pre></div>
-</div>
-<p>(Not tested under Windows.) You can then install any other
-dependencies using <a class="reference external" href="http://www.pip-installer.org">pip</a> as described above. Of course, instead of
-VENV you can use any name you like for your virtual environment, and
-you can have multiple different virtual environments for different
-purposes.</p>
-<p>Many people use <a class="reference external" href="http://www.virtualenv.org">virtualenv</a> even if they do have root access,
-because it allows you to install whatever you like without affecting
-any other installations. Virtualenv is also an excellent way to try
-out Topographica, because you can simply delete the generated VENV
-directory if you decide not to keep the installation, with no effect
-on your system.</p>
+can usually also be installed via pip.</p>
 </div>
 <div class="section" id="install-via-git">
 <h3>Install via Git<a class="headerlink" href="#install-via-git" title="Permalink to this headline">¶</a></h3>
 <p>If you want the most current version of Topographica, or if you want
-to track Topographica development over time, you&#8217;ll want the
-<a class="reference external" href="https://github.com/ioam/topographica">github</a> version of Topographica instead of installing it via pip.</p>
+to track Topographica development over time, you&#8217;ll want the <a class="reference external" href="https://github.com/ioam/topographica">github</a>
+version of Topographica instead of installing it via pip.</p>
 </div>
 </div>
 <div class="section" id="running-topographica">
 <h2>Running Topographica<a class="headerlink" href="#running-topographica" title="Permalink to this headline">¶</a></h2>
-<p>Because there are many ways a user might install Topographica (or
-any other Python package), the next step is to figure out where the
-topographica script (used for launching Topographica) and the
-example and model files (used as starting points for your modelling)
-ended up.</p>
-<p>If you follow the instructions above, the topographica script is
-usually <tt class="docutils literal"><span class="pre">~/.local/bin/topographica</span></tt> or <tt class="docutils literal"><span class="pre">~/VENV/bin/topographica</span></tt> on
-Linux, UNIX, and Mac. On Windows pip installations it is usually
-<tt class="docutils literal"><span class="pre">%APPDATA%\Python\scripts\topographica</span></tt> (where <tt class="docutils literal"><span class="pre">%APPDATA%</span></tt> is
-something like <tt class="docutils literal"><span class="pre">C:\Users\jbednar\AppData\Roaming</span></tt>; <tt class="docutils literal"><span class="pre">AppData</span></tt> is
-often hidden in the filesystem so you may need to enable display of
-hidden files).</p>
+<p>Because there are many ways a user might install Topographica (or any
+other Python package), the next step is to figure out where the
+topographica script (used for launching Topographica) and the example
+and model files (used as starting points for your modelling) ended up.</p>
+<p>If you followed the quick start above, the topographica script will be
+in <tt class="docutils literal"><span class="pre">~/topo-env/bin/topographica</span></tt>, and the examples and models will
+be in <tt class="docutils literal"><span class="pre">~/topo-env/share/topographica/</span></tt>.</p>
+<p>If you installed via pip into an existing Python environment (or
+virtual environment), the topographica script will be in that
+environment&#8217;s <tt class="docutils literal"><span class="pre">bin</span></tt> directory (Linux, UNIX, and Mac) or <tt class="docutils literal"><span class="pre">scripts</span></tt>
+folder (Windows). The examples and models will be in the environment&#8217;s
+<tt class="docutils literal"><span class="pre">share</span></tt> directory (<tt class="docutils literal"><span class="pre">share/topographica/</span></tt>).</p>
+<p>If you used pip&#8217;s <cite>&#8211;user</cite> option, the topographica script is usually
+<tt class="docutils literal"><span class="pre">~/.local/bin/topographica</span></tt> on Linux, UNIX, and Mac. On Windows pip
+installations it is usually <tt class="docutils literal"><span class="pre">%APPDATA%\Python\scripts\topographica</span></tt>
+(where <tt class="docutils literal"><span class="pre">%APPDATA%</span></tt> is something like
+<tt class="docutils literal"><span class="pre">C:\Users\jbednar\AppData\Roaming</span></tt>; <tt class="docutils literal"><span class="pre">AppData</span></tt> is often hidden in
+the filesystem so you may need to enable display of hidden files). The
+examples and models will usually be in
+<tt class="docutils literal"><span class="pre">~/.local/share/topographica/</span></tt> on Linux, UNIX, and Mac systems, and
+in <tt class="docutils literal"><span class="pre">%APPDATA%\Python\Share\Topographica\</span></tt> on Windows.</p>
 <p>Once you&#8217;ve located the topographica script, it will save typing if
-you make sure that the location of that script is in your command
-prompt path. Instructions for doing so differ by platform, but
-should be easily obtainable. On Windows one convenient way to put
-the script on the path is to create a file called <tt class="docutils literal"><span class="pre">topographica.bat</span></tt>
-containing a single line like:</p>
-<div class="highlight-python"><div class="highlight"><pre>@C:\Python27\python.exe %APPDATA%\Python\scripts\topographica %*
+you add the location of that script to your command prompt
+path. Instructions for doing so differ by platform, but should be
+easily obtainable. Windows users should additionally create an
+executable topographica.bat script by pasting the following into a
+cmd.exe window:</p>
+<div class="highlight-python"><div class="highlight"><pre>(echo set PYFILE=%~f0 &amp;&amp; echo set PYFILE=%PYFILE:~0,-4% &amp;&amp; echo &quot;%~f0\..\..\python.exe&quot; &quot;%PYFILE%&quot; %*) &gt; path\to\scripts\topographica.bat
 </pre></div>
 </div>
-<p>(where you use the appropriate path to both Python and your
-topographica script) and put it somewhere in your path (e.g.
-<tt class="docutils literal"><span class="pre">C:\Windows\System32</span></tt>).</p>
-<p>The example files are usually in
-<tt class="docutils literal"><span class="pre">~/.local/share/topographica/examples/</span></tt> on Linux, UNIX, and Mac
-systems, and in <tt class="docutils literal"><span class="pre">%APPDATA%\Python\Share\Topographica\examples</span></tt> on
-Windows, or in the corresponding VENV directories.</p>
-<p>Once you&#8217;ve located the script and the examples, you can start the
-GUI version of Topographica from the command prompt using something
-like: <tt class="docutils literal"><span class="pre">topographica</span> <span class="pre">-g</span> <span class="pre">~/.local/share/topographica/examples/tiny.ty</span></tt>
-or <tt class="docutils literal"><span class="pre">python</span> <span class="pre">%APPDATA%\Python\scripts\topographica</span> <span class="pre">-g</span>
-<span class="pre">%APPDATA%\Python\share\topographica\examples\tiny.ty</span></tt> (on
-Windows).</p>
-<p>Running Topographica interactively is described in detail in the
-<a class="reference external" href="../User_Manual/scripts.html">User Manual</a>. If you want to get straight into working with a full
+<p>where <tt class="docutils literal"><span class="pre">path\to\scripts\</span></tt> is the location containing your
+<tt class="docutils literal"><span class="pre">topographica</span></tt> script, as described above.</p>
+<p>You can start the GUI version of Topographica from the command prompt
+using <tt class="docutils literal"><span class="pre">topographica</span> <span class="pre">-g</span></tt>, or specify an example to load, e.g. on
+Linux:</p>
+<div class="highlight-python"><div class="highlight"><pre>topographica -g ~/topo-env/share/topographica/examples/tiny.ty
+</pre></div>
+</div>
+<p>Or on Windows:</p>
+<div class="highlight-python"><div class="highlight"><pre>topographica -g %HOMEPATH%\topo-env\share\topographica\examples\tiny.ty
+</pre></div>
+</div>
+<p>Running Topographica interactively is described in detail in the <a class="reference external" href="../User_Manual/scripts.html">User
+Manual</a>. If you want to get straight into working with a full
 network, a good way to begin is by working through the <a class="reference external" href="../Tutorials/som_retinotopy.html">SOM</a> or
 <a class="reference external" href="../Tutorials/gcal.html">GCAL</a> tutorials.</p>
 <p>Have fun with Topographica, and be sure to subscribe to the
@@ -252,10 +250,9 @@ network, a good way to begin is by working through the <a class="reference exter
 <ul>
 <li><a class="reference internal" href="#">Downloads</a><ul>
 <li><a class="reference internal" href="#installing-topographica">Installing Topographica</a><ul>
-<li><a class="reference internal" href="#first-install-python">First install Python</a></li>
-<li><a class="reference internal" href="#quick-recipe-for-ubuntu-linux">Quick recipe for Ubuntu Linux</a></li>
+<li><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li><a class="reference internal" href="#install-a-python-environment">Install a Python environment</a></li>
 <li><a class="reference internal" href="#install-via-pip">Install via pip</a></li>
-<li><a class="reference internal" href="#install-via-virtualenv">Install via virtualenv</a></li>
 <li><a class="reference internal" href="#install-via-git">Install via Git</a></li>
 </ul>
 </li>
