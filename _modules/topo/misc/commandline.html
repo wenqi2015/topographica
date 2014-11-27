@@ -76,7 +76,7 @@
 
 <span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
 
-<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">__main__</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">__main__</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">traceback</span>
 
 <span class="kn">import</span> <span class="nn">topo</span>
 
@@ -850,7 +850,12 @@
                 <span class="n">ipshell</span><span class="o">.</span><span class="n">call_pdb</span> <span class="o">=</span> <span class="bp">True</span>
 
             <span class="c"># Load Topographica IPython extension in embedded shell</span>
-            <span class="n">ipshell</span><span class="o">.</span><span class="n">extension_manager</span><span class="o">.</span><span class="n">load_extension</span><span class="p">(</span><span class="s">&#39;topo.misc.ipython&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ipshell</span><span class="o">.</span><span class="n">extension_manager</span><span class="o">.</span><span class="n">load_extension</span><span class="p">(</span><span class="s">&#39;topo.misc.ipython&#39;</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">cmdline_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s">&quot;Could not load IPython extension &#39;topo.misc.ipython&#39;; ignored error was:</span><span class="se">\n</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
+                
             <span class="n">ipshell</span><span class="p">()</span>
 
     <span class="k">global</span> <span class="n">return_code</span>
