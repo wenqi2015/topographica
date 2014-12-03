@@ -246,7 +246,10 @@
     <span class="n">dest_port</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s">&#39;Activity&#39;</span><span class="p">)</span>
 
     <span class="n">output_fns</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">HookList</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span><span class="n">class_</span><span class="o">=</span><span class="n">TransferFn</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Function(s) applied to the Projection activity after it is computed.&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="s">        Function(s) applied to the projection activity after it is computed.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">input_fns</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">HookList</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">[],</span><span class="n">class_</span><span class="o">=</span><span class="n">TransferFn</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        Function(s) applied to the input before the projection activity is computed.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">plastic</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">        Whether or not to update the internal state on each call.</span>
@@ -381,6 +384,10 @@
 <span class="sd">        Pop the most recently pushed activity state of the stack.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">activity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__saved_activity</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ofn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
+            <span class="n">ofn</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ifn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_fns</span><span class="p">:</span>
+            <span class="n">ifn</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
 
 </div>
 <div class="viewcode-block" id="Projection.state_push"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.projection.Projection.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -389,6 +396,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__saved_activity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">ofn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_fns</span><span class="p">:</span>
+            <span class="n">ofn</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ifn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_fns</span><span class="p">:</span>
+            <span class="n">ifn</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
 
 </div>
     <span class="k">def</span> <span class="nf">get_projection_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
