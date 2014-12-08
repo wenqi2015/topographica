@@ -480,6 +480,15 @@
 <span class="s">enable verbose messaging output&quot;&quot;&quot;</span><span class="p">)</span>
 
 
+<div class="viewcode-block" id="V_action"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.commandline.V_action">[docs]</a><span class="k">def</span> <span class="nf">V_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Callback function for the -V option.&quot;&quot;&quot;</span>
+    <span class="k">print</span> <span class="n">topo</span><span class="o">.</span><span class="n">__version__</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</div>
+<span class="n">topo_parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">&quot;-V&quot;</span><span class="p">,</span><span class="s">&quot;--version&quot;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s">&quot;callback&quot;</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="n">V_action</span><span class="p">,</span><span class="n">dest</span><span class="o">=</span><span class="s">&quot;verbose&quot;</span><span class="p">,</span><span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">help</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s">print the Topographica version string and exit&quot;&quot;&quot;</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="d_action"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.commandline.d_action">[docs]</a><span class="k">def</span> <span class="nf">d_action</span><span class="p">(</span><span class="n">option</span><span class="p">,</span><span class="n">opt_str</span><span class="p">,</span><span class="n">value</span><span class="p">,</span><span class="n">parser</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Callback function for the -d option.&quot;&quot;&quot;</span>
     <span class="n">cmdline_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Enabling debugging message output.&quot;</span><span class="p">)</span>
