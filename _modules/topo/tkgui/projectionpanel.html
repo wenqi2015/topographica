@@ -206,8 +206,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_tkvars</span><span class="p">[</span><span class="n">coord</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span><span class="mf">0.0</span><span class="p">))</span>
 
         <span class="n">l</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="o">.</span><span class="n">lbrt</span><span class="p">()</span>
-        <span class="c"># CEBALERT: see &quot;CEBERRORALERT: doesn&#39;t take account of</span>
-        <span class="c"># exclusive bounds&quot; in topo/param/__init.__.py.</span>
+        <span class="c"># CEBALERT: param.Number&#39;s `crop_to_bounds` does not respect exclusive bounds;</span>
+        <span class="c"># see https://github.com/ioam/param/issues/80</span>
         <span class="n">D</span><span class="o">=</span><span class="mf">0.0000000001</span>
         <span class="n">bounds</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;x&#39;</span><span class="p">:(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="o">-</span><span class="n">D</span><span class="p">),</span>
                   <span class="s">&#39;y&#39;</span><span class="p">:(</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="o">-</span><span class="n">D</span><span class="p">)}</span>
