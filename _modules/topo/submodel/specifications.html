@@ -78,7 +78,7 @@
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
-<span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrTree</span>
+<span class="kn">from</span> <span class="nn">holoviews.core.tree</span> <span class="kn">import</span> <span class="n">AttrTree</span>
 
 <span class="kn">import</span> <span class="nn">topo</span>
 
@@ -394,7 +394,7 @@
             <span class="n">instantiate_options</span><span class="o">=</span><span class="n">available_instantiate_options</span>
 
         <span class="k">if</span> <span class="s">&#39;sheets&#39;</span> <span class="ow">in</span> <span class="n">instantiate_options</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">sheet_spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">path_items</span><span class="o">.</span><span class="n">itervalues</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">sheet_spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">itervalues</span><span class="p">():</span>
                 <span class="n">msglevel</span><span class="p">(</span><span class="s">&#39;Level &#39;</span> <span class="o">+</span> <span class="n">sheet_spec</span><span class="o">.</span><span class="n">level</span> <span class="o">+</span> <span class="s">&#39;: Sheet &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sheet_spec</span><span class="p">))</span>
                 <span class="n">sheet_spec</span><span class="p">()</span>
 

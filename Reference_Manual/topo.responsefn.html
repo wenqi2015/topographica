@@ -80,8 +80,12 @@ become available for any model.</p>
 <dt id="topo.responsefn.DotProduct">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.</tt><tt class="descname">DotProduct</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.functionfamily.ResponseFn" title="topo.base.functionfamily.ResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.ResponseFn</span></tt></a></p>
-<p>Return the sum of the element-by-element product of two 2D
-arrays.</p>
+<p>params(name=String)</p>
+<blockquote>
+<div>Return the sum of the element-by-element product of two 2D
+arrays.</div></blockquote>
+<p>[0m
+Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.DotProduct.debug">
 <tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.debug" title="Permalink to this definition">¶</a></dt>
@@ -99,7 +103,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f838&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53f18&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -113,12 +117,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f890&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53e68&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835faa0&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53c58&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -163,12 +167,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f788&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53ec0&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f730&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1153cb4050&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -211,7 +215,12 @@ containing the arguments.</p>
 <dt id="topo.responsefn.ResponseFn">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.</tt><tt class="descname">ResponseFn</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.2.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
-<p>Abstract base class for response functions that plug into CFPRF_Plugin.</p>
+<p>params(name=String)
+Abstract base class for response functions that plug into CFPRF_Plugin.
+[1;32mParameters of &#8216;ResponseFn&#8217;
+==========================
+[0m
+Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.ResponseFn.debug">
 <tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.debug" title="Permalink to this definition">¶</a></dt>
@@ -229,7 +238,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f998&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53db8&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -243,12 +252,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f838&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53f18&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f9f0&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53d60&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -293,12 +302,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835faf8&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1153b53d08&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb835f940&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1153cbd050&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -341,14 +350,14 @@ containing the arguments.</p>
 <div class="section" id="optimized-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">optimized</span></tt> Module<a class="headerlink" href="#optimized-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-517a439b8395a2f458138e208b3e4a73b67c5711.png" alt="Inheritance diagram of topo.responsefn.optimized" usemap="#inheritance23d65fc6d3" class="inheritance"/>
+<img src="../_images/inheritance-c7835d3969ea1e10ba1c7d84ceed25d7b51e5d74.png" alt="Inheritance diagram of topo.responsefn.optimized" usemap="#inheritance23d65fc6d3" class="inheritance"/>
 <map id="inheritance23d65fc6d3" name="inheritance23d65fc6d3">
-<area shape="rect" id="node1" title="Base class for named objects that support Parameters and message" alt="" coords="5,47,230,69"/>
-<area shape="rect" id="node3" href="topo.base.html#topo.base.cf.CFPResponseFn" title="Map an input activity matrix into an output matrix using the CFs" alt="" coords="272,47,450,69"/>
-<area shape="rect" id="node2" href="topo.base.html#topo.base.cf.CFPRF_Plugin" title="Generic large&#45;scale response function based on a simple single&#45;CF function." alt="" coords="580,4,744,26"/>
-<area shape="rect" id="node4" href="#topo.responsefn.optimized.CFPRF_DotProduct" title="Wrapper written to allow transparent non&#45;optimized fallback;" alt="" coords="873,4,1147,26"/>
-<area shape="rect" id="node5" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt" title="Dot&#45;product response function." alt="" coords="513,47,811,69"/>
-<area shape="rect" id="node6" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt" title="Euclidean&#45;distance response function." alt="" coords="493,90,831,112"/>
+<area shape="rect" id="node1" title="params(name=String)" alt="" coords="5,47,230,69"/>
+<area shape="rect" id="node3" href="topo.base.html#topo.base.cf.CFPResponseFn" title="params(name=String)" alt="" coords="272,47,450,69"/>
+<area shape="rect" id="node2" href="topo.base.html#topo.base.cf.CFPRF_Plugin" title="params(single_cf_fn=ClassSelector, name=String)" alt="" coords="580,4,744,26"/>
+<area shape="rect" id="node4" href="#topo.responsefn.optimized.CFPRF_DotProduct" title="params(single_cf_fn=ClassSelector, name=String)" alt="" coords="873,4,1147,26"/>
+<area shape="rect" id="node5" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt" title="params(single_cf_fn=ClassSelector, name=String)" alt="" coords="513,47,811,69"/>
+<area shape="rect" id="node6" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt" title="params(name=String)" alt="" coords="493,90,831,112"/>
 </map>
 </p>
 <span class="target" id="module-topo.responsefn.optimized"></span><p>Response functions and CFProjection response functions (see projfn.py) written
@@ -358,10 +367,21 @@ in C to optimize performance.</p>
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.optimized.</tt><tt class="descname">CFPRF_DotProduct</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/optimized.html#CFPRF_DotProduct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.cf.CFPRF_Plugin" title="topo.base.cf.CFPRF_Plugin"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPRF_Plugin</span></tt></a></p>
-<p>Wrapper written to allow transparent non-optimized fallback;
-equivalent to CFPRF_Plugin(single_cf_fn=DotProduct()).</p>
+<p>params(single_cf_fn=ClassSelector, name=String)</p>
+<blockquote>
+<div>Wrapper written to allow transparent non-optimized fallback;
+equivalent to CFPRF_Plugin(single_cf_fn=DotProduct()).</div></blockquote>
+<p>[0m
+[1;31mParameters changed from their default values are marked in red.[0m
+[1;36mSoft bound values are marked in cyan.[0m
+C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
+<p>[1;34mName                         Value                      Type      Mode [0m</p>
+<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00383&#8217;)  ClassSelector  V RW</p>
+<p>[1;32mParameter docstrings:
+=====================[0m</p>
+<p>[1;34msingle_cf_fn: Accepts a ResponseFn that will be applied to each CF individually.[0m</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00126&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00383&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a ResponseFn that will be applied to each CF individually.</dd>
 </dl>
 <dl class="method">
@@ -381,7 +401,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336a48&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3c1b0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -395,12 +415,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336628&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3c158&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336470&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3c208&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -445,12 +465,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336788&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3c260&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336050&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3c310&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -499,11 +519,23 @@ containing the arguments.</p>
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.optimized.</tt><tt class="descname">CFPRF_DotProduct_opt</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/optimized.html#CFPRF_DotProduct_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.cf.CFPResponseFn" title="topo.base.cf.CFPResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPResponseFn</span></tt></a></p>
-<p>Dot-product response function.</p>
+<p>params(single_cf_fn=ClassSelector, name=String)</p>
+<blockquote>
+<div><p>Dot-product response function.</p>
 <p>Written in C for a manyfold speedup; see CFPRF_DotProduct for an
 easier-to-read version in Python.  The unoptimized Python version
 is equivalent to this one, but it also works for 1D arrays.</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;DotProduct DotProduct00344&gt;, instantiate=False, is_instance=True, pickle_default_value=True, precedence=None, readonly=True</em>)</p>
+</div></blockquote>
+<p>[0m
+[1;31mParameters changed from their default values are marked in red.[0m
+[1;36mSoft bound values are marked in cyan.[0m
+C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
+<p>[1;34mName                         Value                      Type      Mode [0m</p>
+<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00602&#8217;)  ClassSelector  C RO</p>
+<p>[1;32mParameter docstrings:
+=====================[0m</p>
+<p>[1;34msingle_cf_fn: &lt; No docstring available &gt;[0m</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;DotProduct DotProduct00602&gt;, instantiate=False, is_instance=True, pickle_default_value=True, precedence=None, readonly=True</em>)</p>
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.debug">
 <tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.debug" title="Permalink to this definition">¶</a></dt>
@@ -521,7 +553,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336890&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c43260&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -535,12 +567,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb83363c0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c43368&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336158&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c433c0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -585,12 +617,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb82b6f70&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c43730&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb82b6e68&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c43788&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -633,10 +665,15 @@ containing the arguments.</p>
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.optimized.</tt><tt class="descname">CFPRF_EuclideanDistance_opt</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/optimized.html#CFPRF_EuclideanDistance_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.cf.CFPResponseFn" title="topo.base.cf.CFPResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPResponseFn</span></tt></a></p>
-<p>Euclidean-distance response function.</p>
+<p>params(name=String)</p>
+<blockquote>
+<div><p>Euclidean-distance response function.</p>
 <p>Written in C for a several-hundred-times speedup; see
 CFPRF_EuclideanDistance for an easier-to-read (but otherwise
 equivalent) version in Python.</p>
+</div></blockquote>
+<p>[0m
+Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.debug">
 <tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.debug" title="Permalink to this definition">¶</a></dt>
@@ -654,7 +691,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb83361b0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3d1b0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -668,12 +705,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb83363c0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3d158&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336470&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3d260&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -718,12 +755,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336628&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3d2b8&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb8336050&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1153c3d368&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -766,12 +803,12 @@ containing the arguments.</p>
 <div class="section" id="projfn-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">projfn</span></tt> Module<a class="headerlink" href="#projfn-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-7b5732a12aa2efbd72cd4ecabb3865cca9a1d2aa.png" alt="Inheritance diagram of topo.responsefn.projfn" usemap="#inheritance9cc735fe36" class="inheritance"/>
+<img src="../_images/inheritance-ea4ce1b6e853b929955106bdcf122e0b77a41295.png" alt="Inheritance diagram of topo.responsefn.projfn" usemap="#inheritance9cc735fe36" class="inheritance"/>
 <map id="inheritance9cc735fe36" name="inheritance9cc735fe36">
-<area shape="rect" id="node1" title="Base class for named objects that support Parameters and message" alt="" coords="5,30,264,55"/>
-<area shape="rect" id="node2" href="topo.base.html#topo.base.cf.CFPResponseFn" title="Map an input activity matrix into an output matrix using the CFs" alt="" coords="313,30,517,55"/>
-<area shape="rect" id="node3" href="#topo.responsefn.projfn.CFPRF_ActivityBased" title="Calculate the activity of each unit nonlinearly based on the input activity." alt="" coords="581,5,883,30"/>
-<area shape="rect" id="node4" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance" title="Euclidean&#45;distance&#45;&#45;based response function." alt="" coords="565,54,899,79"/>
+<area shape="rect" id="node1" title="params(name=String)" alt="" coords="5,30,264,55"/>
+<area shape="rect" id="node2" href="topo.base.html#topo.base.cf.CFPResponseFn" title="params(name=String)" alt="" coords="313,30,517,55"/>
+<area shape="rect" id="node3" href="#topo.responsefn.projfn.CFPRF_ActivityBased" title="params(b=Number, l=Number, m=Number, r=Number, single_cf_fn=ClassSelector, u=Number, name=String)" alt="" coords="581,5,883,30"/>
+<area shape="rect" id="node4" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance" title="params(name=String)" alt="" coords="565,54,899,79"/>
 </map>
 </p>
 <span class="target" id="module-topo.responsefn.projfn"></span><p>Projection-level response functions.</p>
@@ -781,7 +818,11 @@ when given an input pattern and a set of ConnectionField objects.</p>
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.projfn.</tt><tt class="descname">CFPRF_EuclideanDistance</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/projfn.html#CFPRF_EuclideanDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.cf.CFPResponseFn" title="topo.base.cf.CFPResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPResponseFn</span></tt></a></p>
-<p>Euclidean-distance&#8211;based response function.</p>
+<p>params(name=String)</p>
+<blockquote>
+<div>Euclidean-distance&#8211;based response function.</div></blockquote>
+<p>[0m
+Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.debug">
 <tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.debug" title="Permalink to this definition">¶</a></dt>
@@ -799,7 +840,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f4c8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabaf8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -813,12 +854,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f368&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabc58&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f470&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabfc8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -863,12 +904,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701faa0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fab260&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f2b8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabdb8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -911,7 +952,9 @@ containing the arguments.</p>
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.projfn.</tt><tt class="descname">CFPRF_ActivityBased</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/responsefn/projfn.html#CFPRF_ActivityBased"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.cf.CFPResponseFn" title="topo.base.cf.CFPResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPResponseFn</span></tt></a></p>
-<p>Calculate the activity of each unit nonlinearly based on the input activity.</p>
+<p>params(b=Number, l=Number, m=Number, r=Number, single_cf_fn=ClassSelector, u=Number, name=String)</p>
+<blockquote>
+<div><p>Calculate the activity of each unit nonlinearly based on the input activity.</p>
 <p>The activity is calculated from the input activity, the weights,
 and a strength that is a function of the input activity. This
 allows connections to have either an excitatory or inhibitory
@@ -931,10 +974,30 @@ curve:</p>
 <p>Richards, F.J. 1959 A flexible growth function for empirical use.
 J. Experimental Botany 10: 290&#8211;300, 1959.
 <a class="reference external" href="http://en.wikipedia.org/wiki/Generalised_logistic_curve">http://en.wikipedia.org/wiki/Generalised_logistic_curve</a></p>
+</div></blockquote>
+<p>[0m
+[1;31mParameters changed from their default values are marked in red.[0m
+[1;36mSoft bound values are marked in cyan.[0m
+C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
+<p>[1;34mName                         Value                      Type      Mode [0m</p>
+<p>b                              2                       Number     V RW 
+l                             -1.3                     Number     V RW 
+m                             0.25                     Number     V RW 
+r                             -200                     Number     V RW 
+single_cf_fn   DotProduct(name=&#8217;DotProduct00601&#8217;)  ClassSelector  V RW 
+u                             1.2                      Number     V RW</p>
+<p>[1;32mParameter docstrings:
+=====================[0m</p>
+<p>[1;34mb:            Controls position of maximum growth[0m
+[1;31ml:            Value at infinity[0m
+[1;34mm:            Time of maximum growth.[0m
+[1;31mr:            Growth rate, controls the gradient[0m
+[1;34msingle_cf_fn: ResponseFn to apply to each CF individually.[0m
+[1;31mu:            (u + l) is the value at minus infinity[0m</p>
 <dl class="docutils">
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">b</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Controls position of maximum growth</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00343&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00601&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>ResponseFn to apply to each CF individually.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">m</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time of maximum growth.</dd>
@@ -962,7 +1025,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f680&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabb50&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -976,12 +1039,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701fba8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fab4c8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f158&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabf70&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1026,12 +1089,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f890&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fab730&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f998&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fab1b0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1074,7 +1137,9 @@ containing the arguments.</p>
 <dt id="topo.responsefn.projfn.CFPRF_Plugin">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.projfn.</tt><tt class="descname">CFPRF_Plugin</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.cf.CFPResponseFn" title="topo.base.cf.CFPResponseFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.cf.CFPResponseFn</span></tt></a></p>
-<p>Generic large-scale response function based on a simple single-CF function.</p>
+<p>params(single_cf_fn=ClassSelector, name=String)</p>
+<blockquote>
+<div><p>Generic large-scale response function based on a simple single-CF function.</p>
 <p>Applies the single_cf_fn to each CF in turn.  For the default
 single_cf_fn of DotProduct(), does a basic dot product of each CF with the
 corresponding slice of the input array.  This function is likely
@@ -1084,8 +1149,18 @@ single-CF response function.</p>
 identically shaped matrices X (the input) and W (the
 ConnectionField weights) and computes a scalar activation value
 based on those weights.</p>
+</div></blockquote>
+<p>[0m
+[1;31mParameters changed from their default values are marked in red.[0m
+[1;36mSoft bound values are marked in cyan.[0m
+C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
+<p>[1;34mName                         Value                      Type      Mode [0m</p>
+<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00383&#8217;)  ClassSelector  V RW</p>
+<p>[1;32mParameter docstrings:
+=====================[0m</p>
+<p>[1;34msingle_cf_fn: Accepts a ResponseFn that will be applied to each CF individually.[0m</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00126&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00383&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a ResponseFn that will be applied to each CF individually.</dd>
 </dl>
 <dl class="method">
@@ -1105,7 +1180,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f470&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabc58&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1119,12 +1194,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f680&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fab4c8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701faa0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fab260&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1169,12 +1244,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f520&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabfc8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2afcb701f3c0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b1152fabf18&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

@@ -82,7 +82,7 @@
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
-<span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">ViewMap</span>
+<span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">HoloMap</span>
 <span class="kn">from</span> <span class="nn">holoviews.ipython.widgets</span> <span class="kn">import</span> <span class="n">ProgressBar</span>
 <span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
@@ -122,7 +122,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">view</span><span class="p">:</span>
         <span class="n">sv</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">activity</span><span class="p">),</span> <span class="n">sheet</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
         <span class="n">sv</span><span class="o">.</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
-        <span class="n">view</span> <span class="o">=</span> <span class="n">ViewMap</span><span class="p">((</span><span class="n">time</span><span class="p">,</span> <span class="n">sv</span><span class="p">),</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="n">Time</span><span class="p">])</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="n">HoloMap</span><span class="p">((</span><span class="n">time</span><span class="p">,</span> <span class="n">sv</span><span class="p">),</span> <span class="n">key_dimensions</span><span class="o">=</span><span class="p">[</span><span class="n">Time</span><span class="p">])</span>
         <span class="n">view</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="n">sheet</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">Maps</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">view</span>
     <span class="k">else</span><span class="p">:</span>
@@ -429,7 +429,7 @@
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewcontainer</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">ParamOverrides</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="n">objects</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">objects</span><span class="p">(),</span> <span class="o">**</span><span class="nb">dict</span><span class="p">([(</span><span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span> <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">connections</span><span class="p">()]))</span>
-        <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">viewcontainer</span><span class="o">.</span><span class="n">path_items</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">viewcontainer</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">label</span><span class="p">,</span> <span class="n">src_name</span> <span class="o">=</span> <span class="n">path</span>
             <span class="n">source</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="n">src_name</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">Sheet</span><span class="p">):</span>

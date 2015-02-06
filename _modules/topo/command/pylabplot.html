@@ -104,7 +104,8 @@
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">ParamOverrides</span>
 
 <span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">Overlay</span>
-<span class="kn">from</span> <span class="nn">holoviews.plotting</span> <span class="kn">import</span> <span class="n">OverlayPlot</span><span class="p">,</span> <span class="n">GridLayout</span><span class="p">,</span> <span class="n">CurvePlot</span>
+<span class="kn">from</span> <span class="nn">holoviews.plotting</span> <span class="kn">import</span> <span class="n">NdLayout</span><span class="p">,</span> <span class="n">CurvePlot</span>
+<span class="kn">from</span> <span class="nn">holoviews.plotting.element</span> <span class="kn">import</span> <span class="n">OverlayPlot</span>
 
 <span class="kn">from</span> <span class="nn">topo.command</span> <span class="kn">import</span> <span class="n">Command</span>
 
@@ -689,7 +690,7 @@
         <span class="n">time</span> <span class="o">=</span> <span class="n">vmap</span><span class="o">.</span><span class="n">dim_range</span><span class="p">(</span><span class="s">&#39;Time&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="n">curves</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">vmap</span><span class="o">.</span><span class="n">dimension_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;X&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">vmap</span><span class="o">.</span><span class="n">dimensions</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;X&#39;</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">:</span>
                 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">coord</span>
                 <span class="n">current_map</span> <span class="o">=</span> <span class="n">vmap</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
@@ -699,7 +700,7 @@
             <span class="n">current_map</span> <span class="o">=</span> <span class="n">vmap</span><span class="p">[</span><span class="n">time</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
             <span class="n">curve_map</span> <span class="o">=</span> <span class="n">current_map</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">x_axis</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
             <span class="n">overlaid_curves</span> <span class="o">=</span> <span class="n">curve_map</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">group_by</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">GridLayout</span><span class="p">):</span> <span class="n">curves</span> <span class="o">=</span> <span class="p">[</span><span class="n">overlaid_curves</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">curves</span><span class="p">,</span> <span class="n">NdLayout</span><span class="p">):</span> <span class="n">curves</span> <span class="o">=</span> <span class="p">[</span><span class="n">overlaid_curves</span><span class="p">]</span>
 
         <span class="n">figs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">coord</span><span class="p">,</span> <span class="n">curve</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span><span class="n">curves</span><span class="p">):</span>

@@ -84,9 +84,9 @@
 <span class="kn">import</span> <span class="nn">lancet</span>
 <span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">import</span> <span class="nn">numbergen</span>
+<span class="kn">from</span> <span class="nn">holoviews.core.tree</span> <span class="kn">import</span> <span class="n">AttrTree</span>
 
 <span class="kn">from</span> <span class="nn">specifications</span> <span class="kn">import</span> <span class="n">SheetSpec</span><span class="p">,</span> <span class="n">ProjectionSpec</span><span class="p">,</span> <span class="n">ModelSpec</span><span class="p">,</span> <span class="n">ArraySpec</span> <span class="c"># pyflakes:ignore (API import)</span>
-<span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrTree</span>
 <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">global_params</span>
 
 
@@ -496,7 +496,7 @@
 
 </div>
     <span class="k">def</span> <span class="nf">_update_sheet_spec_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">sheet_spec</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">path_items</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">sheet_spec</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">param_method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="n">sheet_spec</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="s">&#39;method&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">param_method</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Parameters for sheet level </span><span class="si">%r</span><span class="s"> not specified&quot;</span> <span class="o">%</span> <span class="n">sheet_spec</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
@@ -531,8 +531,8 @@
 <span class="sd">        in dest_sheet.matchconditions, create a new ProjectionSpec</span>
 <span class="sd">        object and add this item to self.projections.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sheetspec_product</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">path_items</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
-                                              <span class="n">model</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">path_items</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">sheetspec_product</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+                                              <span class="n">model</span><span class="o">.</span><span class="n">sheets</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
         <span class="k">for</span> <span class="n">src_sheet</span><span class="p">,</span> <span class="n">dest_sheet</span> <span class="ow">in</span> <span class="n">sheetspec_product</span><span class="p">:</span>
 
             <span class="n">conditions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="o">.</span><span class="n">compute_conditions</span><span class="p">(</span><span class="n">dest_sheet</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span>

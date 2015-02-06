@@ -82,8 +82,8 @@
 <span class="kn">import</span> <span class="nn">param</span>
 
 <span class="kn">from</span> <span class="nn">holoviews.core</span> <span class="kn">import</span> <span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">SheetCoordinateSystem</span>
-<span class="kn">from</span> <span class="nn">holoviews.core.options</span> <span class="kn">import</span> <span class="n">options</span><span class="p">,</span> <span class="n">StyleOpts</span>
-<span class="kn">from</span> <span class="nn">holoviews.view</span> <span class="kn">import</span> <span class="n">Matrix</span>
+<span class="kn">from</span> <span class="nn">holoviews.core.options</span> <span class="kn">import</span> <span class="n">Store</span><span class="p">,</span> <span class="n">Options</span>
+<span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">Matrix</span>
 
 
 <div class="viewcode-block" id="SheetView"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.sheetview.SheetView">[docs]</a><span class="k">class</span> <span class="nc">SheetView</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">):</span>
@@ -93,7 +93,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">timestamp</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span>
-        <span class="sd">&quot;&quot;&quot; The initial timestamp. If None, the DataView will not all slicing of</span>
+        <span class="sd">&quot;&quot;&quot; The initial timestamp. If None, the SheetView will not all slicing of</span>
 <span class="sd">            a time interval and record method will be disabled.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span>
@@ -156,10 +156,14 @@
     <span class="k">return</span> <span class="n">unitview</span>
 
 </div>
-<span class="k">class</span> <span class="nc">CFView</span><span class="p">(</span><span class="n">Matrix</span><span class="p">):</span>
+<div class="viewcode-block" id="CFView"><a class="viewcode-back" href="../../../Reference_Manual/topo.base.html#topo.base.sheetview.CFView">[docs]</a><span class="k">class</span> <span class="nc">CFView</span><span class="p">(</span><span class="n">Matrix</span><span class="p">):</span>
+
+    <span class="n">roi_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">        The ROI bounds can be set to reduce the space the CFView is</span>
+<span class="s">        embedded in.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">situated_bounds</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">ClassSelector</span><span class="p">(</span><span class="n">class_</span><span class="o">=</span><span class="n">BoundingRegion</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        The situated bounds can be set to embed the SheetLayer in a larger</span>
+<span class="s">        The situated bounds can be set to embed the CFView in a larger</span>
 <span class="s">        bounded region.&quot;&quot;&quot;</span><span class="p">)</span>
 
     <span class="n">input_sheet_slice</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">NumericTuple</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
@@ -184,8 +188,8 @@
                       <span class="n">situated_bounds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">situated_bounds</span><span class="p">,</span>
                       <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
-
-<span class="n">options</span><span class="o">.</span><span class="n">CFView</span> <span class="o">=</span> <span class="n">StyleOpts</span><span class="p">(</span><span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
+</div>
+<span class="n">Store</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">CFView</span> <span class="o">=</span> <span class="n">Options</span><span class="p">(</span><span class="s">&#39;style&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">)</span>
 </pre></div>
 
           </div>
