@@ -103,12 +103,12 @@ input sheet are treated as having zero weight.</p>
 C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;34mName                                 Value                         Type        Bounds     Mode  [0m</p>
 <p>activity_group                (0.5, &lt;ufunc &#8216;add&#8217;&gt;)              Parameter                 V RW  
-coord_mapper           IdentityMF(name=&#8217;IdentityMF00598&#8217;)     ClassSelector               V RW  
+coord_mapper           IdentityMF(name=&#8217;IdentityMF00410&#8217;)     ClassSelector               V RW  
 delay                                 0.05                        Number     (0, None)    V RW  
 dest                                  None                      Parameter               C RW AN 
 dest_port                          &#8216;Activity&#8217;                   Parameter                 V RW  
 input_fns                              []                        HookList    (0, None)    V RW  
-learning_fn            IdentityLF(name=&#8217;IdentityLF00600&#8217;)     ClassSelector               V RW  
+learning_fn            IdentityLF(name=&#8217;IdentityLF00412&#8217;)     ClassSelector               V RW  
 learning_rate                          0                          Number                  V RW  
 output_fns                             []                        HookList    (0, None)    V RW  
 plastic                               True                       Boolean       (0, 1)     V RW  
@@ -184,7 +184,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.11, readonly=False</em>)</dt>
 <dd>The EventProcessor to which messages are delivered.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00598&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00410&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a destination unit coordinate into the src sheet.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -199,7 +199,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
        of events.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the projection activity after it is computed.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00599&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00411&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weight values for each unit of the destination sheet.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">activity_group</span></tt> (<em>allow_None=False, constant=False, default=(0.5, &lt;ufunc &#8216;add&#8217;&gt;), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Grouping and precedence specifier for computing activity from
@@ -212,7 +212,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00600&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00412&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Learning function applied to weights.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest_port</span></tt> (<em>allow_None=False, constant=False, default=Activity, instantiate=False, pickle_default_value=True, precedence=0.21, readonly=False</em>)</dt>
 <dd>Identifier that can be used to distinguish different types of incoming connections.
@@ -252,7 +252,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d5e4050&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d578&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -266,12 +266,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d5e4368&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d890&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d5e43c0&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d8e8&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -367,12 +367,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d5e4418&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d940&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d5e42b8&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d7e0&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -563,7 +563,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe260&gt;</em><a class="headerlink" href="#topo.projection.Projection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d628&gt;</em><a class="headerlink" href="#topo.projection.Projection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -577,12 +577,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe368&gt;</em><a class="headerlink" href="#topo.projection.Projection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d6d8&gt;</em><a class="headerlink" href="#topo.projection.Projection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe050&gt;</em><a class="headerlink" href="#topo.projection.Projection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d578&gt;</em><a class="headerlink" href="#topo.projection.Projection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -704,12 +704,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe4c8&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d788&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe3c0&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d730&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -761,7 +761,7 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00396&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00315&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
@@ -776,7 +776,7 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.5                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00388&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00307&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 src                                           None                           Parameter                    C RW AN 
 src_port                                   &#8216;Activity&#8217;                        Parameter                      V RW  
@@ -885,7 +885,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00391&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00310&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -897,7 +897,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00388&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00307&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -916,7 +916,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00396&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00315&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -937,7 +937,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00594&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00406&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -945,9 +945,9 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00390&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00309&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00596&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00597&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00408&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00409&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -1003,7 +1003,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe260&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d730&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1017,12 +1017,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe310&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d8e8&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe3c0&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d940&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1126,12 +1126,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe368&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d838&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d7fe470&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43da48&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1189,14 +1189,14 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00396&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00315&#8217;)          ClassSelector                    V RW  
 decay_rate                                    1.0                              Number          (0, None)    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00392&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00311&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -1205,13 +1205,13 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.4                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00388&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00307&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 src                                           None                           Parameter                    C RW AN 
 src_port                                   &#8216;Activity&#8217;                        Parameter                      V RW  
 strength                                      1.0                              Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -1315,7 +1315,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00391&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00310&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -1329,7 +1329,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00388&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00307&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -1348,7 +1348,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00396&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00315&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -1369,7 +1369,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00392&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00311&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -1377,9 +1377,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00390&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00309&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00395&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00314&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -1452,7 +1452,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814368&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d9f0&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1466,12 +1466,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d8143c0&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d788&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814418&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d5d0&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1573,12 +1573,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814470&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d7e0&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d8144c8&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d890&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1640,13 +1640,13 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00396&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00315&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00392&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00311&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -1655,7 +1655,7 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.4                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00388&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00307&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 smoothing                                    0.999                             Number                       V RW  
 src                                           None                           Parameter                    C RW AN 
@@ -1664,7 +1664,7 @@ strength                                      1.0                              N
 target                                       0.045                             Number                       V RW  
 target_lr                                    0.045                             Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -1774,7 +1774,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00391&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00310&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -1786,7 +1786,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00388&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00307&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -1805,7 +1805,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00396&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00315&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -1826,7 +1826,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00392&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00311&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -1834,9 +1834,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00390&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00309&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00395&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00314&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -1907,7 +1907,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814260&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b239998&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1921,12 +1921,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814368&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b239cb0&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d8143c0&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b239af8&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2028,12 +2028,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814418&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b239940&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814310&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b239f70&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2089,13 +2089,13 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00396&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00315&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00392&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00311&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -2104,13 +2104,13 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.8                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00388&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00307&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 src                                           None                           Parameter                    C RW AN 
 src_port                                   &#8216;Activity&#8217;                        Parameter                      V RW  
 strength                                      1.0                              Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -2213,7 +2213,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00391&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00310&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -2225,7 +2225,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00388&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00307&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -2244,7 +2244,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00396&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00315&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -2265,7 +2265,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00392&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00311&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -2273,9 +2273,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00390&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00309&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00395&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00314&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -2346,7 +2346,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814628&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b239e10&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2360,12 +2360,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814788&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85e68&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d8147e0&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85e10&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2467,12 +2467,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814d08&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d368&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814d60&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26b43d310&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2539,13 +2539,13 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00396&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00315&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00392&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00311&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -2554,13 +2554,13 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.8                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00388&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00307&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 src                                           None                           Parameter                    C RW AN 
 src_port                                   &#8216;Activity&#8217;                        Parameter                      V RW  
 strength                                      1.0                              Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -2663,7 +2663,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00391&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00310&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -2675,7 +2675,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00388&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00307&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -2694,7 +2694,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00396&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00315&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -2715,7 +2715,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00392&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00311&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -2723,9 +2723,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00390&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00309&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00394&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00395&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00313&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00314&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -2780,7 +2780,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814470&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85d08&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2794,12 +2794,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814050&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85d60&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814208&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85cb0&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2901,12 +2901,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814520&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85c58&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814578&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85998&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2962,7 +2962,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34msingle_cf_fn: &lt; No docstring available &gt;[0m</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00592&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00404&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="method">
 <dt id="topo.projection.CFPOF_SharedWeight.debug">
 <tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.debug" title="Permalink to this definition">¶</a></dt>
@@ -2980,7 +2980,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814470&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85e68&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2994,12 +2994,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814e68&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85f18&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d8141b0&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85e10&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3044,12 +3044,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814100&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85ec0&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b7f0d814730&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab26ae85c00&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
