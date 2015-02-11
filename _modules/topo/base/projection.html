@@ -78,8 +78,8 @@
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">from</span> <span class="nn">param.parameterized</span> <span class="kn">import</span> <span class="n">overridable_property</span>
 
-<span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">Matrix</span>
-<span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrDict</span><span class="p">,</span> <span class="n">AttrTree</span>
+<span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">LayoutTree</span>
+<span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 
 <span class="kn">from</span> <span class="nn">sheet</span> <span class="kn">import</span> <span class="n">Sheet</span>
 <span class="kn">from</span> <span class="nn">simulation</span> <span class="kn">import</span> <span class="n">EPConnection</span>
@@ -487,7 +487,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="o">.</span><span class="n">sheet</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">*</span><span class="mf">0.0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="s">&#39;RFs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AttrTree</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">[</span><span class="s">&#39;RFs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">LayoutTree</span><span class="p">()</span>
 
 
     <span class="k">def</span> <span class="nf">_dest_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="p">):</span>

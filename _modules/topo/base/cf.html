@@ -88,10 +88,9 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">holoviews.core.tree</span> <span class="kn">import</span> <span class="n">AttrTree</span>
 
 <span class="kn">import</span> <span class="nn">param</span>
-<span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">AxisLayout</span><span class="p">,</span> <span class="n">Dimension</span><span class="p">,</span> <span class="n">HoloMap</span>
+<span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">AxisLayout</span><span class="p">,</span> <span class="n">Dimension</span><span class="p">,</span> <span class="n">HoloMap</span><span class="p">,</span> <span class="n">LayoutTree</span>
 <span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">AttrDict</span>
 <span class="kn">from</span> <span class="nn">holoviews.core</span> <span class="kn">import</span> <span class="n">BoundingBox</span><span class="p">,</span> <span class="n">BoundingRegionParameter</span><span class="p">,</span> <span class="n">Slice</span>
 
@@ -705,7 +704,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">input_buffer</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">activity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
         <span class="k">if</span> <span class="s">&#39;cfs&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">CFs</span> <span class="o">=</span> <span class="n">AttrTree</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">CFs</span> <span class="o">=</span> <span class="n">LayoutTree</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">CFs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cf_grid</span><span class="p">()</span>
 
 
