@@ -206,61 +206,12 @@
                                            <span class="n">magic_name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">set_hook</span><span class="p">(</span><span class="s">&#39;complete_command&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;clear&#39;</span><span class="p">],</span>
                             <span class="n">str_key</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%%</span><span class="s">{name}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
-</div>
-<span class="nd">@magics_class</span>
-<span class="k">class</span> <span class="nc">TimerMagic</span><span class="p">(</span><span class="n">Magics</span><span class="p">):</span>
-
-    <span class="n">start_time</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">elapsed_time</span><span class="p">():</span>
-        <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span>  <span class="n">TimerMagic</span><span class="o">.</span><span class="n">start_time</span>
-        <span class="n">minutes</span> <span class="o">=</span> <span class="n">elapsed</span> <span class="o">//</span> <span class="mi">60</span>
-        <span class="n">hours</span> <span class="o">=</span> <span class="n">minutes</span> <span class="o">//</span> <span class="mi">60</span>
-        <span class="n">seconds</span> <span class="o">=</span> <span class="n">elapsed</span> <span class="o">%</span> <span class="mi">60</span>
-        <span class="k">return</span> <span class="s">&quot;Timer elapsed: </span><span class="si">%02d</span><span class="s">:</span><span class="si">%02d</span><span class="s">:</span><span class="si">%02d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span><span class="p">)</span>
-
-
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">option_completer</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s">&#39;start&#39;</span><span class="p">]</span>
-
-    <span class="nd">@line_magic</span>
-    <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Timer magic to print initial date/time information and</span>
-<span class="sd">        subsequent elapsed time intervals.</span>
-
-<span class="sd">        To start the timer, run:</span>
-
-<span class="sd">        %timer start</span>
-
-<span class="sd">        This will print the start date and time.</span>
-
-<span class="sd">        Subsequent calls to %timer will print the elapsed time</span>
-<span class="sd">        relative to the time when %timer start was called. Subsequent</span>
-<span class="sd">        calls to %timer start may also be used to reset the timer.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="s">&#39;start&#39;</span><span class="p">]:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Invalid argument to %timer. For more information consult %timer?&quot;</span><span class="p">)</span>
-            <span class="k">return</span>
-        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;start&#39;</span><span class="p">:</span>
-            <span class="n">TimerMagic</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-            <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y/%m/</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">)</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Timer start: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">timestamp</span><span class="p">)</span>
-            <span class="k">return</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Please start timer with %timer start. For more information consult %timer?&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elapsed_time</span><span class="p">())</span>
-
 
 
 <span class="c">#===============#</span>
 <span class="c"># Display hooks #</span>
 <span class="c">#===============#</span>
-
+</div>
 <span class="kn">from</span> <span class="nn">topo.base.sheetview</span> <span class="kn">import</span> <span class="n">CFView</span>
 
 <span class="kn">from</span> <span class="nn">holoviews.core.options</span> <span class="kn">import</span> <span class="n">Store</span>
@@ -281,8 +232,6 @@
     <span class="k">pass</span>
 
 
-
-
 <span class="n">_loaded</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="k">def</span> <span class="nf">load_ipython_extension</span><span class="p">(</span><span class="n">ip</span><span class="p">):</span>
     <span class="n">load_imagen_extension</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -291,10 +240,6 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">_loaded</span><span class="p">:</span>
         <span class="n">_loaded</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="n">ip</span><span class="o">.</span><span class="n">register_magics</span><span class="p">(</span><span class="n">ExportMagic</span><span class="p">)</span>
-        <span class="n">ip</span><span class="o">.</span><span class="n">register_magics</span><span class="p">(</span><span class="n">TimerMagic</span><span class="p">)</span>
-        <span class="n">ip</span><span class="o">.</span><span class="n">set_hook</span><span class="p">(</span><span class="s">&#39;complete_command&#39;</span><span class="p">,</span> <span class="n">TimerMagic</span><span class="o">.</span><span class="n">option_completer</span><span class="p">,</span> <span class="n">str_key</span> <span class="o">=</span> <span class="s">&#39;%timer&#39;</span><span class="p">)</span>
-
-
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">load_ipython_extension</span> <span class="k">as</span> <span class="n">load_lancet_extension</span>
             <span class="n">load_lancet_extension</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
