@@ -99,7 +99,7 @@
      <span class="n">staleness_warning</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">None</span><span class="p">),</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">       Time length allowed between bitmaps making up a single plot before warning.</span>
 
-<span class="s">       If the difference between the Matrix with the earliest</span>
+<span class="s">       If the difference between the Image with the earliest</span>
 <span class="s">       timestamp and the one with the latest timestamp is larger</span>
 <span class="s">       than this parameter&#39;s value, produce a warning.</span>
 <span class="s">       &quot;&quot;&quot;</span><span class="p">)</span>
@@ -224,7 +224,7 @@
 
 <span class="sd">        channels is a plot_template, i.e. a dictionary with keys</span>
 <span class="sd">        (i.e. &#39;Strength&#39;,&#39;Hue&#39;,&#39;Confidence&#39; ...).  Each key typically</span>
-<span class="sd">        has a string value naming specifies a Matrix in</span>
+<span class="sd">        has a string value naming specifies a Image in</span>
 <span class="sd">        sheet_views, though specific channels may contain other</span>
 <span class="sd">        types of information as required by specific Plot subclasses.</span>
 <span class="sd">        channels that are not used by a particular Plot subclass will</span>
@@ -238,7 +238,7 @@
 
 <span class="sd">        plot_bounding_box is the outer bounding_box of the plot to</span>
 <span class="sd">        apply if specified.  If not, the bounds of</span>
-<span class="sd">        the smallest Matrix are used.</span>
+<span class="sd">        the smallest Image are used.</span>
 
 <span class="sd">        normalize specifies how the Plot should be normalized: any</span>
 <span class="sd">        value of normalize other than &#39;None&#39; will result in normalization</span>
