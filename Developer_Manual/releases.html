@@ -72,8 +72,10 @@ checked out in Git; if they do, make sure all of it gets checked
 in or does not need to be included in the release, and ensure
 that none of it will be checked in until the release is complete.</p>
 </li>
-<li><p class="first">Increment the release number in <tt class="docutils literal"><span class="pre">&lt;project&gt;.__init__.__version__</span></tt>
-and the release notes in doc/index.rst.</p>
+<li><p class="first">Increment the release number in <tt class="docutils literal"><span class="pre">&lt;project&gt;.__init__.__version__</span></tt>,
+setup.py, and the release notes in doc/index.rst. Note that
+some ioam projects (e.g. param) contain more than one package
+(param and numbergen in param&#8217;s case).</p>
 </li>
 <li><p class="first">Update the documentation files, especially README.rst,
 doc/News/index_text.rst, doc/Home/news_text.rst and
@@ -121,19 +123,24 @@ Future_Work/index_text.rst and Future_Work/current_text.rst
 might need to trigger new builds to check all platforms are ok.</p>
 </li>
 <li><p class="first">Save all open files from within any editor, and sure that they
-have all been committed to git</p>
+have all been committed to git and pushed to github.</p>
 </li>
-<li><p class="first">Tag the repository with something like:</p>
+<li><p class="first">Tag the repository:</p>
 <div class="highlight-python"><div class="highlight"><pre>git tag -a v1.2.1 -m &#39;Release version 1.2.1&#39;
-git push
 </pre></div>
 </div>
 <p>If you have to repeat this step, the next time you
-will need <tt class="docutils literal"><span class="pre">-f</span> <span class="pre">-a</span></tt>, not just <tt class="docutils literal"><span class="pre">-a</span></tt>, and may need to push using
-<tt class="docutils literal"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-f</span> <span class="pre">origin</span> <span class="pre">v1.2.1</span></tt>.</p>
+will need <tt class="docutils literal"><span class="pre">-f</span> <span class="pre">-a</span></tt>, not just <tt class="docutils literal"><span class="pre">-a</span></tt>.</p>
 </li>
 <li><p class="first">In python, do <tt class="docutils literal"><span class="pre">import</span> <span class="pre">&lt;project&gt;</span> <span class="pre">;</span> <span class="pre">project.__version__.verify()</span></tt> to test
 that the version information has been declared properly.</p>
+</li>
+<li><p class="first">Push your tag to github:</p>
+<div class="highlight-python"><div class="highlight"><pre>git push origin v1.2.1
+</pre></div>
+</div>
+<p>Note that if you are repeating the tagging, you may need to push
+using <tt class="docutils literal"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-f</span> <span class="pre">origin</span> <span class="pre">v1.2.1</span></tt>.</p>
 </li>
 <li><p class="first">Test creating a distribution and inspect the results:</p>
 <ol class="arabic simple">
