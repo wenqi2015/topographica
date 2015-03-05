@@ -64,14 +64,15 @@
 <div class="section" id="learningfn-package">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">learningfn</span></tt> Package<a class="headerlink" href="#learningfn-package" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-733072a7f00a1236c6367b4f9fce41bf1d26aa0b.png" alt="Inheritance diagram of topo.learningfn" usemap="#inheritancefe104bf3e4" class="inheritance"/>
+<img src="../_images/inheritance-765f148857e19fd0a67c3ae015df0597f01ca478.png" alt="Inheritance diagram of topo.learningfn" usemap="#inheritancefe104bf3e4" class="inheritance"/>
 <map id="inheritancefe104bf3e4" name="inheritancefe104bf3e4">
-<area shape="rect" id="node1" title="params(name=String)" alt="" coords="5,79,264,105"/>
-<area shape="rect" id="node2" href="topo.base.html#topo.base.functionfamily.LearningFn" title="params(name=String)" alt="" coords="312,79,563,105"/>
-<area shape="rect" id="node3" href="#topo.learningfn.BCMFixed" title="params(unit_threshold=Number, name=String)" alt="" coords="617,5,799,30"/>
-<area shape="rect" id="node4" href="#topo.learningfn.CPCA" title="params(name=String)" alt="" coords="629,54,787,79"/>
-<area shape="rect" id="node5" href="#topo.learningfn.Covariance" title="params(input_threshold=Number, unit_threshold=Number, name=String)" alt="" coords="611,103,805,129"/>
-<area shape="rect" id="node6" href="#topo.learningfn.Oja" title="params(alpha=Number, name=String)" alt="" coords="637,153,779,178"/>
+<area shape="rect" id="node1" title="params(name=String)" alt="" coords="5,103,264,129"/>
+<area shape="rect" id="node2" href="topo.base.html#topo.base.functionfamily.LearningFn" title="params(name=String)" alt="" coords="312,103,563,129"/>
+<area shape="rect" id="node3" href="#topo.learningfn.AntiHebbian" title="params(name=String)" alt="" coords="611,5,811,30"/>
+<area shape="rect" id="node4" href="#topo.learningfn.BCMFixed" title="params(unit_threshold=Number, name=String)" alt="" coords="619,54,802,79"/>
+<area shape="rect" id="node5" href="#topo.learningfn.CPCA" title="params(name=String)" alt="" coords="632,103,789,129"/>
+<area shape="rect" id="node6" href="#topo.learningfn.Covariance" title="params(input_threshold=Number, unit_threshold=Number, name=String)" alt="" coords="614,153,807,178"/>
+<area shape="rect" id="node7" href="#topo.learningfn.Oja" title="params(alpha=Number, name=String)" alt="" coords="639,202,782,227"/>
 </map>
 </p>
 <span class="target" id="module-topo.learningfn"></span><p>A family of function objects for changing a set of weights over time.</p>
@@ -86,6 +87,146 @@ CFPLearningFn level, so there are other CFPLearningFns beyond
 CFPLF_Plugin.</p>
 <p>Any new learning functions added to this directory will automatically
 become available for any model.</p>
+<dl class="class">
+<dt id="topo.learningfn.AntiHebbian">
+<em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">AntiHebbian</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/learningfn.html#AntiHebbian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.learningfn.AntiHebbian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="topo.base.html#topo.base.functionfamily.LearningFn" title="topo.base.functionfamily.LearningFn"><tt class="xref py py-class docutils literal"><span class="pre">topo.base.functionfamily.LearningFn</span></tt></a></p>
+<p>params(name=String)</p>
+<blockquote>
+<div><p>Opposite of the basic Hebbian rule.</p>
+<p>Same as Dayan and Abbott, 2001, equation 8.3, except that the
+weight change is negative.  I.e., each weight decreases in
+proportion to the product of this neuron&#8217;s activity and the input
+activity.</p>
+<p>Requires some form of output_fn normalization for stability.</p>
+</div></blockquote>
+<p>[0m
+Object has no parameters.</p>
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.debug">
+<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a debugging statement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.defaults">
+<tt class="descname">defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return {parameter_name:parameter.default} for all non-constant
+Parameters.</p>
+<p>Note that a Parameter for which instantiate==True has its default
+instantiated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.learningfn.AntiHebbian.force_new_dynamic_value">
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad628&gt;</em><a class="headerlink" href="#topo.learningfn.AntiHebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.get_param_values">
+<tt class="descname">get_param_values</tt><big>(</big><em>onlychanged=False</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.get_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of name,value pairs for all Parameters of this
+object.</p>
+<p>If onlychanged is True, will only return values that are not
+equal to the default value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.learningfn.AntiHebbian.get_value_generator">
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad418&gt;</em><a class="headerlink" href="#topo.learningfn.AntiHebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.learningfn.AntiHebbian.inspect_value">
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad680&gt;</em><a class="headerlink" href="#topo.learningfn.AntiHebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.message">
+<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a message.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.learningfn.AntiHebbian.params">
+<em class="property">classmethod </em><tt class="descname">params</tt><big>(</big><em>parameter_name=None</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Parameters of this class as the
+dictionary {name: parameter_object}</p>
+<p>Includes Parameters from this class and its
+superclasses.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.learningfn.AntiHebbian.print_param_defaults">
+<em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.print_param_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the default values of all cls&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.print_param_values">
+<tt class="descname">print_param_values</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.print_param_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the values of all this object&#8217;s Parameters.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.script_repr">
+<tt class="descname">script_repr</tt><big>(</big><em>imports=</em>, <span class="optional">[</span><span class="optional">]</span><em>prefix='    '</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.script_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Variant of __repr__ designed for generating a runnable script.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="topo.learningfn.AntiHebbian.set_default">
+<em class="property">classmethod </em><tt class="descname">set_default</tt><big>(</big><em>param_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.set_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default value of param_name.</p>
+<p>Equivalent to setting param_name on the class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="topo.learningfn.AntiHebbian.set_dynamic_time_fn">
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad6d8&gt;</em><a class="headerlink" href="#topo.learningfn.AntiHebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="topo.learningfn.AntiHebbian.set_param">
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad730&gt;</em><a class="headerlink" href="#topo.learningfn.AntiHebbian.set_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.state_pop">
+<tt class="descname">state_pop</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.state_pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the most recently saved state.</p>
+<p>See state_push() for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.state_push">
+<tt class="descname">state_push</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.state_push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save this instance&#8217;s state.</p>
+<p>For Parameterized instances, this includes the state of
+dynamically generated values.</p>
+<p>Subclasses that maintain short-term state should additionally
+save and restore that state using state_push() and
+state_pop().</p>
+<p>Generally, this method is used by operations that need to test
+something without permanently altering the objects&#8217; state.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.verbose">
+<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a verbose message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.learningfn.AntiHebbian.warning">
+<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.learningfn.AntiHebbian.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the arguments as a warning, unless module variable
+warnings_as_exceptions is True, then raise an Exception
+containing the arguments.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="topo.learningfn.IdentityLF">
 <em class="property">class </em><tt class="descclassname">topo.learningfn.</tt><tt class="descname">IdentityLF</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.learningfn.IdentityLF" title="Permalink to this definition">¶</a></dt>
@@ -117,7 +258,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.IdentityLF.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2634c8&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad520&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -131,12 +272,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.IdentityLF.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263418&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad470&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.IdentityLF.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263208&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad628&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -181,12 +322,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.IdentityLF.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263470&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad4c8&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.IdentityLF.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263520&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad578&gt;</em><a class="headerlink" href="#topo.learningfn.IdentityLF.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -268,7 +409,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.BCMFixed.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2632b8&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad680&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -282,12 +423,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.BCMFixed.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263260&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad418&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.BCMFixed.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263310&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad7e0&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -332,12 +473,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.BCMFixed.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263208&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad628&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.BCMFixed.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2635d0&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad838&gt;</em><a class="headerlink" href="#topo.learningfn.BCMFixed.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -430,7 +571,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Covariance.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263578&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad5d0&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -444,12 +585,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Covariance.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263418&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad470&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Covariance.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2634c8&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad520&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -494,12 +635,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Covariance.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2632b8&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad680&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Covariance.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263470&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad4c8&gt;</em><a class="headerlink" href="#topo.learningfn.Covariance.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -565,7 +706,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.LearningFn.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263208&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad628&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -579,12 +720,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.LearningFn.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263418&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad470&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.LearningFn.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2633c0&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad730&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -629,12 +770,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.LearningFn.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263310&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad7e0&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.LearningFn.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2635d0&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad838&gt;</em><a class="headerlink" href="#topo.learningfn.LearningFn.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -711,7 +852,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Oja.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2632b8&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad680&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -725,12 +866,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Oja.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2634c8&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad520&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Oja.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263520&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad578&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -775,12 +916,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Oja.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263208&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad628&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Oja.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263680&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad890&gt;</em><a class="headerlink" href="#topo.learningfn.Oja.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -849,7 +990,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Hebbian.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2633c0&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad730&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -863,12 +1004,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Hebbian.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263628&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad788&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Hebbian.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263310&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad7e0&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -913,12 +1054,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Hebbian.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2632b8&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad680&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.Hebbian.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc2636d8&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad8e8&gt;</em><a class="headerlink" href="#topo.learningfn.Hebbian.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -992,7 +1133,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.CPCA.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263470&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad4c8&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1006,12 +1147,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.CPCA.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263208&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad628&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.CPCA.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263520&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad578&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1056,12 +1197,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.CPCA.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263310&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad7e0&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.CPCA.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bc263368&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1fad6d8&gt;</em><a class="headerlink" href="#topo.learningfn.CPCA.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1168,7 +1309,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb52bf18&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24526d8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1182,12 +1323,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb52b730&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24527e0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb52bcb0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24528e8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1232,12 +1373,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521fc8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452af8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521578&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452940&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1329,7 +1470,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362ec0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24527e0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1343,12 +1484,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362fc8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24528e8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362c58&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452af8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1393,12 +1534,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521578&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452940&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_BCMFixed_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521628&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452db8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_BCMFixed_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1483,7 +1624,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362a48&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24527e0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1497,12 +1638,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362470&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452af8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb3623c0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452940&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1547,12 +1688,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521578&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24528e8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521fc8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452db8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1641,7 +1782,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362ec0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452af8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1655,12 +1796,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362fc8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452940&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362c58&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24528e8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1705,12 +1846,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521fc8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452db8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Hebbian_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521628&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24526d8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Hebbian_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1799,7 +1940,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb3623c0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452af8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1813,12 +1954,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362470&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24528e8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362a48&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452db8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1863,12 +2004,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521fc8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452940&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521578&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24526d8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1968,7 +2109,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362ec0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc0b3d1b0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1982,12 +2123,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362fc8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc0b3d418&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362c58&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc0b3d628&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2032,12 +2173,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521578&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc0b3d0a8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Scaled_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb5217e0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc0b3d520&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Scaled_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2131,7 +2272,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Trace_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362c58&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452af8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2145,12 +2286,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Trace_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb362470&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452db8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Trace_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb3623c0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc2452940&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2195,12 +2336,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Trace_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb5217e0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24526d8&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.optimized.CFPLF_Trace_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bb521838&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc24527e0&gt;</em><a class="headerlink" href="#topo.learningfn.optimized.CFPLF_Trace_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2301,7 +2442,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Identity.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44470&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d2fc8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2315,12 +2456,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Identity.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44578&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d30a8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Identity.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae445d0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3100&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2365,12 +2506,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Identity.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae444c8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3050&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Identity.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae446d8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3208&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Identity.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2455,7 +2596,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Plugin.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44470&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d2fc8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2469,12 +2610,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Plugin.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44368&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3100&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Plugin.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae443c0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3050&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2519,12 +2660,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Plugin.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44310&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d30a8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Plugin.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44788&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d32b8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Plugin.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2602,7 +2743,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_EuclideanHebbian.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44788&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d2e68&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2616,12 +2757,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_EuclideanHebbian.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae445d0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3050&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_EuclideanHebbian.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44260&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d30a8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2666,12 +2807,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_EuclideanHebbian.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae446d8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d32b8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_EuclideanHebbian.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae442b8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3208&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_EuclideanHebbian.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2768,7 +2909,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Trace.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44368&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d2e10&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2782,12 +2923,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Trace.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae443c0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa0a8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Trace.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44418&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa100&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2832,12 +2973,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Trace.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44578&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa050&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_Trace.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44730&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa208&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_Trace.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2925,7 +3066,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_OutstarHebbian.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae444c8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d31b0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2939,12 +3080,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_OutstarHebbian.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44680&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d32b8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_OutstarHebbian.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae447e0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3310&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2989,12 +3130,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_OutstarHebbian.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44b50&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3680&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_OutstarHebbian.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44ba8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d36d8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_OutstarHebbian.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3094,7 +3235,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.HomeoSynaptic.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae444c8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d38e8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3108,12 +3249,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.HomeoSynaptic.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44680&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d30a8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.HomeoSynaptic.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44838&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3158&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3158,12 +3299,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.HomeoSynaptic.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44310&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3050&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.HomeoSynaptic.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44890&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13d3208&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.HomeoSynaptic.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3254,7 +3395,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_PluginScaled.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44260&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa050&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3268,12 +3409,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_PluginScaled.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae445d0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa100&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_PluginScaled.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44788&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa158&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3318,12 +3459,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_PluginScaled.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44db8&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa1b0&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.projfn.CFPLF_PluginScaled.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bae44940&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc13fa260&gt;</em><a class="headerlink" href="#topo.learningfn.projfn.CFPLF_PluginScaled.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3445,7 +3586,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_HebbianSOM.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd751b0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdacb0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3459,12 +3600,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_HebbianSOM.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd75260&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdad60&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_HebbianSOM.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd752b8&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdadb8&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3509,12 +3650,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_HebbianSOM.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd75158&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdad08&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_HebbianSOM.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd753c0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdaec0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_HebbianSOM.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3607,7 +3748,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_SOM.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd75368&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdacb0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3621,12 +3762,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_SOM.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd75050&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdaaa0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_SOM.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd750a8&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdaec0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3671,12 +3812,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_SOM.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd753c0&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cda940&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.learningfn.som.CFPLF_SOM.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ab9bbd75470&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b8fc1cdaba8&gt;</em><a class="headerlink" href="#topo.learningfn.som.CFPLF_SOM.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

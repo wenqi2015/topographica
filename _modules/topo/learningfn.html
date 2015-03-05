@@ -91,6 +91,22 @@
 
 
 
+<div class="viewcode-block" id="AntiHebbian"><a class="viewcode-back" href="../../Reference_Manual/topo.learningfn.html#topo.learningfn.AntiHebbian">[docs]</a><span class="k">class</span> <span class="nc">AntiHebbian</span><span class="p">(</span><span class="n">LearningFn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Opposite of the basic Hebbian rule.</span>
+
+<span class="sd">    Same as Dayan and Abbott, 2001, equation 8.3, except that the</span>
+<span class="sd">    weight change is negative.  I.e., each weight decreases in</span>
+<span class="sd">    proportion to the product of this neuron&#39;s activity and the input</span>
+<span class="sd">    activity.</span>
+
+<span class="sd">    Requires some form of output_fn normalization for stability.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_activity</span><span class="p">,</span> <span class="n">unit_activity</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">single_connection_learning_rate</span><span class="p">):</span>
+        <span class="n">weights</span> <span class="o">-=</span> <span class="n">single_connection_learning_rate</span> <span class="o">*</span> <span class="n">unit_activity</span> <span class="o">*</span> <span class="n">input_activity</span>
+
+</div>
 <div class="viewcode-block" id="Oja"><a class="viewcode-back" href="../../Reference_Manual/topo.learningfn.html#topo.learningfn.Oja">[docs]</a><span class="k">class</span> <span class="nc">Oja</span><span class="p">(</span><span class="n">LearningFn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Oja&#39;s rule (Oja, 1982; Dayan and Abbott, 2001, equation 8.16.)</span>
