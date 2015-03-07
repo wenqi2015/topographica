@@ -557,8 +557,8 @@
         <span class="c"># Presumably here to avoid importing __main__ into the rest of the file</span>
         <span class="kn">import</span> <span class="nn">__main__</span>
 
-        <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;CommandEvent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Running command </span><span class="si">%s</span><span class="s">&quot;</span> \
-                                                         <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">command_string</span><span class="p">))</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">Parameterized</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;CommandEvent&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Running command </span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span>
+                                                         <span class="bp">self</span><span class="o">.</span><span class="n">command_string</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">exec</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_string</span> <span class="ow">in</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__dict__</span>
         <span class="k">except</span><span class="p">:</span>
@@ -1388,7 +1388,7 @@
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">():</span>
                 <span class="c"># Warn and then discard events scheduled *before* the current time</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Discarding stale (unprocessed) event&#39;</span><span class="p">,</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&#39;Discarding stale (unprocessed) event </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">():</span>
@@ -1411,7 +1411,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="c"># Pop and call the event at the head of the queue.</span>
                 <span class="n">event</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="s">&quot;Delivering </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Delivering </span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span><span class="n">event</span><span class="p">)</span>
                 <span class="n">event</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
                 <span class="n">did_event</span><span class="o">=</span><span class="bp">True</span>
 
@@ -1731,7 +1731,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Realtime fault. Sleep delay of </span><span class="si">%f</span><span class="s"> requires realtime sleep of </span><span class="si">%.2f</span><span class="s"> ms.&quot;</span>
                          <span class="o">%</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span><span class="n">sleep_ms</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;sleeping. delay =&quot;</span><span class="p">,</span><span class="n">delay</span><span class="p">,</span><span class="s">&quot;real delay =&quot;</span><span class="p">,</span><span class="n">sleep_ms</span><span class="p">,</span><span class="s">&quot;ms.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;sleeping. delay = </span><span class="si">%s</span><span class="s"> real delay = </span><span class="si">%s</span><span class="s"> ms.&quot;</span><span class="p">,</span><span class="n">delay</span><span class="p">,</span><span class="n">sleep_ms</span><span class="p">)</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_ms</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_real_timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_time</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="n">delay</span>

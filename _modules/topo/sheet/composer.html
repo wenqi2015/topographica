@@ -124,7 +124,7 @@
 
     <span class="k">def</span> <span class="nf">input_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Received </span><span class="si">%s</span><span class="s"> input from </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">NxN</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span><span class="n">conn</span><span class="o">.</span><span class="n">src</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Received </span><span class="si">%s</span><span class="s"> input from </span><span class="si">%s</span><span class="s">.&quot;</span><span class="p">,</span> <span class="n">NxN</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">conn</span><span class="o">.</span><span class="n">src</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__dirty</span> <span class="o">=</span> <span class="bp">True</span>
 

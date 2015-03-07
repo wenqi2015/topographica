@@ -221,7 +221,7 @@
             <span class="c"># being accumulated.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">clipped_pixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clipped_pixels</span> <span class="o">+</span> <span class="n">to_clip</span>
             <span class="n">inArray</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">max_pixel_value</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="n">inArray</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Bitmap: clipped&quot;</span><span class="p">,</span><span class="n">to_clip</span><span class="p">,</span><span class="s">&quot;image pixels that were out of range&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Bitmap: clipped </span><span class="si">%s</span><span class="s"> image pixels that were out of range&quot;</span><span class="p">,</span><span class="n">to_clip</span><span class="p">)</span>
 
         <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">inArray</span><span class="o">.</span><span class="n">shape</span>
         <span class="c"># The size is (width,height), so we swap r and c:</span>

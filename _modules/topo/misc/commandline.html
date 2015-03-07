@@ -426,12 +426,12 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-        <span class="n">cmdline_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Creating </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">cmdline_main</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="s">&quot;Creating </span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span><span class="n">path</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">!=</span> <span class="n">errno</span><span class="o">.</span><span class="n">EEXIST</span><span class="p">:</span>
-                <span class="n">cmdline_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Unable to set output path </span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">path</span><span class="p">)</span>
+                <span class="n">cmdline_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Unable to set output path </span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span><span class="n">path</span><span class="p">)</span>
 
     <span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="o">=</span><span class="n">path</span>
 
@@ -778,7 +778,7 @@
         <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">multiprocessing</span>
         <span class="n">total_cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
         <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;OMP_NUM_THREADS&#39;</span><span class="p">,</span><span class="n">total_cores</span><span class="p">))</span>
-        <span class="n">openmp_main</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads on a machine with </span><span class="si">%d</span><span class="s"> detected CPUs&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">))</span>
+        <span class="n">openmp_main</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Using </span><span class="si">%d</span><span class="s"> threads on a machine with </span><span class="si">%d</span><span class="s"> detected CPUs&quot;</span><span class="p">,</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">total_cores</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
 
