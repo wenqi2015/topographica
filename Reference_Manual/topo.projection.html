@@ -103,12 +103,12 @@ input sheet are treated as having zero weight.</p>
 C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;34mName                                 Value                         Type        Bounds     Mode  [0m</p>
 <p>activity_group                (0.5, &lt;ufunc &#8216;add&#8217;&gt;)              Parameter                 V RW  
-coord_mapper           IdentityMF(name=&#8217;IdentityMF00672&#8217;)     ClassSelector               V RW  
+coord_mapper           IdentityMF(name=&#8217;IdentityMF00674&#8217;)     ClassSelector               V RW  
 delay                                 0.05                        Number     (0, None)    V RW  
 dest                                  None                      Parameter               C RW AN 
 dest_port                          &#8216;Activity&#8217;                   Parameter                 V RW  
 input_fns                              []                        HookList    (0, None)    V RW  
-learning_fn            IdentityLF(name=&#8217;IdentityLF00674&#8217;)     ClassSelector               V RW  
+learning_fn            IdentityLF(name=&#8217;IdentityLF00676&#8217;)     ClassSelector               V RW  
 learning_rate                          0                          Number                  V RW  
 output_fns                             []                        HookList    (0, None)    V RW  
 plastic                               True                       Boolean       (0, 1)     V RW  
@@ -184,7 +184,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.11, readonly=False</em>)</dt>
 <dd>The EventProcessor to which messages are delivered.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00672&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00674&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a destination unit coordinate into the src sheet.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -199,7 +199,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
        of events.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the projection activity after it is computed.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00673&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00675&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weight values for each unit of the destination sheet.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">activity_group</span></tt> (<em>allow_None=False, constant=False, default=(0.5, &lt;ufunc &#8216;add&#8217;&gt;), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Grouping and precedence specifier for computing activity from
@@ -212,7 +212,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00674&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00676&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Learning function applied to weights.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest_port</span></tt> (<em>allow_None=False, constant=False, default=Activity, instantiate=False, pickle_default_value=True, precedence=0.21, readonly=False</em>)</dt>
 <dd>Identifier that can be used to distinguish different types of incoming connections.
@@ -252,7 +252,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e38e8&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e671b0&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -266,12 +266,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3c00&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e67100&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3c58&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e67208&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -367,12 +367,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3cb0&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e67260&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3b50&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e67158&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -563,7 +563,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3998&gt;</em><a class="headerlink" href="#topo.projection.Projection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e410a8&gt;</em><a class="headerlink" href="#topo.projection.Projection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -577,12 +577,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3a48&gt;</em><a class="headerlink" href="#topo.projection.Projection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e41158&gt;</em><a class="headerlink" href="#topo.projection.Projection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e38e8&gt;</em><a class="headerlink" href="#topo.projection.Projection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e41100&gt;</em><a class="headerlink" href="#topo.projection.Projection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -704,12 +704,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3af8&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e41310&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3aa0&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e41208&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -945,7 +945,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00668&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00670&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -955,7 +955,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
 <dd>The EventProcessor from which messages originate.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00457&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00670&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00671&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00672&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00673&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -1011,7 +1011,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3cb0&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f40f70&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1025,12 +1025,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3c58&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e53050&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3c00&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e53100&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1134,12 +1134,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3db8&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e531b0&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3ba8&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6e53208&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1468,7 +1468,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3998&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6ee6050&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1482,12 +1482,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3d60&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6ee6100&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3940&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6ee6158&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1589,12 +1589,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3b50&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6ee61b0&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3a48&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6ee6260&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1931,7 +1931,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3d60&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f40f18&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1945,12 +1945,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3c00&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f5c050&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3cb0&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f5c100&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2052,12 +2052,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3ba8&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f5c158&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3e10&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f5c208&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2378,7 +2378,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3ec0&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f443c0&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2392,12 +2392,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f0e05050&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f44520&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f0e050a8&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f44578&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2499,12 +2499,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f0e055d0&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f44aa0&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f0e05628&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba6f44af8&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2820,7 +2820,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3db8&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70f2050&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2834,12 +2834,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3d08&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70f2100&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e38e8&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70f2158&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2941,12 +2941,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3e68&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70f20a8&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3c58&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70f21b0&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3002,7 +3002,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34msingle_cf_fn: &lt; No docstring available &gt;[0m</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00666&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00668&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="method">
 <dt id="topo.projection.CFPOF_SharedWeight.debug">
 <tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.debug" title="Permalink to this definition">¶</a></dt>
@@ -3020,7 +3020,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3db8&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70cf100&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3034,12 +3034,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3998&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70cf050&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3aa0&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70cf158&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3084,12 +3084,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3b50&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70cf0a8&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ba2f10e3f70&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b0ba70cf260&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
