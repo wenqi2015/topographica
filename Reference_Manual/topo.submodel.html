@@ -136,7 +136,7 @@ mode=&#8217;method&#8217;).</p>
 <dl class="class">
 <dt id="topo.submodel.Model">
 <em class="property">class </em><tt class="descclassname">topo.submodel.</tt><tt class="descname">Model</tt><big>(</big><em>register=True</em>, <em>time_dependent=True</em>, <em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/submodel.html#Model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.submodel.Model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.0)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>params(random_seed=Integer, name=String)</p>
 <blockquote>
 <div><p>The available setup options are:</p>
@@ -199,8 +199,9 @@ topo.analysis.featureresponses.</p>
 
 <dl class="method">
 <dt id="topo.submodel.Model.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -214,7 +215,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb78e39680&gt;</em><a class="headerlink" href="#topo.submodel.Model.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd6949f578&gt;</em><a class="headerlink" href="#topo.submodel.Model.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -228,12 +229,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb78e39310&gt;</em><a class="headerlink" href="#topo.submodel.Model.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd6949f208&gt;</em><a class="headerlink" href="#topo.submodel.Model.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb78e396d8&gt;</em><a class="headerlink" href="#topo.submodel.Model.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd6949f520&gt;</em><a class="headerlink" href="#topo.submodel.Model.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -250,8 +251,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.Model.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -267,6 +269,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.Model.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -308,12 +317,12 @@ attributes of the model components.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb78e39730&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd6949f628&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.Model.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb78e397e0&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd6949f6d8&gt;</em><a class="headerlink" href="#topo.submodel.Model.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -379,16 +388,18 @@ parameters of a PatternCoordinator object.</p>
 
 <dl class="method">
 <dt id="topo.submodel.Model.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.Model.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.Model.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -689,8 +700,9 @@ topo.analysis.featureresponses.</p>
 
 <dl class="method">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -704,7 +716,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908b890&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d67e0&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -718,12 +730,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908ba48&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6890&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908baa0&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d68e8&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -740,8 +752,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -757,6 +770,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.color.ColorEarlyVisionModel.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -786,12 +806,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908bf18&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6db8&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908bf70&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6e10&gt;</em><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -831,16 +851,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.color.ColorEarlyVisionModel.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ColorEarlyVisionModel.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1145,8 +1167,9 @@ v1aff_radius                 0.27083            Number       (0, None)     V RW<
 </dl>
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALColor.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1160,7 +1183,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908baf8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6940&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1174,12 +1197,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908ba48&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6890&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908b578&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d63c0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1196,8 +1219,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALColor.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1213,6 +1237,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.color.ModelGCALColor.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1242,12 +1273,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908bc00&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6a48&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALColor.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908baa0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d68e8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1287,16 +1318,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALColor.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALColor.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALColor.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1601,8 +1634,9 @@ v1aff_radius                 0.27083            Number       (0, None)     V RW<
 </dl>
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1616,7 +1650,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908b5d0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6418&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1630,12 +1664,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908bb50&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d69f0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908b8e8&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d6680&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1652,8 +1686,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1669,6 +1704,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.color.ModelGCALInheritingColor.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1698,12 +1740,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908b890&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d67e0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7908b578&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd696d63c0&gt;</em><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1743,16 +1785,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.color.ModelGCALInheritingColor.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.color.ModelGCALInheritingColor.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1971,8 +2015,9 @@ topo.analysis.featureresponses.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1986,7 +2031,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e54368&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd69bf3db8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2000,12 +2045,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d579f0&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d07050&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57158&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d07100&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2022,8 +2067,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2039,6 +2085,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.earlyvision.EarlyVisionModel.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -2068,12 +2121,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57470&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d070a8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57af8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d07208&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2113,16 +2166,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.EarlyVisionModel.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.EarlyVisionModel.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2168,8 +2223,9 @@ topo.analysis.featureresponses.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.SensoryModel.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2183,7 +2239,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.SensoryModel.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e54100&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd69bf3e10&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2197,12 +2253,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.SensoryModel.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d579f0&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d07100&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.SensoryModel.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57470&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d070a8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2219,8 +2275,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.SensoryModel.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2236,6 +2293,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.earlyvision.SensoryModel.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -2277,12 +2341,12 @@ attributes of the model components.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.SensoryModel.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57af8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d07208&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.SensoryModel.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57aa0&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d07260&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2348,16 +2412,18 @@ parameters of a PatternCoordinator object.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.SensoryModel.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.SensoryModel.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.SensoryModel.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2497,8 +2563,9 @@ topo.analysis.featureresponses.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.VisualInputModel.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2512,7 +2579,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.VisualInputModel.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e54368&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd69bf3db8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2526,12 +2593,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.VisualInputModel.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57aa0&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d26050&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.VisualInputModel.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57af8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d26100&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2548,8 +2615,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.VisualInputModel.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2565,6 +2633,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.earlyvision.VisualInputModel.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -2594,12 +2669,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.VisualInputModel.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57470&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d260a8&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.earlyvision.VisualInputModel.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d571b0&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd69d26208&gt;</em><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2654,16 +2729,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.VisualInputModel.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.earlyvision.VisualInputModel.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.earlyvision.VisualInputModel.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2943,8 +3020,9 @@ v1aff_radius                 0.27083            Number       (0, None)     V RW<
 </dl>
 <dl class="method">
 <dt id="topo.submodel.gcal.ExamplesGCAL.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2958,7 +3036,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf6d8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510c58&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2972,12 +3050,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf578&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510af8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf1b0&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510e10&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2994,8 +3072,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.gcal.ExamplesGCAL.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -3011,6 +3090,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.gcal.ExamplesGCAL.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -3040,12 +3126,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf628&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510cb0&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ExamplesGCAL.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf470&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510d08&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3070,16 +3156,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.gcal.ExamplesGCAL.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.gcal.ExamplesGCAL.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ExamplesGCAL.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3344,8 +3432,9 @@ v1aff_radius                 0.27083            Number       (0, None)     V RW<
 </dl>
 <dl class="method">
 <dt id="topo.submodel.gcal.ModelGCAL.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3359,7 +3448,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ModelGCAL.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf3c0&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510158&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3373,12 +3462,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ModelGCAL.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf0a8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510cb0&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ModelGCAL.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf520&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd685102b8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3395,8 +3484,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.gcal.ModelGCAL.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -3412,6 +3502,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.gcal.ModelGCAL.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -3441,12 +3538,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ModelGCAL.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf418&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510d08&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.gcal.ModelGCAL.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77aaf8e8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd68510ba8&gt;</em><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3486,16 +3583,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.gcal.ModelGCAL.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.gcal.ModelGCAL.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.gcal.ModelGCAL.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3797,8 +3896,9 @@ v1aff_radius                   0.5              Number       (0, None)     V RW<
 </dl>
 <dl class="method">
 <dt id="topo.submodel.scal.ModelSCAL.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3812,7 +3912,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77a595d0&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67a6eec0&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3826,12 +3926,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77a597e0&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67a6ed60&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77a594c8&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67a6edb8&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3854,8 +3954,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.scal.ModelSCAL.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -3871,6 +3972,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.scal.ModelSCAL.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -3900,12 +4008,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7706d310&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67a6ec58&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.scal.ModelSCAL.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7706d3c0&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67a6eb50&gt;</em><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3952,16 +4060,18 @@ The &#8216;aspect_ratio&#8217; and &#8216;scale&#8217; parameter values are unch
 
 <dl class="method">
 <dt id="topo.submodel.scal.ModelSCAL.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.scal.ModelSCAL.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.scal.ModelSCAL.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3997,8 +4107,9 @@ aimed for specifying arrays to a Collector.</div></blockquote>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.submodel.specifications.ArraySpec.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4012,7 +4123,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788eec0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3e68&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4026,12 +4137,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ac58&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3f18&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7778e260&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3b50&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4048,8 +4159,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ArraySpec.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -4065,6 +4177,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.specifications.ArraySpec.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -4094,12 +4213,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0d60&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3890&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ArraySpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0db8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3db8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4130,16 +4249,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ArraySpec.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ArraySpec.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ArraySpec.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4156,8 +4277,9 @@ training patterns, sheets and projections.</div></blockquote>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.submodel.specifications.ModelSpec.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4171,7 +4293,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8ec0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3940&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4185,12 +4307,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788eec0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3e10&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ac58&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3af8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4207,8 +4329,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ModelSpec.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4234,6 +4357,13 @@ projection parameters.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.specifications.ModelSpec.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -4263,12 +4393,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0d60&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3cb0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ModelSpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0f70&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3838&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4299,16 +4429,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ModelSpec.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ModelSpec.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ModelSpec.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4324,8 +4456,9 @@ containing the arguments.</p>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.submodel.specifications.ProjectionSpec.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4339,7 +4472,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8c00&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3f18&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4353,12 +4486,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788eec0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc39f0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ac58&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3890&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4375,8 +4508,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ProjectionSpec.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -4392,6 +4526,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.specifications.ProjectionSpec.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -4421,12 +4562,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0db8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3db8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.ProjectionSpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0f70&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3ba8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4457,16 +4598,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ProjectionSpec.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.ProjectionSpec.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.ProjectionSpec.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4482,8 +4625,9 @@ containing the arguments.</p>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.submodel.specifications.SheetSpec.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4497,7 +4641,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8ec0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3f18&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4511,12 +4655,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788eec0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3af8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ac58&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3cb0&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4533,8 +4677,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.SheetSpec.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -4550,6 +4695,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.specifications.SheetSpec.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -4579,12 +4731,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0db8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3838&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.SheetSpec.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0f70&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3e10&gt;</em><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4615,16 +4767,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.SheetSpec.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.SheetSpec.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.SheetSpec.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4632,7 +4786,7 @@ containing the arguments.</p>
 <dl class="class">
 <dt id="topo.submodel.specifications.Specification">
 <em class="property">class </em><tt class="descclassname">topo.submodel.specifications.</tt><tt class="descname">Specification</tt><big>(</big><em>object_type</em><big>)</big><a class="reference internal" href="../_modules/topo/submodel/specifications.html#Specification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.submodel.specifications.Specification" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.0)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>params(name=String)</p>
 <blockquote>
 <div><p>Specifications are templates for sheet or projection objects which
@@ -4653,8 +4807,9 @@ instantiated.</p>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.submodel.specifications.Specification.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4668,7 +4823,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8c00&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3db8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4682,12 +4837,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8998&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3af8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8520&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3ba8&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4704,8 +4859,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.Specification.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -4721,6 +4877,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.submodel.specifications.Specification.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -4758,12 +4921,12 @@ typically a Sheet or a Projection.</p>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0f18&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3890&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.submodel.specifications.Specification.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb779c0d60&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3940&gt;</em><a class="headerlink" href="#topo.submodel.specifications.Specification.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4802,16 +4965,18 @@ is returned as a string.</p>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.Specification.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.submodel.specifications.Specification.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.submodel.specifications.Specification.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>

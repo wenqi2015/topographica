@@ -88,8 +88,9 @@ arrays.</div></blockquote>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.DotProduct.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -103,7 +104,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8368&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b48158&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -117,18 +118,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8e68&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b480a8&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd81b0&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b48100&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.DotProduct.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -138,6 +140,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.DotProduct.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -167,12 +176,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8418&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b481b0&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.DotProduct.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8050&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b48208&gt;</em><a class="headerlink" href="#topo.responsefn.DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -197,16 +206,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.DotProduct.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.DotProduct.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.DotProduct.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -214,7 +225,7 @@ containing the arguments.</p>
 <dl class="class">
 <dt id="topo.responsefn.ResponseFn">
 <em class="property">class </em><tt class="descclassname">topo.responsefn.</tt><tt class="descname">ResponseFn</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.0)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>params(name=String)
 Abstract base class for response functions that plug into CFPRF_Plugin.
 [1;32mParameters of &#8216;ResponseFn&#8217;
@@ -223,8 +234,9 @@ Abstract base class for response functions that plug into CFPRF_Plugin.
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.ResponseFn.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -238,7 +250,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd80a8&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b481b0&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -252,18 +264,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8050&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b480a8&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8680&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b48100&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.ResponseFn.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -273,6 +286,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.ResponseFn.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -302,12 +322,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd8158&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b48208&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.ResponseFn.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb76fd83c0&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b48050&gt;</em><a class="headerlink" href="#topo.responsefn.ResponseFn.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -332,16 +352,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.ResponseFn.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.ResponseFn.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.ResponseFn.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -376,18 +398,19 @@ equivalent to CFPRF_Plugin(single_cf_fn=DotProduct()).</div></blockquote>
 [1;36mSoft bound values are marked in cyan.[0m
 C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;34mName                         Value                      Type      Mode [0m</p>
-<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00450&#8217;)  ClassSelector  V RW</p>
+<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00453&#8217;)  ClassSelector  V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34msingle_cf_fn: Accepts a ResponseFn that will be applied to each CF individually.[0m</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00450&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00453&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a ResponseFn that will be applied to each CF individually.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -401,7 +424,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb75973998&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4260&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -415,18 +438,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb75973e68&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4418&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb758bc050&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba44c8&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -436,6 +460,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.optimized.CFPRF_DotProduct.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -465,12 +496,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb758bc470&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba43c0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb758bc838&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba45d0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -495,16 +526,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -531,15 +564,16 @@ is equivalent to this one, but it also works for 1D arrays.</p>
 [1;36mSoft bound values are marked in cyan.[0m
 C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;34mName                         Value                      Type      Mode [0m</p>
-<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00499&#8217;)  ClassSelector  C RO</p>
+<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00682&#8217;)  ClassSelector  C RO</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34msingle_cf_fn: &lt; No docstring available &gt;[0m</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;DotProduct DotProduct00499&gt;, instantiate=False, is_instance=True, pickle_default_value=True, precedence=None, readonly=True</em>)</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;DotProduct DotProduct00682&gt;, instantiate=False, is_instance=True, pickle_default_value=True, precedence=None, readonly=True</em>)</p>
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -553,7 +587,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb758bc838&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4368&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -567,18 +601,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb758bcd08&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4578&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb758bccb0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4680&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -588,6 +623,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -617,12 +659,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788ee10&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4aa0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788eec0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4a48&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -647,16 +689,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_DotProduct_opt.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_DotProduct_opt.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -676,8 +720,9 @@ equivalent) version in Python.</p>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -691,7 +736,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788eec0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4578&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -705,18 +750,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788ee68&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4520&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788ef18&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4680&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -726,6 +772,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -755,12 +808,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7788ec58&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba4c58&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb75973e68&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67ba47e0&gt;</em><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -785,16 +838,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.optimized.CFPRF_EuclideanDistance_opt.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -825,8 +880,9 @@ when given an input pattern and a set of ConnectionField objects.</p>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -840,7 +896,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77206158&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7e10&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -854,18 +910,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77206100&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7db8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77206208&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7ec0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -875,6 +932,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -904,12 +968,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77206260&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7c00&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77206310&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7fc8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -934,16 +998,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_EuclideanDistance.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_EuclideanDistance.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -984,7 +1050,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 l                             -1.3                     Number     V RW 
 m                             0.25                     Number     V RW 
 r                             -200                     Number     V RW 
-single_cf_fn   DotProduct(name=&#8217;DotProduct00498&#8217;)  ClassSelector  V RW 
+single_cf_fn   DotProduct(name=&#8217;DotProduct00681&#8217;)  ClassSelector  V RW 
 u                             1.2                      Number     V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
@@ -997,7 +1063,7 @@ u                             1.2                      Number     V RW</p>
 <dl class="docutils">
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">b</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=2, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Controls position of maximum growth</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00498&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00681&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>ResponseFn to apply to each CF individually.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">m</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.25, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Time of maximum growth.</dd>
@@ -1010,8 +1076,9 @@ u                             1.2                      Number     V RW</p>
 </dl>
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1025,7 +1092,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7731a208&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7cb0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1039,18 +1106,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7731a1b0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7c58&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7731a260&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7f18&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1060,6 +1128,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.projfn.CFPRF_ActivityBased.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1089,12 +1164,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7731a2b8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7d08&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7731a100&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7ba8&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1119,16 +1194,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_ActivityBased.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_ActivityBased.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1155,18 +1232,19 @@ based on those weights.</p>
 [1;36mSoft bound values are marked in cyan.[0m
 C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;34mName                         Value                      Type      Mode [0m</p>
-<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00450&#8217;)  ClassSelector  V RW</p>
+<p>single_cf_fn   DotProduct(name=&#8217;DotProduct00453&#8217;)  ClassSelector  V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34msingle_cf_fn: Accepts a ResponseFn that will be applied to each CF individually.[0m</p>
 <dl class="docutils">
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00450&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;DotProduct DotProduct00453&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Accepts a ResponseFn that will be applied to each CF individually.</dd>
 </dl>
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1180,7 +1258,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77316100&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7ec0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1194,18 +1272,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77316158&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7c58&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77316208&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7c00&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1215,6 +1294,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.responsefn.projfn.CFPRF_Plugin.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1244,12 +1330,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb773161b0&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7e68&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77316310&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dd7f70&gt;</em><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1274,16 +1360,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.responsefn.projfn.CFPRF_Plugin.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.responsefn.projfn.CFPRF_Plugin.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>

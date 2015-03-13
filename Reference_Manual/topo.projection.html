@@ -103,12 +103,12 @@ input sheet are treated as having zero weight.</p>
 C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;34mName                                 Value                         Type        Bounds     Mode  [0m</p>
 <p>activity_group                (0.5, &lt;ufunc &#8216;add&#8217;&gt;)              Parameter                 V RW  
-coord_mapper           IdentityMF(name=&#8217;IdentityMF00495&#8217;)     ClassSelector               V RW  
+coord_mapper           IdentityMF(name=&#8217;IdentityMF00678&#8217;)     ClassSelector               V RW  
 delay                                 0.05                        Number     (0, None)    V RW  
 dest                                  None                      Parameter               C RW AN 
 dest_port                          &#8216;Activity&#8217;                   Parameter                 V RW  
 input_fns                              []                        HookList    (0, None)    V RW  
-learning_fn            IdentityLF(name=&#8217;IdentityLF00497&#8217;)     ClassSelector               V RW  
+learning_fn            IdentityLF(name=&#8217;IdentityLF00680&#8217;)     ClassSelector               V RW  
 learning_rate                          0                          Number                  V RW  
 output_fns                             []                        HookList    (0, None)    V RW  
 plastic                               True                       Boolean       (0, 1)     V RW  
@@ -184,7 +184,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
 <dl class="docutils">
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.11, readonly=False</em>)</dt>
 <dd>The EventProcessor to which messages are delivered.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00495&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00678&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a destination unit coordinate into the src sheet.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -199,7 +199,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
        of events.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the projection activity after it is computed.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00496&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00679&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weight values for each unit of the destination sheet.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">activity_group</span></tt> (<em>allow_None=False, constant=False, default=(0.5, &lt;ufunc &#8216;add&#8217;&gt;), instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Grouping and precedence specifier for computing activity from
@@ -212,7 +212,7 @@ weights_generator   Constant(bounds=BoundingBox(radius=0....  ClassSelector     
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00497&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityLF IdentityLF00680&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Learning function applied to weights.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">dest_port</span></tt> (<em>allow_None=False, constant=False, default=Activity, instantiate=False, pickle_default_value=True, precedence=0.21, readonly=False</em>)</dt>
 <dd>Identifier that can be used to distinguish different types of incoming connections.
@@ -237,8 +237,9 @@ apply the output_fn to non-responding units.</p>
 
 <dl class="method">
 <dt id="topo.projection.OneToOneProjection.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -252,7 +253,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ac58&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f69f0&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -266,18 +267,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596af70&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6d08&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596afc8&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6d60&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.projection.OneToOneProjection.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -315,6 +317,13 @@ parameter to False.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.OneToOneProjection.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -367,12 +376,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596aec0&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6db8&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.OneToOneProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb759af0a8&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6c58&gt;</em><a class="headerlink" href="#topo.projection.OneToOneProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -389,16 +398,18 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="method">
 <dt id="topo.projection.OneToOneProjection.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.projection.OneToOneProjection.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.OneToOneProjection.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -548,8 +559,9 @@ apply the output_fn to non-responding units.</p>
 
 <dl class="method">
 <dt id="topo.projection.Projection.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -563,7 +575,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596acb0&gt;</em><a class="headerlink" href="#topo.projection.Projection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f69f0&gt;</em><a class="headerlink" href="#topo.projection.Projection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -577,12 +589,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ae10&gt;</em><a class="headerlink" href="#topo.projection.Projection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6b50&gt;</em><a class="headerlink" href="#topo.projection.Projection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ac58&gt;</em><a class="headerlink" href="#topo.projection.Projection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6af8&gt;</em><a class="headerlink" href="#topo.projection.Projection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -594,8 +606,9 @@ to support learning.</p>
 
 <dl class="method">
 <dt id="topo.projection.Projection.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -654,6 +667,13 @@ dictionary {name: parameter_object}</p>
 superclasses.</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="topo.projection.Projection.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
+</dd></dl>
+
 <dl class="classmethod">
 <dt id="topo.projection.Projection.print_param_defaults">
 <em class="property">classmethod </em><tt class="descname">print_param_defaults</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.projection.Projection.print_param_defaults" title="Permalink to this definition">¶</a></dt>
@@ -704,12 +724,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb759b8050&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6e68&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.Projection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb759b80a8&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6ba8&gt;</em><a class="headerlink" href="#topo.projection.Projection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -726,16 +746,18 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="method">
 <dt id="topo.projection.Projection.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.projection.Projection.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.Projection.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -761,7 +783,7 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00463&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00466&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
@@ -776,7 +798,7 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.5                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00455&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00458&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 seed                                          None                            Integer                     V RW AN 
 src                                           None                           Parameter                    C RW AN 
@@ -893,7 +915,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00461&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -905,7 +927,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00455&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -924,7 +946,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00463&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00466&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -945,7 +967,7 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00491&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=True, default=&lt;CFPLF_Identity CFPLF_Identity00674&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -953,9 +975,9 @@ weights_output_fns          [CFPOF_SharedWeight(name=&#8217;CFPOF_Share...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00457&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00460&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00493&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00494&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_SharedWeight(name=&#8217;CFPOF_SharedWeight00676&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00677&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -996,8 +1018,9 @@ SharedWeightCFProjections, so we disable them here.</p>
 
 <dl class="method">
 <dt id="topo.projection.SharedWeightCFProjection.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1011,7 +1034,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ad60&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6ba8&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1025,12 +1048,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596aec0&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6aa0&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596af18&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6d08&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1043,8 +1066,9 @@ SharedWeightCFProjections, so we disable them here.</p>
 
 <dl class="method">
 <dt id="topo.projection.SharedWeightCFProjection.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1082,6 +1106,13 @@ parameter to False.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.SharedWeightCFProjection.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1134,12 +1165,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596adb8&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6a48&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.SharedWeightCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb759d40a8&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6cb0&gt;</em><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1156,8 +1187,9 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="method">
 <dt id="topo.projection.SharedWeightCFProjection.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1169,10 +1201,11 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 
 <dl class="method">
 <dt id="topo.projection.SharedWeightCFProjection.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.SharedWeightCFProjection.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1197,14 +1230,14 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00463&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00466&#8217;)          ClassSelector                    V RW  
 decay_rate                                    1.0                              Number          (0, None)    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00459&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00462&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -1213,14 +1246,14 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.4                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00455&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00458&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 seed                                          None                            Integer                     V RW AN 
 src                                           None                           Parameter                    C RW AN 
 src_port                                   &#8216;Activity&#8217;                        Parameter                      V RW  
 strength                                      1.0                              Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -1331,7 +1364,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00461&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -1345,7 +1378,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00455&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -1364,7 +1397,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00463&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00466&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -1385,7 +1418,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00459&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00462&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -1393,9 +1426,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00457&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00460&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00462&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00465&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -1453,8 +1486,9 @@ extended to allow increasing as well.</p>
 
 <dl class="method">
 <dt id="topo.projection.LeakyCFProjection.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1468,7 +1502,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ae10&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f69f0&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1482,12 +1516,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596af70&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6c00&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ac58&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6ec0&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1498,8 +1532,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.projection.LeakyCFProjection.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1537,6 +1572,13 @@ parameter to False.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.LeakyCFProjection.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1589,12 +1631,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb775e0050&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6d60&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.LeakyCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb775e0100&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6b50&gt;</em><a class="headerlink" href="#topo.projection.LeakyCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1611,8 +1653,9 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="method">
 <dt id="topo.projection.LeakyCFProjection.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1624,10 +1667,11 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 
 <dl class="method">
 <dt id="topo.projection.LeakyCFProjection.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.LeakyCFProjection.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1656,13 +1700,13 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00463&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00466&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00459&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00462&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -1671,7 +1715,7 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.4                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00455&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00458&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 seed                                          None                            Integer                     V RW AN 
 smoothing                                    0.999                             Number                       V RW  
@@ -1681,7 +1725,7 @@ strength                                      1.0                              N
 target                                       0.045                             Number                       V RW  
 target_lr                                    0.045                             Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -1798,7 +1842,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00461&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -1810,7 +1854,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00455&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -1829,7 +1873,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00463&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00466&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -1850,7 +1894,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00459&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00462&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -1858,9 +1902,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00457&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00460&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00462&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00465&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -1910,8 +1954,9 @@ overridden by a subclass to calculate the factors differently.</p>
 
 <dl class="method">
 <dt id="topo.projection.ScaledCFProjection.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1931,7 +1976,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596af70&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6a48&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1945,12 +1990,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596acb0&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6d08&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596af18&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6ba8&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1961,8 +2006,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.projection.ScaledCFProjection.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2000,6 +2046,13 @@ parameter to False.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.ScaledCFProjection.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -2052,12 +2105,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596adb8&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6cb0&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ScaledCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb775f50a8&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6e68&gt;</em><a class="headerlink" href="#topo.projection.ScaledCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2074,8 +2127,9 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="method">
 <dt id="topo.projection.ScaledCFProjection.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2087,10 +2141,11 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 
 <dl class="method">
 <dt id="topo.projection.ScaledCFProjection.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ScaledCFProjection.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2113,13 +2168,13 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00463&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00466&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00459&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00462&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -2128,14 +2183,14 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.8                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00455&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00458&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 seed                                          None                            Integer                     V RW AN 
 src                                           None                           Parameter                    C RW AN 
 src_port                                   &#8216;Activity&#8217;                        Parameter                      V RW  
 strength                                      1.0                              Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -2245,7 +2300,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00461&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -2257,7 +2312,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00455&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -2276,7 +2331,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00463&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00466&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -2297,7 +2352,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00459&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00462&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -2305,9 +2360,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00457&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00460&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00462&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00465&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -2363,8 +2418,9 @@ extended to allow increasing as well.</p>
 
 <dl class="method">
 <dt id="topo.projection.ResizableCFProjection.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2378,7 +2434,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb775fa260&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd677ac050&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2392,12 +2448,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb775fa3c0&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd677ac158&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb775fa418&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd677ac1b0&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2408,8 +2464,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.projection.ResizableCFProjection.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2447,6 +2504,13 @@ parameter to False.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.ResizableCFProjection.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -2499,12 +2563,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb775fa940&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd677ac730&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.ResizableCFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb775fa998&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd677ac788&gt;</em><a class="headerlink" href="#topo.projection.ResizableCFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2521,8 +2585,9 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="method">
 <dt id="topo.projection.ResizableCFProjection.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2534,10 +2599,11 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 
 <dl class="method">
 <dt id="topo.projection.ResizableCFProjection.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.ResizableCFProjection.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2571,13 +2637,13 @@ apply_output_fns_init                         True                            Bo
 autosize_mask                                 True                            Boolean            (0, 1)     C RW  
 cf_shape                    Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
 cf_type                     &lt;class &#8216;topo.base.cf.ConnectionField&#8217;...         Parameter                      C RW  
-coord_mapper                   IdentityMF(name=&#8217;IdentityMF00463&#8217;)          ClassSelector                    V RW  
+coord_mapper                   IdentityMF(name=&#8217;IdentityMF00466&#8217;)          ClassSelector                    V RW  
 delay                                         0.05                             Number          (0, None)    V RW  
 dest                                          None                           Parameter                    C RW AN 
 dest_port                                  &#8216;Activity&#8217;                        Parameter                      V RW  
 hash_format                          &#8216;{name}-{src}-{dest}&#8217;                     String                       V RW  
 input_fns                                      []                             HookList         (0, None)    V RW  
-learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00459&#8217;...       ClassSelector                    V RW  
+learning_fn                 CFPLF_Plugin(name=&#8217;CFPLF_Plugin00462&#8217;...       ClassSelector                    V RW  
 learning_rate                                 0.0                              Number           ([1;36m0[0m,[1;36m 100[0m)    V RW  
 mask_threshold                                0.5                              Number                       C RW  
 min_matrix_radius                              1                              Integer          (0, None)    V RW  
@@ -2586,14 +2652,14 @@ output_fns                                     []                             Ho
 plastic                                       True                            Boolean            (0, 1)     V RW  
 precedence                                    0.8                              Number                       V RW  
 private                                      False                            Boolean            (0, 1)     V RW  
-response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00455&#8217;...       ClassSelector                    V RW  
+response_fn                 CFPRF_Plugin(name=&#8217;CFPRF_Plugin00458&#8217;...       ClassSelector                    V RW  
 same_cf_shape_for_all_cfs                     True                            Boolean            (0, 1)     V RW  
 seed                                          None                            Integer                     V RW AN 
 src                                           None                           Parameter                    C RW AN 
 src_port                                   &#8216;Activity&#8217;                        Parameter                      V RW  
 strength                                      1.0                              Number                       V RW  
 weights_generator           Constant(bounds=BoundingBox(radius=0....       ClassSelector                    C RW  
-weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...          HookList         (0, None)    V RW</p>
+weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464...          HookList         (0, None)    V RW</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34mactivity_group:            Grouping and precedence specifier for computing activity from[0m
@@ -2703,7 +2769,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        port, and to declare what will be sent over that port.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">cf_type</span></tt> (<em>allow_None=False, constant=True, default=&lt;class &#8216;topo.base.cf.ConnectionField&#8217;&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Type of ConnectionField to use when creating individual CFs.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">cf_shape</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00461&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Mask pattern to define the shape of the connection fields.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">plastic</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to update the internal state on each call.
@@ -2715,7 +2781,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dt><em>param BoundingRegionParameter</em> <tt class="docutils literal"><span class="pre">nominal_bounds_template</span></tt> (<em>allow_None=False, constant=False, default=BoundingBox(radius=0.1), instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Bounds defining the Sheet area covered by a prototypical ConnectionField.
         The true bounds will differ depending on the density (see create_slice_template()).</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00455&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">response_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPRF_Plugin CFPRF_Plugin00458&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing the Projection response to an input pattern.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">same_cf_shape_for_all_cfs</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether or not to share a single cf_shape mask for all CFs.
@@ -2734,7 +2800,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        activity_group==(0.6,numpy.divide), activity
        from the first two will be added together, and the result
        divided by the sum of the second two.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00463&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">coord_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00466&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function to map a projected coordinate into the target sheet.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">mask_threshold</span></tt> (<em>allow_None=False, bounds=None, constant=True, default=0.5, inclusive_bounds=(True, True), instantiate=True, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>If a unit is above this value in the cf_shape mask, it is
@@ -2755,7 +2821,7 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 <dd>Enforced minimum for radius of weights matrix.
         The default of 1 gives a minimum matrix of 3x3. 0 would
         allow a 1x1 matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00459&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">learning_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;CFPLF_Plugin CFPLF_Plugin00462&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function for computing changes to the weights based on one activation step.</dd>
 <dt><em>param String</em> <tt class="docutils literal"><span class="pre">hash_format</span></tt> (<em>allow_None=False, constant=False, default={name}-{src}-{dest}, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Format string to determine the hash value used to initialize
@@ -2763,9 +2829,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
        {src} and {dest}.</dd>
 <dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">src</span></tt> (<em>allow_None=True, constant=True, default=None, instantiate=True, pickle_default_value=True, precedence=0.1, readonly=False</em>)</dt>
 <dd>The EventProcessor from which messages originate.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00457&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">weights_generator</span></tt> (<em>allow_None=False, constant=True, default=&lt;Constant Constant00460&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Generate initial weights values.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00462&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">weights_output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[CFPOF_Plugin(name=&#8217;CFPOF_Plugin00464&#8217;, single_cf_fn=IdentityTF(init_keys=[], name=&#8217;IdentityTF00465&#8217;, norm_value=None))], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Functions applied to each CF after learning.</dd>
 <dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">input_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Function(s) applied to the input before the projection activity is computed.</dd>
@@ -2805,8 +2871,9 @@ weights_output_fns          [CFPOF_Plugin(name=&#8217;CFPOF_Plugin00461...      
 
 <dl class="method">
 <dt id="topo.projection.CFProjection.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2820,7 +2887,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596aec0&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6f70&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2834,12 +2901,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ad60&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6e10&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596af18&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6af8&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2850,8 +2917,9 @@ equal to the default value.</p>
 
 <dl class="method">
 <dt id="topo.projection.CFProjection.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2889,6 +2957,13 @@ parameter to False.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.CFProjection.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -2941,12 +3016,12 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77626050&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6f18&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFProjection.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77626100&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6b50&gt;</em><a class="headerlink" href="#topo.projection.CFProjection.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2963,8 +3038,9 @@ e.g. to reenable plasticity of any type that was disabled.</p>
 
 <dl class="method">
 <dt id="topo.projection.CFProjection.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2976,10 +3052,11 @@ located nearest to sheet coordinate (sheet_x,sheet_y).</p>
 
 <dl class="method">
 <dt id="topo.projection.CFProjection.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFProjection.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3002,11 +3079,12 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34msingle_cf_fn: &lt; No docstring available &gt;[0m</p>
-<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00489&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
+<p><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">single_cf_fn</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityTF IdentityTF00672&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</p>
 <dl class="method">
 <dt id="topo.projection.CFPOF_SharedWeight.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3020,7 +3098,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596aec0&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6d60&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3034,18 +3112,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ad08&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6cb0&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7596ae68&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6db8&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.projection.CFPOF_SharedWeight.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -3055,6 +3134,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.projection.CFPOF_SharedWeight.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -3084,12 +3170,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7762a050&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f69f0&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.projection.CFPOF_SharedWeight.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7762a100&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6aa0&gt;</em><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3114,16 +3200,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.projection.CFPOF_SharedWeight.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.projection.CFPOF_SharedWeight.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.projection.CFPOF_SharedWeight.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>

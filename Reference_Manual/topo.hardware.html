@@ -141,7 +141,7 @@ ydensity                               256                              Number  
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00358&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00362&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The PatternSampler to use to resample/resize the image.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If False, discards the image and pattern_sampler after drawing
@@ -207,8 +207,9 @@ view the patterns contained within a Selector).</p>
 
 <dl class="method">
 <dt id="topo.hardware.opencvcamera.CameraImage.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -222,7 +223,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb72edd368&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd62c40100&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -236,18 +237,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb72edd260&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd62c400a8&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb72edd310&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd62c40158&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.opencvcamera.CameraImage.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -257,6 +259,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.hardware.opencvcamera.CameraImage.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -286,7 +295,7 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb72edd050&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd62c401b0&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -302,7 +311,7 @@ matrix dimensions.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb72edd3c0&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd62c40208&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -319,16 +328,18 @@ matrix dimensions.</p>
 
 <dl class="method">
 <dt id="topo.hardware.opencvcamera.CameraImage.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.opencvcamera.CameraImage.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -545,7 +556,7 @@ it is a Logitech software for webcam.</p>
 <dl class="class">
 <dt id="topo.hardware.ptz.PTZ">
 <em class="property">class </em><tt class="descclassname">topo.hardware.ptz.</tt><tt class="descname">PTZ</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/hardware/ptz.html#PTZ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.hardware.ptz.PTZ" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.0)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
+<dd><p>Bases: <a class="reference external" href="http://ioam.github.io/param/Reference_Manual/param.html#param.parameterized.Parameterized" title="(in Param v1.3.1)"><tt class="xref py py-class docutils literal"><span class="pre">param.parameterized.Parameterized</span></tt></a></p>
 <p>params(name=String)
 [1;32mParameters of &#8216;PTZ&#8217;
 ===================
@@ -553,8 +564,9 @@ it is a Logitech software for webcam.</p>
 Object has no parameters.</p>
 <dl class="method">
 <dt id="topo.hardware.ptz.PTZ.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -568,7 +580,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7270e520&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd647c0050&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -582,18 +594,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb7270e788&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd647c02b8&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb7270e838&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd647c0368&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.ptz.PTZ.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -603,6 +616,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.hardware.ptz.PTZ.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -632,12 +652,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb7270e7e0&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd647c0310&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb7270e8e8&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd647c0418&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -662,16 +682,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.hardware.ptz.PTZ.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.ptz.PTZ.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.ptz.PTZ.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -769,7 +791,7 @@ ydensity                               256                              Number  
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00358&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00362&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The PatternSampler to use to resample/resize the image.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If False, discards the image and pattern_sampler after drawing
@@ -838,8 +860,9 @@ view the patterns contained within a Selector).</p>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImage.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -853,7 +876,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69208&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd63d27f70&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -867,18 +890,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69418&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd63d27fc8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e694c8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd637a00a8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImage.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -888,6 +912,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.hardware.robotics.CameraImage.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -917,7 +948,7 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69470&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd637a0050&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -933,7 +964,7 @@ matrix dimensions.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69578&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd637a0100&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -950,16 +981,18 @@ matrix dimensions.</p>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImage.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImage.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImage.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1036,7 +1069,7 @@ ydensity                               256                              Number  
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00358&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00362&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The PatternSampler to use to resample/resize the image.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If False, discards the image and pattern_sampler after drawing
@@ -1105,8 +1138,9 @@ view the patterns contained within a Selector).</p>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImageQueued.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1120,7 +1154,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69368&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd63d27f18&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1134,18 +1168,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69208&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd63d27ec0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69310&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd637b4050&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImageQueued.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1155,6 +1190,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.hardware.robotics.CameraImageQueued.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1184,7 +1226,7 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e693c0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd637b40a8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1200,7 +1242,7 @@ matrix dimensions.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69260&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd637b4100&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1217,16 +1259,18 @@ matrix dimensions.</p>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImageQueued.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.CameraImageQueued.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1274,8 +1318,9 @@ zoom                120       Number     (0, None)    V RW</p>
 </dl>
 <dl class="method">
 <dt id="topo.hardware.robotics.PTZ.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1289,7 +1334,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e694c8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd63d27e10&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1303,18 +1348,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69418&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd63d27e68&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69310&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd637b4050&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.PTZ.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1324,6 +1370,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.hardware.robotics.PTZ.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1373,12 +1426,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e695d0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd637b4158&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb73e69680&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd637b41b0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1403,16 +1456,18 @@ something without permanently altering the objects&#8217; state.</p>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.PTZ.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.hardware.robotics.PTZ.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.hardware.robotics.PTZ.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>

@@ -81,7 +81,6 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">webbrowser</span>
-<span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">from</span> <span class="nn">Tkinter</span> <span class="kn">import</span> <span class="n">Frame</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> \
      <span class="n">LEFT</span><span class="p">,</span> <span class="n">YES</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">DISABLED</span><span class="p">,</span> \
      <span class="n">NORMAL</span><span class="p">,</span> <span class="n">DoubleVar</span>
@@ -399,16 +398,14 @@
         <span class="nb">type</span><span class="o">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="n">Parameterized</span><span class="p">,</span><span class="s">&#39;warning&#39;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">gui_warning</span><span class="p">)</span>
         <span class="c">#type.__setattr__(Parameterized,&#39;message&#39;,self.gui_message)</span>
 
-    <span class="k">def</span> <span class="nf">gui_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">gui_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">msg</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="n">stat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_status_bar</span><span class="p">()</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="s">&#39; &#39;</span><span class="p">)</span>
-        <span class="n">stat</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__orig_P_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">stat</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="o">%</span><span class="n">args</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__orig_P_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">msg</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">gui_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">gui_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">msg</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="n">stat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_status_bar</span><span class="p">()</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="s">&#39; &#39;</span><span class="p">)</span>
-        <span class="n">stat</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">stat</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">msg</span><span class="o">%</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__orig_P_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
 

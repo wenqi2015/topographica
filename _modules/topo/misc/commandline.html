@@ -650,7 +650,7 @@
     <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span>  <span class="p">[</span><span class="s">&quot;list&quot;</span><span class="p">,</span><span class="s">&quot;unit&quot;</span><span class="p">,</span><span class="s">&quot;flakes&quot;</span><span class="p">,</span><span class="s">&quot;coverage&quot;</span><span class="p">]:</span>
         <span class="n">local_targets</span> <span class="o">+=</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">None</span>
-    
+
     <span class="c"># Other targets require runtests.py</span>
     <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s">&quot;quick&quot;</span><span class="p">:</span>
         <span class="n">local_targets</span> <span class="o">+=</span> <span class="p">[</span><span class="s">&quot;unit&quot;</span><span class="p">,</span><span class="s">&quot;flakes&quot;</span><span class="p">]</span>
@@ -667,7 +667,12 @@
     <span class="c"># a module, the code it contains for conditionally using xvfb-run</span>
     <span class="c"># can be applied here as well.</span>
     <span class="k">if</span> <span class="s">&quot;flakes&quot;</span> <span class="ow">in</span> <span class="n">local_targets</span><span class="p">:</span>
-        <span class="n">targets</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;topo&quot;</span><span class="p">,</span> <span class="s">&quot;external/param&quot;</span><span class="p">,</span> <span class="s">&quot;external/paramtk&quot;</span><span class="p">,</span> <span class="s">&quot;external/imagen&quot;</span><span class="p">,</span> <span class="s">&quot;external/lancet&quot;</span><span class="p">]</span>
+        <span class="n">targets</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;topo&quot;</span><span class="p">,</span>
+                   <span class="s">&quot;external/param&quot;</span><span class="p">,</span>
+                   <span class="s">&quot;external/paramtk&quot;</span><span class="p">,</span>
+                   <span class="s">&quot;external/holoviews&quot;</span><span class="p">,</span>
+                   <span class="s">&quot;external/imagen&quot;</span><span class="p">,</span>
+                   <span class="s">&quot;external/lancet&quot;</span><span class="p">]</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&quot;python&quot;</span><span class="p">,</span><span class="s">&quot;topo/tests/buildbot/pyflakes-ignore.py&quot;</span><span class="p">,</span><span class="s">&quot;--ignore&quot;</span><span class="p">,</span> <span class="s">&quot;topo/tests&quot;</span><span class="p">,</span><span class="s">&quot;--total&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">targets</span><span class="p">)</span>
         <span class="n">return_code</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
 
@@ -865,7 +870,7 @@
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">cmdline_main</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                     <span class="s">&quot;Could not load IPython extension &#39;topo.misc.ipython&#39;; ignored error was:</span><span class="se">\n</span><span class="si">%s</span><span class="s">&quot;</span><span class="o">%</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
-                
+
             <span class="n">ipshell</span><span class="p">()</span>
 
     <span class="k">global</span> <span class="n">return_code</span>

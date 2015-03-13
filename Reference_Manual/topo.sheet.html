@@ -221,8 +221,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.Sheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -243,7 +244,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416310&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6aa0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -257,7 +258,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416998&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6b50&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -269,7 +270,7 @@ the EventProcessor should process the data somehow.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416d08&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f69f0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -297,8 +298,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.Sheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -339,6 +341,13 @@ new_plasticity_state.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.Sheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -413,12 +422,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416a48&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4050&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.Sheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb772533c0&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4158&gt;</em><a class="headerlink" href="#topo.sheet.Sheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -504,16 +513,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.Sheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.Sheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.Sheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -559,7 +570,7 @@ continuous_learning                                       False                 
 end_of_iteration                                            []                             HookList         (0, None)     V RW  
 joint_norm_fn                            &lt;function compute_joint_norm_totals a...          Callable                       V RW  
 layout_location                                          (-1, -1)                        NumericTuple                     V RW  
-mask                                         SheetMask(name=&#8217;SheetMask00445&#8217;)             Parameter                       V RW  
+mask                                         SheetMask(name=&#8217;SheetMask00448&#8217;)             Parameter                       V RW  
 mask_init_time                                              5                              Integer          (0, None)     V RW  
 measure_maps                                               True                            Boolean            (0, 1)      V RW  
 nominal_bounds                                   BoundingBox(radius=0.5)           BoundingRegionParameter                C RW  
@@ -670,7 +681,7 @@ tsettle                                                     8                   
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -760,8 +771,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -782,7 +794,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416b50&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6f18&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -796,12 +808,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416a48&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6c58&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb774168e8&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6af8&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -843,8 +855,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -898,6 +911,13 @@ restore_plasticity_state().</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.SettlingCFSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -975,12 +995,12 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253368&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4208&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SettlingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253310&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4100&gt;</em><a class="headerlink" href="#topo.sheet.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1041,16 +1061,18 @@ It returns the list of all UnitViews for the given unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.SettlingCFSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SettlingCFSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1092,7 +1114,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>allow_skip_non_responding_units                 True                        Boolean            (0, 1)    V RW 
 apply_output_fns                                True                        Boolean            (0, 1)    V RW 
 layout_location                               (-1, -1)                    NumericTuple                   V RW 
-mask                              SheetMask(name=&#8217;SheetMask00445&#8217;)         Parameter                     V RW 
+mask                              SheetMask(name=&#8217;SheetMask00448&#8217;)         Parameter                     V RW 
 measure_maps                                    True                        Boolean            (0, 1)    V RW 
 nominal_bounds                        BoundingBox(radius=0.5)       BoundingRegionParameter              C RW 
 nominal_density                                  10                          Number                      C RW 
@@ -1169,7 +1191,7 @@ row_precedence                                  0.5                          Num
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -1239,8 +1261,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.CFSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1261,7 +1284,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416310&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6b50&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1275,7 +1298,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416998&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f69f0&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1287,7 +1310,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416940&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6aa0&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1325,8 +1348,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.CFSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1380,6 +1404,13 @@ restore_plasticity_state().</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.CFSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1462,12 +1493,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253470&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa41b0&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.CFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253520&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4310&gt;</em><a class="headerlink" href="#topo.sheet.CFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1550,16 +1581,18 @@ It returns the list of all UnitViews for the given unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.CFSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.CFSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.CFSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -1654,7 +1687,7 @@ row_precedence                       0.5                              Number    
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00464&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00467&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
@@ -1733,8 +1766,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1755,7 +1789,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb774168e8&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6fc8&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1775,12 +1809,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416a48&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6c58&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416b50&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6af8&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1808,8 +1842,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1857,6 +1892,13 @@ superclasses.</p>
 <tt class="descname">pop_input_generator</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.pop_input_generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discard the current input_generator, and retrieve the previous one from the stack.</p>
 <p>Warns if no input_generator is available on the stack.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.GeneratorSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -1937,7 +1979,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253520&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4310&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1953,7 +1995,7 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.GeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb772535d0&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa43c0&gt;</em><a class="headerlink" href="#topo.sheet.GeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2029,16 +2071,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.GeneratorSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.GeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2088,7 +2132,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>allow_skip_non_responding_units                 True                        Boolean            (0, 1)    V RW 
 apply_output_fns                                True                        Boolean            (0, 1)    V RW 
 layout_location                               (-1, -1)                    NumericTuple                   V RW 
-mask                              SheetMask(name=&#8217;SheetMask00445&#8217;)         Parameter                     V RW 
+mask                              SheetMask(name=&#8217;SheetMask00448&#8217;)         Parameter                     V RW 
 nominal_bounds                        BoundingBox(radius=0.5)       BoundingRegionParameter              C RW 
 nominal_density                                  10                          Number                      C RW 
 output_fns                                       []                         HookList         (0, None)   V RW 
@@ -2163,7 +2207,7 @@ row_precedence                                  0.5                          Num
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -2231,8 +2275,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2253,7 +2298,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416310&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6aa0&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2267,7 +2312,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416998&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6f70&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2279,7 +2324,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416940&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6f18&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2317,8 +2362,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2372,6 +2418,13 @@ restore_plasticity_state().</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ProjectionSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2454,12 +2507,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb772534c8&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4418&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ProjectionSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253628&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4260&gt;</em><a class="headerlink" href="#topo.sheet.ProjectionSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2533,16 +2586,18 @@ in the subclass.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ProjectionSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ProjectionSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -2645,7 +2700,7 @@ row_precedence                       0.5                              Number    
 <dl class="docutils">
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">apply_output_fns</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00464&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00467&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
@@ -2729,8 +2784,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2751,7 +2807,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416418&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f69f0&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2771,12 +2827,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416a48&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6af8&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77416b50&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd675f6b50&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2804,8 +2860,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -2853,6 +2910,13 @@ superclasses.</p>
 <tt class="descname">pop_input_generator</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.pop_input_generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discard the current input_generator, and retrieve the previous one from the stack.</p>
 <p>Warns if no input_generator is available on the stack.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.SequenceGeneratorSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -2933,7 +2997,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253628&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4260&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2949,7 +3013,7 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.SequenceGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253680&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa42b8&gt;</em><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3025,16 +3089,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.SequenceGeneratorSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.SequenceGeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -3158,7 +3224,7 @@ row_precedence                                          0.5                     
 <dd>Dictionary with arrays of channel-specific output functions:
         eg, {0:[fnc1, fnc2],3:[fnc3]}.  The dictionary isn&#8217;t required
         to specify every channel, but rather only those required.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00464&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00467&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
@@ -3237,8 +3303,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3259,7 +3326,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253680&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa42b8&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3280,12 +3347,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253788&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4520&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb772537e0&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa45d0&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3313,8 +3380,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3362,6 +3430,13 @@ superclasses.</p>
 <tt class="descname">pop_input_generator</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.pop_input_generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discard the current input_generator, and retrieve the previous one from the stack.</p>
 <p>Warns if no input_generator is available on the stack.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ChannelGeneratorSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -3442,7 +3517,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77905050&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4e68&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3457,7 +3532,7 @@ number of channels doesn&#8217;t change, there&#8217;s no need to reset.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ChannelGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77905158&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4f70&gt;</em><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3533,16 +3608,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ChannelGeneratorSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ChannelGeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -3597,7 +3674,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 apply_output_fns                                    True                            Boolean            (0, 1)    V RW 
 joint_norm_fn                     &lt;function compute_joint_norm_totals a...          Callable                     V RW 
 layout_location                                   (-1, -1)                        NumericTuple                   V RW 
-mask                                  SheetMask(name=&#8217;SheetMask00445&#8217;)             Parameter                     V RW 
+mask                                  SheetMask(name=&#8217;SheetMask00448&#8217;)             Parameter                     V RW 
 measure_maps                                        True                            Boolean            (0, 1)    V RW 
 nominal_bounds                            BoundingBox(radius=0.5)           BoundingRegionParameter              C RW 
 nominal_density                                      10                              Number                      C RW 
@@ -3676,7 +3753,7 @@ row_precedence                                      0.5                         
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -3749,8 +3826,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3771,7 +3849,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253418&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa44c8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3785,7 +3863,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb772536d8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4470&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3797,7 +3875,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253788&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4578&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -3839,8 +3917,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3894,6 +3973,13 @@ restore_plasticity_state().</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.JointNormalizingCFSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -3976,12 +4062,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253998&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa47e0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb772539f0&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4838&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4054,16 +4140,18 @@ It returns the list of all UnitViews for the given unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -4216,8 +4304,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4238,7 +4327,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb772537e0&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4628&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4252,12 +4341,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb772539f0&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa44c8&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253368&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa41b0&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4285,8 +4374,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4327,6 +4417,13 @@ new_plasticity_state.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ActivityCopy.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -4390,12 +4487,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253998&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa47e0&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ActivityCopy.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253520&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa42b8&gt;</em><a class="headerlink" href="#topo.sheet.ActivityCopy.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4481,16 +4578,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ActivityCopy.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ActivityCopy.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -4527,7 +4626,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 apply_output_fns                                    True                            Boolean            (0, 1)    V RW 
 joint_norm_fn                     &lt;function compute_joint_norm_totals a...          Callable                     V RW 
 layout_location                                   (-1, -1)                        NumericTuple                   V RW 
-mask                                  SheetMask(name=&#8217;SheetMask00445&#8217;)             Parameter                     V RW 
+mask                                  SheetMask(name=&#8217;SheetMask00448&#8217;)             Parameter                     V RW 
 measure_maps                                        True                            Boolean            (0, 1)    V RW 
 nominal_bounds                            BoundingBox(radius=0.5)           BoundingRegionParameter              C RW 
 nominal_density                                      10                              Number                      C RW 
@@ -4606,7 +4705,7 @@ row_precedence                                      0.5                         
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -4679,8 +4778,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4701,7 +4801,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253520&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa42b8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4715,7 +4815,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253418&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4470&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4727,7 +4827,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253788&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4208&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -4769,8 +4869,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4824,6 +4925,13 @@ restore_plasticity_state().</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.JointNormalizingCFSheet_Continuous.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -4897,12 +5005,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb772536d8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa4628&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77253a48&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67aa48e8&gt;</em><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -4975,16 +5083,18 @@ It returns the list of all UnitViews for the given unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.JointNormalizingCFSheet_Continuous.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.JointNormalizingCFSheet_Continuous.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -5231,8 +5341,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -5253,7 +5364,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb776f3628&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd6831daa0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5267,12 +5378,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb776f37e0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd6831dc58&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb776f38e8&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd6831dd60&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5300,8 +5411,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -5350,6 +5462,13 @@ superclasses.</p>
 <dd><p>Configure a specific input port.</p>
 <p>origin = (default (0,0)) The offset in the output matrix where
 this port&#8217;s input should be placed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.composer.Composer.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -5413,12 +5532,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb776f39f0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd6831de68&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.composer.Composer.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb776f3a48&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd6831dec0&gt;</em><a class="headerlink" href="#topo.sheet.composer.Composer.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5504,16 +5623,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.composer.Composer.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.composer.Composer.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -5631,7 +5752,7 @@ continuous_learning                                       False                 
 end_of_iteration                                            []                             HookList         (0, None)     V RW  
 joint_norm_fn                            &lt;function compute_joint_norm_totals a...          Callable                       V RW  
 layout_location                                          (-1, -1)                        NumericTuple                     V RW  
-mask                                         SheetMask(name=&#8217;SheetMask00445&#8217;)             Parameter                       V RW  
+mask                                         SheetMask(name=&#8217;SheetMask00448&#8217;)             Parameter                       V RW  
 mask_init_time                                              5                              Integer          (0, None)     V RW  
 measure_maps                                               True                            Boolean            (0, 1)      V RW  
 nominal_bounds                                   BoundingBox(radius=0.5)           BoundingRegionParameter                C RW  
@@ -5742,7 +5863,7 @@ tsettle                                                     8                   
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -5832,8 +5953,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -5854,7 +5976,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b712b8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b23aa0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -5868,12 +5990,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b713c0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67b23998&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71418&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd6846a8e8&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -5915,8 +6037,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -5970,6 +6093,13 @@ restore_plasticity_state().</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.optimized.SettlingCFSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -6047,12 +6177,12 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71d08&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd6846a9f0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.SettlingCFSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71d60&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd6846aa48&gt;</em><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6113,16 +6243,18 @@ It returns the list of all UnitViews for the given unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.SettlingCFSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.SettlingCFSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -6186,8 +6318,9 @@ threshold   1e-05  Number  (0, None)  V RW</p>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.NeighborhoodMask.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -6201,7 +6334,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71310&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67afd890&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6215,18 +6348,19 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71520&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67afdec0&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71578&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67afde68&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.NeighborhoodMask.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -6236,6 +6370,13 @@ equal to the default value.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.optimized.NeighborhoodMask.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -6271,12 +6412,12 @@ superclasses.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71998&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd6846a628&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.optimized.NeighborhoodMask.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77b71a48&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd6846a578&gt;</em><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6311,16 +6452,18 @@ mask.</p>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.NeighborhoodMask.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.optimized.NeighborhoodMask.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.optimized.NeighborhoodMask.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 </dd></dl>
@@ -6508,8 +6651,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -6546,7 +6690,7 @@ for this class.  Returns None if no appropriate location can be found.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77c98e68&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3c00&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6560,12 +6704,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77c98fc8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3d60&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57050&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3db8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6593,8 +6737,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -6641,6 +6786,13 @@ new_plasticity_state.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ptztracker.PtzTracker.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -6704,12 +6856,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57730&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67d9c520&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.PtzTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d577e0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67d9c5d0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -6795,16 +6947,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.PtzTracker.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.PtzTracker.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -6986,8 +7140,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -7014,7 +7169,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77c98a48&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3e10&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7028,12 +7183,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57ba8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3f70&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57050&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3fc8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7061,8 +7216,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -7109,6 +7265,13 @@ new_plasticity_state.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ptztracker.BrightPixelTracker.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -7172,12 +7335,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d577e0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67d9c5d0&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d576d8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67d9c4c8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7263,16 +7426,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.BrightPixelTracker.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.BrightPixelTracker.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -7454,8 +7619,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -7482,7 +7648,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77c98d08&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc36d8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7496,12 +7662,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57ba8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc38e8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57050&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd67dc3730&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7529,8 +7695,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -7577,6 +7744,13 @@ new_plasticity_state.</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.ptztracker.FaceTracker.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -7640,12 +7814,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d576d8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd67d9c4c8&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.ptztracker.FaceTracker.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77d57680&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd67d9c470&gt;</em><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -7731,16 +7905,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.ptztracker.FaceTracker.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.ptztracker.FaceTracker.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -7823,11 +7999,11 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 <p>allow_skip_non_responding_units                     True                            Boolean            (0, 1)    V RW 
 amplitude_scale                                     120                              Number                      V RW 
 apply_output_fns                                    True                            Boolean            (0, 1)    V RW 
-command_mapper                       IdentityMF(name=&#8217;IdentityMF00502&#8217;)          ClassSelector                   V RW 
-decode_fn                         &lt;function activity_centroid at 0x2adb...          Callable                     V RW 
+command_mapper                       IdentityMF(name=&#8217;IdentityMF00685&#8217;)          ClassSelector                   V RW 
+decode_fn                         &lt;function activity_centroid at 0x2abd...          Callable                     V RW 
 direction_scale                                     180                              Number                      V RW 
 layout_location                                   (-1, -1)                        NumericTuple                   V RW 
-mask                                  SheetMask(name=&#8217;SheetMask00445&#8217;)             Parameter                     V RW 
+mask                                  SheetMask(name=&#8217;SheetMask00448&#8217;)             Parameter                     V RW 
 measure_maps                                        True                            Boolean            (0, 1)    V RW 
 nominal_bounds                            BoundingBox(radius=0.5)           BoundingRegionParameter              C RW 
 nominal_density                                      10                              Number                      C RW 
@@ -7914,7 +8090,7 @@ row_precedence                                      0.5                         
             actual value of this Parameter is not adjusted, but the
             true bounds may be found from the &#8216;bounds&#8217; attribute
             of this object.</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -7956,7 +8132,7 @@ row_precedence                                      0.5                         
         processing. Whether or not the units will actually be skipped
         depends on the implementation of learning and learning output
         functions.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00502&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">command_mapper</span></tt> (<em>allow_None=False, constant=False, default=&lt;IdentityMF IdentityMF00685&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>A CoordinateMapperFn that will be applied to the command vector extracted
         from the sheet activity.</dd>
 <dt><em>param NumericTuple</em> <tt class="docutils literal"><span class="pre">layout_location</span></tt> (<em>allow_None=False, constant=False, default=(-1, -1), instantiate=False, length=2, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
@@ -7989,8 +8165,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="staticmethod">
@@ -8020,7 +8197,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f4c8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbc58&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8034,7 +8211,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f2b8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cb9f0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8046,7 +8223,7 @@ compute the stimulation from that sheet.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f578&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbcb0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8084,8 +8261,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -8139,6 +8317,13 @@ restore_plasticity_state().</p>
 dictionary {name: parameter_object}</p>
 <p>Includes Parameters from this class and its
 superclasses.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.saccade.SaccadeController.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -8221,12 +8406,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f7e0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbf18&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.SaccadeController.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f838&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbf70&gt;</em><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8309,16 +8494,18 @@ It returns the list of all UnitViews for the given unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.SaccadeController.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.SaccadeController.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -8434,7 +8621,7 @@ visual_angle_scale                          90                              Numb
 <dd>Whether to apply the output_fn after computing an Activity matrix.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">fixation_jitter_period</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=10, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Period, in time units, indicating how often the eye jitters.</dd>
-<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00464&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">input_generator</span></tt> (<em>allow_None=False, constant=False, default=&lt;Constant Constant00467&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Specifies a particular PatternGenerator type to use when creating patterns.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">precedence</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.1, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Allows a sorting order for Sheets, e.g. in the GUI.</dd>
@@ -8528,8 +8715,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -8550,7 +8738,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f838&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbd60&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8564,12 +8752,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f7e0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbc58&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f1b0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cb8e8&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8597,8 +8785,9 @@ the integer portion of the continuous matrix coordinate.</p>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -8646,6 +8835,13 @@ superclasses.</p>
 <tt class="descname">pop_input_generator</tt><big>(</big><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.pop_input_generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discard the current input_generator, and retrieve the previous one from the stack.</p>
 <p>Warns if no input_generator is available on the stack.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.saccade.ShiftingGeneratorSheet.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="classmethod">
@@ -8735,7 +8931,7 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f788&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbec0&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8751,7 +8947,7 @@ pop_input_generator.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb77e7f418&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd685cbb50&gt;</em><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -8842,16 +9038,18 @@ is intended only for shorter-term state.</p>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.saccade.ShiftingGeneratorSheet.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.saccade.ShiftingGeneratorSheet.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -8937,7 +9135,7 @@ dynamic_threshold_init                                     2.0                  
 end_of_iteration                                            []                             HookList         (0, None)     V RW  
 joint_norm_fn                            &lt;function compute_joint_norm_totals a...          Callable                       V RW  
 layout_location                                          (-1, -1)                        NumericTuple                     V RW  
-mask                                         SheetMask(name=&#8217;SheetMask00445&#8217;)             Parameter                       V RW  
+mask                                         SheetMask(name=&#8217;SheetMask00448&#8217;)             Parameter                       V RW  
 mask_init_time                                              5                              Integer          (0, None)     V RW  
 measure_maps                                               True                            Boolean            (0, 1)      V RW  
 noise_rate                                                 0.0                              Number           (0, 1.0)     V RW  
@@ -9128,7 +9326,7 @@ tsettle                                                     8                   
             of this object.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">trace_n</span></tt> (<em>allow_None=False, bounds=(1, None), constant=False, default=400, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=None, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Number of steps to track neuron&#8217;s membrane potential</dd>
-<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00445&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param Parameter</em> <tt class="docutils literal"><span class="pre">mask</span></tt> (<em>allow_None=False, constant=False, default=&lt;SheetMask SheetMask00448&gt;, instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>SheetMask object for computing which units need to be computed further.
         The object should be an instance of SheetMask, and will
         compute which neurons will be considered active for the
@@ -9136,7 +9334,7 @@ tsettle                                                     8                   
         disables all masking, but subclasses can use this mask to
         implement optimizations, non-rectangular Sheet shapes,
         lesions, etc.</dd>
-<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[PiecewiseLinear(init_keys=[], lower_bound=0.1, name=&#8217;PiecewiseLinear00503&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
+<dt><em>param HookList</em> <tt class="docutils literal"><span class="pre">output_fns</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=[PiecewiseLinear(init_keys=[], lower_bound=0.1, name=&#8217;PiecewiseLinear00686&#8217;, norm_value=None, upper_bound=0.65)], instantiate=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>Output function(s) to apply (if apply_output_fns is true) to this Sheet&#8217;s activity.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">allow_skip_non_responding_units</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=True, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>If true, then units that are inactive after the response
@@ -9173,8 +9371,9 @@ of the center of the closest unit.</p>
 
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.debug">
-<tt class="descname">debug</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a debugging statement.</p>
+<tt class="descname">debug</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.debug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a debugging statement.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -9195,7 +9394,7 @@ xdensity, which is equal to the ydensity for a Sheet.)</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb780bc788&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd68890d60&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -9209,7 +9408,7 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2adb780bc6d8&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2abd68890ec0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -9222,7 +9421,7 @@ reset_on_new_iteration is True.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2adb780bc7e0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2abd68890f70&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
@@ -9271,8 +9470,9 @@ trace_coords list.</p>
 
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.message">
-<tt class="descname">message</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a message.</p>
+<tt class="descname">message</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
@@ -9333,6 +9533,13 @@ superclasses.</p>
 <tt class="descname">plot_trace</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/topo/sheet/slissom.html#SLISSOM.plot_trace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.plot_trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot membrane potential trace of the unit designated by the
 trace_coords list. This plot has trace_n data points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topo.sheet.slissom.SLISSOM.pprint">
+<tt class="descname">pprint</tt><big>(</big><em>imports=None</em>, <em>prefix=' '</em>, <em>unknown_value='&lt;?&gt;'</em>, <em>qualify=False</em>, <em>separator=''</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.pprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Experimental) Pretty printed representation that may be
+evaluated with eval. See pprint() function for more details.</p>
 </dd></dl>
 
 <dl class="method">
@@ -9410,12 +9617,12 @@ X-coordinates corresponding to the columns.</p>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2adb780bc940&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2abd68994158&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.sheet.slissom.SLISSOM.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2adb780bc9f0&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2abd68994208&gt;</em><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -9484,16 +9691,18 @@ This method simply calls plot_trace().</p>
 
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.verbose">
-<tt class="descname">verbose</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.verbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a verbose message.</p>
+<tt class="descname">verbose</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a verbose message.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="topo.sheet.slissom.SLISSOM.warning">
-<tt class="descname">warning</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the arguments as a warning, unless module variable
+<tt class="descname">warning</tt><big>(</big><em>msg</em>, <em>*args</em>, <em>**kw</em><big>)</big><a class="headerlink" href="#topo.sheet.slissom.SLISSOM.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print msg merged with args as a warning, unless module variable
 warnings_as_exceptions is True, then raise an Exception
 containing the arguments.</p>
+<p>See Python&#8217;s logging module for details of message formatting.</p>
 </dd></dl>
 
 <dl class="attribute">

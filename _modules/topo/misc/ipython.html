@@ -216,7 +216,7 @@
 
 <span class="kn">from</span> <span class="nn">holoviews.core.options</span> <span class="kn">import</span> <span class="n">Store</span>
 <span class="kn">from</span> <span class="nn">holoviews.ipython</span> <span class="kn">import</span> <span class="n">load_ipython_extension</span> <span class="k">as</span> <span class="n">load_imagen_extension</span>
-<span class="kn">from</span> <span class="nn">holoviews.ipython.display_hooks</span> <span class="kn">import</span> <span class="n">map_display</span><span class="p">,</span> <span class="n">view_display</span>
+<span class="kn">from</span> <span class="nn">holoviews.ipython.display_hooks</span> <span class="kn">import</span> <span class="n">map_display</span><span class="p">,</span> <span class="n">element_display</span>
 <span class="kn">from</span> <span class="nn">holoviews.plotting</span> <span class="kn">import</span> <span class="n">RasterPlot</span>
 
 <span class="kn">from</span> <span class="nn">holoviews.ipython.widgets</span> <span class="kn">import</span> <span class="n">RunProgress</span>
@@ -227,7 +227,7 @@
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">ViewFrame</span>
     <span class="n">ViewFrame</span><span class="o">.</span><span class="n">display_fns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">map_display</span><span class="p">)</span>
-    <span class="n">ViewFrame</span><span class="o">.</span><span class="n">display_fns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">view_display</span><span class="p">)</span>
+    <span class="n">ViewFrame</span><span class="o">.</span><span class="n">display_fns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element_display</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="k">pass</span>
 
