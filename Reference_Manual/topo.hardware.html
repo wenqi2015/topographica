@@ -64,12 +64,12 @@
 <div class="section" id="opencvcamera-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">opencvcamera</span></tt> Module<a class="headerlink" href="#opencvcamera-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-0729b4d9486834a3efd6823a67035f914799d070.png" alt="Inheritance diagram of topo.hardware.opencvcamera" usemap="#inheritance1b0934e756" class="inheritance"/>
+<img src="../_images/inheritance-5d5431ce64e6ccd73dd8b561b99a765f5f5c2bd4.png" alt="Inheritance diagram of topo.hardware.opencvcamera" usemap="#inheritance1b0934e756" class="inheritance"/>
 <map id="inheritance1b0934e756" name="inheritance1b0934e756">
-<area shape="rect" id="node1" title="params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="737,3,887,22"/>
-<area shape="rect" id="node5" href="#topo.hardware.opencvcamera.CameraImage" title="params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="923,3,1148,22"/>
-<area shape="rect" id="node2" title="params(channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="480,3,701,22"/>
-<area shape="rect" id="node3" title="params(bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="227,3,445,22"/>
+<area shape="rect" id="node1" title="params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="737,3,887,22"/>
+<area shape="rect" id="node5" href="#topo.hardware.opencvcamera.CameraImage" title="params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="923,3,1148,22"/>
+<area shape="rect" id="node2" title="params(channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="480,3,701,22"/>
+<area shape="rect" id="node3" title="params(bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="227,3,445,22"/>
 <area shape="rect" id="node4" title="params(name=String)" alt="" coords="4,3,192,22"/>
 </map>
 </p>
@@ -81,7 +81,7 @@ In order to grab frames, you need to install Opencv, and python-opencv
 <dt id="topo.hardware.opencvcamera.CameraImage">
 <em class="property">class </em><tt class="descclassname">topo.hardware.opencvcamera.</tt><tt class="descname">CameraImage</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/hardware/opencvcamera.html#CameraImage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.html#imagen.image.GenericImage" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.image.GenericImage</span></tt></a></p>
-<p>params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)
+<p>params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)
 [1;32mParameters of &#8216;CameraImage&#8217;
 ===========================
 [0m
@@ -93,6 +93,7 @@ C/V= Constant/Variable, RO/RW = ReadOnly/ReadWrite, AN=Allow None</p>
 bounds                       BoundingBox(radius=0.5)           BoundingRegionParameter                          V RW  
 cache_image                           False                            Boolean                 (0, 1)           V RW  
 channel_transforms                      []                             HookList              (0, None)          V RW  
+group                               &#8216;Pattern&#8217;                           String                                  V RW  
 mask                                   None                           Parameter                               V RW AN 
 mask_shape                             None                         ClassSelector                             V RW AN 
 offset                                 0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
@@ -105,7 +106,8 @@ size                                   1.0                              Number  
 x                                      0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
 xdensity                               256                              Number               (0, None)          V RW  
 y                                      0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
-ydensity                               256                              Number               (0, None)          V RW</p>
+ydensity                               256                              Number               (0, None)          V RW  
+z                                      None                         ClassSelector                             V RW AN</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34maspect_ratio:       Ratio of width to height; size*aspect_ratio gives the width.[0m
@@ -114,33 +116,42 @@ ydensity                               256                              Number  
 [1;34m                    the pattern each time, to make it possible to use very large[0m
 [1;34m                    databases of images without running out of memory.[0m
 [1;31mchannel_transforms: Optional functions to apply post processing to the set of channels.[0m
-[1;34mmask:               Optional object (expected to be an array) with which to multiply the[0m
-[1;34m                    pattern array after it has been created, before any output_fns are[0m
-[1;34m                    applied. This can be used to shape the pattern.[0m
-[1;31mmask_shape:         Optional PatternGenerator used to construct a mask to be applied to[0m
-[1;31m                    the pattern.[0m
-[1;34moffset:             Additive offset to input pattern, defaulting to 0.0[0m
-[1;31morientation:        Polar angle of pattern, i.e., the orientation in the Cartesian coordinate[0m
-[1;31m                    system, with zero at 3 o&#8217;clock and increasing counterclockwise.[0m
-[1;34moutput_fns:         Optional function(s) to apply to the pattern array after it has been created.[0m
-[1;34m                    Can be used for normalization, thresholding, etc.[0m
-[1;31mpattern_sampler:    The PatternSampler to use to resample/resize the image.[0m
-[1;34mposition:           Coordinates of location of pattern center.[0m
-[1;34m                    Provides a convenient way to set the x and y parameters together[0m
-[1;34m                    as a tuple (x,y), but shares the same actual storage as x and y[0m
-[1;34m                    (and thus only position OR x and y need to be specified).[0m
-[1;31mscale:              Multiplicative strength of input pattern, defaulting to 1.0[0m
-[1;34msize:               Height of the image.[0m
-[1;31mx:                  X-coordinate location of pattern center.[0m
-[1;34mxdensity:           Density (number of samples per 1.0 length) in the x direction.[0m
-[1;31my:                  Y-coordinate location of pattern center.[0m
-[1;34mydensity:           Density (number of samples per 1.0 length) in the y direction.[0m
-[1;34m                    Typically the same as the xdensity.[0m</p>
+[1;34mgroup:              The group name assigned to the returned HoloViews object.[0m
+[1;31mmask:               Optional object (expected to be an array) with which to multiply the[0m
+[1;31m                    pattern array after it has been created, before any output_fns are[0m
+[1;31m                    applied. This can be used to shape the pattern.[0m
+[1;34mmask_shape:         Optional PatternGenerator used to construct a mask to be applied to[0m
+[1;34m                    the pattern.[0m
+[1;31moffset:             Additive offset to input pattern, defaulting to 0.0[0m
+[1;34morientation:        Polar angle of pattern, i.e., the orientation in the Cartesian coordinate[0m
+[1;34m                    system, with zero at 3 o&#8217;clock and increasing counterclockwise.[0m
+[1;31moutput_fns:         Optional function(s) to apply to the pattern array after it has been created.[0m
+[1;31m                    Can be used for normalization, thresholding, etc.[0m
+[1;34mpattern_sampler:    The PatternSampler to use to resample/resize the image.[0m
+[1;31mposition:           Coordinates of location of pattern center.[0m
+[1;31m                    Provides a convenient way to set the x and y parameters together[0m
+[1;31m                    as a tuple (x,y), but shares the same actual storage as x and y[0m
+[1;31m                    (and thus only position OR x and y need to be specified).[0m
+[1;34mscale:              Multiplicative strength of input pattern, defaulting to 1.0[0m
+[1;31msize:               Height of the image.[0m
+[1;34mx:                  X-coordinate location of pattern center.[0m
+[1;31mxdensity:           Density (number of samples per 1.0 length) in the x direction.[0m
+[1;34my:                  Y-coordinate location of pattern center.[0m
+[1;31mydensity:           Density (number of samples per 1.0 length) in the y direction.[0m
+[1;31m                    Typically the same as the xdensity.[0m
+[1;34mz:                  The Dimension object associated with the z-values generated by[0m
+[1;34m                    the PatternGenerator . If None, uses the default set by[0m
+[1;34m                    HoloViews.Image.[0m</p>
 <dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Density (number of samples per 1.0 length) in the y direction.
+        Typically the same as the xdensity.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.2, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">group</span></tt> (<em>allow_None=False, constant=False, default=Pattern, instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dd>The group name assigned to the returned HoloViews object.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00364&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The PatternSampler to use to resample/resize the image.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -175,9 +186,10 @@ ydensity                               256                              Number  
         Provides a convenient way to set the x and y parameters together
         as a tuple (x,y), but shares the same actual storage as x and y
         (and thus only position OR x and y need to be specified).</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Density (number of samples per 1.0 length) in the y direction.
-        Typically the same as the xdensity.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">z</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dd>The Dimension object associated with the z-values generated by
+        the PatternGenerator . If None, uses the default set by
+        HoloViews.Image.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">aspect_ratio</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.31, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio of width to height; size*aspect_ratio gives the width.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">size</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.3, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
@@ -223,7 +235,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc1b69520&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8ba2c4f70&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -237,12 +249,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc1b694c8&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ac8ba2c4d08&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc1b69578&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8ba2c4ec0&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -295,7 +307,7 @@ evaluated with eval. See pprint() function for more details.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc1b695d0&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ac8b9e70050&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -311,7 +323,7 @@ matrix dimensions.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.opencvcamera.CameraImage.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc1b69628&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ac8b9e700a8&gt;</em><a class="headerlink" href="#topo.hardware.opencvcamera.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -580,7 +592,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc41267e0&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb938260&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -594,12 +606,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc4126a48&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb9384c8&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc4126af8&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb938578&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -652,12 +664,12 @@ evaluated with eval. See pprint() function for more details.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc4126aa0&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb938520&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.ptz.PTZ.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc4126ba8&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb938628&gt;</em><a class="headerlink" href="#topo.hardware.ptz.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -702,16 +714,16 @@ containing the arguments.</p>
 <div class="section" id="robotics-module">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">robotics</span></tt> Module<a class="headerlink" href="#robotics-module" title="Permalink to this headline">¶</a></h2>
 <p class="graphviz">
-<img src="../_images/inheritance-48846acfb3b1fb46bf2d8c364468b0700fb34edc.png" alt="Inheritance diagram of topo.hardware.robotics" usemap="#inheritance317af4f87e" class="inheritance"/>
+<img src="../_images/inheritance-4688334b5de84fe1a5fb1234ab8746a6806ff5ce.png" alt="Inheritance diagram of topo.hardware.robotics" usemap="#inheritance317af4f87e" class="inheritance"/>
 <map id="inheritance317af4f87e" name="inheritance317af4f87e">
-<area shape="rect" id="node1" title="params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="614,3,739,18"/>
-<area shape="rect" id="node6" href="#topo.hardware.robotics.CameraImage" title="params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="769,3,929,18"/>
-<area shape="rect" id="node2" title="params(channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="400,3,584,18"/>
-<area shape="rect" id="node3" title="params(bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="189,3,371,18"/>
+<area shape="rect" id="node1" title="params(aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="614,3,739,18"/>
+<area shape="rect" id="node6" href="#topo.hardware.robotics.CameraImage" title="params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="769,3,929,18"/>
+<area shape="rect" id="node2" title="params(channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="400,3,584,18"/>
+<area shape="rect" id="node3" title="params(bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="189,3,371,18"/>
 <area shape="rect" id="node4" title="params(name=String)" alt="" coords="3,18,160,34"/>
 <area shape="rect" id="node5" href="topo.base.html#topo.base.simulation.EventProcessor" title="params(name=String)" alt="" coords="201,33,358,48"/>
 <area shape="rect" id="node8" href="#topo.hardware.robotics.PTZ" title="params(invert_amplitude=Boolean, ptz=ClassSelector, speed=Number, zoom=Number, name=String)" alt="" coords="432,33,552,48"/>
-<area shape="rect" id="node7" href="#topo.hardware.robotics.CameraImageQueued" title="params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)" alt="" coords="958,3,1149,18"/>
+<area shape="rect" id="node7" href="#topo.hardware.robotics.CameraImageQueued" title="params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)" alt="" coords="958,3,1149,18"/>
 </map>
 </p>
 <span class="target" id="module-topo.hardware.robotics"></span><p>Classes for using robotic or other hardware using Topographica.</p>
@@ -727,7 +739,7 @@ high-level communications with Player robots.</p>
 <dt id="topo.hardware.robotics.CameraImage">
 <em class="property">class </em><tt class="descclassname">topo.hardware.robotics.</tt><tt class="descname">CameraImage</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/hardware/robotics.html#CameraImage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.hardware.robotics.CameraImage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="http://ioam.github.io/imagen/Reference_Manual/imagen.html#imagen.image.GenericImage" title="(in ImaGen v1.0)"><tt class="xref py py-class docutils literal"><span class="pre">imagen.image.GenericImage</span></tt></a></p>
-<p>params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)</p>
+<p>params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)</p>
 <blockquote>
 <div>An image pattern generator that gets its image from a Player
 camera device.</div></blockquote>
@@ -741,6 +753,7 @@ bounds                       BoundingBox(radius=0.5)           BoundingRegionPar
 cache_image                           False                            Boolean                 (0, 1)           V RW  
 camera                                 None                         ClassSelector                             V RW AN 
 channel_transforms                      []                             HookList              (0, None)          V RW  
+group                               &#8216;Pattern&#8217;                           String                                  V RW  
 mask                                   None                           Parameter                               V RW AN 
 mask_shape                             None                         ClassSelector                             V RW AN 
 offset                                 0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
@@ -753,7 +766,8 @@ size                                   1.0                              Number  
 x                                      0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
 xdensity                               256                              Number               (0, None)          V RW  
 y                                      0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
-ydensity                               256                              Number               (0, None)          V RW</p>
+ydensity                               256                              Number               (0, None)          V RW  
+z                                      None                         ClassSelector                             V RW AN</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34maspect_ratio:       Ratio of width to height; size*aspect_ratio gives the width.[0m
@@ -764,33 +778,42 @@ ydensity                               256                              Number  
 [1;31mcamera:             An instance of playerrobot.CameraDevice to be used[0m
 [1;31m                    to generate images.[0m
 [1;34mchannel_transforms: Optional functions to apply post processing to the set of channels.[0m
-[1;31mmask:               Optional object (expected to be an array) with which to multiply the[0m
-[1;31m                    pattern array after it has been created, before any output_fns are[0m
-[1;31m                    applied. This can be used to shape the pattern.[0m
-[1;34mmask_shape:         Optional PatternGenerator used to construct a mask to be applied to[0m
-[1;34m                    the pattern.[0m
-[1;31moffset:             Additive offset to input pattern, defaulting to 0.0[0m
-[1;34morientation:        Polar angle of pattern, i.e., the orientation in the Cartesian coordinate[0m
-[1;34m                    system, with zero at 3 o&#8217;clock and increasing counterclockwise.[0m
-[1;31moutput_fns:         Optional function(s) to apply to the pattern array after it has been created.[0m
-[1;31m                    Can be used for normalization, thresholding, etc.[0m
-[1;34mpattern_sampler:    The PatternSampler to use to resample/resize the image.[0m
-[1;31mposition:           Coordinates of location of pattern center.[0m
-[1;31m                    Provides a convenient way to set the x and y parameters together[0m
-[1;31m                    as a tuple (x,y), but shares the same actual storage as x and y[0m
-[1;31m                    (and thus only position OR x and y need to be specified).[0m
-[1;34mscale:              Multiplicative strength of input pattern, defaulting to 1.0[0m
-[1;31msize:               Height of the image.[0m
-[1;34mx:                  X-coordinate location of pattern center.[0m
-[1;31mxdensity:           Density (number of samples per 1.0 length) in the x direction.[0m
-[1;34my:                  Y-coordinate location of pattern center.[0m
-[1;31mydensity:           Density (number of samples per 1.0 length) in the y direction.[0m
-[1;31m                    Typically the same as the xdensity.[0m</p>
+[1;31mgroup:              The group name assigned to the returned HoloViews object.[0m
+[1;34mmask:               Optional object (expected to be an array) with which to multiply the[0m
+[1;34m                    pattern array after it has been created, before any output_fns are[0m
+[1;34m                    applied. This can be used to shape the pattern.[0m
+[1;31mmask_shape:         Optional PatternGenerator used to construct a mask to be applied to[0m
+[1;31m                    the pattern.[0m
+[1;34moffset:             Additive offset to input pattern, defaulting to 0.0[0m
+[1;31morientation:        Polar angle of pattern, i.e., the orientation in the Cartesian coordinate[0m
+[1;31m                    system, with zero at 3 o&#8217;clock and increasing counterclockwise.[0m
+[1;34moutput_fns:         Optional function(s) to apply to the pattern array after it has been created.[0m
+[1;34m                    Can be used for normalization, thresholding, etc.[0m
+[1;31mpattern_sampler:    The PatternSampler to use to resample/resize the image.[0m
+[1;34mposition:           Coordinates of location of pattern center.[0m
+[1;34m                    Provides a convenient way to set the x and y parameters together[0m
+[1;34m                    as a tuple (x,y), but shares the same actual storage as x and y[0m
+[1;34m                    (and thus only position OR x and y need to be specified).[0m
+[1;31mscale:              Multiplicative strength of input pattern, defaulting to 1.0[0m
+[1;34msize:               Height of the image.[0m
+[1;31mx:                  X-coordinate location of pattern center.[0m
+[1;34mxdensity:           Density (number of samples per 1.0 length) in the x direction.[0m
+[1;31my:                  Y-coordinate location of pattern center.[0m
+[1;34mydensity:           Density (number of samples per 1.0 length) in the y direction.[0m
+[1;34m                    Typically the same as the xdensity.[0m
+[1;31mz:                  The Dimension object associated with the z-values generated by[0m
+[1;31m                    the PatternGenerator . If None, uses the default set by[0m
+[1;31m                    HoloViews.Image.[0m</p>
 <dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Density (number of samples per 1.0 length) in the y direction.
+        Typically the same as the xdensity.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.2, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">group</span></tt> (<em>allow_None=False, constant=False, default=Pattern, instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dd>The group name assigned to the returned HoloViews object.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00364&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The PatternSampler to use to resample/resize the image.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -825,9 +848,10 @@ ydensity                               256                              Number  
         Provides a convenient way to set the x and y parameters together
         as a tuple (x,y), but shares the same actual storage as x and y
         (and thus only position OR x and y need to be specified).</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Density (number of samples per 1.0 length) in the y direction.
-        Typically the same as the xdensity.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">z</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dd>The Dimension object associated with the z-values generated by
+        the PatternGenerator . If None, uses the default set by
+        HoloViews.Image.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">aspect_ratio</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.31, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio of width to height; size*aspect_ratio gives the width.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">camera</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -876,7 +900,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd788&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930418&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -890,12 +914,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd730&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb9303c0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd7e0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb9301b0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -948,7 +972,7 @@ evaluated with eval. See pprint() function for more details.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd838&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb9302b8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -964,7 +988,7 @@ matrix dimensions.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImage.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd890&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930208&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImage.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1001,7 +1025,7 @@ containing the arguments.</p>
 <dt id="topo.hardware.robotics.CameraImageQueued">
 <em class="property">class </em><tt class="descclassname">topo.hardware.robotics.</tt><tt class="descname">CameraImageQueued</tt><big>(</big><em>**params</em><big>)</big><a class="reference internal" href="../_modules/topo/hardware/robotics.html#CameraImageQueued"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#topo.hardware.robotics.CameraImage" title="topo.hardware.robotics.CameraImage"><tt class="xref py py-class docutils literal"><span class="pre">topo.hardware.robotics.CameraImage</span></tt></a></p>
-<p>params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, name=String)</p>
+<p>params(camera=ClassSelector, aspect_ratio=Number, cache_image=Boolean, pattern_sampler=ClassSelector, channel_transforms=HookList, bounds=BoundingRegionParameter, group=String, mask=Parameter, mask_shape=ClassSelector, offset=Number, orientation=Number, output_fns=HookList, position=Composite, scale=Number, size=Number, x=Number, xdensity=Number, y=Number, ydensity=Number, z=ClassSelector, name=String)</p>
 <blockquote>
 <div>A version of CameraImage that gets the image from the camera&#8217;s image queue,
 rather than directly from the camera object.  Using queues is
@@ -1019,6 +1043,7 @@ bounds                       BoundingBox(radius=0.5)           BoundingRegionPar
 cache_image                           False                            Boolean                 (0, 1)           V RW  
 camera                                 None                         ClassSelector                             V RW AN 
 channel_transforms                      []                             HookList              (0, None)          V RW  
+group                               &#8216;Pattern&#8217;                           String                                  V RW  
 mask                                   None                           Parameter                               V RW AN 
 mask_shape                             None                         ClassSelector                             V RW AN 
 offset                                 0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
@@ -1031,7 +1056,8 @@ size                                   1.0                              Number  
 x                                      0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
 xdensity                               256                              Number               (0, None)          V RW  
 y                                      0.0                              Number              ([1;36m-1.0[0m,[1;36m 1.0[0m)         V RW  
-ydensity                               256                              Number               (0, None)          V RW</p>
+ydensity                               256                              Number               (0, None)          V RW  
+z                                      None                         ClassSelector                             V RW AN</p>
 <p>[1;32mParameter docstrings:
 =====================[0m</p>
 <p>[1;34maspect_ratio:       Ratio of width to height; size*aspect_ratio gives the width.[0m
@@ -1042,33 +1068,42 @@ ydensity                               256                              Number  
 [1;31mcamera:             An instance of playerrobot.CameraDevice to be used[0m
 [1;31m                    to generate images.[0m
 [1;34mchannel_transforms: Optional functions to apply post processing to the set of channels.[0m
-[1;31mmask:               Optional object (expected to be an array) with which to multiply the[0m
-[1;31m                    pattern array after it has been created, before any output_fns are[0m
-[1;31m                    applied. This can be used to shape the pattern.[0m
-[1;34mmask_shape:         Optional PatternGenerator used to construct a mask to be applied to[0m
-[1;34m                    the pattern.[0m
-[1;31moffset:             Additive offset to input pattern, defaulting to 0.0[0m
-[1;34morientation:        Polar angle of pattern, i.e., the orientation in the Cartesian coordinate[0m
-[1;34m                    system, with zero at 3 o&#8217;clock and increasing counterclockwise.[0m
-[1;31moutput_fns:         Optional function(s) to apply to the pattern array after it has been created.[0m
-[1;31m                    Can be used for normalization, thresholding, etc.[0m
-[1;34mpattern_sampler:    The PatternSampler to use to resample/resize the image.[0m
-[1;31mposition:           Coordinates of location of pattern center.[0m
-[1;31m                    Provides a convenient way to set the x and y parameters together[0m
-[1;31m                    as a tuple (x,y), but shares the same actual storage as x and y[0m
-[1;31m                    (and thus only position OR x and y need to be specified).[0m
-[1;34mscale:              Multiplicative strength of input pattern, defaulting to 1.0[0m
-[1;31msize:               Height of the image.[0m
-[1;34mx:                  X-coordinate location of pattern center.[0m
-[1;31mxdensity:           Density (number of samples per 1.0 length) in the x direction.[0m
-[1;34my:                  Y-coordinate location of pattern center.[0m
-[1;31mydensity:           Density (number of samples per 1.0 length) in the y direction.[0m
-[1;31m                    Typically the same as the xdensity.[0m</p>
+[1;31mgroup:              The group name assigned to the returned HoloViews object.[0m
+[1;34mmask:               Optional object (expected to be an array) with which to multiply the[0m
+[1;34m                    pattern array after it has been created, before any output_fns are[0m
+[1;34m                    applied. This can be used to shape the pattern.[0m
+[1;31mmask_shape:         Optional PatternGenerator used to construct a mask to be applied to[0m
+[1;31m                    the pattern.[0m
+[1;34moffset:             Additive offset to input pattern, defaulting to 0.0[0m
+[1;31morientation:        Polar angle of pattern, i.e., the orientation in the Cartesian coordinate[0m
+[1;31m                    system, with zero at 3 o&#8217;clock and increasing counterclockwise.[0m
+[1;34moutput_fns:         Optional function(s) to apply to the pattern array after it has been created.[0m
+[1;34m                    Can be used for normalization, thresholding, etc.[0m
+[1;31mpattern_sampler:    The PatternSampler to use to resample/resize the image.[0m
+[1;34mposition:           Coordinates of location of pattern center.[0m
+[1;34m                    Provides a convenient way to set the x and y parameters together[0m
+[1;34m                    as a tuple (x,y), but shares the same actual storage as x and y[0m
+[1;34m                    (and thus only position OR x and y need to be specified).[0m
+[1;31mscale:              Multiplicative strength of input pattern, defaulting to 1.0[0m
+[1;34msize:               Height of the image.[0m
+[1;31mx:                  X-coordinate location of pattern center.[0m
+[1;34mxdensity:           Density (number of samples per 1.0 length) in the x direction.[0m
+[1;31my:                  Y-coordinate location of pattern center.[0m
+[1;34mydensity:           Density (number of samples per 1.0 length) in the y direction.[0m
+[1;34m                    Typically the same as the xdensity.[0m
+[1;31mz:                  The Dimension object associated with the z-values generated by[0m
+[1;31m                    the PatternGenerator . If None, uses the default set by[0m
+[1;31m                    HoloViews.Image.[0m</p>
 <dl class="docutils">
+<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
+<dd>Density (number of samples per 1.0 length) in the y direction.
+        Typically the same as the xdensity.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">x</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=0.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.2, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>X-coordinate location of pattern center.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">scale</span></tt> (<em>allow_None=False, bounds=None, constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Multiplicative strength of input pattern, defaulting to 1.0</dd>
+<dt><em>param String</em> <tt class="docutils literal"><span class="pre">group</span></tt> (<em>allow_None=False, constant=False, default=Pattern, instantiate=False, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dd>The group name assigned to the returned HoloViews object.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">pattern_sampler</span></tt> (<em>allow_None=False, constant=False, default=&lt;PatternSampler PatternSampler00364&gt;, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
 <dd>The PatternSampler to use to resample/resize the image.</dd>
 <dt><em>param Boolean</em> <tt class="docutils literal"><span class="pre">cache_image</span></tt> (<em>allow_None=False, bounds=(0, 1), constant=False, default=False, instantiate=False, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -1103,9 +1138,10 @@ ydensity                               256                              Number  
         Provides a convenient way to set the x and y parameters together
         as a tuple (x,y), but shares the same actual storage as x and y
         (and thus only position OR x and y need to be specified).</dd>
-<dt><em>param Number</em> <tt class="docutils literal"><span class="pre">ydensity</span></tt> (<em>allow_None=False, bounds=(0, None), constant=False, default=256, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=-1, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
-<dd>Density (number of samples per 1.0 length) in the y direction.
-        Typically the same as the xdensity.</dd>
+<dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">z</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=-1, readonly=False</em>)</dt>
+<dd>The Dimension object associated with the z-values generated by
+        the PatternGenerator . If None, uses the default set by
+        HoloViews.Image.</dd>
 <dt><em>param Number</em> <tt class="docutils literal"><span class="pre">aspect_ratio</span></tt> (<em>allow_None=False, bounds=(0.0, None), constant=False, default=1.0, inclusive_bounds=(True, True), instantiate=False, pickle_default_value=True, precedence=0.31, readonly=False, time_dependent=True, time_fn=&lt;Time Time00001&gt;</em>)</dt>
 <dd>Ratio of width to height; size*aspect_ratio gives the width.</dd>
 <dt><em>param ClassSelector</em> <tt class="docutils literal"><span class="pre">camera</span></tt> (<em>allow_None=True, constant=False, default=None, instantiate=True, is_instance=True, pickle_default_value=True, precedence=None, readonly=False</em>)</dt>
@@ -1154,7 +1190,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd5d0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb9301b0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1168,12 +1204,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd788&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930418&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd628&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930208&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1226,7 +1262,7 @@ evaluated with eval. See pprint() function for more details.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd680&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930368&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1242,7 +1278,7 @@ matrix dimensions.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.CameraImageQueued.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd578&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930260&gt;</em><a class="headerlink" href="#topo.hardware.robotics.CameraImageQueued.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1334,7 +1370,7 @@ instantiated.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.force_new_dynamic_value">
-<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd7e0&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">force_new_dynamic_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930260&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.force_new_dynamic_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1348,12 +1384,12 @@ equal to the default value.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.get_value_generator">
-<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd730&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_value_generator</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb9302b8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.get_value_generator" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.inspect_value">
-<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd628&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inspect_value</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930050&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.inspect_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1426,12 +1462,12 @@ the past.</p>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.set_dynamic_time_fn">
-<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd8e8&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_dynamic_time_fn</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930158&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_dynamic_time_fn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="topo.hardware.robotics.PTZ.set_param">
-<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2b2dc25bd940&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_param</tt><em class="property"> = &lt;functools.partial object at 0x2ac8bb930310&gt;</em><a class="headerlink" href="#topo.hardware.robotics.PTZ.set_param" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
