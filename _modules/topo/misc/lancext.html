@@ -85,11 +85,11 @@
 <span class="kn">from</span> <span class="nn">holoviews</span> <span class="kn">import</span> <span class="n">NdMapping</span><span class="p">,</span> <span class="n">Layout</span>
 <span class="kn">from</span> <span class="nn">holoviews.interface.collector</span> <span class="kn">import</span> <span class="n">Collector</span>
 <span class="kn">from</span> <span class="nn">holoviews.core.element</span> <span class="kn">import</span> <span class="n">Collator</span>
+<span class="kn">from</span> <span class="nn">holoviews.core.io</span> <span class="kn">import</span> <span class="n">Pickler</span>
 
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">PrettyPrinted</span><span class="p">,</span> <span class="n">vcs_metadata</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Command</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Launcher</span><span class="p">,</span> <span class="n">review_and_launch</span>
-<span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">ViewFile</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">Log</span><span class="p">,</span> <span class="n">FileInfo</span><span class="p">,</span> <span class="n">FileType</span>
 <span class="kn">from</span> <span class="nn">lancet</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Args</span>
 
@@ -538,12 +538,11 @@
       <span class="n">path_metadata</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">viewtree</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;nan&#39;</span><span class="p">)))</span>
                        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="k">if</span> <span class="s">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">]</span>
 
-      <span class="n">ViewFile</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span>
-               <span class="n">hash_suffix</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
-                                         <span class="n">viewtree</span><span class="p">,</span>
-                                         <span class="n">metadata</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">spec_metadata</span>
-                                                     <span class="o">+</span> <span class="n">path_metadata</span>
-                                                     <span class="o">+</span> <span class="p">[(</span><span class="s">&#39;time&#39;</span><span class="p">,</span><span class="n">topo_time</span><span class="p">)]))</span>
+
+      <span class="n">Pickler</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">viewtree</span><span class="p">,</span>
+                   <span class="n">param</span><span class="o">.</span><span class="n">normalize_path</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span>
+                   <span class="n">key</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">spec_metadata</span> <span class="o">+</span> <span class="n">path_metadata</span> <span class="o">+</span> <span class="p">[(</span><span class="s">&#39;time&#39;</span><span class="p">,</span><span class="n">topo_time</span><span class="p">)]))</span>
+
 
 <div class="viewcode-block" id="BatchCollector.verify"><a class="viewcode-back" href="../../../Reference_Manual/topo.misc.html#topo.misc.lancext.BatchCollector.verify">[docs]</a>   <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">specs</span><span class="p">,</span> <span class="n">model_params</span><span class="p">):</span>
       <span class="sd">&quot;&quot;&quot;</span>
