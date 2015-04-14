@@ -82,10 +82,9 @@
 
 <span class="kn">import</span> <span class="nn">param</span>
 <span class="kn">import</span> <span class="nn">lancet</span>
-<span class="kn">import</span> <span class="nn">topo</span>
 <span class="kn">import</span> <span class="nn">numbergen</span>
 <span class="kn">from</span> <span class="nn">holoviews.core.tree</span> <span class="kn">import</span> <span class="n">AttrTree</span>
-
+<span class="kn">import</span> <span class="nn">topo.sheet</span><span class="o">,</span> <span class="nn">topo.projection</span>
 <span class="kn">from</span> <span class="nn">specifications</span> <span class="kn">import</span> <span class="n">SheetSpec</span><span class="p">,</span> <span class="n">ProjectionSpec</span><span class="p">,</span> <span class="n">ModelSpec</span><span class="p">,</span> <span class="n">ArraySpec</span> <span class="c"># pyflakes:ignore (API import)</span>
 <span class="kn">from</span> <span class="nn">topo.misc.commandline</span> <span class="kn">import</span> <span class="n">global_params</span>
 
@@ -592,28 +591,20 @@
 
 
 <span class="c"># Register the sheets and projections available in Topographica</span></div></div>
-<span class="kn">from</span> <span class="nn">topo.sheet</span> <span class="kn">import</span> <span class="n">optimized</span> <span class="k">as</span> <span class="n">sheetopt</span>
-<span class="kn">from</span> <span class="nn">topo.projection</span> <span class="kn">import</span> <span class="n">optimized</span> <span class="k">as</span> <span class="n">projopt</span>
-<span class="kn">from</span> <span class="nn">topo</span> <span class="kn">import</span> <span class="n">projection</span>
-
-<span class="n">sheet_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">topo</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span>
-                 <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">topo</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">Sheet</span><span class="p">))]</span>
-
-<span class="n">sheet_classes_opt</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">sheetopt</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span>
-                     <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">topo</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">Sheet</span><span class="p">))]</span>
-
-<span class="n">projection_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">projection</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span>
-                      <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">projection</span><span class="o">.</span><span class="n">Projection</span><span class="p">))]</span>
-
-<span class="n">projection_classes_opt</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">projopt</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span>
-                          <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">projection</span><span class="o">.</span><span class="n">Projection</span><span class="p">))]</span>
-
-<span class="k">for</span> <span class="n">obj_class</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sheet_classes</span> <span class="o">+</span> <span class="n">sheet_classes_opt</span>
-                  <span class="o">+</span> <span class="n">projection_classes</span> <span class="o">+</span> <span class="n">projection_classes_opt</span><span class="p">):</span>
+<div class="viewcode-block" id="register_submodel_decorators"><a class="viewcode-back" href="../../Reference_Manual/topo.submodel.html#topo.submodel.register_submodel_decorators">[docs]</a><span class="k">def</span> <span class="nf">register_submodel_decorators</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="n">superclass</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Register a Model decorator for each of the non-abstract classes provided.</span>
+<span class="sd">    Only registers those that are subclasses of the given superclass, if specified.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">param</span><span class="o">.</span><span class="n">logging_level</span><span class="p">(</span><span class="s">&#39;CRITICAL&#39;</span><span class="p">):</span>
-        <span class="c"># Do not create a decorator if declared as abstract</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj_class</span><span class="p">,</span> <span class="s">&quot;_</span><span class="si">%s</span><span class="s">__abstract&quot;</span> <span class="o">%</span> <span class="n">obj_class</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
-            <span class="n">Model</span><span class="o">.</span><span class="n">register_decorator</span><span class="p">(</span><span class="n">obj_class</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> 
+                <span class="p">(</span><span class="n">superclass</span><span class="o">==</span><span class="bp">None</span> <span class="ow">or</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">superclass</span><span class="p">))</span> <span class="ow">and</span>
+                <span class="p">(</span><span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s">&quot;_</span><span class="si">%s</span><span class="s">__abstract&quot;</span> <span class="o">%</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">))):</span>
+               <span class="n">Model</span><span class="o">.</span><span class="n">register_decorator</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</div>
+<span class="n">register_submodel_decorators</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">concrete_descendents</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">sheet</span><span class="o">.</span><span class="n">Sheet</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">register_submodel_decorators</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">concrete_descendents</span><span class="p">(</span><span class="n">topo</span><span class="o">.</span><span class="n">projection</span><span class="o">.</span><span class="n">Projection</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </pre></div>
 
           </div>
