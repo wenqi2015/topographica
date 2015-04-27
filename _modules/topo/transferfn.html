@@ -96,12 +96,11 @@
 <span class="kn">from</span> <span class="nn">numbergen</span> <span class="kn">import</span> <span class="n">TimeAwareRandomState</span>
 
 <span class="c"># Imported here so that all TransferFns will be in the same package</span>
-<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span><span class="p">,</span><span class="n">IdentityTF</span><span class="p">,</span><span class="n">Threshold</span>  <span class="c"># pyflakes:ignore (API import)</span>
-<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">BinaryThreshold</span><span class="p">,</span><span class="n">DivisiveNormalizeL1</span>  <span class="c"># pyflakes:ignore (API import)</span>
-<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">DivisiveNormalizeL2</span><span class="p">,</span><span class="n">DivisiveNormalizeLinf</span> <span class="c"># pyflakes:ignore (API import)</span>
-<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">DivisiveNormalizeLp</span> <span class="c"># pyflakes:ignore (API import)</span>
-
-<span class="kn">from</span> <span class="nn">featuremapper</span> <span class="kn">import</span> <span class="n">PatternDrivenAnalysis</span>
+<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">TransferFn</span><span class="p">,</span> <span class="n">TransferFnWithState</span>   <span class="c"># pyflakes:ignore (API import)</span>
+<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">IdentityTF</span><span class="p">,</span> <span class="n">Threshold</span>             <span class="c"># pyflakes:ignore (API import)</span>
+<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">BinaryThreshold</span><span class="p">,</span> <span class="n">Hysteresis</span>                <span class="c"># pyflakes:ignore (API import)</span>
+<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">DivisiveNormalizeL1</span><span class="p">,</span> <span class="n">DivisiveNormalizeL2</span>   <span class="c"># pyflakes:ignore (API import)</span>
+<span class="kn">from</span> <span class="nn">imagen.transferfn</span> <span class="kn">import</span> <span class="n">DivisiveNormalizeLinf</span><span class="p">,</span> <span class="n">DivisiveNormalizeLp</span> <span class="c"># pyflakes:ignore (API import)</span>
 
 <span class="c"># CEBHACKALERT: these need to respect the mask - which will be passed in.</span>
 
@@ -291,83 +290,8 @@
         <span class="n">x</span> <span class="o">*=</span> <span class="n">x</span>
 
 
-
-<span class="c"># JAALERT: rename to something like PlasticTransferFn</span></div>
-<div class="viewcode-block" id="TransferFnWithState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithState</span><span class="p">(</span><span class="n">TransferFn</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Abstract base class for TransferFns that need to maintain a self.plastic parameter.</span>
-
-<span class="sd">    These TransferFns typically maintain some form of internal history</span>
-<span class="sd">    or other state from previous calls, which can be disabled by</span>
-<span class="sd">    override_plasticity_state().</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">plastic</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Whether or not to update the internal state on each call.</span>
-<span class="s">        Allows plasticity to be turned off during analysis, and then re-enabled.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="n">__abstract</span> <span class="o">=</span> <span class="bp">True</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_plasticity_setting_stack</span> <span class="o">=</span> <span class="p">[]</span>
-
-
-<div class="viewcode-block" id="TransferFnWithState.override_plasticity_state"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.override_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">override_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_plasticity_state</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Temporarily disable plasticity of internal state.</span>
-
-<span class="sd">        This function should be implemented by all subclasses so that</span>
-<span class="sd">        after a call, the output should always be the same for any</span>
-<span class="sd">        given input pattern (apart from true randomness or other</span>
-<span class="sd">        differences that do not depend on an internal state), and no</span>
-<span class="sd">        call should have any effect that persists after a subsequent</span>
-<span class="sd">        restore_plasticity_state() call.</span>
-
-<span class="sd">        By default, simply saves a copy of the &#39;plastic&#39; parameter to</span>
-<span class="sd">        an internal stack (so that it can be restored by</span>
-<span class="sd">        restore_plasticity_state()), and then sets the plastic</span>
-<span class="sd">        parameter to the given value (True or False).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_plasticity_setting_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plastic</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plastic</span><span class="o">=</span><span class="n">new_plasticity_state</span>
-
-</div>
-<div class="viewcode-block" id="TransferFnWithState.restore_plasticity_state"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.restore_plasticity_state">[docs]</a>    <span class="k">def</span> <span class="nf">restore_plasticity_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Re-enable plasticity of internal state after an override_plasticity_state call.</span>
-
-<span class="sd">        This function should be implemented by all subclasses to</span>
-<span class="sd">        remove the effect of the most recent override_plasticity_state call,</span>
-<span class="sd">        i.e. to reenable changes to the internal state, without any</span>
-<span class="sd">        lasting effect from the time during which plasticity was disabled.</span>
-
-<span class="sd">        By default, simply restores the last saved value of the</span>
-<span class="sd">        &#39;plastic&#39; parameter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">plastic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plasticity_setting_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-</div>
-<div class="viewcode-block" id="TransferFnWithState.state_push"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.state_push">[docs]</a>    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Save the current state onto a stack, to be restored using state_pop.</span>
-
-<span class="sd">        Subclasses must implement state_push and state_pop if they</span>
-<span class="sd">        store any lasting state across invocations, so that the result</span>
-<span class="sd">        of state_pop will be the state that was present at the</span>
-<span class="sd">        previous state_push.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
-</div>
-<div class="viewcode-block" id="TransferFnWithState.state_pop"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithState.state_pop">[docs]</a>    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Restore the state saved by the most recent state_push call.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
-
-
-
 <span class="c"># CB: it&#39;s not ideal that all TransferFnWithRandomState fns have</span>
-<span class="c"># the plastic stuff (from TransferFnWithState).</span></div></div>
+<span class="c"># the plastic stuff (from TransferFnWithState).</span></div>
 <div class="viewcode-block" id="TransferFnWithRandomState"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.TransferFnWithRandomState">[docs]</a><span class="k">class</span> <span class="nc">TransferFnWithRandomState</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">,</span> <span class="n">TimeAwareRandomState</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Abstract base class for TransferFns that use a random</span>
@@ -644,46 +568,6 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">x_avg</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothing</span><span class="p">)</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">smoothing</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">x_avg</span>
 
         <span class="n">x</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sf</span>
-
-</div>
-<div class="viewcode-block" id="Hysteresis"><a class="viewcode-back" href="../../Reference_Manual/topo.transferfn.html#topo.transferfn.Hysteresis">[docs]</a><span class="k">class</span> <span class="nc">Hysteresis</span><span class="p">(</span><span class="n">TransferFnWithState</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Smoothly interpolates a matrix between simulation time steps, with</span>
-<span class="sd">    exponential falloff.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">time_constant</span>  <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">doc</span><span class="o">=</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">        Controls the time scale of the interpolation.&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Hysteresis</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__current_state_stack</span><span class="o">=</span><span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">PatternDrivenAnalysis</span><span class="o">.</span><span class="n">pre_presentation_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
-           <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.0</span>
-           <span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="o">=</span> <span class="bp">False</span>
-
-        <span class="c">#if (float(topo.sim.time()) %1.0) &lt;= 0.15: self.old_a =  self.old_a* 0</span>
-        <span class="n">new_a</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span> <span class="o">+</span> <span class="p">(</span><span class="n">new_a</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">time_constant</span>
-        <span class="n">x</span><span class="o">*=</span><span class="mi">0</span>
-        <span class="n">x</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span>
-
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span> <span class="o">*=</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">state_push</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__current_state_stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">old_a</span><span class="p">),</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">first_call</span><span class="p">)))</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Hysteresis</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_push</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">state_pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_a</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">first_call</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">__current_state_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Hysteresis</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">state_pop</span><span class="p">()</span>
-
 </div>
 <span class="n">_public</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">_k</span> <span class="k">for</span> <span class="n">_k</span><span class="p">,</span><span class="n">_v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_v</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">_v</span><span class="p">,</span><span class="n">TransferFn</span><span class="p">)]))</span>
 
